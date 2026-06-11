@@ -1,8 +1,8 @@
 ---
 project: "TOSS — Hệ thống Điều hành Khai thác Hãng Hàng không"
 author: "BA Lead"
-version: "0.4"
-date: "2026-06-10"
+version: "0.6"
+date: "2026-06-12"
 status: "Draft"
 document_type: "Domain Knowledge — Từ điển Thuật ngữ TOSS"
 ---
@@ -36,6 +36,9 @@ document_type: "Domain Knowledge — Từ điển Thuật ngữ TOSS"
 | **AWY** (Airway) | Đường hàng không | Hành lang bay được thiết lập giữa các điểm dẫn đường. Điều phái kiểm tra NOTAM theo nhóm AWY/route (nguồn: FDOP §3.2). |
 | **AHM560** (IATA Airport Handling Manual ch. 560) | (giữ nguyên AHM560) | Chương 560 của IATA Airport Handling Manual — dữ liệu trọng lượng & cân bằng tàu bay do hãng công bố. Điều phái tra DOW theo loại tàu trong AHM560 (nguồn: FDOP §3.1 — "Check DOW information for any type of aircrafts in AHM560"). |
 | **AQD** | (giữ nguyên — tên hệ thống) | Hệ thống báo cáo sự cố/an toàn khai thác — điều phái lập "AQD report" khi có sự cố trong ca (divert…) (nguồn: FDOP §3.1 — "prepare reports on operational incidents... (divert, AQD report, etc.)"). *(Cần xác nhận với VNA — khả năng phần mềm Aviation Quality Database.)* |
+| **AMOS** | (giữ nguyên — tên hệ thống bảo dưỡng) | Hệ thống quản lý bảo dưỡng & kỹ thuật tàu bay của VNA — nguồn cung cấp MEL/CDL, defect, AOG cho TOSS; TOSS hiển thị + cảnh báo, KHÔNG thay thế chức năng AMOS (nguồn: phỏng vấn Dispatcher 11/06/2026 Phần 2 §II.3; YCKT TOSS-122…). *(Tên đầy đủ + cơ chế tích hợp API/event/poll: chờ xác nhận — xem OID SME-14.)* |
+| **AHM (bảng dầu)** | Bảng định mức nhiên liệu/dữ liệu khai thác | "Bảng dầu AHM" được điều phái nhắc trong nghiệp vụ nhiên liệu — bảng dữ liệu định mức dầu/khai thác mà điều phái dùng và cấp cho Lido. Liên quan [AHM560](#a) (IATA Airport Handling Manual). Hiện một phần quản lý qua phần mềm nội bộ (IFV). (nguồn: phỏng vấn Dispatcher 11/06/2026 Phần 2 §II.2). *(Phạm vi/định dạng bảng + phần mềm IFV: xem OID SME-16.)* |
+| **APU Time** | Thời gian sử dụng APU | Thời gian hoạt động của [APU](#a) trên chuyến bay — thông số điều phái theo dõi (liên quan chi phí APU và cảnh báo) (nguồn: phỏng vấn Dispatcher 11/06/2026 Phần 2 §II.6). |
 
 ---
 
@@ -57,13 +60,16 @@ document_type: "Domain Knowledge — Từ điển Thuật ngữ TOSS"
 |---|---|---|
 | **CAAV** (Civil Aviation Authority of Vietnam) | Cục Hàng không Việt Nam | Cơ quan quản lý nhà nước về hàng không dân dụng Việt Nam. Mọi quy định CAAV là ràng buộc pháp lý cho TOSS. |
 | **Captain / PIC** (Pilot-in-Command) | Cơ trưởng / Người chỉ huy tàu bay | Phi công chịu trách nhiệm cao nhất trong chuyến bay. TOSS quản lý lịch bay và chứng chỉ của PIC. |
+| **Captain's Release** | (giữ nguyên tiếng Anh) | Thao tác cơ trưởng xác nhận đã nhận và chấp nhận bộ tài liệu chuyến bay (OFP, NOTAM, WX, briefing package) trên MO Plus. **Điều kiện bắt buộc: điều phái phải hoàn tất [Dispatch Release](#d) trước; MO Plus chặn thao tác này nếu Dispatch Release chưa được thực hiện.** (nguồn: phỏng vấn Dispatcher 11/06/2026 — phần 1). |
 | **CAMO** (Continuing Airworthiness Management Organization) | Tổ chức Quản lý Duy trì Khả năng Bay | Đơn vị chịu trách nhiệm theo dõi khả năng bay của tàu bay. TOSS tích hợp với CAMO để theo dõi bảo dưỡng. |
 | **Check-in** | Làm thủ tục | Thủ tục hành khách tại sân bay. Nằm ngoài phạm vi TOSS (thuộc hệ thống DCS). |
 | **CM** (Cargo Manifest) | Bản kê hàng hóa | Bản kê hàng hóa/bưu kiện vận chuyển trên chuyến bay (loại, khối lượng, người gửi/nhận). Là một trong các tài liệu bắt buộc mang theo chuyến bay (ICAO Annex 9). TOSS đối chiếu CM với số liệu tải khi lập [Loadsheet](#l). |
 | **Category / Nhóm đội tàu** (Fleet Grouping) | Phân nhóm đội tàu | Cách gom loại tàu thành nhóm phục vụ báo cáo (vd 320+321 = 1 category; thân rộng/thân hẹp; A350/787/777/ATR). **Mỗi báo cáo có thể dùng cách chia nhóm khác nhau** (fuel flow / taxi time / định mức nhiên liệu) → TOSS cho định nghĩa nhiều Category, mỗi tàu map 1 lần (nguồn: họp 09/06). |
 | **CDL** (Configuration Deviation List) | Danh mục sai lệch cấu hình | Danh mục các bộ phận bên ngoài tàu bay được phép thiếu/hỏng mà vẫn khai thác được (đi cùng MEL). Điều phái kiểm tra hỏng hóc MEL/CDL trước khi lập kế hoạch bay (nguồn: FDOP §3.1; FAA-S-8081-10E). |
 | **Charter** | (giữ nguyên "charter") | Chuyến bay thuê chuyến (thuê thương mại theo hợp đồng, không thuộc lịch thường lệ). Khách hàng giữ nguyên "charter" trong phân loại tính chất chuyến bay: Ferry, hủy, tăng, chở khách, chở hàng, thường lệ, VIP, charter (YCKT TOSS-271). **Phân biệt với "chuyên cơ"** (= chuyến bay nguyên thủ/VIP A). |
-| **CLC** (Control Load Center) | Trung tâm Kiểm soát Cân bằng tải | Đơn vị kiểm soát cân bằng tải trọng — cung cấp thông tin tải/hành khách chính xác cho điều phái và nhận Final Weigh Manifest để lập Loadsheet. **Tên đầy đủ xác nhận từ nguồn:** FDOP §3.2 — "Control Load Center (CLC)" (thêm: FDOP §3.3, §3.5; YCKT sheet-07). |
+| **CLC** (Control Load Center) | Trung tâm Kiểm soát Cân bằng tải | Đơn vị kiểm soát cân bằng tải trọng — cung cấp thông tin tải/hành khách chính xác cho điều phái và nhận Final Weigh Manifest để lập Loadsheet. **Tên đầy đủ xác nhận từ nguồn:** FDOP §3.2 — "Control Load Center (CLC)" (thêm: FDOP §3.3, §3.5; YCKT sheet-07). *(Phỏng vấn 11/06 Phần 2 có gọi "Centralized Load Control" — vẫn giữ "Control Load Center" theo FDOP; xem OID SME-12.)* |
+| **Cost Index (CI)** | Chỉ số chi phí | Tham số tối ưu chi phí khai thác (cân đối chi phí thời gian vs nhiên liệu) đưa vào kế hoạch bay; điều phái nhắc tới CI theo từng giai đoạn **Climb / Cruise / Descend**. Hiện Lido có thể chỉ trả 1 CI — điều kiện trả đủ 3 CI cần xác nhận (nguồn: phỏng vấn Dispatcher 11/06/2026 Phần 2 §II.8; Đề xuất §II.1, §II.4). *(3 CI: xem OID KS-17.)* |
+| **Captain Certification per Aerodrome** | Chứng chỉ cơ trưởng theo sân bay đặc biệt | Yêu cầu cơ trưởng có chứng chỉ/được phê chuẩn khai thác tại một số **sân bay đặc biệt**; TOSS cảnh báo khi đổi tổ bay mà cơ trưởng chưa đủ chứng chỉ cho sân bay đó (nguồn: phỏng vấn Dispatcher 11/06/2026 Phần 2 §II.5). *(Danh mục sân bay đặc biệt + điều kiện: xem OID SME-18.)* |
 
 ---
 
@@ -72,7 +78,7 @@ document_type: "Domain Knowledge — Từ điển Thuật ngữ TOSS"
 | Viết tắt / Thuật ngữ | Tiếng Việt | Mô tả trong TOSS |
 |---|---|---|
 | **Delay Code** | Mã chậm chuyến | Mã IATA chuẩn phân loại nguyên nhân chậm chuyến. TOSS yêu cầu Dispatcher ghi Delay Code khi chuyến bay chậm > 15 phút. |
-| **Dispatch Release** | (giữ nguyên tiếng Anh "Dispatch Release") | Hành động/trạng thái xác nhận chuyến bay đủ điều kiện khởi hành do điều phái thực hiện. **Khách hàng dùng nguyên văn tiếng Anh, không dịch** (YCKT TOSS-223: "Dispatch Released = TRUE thì Phi công mới thực hiện Flight Release"; sheet-05 DSP). *(v0.4: thay bản dịch cũ "Giấy phép Khai thác" — không thấy khách hàng dùng.)* |
+| **Dispatch Release** | (giữ nguyên tiếng Anh "Dispatch Release") | Hành động/trạng thái xác nhận chuyến bay đủ điều kiện khởi hành do điều phái thực hiện. **Khách hàng dùng nguyên văn tiếng Anh, không dịch** (YCKT TOSS-223: "Dispatch Released = TRUE thì Phi công mới thực hiện Flight Release"; sheet-05 DSP). Quy trình nghiệp vụ (phỏng vấn 11/06): Lido tự sinh OFP → tự đẩy lên MO Plus; điều phái thực hiện Dispatch Release trên TOSS → TOSS gắn trạng thái "đã Dispatch Release" vào phiên bản OFP đó → phi công mới được thực hiện [Captain's Release](#c). **Là tiền đề bắt buộc của Captain's Release.** *(v0.4: thay bản dịch cũ "Giấy phép Khai thác" — không thấy khách hàng dùng.)* |
 | **Dispatcher / Flight Dispatcher (FD)** | Điều phái / Nhân viên điều phái bay | Người chịu trách nhiệm lập kế hoạch và kiểm soát chuyến bay tại OCC. Là người dùng chính của module Khai thác Bay trong TOSS. **Khách hàng dùng "Điều phái"** (YCKT TOSS-234/236/244; sheet-07 menu). *(v0.4: thay bản dịch cũ "Kiểm soát viên Khai thác / Điều phối viên" — không thấy khách hàng dùng.)* |
 | **Delivery Flight** | Chuyến bay nhận tàu bay | Chuyến bay đưa tàu bay mới nhận (mua/thuê) từ nơi giao (nhà sản xuất/bên cho thuê) về căn cứ khai thác. Quy trình điều phái cho delivery flight gồm chuẩn bị nhân sự, thu thập dữ liệu (MSN, 24-bit, DOW…), lập kế hoạch bay (nguồn: FDOP §3.5). |
 | **DM** | (giữ nguyên — chức danh nội bộ VNA) | Cấp quản lý trực mà điều phái báo cáo/thảo luận khi có rủi ro vượt ngưỡng, thay đổi slot, quyết định khai thác (nguồn: FDOP §3.1–3.5). *(Cần xác nhận tên đầy đủ với VNA: Duty Manager hay Dispatch Manager — chưa có nguồn.)* |
@@ -100,7 +106,7 @@ document_type: "Domain Knowledge — Từ điển Thuật ngữ TOSS"
 | Viết tắt / Thuật ngữ | Tiếng Việt | Mô tả trong TOSS |
 |---|---|---|
 | **FDP** (Flight Duty Period) | Giai đoạn Trực Bay | Khoảng thời gian từ khi phi hành đoàn báo cáo nhiệm vụ đến khi kết thúc chuyến bay cuối. Giới hạn bởi FTL. |
-| **Ferry Flight** | Chuyến bay Ferry / Chuyến định vị | Chuyến bay di chuyển tàu bay **không chở hành khách thương mại** (positioning), thực hiện để điều phối tàu về đúng vị trí phục vụ lịch bay tiếp theo. Trong BCAO, ferry được liệt kê riêng với REG, CALLSIGN, CODE (P = Positioning), DEP, ARR, ETD, ETA và tổng hợp theo nhóm (VN/0V/BL) (nguồn: BCAO_10Jun2025_11Jun2025-v2.docx). |
+| **Ferry Flight** | Chuyến bay Ferry / Chuyến định vị | Chuyến bay di chuyển tàu bay **không chở hành khách thương mại** (positioning), thực hiện để điều phối tàu về đúng vị trí phục vụ lịch bay tiếp theo. Trong BCAO, ferry được liệt kê riêng với REG, CALLSIGN, CODE (P = Positioning), DEP, ARR, ETD, ETA và tổng hợp theo nhóm (VN/0V/BL) (nguồn: BCAO_10Jun2025_11Jun2025-v2.docx). **Phát sinh chuyến ferry mới trong lịch bay → TOSS cảnh báo điều phái** để xử lý tài liệu (OFP, tài liệu riêng của chuyến ferry) (nguồn: phỏng vấn Dispatcher 11/06/2026). |
 | **Flight Plan** | Kế hoạch Bay | Tài liệu mô tả lộ trình, độ cao, nhiên liệu dự kiến của chuyến bay. TOSS tích hợp với hệ thống Flight Planning để nhận dữ liệu. |
 | **FTL** (Flight Time Limitations) | Giới hạn Giờ Bay | Quy định về thời gian bay tối đa và nghỉ ngơi tối thiểu của phi hành đoàn. CAAV FTL là ràng buộc cứng trong module Quản lý Tổ bay TOSS. |
 | **FIR** (Flight Information Region) | Vùng thông báo bay | Vùng trời được cung cấp dịch vụ thông báo bay và báo động (vd KABUL FIR). Điều phái theo dõi NOTAM/tình hình theo FIR (nguồn: FDOP §3.2, §3.4). |
@@ -152,6 +158,7 @@ document_type: "Domain Knowledge — Từ điển Thuật ngữ TOSS"
 
 | Viết tắt / Thuật ngữ | Tiếng Việt | Mô tả trong TOSS |
 |---|---|---|
+| **Lotang / Chuyến Lotang** | Chuyến bay Lotang *(tên chưa xác nhận)* | Loại chuyến bay đặc thù được nhắc đến bởi Dispatcher — có vẻ là **chuyến đường dài hoặc chuyến bay qua khu vực đặc biệt** [cần xác nhận định nghĩa chính xác với VNA]. Đặc điểm: phạm vi đánh giá rộng; cần có cảnh báo khi phát sinh; yêu cầu bước đánh giá tác động riêng trước khi phát hành. Điều phái nêu tách thành loại riêng bên cạnh Ferry Flight và chuyến VIP (nguồn: phỏng vấn Dispatcher 11/06/2026). *(Chưa thấy trong nguồn FDOP/YCKT — chờ VNA xác nhận.)* |
 | **LC** (Line Check) | Kiểm tra định kỳ đường bay | Hình thức kiểm tra khai thác định kỳ của phi công trên đường bay thực tế. Tàu bay đang được sử dụng cho Line Check ghi nhận trong BCAO là "LC" kèm sân bay (vd "010 LC HAN"). Ảnh hưởng đến số tàu thực sự có sẵn cho khai thác thương mại (nguồn: BCAO_10Jun2025_11Jun2025-v2.docx). |
 | **LF** (Load Factor) | Hệ số sử dụng ghế | Tỷ lệ phần trăm số ghế có khách trên tổng ghế cung ứng, đo theo chiều đi và chiều đến cho mỗi đường bay. Báo cáo trong BCAO theo từng đường trục (vd HAN-SGN-HAN LF trung bình 92%). Là KPI khai thác quan trọng bên cạnh OTP và OSP (nguồn: BCAO_10Jun2025_11Jun2025-v2.docx). |
 | **Loadsheet** (Load & Trim Sheet) | Phiếu Cân bằng Tải | Tài liệu tổng kết khối lượng và cân bằng (mass & balance) của một chuyến bay: DOW, payload, nhiên liệu, các giá trị ZFW / TOW / LW và trọng tâm (CG) / trim. Phải nằm trong giới hạn (MZFW/MTOW/MLW) và được cơ trưởng ký duyệt. Là điểm giao giữa Khai thác Mặt đất (chốt tải) và Khai thác Bay/Dispatch (kiểm tra giới hạn, phát hành). Theo ICAO Annex 6 / EU 965/2012 (Part-CAT). *Lưu ý: FAA gọi tách thành "Load Manifest" + "Weight & Balance Form".* |
@@ -164,7 +171,7 @@ document_type: "Domain Knowledge — Từ điển Thuật ngữ TOSS"
 |---|---|---|
 | **MEL** (Minimum Equipment List) | Danh sách Thiết bị Tối thiểu | Tài liệu quy định thiết bị nào được phép hỏng mà tàu bay vẫn được phép bay, với điều kiện nào. TOSS theo dõi MEL dispatch trong module Bảo dưỡng. |
 | **MRO** (Maintenance, Repair & Overhaul) | Bảo dưỡng, Sửa chữa & Đại tu | Đơn vị cung cấp dịch vụ bảo dưỡng tàu bay. TOSS không quản lý MRO trực tiếp nhưng tích hợp kế hoạch với CAMO. |
-| **METAR** (Meteorological Aerodrome Report) | Bản tin quan trắc khí tượng sân bay | Bản tin thời tiết quan trắc thực tế tại sân bay, phát hành định kỳ (30–60 phút). Cặp với [TAF](#t) (dự báo). Điều phái chuyên trách NOTAM/WX theo dõi METAR/TAF/SIGMET (nguồn: FDOP §3.2.2; FAA `sec-05-acronyms`). |
+| **METAR** (Meteorological Aerodrome Report) | Bản tin quan trắc khí tượng sân bay | Bản tin thời tiết quan trắc thực tế tại sân bay, phát hành định kỳ (30–60 phút). Cặp với [TAF](#t) (dự báo) và [SPECI](#s) (bản tin đặc biệt khi thời tiết biến động). Điều phái chuyên trách NOTAM/WX theo dõi METAR/TAF/SIGMET (nguồn: FDOP §3.2.2; FAA `sec-05-acronyms`). **TOSS cần tích hợp và parse METAR + SPECI để cảnh báo tự động các thông số: tầm nhìn, trần mây, TSRA** so với ngưỡng VMA của từng sân bay (nguồn: phỏng vấn Dispatcher 11/06/2026). |
 | **MOC** (Maintenance Operations Control) | Trung tâm Kiểm soát Khai thác Bảo dưỡng | Đơn vị kiểm soát khai thác bảo dưỡng — nguồn cung cấp thông tin hỏng hóc MEL/CDL cho điều phái (nguồn: FDOP §3.1, §3.2). |
 | **MSN** (Manufacturer Serial Number) | Số seri nhà sản xuất tàu bay | Số seri duy nhất của khung tàu bay do nhà sản xuất cấp. Thu thập khi nhận tàu mới (nguồn: FDOP §3.5). |
 
@@ -174,7 +181,7 @@ document_type: "Domain Knowledge — Từ điển Thuật ngữ TOSS"
 
 | Viết tắt / Thuật ngữ | Tiếng Việt | Mô tả trong TOSS |
 |---|---|---|
-| **NOTAM** (Notice to Airmen / **Notice to Air Missions** — FAA) | Thông báo cho Phi công | Thông tin về sân bay, không phận, hoặc thiết bị ảnh hưởng đến an toàn bay. Dispatcher trong TOSS phải xem xét NOTAM trước khi phát hành Dispatch Release. *Tên gọi: ICAO/truyền thống là "Notice to Airmen"; FAA đã đổi thành "Notice to Air Missions" (xem `aircraft_dispatcher_pts_10`).* |
+| **NOTAM** (Notice to Airmen / **Notice to Air Missions** — FAA) | Thông báo cho Phi công | Thông tin về sân bay, không phận, hoặc thiết bị ảnh hưởng đến an toàn bay. Dispatcher trong TOSS phải xem xét NOTAM trước khi phát hành Dispatch Release. *Tên gọi: ICAO/truyền thống là "Notice to Airmen"; FAA đã đổi thành "Notice to Air Missions" (xem `aircraft_dispatcher_pts_10`).* **Phân loại 3 nhóm theo phạm vi ảnh hưởng:** (1) NOTAM sân bay — ảnh hưởng hoạt động tại sân bay cụ thể; (2) NOTAM vùng trời (FIR/airspace) — ảnh hưởng quyền bay qua không phận; (3) NOTAM đường bay (route/AWY) — ảnh hưởng tuyến đường bay. Cách phân loại chi tiết và đánh giá mức độ ảnh hưởng tới từng chuyến cần workshop riêng với SME điều phái. NOTAM cứu hỏa (RFFS): khi cấp RFFS sân bay thay đổi → NOTAM phát ra → TOSS cảnh báo; không cần lưu tiêu chuẩn RFFS riêng (nguồn: phỏng vấn Dispatcher 11/06/2026). |
 | **NOTOC** (Notification To Captain) | Thông báo cho Cơ trưởng | Văn bản thông báo cho cơ trưởng về **hàng nguy hiểm (Dangerous Goods)** xếp trên tàu bay. Cơ trưởng phải tiếp nhận và **xác nhận đã nhận** (ký trên một bản sao NOTOC); một bản sao phải lưu giữ tại mặt đất, truy cập được suốt thời gian chuyến bay. Cơ sở: ICAO Annex 18 + FOCA GM-INFO Dangerous Goods (xem `dangerous-goods-notoc/`). TOSS sinh/đính kèm NOTOC trong bộ tài liệu chuyến bay khi có DG. |
 
 ---
@@ -189,7 +196,7 @@ document_type: "Domain Knowledge — Từ điển Thuật ngữ TOSS"
 | **On-time Performance (OTP)** | Tỷ lệ Đúng giờ | KPI đo tỷ lệ chuyến bay khởi hành / đến nơi đúng giờ. Dashboard TOSS hiển thị OTP real-time. |
 | **OSP** (Operational Schedule Performance) | Hiệu quả thực hiện lịch khai thác | Chỉ số đo mức độ khai thác bám sát lịch bay đã hoạch định. Liên quan/bổ trợ [OTP](#o). *(Nguồn: BA Lead cung cấp — chưa có trong tài liệu domain-knowledge.)* |
 | **OCD** | (giữ nguyên — tên đơn vị nội bộ VNA) | Đơn vị quản lý điều phái; trong FDOP gắn với cả "Flight schedule and assignment team (OCD)" và "Flight permit team (OCD)" (nguồn: FDOP §3.3, §3.5). **OCD ≠ OCC.** *(Cần xác nhận với VNA: tên đầy đủ và cơ cấu các team trực thuộc.)* |
-| **OFP** (Operational Flight Plan) | Kế hoạch bay (OFP) | Kế hoạch bay khai thác do điều phái lập/phát hành — tài liệu trung tâm của dispatch. Khách hàng dùng "OFP" nguyên dạng (YCKT TOSS-174/223/224/252; mục 27.0 "Quản lý tài liệu OFP, NOTAM, WX, briefing package"). Upload trước ETD: sớm nhất 240 phút, muộn nhất 70 phút (nguồn: FDOP §3.1). |
+| **OFP** (Operational Flight Plan) | Kế hoạch bay (OFP) | Kế hoạch bay khai thác do điều phái lập/phát hành — tài liệu trung tâm của dispatch. Khách hàng dùng "OFP" nguyên dạng (YCKT TOSS-174/223/224/252; mục 27.0 "Quản lý tài liệu OFP, NOTAM, WX, briefing package"). Upload trước ETD: sớm nhất 240 phút, muộn nhất 70 phút (nguồn: FDOP §3.1). **Thời điểm phát hành (phỏng vấn 11/06):** nội địa chốt trước 60 phút STD; quốc tế chốt trước 90 phút STD (mốc cơ bản); một số mốc bổ sung cho chuyến quốc tế dài: 130/180/200 phút [cần xác nhận phân loại chuyến tương ứng]. Dưới ngưỡng chốt không tự làm lại OFP — chỉ làm lại khi tổ bay yêu cầu qua điện thoại. |
 
 ---
 
@@ -218,7 +225,7 @@ document_type: "Domain Knowledge — Từ điển Thuật ngữ TOSS"
 | Viết tắt / Thuật ngữ | Tiếng Việt | Mô tả trong TOSS |
 |---|---|---|
 | **RDB TIME** | (giữ nguyên — mã/lỗi hệ thống nội bộ) | Loại lỗi liên quan dữ liệu đường bay xuất hiện trong nghiệp vụ chuẩn bị chuyến bay VIP (nguồn: FDOP §3.3). *(Cần xác nhận nghĩa với VNA — khả năng "Route Data Base time".)* |
-| **RFFS** (Rescue and Fire Fighting Services) | Dịch vụ Cứu nạn và Cứu hỏa sân bay | Cấp độ cứu nạn–cứu hỏa của sân bay (CAT theo ICAO Annex 14); điều phái kiểm tra RFFS của sân bay đi/đến/dự bị trước khi lập kế hoạch bay (nguồn: FDOP §3.1 — "refer to FDM table 4.2"; ICAO Annex 6; 14 CFR Part 121). |
+| **RFFS** (Rescue and Fire Fighting Services) | Dịch vụ Cứu nạn và Cứu hỏa sân bay | Cấp độ cứu nạn–cứu hỏa của sân bay (CAT theo ICAO Annex 14); điều phái kiểm tra RFFS của sân bay đi/đến/dự bị trước khi lập kế hoạch bay (nguồn: FDOP §3.1 — "refer to FDM table 4.2"; ICAO Annex 6; 14 CFR Part 121). **Cơ chế cảnh báo TOSS (phỏng vấn 11/06):** khi cấp RFFS sân bay thay đổi → NOTAM được phát ra → TOSS nhận NOTAM và cảnh báo điều phái; TOSS không cần lưu trữ bảng tiêu chuẩn RFFS riêng. |
 | **Registration (REG)** | Mã đăng ký tàu bay | Mã nhận dạng quốc tế duy nhất của tàu bay (tail number), ví dụ VNA893, A321-A396. Là khóa chính để liên kết mọi sự kiện khai thác (chuyến bay, bảo dưỡng, sự cố kỹ thuật) với từng tàu cụ thể. Một tàu có thể vào/ra đội bay nhiều lần → TOSS cần quản lý lịch sử REG theo từng giai đoạn (nguồn: họp 09/06). |
 | **Reserve Crew** | Tổ bay Dự phòng | Phi hành đoàn sẵn sàng thay thế khi có sự cố. TOSS quản lý danh sách dự phòng và cảnh báo khi cần kích hoạt. |
 | **Roster** | Lịch Bay | Lịch phân công nhiệm vụ của phi hành đoàn theo tháng/tuần. Được tạo trong module Quản lý Tổ bay TOSS. |
@@ -236,11 +243,13 @@ document_type: "Domain Knowledge — Từ điển Thuật ngữ TOSS"
 | **Stand** | Vị trí đỗ tàu bay | Vị trí cụ thể trên sân đỗ (apron). TOSS phân công stand trong module Mặt đất. |
 | **Sector** | Chặng bay | Một chặng bay từ sân bay A đến sân bay B. Thông tin sector là đầu vào lập kế hoạch bay (nguồn: FDOP §3.5). |
 | **SID / STAR** | Phương thức khởi hành / đến tiêu chuẩn | SID (Standard Instrument Departure) — phương thức khởi hành tiêu chuẩn; STAR (Standard Terminal Arrival Route) — phương thức đến tiêu chuẩn. Điều phái kiểm tra NOTAM ảnh hưởng SID/STAR (nguồn: FDOP §3.2; FAA `sec-05-acronyms`). |
+| **SPECI** (Special Aerodrome Meteorological Report) | Bản tin khí tượng sân bay đặc biệt | Bản tin khí tượng phát hành ngoài chu kỳ khi thời tiết tại sân bay biến động đột ngột vượt ngưỡng (tầm nhìn thay đổi lớn, trần mây hạ thấp, TSRA xuất hiện, thay đổi hướng/tốc độ gió đáng kể…). Cặp với [METAR](#m) (bản tin định kỳ). **TOSS tích hợp SPECI cùng METAR để cảnh báo tự động** khi thông số thời tiết vượt ngưỡng VMA của sân bay (nguồn: phỏng vấn Dispatcher 11/06/2026; FAA `sec-05-acronyms`). |
 | **Slot** | (giữ nguyên "slot") | Khung giờ được cấp cho chuyến bay (cất/hạ cánh hoặc qua không phận). "Cấp slot" = slot allocation. Khách hàng giữ nguyên "slot" (YCKT; FDOP §3.4 — slot BOBCAT). |
 | **Station Manager** | Trưởng đại diện sân bay | Người đại diện hãng tại sân bay (vd VIAGS station manager), đầu mối phối hợp phục vụ mặt đất khi có thay đổi sau Dispatch Release (nguồn: FDOP §3.1.3). |
 | **STS/HEAD** | (giữ nguyên — chỉ thị ICAO FPL) | Chỉ thị trạng thái đặc biệt trong mục 18 của ATC FPL (ICAO Doc 4444) đánh dấu chuyến bay nguyên thủ (Head of State) — dùng cho chuyến bay VIP (nguồn: FDOP §3.3). |
 | **SUP** (Supervisor) | Giám sát viên | Vị trí giám sát trong ca trực điều phái; phụ trách chuyến phức tạp, đường dài ≥ 8 giờ, chuyến không có DSP đi kèm (nguồn: FDOP §3.2, §3.3). *(Chức danh nội bộ VNA — cần xác nhận.)* |
 | **SQD** | (giữ nguyên — tên đơn vị nội bộ VNA) | Đơn vị cung cấp thông tin mã 24-bit và tiếp nhận/kiểm tra các giấy chứng nhận từ CAAV khi nhận tàu bay mới (nguồn: FDOP §3.5 — "Contacting member from SQD to get information about 24-bit"; "Coordinating with SQD to receive and check all certificates from CAAV"). *(Cần xác nhận tên đầy đủ với VNA.)* |
+| **Standard Taxi Time** | Thời gian lăn tiêu chuẩn | Thời gian lăn (taxi) tiêu chuẩn theo sân bay/đường lăn, dùng trong kế hoạch bay và báo cáo thời gian thực hiện chuyến. Điều phái muốn TOSS quản lý giá trị master và (nếu được) để Lido push tự động (nguồn: phỏng vấn Dispatcher 11/06/2026 Phần 2 §II.7). *(Đơn vị quản lý MOI / cơ chế push Lido: xem OID SME-15, KS-16.)* |
 
 ---
 
@@ -253,6 +262,7 @@ document_type: "Domain Knowledge — Từ điển Thuật ngữ TOSS"
 | **Turnaround Time (TAT)** | Thời gian Quay vòng | Thời gian tối thiểu cần thiết để chuẩn bị tàu bay cho chuyến bay tiếp theo. Mỗi loại tàu bay có TAT khác nhau, được cấu hình trong Master Data. |
 | **Techstop** (Technical Stop) | Sân bay/chặng dừng kỹ thuật | Điểm dừng giữa hành trình để nạp nhiên liệu/phục vụ kỹ thuật, không lên/xuống khách thương mại (vd techstop cho delivery flight đường dài) (nguồn: FDOP §3.5). |
 | **ToT** (Transfer of Title) | Chuyển giao quyền sở hữu | Thời điểm chuyển giao quyền sở hữu/quyền sử dụng tàu bay từ bên giao (nhà sản xuất/bên cho thuê) sang hãng trong giao nhận tàu bay; mốc thời gian quan trọng của delivery flight (nguồn: FDOP §3.5). *(Với tàu thuê: chỉ chuyển quyền khai thác — cần lưu ý ngữ cảnh.)* |
+| **TSRA** (Thunderstorm with Rain) | Dông kèm mưa | Mã thời tiết hiện tại trong METAR/SPECI: thunderstorm kết hợp với mưa (`TS` = thunderstorm, `RA` = rain). Một trong các điều kiện thời tiết bất lợi mà điều phái theo dõi — khi METAR/SPECI có `TSRA` → TOSS cảnh báo so sánh với ngưỡng VMA của sân bay (nguồn: phỏng vấn Dispatcher 11/06/2026). |
 
 ---
 
@@ -272,6 +282,7 @@ document_type: "Domain Knowledge — Từ điển Thuật ngữ TOSS"
 |---|---|---|
 | **VAECO** | (giữ nguyên — tên đơn vị nội bộ VNA) | Đơn vị kỹ thuật phối hợp kiểm tra EFB (LIDO eRM, OPT/Flysmart, Nav) cùng đối tác khi nhận tàu bay mới (nguồn: FDOP §3.5). *(Cần xác nhận tên đầy đủ với VNA — khả năng Vietnam Airlines Engineering Company.)* |
 | **VIAGS** | (giữ nguyên — tên đơn vị nội bộ VNA) | Đơn vị phục vụ mặt đất: nhận thông báo khi reissue OFP (cùng Station Manager), bố trí nhân sự nhận bàn giao tài liệu và hỗ trợ lập loadsheet theo mẫu VNA (nguồn: FDOP §3.1.3, §3.5; YCKT TOSS-078 "VMS/VIAGS"). *(Cần xác nhận tên đầy đủ với VNA — khả năng Vietnam Airlines Ground Services.)* |
+| **VMA** | Ngưỡng thời tiết tối thiểu khai thác *(tên viết tắt nội bộ VNA)* | Tập hợp ngưỡng điều kiện khí tượng tối thiểu (tầm nhìn, trần mây, và loại hiện tượng thời tiết) mà dưới ngưỡng đó sân bay không đủ điều kiện khai thác — dùng làm mức ngưỡng so sánh khi TOSS cảnh báo METAR/SPECI. Điều phái đề cập VMA trong ngữ cảnh: khi tầm nhìn/trần mây trong METAR thay đổi xuống dưới VMA, hoặc khi có hiện tượng TSRA → hệ thống cảnh báo (nguồn: phỏng vấn Dispatcher 11/06/2026). **[Cần xác nhận với VNA: tên đầy đủ chính thức, cấu trúc bảng VMA, và phân loại sân bay.]** |
 
 ---
 
@@ -287,6 +298,14 @@ document_type: "Domain Knowledge — Từ điển Thuật ngữ TOSS"
 
 ---
 
+## Z
+
+| Viết tắt / Thuật ngữ | Tiếng Việt | Mô tả trong TOSS |
+|---|---|---|
+| **ZFW** (Zero Fuel Weight) | Trọng lượng không nhiên liệu | Trọng lượng tàu bay gồm DOW + payload, chưa tính nhiên liệu. TOSS đối soát ZFW từ OFP với ZFW thực tế tính toán, cảnh báo Delta khi lệch (nguồn: Đề xuất §II.2; phỏng vấn Dispatcher 11/06/2026 Phần 2 §II.1). |
+
+---
+
 ## Ghi chú Bổ sung
 
 > - Thuật ngữ này là **tài liệu sống** — bổ sung liên tục trong quá trình phân tích.
@@ -298,4 +317,6 @@ document_type: "Domain Knowledge — Từ điển Thuật ngữ TOSS"
 
 ---
 
+*v0.6 (2026-06-12): Bổ sung 7 entry từ phỏng vấn Dispatcher 11/06/2026 (buổi sáng, Phần 2) sau khi BA Lead confirm: AMOS, AHM (bảng dầu), APU Time, Cost Index (CI), Captain Certification per Aerodrome, Standard Taxi Time, ZFW (thêm mục Z). Các thuật ngữ còn chờ xác nhận (CLC tên đầy đủ, NAIL, SkyCheck, QAR/QAI, TIC, PAX time) chưa thêm — theo dõi tại OID-TOSS-001 (SME-12…18). Quyết định: BA Lead 2026-06-12.*
+*v0.5 (2026-06-11): Bổ sung 9 entry và cập nhật 5 entry từ phỏng vấn Dispatcher 11/06/2026 (buổi sáng, part 1): thêm Captain's Release, Chuyến Lotang, SPECI, TSRA, VMA; cập nhật Dispatch Release (luồng Lido→MO Plus→TOSS), Ferry Flight (cảnh báo phát sinh), METAR (tích hợp SPECI+cảnh báo VMA), NOTAM (phân loại 3 nhóm+RFFS qua NOTAM), OFP (mốc chốt nội địa 60'/quốc tế 90'), RFFS (cơ chế cảnh báo qua NOTAM). Quyết định: BA Lead 2026-06-11.*
 *v0.4 (2026-06-10): Bổ sung ~38 entry từ FDOP §3.1–3.5 sau khi rà bản dịch; cập nhật 4 entry theo từ ngữ khách hàng YCKT (Dispatcher → "Điều phái"; Dispatch Release → giữ tiếng Anh; Ground Handling → "Phục vụ mặt đất"; Briefing → giữ "briefing/Briefing Sheet" trong ngữ cảnh tài liệu chuyến bay). Quyết định: BA Lead 2026-06-10.*
