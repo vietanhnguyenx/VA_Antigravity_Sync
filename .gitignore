@@ -1,0 +1,29 @@
+# ===== TOSS monorepo — .gitignore =====
+
+# --- Local / runtime (không commit) ---
+.claude/settings.local.json
+logs/
+identity.local.md
+*.local.md
+
+# --- OS / editor ---
+Thumbs.db
+.DS_Store
+desktop.ini
+.vscode/
+.idea/
+*~
+
+# --- Build artifacts: bản sinh lại được (Word/PPTX) từ nguồn ---
+# Mặc định KHÔNG commit. Muốn lưu vết bàn giao khách → comment dòng tương ứng.
+ba/deliverables/exports/
+
+# --- DEV (bổ sung khi có code) ---
+node_modules/
+dist/
+build/
+bin/
+obj/
+*.log
+.env
+.env.local
