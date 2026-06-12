@@ -1,7 +1,7 @@
 ---
 project: "TOSS — Hệ thống Điều hành Khai thác Hãng Hàng không"
 author: "BA Lead"
-version: "0.3"
+version: "0.4"
 date: "2026-06-12"
 status: "Draft"
 document_type: "Sổ theo dõi Điểm cần chốt & Câu hỏi mở (Open Items & Decisions Register)"
@@ -63,6 +63,11 @@ document_id: "OID-TOSS-001"
 | SME-26 | **Logitech / GDTN** — tên nguồn log tổ bay upload/truy cập | KS 11/06 chiều §II.12 | SME điều phái | 🔴 Mở | |
 | SME-27 | **Sketch Check / Schedule Check** — tên hệ thống tham khảo (real-time + nhấp nháy) | KS 11/06 chiều §II.6 | SME điều phái | 🔴 Mở | |
 | SME-28 | **Brady / ADC** — viết tắt + trường cụ thể trong OFP/TXT | KS 11/06 chiều §II.11 | SME điều phái | 🔴 Mở | |
+| SME-29 | **AC_STATE** — codeset trạng thái tàu bay (R/O…) | BRD v0.3 BR-421 (Netline) | SME master data | 🔴 Mở | |
+| SME-30 | **AC_INDEX** — ngữ nghĩa chỉ số + lý do mẫu = 0 | BRD v0.3 BR-423 (Netline) | SME master data | 🔴 Mở | |
+| SME-31 | **AP_RESTRICTION** — codeset hạn chế sân bay theo tàu | BRD v0.3 BR-426 (Netline) | SME điều phái/master data | 🔴 Mở | |
+| SME-32 | **FORM D / FORM E** — tên mẫu báo cáo nhà chức trách | BRD v0.3 BR-331 (YCKT V3 d.478) | SME điều phái | 🔴 Mở | |
+| SME-33 | **FLIGHT BASE TIME FOR CAAV** — giá trị mặc định (vd 20:00) + quy tắc chốt lịch | BRD v0.3 BR-415 (YCKT sheet-08 #1) | SME điều phái | 🔴 Mở | |
 
 ## C. Vấn đề nghiệp vụ cần làm rõ qua khảo sát (KS)
 
@@ -94,6 +99,11 @@ document_id: "OID-TOSS-001"
 | KS-24 | **MO Plus "latest by name"** (hardcode) — phối hợp đội MO Plus điều chỉnh | KS 11/06 chiều §II.9 | Đối tác MO Plus | 🔴 Mở | |
 | KS-25 | **Cơ chế refresh real-time** màn Monitoring (WebSocket/SSE/webhook/auto-refresh) | KS 11/06 chiều §II.6 | Workshop kỹ thuật | 🔴 Mở | |
 | KS-26 | **Phase Trigger mapping** — danh sách cảnh báo × mốc ACARS raise/clear | KS 11/06 chiều §II.6 | SME điều phái | 🔴 Mở | |
+| KS-27 | **RCL (Re-Clearance)** — phạm vi nghiệp vụ + quan hệ EDTO | BRD v0.3 BR-227 (YCKT FOS) | SME điều phái | 🔴 Mở | |
+| KS-28 | **Danh mục cảnh báo luồng Lido 4D** (adapter/parse/đẩy MO Plus) | BRD v0.3 BR-231 (YCKT sheet-08 #24) | SME điều phái/tích hợp | 🔴 Mở | |
+| KS-29 | **filed ATC** — quy tắc trigger cảnh báo (thời điểm filed, ngưỡng) | BRD v0.3 BR-127/BR-223 (sheet-08 #3/#4) | SME điều phái | 🔴 Mở | |
+| KS-30 | **Golden record + ánh xạ codeset loại tàu** FIMS↔Netline (hợp nhất master) | BRD v0.3 BR-427 | Workshop master data/tích hợp | 🔴 Mở | |
+| KS-31 | **Báo cáo sai lệch tải/thời gian** (EST CLC vs thực tế; OFP đầu/cuối vs LS; 3 bên DOW/EPLD) | BRD v0.3 BR-332 (YCKT V3 d.439-446) | SME Tuấn Dương | 🔴 Mở | |
 
 ## D. Tham số/ngưỡng & mô hình dữ liệu chưa có nguồn (DL)
 
@@ -139,11 +149,13 @@ document_id: "OID-TOSS-001"
 | Nhóm | Tổng | 🔴 Mở | 🟡 Đang xử lý | 🟢 Đã chốt |
 |---|---|---|---|---|
 | A. Quyết định BA Lead (QĐ) | 6 | 6 | 0 | 0 |
-| B. Thuật ngữ/hệ thống (SME) | 28 | 28 | 0 | 0 |
-| C. Nghiệp vụ-khảo sát (KS) | 26 | 26 | 0 | 0 |
+| B. Thuật ngữ/hệ thống (SME) | 33 | 33 | 0 | 0 |
+| C. Nghiệp vụ-khảo sát (KS) | 31 | 31 | 0 | 0 |
 | D. Tham số/dữ liệu (DL) | 5 | 5 | 0 | 0 |
 | E. Hành chính/hạ tầng (HC) | 3 | 1 | 2 | 0 |
-| **Tổng** | **68** | **66** | **2** | **0** |
+| **Tổng** | **78** | **76** | **2** | **0** |
+
+> Cập nhật sau bổ sung BRD v0.3 bottom-up (rà 2026-06-12): +5 SME (SME-29…33), +5 KS (KS-27…31) từ Customer Docs (Aircraft FIMS/Netline, YCKT V3/FOS). Loại nguồn BBKS/BBLV (UBCKNN — đã xóa khỏi repo).
 
 > Cập nhật sau buổi 11/06 Phần 2 (rà 2026-06-12): +7 SME (SME-12…18), +8 KS (KS-12…19). Phần 2 KHÔNG làm rõ điểm mở nào của Phần 1.
 > Cập nhật sau buổi 11/06 buổi chiều (rà 2026-06-12): +10 SME (SME-19…28), +7 KS (KS-20…26). Buổi chiều KHÔNG làm rõ điểm mở nào của buổi sáng — trọng tâm sang nội dung mới (Release/Unrelease + version OFP, 6 phase quy trình, Monitoring real-time, Weather Multi-Flight, Payload Extra).
@@ -152,7 +164,7 @@ document_id: "OID-TOSS-001"
 
 ## H. Liên kết tài liệu nguồn
 
-- BRD §9 (rủi ro/giả định/cờ): `ba/workspace/drafts/brd/BRD-TOSS-001-khung-v0.1.md`
+- BRD §9 (rủi ro/giả định/cờ) — bản hiện hành: `ba/workspace/drafts/brd/BRD-TOSS-001-khung-v0.3.md` (158 BR; v0.1/v0.2 là lịch sử)
 - Phân rã FUNC (ô "chưa có nguồn"): `ba/workspace/drafts/srs/03-dac-ta-chuc-nang/PHAN-RA-BRD-PH{1..5}-*.md`
 - Báo cáo khảo sát §IV: `…/BAO-CAO-KHAO-SAT-08062026-v0.1.md`, `…-09062026-v0.1.md`, `…-11062026-buoi-sang-v0.1.md` (11/06 gộp Phần 1+2; tham chiếu "KS 11/06 P2 §II.x" tương ứng chủ đề §II.8–15 của báo cáo gộp)
 - Phương án workflow §9: `ba/workspace/drafts/quy-trinh/PHAN-TACH-PHAM-VI-WORKFLOW-v0.1.md`
@@ -161,6 +173,7 @@ document_id: "OID-TOSS-001"
 
 ---
 
+*OID-TOSS-001 v0.4 — 2026-06-12. Rà sau bổ sung BRD v0.3 bottom-up: thêm 10 điểm (SME-29…33: AC_STATE, AC_INDEX, AP_RESTRICTION, FORM D/E, FLIGHT BASE TIME CAAV; KS-27…31: RCL, cảnh báo Lido 4D, filed ATC trigger, golden-record codeset FIMS↔Netline, báo cáo sai lệch tải). Tổng 78 điểm (76 Mở). Nguồn BBKS/BBLV (UBCKNN) đã loại + xóa khỏi repo.*
 *OID-TOSS-001 v0.3 — 2026-06-12. Rà sau buổi 11/06 buổi chiều: thêm 17 điểm mở (SME-19…28: Flight Type Code, claim phí khí thải, CCD, Mission Watch, AIJS, FME, ICON, Logitech/GDTN, Sketch Check, Brady/ADC; KS-20…26: reset Confirm Release TOSS↔MO Plus, version sau Unrelease, bóc tách 3 file OFP, TOSS sửa OFP PA1/PA2, MO Plus latest-by-name, refresh real-time, Phase Trigger mapping). Tổng 68 điểm (66 Mở / 2 Đang xử lý). Buổi chiều không cover điểm mở buổi sáng.*
 *OID-TOSS-001 v0.2 — 2026-06-12. Rà sau buổi 11/06 Phần 2: thêm 15 điểm mở (SME-12…18 thuật ngữ/hệ thống: CLC, NAIL, AMOS, MOI, IFV, TIC, sân bay đặc biệt; KS-12…19 nghiệp vụ: NAIL master/sub, ranh giới Lido↔TOSS, ngưỡng lệch tải, SkyCheck, Standard Taxi Time push, 3 CI, PAX time, hệ thống QAR/QAI). Tổng 51 điểm (49 Mở / 2 Đang xử lý). Phần 2 không cover điểm mở Phần 1.*
 *OID-TOSS-001 v0.1 — 2026-06-11. Khởi tạo sổ theo dõi gom 36 điểm cần chốt từ BRD, 5 file phân rã FUNC, 3 báo cáo khảo sát và phương án workflow. Rà soát + cập nhật sau mỗi buổi meeting (quy trình §F).*

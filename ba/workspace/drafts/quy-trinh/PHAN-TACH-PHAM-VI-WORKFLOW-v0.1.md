@@ -206,7 +206,7 @@ document_id: "WF-TOSS-001"
 ## 10. Liên kết tài liệu
 
 - Khảo sát: `bao-cao-khao-sat/BAO-CAO-KHAO-SAT-08062026-v0.1.md`, `…-09062026-v0.1.md`, `…-11062026-buoi-sang-v0.1.md` (11/06 đã gộp Phần 1+2).
-- BRD: `brd/BRD-TOSS-001-khung-v0.1.md` · Phân rã FUNC: `srs/03-dac-ta-chuc-nang/PHAN-RA-BRD-PH{1..5}-*.md`.
+- BRD (bản hiện hành): `brd/BRD-TOSS-001-khung-v0.3.md` (158 BR; v0.1/v0.2 là lịch sử) · Phân rã FUNC: `srs/03-dac-ta-chuc-nang/PHAN-RA-BRD-PH{1..5}-*-v0.2.md` (theo BR của v0.2; 53 BR bottom-up mới của v0.3 chưa phân rã).
 - Phân công Role: `PHAN-CONG-ROLE-BA-v0.1.md` (§3/§6 cập nhật theo tài liệu này).
 - Lộ trình BA: `BA-ROADMAP-v0.1.md` · Chất lượng: `QUALITY-GATE-v0.1.md`, `REVIEW-APPROVAL-FLOW-v0.1.md`, `CHANGE-CONTROL-SOP-v0.1.md`.
 - Workflow P4: `.claude/knowledge/ba-workflow-patterns.md §P4`.
