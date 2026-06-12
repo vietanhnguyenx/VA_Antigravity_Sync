@@ -51,7 +51,44 @@ function CleanLinks($t){ $rx=[regex]'(?<!\!)\[([^\]]+)\]\(([^)]+)\)'; $rx.Replac
 function StripMdTokens($t){ [regex]::Replace($t,'(?:\.{1,2}/)?(?:[\w.\-]+/)*([\w.\-]+?)\.(?:md|html)\b','$1') }
 # (c) bỏ stem tên-file còn sót (slug dẫn đầu bằng số mục hoặc 'wf-') — KHÔNG đụng end-to-end / MO-2026-012
 function StripSlugs($t){ [regex]::Replace($t,'(?<![A-Za-z0-9./-])(?:(?:wf-)?\d+(?:\.\d+)*-[a-z][a-z0-9-]*|wf-[a-z][a-z0-9-]*)(?![A-Za-z])','') }
-function Transform($p){ StripSlugs (StripMdTokens (CleanLinks (StripFrontmatter $p))) }
+# (d) bỏ chú thích/cảnh báo lỗi nhận dạng giọng nói (ASR) — CHỈ ở .md nội bộ, KHÔNG vào bản giao khách (SKILL §0.0)
+function StripAsr($t){
+  $kw='ASR|đính chính|chép nhầm|lỗi nhận dạng'
+  # d1: bỏ TRỌN dòng "Cảnh báo chất lượng ghi âm" / "Cảnh báo ASR" (bullet/blockquote/heading)
+  $t=[regex]::Replace($t,'(?im)^[ \t]*(?:>[ \t]*)?[-*>#]*[ \t]*\**Cảnh báo (?:chất lượng ghi âm|ASR)[^\r\n]*\r?\n?','')
+  # d2: bỏ TRỌN dòng chỉ chứa ghi chú *(...)* có từ khoá ASR (vd dòng đính chính độc lập)
+  $t=[regex]::Replace($t,"(?im)^[ \t]*(?:>[ \t]*)?[-*][ \t]*\*\([^)]*(?:$kw)[^)]*\)\*[ \t]*\r?\n?",'')
+  # d3: bỏ redirect strikethrough '~~...~~ → X' (giữ thuật ngữ đúng X)
+  $t=[regex]::Replace($t,'~~[^~]+~~[ \t]*(?:→|⟶|->)[ \t]*','')
+  # d4: bỏ ghi chú *(...)* chứa từ khoá ASR GIỮA dòng
+  $t=[regex]::Replace($t,"\*\([^)]*(?:$kw)[^)]*\)\*",'')
+  # d5: bỏ ngoặc đơn (...) chứa từ khoá ASR
+  $t=[regex]::Replace($t,"[ \t]*\((?:[^()]*?)(?:$kw)(?:[^()]*?)\)",'')
+  # d6: bỏ ngoặc vuông [...] chứa 'ASR' (cờ cần-xác-nhận liên quan ASR)
+  $t=[regex]::Replace($t,'[ \t]*\[[^\]]*ASR[^\]]*\]','')
+  # d7: bỏ ghi chú ASR dạng văn bản thuần (không ngoặc) — từ 'đính chính'/'lỗi nhận dạng' tới hết ô bảng (|) hoặc hết dòng
+  $t=[regex]::Replace($t,'(?:[ \t]*[—–-])?[ \t]*(?:đính chính|lỗi nhận dạng)[^|\r\n]*','')
+  $t
+}
+# (e) bỏ dấu vết NỘI BỘ khác (suy diễn/đối chiếu/truy vết) — CHỈ ở .md, KHÔNG vào bản giao khách (SKILL §0.0)
+function StripInternal($t){
+  # e1: bỏ TRỌN dòng "Lưu ý nội bộ" (cảnh báo chất lượng ghi âm / ghi chú quy trình)
+  $t=[regex]::Replace($t,'(?im)^[^\r\n]*Lưu ý nội bộ[^\r\n]*\r?\n?','')
+  # e2: bỏ TRỌN dòng khung nội bộ: "CHỈ đề xuất" (đề xuất glossary), trỏ "sổ theo dõi điểm chốt"/"tổng hợp vào sổ"
+  $t=[regex]::Replace($t,'(?im)^[^\r\n]*(?:CHỈ đề xuất|sổ theo dõi điểm chốt|tổng hợp vào sổ)[^\r\n]*\r?\n?','')
+  # e3: bỏ ghi chú đối chiếu nội bộ trong ngoặc/in nghiêng có 'domain-knowledge'/'glossary'
+  $t=[regex]::Replace($t,'\*\([^)]*(?:domain-knowledge|glossary)[^)]*\)\*','')
+  $t=[regex]::Replace($t,'[ \t]*\([^()]*(?:domain-knowledge|glossary)[^()]*\)','')
+  # e4: bỏ từ khoá nội bộ còn sót ở tiêu đề/câu ('domain-knowledge', tệp glossary)
+  $t=[regex]::Replace($t,'[ \t]*domain-knowledge','')
+  $t=[regex]::Replace($t,';?[ \t]*[Đđ]iểm cần chốt theo dõi tại OID-TOSS-001\.?','')
+  $t=[regex]::Replace($t,'[ \t]*\(OID-TOSS-001\)','')
+  # e5: bỏ trích dẫn dòng transcript — dạng ngoặc "(P1 d.x)"/"(P2 d.x)" rồi dạng trần trong ô bảng
+  $t=[regex]::Replace($t,'[ \t]*\([ \t]*P[12][ \t]*d\.[^)]*\)','')
+  $t=[regex]::Replace($t,'P[12][ \t]*d\.[-0-9.,–\t ]+(?:;[ \t]*P[12][ \t]*d\.[-0-9.,–\t ]+)*','')
+  $t
+}
+function Transform($p){ StripInternal (StripAsr (StripSlugs (StripMdTokens (CleanLinks (StripFrontmatter $p))))) }
 
 # ---------- Ghép Markdown ----------
 $sb = New-Object System.Text.StringBuilder
@@ -92,6 +129,8 @@ $qc=[ordered]@{
   'no markdown link ]('             = (([regex]'\]\(').Matches($txt).Count -eq 0)
   'no filename slug'                 = (([regex]'phan-he|wireframe-overview|tien-do-ncc|thiet-bi-iot').Matches($txt).Count -eq 0)
   'no YAML key leak'                 = (([regex]'document_type:|source_template:|^project:\s*"').Matches($txt).Count -eq 0)
+  'no ASR note leak (§0.0)'          = (([regex]'\bASR\b|đính chính|chép nhầm|lỗi nhận dạng').Matches($txt).Count -eq 0)
+  'no internal note leak (§0.0)'     = (([regex]'Lưu ý nội bộ|domain-knowledge|glossary|OID-TOSS|sổ theo dõi điểm chốt|P[12]\s*d\.').Matches($txt).Count -eq 0)
   'FONT = Times New Roman only (+Consolas code)' = (($theme -match 'minorFont[\s\S]*?Times New Roman') -and (([regex]'Aptos|Calibri|Cambria').Matches($styles+$theme).Count -eq 0) -and (-not $badFonts))
   'XML well-formed'                  = $true
 }

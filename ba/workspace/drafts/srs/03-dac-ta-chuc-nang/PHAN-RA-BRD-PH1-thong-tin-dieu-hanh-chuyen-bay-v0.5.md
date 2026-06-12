@@ -1,7 +1,7 @@
 ---
 project: "TOSS — Hệ thống Điều hành Khai thác Hãng Hàng không"
 author: "BA Lead"
-version: "0.3"
+version: "0.5"
 date: "2026-06-12"
 status: "Draft"
 document_type: "Functional Decomposition"
@@ -12,31 +12,34 @@ document_id: "FUNC-DEC-PH1"
 
 > **Nguyên tắc tối thượng (CLAUDE.md §0):** Tài liệu này chỉ **phân rã + lắp ráp trung thực** các yêu cầu nghiệp vụ (BR) đã được ghi nhận trong nguồn. Tuyệt đối không suy diễn, không bịa chức năng, không tự "hoàn thiện" logic mà nguồn chưa nêu. Mỗi yêu cầu chức năng (FUNC — Functional Requirement) được phân rã đều phải truy vết về **BR cha** và **trích nguồn gốc** (file + mục §). Khi nguồn không cung cấp đủ chi tiết, ghi rõ **"(chưa có nguồn — cần SME bổ sung)"** thay vì tự điền.
 >
-> **Phạm vi tài liệu (v0.3):** Phân hệ 1 — Thông tin điều hành chuyến bay (BR-101 … BR-132, theo `BRD-TOSS-001-khung-v0.3.md §7.1`). Phân rã ở mức **chức năng (FUNC)** — cụ thể hơn BR nhưng **chưa** tới mức Trường hợp sử dụng (UC — Use Case), màn hình hoặc trường dữ liệu chi tiết. Các tầng đó sẽ được làm tại SRS/FRD kế tiếp.
+> **Phạm vi tài liệu (v0.5):** Phân hệ 1 — Thông tin điều hành chuyến bay (BR-101 … BR-150, theo `BRD-TOSS-PH1-thong-tin-dieu-hanh-v0.1.md`; §7.1 từ `BRD-TOSS-001-khung-v0.6.md`). Phân rã ở mức **chức năng (FUNC)** — cụ thể hơn BR nhưng **chưa** tới mức Trường hợp sử dụng (UC — Use Case), màn hình hoặc trường dữ liệu chi tiết. Các tầng đó sẽ được làm tại SRS/FRD kế tiếp.
 >
 > **Quy ước đánh số:** `FUNC-1xx` cho Phân hệ 1 (1xx — lớp 100).
 >
 > **Lịch sử thay đổi:**
 > - v0.1 (2026-06-11): khởi tạo phân rã FUNC-101 … FUNC-188 cho BR-101 … BR-119.
 > - v0.2 (2026-06-12): bổ sung FUNC-189 … FUNC-214 cho các BR mới BR-120 … BR-126 (lệch tải OFP/CLC; NAIL/CDL; chứng chỉ tổ bay theo sân bay; đổi tổ bay; PAX time; Monitoring overview real-time qua ACARS; Flight Type Code/STS-HEAD) từ Khảo sát 11/06 buổi sáng (§II.8, II.10, II.12, II.13) và Khảo sát 11/06 buổi chiều (§II.2, II.6). Cập nhật tham chiếu BRD sang `BRD-TOSS-001-khung-v0.2.md`. Cập nhật bảng truy vết BR → FUNC và các danh sách FUNC "(chưa có nguồn)" / cờ `[cần xác nhận]`.
-> - v0.3 (2026-06-12): bổ sung FUNC-215 … FUNC-235 cho các BR mới BR-127 … BR-132 từ bottom-up YCKT V3 + sheet-08 "Cảnh báo & Tham số": cảnh báo đã filed ATC FPL (BR-127), cảnh báo TAT không đủ (BR-128), Airport Constraints / Slot / curfew (BR-129), tự kiểm tra bất thường lịch bay thay công cụ Excel của Tổ Lịch Bay (BR-130), AC APU INOP đến sân không có GPU/ASU/ACU (BR-131), bật/tắt cảnh báo hai cấp (BR-132). Cập nhật tham chiếu BRD sang `BRD-TOSS-001-khung-v0.3.md`. Cập nhật bảng truy vết BR → FUNC và các danh sách FUNC "(chưa có nguồn)" / cờ `[cần xác nhận]`.
+> - v0.3 (2026-06-12): bổ sung FUNC-215 … FUNC-235 cho các BR mới BR-127 … BR-132 từ bottom-up YCKT V3 + sheet-08 "Cảnh báo & Tham số": cảnh báo đã filed ATC FPL (BR-127), cảnh báo TAT không đủ (BR-128), Airport Constraints / Slot / curfew (BR-129), tự kiểm tra bất thường lịch bay thay công cụ Excel của Tổ Lịch Bay (BR-130), AC APU INOP đến sân không có GPU/ASU/ACU (BR-131), bật/tắt cảnh báo hai cấp (BR-132). Cập nhật tham chiếu BRD sang `BRD-TOSS-001-khung-v0.4.md`. Cập nhật bảng truy vết BR → FUNC và các danh sách FUNC "(chưa có nguồn)" / cờ `[cần xác nhận]`.
+> - v0.4 (2026-06-12): bổ sung cột "Dữ liệu liên quan" cho các FUNC thuộc nhóm màn hình giám sát điều phái — BR-112 (dashboard tài liệu chuyến: FUNC-139…143), BR-113 (hai nhóm màn giám sát: FUNC-144, 145, 146), BR-114 (màn hình tập trung kiểm tra đầu ca: FUNC-148…159), BR-125 (Monitoring overview real-time: FUNC-204…210). Cột mới bám theo nhóm trường FOS Report (sheet-09) và Đề xuất §II.1; các trường/thực thể chưa có nguồn rõ giữ cờ `[cần xác nhận]`. Không thêm/bớt FUNC; bảng truy vết, danh sách "(chưa có nguồn)" và cờ `[cần xác nhận]` giữ nguyên.
+> - v0.5 (2026-06-12): bổ sung FUNC-236 … FUNC-271 cho 18 BR mới BR-133 … BR-150 (Khảo sát 12/06 — thiết kế màn Giám sát chuyến bay & màn chi tiết Flight Detail trên bản mẫu `dsp_monitoring_poc.html`): Flight Detail tab model (BR-133…135), Flight Number 3 cột Netline + leg history (BR-136/137), bộ 4 mã màu thống nhất + tô màu ô + xanh-sau-đỏ + đổi màu tự động (BR-138…140), phân quyền 2 lớp + profile cá nhân + quy ước UI (BR-141…143), logic cột REG/Dispatch Release/Flight Number(D-Z)/ETA-IN (BR-144…147), time window + Flight Watch/"vào gate chậm" (BR-148/149), format lịch sử đổi chung (BR-150). Cập nhật tham chiếu BRD sang `BRD-TOSS-001-khung-v0.5.md`. Cập nhật bảng truy vết BR → FUNC, tổng, và danh sách "(chưa có nguồn)" / cờ `[cần xác nhận]`. Đính chính ASR "off cộng cộng" = Ops++ (FUNC liên quan BR-146).
 
 ---
 
 ## 1. Phạm vi & quy ước
 
 - **Nguồn chính:**
-  - `ba/workspace/drafts/brd/BRD-TOSS-001-khung-v0.3.md` §7.1 — danh sách BR-101 … BR-132.
+  - `ba/workspace/drafts/brd/BRD-TOSS-PH1-thong-tin-dieu-hanh-v0.1.md` — danh sách BR-101 … BR-150 (§7.1 từ `BRD-TOSS-001-khung-v0.6.md`).
+  - `ba/workspace/drafts/phan-tich/bao-cao-khao-sat/BAO-CAO-KHAO-SAT-12062026-buoi-sang-v0.1.md` §II (chủ đề 1–13), §III (24 nội dung thống nhất) — nguồn BR-133 … BR-150.
   - `ba/workspace/drafts/phan-tich/yckt-trien-khai/sheet-08-cảnh-báo-tham-số.md` — sheet "Cảnh báo & Tham số" (BR-127 filed ATC, BR-128 TAT, BR-131 APU INOP, BR-132 bật/tắt cảnh báo hai cấp).
   - `ba/workspace/drafts/phan-tich/yckt-trien-khai/sheet-04-yckt-v3.md` dòng 374 (Airport Constraints — BR-129), dòng 376 (tự kiểm tra bất thường lịch bay — BR-130), dòng 167 (AC APU INOP / TOSS-126/127 — BR-131).
   - `ba/workspace/input/domain-knowledge/vnaocc-proposal-decomposed/02-giai-phap-nghiep-vu/01-phan-he-thong-tin-dieu-hanh-chuyen-bay.md` — bóc tách §II.1 Đề xuất giải pháp kỹ thuật v0.3.
   - `ba/workspace/drafts/phan-tich/bao-cao-khao-sat/BAO-CAO-KHAO-SAT-11062026-buoi-sang-v0.1.md` §II.4–II.7 (kiểm tra đầu ca, OSP, Divert, NOTAM, thời tiết) và §II.8, II.10, II.12, II.13 (lệch tải OFP/CLC, NAIL/CDL, chứng chỉ tổ bay theo sân bay, APU/PAX time — bổ sung v0.2).
   - `ba/workspace/drafts/phan-tich/bao-cao-khao-sat/BAO-CAO-KHAO-SAT-11062026-buoi-chieu-v0.1.md` §II.2 (Flight Type Code, STS/HEAD) và §II.6 (Monitoring real-time qua ACARS) — bổ sung v0.2.
-  - `ba/workspace/drafts/phan-tich/bao-cao-khao-sat/BAO-CAO-KHAO-SAT-08062026-v0.1.md` §II.2, II.3, II.6 (hai nhóm giám sát, FMS, khách nối chuyến).
-  - `ba/workspace/drafts/phan-tich/bao-cao-khao-sat/BAO-CAO-KHAO-SAT-09062026-v0.1.md` §II.7 (đa Carrier trong BCAO).
+  - `ba/workspace/drafts/phan-tich/bao-cao-khao-sat/BAO-CAO-KHAO-SAT-08062026-v0.2.md` §II.2, II.3, II.6 (hai nhóm giám sát, FMS, khách nối chuyến).
+  - `ba/workspace/drafts/phan-tich/bao-cao-khao-sat/BAO-CAO-KHAO-SAT-09062026-v0.2.md` §II.7 (đa Carrier trong BCAO).
 - **Cờ truy vết:**
   - `(chưa có nguồn — cần SME bổ sung)` — nguồn đề cập nguyên tắc nhưng không nêu chi tiết để bóc xuống FUNC; chờ SME bổ sung.
-  - `[cần xác nhận]` — nội dung nguồn còn cờ này (vd VMA, Lotang, VNCM/VNCS); giữ nguyên cờ trong FUNC để truy vết.
+  - `[cần xác nhận]` — nội dung nguồn còn cờ này (vd VMA, VNCM/VNCS); giữ nguyên cờ trong FUNC để truy vết.
 - **Mã FUNC** đánh liên tiếp `FUNC-101 → FUNC-1xx`; mỗi FUNC ánh xạ tới đúng một BR cha (cùng FUNC có thể được tham chiếu chéo qua nhiều BR nếu nguồn cùng nêu, nhưng BR cha là BR mà FUNC trực tiếp phân rã từ đó).
 
 ---
@@ -137,40 +140,40 @@ document_id: "FUNC-DEC-PH1"
 
 ### 2.12 BR-112 — Ghi nhận bất thường, dashboard tài liệu và luồng phê duyệt
 
-| Mã FUNC | Mô tả chức năng (bám nguồn) | BR cha | Nguồn |
-|---|---|---|---|
-| FUNC-138 | Ghi nhận các bất thường phát sinh của chuyến bay và phân loại theo các nhóm nguyên nhân: thời tiết, kỹ thuật, lý do khách quan khác. | BR-112 | Đề xuất §II.1 — Phân loại bất thường; Khảo sát 09/06 §II.7 (cấu trúc BCAO, phần bất thường) |
-| FUNC-139 | Cung cấp dashboard tài liệu chuyến bay: giám sát trạng thái chuyến đã có hay chưa có đối với từng loại tài liệu cần thiết. | BR-112 | Đề xuất §II.1 — Dashboard tài liệu |
-| FUNC-140 | Theo dõi chi tiết luồng phê duyệt tài liệu theo trạng thái yêu cầu (Request), xác nhận (Confirm), từ chối (Reject) bởi từng đối tượng liên quan kèm dấu thời gian thực. | BR-112 | Đề xuất §II.1 — Luồng phê duyệt |
-| FUNC-141 | Quản lý phiên bản tài liệu đính kèm chuyến bay: hiển thị số lượng và nội dung của các phiên bản; cho phép tải về toàn bộ bộ hồ sơ tài liệu chuyến bay khi cần. | BR-112 | Đề xuất §II.1 — Quản lý phiên bản |
-| FUNC-142 | Phân quyền xem thông tin chi tiết chuyến bay đến từng người dùng theo vai trò nghiệp vụ trong môi trường điều hành khai thác. | BR-112 | Đề xuất §II.1 — Đoạn kết luận về phân quyền xem |
-| FUNC-143 | Danh mục cụ thể "các loại tài liệu cần thiết" và quy tắc xác định "đã có / chưa có" trên dashboard tài liệu: (chưa có nguồn — cần SME bổ sung). | BR-112 | (chưa có nguồn — cần SME bổ sung) |
+| Mã FUNC | Mô tả chức năng (bám nguồn) | BR cha | Nguồn | Dữ liệu liên quan |
+|---|---|---|---|---|
+| FUNC-138 | Ghi nhận các bất thường phát sinh của chuyến bay và phân loại theo các nhóm nguyên nhân: thời tiết, kỹ thuật, lý do khách quan khác. | BR-112 | Đề xuất §II.1 — Phân loại bất thường; Khảo sát 09/06 §II.7 (cấu trúc BCAO, phần bất thường) | — (không thuộc phạm vi cột "Dữ liệu liên quan" của v0.4 — chức năng ghi nhận bất thường, không phải màn giám sát) |
+| FUNC-139 | Cung cấp dashboard tài liệu chuyến bay: giám sát trạng thái chuyến đã có hay chưa có đối với từng loại tài liệu cần thiết. | BR-112 | Đề xuất §II.1 — Dashboard tài liệu | Chuyến bay (FLT NO, STD, DEP, ARR, AC REG); Tài liệu chuyến (nhóm FOS "DOCUMENT STATUS": OFP REV COUNT, LS REV COUNT, GD REV COUNT, PM REV COUNT, NOTOC BAGGAGE REV COUNT, NOTOC CARGO REV COUNT, CARGO MANIFEST REV COUNT, MAIL MANIFEST REV COUNT cùng các mốc UPLOAD TIME / CONFIRM TIME tương ứng); trạng thái "đã có / chưa có" theo từng loại tài liệu `[cần xác nhận quy tắc xác định]`. |
+| FUNC-140 | Theo dõi chi tiết luồng phê duyệt tài liệu theo trạng thái yêu cầu (Request), xác nhận (Confirm), từ chối (Reject) bởi từng đối tượng liên quan kèm dấu thời gian thực. | BR-112 | Đề xuất §II.1 — Luồng phê duyệt | Tài liệu chuyến (loại tài liệu, phiên bản); Sự kiện phê duyệt (trạng thái Request / Confirm / Reject, đối tượng thực hiện, dấu thời gian); tham chiếu các mốc FOS: LS UPLOAD TIME, LS CONFIRM TIME, GD UPLOAD TIME, GD CONFIRM TIME, PM UPLOAD TIME, PM CONFIRM TIME, NOTOC BAGGAGE UPLOAD/CONFIRM TIME, NOTOC CARGO UPLOAD/CONFIRM TIME, CARGO MANIFEST UPLOAD/CONFIRM TIME, MAIL MANIFEST UPLOAD/CONFIRM TIME, FLIGHT RELEASE TIME, RELEASED BY. |
+| FUNC-141 | Quản lý phiên bản tài liệu đính kèm chuyến bay: hiển thị số lượng và nội dung của các phiên bản; cho phép tải về toàn bộ bộ hồ sơ tài liệu chuyến bay khi cần. | BR-112 | Đề xuất §II.1 — Quản lý phiên bản | Tài liệu chuyến (loại tài liệu, số phiên bản, file đính kèm); chỉ số phiên bản từ FOS: OFP REV, OFP REV COUNT, OFP NUMBER, IS RECLEAR OFP, OFP REV RELEASED, FLIGHT RELEASE COUNT, LS VERSION, LS REV COUNT, GD REV COUNT, PM REV COUNT, NOTOC/CARGO/MAIL MANIFEST REV COUNT; gói hồ sơ tài liệu chuyến (file bundle) `[cần xác nhận cấu trúc gói tải về]`. |
+| FUNC-142 | Phân quyền xem thông tin chi tiết chuyến bay đến từng người dùng theo vai trò nghiệp vụ trong môi trường điều hành khai thác. | BR-112 | Đề xuất §II.1 — Đoạn kết luận về phân quyền xem | Người dùng (User ID, họ tên, vai trò nghiệp vụ); Vai trò (Role) và ma trận phân quyền theo trường/màn hình chi tiết chuyến `[cần xác nhận danh mục vai trò và ma trận quyền]`. |
+| FUNC-143 | Danh mục cụ thể "các loại tài liệu cần thiết" và quy tắc xác định "đã có / chưa có" trên dashboard tài liệu: (chưa có nguồn — cần SME bổ sung). | BR-112 | (chưa có nguồn — cần SME bổ sung) | Danh mục loại tài liệu cần thiết theo chuyến (gợi ý các nhóm FOS: OFP, Load Sheet — LS, General Declaration — GD, Passenger Manifest — PM, NOTOC Baggage, NOTOC Cargo, Cargo Manifest, Mail Manifest, Flight Release) `[cần xác nhận danh mục đầy đủ và quy tắc "đã có / chưa có"]`. |
 
 ### 2.13 BR-113 — Hai nhóm màn hình giám sát: trực ban trưởng và cán bộ tài liệu
 
-| Mã FUNC | Mô tả chức năng (bám nguồn) | BR cha | Nguồn |
-|---|---|---|---|
-| FUNC-144 | Cung cấp màn hình giám sát dành cho trực ban trưởng (OCC Duty Manager) tập trung vào trạng thái khai thác và khách nối chuyến. | BR-113 | Khảo sát 08/06 §II.2 — Hai nhóm đối tượng giám sát |
-| FUNC-145 | Cung cấp màn hình giám sát dành cho cán bộ tài liệu, tập trung vào tình trạng tài liệu chuyến bay (đã được tổ bay xác nhận / tải xuống hay chưa). | BR-113 | Khảo sát 08/06 §II.2 — Hai nhóm đối tượng giám sát |
-| FUNC-146 | Hỗ trợ nhiều cấp xem từ tổng quan đến chi tiết từng chuyến và từng hành khách trong hai nhóm màn hình giám sát; cho phép giám sát nhiều chuyến cùng lúc (thay vì xem lần lượt từng chuyến như hiện trạng). | BR-113 | Khảo sát 08/06 §II.2 — Hai nhóm đối tượng giám sát |
-| FUNC-147 | Theo dõi khách nối chuyến (nối vào / nối ra) và cảnh báo nguy cơ lỡ nối chuyến khi chậm chuyến. | BR-113 | Khảo sát 08/06 §II.6 — Khách nối chuyến |
+| Mã FUNC | Mô tả chức năng (bám nguồn) | BR cha | Nguồn | Dữ liệu liên quan |
+|---|---|---|---|---|
+| FUNC-144 | Cung cấp màn hình giám sát dành cho trực ban trưởng (OCC Duty Manager) tập trung vào trạng thái khai thác và khách nối chuyến. | BR-113 | Khảo sát 08/06 §II.2 — Hai nhóm đối tượng giám sát | Chuyến bay (FLT NO, DEP, ARR, STD, STA, ETD, ETA, ATD, ATA, LEG STATE, IRREGULAR, DIVERTED, DELAY GROUP, DELAY CODE, DELAY MINS); Tàu bay (AC TYPE, AC REG); Hành khách nối chuyến (PAX nối vào / nối ra — theo BOOKING/LS PAX và OFP PAX) `[cần xác nhận trường nguồn — FOS sheet-09 không có cột Transfer PAX trực tiếp]`; Cảnh báo khai thác (nguồn từ hệ thống cảnh báo nội tại). |
+| FUNC-145 | Cung cấp màn hình giám sát dành cho cán bộ tài liệu, tập trung vào tình trạng tài liệu chuyến bay (đã được tổ bay xác nhận / tải xuống hay chưa). | BR-113 | Khảo sát 08/06 §II.2 — Hai nhóm đối tượng giám sát | Chuyến bay (FLT NO, STD, DEP, ARR, AC REG); Tổ bay (CREW SYNC, PIC); Tài liệu chuyến (nhóm FOS DOCUMENT STATUS: OFP REV/REV COUNT, LS UPLOAD/CONFIRM TIME, GD UPLOAD/CONFIRM TIME, PM UPLOAD/CONFIRM TIME, NOTOC BAGGAGE/CARGO UPLOAD/CONFIRM TIME, CARGO MANIFEST UPLOAD/CONFIRM TIME, MAIL MANIFEST UPLOAD/CONFIRM TIME, FLIGHT RELEASE TIME, RELEASED BY); trạng thái "tổ bay đã xác nhận / đã tải xuống" `[cần xác nhận trường nguồn]`. |
+| FUNC-146 | Hỗ trợ nhiều cấp xem từ tổng quan đến chi tiết từng chuyến và từng hành khách trong hai nhóm màn hình giám sát; cho phép giám sát nhiều chuyến cùng lúc (thay vì xem lần lượt từng chuyến như hiện trạng). | BR-113 | Khảo sát 08/06 §II.2 — Hai nhóm đối tượng giám sát | Danh sách chuyến bay (FLT NO, DEP, ARR, STD/STA, AC REG, LEG STATE); Chi tiết chuyến (toàn bộ nhóm FOS Report — FLIGHT INFO, AIRCRAFT, TIME, LOAD & WEIGHT, OFP, DOCUMENT STATUS, CREW, AIRPORT, ACARS); Chi tiết hành khách (LS ADULT, LS CHILD, LS INFANT, LS MALE, LS FEMALE, LS TTL, OFP PAX; PAX nối chuyến); cấu hình hiển thị (lựa chọn ẩn/hiện cột — tham chiếu BR-102). |
+| FUNC-147 | Theo dõi khách nối chuyến (nối vào / nối ra) và cảnh báo nguy cơ lỡ nối chuyến khi chậm chuyến. | BR-113 | Khảo sát 08/06 §II.6 — Khách nối chuyến | — (không thuộc phạm vi cột "Dữ liệu liên quan" của v0.4 theo phân định 4 BR áp dụng) |
 
 ### 2.14 BR-114 — Màn hình tập trung kiểm tra đầu ca (Start-of-Shift Check)
 
-| Mã FUNC | Mô tả chức năng (bám nguồn) | BR cha | Nguồn |
-|---|---|---|---|
-| FUNC-148 | Cung cấp một màn hình tập trung kiểm tra đầu ca cho điều phái viên (Dispatcher), gom toàn bộ các đầu mối cần kiểm tra của ca trực vào cùng một giao diện. | BR-114 | Khảo sát 11/06 §II.4 — Kiểm tra đầu ca |
-| FUNC-149 | Trên màn hình kiểm tra đầu ca, hiển thị nhóm kiểm tra: Lịch bay (Flight Schedule). | BR-114 | Khảo sát 11/06 §II.4 |
-| FUNC-150 | Trên màn hình kiểm tra đầu ca, hiển thị nhóm kiểm tra: Loại tàu bay. | BR-114 | Khảo sát 11/06 §II.4 |
-| FUNC-151 | Trên màn hình kiểm tra đầu ca, hiển thị nhóm kiểm tra: Tàu quay (Rotation) — đối chiếu tàu được phân cho chuyến với lịch quay. | BR-114 | Khảo sát 11/06 §II.4 |
-| FUNC-152 | Trên màn hình kiểm tra đầu ca, hiển thị nhóm kiểm tra: Cứu hỏa sân bay (RFFS — Rescue and Fire Fighting Service category). | BR-114 | Khảo sát 11/06 §II.4 |
-| FUNC-153 | Trên màn hình kiểm tra đầu ca, hiển thị nhóm kiểm tra: Thời tiết. | BR-114 | Khảo sát 11/06 §II.4 |
-| FUNC-154 | Trên màn hình kiểm tra đầu ca, hiển thị nhóm kiểm tra: Tải. | BR-114 | Khảo sát 11/06 §II.4 |
-| FUNC-155 | Trên màn hình kiểm tra đầu ca, hiển thị nhóm kiểm tra: MEL/CDL. | BR-114 | Khảo sát 11/06 §II.4 |
-| FUNC-156 | Trên màn hình kiểm tra đầu ca, hiển thị nhóm kiểm tra: Hạn chế (Restrictions). | BR-114 | Khảo sát 11/06 §II.4 |
-| FUNC-157 | Trên màn hình kiểm tra đầu ca, hiển thị nhóm kiểm tra: Chứng chỉ tổ bay. | BR-114 | Khảo sát 11/06 §II.4 |
-| FUNC-158 | Tự đối chiếu (compare) hai chiều giữa các nguồn dữ liệu — ví dụ giữa lịch bay với loại tàu, giữa kế hoạch ca trước với tình trạng tàu hiện tại — và tự sinh cảnh báo khi phát hiện không khớp hoặc có biến động bất thường. | BR-114 | Khảo sát 11/06 §II.4 — Thảo luận – Đề xuất |
-| FUNC-159 | Phân loại cảnh báo trên màn hình kiểm tra đầu ca theo mức "bắt buộc xử lý" vs "ghi nhận để báo cáo"; tiêu chí cụ thể của từng nhóm cảnh báo: (chưa có nguồn — cần SME bổ sung). | BR-114 | Khảo sát 11/06 §II.4 — Kết luận (cờ "chi tiết sẽ chốt ở các buổi tiếp theo") |
+| Mã FUNC | Mô tả chức năng (bám nguồn) | BR cha | Nguồn | Dữ liệu liên quan |
+|---|---|---|---|---|
+| FUNC-148 | Cung cấp một màn hình tập trung kiểm tra đầu ca cho điều phái viên (Dispatcher), gom toàn bộ các đầu mối cần kiểm tra của ca trực vào cùng một giao diện. | BR-114 | Khảo sát 11/06 §II.4 — Kiểm tra đầu ca | Ca trực (Dispatcher, thời gian ca, phạm vi chuyến bay phụ trách); Danh sách chuyến bay trong ca (FLT NO, STD, STA, DEP, ARR, AC REG, LEG STATE); các nhóm kiểm tra con (xem FUNC-149 → FUNC-157). |
+| FUNC-149 | Trên màn hình kiểm tra đầu ca, hiển thị nhóm kiểm tra: Lịch bay (Flight Schedule). | BR-114 | Khảo sát 11/06 §II.4 | Lịch bay (FLT NO, STD, STA, DEP, ARR, SECTOR, LEG TYPE, LEG STATE, ETD, ETA, ETD CAAV); IRREGULAR; DIVERTED. |
+| FUNC-150 | Trên màn hình kiểm tra đầu ca, hiển thị nhóm kiểm tra: Loại tàu bay. | BR-114 | Khảo sát 11/06 §II.4 | Tàu bay (AC TYPE, AC SUBTYPE, AC CATEGORY, AC REG, AC GROUP 1…5); cấu hình cabin (AC CONFIG C/W/Y/CWY). |
+| FUNC-151 | Trên màn hình kiểm tra đầu ca, hiển thị nhóm kiểm tra: Tàu quay (Rotation) — đối chiếu tàu được phân cho chuyến với lịch quay. | BR-114 | Khảo sát 11/06 §II.4 | Tàu bay (AC REG); chuỗi chặng quay tàu (FLT NO, STD, STA, DEP, ARR theo thứ tự LEG_NO); TAT SCHED, TAT ACTUAL; lịch khai thác tàu trước/sau (kế hoạch khai thác — Đề xuất §II.1 "Lịch khai thác"). |
+| FUNC-152 | Trên màn hình kiểm tra đầu ca, hiển thị nhóm kiểm tra: Cứu hỏa sân bay (RFFS — Rescue and Fire Fighting Service category). | BR-114 | Khảo sát 11/06 §II.4 | Sân bay (DEP, ARR); cấp RFFS / NOTAM cứu hỏa của sân bay (tham chiếu BR-118 / FUNC-177) `[cần xác nhận trường lưu cấp RFFS — nguồn FOS sheet-09 không liệt kê trường này]`. |
+| FUNC-153 | Trên màn hình kiểm tra đầu ca, hiển thị nhóm kiểm tra: Thời tiết. | BR-114 | Khảo sát 11/06 §II.4 | Bản tin METAR / SPECI cho sân bay đi/đến (tham chiếu BR-119); OFP WX PROG; AVG WC, AVG WIND, ISA DEV, MAX SHR; ngưỡng VMA `[cần xác nhận viết tắt VMA]`. |
+| FUNC-154 | Trên màn hình kiểm tra đầu ca, hiển thị nhóm kiểm tra: Tải. | BR-114 | Khảo sát 11/06 §II.4 | LOAD & WEIGHT (CORR DOW, CORR PLD, CORR ZFW, CORR TOW, CORR TOF, CORR LDW, CORR TRIP FUEL, CORR TAXI FUEL); Load Sheet (LS DOW, LS ZFW, LS ZFW MAX, LS TOW, LS TOW MAX, LS LAW, LS LAW MAX, LS PAYLOAD, LS TAKE OFF FUEL, LS TRIP FUEL); OFP (OFP DOW, OFP ZFW, OFP TOW, OFP LDW, OFP PAYLOAD, OFP TRIP FUEL); chênh lệch OFP↔LS (tham chiếu BR-120). |
+| FUNC-155 | Trên màn hình kiểm tra đầu ca, hiển thị nhóm kiểm tra: MEL/CDL. | BR-114 | Khảo sát 11/06 §II.4 | Tàu bay (AC REG); danh mục MEL hiện hành của tàu (OFP MEL); danh mục CDL hiện hành (tham chiếu BR-121 / FUNC-193 — CDL); khoảng hiệu lực; ảnh hưởng đến khả năng khai thác chuyến (tham chiếu Đề xuất §II.1 "Tình trạng kỹ thuật"). |
+| FUNC-156 | Trên màn hình kiểm tra đầu ca, hiển thị nhóm kiểm tra: Hạn chế (Restrictions). | BR-114 | Khảo sát 11/06 §II.4 | Sân bay (DEP, ARR); Airport Constraints — slot, curfew, hạn chế khác (tham chiếu BR-129 / FUNC-219); phép bay; OFP SPECIAL OPS; OFP REMARKS; DSP NOTES `[cần xác nhận danh mục loại hạn chế đầy đủ]`. |
+| FUNC-157 | Trên màn hình kiểm tra đầu ca, hiển thị nhóm kiểm tra: Chứng chỉ tổ bay. | BR-114 | Khảo sát 11/06 §II.4 | Tổ bay (PIC, DISPATCHER, DSP LICENSE NUMBER, OFP PIC, OFP PILOTS, CREW SYNC, FC, CC); chứng chỉ / điều kiện đặc biệt theo sân bay (tham chiếu BR-122 / FUNC-197); FH SCHED, FH ACTUAL, BH SCHED, BH ACTUAL (theo dõi giờ bay tổ bay — tham chiếu BR-108) `[cần xác nhận trường lưu chứng chỉ tổ bay — FOS sheet-09 chưa liệt kê]`. |
+| FUNC-158 | Tự đối chiếu (compare) hai chiều giữa các nguồn dữ liệu — ví dụ giữa lịch bay với loại tàu, giữa kế hoạch ca trước với tình trạng tàu hiện tại — và tự sinh cảnh báo khi phát hiện không khớp hoặc có biến động bất thường. | BR-114 | Khảo sát 11/06 §II.4 — Thảo luận – Đề xuất | Cặp nguồn đối chiếu: Lịch bay (FLT NO, AC TYPE) ↔ Tàu thực phân (AC REG, AC TYPE); Kế hoạch ca trước ↔ Tình trạng tàu hiện tại (AC REG, LEG STATE, IRREGULAR, DIVERTED); chênh lệch OFP ↔ LS (LOAD & WEIGHT); NAIL/CDL hiệu lực ↔ Lịch khai thác. Cảnh báo (loại, mức độ, đối tượng nhận). |
+| FUNC-159 | Phân loại cảnh báo trên màn hình kiểm tra đầu ca theo mức "bắt buộc xử lý" vs "ghi nhận để báo cáo"; tiêu chí cụ thể của từng nhóm cảnh báo: (chưa có nguồn — cần SME bổ sung). | BR-114 | Khảo sát 11/06 §II.4 — Kết luận (cờ "chi tiết sẽ chốt ở các buổi tiếp theo") | Cảnh báo (mã cảnh báo, mô tả, mức "bắt buộc xử lý" / "ghi nhận để báo cáo", tiêu chí kích hoạt) `[cần xác nhận tiêu chí phân loại từng nhóm cảnh báo]`. |
 
 ### 2.15 BR-115 — TOSS đóng vai trò "view + cảnh báo", không trùng lặp chức năng
 
@@ -180,7 +183,7 @@ document_id: "FUNC-DEC-PH1"
 | FUNC-161 | Khi điều phái viên cần giải quyết một cảnh báo, cung cấp đường dẫn / cơ chế chuyển sang hệ thống chuyên dụng tương ứng để xử lý; sau khi xử lý xong, dữ liệu phải tự đồng bộ về TOSS và cảnh báo tự tắt. | BR-115 | Khảo sát 11/06 §II.4 — Thảo luận – Đề xuất |
 | FUNC-162 | Danh sách cụ thể các hệ thống nguồn được phép "deep link" từ TOSS và cơ chế đồng bộ ngược (timing, payload): (chưa có nguồn — cần SME bổ sung). | BR-115 | (chưa có nguồn — cần SME bổ sung) |
 
-### 2.16 BR-116 — Cảnh báo thay đổi lịch bay (OSP, loại tàu, ferry, VIP, Lotang)
+### 2.16 BR-116 — Cảnh báo thay đổi lịch bay (OSP, loại tàu, ferry, VIP)
 
 | Mã FUNC | Mô tả chức năng (bám nguồn) | BR cha | Nguồn |
 |---|---|---|---|
@@ -190,8 +193,8 @@ document_id: "FUNC-DEC-PH1"
 | FUNC-166 | Phát hiện và cảnh báo (highlight) khi phát sinh chuyến ferry (chuyến không thương mại, dùng để điều chuyển tàu bay) để điều phái viên xử lý tài liệu riêng. | BR-116 | Khảo sát 11/06 §II.5 |
 | FUNC-167 | Phát hiện và cảnh báo (highlight) khi chuyển từ chuyến thường (regular) sang chuyến VIP (do thay đổi cấp độ phục vụ và yêu cầu tài liệu khác). | BR-116 | Khảo sát 11/06 §II.5 |
 | FUNC-168 | Khi chuyển từ chuyến VIP về chuyến thường (downgrade), chỉ ghi nhận, KHÔNG cảnh báo đặc biệt. | BR-116 | Khảo sát 11/06 §II.5 — Kết luận |
-| FUNC-169 | Phát hiện và cảnh báo "chuyến Lotang mới phát sinh" `[cần xác nhận định nghĩa chính xác]` khi lịch bay phát sinh chuyến loại này. | BR-116 | Khảo sát 11/06 §II.5 |
-| FUNC-170 | Bổ sung bước đánh giá tác động của chuyến Lotang đến hoạt động khai thác chung sau khi cảnh báo phát sinh; tiêu chí đánh giá tác động cụ thể: (chưa có nguồn — cần SME bổ sung) `[cần xác nhận]`. | BR-116 | Khảo sát 11/06 §II.5 — Kết luận |
+| ~~FUNC-169~~ | **BỎ (đính chính 12/06):** "chuyến Lotang" = lỗi ASR của NOTAM → không có loại chuyến này. Cảnh báo "NOTAM mới phát sinh" thuộc BR-118 (FUNC-178). | ~~BR-116~~ → BR-118 | Đính chính ASR 12/06 (transcript 11/06 d.670) |
+| ~~FUNC-170~~ | **BỎ (đính chính 12/06):** "đánh giá tác động Lotang" = đánh giá ảnh hưởng NOTAM tới chuyến → thuộc BR-118 (FUNC-179). | ~~BR-116~~ → BR-118 | Đính chính ASR 12/06 |
 | FUNC-171 | Không tạo cảnh báo riêng khi đổi nhân sự trả tải (vì kế hoạch trả tải đã lập sẵn và không thay đổi sát giờ). | BR-116 | Khảo sát 11/06 §II.5 — Thảo luận – Đề xuất |
 
 ### 2.17 BR-117 — Cảnh báo Divert tách thành nhóm riêng
@@ -268,15 +271,15 @@ document_id: "FUNC-DEC-PH1"
 
 ### 2.25 BR-125 — Màn hình Monitoring overview real-time (Phase 4–5)
 
-| Mã FUNC | Mô tả chức năng (bám nguồn) | BR cha | Nguồn |
-|---|---|---|---|
-| FUNC-204 | Cung cấp một màn hình Monitoring overview cho điều phái viên (Phase 4 Pre-Departure Monitoring + Phase 5 In-Flight Monitoring) — điều phái mở suốt ca trực, không cần thao tác refresh thủ công. | BR-125 | Khảo sát 11/06 chiều §II.6 — Yêu cầu + Kết luận |
-| FUNC-205 | Hiển thị mỗi chuyến bay trên overview tối thiểu các thông tin: trạng thái thực tế (đang taxi-out / đã cất cánh / đang bay / taxi-in / đã hạ cánh), giờ thực tế đi/đến so với giờ kế hoạch (sớm/trễ bao nhiêu phút), ETA (Estimated Time of Arrival). | BR-125 | Khảo sát 11/06 chiều §II.6 — Thảo luận – Đề xuất + Kết luận |
-| FUNC-206 | Với chuyến chuẩn bị (chưa cất cánh), hiển thị thêm: dự kiến cất cánh giờ; đã phục vụ đến giai đoạn nào tại sân (boarding, đóng cửa, push-back…) — lấy từ tích hợp ACDM. | BR-125 | Khảo sát 11/06 chiều §II.6 — Thảo luận – Đề xuất |
-| FUNC-207 | Nguồn dữ liệu các mốc thời gian thực tế: lấy thẳng từ **ACARS** (đọc message ACARS để bóc tách các mốc out/off/on/in), không qua Mission Watch `[cần xác nhận tên hệ thống/màn hình hiện hành]`. | BR-125 | Khảo sát 11/06 chiều §II.6 — Thảo luận – Đề xuất + Kết luận |
-| FUNC-208 | Cập nhật real-time bằng cơ chế server-push (WebSocket / Server-Sent Events / Webhook) làm phương án 1; phương án 2 dự phòng là auto-refresh theo chu kỳ **chỉ phần dữ liệu có thay đổi**, không reload toàn trang. Tải lại theo phạm vi/ô có thay đổi (Show On / từng ô), với cấu hình hiển thị tham chiếu ~20 row × ~20–30 cột. | BR-125 | Khảo sát 11/06 chiều §II.6 — Thảo luận – Đề xuất + Kết luận |
-| FUNC-209 | Phân nhóm chuyến trên overview tối thiểu 3 nhóm: (a) chưa cất cánh / chuẩn bị cất cánh; (b) đang bay; (c) đã hạ cánh. | BR-125 | Khảo sát 11/06 chiều §II.6 — Thảo luận – Đề xuất + Kết luận |
-| FUNC-210 | Cảnh báo trên overview bằng màu sắc / nhấp nháy (đỏ → xanh theo trạng thái); mỗi loại cảnh báo gắn với một mốc ACARS riêng để xác định lúc "raise" và lúc "clear" — ví dụ "cảnh báo A clear khi nhận OFF; cảnh báo B clear khi nhận ON; cảnh báo C clear khi nhận IN"; cảnh báo thời tiết (vd mưa dông) tự tắt khi bản tin được clear. Trong Phase 5 (In-Flight) KHÔNG monitoring chi tiết tiêu hao dầu real-time (không có dữ liệu live) — chỉ cập nhật trạng thái mốc bay; phân tích chi tiết dầu/đường bay thuộc báo cáo Post-Flight. | BR-125 | Khảo sát 11/06 chiều §II.6 — Thảo luận – Đề xuất + Kết luận |
+| Mã FUNC | Mô tả chức năng (bám nguồn) | BR cha | Nguồn | Dữ liệu liên quan |
+|---|---|---|---|---|
+| FUNC-204 | Cung cấp một màn hình Monitoring overview cho điều phái viên (Phase 4 Pre-Departure Monitoring + Phase 5 In-Flight Monitoring) — điều phái mở suốt ca trực, không cần thao tác refresh thủ công. | BR-125 | Khảo sát 11/06 chiều §II.6 — Yêu cầu + Kết luận | Ca trực điều phái (Dispatcher, phạm vi chuyến bay phụ trách); Danh sách chuyến bay trong phạm vi Phase 4 + Phase 5 (FLT NO, STD, STA, DEP, ARR, AC REG, LEG STATE). |
+| FUNC-205 | Hiển thị mỗi chuyến bay trên overview tối thiểu các thông tin: trạng thái thực tế (đang taxi-out / đã cất cánh / đang bay / taxi-in / đã hạ cánh), giờ thực tế đi/đến so với giờ kế hoạch (sớm/trễ bao nhiêu phút), ETA (Estimated Time of Arrival). | BR-125 | Khảo sát 11/06 chiều §II.6 — Thảo luận – Đề xuất + Kết luận | Chuyến bay (FLT NO, DEP, ARR, AC REG); Giờ kế hoạch (STD, STA); Giờ thực tế từ ACARS (ATD/OUT TIME, OFF TIME, ON TIME, ATA/IN TIME — nhóm FOS TIME); ETA (EIBT — Estimated In-Block Time, ELDT — Estimated Landing Time); trạng thái LEG STATE (taxi-out / airborne / taxi-in / arrived) `[cần xác nhận danh mục enum LEG STATE]`; DELAY MINS (chênh lệch sớm/trễ). |
+| FUNC-206 | Với chuyến chuẩn bị (chưa cất cánh), hiển thị thêm: dự kiến cất cánh giờ; đã phục vụ đến giai đoạn nào tại sân (boarding, đóng cửa, push-back…) — lấy từ tích hợp ACDM. | BR-125 | Khảo sát 11/06 chiều §II.6 — Thảo luận – Đề xuất | Mốc A-CDM (SOBT — Schedule Off-Block Time, EOBT — Estimated Off-Block Time, TOBT — Target Off-Block Time, AOBT — Actual Off-Block Time, ASBT — Actual Start Boarding Time, ARDT — Actual Ready for Departure Time, ASRT — Actual Start-up Request Time, TSAT — Target Startup Approval Time, ASAT — Actual Startup Approval Time, CTOT — Calculated Take-Off Time, TTOT — Target Take-Off Time, ATOT — Actual Take-Off Time); cửa/đỗ (DGATE — Departure Gate, DPRK — Departure Parking, DRWY — Departure Runway); DOORS OPENED TIME, DOORS CLOSED TIME, PAX LOADING START, PAX LOADING END. |
+| FUNC-207 | Nguồn dữ liệu các mốc thời gian thực tế: lấy thẳng từ **ACARS** (đọc message ACARS để bóc tách các mốc out/off/on/in), không qua Mission Watch `[cần xác nhận tên hệ thống/màn hình hiện hành]`. | BR-125 | Khảo sát 11/06 chiều §II.6 — Thảo luận – Đề xuất + Kết luận | Điện văn ACARS (nhóm FOS ACARS: ACARS MED, ACARS OUT TIME, ACARS OFF TIME, ACARS ON TIME, ACARS IN TIME, ACARS GATE, ACARS OUT FUEL, ACARS OFF FUEL, ACARS ON FUEL, ACARS IN FUEL, ACARS TRIP FUEL, ACARS BLOCK FUEL, ACARS TXO FUEL, ACARS TXI FUEL); mốc bốn cơ bản OUT/OFF/ON/IN (FOS TIME: OUT TIME, OFF TIME, ON TIME, IN TIME). |
+| FUNC-208 | Cập nhật real-time bằng cơ chế server-push (WebSocket / Server-Sent Events / Webhook) làm phương án 1; phương án 2 dự phòng là auto-refresh theo chu kỳ **chỉ phần dữ liệu có thay đổi**, không reload toàn trang. Tải lại theo phạm vi/ô có thay đổi (Show On / từng ô), với cấu hình hiển thị tham chiếu ~20 row × ~20–30 cột. | BR-125 | Khảo sát 11/06 chiều §II.6 — Thảo luận – Đề xuất + Kết luận | Sự kiện cập nhật (loại sự kiện, mã chuyến FLT NO, trường thay đổi, giá trị mới, dấu thời gian); cấu hình hiển thị overview (số hàng/cột người dùng chọn — tham chiếu BR-102); cơ chế truyền (WebSocket / SSE / Webhook) `[cần xác nhận giao thức cuối cùng]`. |
+| FUNC-209 | Phân nhóm chuyến trên overview tối thiểu 3 nhóm: (a) chưa cất cánh / chuẩn bị cất cánh; (b) đang bay; (c) đã hạ cánh. | BR-125 | Khảo sát 11/06 chiều §II.6 — Thảo luận – Đề xuất + Kết luận | Chuyến bay (FLT NO, LEG STATE); mốc ACARS OFF (đã cất cánh) và ACARS ON / IN (đã hạ cánh) để phân loại nhóm; tiêu chí phân nhóm dựa trên LEG STATE + mốc OUT/OFF/ON/IN. |
+| FUNC-210 | Cảnh báo trên overview bằng màu sắc / nhấp nháy (đỏ → xanh theo trạng thái); mỗi loại cảnh báo gắn với một mốc ACARS riêng để xác định lúc "raise" và lúc "clear" — ví dụ "cảnh báo A clear khi nhận OFF; cảnh báo B clear khi nhận ON; cảnh báo C clear khi nhận IN"; cảnh báo thời tiết (vd mưa dông) tự tắt khi bản tin được clear. Trong Phase 5 (In-Flight) KHÔNG monitoring chi tiết tiêu hao dầu real-time (không có dữ liệu live) — chỉ cập nhật trạng thái mốc bay; phân tích chi tiết dầu/đường bay thuộc báo cáo Post-Flight. | BR-125 | Khảo sát 11/06 chiều §II.6 — Thảo luận – Đề xuất + Kết luận | Cảnh báo (mã cảnh báo, mô tả, mốc ACARS gắn để raise/clear — OUT/OFF/ON/IN, trạng thái màu/nhấp nháy); Bản tin thời tiết (METAR/SPECI — tham chiếu BR-119) làm điều kiện clear cảnh báo thời tiết; mốc ACARS OFF/ON/IN (FOS ACARS); KHÔNG dùng dữ liệu tiêu hao nhiên liệu live (ACARS FUEL chỉ ghi tại các mốc OUT/OFF/ON/IN — không live trip fuel). |
 
 ### 2.26 BR-126 — Cảnh báo "Chuyến không thường lệ — OFP chưa có STS/HEAD"
 
@@ -338,6 +341,139 @@ document_id: "FUNC-DEC-PH1"
 | FUNC-234 | Phạm vi danh mục cảnh báo được phép bật/tắt: toàn bộ cảnh báo của Phân hệ 1 đã liệt kê trong sheet-08 (tổ bay chưa download tài liệu, filed ATC, OFP có thay đổi, code O không có STS/HEAD, sắp hết Flight Cycle, APU INOP, không có Performance Factor, thiếu tài liệu trước ETD, MEL ảnh hưởng, VIP/nối chuyến, Loadfactor thấp, delay, đổi tổ bay, divert, thiếu phép bay, TAT không đủ, thiếu điện văn). | BR-132 | YCKT sheet-08 — toàn bộ danh mục cảnh báo (#2 → #21) |
 | FUNC-235 | Lưu vết các lần thay đổi cấu hình bật/tắt cảnh báo (cấp hệ thống và cấp cá nhân) phục vụ truy vết. Quy tắc lưu vết cụ thể (trường ghi nhận, thời hạn lưu): (chưa có nguồn — cần SME bổ sung). | BR-132 | (chưa có nguồn — cần SME bổ sung) |
 
+> **Bổ sung v0.5 — Khảo sát 12/06 (màn Giám sát chuyến bay & Flight Detail, trên bản mẫu `dsp_monitoring_poc.html`).** Nguồn dẫn: KS 12/06 = `BAO-CAO-KHAO-SAT-12062026-buoi-sang-v0.1.md`; §III#n = nội dung thống nhất thứ n.
+
+### 2.33 BR-133 — Flight Detail mở ở tab mới (nhiều tab)
+
+| Mã FUNC | Mô tả chức năng (bám nguồn) | BR cha | Nguồn |
+|---|---|---|---|
+| FUNC-236 | Khi điều phái click một chuyến trên màn Giám sát, mở màn chi tiết chuyến bay (Flight Detail) của chuyến đó ở **một tab mới** (không dùng pop-up gộp). | BR-133 | KS 12/06 §II.1; §III#1 |
+| FUNC-237 | Cho phép mở **đồng thời nhiều tab Flight Detail** (mỗi chuyến một tab) để tham chiếu/so sánh nhiều chuyến. | BR-133 | KS 12/06 §II.1; §III#1 |
+
+### 2.34 BR-134 — Click cảnh báo → active đúng tab phụ
+
+| Mã FUNC | Mô tả chức năng (bám nguồn) | BR cha | Nguồn |
+|---|---|---|---|
+| FUNC-238 | Khi click một cảnh báo cụ thể trên màn Giám sát, điều hướng tới Flight Detail và **active đúng tab phụ** tương ứng (vd cảnh báo OFP Release → tab Flight Release; cảnh báo NOTAM/thời tiết → tab NOTAM/thời tiết). | BR-134 | KS 12/06 §II.1; §III#2 |
+
+### 2.35 BR-135 — Tab phụ Flight Detail + đầy đủ lịch sử
+
+| Mã FUNC | Mô tả chức năng (bám nguồn) | BR cha | Nguồn |
+|---|---|---|---|
+| FUNC-239 | Tổ chức Flight Detail thành các tab phụ tối thiểu: Cảnh báo (Warnings), Flight Release (Dispatch Release + Pilot Release), Tàu bay (kèm MEL/CDL), Tổ bay. | BR-135 | KS 12/06 §II.2; §III#3 |
+| FUNC-240 | Tab Cảnh báo hiển thị toàn bộ cảnh báo từ đầu đến cuối chuyến kèm **thời điểm phát sinh (raise time)** và **trạng thái xử lý** từng cảnh báo. | BR-135 | KS 12/06 §II.2 |
+| FUNC-241 | Tab Flight Release hiển thị **toàn bộ phiên bản OFP đã phát hành** + thông tin cơ bản từng bản (Block Fuel kế hoạch/OFP, lượng phi công confirm, có lấy thêm tải/dầu extra + lý do). | BR-135 | KS 12/06 §II.2 |
+| FUNC-242 | Mỗi tab phụ hiển thị **đầy đủ lịch sử thay đổi** từ đầu đến cuối chuyến (không chỉ trạng thái cuối) — áp format lịch sử đổi chung (xem FUNC-275 / BR-150). | BR-135 | KS 12/06 §II.2; §III#3 |
+
+### 2.36 BR-136 — Flight Number 3 cột tách biệt từ Netline
+
+| Mã FUNC | Mô tả chức năng (bám nguồn) | BR cha | Nguồn |
+|---|---|---|---|
+| FUNC-243 | Tiếp nhận Flight Number từ Netline ở **3 cột tách biệt**: Carrier, Fly Number (phần số), FN Surface (hậu tố D/Z). | BR-136 | KS 12/06 §II.3; §III#4 |
+| FUNC-244 | Hiển thị gộp Flight Number (carrier + number + suffix) trên màn Giám sát, đồng thời giữ riêng từng cột phục vụ lọc/phân quyền dữ liệu. | BR-136 | KS 12/06 §II.3 |
+| FUNC-245 | Ý nghĩa hậu tố `Z` (so với `D`) và điều kiện sinh `Z`: (chưa có nguồn — cần SME bổ sung). | BR-136 | KS 12/06 §IV (OID SME-34) |
+
+### 2.37 BR-137 — Đồng bộ leg history từ Netline
+
+| Mã FUNC | Mô tả chức năng (bám nguồn) | BR cha | Nguồn |
+|---|---|---|---|
+| FUNC-246 | Đồng bộ **leg history** từ Netline cho mỗi chuyến: từng lần đổi giờ EPD (thời điểm, chuyển ngày, mức delay); TOSS đối chiếu/hiển thị, không tự ghi nhận song song. | BR-137 | KS 12/06 §II.3; §III#4 |
+
+### 2.38 BR-138 — Bộ 4 mã màu thống nhất + tô màu cả ô
+
+| Mã FUNC | Mô tả chức năng (bám nguồn) | BR cha | Nguồn |
+|---|---|---|---|
+| FUNC-247 | Định nghĩa **bộ mã màu 4 trạng thái** dùng chung cho mọi cột: Đỏ (xử lý ngay) / Vàng (lưu ý) / Xanh (đã xử lý) / Không màu (bình thường); tối đa ~4–5 màu. | BR-138 | KS 12/06 §II.7; §III#5,#9 |
+| FUNC-248 | Thể hiện cảnh báo bằng **tô màu cả ô (cell-level)**, không bo box, không chỉ đổi màu chữ; ký hiệu trạng thái đơn giản (tích/tam giác) cho các cột dùng biểu tượng. | BR-138 | KS 12/06 §II.4, §II.7 |
+
+### 2.39 BR-139 — Xanh-sau-đỏ + đổi màu tự động
+
+| Mã FUNC | Mô tả chức năng (bám nguồn) | BR cha | Nguồn |
+|---|---|---|---|
+| FUNC-249 | Áp quy tắc **Xanh chỉ phát sinh sau khi đã từng có Đỏ và được xử lý xong**; Không màu là mặc định, không tự chuyển Xanh. | BR-139 | KS 12/06 §II.7; §III#10 |
+| FUNC-250 | Đổi màu cảnh báo **tự động** theo thay đổi trạng thái dữ liệu nguồn (Lido/Netline/MO Plus/ACARS); điều phái **không tick thủ công** trên màn Giám sát. | BR-139 | KS 12/06 §II.7; §III#11 |
+
+### 2.40 BR-140 — View-only (ngoại lệ Dispatch Release) + thống kê khối lượng
+
+| Mã FUNC | Mô tả chức năng (bám nguồn) | BR cha | Nguồn |
+|---|---|---|---|
+| FUNC-251 | Màn Giám sát chỉ "view + cảnh báo", **không cho thao tác trực tiếp** thay đổi dữ liệu trên bảng — ngoại lệ duy nhất là cột Dispatch Release (xem FUNC-264). | BR-140 | KS 12/06 §II.7; §III#12 |
+| FUNC-252 | Lưu lượng trạng thái "Xanh đã xử lý" theo thời gian phục vụ **thống kê khối lượng công việc** (ngày yên/cao điểm) — cơ sở chia ca/nhân lực. Quy tắc thống kê cụ thể: (chưa có nguồn — cần SME bổ sung). | BR-140 | KS 12/06 §II.7; §III#13 |
+
+### 2.41 BR-141 — Phân quyền 2 lớp + nhiều role + switch view
+
+| Mã FUNC | Mô tả chức năng (bám nguồn) | BR cha | Nguồn |
+|---|---|---|---|
+| FUNC-253 | Phân quyền **2 lớp**: (a) chức năng (ai dùng chức năng nào); (b) dữ liệu (scope theo carrier/khu vực/role). | BR-141 | KS 12/06 §II.5; §III#6 |
+| FUNC-254 | Hỗ trợ một user có **nhiều role** và **switch view** sang role khác; super admin xem toàn bộ; sub-admin phân chia phạm vi theo nhiệm vụ (điều phái rotate vị trí trong ca). | BR-141 | KS 12/06 §II.5 |
+| FUNC-255 | Filter mặc định gắn theo phạm vi của role khi user mở màn Giám sát; user vẫn chọn/search phạm vi khác khi cần. | BR-141 | KS 12/06 §II.5 |
+| FUNC-256 | Mã hóa khu vực điều phái (Âu/Mỹ/Hàn/ĐNA…) dùng cho phân quyền dữ liệu: (chưa có nguồn — cần SME bổ sung). | BR-141 | KS 12/06 §IV (OID SME-36) |
+
+### 2.42 BR-142 — Profile cá nhân + bộ lọc thu/mở
+
+| Mã FUNC | Mô tả chức năng (bám nguồn) | BR cha | Nguồn |
+|---|---|---|---|
+| FUNC-257 | Lưu **filter + cấu hình hiển thị (cột, sort) + "trạng thái gần nhất"** theo **profile cá nhân (mức user)**, không theo máy; khôi phục khi user mở lại màn Giám sát ở bất kỳ máy nào. | BR-142 | KS 12/06 §II.5; §III#7 |
+| FUNC-258 | Thanh bộ lọc có cơ chế **thu/mở (expand/collapse)** để tối ưu diện tích hiển thị. | BR-142 | KS 12/06 §II.4, §II.5 |
+
+### 2.43 BR-143 — Quy ước giao diện chung (EN/UTC/24h/dark)
+
+| Mã FUNC | Mô tả chức năng (bám nguồn) | BR cha | Nguồn |
+|---|---|---|---|
+| FUNC-259 | Áp quy ước giao diện toàn hệ thống: **100% tiếng Anh**; **mọi giờ UTC** (kể cả history khi submit từ thiết bị giờ Việt Nam); **format 24h**; **dark mode ưu tiên** (light mode tinh chỉnh sau). | BR-143 | KS 12/06 §II.6; §III#8 |
+
+### 2.44 BR-144 — Cột Aircraft Registration (REG)
+
+| Mã FUNC | Mô tả chức năng (bám nguồn) | BR cha | Nguồn |
+|---|---|---|---|
+| FUNC-260 | Cột REG cảnh báo theo logic kết hợp (tàu Netline × tàu trên OFP đã Dispatch Release): Đỏ = lệch tàu + đã release; Vàng = khớp tàu nhưng chưa release; Xanh = khớp + đã release; Không màu = chưa có OFP. | BR-144 | KS 12/06 §II.9; §III#17 |
+| FUNC-261 | Hover ô REG hiển thị **REG cũ → REG mới + giờ đổi trên Netline (UTC)**; click ô REG mở Flight Detail tab Tàu bay với **lịch sử đổi tàu** đầy đủ. | BR-144 | KS 12/06 §II.9; §III#18 |
+| FUNC-262 | Hiển thị REG: lược tiền tố "VN" cho nhóm VNA/VNB (VNA893 → A893; VNB… → B…); nhóm khác (vd XU) giữ nguyên. Chính sách đồng nhất hay cho user cấu hình: (chưa có nguồn — cần SME bổ sung). | BR-144 | KS 12/06 §II.9; §III#19 (OID KS-35) |
+
+### 2.45 BR-145 — Cột Dispatch Release (action shortcut)
+
+| Mã FUNC | Mô tả chức năng (bám nguồn) | BR cha | Nguồn |
+|---|---|---|---|
+| FUNC-263 | Bổ sung **cột Dispatch Release** trên màn Giám sát với 2 trạng thái (chưa/đã release). | BR-145 | KS 12/06 §II.10; §III#20 |
+| FUNC-264 | Cho phép điều phái **bấm Dispatch Release trực tiếp** tại cột (action shortcut) — ngoại lệ "có action" duy nhất của màn Giám sát. | BR-145 | KS 12/06 §II.10 |
+| FUNC-265 | Áp cơ chế "2 chốt kiểm soát": bấm Release tại cột này **clear đồng bộ** trạng thái Vàng ở các cột liên quan (REG…) khi thỏa điều kiện. | BR-145 | KS 12/06 §II.9, §II.10; §III#20 |
+
+### 2.46 BR-146 — Cột Flight Number (cảnh báo suffix D/Z)
+
+| Mã FUNC | Mô tả chức năng (bám nguồn) | BR cha | Nguồn |
+|---|---|---|---|
+| FUNC-266 | Cột Flight Number cảnh báo theo hậu tố: **Vàng** khi có D/Z (giữ Vàng, không chuyển Xanh — chuyến đặc thù); **Đỏ** khi trước có D/Z nay mất (giật về ngày gốc). | BR-146 | KS 12/06 §II.11; §III#21 |
+| FUNC-267 | Hover hiển thị **lịch sử D/Z** (thời điểm thêm/mất trên Netline) phục vụ truy vết/báo cáo cấp trên. | BR-146 | KS 12/06 §II.11 |
+| FUNC-268 | Trường hợp chuyển sang ngày sau **không qua D/Z** (chỉ đổi ETD) → cảnh báo ở **cột ETD**, không phải Flight Number. Hành vi hệ thống **Ops++** khi chuyến mất D/giật về gốc: (chưa có nguồn — cần SME bổ sung). | BR-146 | KS 12/06 §II.11; §III#22 (OID SME-35/KS-36) |
+
+### 2.47 BR-147 — Cột ETA / IN / ARR
+
+| Mã FUNC | Mô tả chức năng (bám nguồn) | BR cha | Nguồn |
+|---|---|---|---|
+| FUNC-269 | Cột ETA/IN/ARR chuyển **Xanh (hoàn tất chuyến)** khi nhận **điện IN (→ ARR)**; lấy nguồn **Netline (trạng thái ARR)** HOẶC **điện ACARS IN** — nguồn tới trước (tham chiếu FUNC-205/207 — mốc ACARS). | BR-147 | KS 12/06 §II.12; §III#23 |
+| FUNC-270 | Nguồn giờ hạ cánh/vào gate: **A-CDM** nội địa (gần real-time) + quốc tế (chấp nhận trễ); khi cột Xanh → clear/chuyển trạng thái cuối các cảnh báo liên quan của chuyến. | BR-147 | KS 12/06 §II.8, §II.12 |
+
+### 2.48 BR-148 — Time window cấu hình + trôi theo giờ thực
+
+| Mã FUNC | Mô tả chức năng (bám nguồn) | BR cha | Nguồn |
+|---|---|---|---|
+| FUNC-271 | Áp **time window cấu hình** (look-back + look-ahead; look-ahead đủ rộng cho mốc upload OFP quốc tế 240 phút); admin set mặc định theo role, user override + lưu profile (FUNC-257). | BR-148 | KS 12/06 §II.8; §III#14 |
+| FUNC-272 | Bảng **trôi theo giờ thực** (chuyến mới đẩy vào, chuyến IN/ARR rời khỏi); ~25 dòng thường trực, vẫn scroll xem ngoài window; **sắp xếp mặc định theo ETD**. | BR-148 | KS 12/06 §II.8; §III#14,#16 |
+
+### 2.49 BR-149 — Flight Watch (chuyến chưa đáp) + "vào gate chậm"
+
+| Mã FUNC | Mô tả chức năng (bám nguồn) | BR cha | Nguồn |
+|---|---|---|---|
+| FUNC-273 | Giữ giám sát **chuyến đường dài chưa đáp** đến khi nhận IN/ARR dù đã ngoài time window (phạm vi Flight Watch / In-Flight Monitoring Phase 5); cơ chế giữ lại (filter phụ/giữ bảng/scroll): (chưa có nguồn — cần SME bổ sung). | BR-149 | KS 12/06 §II.8; §III#15 (OID KS-33) |
+| FUNC-274 | Sinh cảnh báo **"vào gate chậm"** khi chuyến vào gate chậm so với ETA kết điểm; ngưỡng phút trễ cụ thể: (chưa có nguồn — cần SME bổ sung). | BR-149 | KS 12/06 §II.8 (OID KS-34) |
+
+### 2.50 BR-150 — Format hiển thị "lịch sử đổi" chung
+
+| Mã FUNC | Mô tả chức năng (bám nguồn) | BR cha | Nguồn |
+|---|---|---|---|
+| FUNC-275 | Áp **một format hiển thị "lịch sử đổi" chung** (ưu tiên timeline **kéo dọc**, mỗi mốc nối nhau bằng mũi tên kèm giờ thay đổi theo UTC) cho mọi đối tượng cần truy vết. | BR-150 | KS 12/06 §II.13; §III#24 |
+| FUNC-276 | Áp trước cho: lịch sử đổi tàu (FUNC-261), đổi tổ bay, đổi giờ ETD, lịch sử suffix D/Z (FUNC-267). | BR-150 | KS 12/06 §II.13 |
+
 ---
 
 ## 3. Bảng truy vết BR → FUNC
@@ -359,7 +495,7 @@ document_id: "FUNC-DEC-PH1"
 | BR-113 | 4 | FUNC-144, FUNC-145, FUNC-146, FUNC-147 |
 | BR-114 | 12 | FUNC-148, FUNC-149, FUNC-150, FUNC-151, FUNC-152, FUNC-153, FUNC-154, FUNC-155, FUNC-156, FUNC-157, FUNC-158, FUNC-159 |
 | BR-115 | 3 | FUNC-160, FUNC-161, FUNC-162 |
-| BR-116 | 9 | FUNC-163, FUNC-164, FUNC-165, FUNC-166, FUNC-167, FUNC-168, FUNC-169, FUNC-170, FUNC-171 |
+| BR-116 | 7 | FUNC-163, FUNC-164, FUNC-165, FUNC-166, FUNC-167, FUNC-168, FUNC-171 *(FUNC-169/170 đã bỏ — Lotang = NOTAM, gộp BR-118)* |
 | BR-117 | 2 | FUNC-172, FUNC-173 (tham chiếu chéo FUNC-111 từ BR-104) |
 | BR-118 | 6 | FUNC-174, FUNC-175, FUNC-176, FUNC-177, FUNC-178, FUNC-179 |
 | BR-119 | 9 | FUNC-180, FUNC-181, FUNC-182, FUNC-183, FUNC-184, FUNC-185, FUNC-186, FUNC-187, FUNC-188 |
@@ -376,7 +512,25 @@ document_id: "FUNC-DEC-PH1"
 | BR-130 | 6 | FUNC-222, FUNC-223, FUNC-224, FUNC-225, FUNC-226, FUNC-227 (tham chiếu chéo BR-131 qua FUNC-224) |
 | BR-131 | 3 | FUNC-228, FUNC-229, FUNC-230 (tham chiếu chéo FUNC-224 từ BR-130) |
 | BR-132 | 5 | FUNC-231, FUNC-232, FUNC-233, FUNC-234, FUNC-235 |
-| **Tổng** | **135** | FUNC-101 … FUNC-235 |
+| BR-133 | 2 | FUNC-236, FUNC-237 |
+| BR-134 | 1 | FUNC-238 |
+| BR-135 | 4 | FUNC-239, FUNC-240, FUNC-241, FUNC-242 |
+| BR-136 | 3 | FUNC-243, FUNC-244, FUNC-245 |
+| BR-137 | 1 | FUNC-246 |
+| BR-138 | 2 | FUNC-247, FUNC-248 |
+| BR-139 | 2 | FUNC-249, FUNC-250 |
+| BR-140 | 2 | FUNC-251, FUNC-252 |
+| BR-141 | 4 | FUNC-253, FUNC-254, FUNC-255, FUNC-256 |
+| BR-142 | 2 | FUNC-257, FUNC-258 |
+| BR-143 | 1 | FUNC-259 |
+| BR-144 | 3 | FUNC-260, FUNC-261, FUNC-262 |
+| BR-145 | 3 | FUNC-263, FUNC-264, FUNC-265 |
+| BR-146 | 3 | FUNC-266, FUNC-267, FUNC-268 |
+| BR-147 | 2 | FUNC-269, FUNC-270 |
+| BR-148 | 2 | FUNC-271, FUNC-272 |
+| BR-149 | 2 | FUNC-273, FUNC-274 |
+| BR-150 | 2 | FUNC-275, FUNC-276 |
+| **Tổng** | **176** | FUNC-101 … FUNC-276 |
 
 ---
 
@@ -389,8 +543,7 @@ document_id: "FUNC-DEC-PH1"
 | FUNC-143 | BR-112 | Danh mục đầy đủ "các loại tài liệu cần thiết" và quy tắc xác định "đã có / chưa có" trên dashboard tài liệu. |
 | FUNC-159 | BR-114 | Phân loại cảnh báo trên màn hình kiểm tra đầu ca theo mức "bắt buộc xử lý" vs "ghi nhận để báo cáo"; tiêu chí của từng nhóm. |
 | FUNC-162 | BR-115 | Danh sách các hệ thống nguồn được phép "deep link" từ TOSS và cơ chế đồng bộ ngược (timing, payload). |
-| FUNC-170 | BR-116 | Tiêu chí đánh giá tác động của chuyến Lotang đến hoạt động khai thác chung. |
-| FUNC-179 | BR-118 | Tiêu chí phân loại NOTAM chi tiết và quy tắc đánh giá mức độ ảnh hưởng tới chuyến bay cụ thể (chờ workshop SME điều phái). |
+| FUNC-179 | BR-118 | Tiêu chí phân loại NOTAM chi tiết và quy tắc đánh giá mức độ ảnh hưởng tới chuyến bay cụ thể (chờ workshop SME điều phái). *(Đã gộp nội dung "đánh giá tác động Lotang" — Lotang = NOTAM, đính chính 12/06.)* |
 | FUNC-187 | BR-119 | Cảnh báo thời tiết đường bay (en-route): SIGMET, bản tin chuyên dụng, nguồn dữ liệu. |
 | FUNC-188 | BR-119 | Giá trị cụ thể của biên an toàn (margin) so với VMA cho từng thông số (tầm nhìn / trần mây / TSRA) tại từng sân bay. |
 | FUNC-190 | BR-120 | Cấu hình ngưỡng cảnh báo lệch tải cụ thể cho từng combo loại tàu × khoảng giờ bay × ngưỡng trên/dưới không đối xứng. |
@@ -409,6 +562,13 @@ document_id: "FUNC-DEC-PH1"
 | FUNC-226 | BR-130 | Định nghĩa "BH mùa" (Block Hours theo mùa khai thác) và ngưỡng lệch để cảnh báo. |
 | FUNC-227 | BR-130 | Quy tắc xác định "vi phạm phép bay" và nguồn dữ liệu phép bay được đối chiếu. |
 | FUNC-235 | BR-132 | Quy tắc lưu vết các lần thay đổi cấu hình bật/tắt cảnh báo (trường ghi nhận, thời hạn lưu). |
+| FUNC-245 | BR-136 | Ý nghĩa hậu tố `Z` (so với `D`) và điều kiện sinh `Z` trong FN Surface (Netline). |
+| FUNC-252 | BR-140 | Quy tắc thống kê khối lượng công việc từ lượng "Xanh đã xử lý" (trường, chu kỳ, chỉ số). |
+| FUNC-256 | BR-141 | Mã hóa khu vực điều phái (Âu/Mỹ/Hàn/ĐNA…) dùng cho phân quyền dữ liệu. |
+| FUNC-262 | BR-144 | Chính sách hiển thị Registration (lược "VN" cho VNA/VNB) — đồng nhất hay cho user cấu hình. |
+| FUNC-268 | BR-146 | Hành vi hệ thống Ops++ khi chuyến mất D/giật về ngày gốc (Lido xin OFP cũ hay sinh mới). |
+| FUNC-273 | BR-149 | Cơ chế giữ chuyến đường dài chưa đáp ngoài time window (filter phụ / giữ bảng / scroll). |
+| FUNC-274 | BR-149 | Ngưỡng phút "vào gate chậm" so với ETA kết điểm để sinh cảnh báo. |
 
 ---
 
@@ -416,8 +576,6 @@ document_id: "FUNC-DEC-PH1"
 
 | Mã FUNC | BR cha | Cờ `[cần xác nhận]` |
 |---|---|---|
-| FUNC-169 | BR-116 | Định nghĩa chính xác "chuyến Lotang" (nguồn mô tả "chuyến đường dài / đặc thù" nhưng cần SME xác nhận). |
-| FUNC-170 | BR-116 | Tiêu chí đánh giá tác động chuyến Lotang gắn cờ `[cần xác nhận]` cùng với "(chưa có nguồn)". |
 | FUNC-174 | BR-118 | Tên đơn vị cung cấp NOTAM nội địa (VNCM / VNCS / khác). |
 | FUNC-183 | BR-119 | Viết tắt "VMA" cho ngưỡng thời tiết tối thiểu sân bay. |
 | FUNC-184 | BR-119 | Tên đơn vị khí tượng hàng không Việt Nam cung cấp METAR / SPECI nội địa. |
@@ -461,3 +619,19 @@ document_id: "FUNC-DEC-PH1"
   - **BR-131 (AC APU INOP)**: 3 FUNC (FUNC-228 khai báo tàu APU INOP với AC REG/From/To + FUNC-229 danh mục sân bay GPU/ASU/ACU Available + FUNC-230 đối chiếu & cảnh báo). Nguồn rõ từ YCKT V3 dòng 167 (TOSS-126/127) và sheet-08 #10.
   - **BR-132 (bật/tắt cảnh báo hai cấp)**: 5 FUNC (FUNC-231 admin mặc định + FUNC-232 cá nhân user + FUNC-233 nguyên tắc ghi đè + FUNC-234 danh mục cảnh báo áp dụng theo sheet-08 + FUNC-235 lưu vết). FUNC-235 là khoảng trống nguồn về quy tắc lưu vết cụ thể.
   - **Tổng v0.3:** 21 FUNC mới (FUNC-215 → FUNC-235), nâng tổng số FUNC của Phân hệ 1 từ 114 lên **135** FUNC.
+- **Bổ sung v0.4:** thêm cột "Dữ liệu liên quan" cho các FUNC thuộc nhóm màn hình giám sát điều phái, không thêm/bớt FUNC.
+- **Đính chính ASR 12/06:** bỏ FUNC-169/170 (Lotang) — "Lotang/lô tam/nô tam" = lỗi ASR của NOTAM, không có "chuyến Lotang"; cảnh báo + đánh giá ảnh hưởng NOTAM thuộc BR-118 (FUNC-178/179). BR-116 còn 7 FUNC.
+  - **BR-112 (dashboard tài liệu chuyến)**: bổ sung dữ liệu liên quan cho FUNC-139, 140, 141, 142, 143 (5 FUNC). FUNC-138 (ghi nhận bất thường) không nằm trong phạm vi giám sát → để trống cột.
+  - **BR-113 (hai nhóm màn giám sát)**: bổ sung dữ liệu liên quan cho FUNC-144, 145, 146 (3 FUNC) theo phạm vi yêu cầu. FUNC-147 (khách nối chuyến) không nằm trong phạm vi 4 BR áp dụng → để trống cột.
+  - **BR-114 (kiểm tra đầu ca)**: bổ sung dữ liệu liên quan cho FUNC-148 → FUNC-159 (12 FUNC).
+  - **BR-125 (Monitoring overview real-time)**: bổ sung dữ liệu liên quan cho FUNC-204 → FUNC-210 (7 FUNC).
+  - **Tổng v0.4:** 27 FUNC được bổ sung cột "Dữ liệu liên quan" (5 + 3 + 12 + 7). Cột này bám theo nhóm trường FOS Report (sheet-09) và Đề xuất §II.1; các điểm còn cờ `[cần xác nhận]` mới được thêm tập trung ở: trường lưu cấp RFFS (FUNC-152), trường lưu chứng chỉ tổ bay (FUNC-157), viết tắt VMA (FUNC-153 — đã có ở v0.2/v0.3), giao thức server-push (FUNC-208), gói tải về tài liệu (FUNC-141), danh mục vai trò + ma trận quyền xem chi tiết (FUNC-142), quy tắc xác định "đã có / chưa có" tài liệu (FUNC-139, FUNC-143 — đã có trong "(chưa có nguồn)"), trạng thái "tổ bay đã xác nhận / đã tải xuống" (FUNC-145), danh mục loại hạn chế đầy đủ (FUNC-156).
+- **Bổ sung v0.5 (Khảo sát 12/06 — màn Giám sát chuyến bay & Flight Detail):** 41 FUNC mới (FUNC-236 → FUNC-276) cho 18 BR mới BR-133…150.
+  - **Flight Detail (BR-133…135):** mở tab mới + nhiều tab (FUNC-236/237), click cảnh báo → active tab phụ (FUNC-238), tab phụ + đầy đủ lịch sử (FUNC-239…242).
+  - **Flight Number/Netline (BR-136/137):** 3 cột tách biệt (FUNC-243/244), hậu tố Z là khoảng trống nguồn (FUNC-245), leg history (FUNC-246).
+  - **Bộ mã màu (BR-138…140):** 4 trạng thái + tô màu ô (FUNC-247/248), xanh-sau-đỏ + đổi màu tự động (FUNC-249/250), view-only (ngoại lệ Dispatch Release) + thống kê khối lượng (FUNC-251/252 — thống kê là khoảng trống).
+  - **Phân quyền/UI/profile (BR-141…143):** 2 lớp + nhiều role + switch view (FUNC-253…256; mã khu vực là khoảng trống FUNC-256), profile cá nhân + bộ lọc thu/mở (FUNC-257/258), quy ước UI EN/UTC/24h/dark (FUNC-259).
+  - **Logic cột (BR-144…147):** REG 4 màu + hover/click + hiển thị lược VN (FUNC-260…262; chính sách hiển thị là khoảng trống FUNC-262), Dispatch Release action + 2 chốt (FUNC-263…265), Flight Number D/Z (FUNC-266…268; hành vi Ops++ là khoảng trống FUNC-268), ETA/IN/ARR nguồn OR Netline/ACARS + A-CDM (FUNC-269/270).
+  - **Time window/Flight Watch (BR-148/149):** time window cấu hình + trôi + sort ETD (FUNC-271/272), giữ chuyến chưa đáp + "vào gate chậm" (FUNC-273/274 — đều là khoảng trống về cơ chế/ngưỡng).
+  - **History timeline (BR-150):** format chung kéo dọc (FUNC-275/276).
+  - **Tổng v0.5:** 41 FUNC mới (FUNC-236 → FUNC-276), nâng tổng số FUNC của Phân hệ 1 từ 135 lên **176** FUNC.

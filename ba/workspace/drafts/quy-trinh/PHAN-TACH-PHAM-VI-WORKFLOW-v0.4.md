@@ -1,8 +1,8 @@
 ---
 project: "TOSS — Hệ thống Điều hành Khai thác Hãng Hàng không"
 author: "BA Lead"
-version: "0.3"
-date: "2026-06-11"
+version: "0.4"
+date: "2026-06-12"
 status: "Draft"
 document_type: "Quy trình — Phân tách Phạm vi & Workflow theo Role"
 document_id: "WF-TOSS-001"
@@ -45,7 +45,7 @@ document_id: "WF-TOSS-001"
 | Phân hệ | Đã khảo sát | Mức sẵn sàng | Còn chờ |
 |---|---|---|---|
 | PH4 Master Data | 09/06 §1,5,6 (menu, tàu bay, sân bay) | ●●● Khá đủ | Damp Lease, danh mục dịch vụ sân bay |
-| PH1 Điều hành chuyến bay | 08/06 §2,3,6 + 09/06 + 11/06 (dispatcher) | ●●● Khá đủ | Cờ mở (VMA, NOTAM, METAR/SPECI); dispatcher phần 2 |
+| PH1 Điều hành chuyến bay | 08/06 §2,3,6 + 09/06 + 11/06 + **12/06 (Monitoring & Flight Detail)** | ●●●● Đủ | Đã đặc tả chi tiết màn Giám sát (BR-133…150). Cờ mở còn: enum LEG STATE, mã khu vực điều phái, ngưỡng "vào gate chậm", hành vi Ops++, VMA/METAR-SPECI |
 | PH3 Báo cáo & tối ưu | 09/06 §7 (BCAO rất chi tiết) + §8 | ●●● Khá đủ | Logic báo cáo cần số liệu thật; danh mục nguyên nhân |
 | PH5 Quản trị hệ thống | 09/06 §2 (phân quyền) + YCKT | ●● Một phần | Chi tiết tích hợp ~40 hệ thống (buổi chuyên đề) |
 | PH2 Tài liệu chuyến bay | 09/06 §3,4 + 11/06 (Dispatch Release) | ●● Một phần | **Buổi chuyên đề luồng tài liệu + ACARS (chưa diễn ra)**; giao diện MO Plus |
@@ -73,12 +73,14 @@ document_id: "WF-TOSS-001"
 
 | Phân hệ | Mã | Dải BR | Số BR | Số FUNC | Tải |
 |---|---|---|---|---|---|
-| PH1 — Điều hành chuyến bay | 3.1 | BR-101…119 | 19 | 88 | ●●●● Cao |
+| PH1 — Điều hành chuyến bay | 3.1 | BR-101…150 | 50 | 176 *(đã phân rã v0.5)* | ●●●● Cao |
 | PH2 — Tài liệu chuyến bay | 3.2 | BR-201…217 | 17 | 75 | ●●● TB-cao |
 | PH3 — Báo cáo, đánh giá tối ưu | 3.3 | BR-301…316 | 16 | 72 | ●●● TB |
 | PH4 — Danh mục (Master Data) | 3.4 | BR-401…416 | 16 | 73 | ●●● TB |
 | PH5 — Quản trị hệ thống | 3.5 | BR-501…518 | 18 | 113 (84F+29NF) | ●●●●● Rất cao |
-| **Tổng** | | | **86** | **421** | |
+| **Tổng** | | | **117** | **509** | |
+
+> *Lưu ý số liệu: PH1 là số THỰC TẾ sau phân rã (BR-101…150 = 50 BR theo BRD v0.5 §7.1; 176 FUNC theo FUNC PH1 v0.5). Các phân hệ PH2–PH5 vẫn là ước tính lập kế hoạch ban đầu — số BR/FUNC chính thức xem BRD v0.5 §7.6 (tổng 176 BR) và sẽ đồng bộ khi phân rã FUNC PH2–PH5.*
 
 ---
 
@@ -90,8 +92,8 @@ document_id: "WF-TOSS-001"
 |---|---|
 | **Phân hệ trong đợt** | **PH4 Master Data** (lớp dữ liệu cơ sở) · **PH1 Điều hành chuyến bay** (lõi + 2 màn giám sát) · **PH5 phần nền** (IAM/RBAC BR-501…509; API Gateway + nền tảng dữ liệu BR-510/513/514; thu nạp movement thay FMS) |
 | **Căn cứ khảo sát** | Danh mục = lớp cơ sở đồng bộ hàng ngày (09/06 §1); khảo sát chi tiết bắt đầu từ điều phái (08/06 §V); mục tiêu cốt lõi thay FMS (08/06 §3); 2 màn giám sát (08/06 §2); hạ tầng/tích hợp trước 30/06 (08/06 §7) |
-| **FUNC trọng tâm** | PH4 (73) + PH1 (88) + PH5 nền (~30) |
-| **Exit** | ERD lõi duyệt; SRS nháp PH4 + PH1; khung IAM/RBAC + khung tích hợp chốt; **làm rõ cờ PH1 với SME** (VMA, NOTAM, METAR/SPECI); luồng movement thay FMS thông |
+| **FUNC trọng tâm** | PH4 (73) + PH1 (176) + PH5 nền (~30) |
+| **Exit** | ERD lõi duyệt; SRS nháp PH4 + PH1 (đã có chi tiết màn Giám sát BR-133…150); khung IAM/RBAC + khung tích hợp chốt; **làm rõ cờ PH1 với SME** (enum LEG STATE, mã khu vực điều phái, ngưỡng "vào gate chậm", hành vi Ops++, VMA/METAR-SPECI); luồng movement thay FMS thông |
 
 ### Giai đoạn 2 — Báo cáo & Giám sát (ưu tiên lãnh đạo)
 
@@ -205,14 +207,15 @@ document_id: "WF-TOSS-001"
 
 ## 10. Liên kết tài liệu
 
-- Khảo sát: `bao-cao-khao-sat/BAO-CAO-KHAO-SAT-08062026-v0.2.md`, `…-09062026-v0.2.md`, `…-11062026-buoi-sang-v0.1.md` (11/06 đã gộp Phần 1+2).
-- BRD (bản hiện hành): `brd/BRD-TOSS-001-khung-v0.4.md` (158 BR; BR-516 bổ sung sizing; v0.1/v0.2/v0.3 là lịch sử) · Phân rã FUNC: `srs/03-dac-ta-chuc-nang/PHAN-RA-BRD-PH{1..5}-*-v0.3.md` (đã phân rã tới BR của v0.3; PH1 có thêm v0.4 với cột "Dữ liệu liên quan" nhóm màn giám sát).
+- Khảo sát: `bao-cao-khao-sat/BAO-CAO-KHAO-SAT-08062026-v0.2.md`, `…-09062026-v0.2.md`, `…-11062026-buoi-sang-v0.1.md` (11/06 đã gộp Phần 1+2), `…-12062026-buoi-sang-v0.1.md` (Monitoring & Flight Detail).
+- BRD (bản hiện hành): `brd/BRD-TOSS-001-khung-v0.6.md` (khung, §1–§6 + §7.6 + §8–§10; 176 BR tổng) + 5 file PH riêng: `BRD-TOSS-PH1-thong-tin-dieu-hanh-v0.1.md` (50 BR), `BRD-TOSS-PH2-tai-lieu-chuyen-bay-v0.1.md` (31), `BRD-TOSS-PH3-bao-cao-toi-uu-v0.1.md` (34), `BRD-TOSS-PH4-quan-ly-danh-muc-v0.1.md` (32), `BRD-TOSS-PH5-quan-tri-he-thong-v0.1.md` (29) · Phân rã FUNC: `srs/03-dac-ta-chuc-nang/PHAN-RA-BRD-PH1-…-v0.5.md` (176 FUNC, FUNC-101…276) và `PHAN-RA-BRD-PH{2..5}-*-v0.3.md`.
 - Phân công Role: `PHAN-CONG-ROLE-BA-v0.1.md` (§3/§6 cập nhật theo tài liệu này).
 - Lộ trình BA: `BA-ROADMAP-v0.1.md` · Chất lượng: `QUALITY-GATE-v0.1.md`, `REVIEW-APPROVAL-FLOW-v0.1.md`, `CHANGE-CONTROL-SOP-v0.1.md`.
 - Workflow P4: `.claude/knowledge/ba-workflow-patterns.md §P4`.
 
 ---
 
+*WF-TOSS-001 v0.4 — 2026-06-12. Cập nhật PH1 sau Khảo sát 12/06 (Monitoring & Flight Detail): PH1 đã đặc tả chi tiết màn Giám sát (BR-133…150 / FUNC-236…276); cập nhật §1.1 (mức sẵn sàng PH1 ●●●●, cờ mở mới: enum LEG STATE, mã khu vực, ngưỡng "vào gate chậm", Ops++), §3 (PH1 BR-101…150 = 50 BR, 176 FUNC), §4.1 Exit. Tham chiếu BRD v0.5 / FUNC PH1 v0.5.*
 *WF-TOSS-001 v0.3 — 2026-06-11. Hiệu chỉnh thứ tự giai đoạn theo căn cứ khảo sát 08/06, 09/06, 11/06: PH4+PH1 (nền tảng+lõi, GĐ1) → PH3 Báo cáo (ưu tiên lãnh đạo, đã khảo sát đủ, GĐ2) → PH2 Tài liệu (chờ workshop chuyên đề, GĐ3); PH5 cắt nhỏ trải 3 GĐ. Thứ tự PH2/PH3 và mốc thời gian chờ BA Lead chốt (§0, §0.1, §0.3).*
 *v0.2 — 2026-06-11: phương án theo giai đoạn (3 đợt) lần đầu (PH2 GĐ2, PH3 GĐ3 — đã sửa ở v0.3).*
 *v0.1 — 2026-06-11: mô hình Lai song song 5 phân hệ.*

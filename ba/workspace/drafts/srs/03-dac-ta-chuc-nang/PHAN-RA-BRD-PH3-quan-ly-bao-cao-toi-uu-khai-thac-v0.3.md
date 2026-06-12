@@ -6,19 +6,19 @@ date: "2026-06-12"
 status: "Draft"
 document_type: "Functional Decomposition"
 document_id: "FUNC-DEC-PH3"
-parent_document: "BRD-TOSS-001-khung-v0.3.md §7.3"
+parent_document: "BRD-TOSS-PH3-bao-cao-toi-uu-v0.1.md"
 subsystem: "Phân hệ 3 — Quản lý báo cáo, đánh giá tối ưu khai thác"
 ---
 
 # Phân rã Yêu cầu nghiệp vụ → Yêu cầu chức năng — Phân hệ 3
 
-> **Phiên bản này (v0.3 — 2026-06-12):** bản cập nhật từ v0.2 (giữ nguyên v0.2 làm lịch sử). Phân rã thêm 17 BR mới **BR-318 … BR-334** (FOS Report nền, Standard Filter, bố cục báo cáo chuẩn, scheduled report, ACARS Fuel Reliability, email coverage tuần, Performance Factor reports, Schedule Robustness, Fuel Invoice, FH Plan vs Actual Daily, Ground Service Gantt, MTOW Exceed, nước sạch, FORM D/E, sai lệch tải/thời gian, Flight List Backup Tool, logic nhiên liệu thực tế) thành các FUNC con FUNC-379 → FUNC-425; cập nhật bảng truy vết BR → FUNC; tham chiếu BRD đổi sang `BRD-TOSS-001-khung-v0.3.md` (phạm vi BR-301…334). Các FUNC-301…FUNC-378 từ v0.1/v0.2 được giữ nguyên không thay đổi.
+> **Phiên bản này (v0.3 — 2026-06-12):** bản cập nhật từ v0.2 (giữ nguyên v0.2 làm lịch sử). Phân rã thêm 17 BR mới **BR-318 … BR-334** (FOS Report nền, Standard Filter, bố cục báo cáo chuẩn, scheduled report, ACARS Fuel Reliability, email coverage tuần, Performance Factor reports, Schedule Robustness, Fuel Invoice, FH Plan vs Actual Daily, Ground Service Gantt, MTOW Exceed, nước sạch, FORM D/E, sai lệch tải/thời gian, Flight List Backup Tool, logic nhiên liệu thực tế) thành các FUNC con FUNC-379 → FUNC-425; cập nhật bảng truy vết BR → FUNC; tham chiếu BRD đổi sang `BRD-TOSS-001-khung-v0.4.md` (phạm vi BR-301…334). Các FUNC-301…FUNC-378 từ v0.1/v0.2 được giữ nguyên không thay đổi.
 >
 > **Phiên bản v0.2 — 2026-06-12 (lịch sử):** bản cập nhật từ v0.1 (giữ nguyên v0.1 làm lịch sử). Phân rã thêm BR mới **BR-317** (báo cáo Pallet Relief — Payload Extra) thành các FUNC con FUNC-373 → FUNC-378; cập nhật bảng truy vết BR → FUNC; tham chiếu BRD đổi sang `BRD-TOSS-001-khung-v0.2.md` (phạm vi BR-301…317).
 
 ## Mục đích và nguyên tắc
 
-Tài liệu này phân rã các Yêu cầu nghiệp vụ (BR — Business Requirement) BR-301 … BR-334 thuộc §7.3 của Khung BRD `BRD-TOSS-001-khung-v0.3.md` xuống lớp Yêu cầu chức năng (FUNC — Functional Requirement), tuân thủ tuyệt đối nguyên tắc tại CLAUDE.md §0:
+Tài liệu này phân rã các Yêu cầu nghiệp vụ (BR — Business Requirement) BR-301 … BR-334 thuộc `BRD-TOSS-PH3-bao-cao-toi-uu-v0.1.md` (§7.3 trích từ `BRD-TOSS-001-khung-v0.6.md`) xuống lớp Yêu cầu chức năng (FUNC — Functional Requirement), tuân thủ tuyệt đối nguyên tắc tại CLAUDE.md §0:
 
 - Chỉ **phân rã + lắp ráp trung thực** theo nguồn đã trích dẫn; **không suy diễn**, không bịa chỉ số/loại báo cáo ngoài nguồn.
 - Mỗi FUNC nêu rõ **BR cha** và **nguồn** (file/mục cụ thể).
@@ -26,10 +26,10 @@ Tài liệu này phân rã các Yêu cầu nghiệp vụ (BR — Business Requir
 
 **Nguồn được phân rã:**
 
-1. Khung BRD: `ba/workspace/drafts/brd/BRD-TOSS-001-khung-v0.3.md` §7.3.
+1. BRD Phân hệ 3: `ba/workspace/drafts/brd/BRD-TOSS-PH3-bao-cao-toi-uu-v0.1.md` (BR-301…334; khung cha: `BRD-TOSS-001-khung-v0.6.md` §7.3).
 2. Đề xuất giải pháp kỹ thuật — Phân hệ 3 (chi tiết các loại báo cáo): `ba/workspace/input/domain-knowledge/vnaocc-proposal-decomposed/02-giai-phap-nghiep-vu/03-phan-he-quan-ly-bao-cao-danh-gia-toi-uu-khai-thac.md`.
-3. Báo cáo khảo sát ngày 09/06/2026: `ba/workspace/drafts/phan-tich/bao-cao-khao-sat/BAO-CAO-KHAO-SAT-09062026-v0.1.md` §II.7 (BCAO), §II.8 (giám sát dữ liệu, quản lý mục tiêu).
-4. Báo cáo khảo sát ngày 08/06/2026: `ba/workspace/drafts/phan-tich/bao-cao-khao-sat/BAO-CAO-KHAO-SAT-08062026-v0.1.md` §II.4 (báo cáo, phát hành qua thư điện tử, không ký số).
+3. Báo cáo khảo sát ngày 09/06/2026: `ba/workspace/drafts/phan-tich/bao-cao-khao-sat/BAO-CAO-KHAO-SAT-09062026-v0.2.md` §II.7 (BCAO), §II.8 (giám sát dữ liệu, quản lý mục tiêu).
+4. Báo cáo khảo sát ngày 08/06/2026: `ba/workspace/drafts/phan-tich/bao-cao-khao-sat/BAO-CAO-KHAO-SAT-08062026-v0.2.md` §II.4 (báo cáo, phát hành qua thư điện tử, không ký số).
 5. Báo cáo khảo sát buổi chiều ngày 11/06/2026: `ba/workspace/drafts/phan-tich/bao-cao-khao-sat/BAO-CAO-KHAO-SAT-11062026-buoi-chieu-v0.1.md` §II.10 (Payload Extra — báo cáo Pallet Relief).
 6. Bóc tách YCKT triển khai V3 (Customer Docs) — sheet 4 (478 dòng): `ba/workspace/drafts/phan-tich/yckt-trien-khai/sheet-04-yckt-v3.md` (các dòng 115-191 ACARS/PF; 358 Flight List Backup; 373 Schedule Robustness; 396 Fuel Invoice; 413 FH Plan vs Actual; 415-416 Ground Service Gantt; 439-446 sai lệch tải/thời gian; 450 nước sạch; 454 MTOW Exceed; 478 FORM D/E).
 7. Bóc tách YCKT triển khai V3 — sheet 9 (FOS): `ba/workspace/drafts/phan-tich/yckt-trien-khai/sheet-09-fos.md` (FOS Report, Standard Filter, 14 nhóm thông tin, các trường mặc định/tùy chọn).

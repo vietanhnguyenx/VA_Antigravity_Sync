@@ -1,7 +1,7 @@
 ---
 project: "TOSS — Hệ thống Điều hành Khai thác Hãng Hàng không"
 author: "BA Lead"
-version: "0.4"
+version: "0.9"
 date: "2026-06-12"
 status: "Draft"
 document_type: "Sổ theo dõi Điểm cần chốt & Câu hỏi mở (Open Items & Decisions Register)"
@@ -36,7 +36,7 @@ document_id: "OID-TOSS-001"
 | ID | Điểm cần chốt | Nguồn | Buổi làm rõ | Trạng thái | Kết quả & ngày |
 |---|---|---|---|---|---|
 | SME-01 | **VMA** — viết tắt chính xác cho "ngưỡng thời tiết tối thiểu sân bay" | BRD §9.3; KS 11/06 §II.7 | Dispatcher (phần 2) | 🔴 Mở | |
-| SME-02 | **Lotang** — định nghĩa "chuyến Lotang" + tiêu chí đánh giá tác động | BRD §9.3; KS 11/06 §II.5 | Dispatcher (phần 2) | 🔴 Mở | |
+| SME-02 | **Lotang** — định nghĩa "chuyến Lotang" + tiêu chí đánh giá tác động | BRD §9.3; KS 11/06 §II.5 | Dispatcher (phần 2) | 🟢 Đã chốt | **12/06: "Lotang/lô tam/nô tam" = NOTAM (lỗi ASR — BA Lead xác nhận). KHÔNG có "chuyến Lotang"; gộp vào cảnh báo NOTAM (BR-118). Đã sửa glossary/BRD/FUNC/báo cáo.** |
 | SME-03 | **VNCM/VNCS** — tên cơ quan cung cấp NOTAM nội địa | BRD §9.3; KS 11/06 §II.6 | Dispatcher / SME NOTAM | 🔴 Mở | |
 | SME-04 | **"Vy Vy"** — tên nguồn METAR nội địa | BRD §9.3; KS 11/06 §II.7 | Dispatcher / SME khí tượng | 🔴 Mở | |
 | SME-05 | **UA PASMOS** — hệ thống thời tiết được nhắc đến | BRD §9.3; KS 11/06 §II.7 | Dispatcher / SME khí tượng | 🔴 Mở | |
@@ -68,6 +68,10 @@ document_id: "OID-TOSS-001"
 | SME-31 | **AP_RESTRICTION** — codeset hạn chế sân bay theo tàu | BRD v0.3 BR-426 (Netline) | SME điều phái/master data | 🔴 Mở | |
 | SME-32 | **FORM D / FORM E** — tên mẫu báo cáo nhà chức trách | BRD v0.3 BR-331 (YCKT V3 d.478) | SME điều phái | 🔴 Mở | |
 | SME-33 | **FLIGHT BASE TIME FOR CAAV** — giá trị mặc định (vd 20:00) + quy tắc chốt lịch | BRD v0.3 BR-415 (YCKT sheet-08 #1) | SME điều phái | 🔴 Mở | |
+| SME-34 | **FN Surface `Z`** — định nghĩa hậu tố Z (so với D = delay sang ngày sau) trong cột Flight Number Netline | KS 12/06 P1 §3; P2 §11 | SME điều phái + Netline | 🔴 Mở | |
+| SME-35 | **Ops++** (trước chép "OFF cộng cộng") — vai trò khi xử lý chuyến `D` quay về ngày gốc | KS 12/06 P2 §11 | SME điều phái | 🟡 Đang xử lý | **12/06: tên hệ thống = Ops++ (BA Lead xác nhận). Hành vi xử lý chuyến `D` về gốc còn mở — gắn KS-36.** |
+| SME-36 | **Mã khu vực điều phái** (ĐNA/Hàn/Âu/Mỹ…) dùng trong phân quyền dữ liệu | KS 12/06 P2 §4 | SME điều phái + admin | 🔴 Mở | |
+| SME-37 | **"FTP Mail CDL"** trong tab Tàu bay (khả năng MEL/CDL) — xác nhận viết tắt FTP | KS 12/06 P1 §2 | SME điều phái | 🔴 Mở | |
 
 ## C. Vấn đề nghiệp vụ cần làm rõ qua khảo sát (KS)
 
@@ -104,6 +108,13 @@ document_id: "OID-TOSS-001"
 | KS-29 | **filed ATC** — quy tắc trigger cảnh báo (thời điểm filed, ngưỡng) | BRD v0.3 BR-127/BR-223 (sheet-08 #3/#4) | SME điều phái | 🔴 Mở | |
 | KS-30 | **Golden record + ánh xạ codeset loại tàu** FIMS↔Netline (hợp nhất master) | BRD v0.3 BR-427 | Workshop master data/tích hợp | 🔴 Mở | |
 | KS-31 | **Báo cáo sai lệch tải/thời gian** (EST CLC vs thực tế; OFP đầu/cuối vs LS; 3 bên DOW/EPLD) | BRD v0.3 BR-332 (YCKT V3 d.439-446) | SME Tuấn Dương | 🔴 Mở | |
+| KS-32 | **Enum LEG STATE / Status chuyến** — POC dsp_monitoring đề xuất GRD/BRD/OUT/ENR/IN/ARR (+ OFP Rev 3 màu) | Wireframe wf-monitoring-overview §7; POC; KS 12/06 | SME điều phái | 🟡 Đang xử lý | POC đề xuất GRD/BRD/OUT/ENR/IN/ARR. 12/06: chốt **ARR/IN** = tín hiệu xanh cột ETA/IN (Netline ARR hoặc ACARS IN, nguồn tới trước); chưa chốt GRD/BRD/OUT/ENR — chờ SME |
+| KS-33 | **Giữ chuyến đường dài chưa đáp ngoài time window** — phương án UX (filter phụ/giữ bảng/scroll) | KS 12/06 P2 §7,§8 | SME điều phái + UX | 🔴 Mở | |
+| KS-34 | **Ngưỡng phút "vào gate chậm"** so với ETA kết điểm để cảnh báo (Phase 5) | KS 12/06 P2 §8 | SME điều phái | 🔴 Mở | |
+| KS-35 | **Chính sách hiển thị Registration** (lược "VN" cho VNA/VNB) — đồng nhất hay cho user cấu hình | KS 12/06 P2 §9 | Nội bộ + SME | 🔴 Mở | |
+| KS-36 | **Hành vi Lido khi chuyến mất `D`** (giật về ngày gốc): xin OFP cũ hay sinh OFP mới [ASR nhiễu] | KS 12/06 P2 §11 | Workshop Lido + SME | 🔴 Mở | |
+| KS-37 | **Action shortcut "Dispatch Release" trên Monitoring** ↔ clear cảnh báo vàng đa cột (REG+DR…) — cơ chế đồng bộ | KS 12/06 P2 §9,§10 | Nội bộ + SME | 🔴 Mở | |
+| KS-38 | **Quy tắc clear/giữ "đỏ" sau khi chuyến cất cánh** cho các cảnh báo "vẫn bay dù đỏ/vàng" (vd thời tiết): giữ nguyên đỏ để ghi nhận "có đỏ nhưng không action" hay clear về xanh khi đã đáp — chưa chốt đồng nhất theo từng cột | KS 12/06 P2 §12 | SME điều phái | 🔴 Mở | |
 
 ## D. Tham số/ngưỡng & mô hình dữ liệu chưa có nguồn (DL)
 
@@ -149,30 +160,43 @@ document_id: "OID-TOSS-001"
 | Nhóm | Tổng | 🔴 Mở | 🟡 Đang xử lý | 🟢 Đã chốt |
 |---|---|---|---|---|
 | A. Quyết định BA Lead (QĐ) | 6 | 6 | 0 | 0 |
-| B. Thuật ngữ/hệ thống (SME) | 33 | 33 | 0 | 0 |
-| C. Nghiệp vụ-khảo sát (KS) | 31 | 31 | 0 | 0 |
+| B. Thuật ngữ/hệ thống (SME) | 37 | 35 | 1 | 1 |
+| C. Nghiệp vụ-khảo sát (KS) | 38 | 37 | 1 | 0 |
 | D. Tham số/dữ liệu (DL) | 5 | 5 | 0 | 0 |
 | E. Hành chính/hạ tầng (HC) | 3 | 1 | 2 | 0 |
-| **Tổng** | **78** | **76** | **2** | **0** |
+| **Tổng** | **89** | **84** | **4** | **1** |
+
+> Đính chính ASR 12/06: **SME-02 (Lotang) → 🟢 Đã chốt = NOTAM** (lỗi ASR; không có "chuyến Lotang"). Điểm 🟢 đầu tiên của sổ.
+
+> Cập nhật sau buổi 12/06 sáng (rà 2026-06-12): +4 SME (SME-34…37), +5 KS (KS-33…37). 12/06 bổ sung một phần cho KS-32/KS-26/KS-08/KS-25/SME-08 (vẫn 🔴/🟡); trọng tâm 12/06 là thiết kế chi tiết màn Monitoring Overview.
+
+> Cập nhật sau tham khảo POC dsp_monitoring (rà 2026-06-12): +1 KS (KS-32 enum LEG STATE — POC đề xuất GRD/BRD/OUT/ENR/IN/ARR, 🟡 chờ SME chốt).
 
 > Cập nhật sau bổ sung BRD v0.3 bottom-up (rà 2026-06-12): +5 SME (SME-29…33), +5 KS (KS-27…31) từ Customer Docs (Aircraft FIMS/Netline, YCKT V3/FOS). Loại nguồn BBKS/BBLV (UBCKNN — đã xóa khỏi repo).
 
 > Cập nhật sau buổi 11/06 Phần 2 (rà 2026-06-12): +7 SME (SME-12…18), +8 KS (KS-12…19). Phần 2 KHÔNG làm rõ điểm mở nào của Phần 1.
 > Cập nhật sau buổi 11/06 buổi chiều (rà 2026-06-12): +10 SME (SME-19…28), +7 KS (KS-20…26). Buổi chiều KHÔNG làm rõ điểm mở nào của buổi sáng — trọng tâm sang nội dung mới (Release/Unrelease + version OFP, 6 phase quy trình, Monitoring real-time, Weather Multi-Flight, Payload Extra).
 
+> Cập nhật sau khi viết lại báo cáo 12/06 sáng (rà 2026-06-12): +1 KS (KS-38 — quy tắc clear/giữ đỏ sau cất cánh cho cảnh báo "vẫn bay"). Các điểm IV còn lại của báo cáo đã có sẵn trong sổ (SME-34…37, KS-32…37, KS-21). Tổng 89 điểm (85 Mở / 3 Đang xử lý / 1 Đã chốt).
+
 ---
 
 ## H. Liên kết tài liệu nguồn
 
-- BRD §9 (rủi ro/giả định/cờ) — bản hiện hành: `ba/workspace/drafts/brd/BRD-TOSS-001-khung-v0.3.md` (158 BR; v0.1/v0.2 là lịch sử)
-- Phân rã FUNC (ô "chưa có nguồn"): `ba/workspace/drafts/srs/03-dac-ta-chuc-nang/PHAN-RA-BRD-PH{1..5}-*.md`
-- Báo cáo khảo sát §IV: `…/BAO-CAO-KHAO-SAT-08062026-v0.1.md`, `…-09062026-v0.1.md`, `…-11062026-buoi-sang-v0.1.md` (11/06 gộp Phần 1+2; tham chiếu "KS 11/06 P2 §II.x" tương ứng chủ đề §II.8–15 của báo cáo gộp)
-- Phương án workflow §9: `ba/workspace/drafts/quy-trinh/PHAN-TACH-PHAM-VI-WORKFLOW-v0.1.md`
+- BRD §9 (rủi ro/giả định/cờ) — bản hiện hành: `ba/workspace/drafts/brd/BRD-TOSS-001-khung-v0.6.md` (khung, 176 BR; v0.1…v0.5 là lịch sử; §7 tách 5 file BRD-TOSS-PHn-v0.1)
+- Phân rã FUNC (ô "chưa có nguồn"): `ba/workspace/drafts/srs/03-dac-ta-chuc-nang/PHAN-RA-BRD-PH1-…-v0.5.md` (FUNC-101…276) và `PHAN-RA-BRD-PH{2..5}-*-v0.3.md`
+- Báo cáo khảo sát §IV: `…/BAO-CAO-KHAO-SAT-08062026-v0.2.md`, `…-09062026-v0.2.md`, `…-11062026-buoi-sang-v0.1.md` (11/06 gộp Phần 1+2; tham chiếu "KS 11/06 P2 §II.x" tương ứng chủ đề §II.8–15 của báo cáo gộp), `…-12062026-buoi-sang-v0.1.md` (Monitoring & Flight Detail)
+- Phương án workflow §9: `ba/workspace/drafts/quy-trinh/PHAN-TACH-PHAM-VI-WORKFLOW-v0.4.md`
 - Stakeholder: `ba/workspace/drafts/quy-trinh/STAKEHOLDER-REGISTER-v0.2.md`
 - Glossary: `ba/workspace/input/domain-knowledge/toss-glossary-v0.1.md`
 
 ---
 
+*OID-TOSS-001 v0.9 — 2026-06-12. Đính chính ASR: SME-35 "off cộng cộng" = **Ops++** (tên hệ thống, BA Lead xác nhận) → 🟡 Đang xử lý (hành vi xử lý chuyến `D` về gốc còn mở, gắn KS-36). Tổng 89 điểm (84 Mở / 4 Đang xử lý / 1 Đã chốt).*
+*OID-TOSS-001 v0.8 — 2026-06-12. Rà sau khi viết lại báo cáo 12/06 sáng: +1 KS-38 (quy tắc clear/giữ đỏ sau cất cánh cho cảnh báo "vẫn bay"). Các điểm IV còn lại đã có sẵn (SME-34…37, KS-32…37, KS-21). Tổng 89 điểm (85 Mở / 3 Đang xử lý / 1 Đã chốt).*
+*OID-TOSS-001 v0.7 — 2026-06-12. Đính chính ASR: SME-02 (Lotang) chốt 🟢 = NOTAM (lỗi ASR; không có "chuyến Lotang"). Lan tỏa sửa glossary/BRD/FUNC/báo cáo. Tổng 88 điểm (84 Mở / 3 Đang xử lý / 1 Đã chốt).*
+*OID-TOSS-001 v0.6 — 2026-06-12. Rà sau buổi 12/06 sáng: +4 SME (SME-34…37: FN Surface Z, "OFF cộng cộng", mã khu vực điều phái, FTP Mail CDL), +5 KS (KS-33…37: giữ chuyến ngoài time window, ngưỡng vào gate chậm, hiển thị Registration, hành vi Lido mất D, action shortcut Dispatch Release). Tổng 88 điểm (85 Mở / 3 Đang xử lý). 12/06 bổ sung một phần KS-32/26/08/25, SME-08.*
+*OID-TOSS-001 v0.5 — 2026-06-12. Rà sau tham khảo POC dsp_monitoring: +1 KS-32 (enum LEG STATE — POC đề xuất GRD/BRD/OUT/ENR/IN/ARR, 🟡 chờ SME). Tổng 79 điểm (76 Mở / 3 Đang xử lý).*
 *OID-TOSS-001 v0.4 — 2026-06-12. Rà sau bổ sung BRD v0.3 bottom-up: thêm 10 điểm (SME-29…33: AC_STATE, AC_INDEX, AP_RESTRICTION, FORM D/E, FLIGHT BASE TIME CAAV; KS-27…31: RCL, cảnh báo Lido 4D, filed ATC trigger, golden-record codeset FIMS↔Netline, báo cáo sai lệch tải). Tổng 78 điểm (76 Mở). Nguồn BBKS/BBLV (UBCKNN) đã loại + xóa khỏi repo.*
 *OID-TOSS-001 v0.3 — 2026-06-12. Rà sau buổi 11/06 buổi chiều: thêm 17 điểm mở (SME-19…28: Flight Type Code, claim phí khí thải, CCD, Mission Watch, AIJS, FME, ICON, Logitech/GDTN, Sketch Check, Brady/ADC; KS-20…26: reset Confirm Release TOSS↔MO Plus, version sau Unrelease, bóc tách 3 file OFP, TOSS sửa OFP PA1/PA2, MO Plus latest-by-name, refresh real-time, Phase Trigger mapping). Tổng 68 điểm (66 Mở / 2 Đang xử lý). Buổi chiều không cover điểm mở buổi sáng.*
 *OID-TOSS-001 v0.2 — 2026-06-12. Rà sau buổi 11/06 Phần 2: thêm 15 điểm mở (SME-12…18 thuật ngữ/hệ thống: CLC, NAIL, AMOS, MOI, IFV, TIC, sân bay đặc biệt; KS-12…19 nghiệp vụ: NAIL master/sub, ranh giới Lido↔TOSS, ngưỡng lệch tải, SkyCheck, Standard Taxi Time push, 3 CI, PAX time, hệ thống QAR/QAI). Tổng 51 điểm (49 Mở / 2 Đang xử lý). Phần 2 không cover điểm mở Phần 1.*

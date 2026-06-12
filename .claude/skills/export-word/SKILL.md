@@ -11,7 +11,8 @@ description: Xuất bộ tài liệu Markdown của dự án TOSS (SRS, Wirefram
 Tài liệu giao người (báo cáo khảo sát, BRD, biên bản giao khách…) phải **đọc như do người viết**, không lộ dấu vết quy trình nội bộ/AI:
 - **KHÔNG đối chiếu nội bộ:** bỏ mọi câu kiểu "đối chiếu glossary…", "khớp glossary/domain-knowledge", "→ glossary X", "xem `domain-knowledge/…`", trỏ memory `[[...]]`. Truy vết nội bộ chỉ để ở bản nháp/làm việc, KHÔNG đưa vào bản giao người.
 - **KHÔNG ký hiệu kiểu AI:** không dùng mũi tên `→` thay câu, không emoji, không "✅/⚠", không gắn cờ `[cần xác nhận]` rải khắp — nếu cần lưu ý thì viết thành câu tự nhiên ("một số nội dung cần đối chiếu lại với người dự họp").
-- **Văn phong người, cấu trúc theo loại tài liệu:** giọng BA tự tin, không lan man, không "mô tả theo hướng AI". Gạch đầu dòng/bảng ĐƯỢC dùng khi nội dung là liệt kê (vd báo cáo khảo sát nên **liệt kê trao đổi từng bên: "Bên VTIT trao đổi…", "Bên VNA trao đổi…", "Kết quả…"**). Điều cần tránh là **ký hiệu AI + đối chiếu nội bộ + cờ rải khắp**, KHÔNG phải tránh mọi gạch đầu dòng.
+- **KHÔNG ghi nhận lỗi/đính chính ASR trong bản giao khách (CHỈ ở MD):** mọi chú thích về lỗi nhận dạng giọng nói (ASR) — kiểu *"(Đính chính ASR…)"*, *"trước đây chép nhầm là …"*, *"lỗi ASR của …"*, *"có thể là …"*, danh sách "Cảnh báo chất lượng ghi âm (ASR)" — là **dấu vết quy trình nội bộ**, chỉ tồn tại trong file `.md` (kênh agent). **Bản Word official gửi khách hàng phải trình bày thuật ngữ ĐÚNG ngay trong câu, không kèm đính chính** (vd viết thẳng "cảnh báo **NOTAM** mới phát sinh", KHÔNG viết "Lotang → NOTAM" hay "(đính chính ASR…)"). Toàn bộ chú thích đính chính/cảnh báo ASR phải được **gỡ khi xuất** (xem bước strip §2). Lý do: tài liệu official không được lộ rằng nội dung từng bị nhận dạng sai.
+- **Văn phong người, cấu trúc theo loại tài liệu:** giọng BA tự tin, không lan man, không "mô tả theo hướng AI". Gạch đầu dòng/bảng ĐƯỢC dùng khi nội dung là liệt kê. **Báo cáo khảo sát TOSS dùng cấu trúc chuẩn theo từng chủ đề: "Yêu cầu" / "Thảo luận – Đề xuất" / "Kết luận"** (xem `SOP-BAO-CAO-KHAO-SAT` + skill `survey-report`); KHÔNG dùng kiểu liệt kê theo bên "Bên VTIT/VNA trao đổi" nữa (chuẩn cũ 08/06–09/06 đã được thay). Điều cần tránh là **ký hiệu AI + đối chiếu nội bộ + cờ rải khắp**, KHÔNG phải tránh mọi gạch đầu dòng.
 - Mã yêu cầu/hệ thống (TOSS-001, tên hệ thống) được nêu tự nhiên trong câu khi cần, không kèm chú thích trỏ nguồn nội bộ.
 
 ## 0. Quy tắc VERSION (BẮT BUỘC)
@@ -25,6 +26,8 @@ Khi cần tạo bản Word giao người từ ≥1 file `.md` (SRS, Wireframe, B
 
 ## 2. Quy trình (5 bước — đã đóng gói vào script)
 1. **Bỏ link nội bộ:** (a) đích link không phải `http(s)`/`mailto` → giữ nhãn; (b) bỏ path+đuôi `.md`/`.html` (giữ `.xlsx`/`.docx` nguồn thật); (c) bỏ **stem tên-file** còn sót (slug dẫn đầu bằng số mục hoặc `wf-`). Bỏ YAML frontmatter từng file.
+   - **(d) Gỡ chú thích đính chính/cảnh báo ASR (§0.0):** xóa các câu/chú thích trong ngoặc `*(…)*` chứa "ASR", "đính chính", "chép nhầm", "lỗi nhận dạng"; xóa cả mục "Cảnh báo chất lượng ghi âm (ASR)". Giữ lại thuật ngữ ĐÚNG đã được sửa trong câu (không giữ vế sai). *(Đã tự động hoá trong `StripAsr` của script — chạy trên bản copy, KHÔNG sửa `.md` gốc.)*
+   - **(e) Gỡ dấu vết NỘI BỘ khác (§0.0) — `StripInternal`:** bỏ dòng "Lưu ý nội bộ"; bỏ chú thích đối chiếu chứa "domain-knowledge"/"glossary"; bỏ khung đề xuất glossary ("CHỈ đề xuất"); bỏ trỏ "OID-TOSS-001"/"sổ theo dõi điểm chốt"; bỏ **trích dẫn dòng transcript** "(P1 d.x)"/"(P2 d.x)" (kể cả dạng trần trong ô bảng). Lý do: bản giao khách không lộ truy vết nội bộ/AI.
 2. **Áp template** `.claude/templates/word-reference.docx` qua `--reference-doc` (style QT02 + letterhead) + mục lục `--toc`.
 3. **(Template đã dựng sẵn)** — nếu cần dựng lại: `build-reference-template.ps1` (font/theme/bảng + header logo + footer mã hiệu/số trang).
 4. **Vá logo header** vào docx (pandoc bỏ ảnh của reference): chèn `media/logo.png` + `header1.xml.rels` + `Default png` bằng `ZipArchive` 'Update'.
@@ -50,6 +53,8 @@ Khi cần tạo bản Word giao người từ ≥1 file `.md` (SRS, Wireframe, B
 
 ## 4. Checklist QC (script tự kiểm, phải PASS hết)
 - `.md` = 0 · `](` (link markdown) = 0 · **slug tên-file = 0** · không lọt khóa YAML · không mojibake.
+- **Chú thích ASR = 0:** không còn "ASR", "đính chính", "chép nhầm", "lỗi nhận dạng", mục "Cảnh báo chất lượng ghi âm" trong `document.xml` (§0.0).
+- **Dấu vết nội bộ = 0:** không còn "Lưu ý nội bộ", "domain-knowledge", "glossary", "OID-TOSS", "sổ theo dõi điểm chốt", trích dẫn dòng transcript "P1 d./P2 d." (§0.0).
 - Gói OPC: entry dùng `/` (**không `\`**) · có `media/logo.png` + `header1.xml` + `footer1.xml` + field TOC.
 - **FONT đồng bộ:** mọi `w:ascii`/theme = **Times New Roman** (`Aptos`/`Calibri`/`Cambria` = 0); chỉ `Consolas` và chỉ ở code/verbatim.
 - XML well-formed · đủ các mục/section mong đợi.

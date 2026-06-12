@@ -113,7 +113,7 @@ document_type: "Báo cáo Khảo sát (Discovery) — Phỏng vấn Dispatcher b
   - Phát sinh **chuyến ferry** (chuyến không thương mại, chỉ điều chuyển tàu bay) cần highlight để điều phái xử lý tài liệu riêng.
   - Chuyển từ chuyến thường sang **VIP**: phải highlight, do thay đổi cấp độ phục vụ và yêu cầu tài liệu khác.
   - Chuyển từ VIP về thường (downgrade): chỉ ghi nhận, không cần cảnh báo đặc biệt.
-  - Phát sinh **chuyến Lotang** (chuyến đường dài/đặc thù [cần xác nhận định nghĩa chính xác]): cảnh báo "Lotang mới phát sinh"; sau đó cần bước đánh giá tác động riêng.
+  - *(Đính chính ASR 12/06: "Lotang"/"lô tam"/"nô tam" trong transcript là lỗi nhận dạng của **NOTAM** — KHÔNG có "chuyến Lotang". Nội dung thực: cảnh báo **NOTAM mới phát sinh** + đánh giá ảnh hưởng — đã gộp vào chủ đề NOTAM ở §II.6.)*
   - Trả tải (đổi nhân sự trả tải): kế hoạch thường lập sẵn, không thay đổi sát giờ → không cần cảnh báo riêng.
 - Cảnh báo chuyến chuyển hướng (Divert):
   - Tách thành một nhóm cảnh báo riêng vì Divert là tình huống đặc thù phát sinh sau khi chuyến đã cất cánh.
@@ -121,10 +121,10 @@ document_type: "Báo cáo Khảo sát (Discovery) — Phỏng vấn Dispatcher b
 
 #### Kết luận
 - Ngưỡng cảnh báo thay đổi giờ bay: ±15 phút (theo OSP) — áp dụng cả sớm và muộn.
-- Các trường hợp cần cảnh báo: thay đổi loại tàu, thay đổi tàu bay, phát sinh chuyến ferry, chuyển sang VIP, phát sinh chuyến Lotang.
+- Các trường hợp cần cảnh báo: thay đổi loại tàu, thay đổi tàu bay, phát sinh chuyến ferry, chuyển sang VIP. *(Cảnh báo "NOTAM mới phát sinh" — trước đây chép nhầm là "Lotang" — thuộc chủ đề NOTAM §II.6.)*
 - Chuyển từ VIP về thường: ghi nhận, không cảnh báo.
 - Divert tách thành một nhóm cảnh báo riêng; Divert phát sinh chuyến bay mới thì cảnh báo "chưa có tài liệu".
-- Định nghĩa chính xác "Lotang" và tiêu chí đánh giá tác động cần làm rõ ở buổi sau.
+- *(Đã đính chính 12/06: "Lotang" = lỗi ASR của NOTAM — xem §II.6; không còn là điểm mở.)*
 
 ### 6. Cảnh báo NOTAM
 
@@ -331,7 +331,7 @@ document_type: "Báo cáo Khảo sát (Discovery) — Phỏng vấn Dispatcher b
 | 5 | TOSS xây màn hình tập trung kiểm tra đầu ca với 9 nhóm nội dung | 1 |
 | 6 | TOSS đóng vai trò "view + cảnh báo"; thao tác nghiệp vụ vẫn ở hệ thống chuyên dụng | 1 |
 | 7 | Ngưỡng cảnh báo thay đổi giờ bay: ±15 phút (OSP) — cả sớm và muộn | 1 |
-| 8 | Cảnh báo: thay đổi loại tàu, thay đổi tàu bay, phát sinh ferry, chuyển sang VIP, phát sinh Lotang; VIP→thường chỉ ghi nhận | 1 |
+| 8 | Cảnh báo: thay đổi loại tàu, thay đổi tàu bay, phát sinh ferry, chuyển sang VIP; VIP→thường chỉ ghi nhận. (Cảnh báo NOTAM mới — trước chép nhầm "Lotang" — xem mục NOTAM) | 1 |
 | 9 | Divert tách nhóm cảnh báo riêng; Divert phát sinh chuyến mới → cảnh báo "chưa có tài liệu" | 1 |
 | 10 | NOTAM phân 3 nhóm: sân bay / vùng trời / đường bay; cần workshop SME chi tiết hóa | 1 |
 | 11 | NOTAM cứu hỏa (RFFS) phát ra → cảnh báo trực tiếp; không lưu danh sách tiêu chuẩn RFFS hiện hành | 1 |
@@ -356,7 +356,7 @@ document_type: "Báo cáo Khảo sát (Discovery) — Phỏng vấn Dispatcher b
 **Từ Phần 1:**
 - Xác nhận các mốc upload OFP quốc tế (90/130/180/200 phút) và phân loại chuyến tương ứng.
 - Xác nhận tên/viết tắt: VMA, VNCM/VNCS, "Vy Vy", UA PASMOS, Sunweather, "Phi Công 11".
-- Định nghĩa "chuyến Lotang" và tiêu chí đánh giá tác động.
+- *(Đã đính chính 12/06: "Lotang" = lỗi ASR của NOTAM; không có "chuyến Lotang" — không còn là điểm cần làm rõ.)*
 - Giao diện & cơ chế đồng bộ trạng thái Dispatch Release giữa TOSS và MO Plus (timing, payload, fail-safe).
 - Cơ chế ghi nhận lịch sử làm lại OFP sát giờ.
 - Phương án parse METAR/SPECI (tự xây vs thư viện/dịch vụ).
@@ -388,7 +388,7 @@ document_type: "Báo cáo Khảo sát (Discovery) — Phỏng vấn Dispatcher b
 | 2 | Captain's Release | ✅ v0.5 | P1 §2 |
 | 3 | Thời điểm phát hành OFP (60'/90'/130/180/200) | ✅ v0.5 (mốc 130/180/200 còn cờ) | P1 §1 |
 | 4 | Chuyến Ferry | ✅ v0.5 | P1 §5 |
-| 5 | Chuyến Lotang | ✅ v0.5 (còn cờ định nghĩa) | P1 §5 |
+| 5 | ~~Chuyến Lotang~~ → NOTAM | ✅ v0.10 — đính chính ASR: "Lotang/lô tam/nô tam" = NOTAM (không có "chuyến Lotang") | P1 §5 |
 | 6 | RFFS (cảnh báo qua NOTAM) | ✅ v0.5 | P1 §6 |
 | 7 | SPECI | ✅ v0.5 | P1 §7 |
 | 8 | TSRA | ✅ v0.5 | P1 §7 |
