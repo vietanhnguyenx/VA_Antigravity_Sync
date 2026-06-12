@@ -1,7 +1,7 @@
 ---
 project: "TOSS — Hệ thống Điều hành Khai thác Hãng Hàng không"
 author: "BA Lead"
-version: "0.2"
+version: "0.3"
 date: "2026-06-12"
 status: "Draft"
 document_type: "Sổ theo dõi Điểm cần chốt & Câu hỏi mở (Open Items & Decisions Register)"
@@ -53,6 +53,16 @@ document_id: "OID-TOSS-001"
 | SME-16 | **IFV** (anh Kiếm) — tên đầy đủ phần mềm quản lý bảng dầu AHM | KS 11/06 P2 §II.2 | Dispatcher / anh Kiếm | 🔴 Mở | |
 | SME-17 | **TIC (Lido)** — viết tắt + vai trò trong nghiệp vụ tổ bay | KS 11/06 P2 §II.5 | Workshop Lido | 🔴 Mở | |
 | SME-18 | **Sân bay đặc biệt** — danh mục đầy đủ + điều kiện chứng chỉ cơ trưởng theo sân bay | KS 11/06 P2 §II.5 | SME tổ bay | 🔴 Mở | |
+| SME-19 | Danh mục **Flight Type Code** đầy đủ (O/Z/G/H/A/P/V/S…) + code nào cần STS/HEAD | KS 11/06 chiều §II.2 | SME điều phái | 🔴 Mở | |
+| SME-20 | Cơ chế **claim phí khí thải** (CORSIA / EU ETS) — STS/HEAD là căn cứ miễn trừ | KS 11/06 chiều §II.2 | SME điều phái/môi trường | 🔴 Mở | |
+| SME-21 | **CCD** (Phase 2) — viết tắt gì (CSD/CRD/nội bộ?) | KS 11/06 chiều §II.3 | SME điều phái | 🔴 Mở | |
+| SME-22 | **Mission Watch** — tên hệ thống chính thức + ranh giới với ACARS | KS 11/06 chiều §II.6 | SME điều phái | 🔴 Mở | |
+| SME-23 | **AIJS** — viết tắt + phạm vi (nhận diện Weather Multi-Flight) | KS 11/06 chiều §II.9 | SME điều phái/tích hợp | 🔴 Mở | |
+| SME-24 | **FME** — viết tắt (Flight Management Editor?) | KS 11/06 chiều §II.9 | SME điều phái | 🔴 Mở | |
+| SME-25 | **ICON** — tên hệ thống/tham số khí tượng (Flight Level) | KS 11/06 chiều §II.11 | SME điều phái/khí tượng | 🔴 Mở | |
+| SME-26 | **Logitech / GDTN** — tên nguồn log tổ bay upload/truy cập | KS 11/06 chiều §II.12 | SME điều phái | 🔴 Mở | |
+| SME-27 | **Sketch Check / Schedule Check** — tên hệ thống tham khảo (real-time + nhấp nháy) | KS 11/06 chiều §II.6 | SME điều phái | 🔴 Mở | |
+| SME-28 | **Brady / ADC** — viết tắt + trường cụ thể trong OFP/TXT | KS 11/06 chiều §II.11 | SME điều phái | 🔴 Mở | |
 
 ## C. Vấn đề nghiệp vụ cần làm rõ qua khảo sát (KS)
 
@@ -77,6 +87,13 @@ document_id: "OID-TOSS-001"
 | KS-17 | **3 CI (Climb/Cruise/Descend)** — điều kiện để Lido trả đủ 3 CI thay vì 1 | KS 11/06 P2 §II.8 | Đối tác Lido | 🔴 Mở | |
 | KS-18 | **Ngưỡng cảnh báo PAX time / lịch PAX** — số phút cụ thể trước STD | KS 11/06 P2 §II.6 | Dispatcher (đoạn nhiễu — phỏng vấn bổ sung) | 🔴 Mở | |
 | KS-19 | **Hệ thống "long"** phân tích QAR/QAI — tên đầy đủ + quan hệ với QAI | KS 11/06 P2 §II.7 | SME dữ liệu vận hành | 🔴 Mở | |
+| KS-20 | Cơ chế phối hợp **TOSS↔MO Plus khi reset Confirm Release** (signal/payload/timing/notification UX) | KS 11/06 chiều §II.4 | Workshop + đối tác MO Plus | 🔴 Mở | |
+| KS-21 | Quy ước **TOSS gán version OFP sau Unrelease** ("2.1" vs auto-tăng "v4") | KS 11/06 chiều §II.4 | Nội bộ + SME | 🔴 Mở | |
+| KS-22 | Quy tắc **bóc tách nguồn 3 file OFP (TXT+HTML+PDF)** phía MO Plus | KS 11/06 chiều §II.13 | Workshop MO Plus/Lido | 🔴 Mở | |
+| KS-23 | **TOSS sửa OFP** — chọn PA1 (form trên TOSS) hay PA2 (sửa tay + upload) | KS 11/06 chiều §II.11 | Nội bộ + SME | 🔴 Mở | |
+| KS-24 | **MO Plus "latest by name"** (hardcode) — phối hợp đội MO Plus điều chỉnh | KS 11/06 chiều §II.9 | Đối tác MO Plus | 🔴 Mở | |
+| KS-25 | **Cơ chế refresh real-time** màn Monitoring (WebSocket/SSE/webhook/auto-refresh) | KS 11/06 chiều §II.6 | Workshop kỹ thuật | 🔴 Mở | |
+| KS-26 | **Phase Trigger mapping** — danh sách cảnh báo × mốc ACARS raise/clear | KS 11/06 chiều §II.6 | SME điều phái | 🔴 Mở | |
 
 ## D. Tham số/ngưỡng & mô hình dữ liệu chưa có nguồn (DL)
 
@@ -122,13 +139,14 @@ document_id: "OID-TOSS-001"
 | Nhóm | Tổng | 🔴 Mở | 🟡 Đang xử lý | 🟢 Đã chốt |
 |---|---|---|---|---|
 | A. Quyết định BA Lead (QĐ) | 6 | 6 | 0 | 0 |
-| B. Thuật ngữ/hệ thống (SME) | 18 | 18 | 0 | 0 |
-| C. Nghiệp vụ-khảo sát (KS) | 19 | 19 | 0 | 0 |
+| B. Thuật ngữ/hệ thống (SME) | 28 | 28 | 0 | 0 |
+| C. Nghiệp vụ-khảo sát (KS) | 26 | 26 | 0 | 0 |
 | D. Tham số/dữ liệu (DL) | 5 | 5 | 0 | 0 |
 | E. Hành chính/hạ tầng (HC) | 3 | 1 | 2 | 0 |
-| **Tổng** | **51** | **49** | **2** | **0** |
+| **Tổng** | **68** | **66** | **2** | **0** |
 
-> Cập nhật sau buổi 11/06 Phần 2 (rà ngày 2026-06-12): +7 SME (SME-12…18), +8 KS (KS-12…19). Phần 2 KHÔNG làm rõ điểm mở nào của Phần 1 (SME-01…08, KS-09, KS-11 vẫn Mở — cần phỏng vấn bổ sung riêng).
+> Cập nhật sau buổi 11/06 Phần 2 (rà 2026-06-12): +7 SME (SME-12…18), +8 KS (KS-12…19). Phần 2 KHÔNG làm rõ điểm mở nào của Phần 1.
+> Cập nhật sau buổi 11/06 buổi chiều (rà 2026-06-12): +10 SME (SME-19…28), +7 KS (KS-20…26). Buổi chiều KHÔNG làm rõ điểm mở nào của buổi sáng — trọng tâm sang nội dung mới (Release/Unrelease + version OFP, 6 phase quy trình, Monitoring real-time, Weather Multi-Flight, Payload Extra).
 
 ---
 
@@ -143,5 +161,6 @@ document_id: "OID-TOSS-001"
 
 ---
 
+*OID-TOSS-001 v0.3 — 2026-06-12. Rà sau buổi 11/06 buổi chiều: thêm 17 điểm mở (SME-19…28: Flight Type Code, claim phí khí thải, CCD, Mission Watch, AIJS, FME, ICON, Logitech/GDTN, Sketch Check, Brady/ADC; KS-20…26: reset Confirm Release TOSS↔MO Plus, version sau Unrelease, bóc tách 3 file OFP, TOSS sửa OFP PA1/PA2, MO Plus latest-by-name, refresh real-time, Phase Trigger mapping). Tổng 68 điểm (66 Mở / 2 Đang xử lý). Buổi chiều không cover điểm mở buổi sáng.*
 *OID-TOSS-001 v0.2 — 2026-06-12. Rà sau buổi 11/06 Phần 2: thêm 15 điểm mở (SME-12…18 thuật ngữ/hệ thống: CLC, NAIL, AMOS, MOI, IFV, TIC, sân bay đặc biệt; KS-12…19 nghiệp vụ: NAIL master/sub, ranh giới Lido↔TOSS, ngưỡng lệch tải, SkyCheck, Standard Taxi Time push, 3 CI, PAX time, hệ thống QAR/QAI). Tổng 51 điểm (49 Mở / 2 Đang xử lý). Phần 2 không cover điểm mở Phần 1.*
 *OID-TOSS-001 v0.1 — 2026-06-11. Khởi tạo sổ theo dõi gom 36 điểm cần chốt từ BRD, 5 file phân rã FUNC, 3 báo cáo khảo sát và phương án workflow. Rà soát + cập nhật sau mỗi buổi meeting (quy trình §F).*
