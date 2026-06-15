@@ -18,6 +18,12 @@ desktop.ini
 # Mặc định KHÔNG commit. Muốn lưu vết bàn giao khách → comment dòng tương ứng.
 ba/deliverables/exports/
 
+# --- Customer source: phần mềm & dữ liệu nhị phân lớn (KHÔNG đẩy vào git) ---
+# PEP5.16: bộ cài phần mềm PEP (Airbus Performance Engineer's Program) — .msi/.exe/.dll/SDK (~613MB)
+ba/workspace/input/Customer_docs/PEP5.16/
+# ACARS: gói điện văn nén theo ngày (~377MB) — giữ README/PDF/xlsx mô tả, bỏ .zip dữ liệu thô
+ba/workspace/input/Customer_docs/ACARS/*.zip
+
 # --- DEV (bổ sung khi có code) ---
 node_modules/
 dist/
