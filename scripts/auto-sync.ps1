@@ -66,20 +66,30 @@ while ($true) {
             }
         }
         
-        # 3. Keo thay doi tu remote ve bang rebase
-        Write-Log "Dang keo (Pull - Rebase) cac thay doi moi tu remote '$Remote'..." "DarkGray"
-        $PullResult = git pull $Remote $Branch --rebase 2>&1
-        $LastExitCode = $LASTEXITCODE
+        # 3. Keo thay doi tu remote ve bang rebase (Chi keo neu remote branch da ton tai)
+        $RemoteBranchExists = (git ls-remote --heads $Remote $Branch)
+        $CanPush = $true
         
-        if ($LastExitCode -ne 0) {
-            Write-Log "Loi xay ra khi keo code ve: $PullResult" "Red"
-            if ($PullResult -match "conflict" -or $PullResult -match "Resolve all conflicts") {
-                Write-Log "[!] CANH BAO: Xung dot xay ra khi dong bo tu dong. Dang khoi phuc (Abort rebase)..." "Red"
-                git rebase --abort
-                Write-Log "Da khoi phuc trang thai. Vui long mo Terminal va chay 'git pull $Remote $Branch --rebase' de xu ly xung dot thu cong." "Yellow"
+        if ($RemoteBranchExists) {
+            Write-Log "Dang keo (Pull - Rebase) cac thay doi moi tu remote '$Remote'..." "DarkGray"
+            $PullResult = git pull $Remote $Branch --rebase 2>&1
+            $LastExitCode = $LASTEXITCODE
+            
+            if ($LastExitCode -ne 0) {
+                Write-Log "Loi xay ra khi keo code ve: $PullResult" "Red"
+                if ($PullResult -match "conflict" -or $PullResult -match "Resolve all conflicts") {
+                    Write-Log "[!] CANH BAO: Xung dot xay ra khi dong bo tu dong. Dang khoi phuc (Abort rebase)..." "Red"
+                    git rebase --abort
+                    Write-Log "Da khoi phuc trang thai. Vui long mo Terminal va chay 'git pull $Remote $Branch --rebase' de xu ly xung dot thu cong." "Yellow"
+                }
+                $CanPush = $false
             }
         } else {
-            # 4. Day thay doi len remote (Chi push neu la remote personal)
+            Write-Log "Nhan thay branch '$Branch' chua ton tai tren remote '$Remote'. Bo qua pull, chuan bi push de khoi tao branch." "Yellow"
+        }
+        
+        # 4. Day thay doi len remote (Chi push neu la remote personal va hop le)
+        if ($CanPush) {
             if ($Remote -eq "personal") {
                 Write-Log "Dang day (Push) thay doi len remote '$Remote'..." "DarkGray"
                 $PushResult = git push $Remote $Branch 2>&1
