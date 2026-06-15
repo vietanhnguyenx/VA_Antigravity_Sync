@@ -1,0 +1,35 @@
+sequenceDiagram
+    autonumber
+    actor Admin as Quản trị viên
+    participant UI as Admin UI
+    participant SSO as SSO/Keycloak
+    participant API as Backend TTHDL
+    participant DB as CSDL TTHDL
+    participant APIM as WSO2 APIM / Cổng tích hợp
+    participant LOG as Nhật ký hệ thống
+
+    Admin->>UI: Truy cập module Thiết lập luồng tích hợp
+    UI->>SSO: Kiểm tra phiên đăng nhập / quyền truy cập
+    SSO-->>UI: Hợp lệ
+
+    Admin->>UI: Chọn Thêm mới luồng tích hợp
+    UI-->>Admin: Hiển thị form nhập thông tin
+
+    Admin->>UI: Nhập thông tin luồng tích hợp
+    UI->>API: Gửi yêu cầu thêm mới luồng
+
+    API->>API: Validate dữ liệu cấu hình luồng
+    API->>DB: Kiểm tra trùng lặp luồng / xung đột
+    DB-->>API: Không trùng
+
+    API->>DB: Lưu cấu hình luồng tích hợp mới
+    DB-->>API: Lưu thành công
+    
+    API->>APIM: Gọi API đẩy cấu hình luồng xuống Cổng tích hợp
+    APIM-->>API: Phản hồi đồng bộ thành công
+
+    API->>LOG: Ghi lịch sử thao tác
+    LOG-->>API: Thành công
+
+    API-->>UI: Trả kết quả thành công
+    UI-->>Admin: Thông báo thành công, làm mới danh sách

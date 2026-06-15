@@ -1,0 +1,34 @@
+sequenceDiagram
+    actor Admin as Quản trị viên
+    participant UI as Admin UI
+    participant SSO as SSO/Keycloak
+    participant API as Backend TTHDL
+    participant FLOW as Luồng tích hợp
+    participant DB as CSDL TTHDL
+    participant LOG as Nhật ký hệ thống
+
+    Admin->>UI: Chọn Vô hiệu hóa khóa mã hóa
+    UI->>SSO: Kiểm tra quyền thao tác
+    SSO-->>UI: Có quyền
+
+    UI->>API: Gửi yêu cầu kiểm tra vô hiệu hóa
+    API->>FLOW: Kiểm tra khóa có đang dùng bởi luồng tích hợp hoạt động?
+    FLOW-->>API: Kết quả kiểm tra
+
+    alt Có ràng buộc
+        API-->>UI: Không cho phép vô hiệu hóa
+        UI-->>Admin: Hiển thị thông báo ràng buộc
+    else Không có ràng buộc
+        UI-->>Admin: Hiển thị popup xác nhận
+        Admin->>UI: Xác nhận vô hiệu hóa
+        UI->>API: Gửi yêu cầu vô hiệu hóa
+
+        API->>DB: Cập nhật trạng thái khóa = Vô hiệu hóa
+        DB-->>API: Cập nhật thành công
+
+        API->>LOG: Ghi lịch sử thao tác
+        LOG-->>API: Thành công
+
+        API-->>UI: Trả kết quả thành công
+        UI-->>Admin: Thông báo thành công, làm mới danh sách
+    end

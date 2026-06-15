@@ -1,0 +1,412 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:bioc="http://bpmn.io/schema/bpmn/biocolor/1.0" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="bpmn-js (https://demo.bpmn.io)" exporterVersion="18.13.2">
+  <bpmn:collaboration id="Collaboration_1">
+    <bpmn:participant id="Participant_Target" name="Hệ thống Đích (Target System)" processRef="Process_Target" />
+    <bpmn:participant id="Participant_TTHDL" name="Trục Tích hợp Dữ liệu (TTHDL)" processRef="Process_TTHDL" />
+    <bpmn:participant id="Participant_Client" name="Phân hệ nội bộ / Đối tác (Client)" />
+    <bpmn:messageFlow id="MsgFlow_1" targetRef="Event_GW_Start" />
+    <bpmn:messageFlow id="MsgFlow_2" sourceRef="Task_Route" targetRef="Event_Target_Start" />
+    <bpmn:messageFlow id="MsgFlow_3" sourceRef="Event_Target_End" targetRef="Event_GW_Wait" />
+    <bpmn:messageFlow id="MsgFlow_4" sourceRef="Task_Return" />
+  </bpmn:collaboration>
+  <bpmn:process id="Process_Target" isExecutable="false">
+    <bpmn:task id="Task_Target_Process" name="Xử lý Nghiệp vụ" />
+    <bpmn:endEvent id="Event_Target_End" name="Trả Kết quả" />
+    <bpmn:sequenceFlow id="Flow_T1" sourceRef="Event_Target_Start" targetRef="Task_Target_Process" />
+    <bpmn:sequenceFlow id="Flow_T2" sourceRef="Task_Target_Process" targetRef="Event_Target_End" />
+    <bpmn:startEvent id="Event_Target_Start" name="Nhận API" />
+  </bpmn:process>
+  <bpmn:process id="Process_TTHDL" isExecutable="false">
+    <bpmn:laneSet id="LaneSet_1">
+      <bpmn:lane id="Lane_Monitor" name="Module Quản trị (Monitor UI)">
+        <bpmn:flowNodeRef>Mod_Auth</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Mod_RateLimit</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Mod_Key</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Mod_Log</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Mod_Route</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Mod_Alert</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Mod_Report</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_Gateway" name="API Gateway (Luồng Tích hợp)">
+        <bpmn:flowNodeRef>Event_GW_Start</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_Auth</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gate_Auth</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_Err401</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_Err401</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_RateLimit</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gate_RateLimit</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_Err403</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_Err403</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_Decrypt</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_LogReq</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_Route</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_GW_Wait</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_Encrypt</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_LogRes</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gate_Parallel</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_Alert</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_Report</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_Return</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:task id="Mod_Auth" name="QL Tài khoản Xác thực" />
+    <bpmn:task id="Mod_RateLimit" name="QL Dịch vụ &#38; Rate Limit" />
+    <bpmn:task id="Mod_Key" name="Thiết lập Khóa mã hóa" />
+    <bpmn:task id="Mod_Log" name="Nhật ký hệ thống" />
+    <bpmn:task id="Mod_Route" name="Thiết lập Luồng tích hợp" />
+    <bpmn:task id="Mod_Alert" name="Cấu hình Ngưỡng Cảnh báo" />
+    <bpmn:task id="Mod_Report" name="Báo cáo Thống kê" />
+    <bpmn:startEvent id="Event_GW_Start" name="Tiếp nhận Request">
+      <bpmn:outgoing>Flow_1</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:task id="Task_Auth" name="Xác thực Tài khoản">
+      <bpmn:incoming>Flow_1</bpmn:incoming>
+      <bpmn:outgoing>Flow_2</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:exclusiveGateway id="Gate_Auth" name="Hợp lệ?">
+      <bpmn:incoming>Flow_2</bpmn:incoming>
+      <bpmn:outgoing>Flow_Auth_No</bpmn:outgoing>
+      <bpmn:outgoing>Flow_Auth_Yes</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:task id="Task_Err401" name="Trả lỗi 401">
+      <bpmn:incoming>Flow_Auth_No</bpmn:incoming>
+      <bpmn:outgoing>Flow_Err401_End</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:endEvent id="Event_Err401">
+      <bpmn:incoming>Flow_Err401_End</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:task id="Task_RateLimit" name="Kiểm tra Quyền &#38; Rate Limit">
+      <bpmn:incoming>Flow_Auth_Yes</bpmn:incoming>
+      <bpmn:outgoing>Flow_3</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:exclusiveGateway id="Gate_RateLimit" name="Hợp lệ?">
+      <bpmn:incoming>Flow_3</bpmn:incoming>
+      <bpmn:outgoing>Flow_RL_No</bpmn:outgoing>
+      <bpmn:outgoing>Flow_RL_Yes</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:task id="Task_Err403" name="Trả lỗi 403 / 429">
+      <bpmn:incoming>Flow_RL_No</bpmn:incoming>
+      <bpmn:outgoing>Flow_Err403_End</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:endEvent id="Event_Err403">
+      <bpmn:incoming>Flow_Err403_End</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:task id="Task_Decrypt" name="Giải mã Payload">
+      <bpmn:incoming>Flow_RL_Yes</bpmn:incoming>
+      <bpmn:outgoing>Flow_4</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_LogReq" name="Ghi nhận Log Request">
+      <bpmn:incoming>Flow_4</bpmn:incoming>
+      <bpmn:outgoing>Flow_5</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_Route" name="Định tuyến &#38; Chuyển đổi">
+      <bpmn:incoming>Flow_5</bpmn:incoming>
+      <bpmn:outgoing>Flow_6</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:intermediateCatchEvent id="Event_GW_Wait" name="Nhận Response">
+      <bpmn:incoming>Flow_6</bpmn:incoming>
+      <bpmn:outgoing>Flow_7</bpmn:outgoing>
+      <bpmn:messageEventDefinition id="MessageEventDefinition_1" />
+    </bpmn:intermediateCatchEvent>
+    <bpmn:task id="Task_Encrypt" name="Mã hóa Payload">
+      <bpmn:incoming>Flow_7</bpmn:incoming>
+      <bpmn:outgoing>Flow_8</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_LogRes" name="Cập nhật Log Response">
+      <bpmn:incoming>Flow_8</bpmn:incoming>
+      <bpmn:outgoing>Flow_9</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:parallelGateway id="Gate_Parallel">
+      <bpmn:incoming>Flow_9</bpmn:incoming>
+      <bpmn:outgoing>Flow_10</bpmn:outgoing>
+      <bpmn:outgoing>Flow_11</bpmn:outgoing>
+      <bpmn:outgoing>Flow_12</bpmn:outgoing>
+    </bpmn:parallelGateway>
+    <bpmn:task id="Task_Alert" name="Kiểm tra Cảnh báo">
+      <bpmn:incoming>Flow_10</bpmn:incoming>
+    </bpmn:task>
+    <bpmn:task id="Task_Report" name="Thống kê Dashboard">
+      <bpmn:incoming>Flow_11</bpmn:incoming>
+    </bpmn:task>
+    <bpmn:task id="Task_Return" name="Trả kết quả Client">
+      <bpmn:incoming>Flow_12</bpmn:incoming>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow_1" sourceRef="Event_GW_Start" targetRef="Task_Auth" />
+    <bpmn:sequenceFlow id="Flow_2" sourceRef="Task_Auth" targetRef="Gate_Auth" />
+    <bpmn:sequenceFlow id="Flow_Auth_No" name="Sai" sourceRef="Gate_Auth" targetRef="Task_Err401" />
+    <bpmn:sequenceFlow id="Flow_Err401_End" sourceRef="Task_Err401" targetRef="Event_Err401" />
+    <bpmn:sequenceFlow id="Flow_Auth_Yes" name="Đúng" sourceRef="Gate_Auth" targetRef="Task_RateLimit" />
+    <bpmn:sequenceFlow id="Flow_3" sourceRef="Task_RateLimit" targetRef="Gate_RateLimit" />
+    <bpmn:sequenceFlow id="Flow_RL_No" name="Sai" sourceRef="Gate_RateLimit" targetRef="Task_Err403" />
+    <bpmn:sequenceFlow id="Flow_Err403_End" sourceRef="Task_Err403" targetRef="Event_Err403" />
+    <bpmn:sequenceFlow id="Flow_RL_Yes" name="Đúng" sourceRef="Gate_RateLimit" targetRef="Task_Decrypt" />
+    <bpmn:sequenceFlow id="Flow_4" sourceRef="Task_Decrypt" targetRef="Task_LogReq" />
+    <bpmn:sequenceFlow id="Flow_5" sourceRef="Task_LogReq" targetRef="Task_Route" />
+    <bpmn:sequenceFlow id="Flow_6" sourceRef="Task_Route" targetRef="Event_GW_Wait" />
+    <bpmn:sequenceFlow id="Flow_7" sourceRef="Event_GW_Wait" targetRef="Task_Encrypt" />
+    <bpmn:sequenceFlow id="Flow_8" sourceRef="Task_Encrypt" targetRef="Task_LogRes" />
+    <bpmn:sequenceFlow id="Flow_9" sourceRef="Task_LogRes" targetRef="Gate_Parallel" />
+    <bpmn:sequenceFlow id="Flow_10" sourceRef="Gate_Parallel" targetRef="Task_Alert" />
+    <bpmn:sequenceFlow id="Flow_11" sourceRef="Gate_Parallel" targetRef="Task_Report" />
+    <bpmn:sequenceFlow id="Flow_12" sourceRef="Gate_Parallel" targetRef="Task_Return" />
+    <bpmn:association id="Assoc_1_Element" sourceRef="Mod_Auth" targetRef="Task_Auth" />
+    <bpmn:association id="Assoc_2_Element" sourceRef="Mod_RateLimit" targetRef="Task_RateLimit" />
+    <bpmn:association id="Assoc_3_Element" sourceRef="Mod_Key" targetRef="Task_Decrypt" />
+    <bpmn:association id="Assoc_4_Element" sourceRef="Mod_Log" targetRef="Task_LogReq" />
+    <bpmn:association id="Assoc_5_Element" sourceRef="Mod_Route" targetRef="Task_Route" />
+    <bpmn:association id="Assoc_6_Element" sourceRef="Mod_Key" targetRef="Task_Encrypt" />
+    <bpmn:association id="Assoc_7_Element" sourceRef="Mod_Log" targetRef="Task_LogRes" />
+    <bpmn:association id="Assoc_8_Element" sourceRef="Mod_Alert" targetRef="Task_Alert" />
+    <bpmn:association id="Assoc_9_Element" sourceRef="Mod_Report" targetRef="Task_Report" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1">
+      <bpmndi:BPMNShape id="Participant_Target_di" bpmnElement="Participant_Target" isHorizontal="true">
+        <dc:Bounds x="120" y="80" width="1900" height="120" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_Target_Process_di" bpmnElement="Task_Target_Process">
+        <dc:Bounds x="1180" y="100" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_Target_End_di" bpmnElement="Event_Target_End">
+        <dc:Bounds x="1320" y="122" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1371" y="133" width="58" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_Target_Start_di" bpmnElement="Event_Target_Start">
+        <dc:Bounds x="1082" y="122" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1076" y="98" width="47" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_T1_di" bpmnElement="Flow_T1">
+        <di:waypoint x="1118" y="140" />
+        <di:waypoint x="1180" y="140" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_T2_di" bpmnElement="Flow_T2">
+        <di:waypoint x="1280" y="140" />
+        <di:waypoint x="1320" y="140" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Participant_TTHDL_di" bpmnElement="Participant_TTHDL" isHorizontal="true">
+        <dc:Bounds x="120" y="220" width="1900" height="420" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_Gateway_di" bpmnElement="Lane_Gateway" isHorizontal="true">
+        <dc:Bounds x="150" y="380" width="1870" height="260" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_Monitor_di" bpmnElement="Lane_Monitor" isHorizontal="true">
+        <dc:Bounds x="150" y="220" width="1870" height="160" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Mod_Auth_di" bpmnElement="Mod_Auth" bioc:stroke="#8e24aa" bioc:fill="#e1bee7">
+        <dc:Bounds x="380" y="270" width="100" height="60" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Mod_RateLimit_di" bpmnElement="Mod_RateLimit" bioc:stroke="#8e24aa" bioc:fill="#e1bee7">
+        <dc:Bounds x="610" y="270" width="100" height="60" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Mod_Key_di" bpmnElement="Mod_Key" bioc:stroke="#8e24aa" bioc:fill="#e1bee7">
+        <dc:Bounds x="840" y="270" width="100" height="60" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Mod_Log_di" bpmnElement="Mod_Log" bioc:stroke="#8e24aa" bioc:fill="#e1bee7">
+        <dc:Bounds x="980" y="270" width="100" height="60" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Mod_Route_di" bpmnElement="Mod_Route" bioc:stroke="#8e24aa" bioc:fill="#e1bee7">
+        <dc:Bounds x="1120" y="270" width="100" height="60" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Mod_Alert_di" bpmnElement="Mod_Alert" bioc:stroke="#fb8c00" bioc:fill="#ffe0b2">
+        <dc:Bounds x="1710" y="260" width="100" height="60" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Mod_Report_di" bpmnElement="Mod_Report" bioc:stroke="#fb8c00" bioc:fill="#ffe0b2">
+        <dc:Bounds x="1850" y="260" width="100" height="60" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_GW_Start_di" bpmnElement="Event_GW_Start">
+        <dc:Bounds x="282" y="432" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_Auth_di" bpmnElement="Task_Auth" bioc:stroke="#1e88e5" bioc:fill="#bbdefb">
+        <dc:Bounds x="380" y="410" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gate_Auth_di" bpmnElement="Gate_Auth" isMarkerVisible="true">
+        <dc:Bounds x="520" y="425" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_Err401_di" bpmnElement="Task_Err401" bioc:stroke="#e53935" bioc:fill="#ffcdd2">
+        <dc:Bounds x="495" y="540" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_Err401_di" bpmnElement="Event_Err401">
+        <dc:Bounds x="652" y="562" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_RateLimit_di" bpmnElement="Task_RateLimit" bioc:stroke="#1e88e5" bioc:fill="#bbdefb">
+        <dc:Bounds x="610" y="410" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gate_RateLimit_di" bpmnElement="Gate_RateLimit" isMarkerVisible="true">
+        <dc:Bounds x="750" y="425" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_Err403_di" bpmnElement="Task_Err403" bioc:stroke="#e53935" bioc:fill="#ffcdd2">
+        <dc:Bounds x="725" y="540" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_Err403_di" bpmnElement="Event_Err403">
+        <dc:Bounds x="882" y="562" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_Decrypt_di" bpmnElement="Task_Decrypt" bioc:stroke="#1e88e5" bioc:fill="#bbdefb">
+        <dc:Bounds x="840" y="410" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_LogReq_di" bpmnElement="Task_LogReq" bioc:stroke="#1e88e5" bioc:fill="#bbdefb">
+        <dc:Bounds x="980" y="410" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_Route_di" bpmnElement="Task_Route" bioc:stroke="#1e88e5" bioc:fill="#bbdefb">
+        <dc:Bounds x="1120" y="410" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_GW_Wait_di" bpmnElement="Event_GW_Wait">
+        <dc:Bounds x="1262" y="432" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_Encrypt_di" bpmnElement="Task_Encrypt" bioc:stroke="#1e88e5" bioc:fill="#bbdefb">
+        <dc:Bounds x="1340" y="410" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_LogRes_di" bpmnElement="Task_LogRes" bioc:stroke="#1e88e5" bioc:fill="#bbdefb">
+        <dc:Bounds x="1480" y="410" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gate_Parallel_di" bpmnElement="Gate_Parallel">
+        <dc:Bounds x="1620" y="425" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_Alert_di" bpmnElement="Task_Alert" bioc:stroke="#fb8c00" bioc:fill="#ffe0b2">
+        <dc:Bounds x="1710" y="410" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_Report_di" bpmnElement="Task_Report" bioc:stroke="#fb8c00" bioc:fill="#ffe0b2">
+        <dc:Bounds x="1710" y="520" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_Return_di" bpmnElement="Task_Return" bioc:stroke="#1e88e5" bioc:fill="#bbdefb">
+        <dc:Bounds x="1850" y="410" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1_di" bpmnElement="Flow_1">
+        <di:waypoint x="318" y="450" />
+        <di:waypoint x="380" y="450" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_2_di" bpmnElement="Flow_2">
+        <di:waypoint x="480" y="450" />
+        <di:waypoint x="520" y="450" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_Auth_No_di" bpmnElement="Flow_Auth_No">
+        <di:waypoint x="545" y="475" />
+        <di:waypoint x="545" y="540" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_Err401_End_di" bpmnElement="Flow_Err401_End">
+        <di:waypoint x="595" y="580" />
+        <di:waypoint x="652" y="580" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_Auth_Yes_di" bpmnElement="Flow_Auth_Yes">
+        <di:waypoint x="570" y="450" />
+        <di:waypoint x="610" y="450" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_3_di" bpmnElement="Flow_3">
+        <di:waypoint x="710" y="450" />
+        <di:waypoint x="750" y="450" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_RL_No_di" bpmnElement="Flow_RL_No">
+        <di:waypoint x="775" y="475" />
+        <di:waypoint x="775" y="540" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_Err403_End_di" bpmnElement="Flow_Err403_End">
+        <di:waypoint x="825" y="580" />
+        <di:waypoint x="882" y="580" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_RL_Yes_di" bpmnElement="Flow_RL_Yes">
+        <di:waypoint x="800" y="450" />
+        <di:waypoint x="840" y="450" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_4_di" bpmnElement="Flow_4">
+        <di:waypoint x="940" y="450" />
+        <di:waypoint x="980" y="450" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_5_di" bpmnElement="Flow_5">
+        <di:waypoint x="1080" y="450" />
+        <di:waypoint x="1120" y="450" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_6_di" bpmnElement="Flow_6">
+        <di:waypoint x="1220" y="450" />
+        <di:waypoint x="1262" y="450" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_7_di" bpmnElement="Flow_7">
+        <di:waypoint x="1298" y="450" />
+        <di:waypoint x="1340" y="450" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_8_di" bpmnElement="Flow_8">
+        <di:waypoint x="1440" y="450" />
+        <di:waypoint x="1480" y="450" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_9_di" bpmnElement="Flow_9">
+        <di:waypoint x="1580" y="450" />
+        <di:waypoint x="1620" y="450" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_10_di" bpmnElement="Flow_10">
+        <di:waypoint x="1670" y="450" />
+        <di:waypoint x="1710" y="450" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_11_di" bpmnElement="Flow_11">
+        <di:waypoint x="1645" y="475" />
+        <di:waypoint x="1645" y="560" />
+        <di:waypoint x="1710" y="560" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_12_di" bpmnElement="Flow_12">
+        <di:waypoint x="1645" y="425" />
+        <di:waypoint x="1645" y="360" />
+        <di:waypoint x="1830" y="360" />
+        <di:waypoint x="1830" y="450" />
+        <di:waypoint x="1850" y="450" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Assoc_1" bpmnElement="Assoc_1_Element">
+        <di:waypoint x="430" y="330" />
+        <di:waypoint x="430" y="410" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Assoc_2" bpmnElement="Assoc_2_Element">
+        <di:waypoint x="660" y="330" />
+        <di:waypoint x="660" y="410" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Assoc_3" bpmnElement="Assoc_3_Element">
+        <di:waypoint x="890" y="330" />
+        <di:waypoint x="890" y="410" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Assoc_4" bpmnElement="Assoc_4_Element">
+        <di:waypoint x="1030" y="330" />
+        <di:waypoint x="1030" y="410" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Assoc_5" bpmnElement="Assoc_5_Element">
+        <di:waypoint x="1170" y="330" />
+        <di:waypoint x="1170" y="410" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Assoc_6" bpmnElement="Assoc_6_Element">
+        <di:waypoint x="890" y="270" />
+        <di:waypoint x="890" y="240" />
+        <di:waypoint x="1390" y="240" />
+        <di:waypoint x="1390" y="410" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Assoc_7" bpmnElement="Assoc_7_Element">
+        <di:waypoint x="1030" y="270" />
+        <di:waypoint x="1030" y="260" />
+        <di:waypoint x="1530" y="260" />
+        <di:waypoint x="1530" y="410" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Assoc_8" bpmnElement="Assoc_8_Element">
+        <di:waypoint x="1760" y="320" />
+        <di:waypoint x="1760" y="410" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Assoc_9" bpmnElement="Assoc_9_Element">
+        <di:waypoint x="1950" y="290" />
+        <di:waypoint x="1980" y="290" />
+        <di:waypoint x="1980" y="560" />
+        <di:waypoint x="1810" y="560" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Participant_Client_di" bpmnElement="Participant_Client" isHorizontal="true">
+        <dc:Bounds x="120" y="660" width="1900" height="120" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="MsgFlow_2_di" bpmnElement="MsgFlow_2">
+        <di:waypoint x="1170" y="410" />
+        <di:waypoint x="1170" y="360" />
+        <di:waypoint x="1100" y="360" />
+        <di:waypoint x="1100" y="158" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="MsgFlow_3_di" bpmnElement="MsgFlow_3">
+        <di:waypoint x="1338" y="158" />
+        <di:waypoint x="1338" y="280" />
+        <di:waypoint x="1280" y="280" />
+        <di:waypoint x="1280" y="432" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

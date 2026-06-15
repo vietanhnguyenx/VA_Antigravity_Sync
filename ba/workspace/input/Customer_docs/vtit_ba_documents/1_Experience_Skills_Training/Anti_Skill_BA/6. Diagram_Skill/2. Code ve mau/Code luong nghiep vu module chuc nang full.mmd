@@ -1,0 +1,87 @@
+---
+config:
+  layout: elk
+  theme: base
+  themeVariables:
+    primaryColor: '#eef2ff'
+    primaryBorderColor: '#818cf8'
+    lineColor: '#818cf8'
+    background: '#ffffff'
+---
+flowchart TB
+    
+    %% == Khởi tạo và kiểm tra quyền ==
+    A([Bắt đầu]) --> B[Quản trị viên truy cập module<br/>Quản lý Danh sách dịch vụ]
+    B --> C[Kiểm tra phiên đăng nhập và quyền từ SSO/Keycloak]
+    C --> D{"Kiểm tra quyền truy cập module<br/>(Có quyền truy cập?)"}
+    D -- Không --> E[Hiển thị thông báo<br/>không có quyền truy cập]
+    D -- Có --> F[Hiển thị danh sách dịch vụ/API<br/>theo Application]
+    E --> Z([Kết thúc])
+    
+    %% == Danh sách và thao tác ==
+    F --> G[Người dùng lọc / tìm kiếm danh sách]
+    G --> H{"Người dùng chọn thao tác<br/>(Xem / Thêm / Sửa / Vô hiệu hóa / Cấu hình Rate Limit / Thoát)"}
+
+    %% == Xem chi tiết ==
+    H -- Xem chi tiết --> I[Xem chi tiết API]
+    I --> I1[Hiển thị thông tin API<br/>Application, Endpoint, Method,<br/>Auth, Rate Limit, trạng thái]
+    I1 --> O1([Trở về danh sách])
+    O1 --> F
+
+    %% == Thêm mới API ==
+    H -- Thêm mới --> J[Nhập thông tin API mới]
+    J --> J1[Nhập Application, tên dịch vụ,<br/>endpoint, method, mô tả, xác thực, trạng thái]
+    J1 --> J2{Kiểm tra dữ liệu hợp lệ?}
+    J2 -- Không --> J3[Thông báo lỗi<br/>yêu cầu nhập lại]
+    J2 -- Có --> J4{Kiểm tra trùng mã / tên / endpoint?}
+    J4 -- Có --> J3
+    J4 -- Không --> J5[Lưu API mới]
+    J5 --> S1
+
+    %% == Sửa API ==
+    H -- Sửa --> K[Chọn API cần sửa]
+    K --> K1{API có đang được sử dụng<br/>hoặc bị ràng buộc?}
+    K1 -- Có --> K2[Thông báo không thể sửa<br/>do đang có ràng buộc]
+    K2 --> F
+    K1 -- Không --> K3[Cập nhật thông tin API]
+    K3 --> K4{Kiểm tra dữ liệu hợp lệ?}
+    K4 -- Không --> K5[Thông báo lỗi<br/>yêu cầu nhập lại]
+    K5 --> K3
+    K4 -- Có --> K6[Lưu thông tin cập nhật]
+    K6 --> S1
+
+    %% == Vô hiệu hóa API ==
+    H -- Vô hiệu hóa --> L[Chọn API cần vô hiệu hóa]
+    L --> L1{API có ràng buộc<br/>hoặc đang được sử dụng?}
+    L1 -- Có --> L2[Thông báo: không thể vô hiệu hóa]
+    L2 --> F
+    L1 -- Không --> L3[Xác nhận vô hiệu hóa]
+    L3 --> L4[Cập nhật trạng thái = Vô hiệu hóa]
+    L4 --> S1
+
+    %% == Cấu hình Rate Limit ==
+    H -- Cấu hình Rate Limit --> M[Chọn API cần cấu hình]
+    M --> M1[Nhập giới hạn request, thời gian,<br/>quota, trạng thái áp dụng]
+    M1 --> M2{Kiểm tra cấu hình hợp lệ?}
+    M2 -- Không --> M3[Thông báo lỗi<br/>yêu cầu nhập lại]
+    M3 --> M1
+    M2 -- Có --> M4[Đồng bộ cấu hình Rate Limit sang WSO2 APIM]
+    M4 --> M5[Lưu cấu hình Rate Limit]
+    M5 --> S1
+
+    %% == Xử lý lưu và kết thúc ==
+    S1["Thực hiện xử lý sau khi lưu thành công<br/>(Ghi lịch sử thao tác, làm mới danh sách, trở lại màn hình chính)"]
+    S1 --> N[Ghi lịch sử thao tác]
+    N --> O[Làm mới danh sách]
+    O --> F
+    H -- Thoát --> Z
+
+    %% == Kiểu định dạng ==
+    classDef step fill:#eef2ff,stroke:#818cf8,stroke-width:2px;
+    classDef decision fill:#fefce8,stroke:#facc15,stroke-width:2px;
+    classDef action fill:#f0fdfa,stroke:#2dd4bf,stroke-width:2px;
+    classDef endNode fill:#fff1f2,stroke:#fb7185,stroke-width:2px;
+
+    class A,E,Z endNode
+    class B,C,F,G,H,I,J,K,L,M,S1,N,O,O1 action
+    class D,J2,J4,K1,K4,L1,M2 decision

@@ -1,0 +1,61 @@
+---
+config:
+  layout: elk
+  theme: base
+  themeVariables:
+    primaryColor: '#eef2ff'
+    primaryBorderColor: '#818cf8'
+    lineColor: '#818cf8'
+    background: '#ffffff'
+---
+flowchart LR
+    Admin[Quản trị viên / Nhân viên vận hành]
+
+    subgraph FLOW[Module Thiết lập luồng tích hợp]
+        UC1[UC-FLOW-01<br/>Xem danh sách luồng tích hợp]
+        UC2[UC-FLOW-02<br/>Lọc / tìm kiếm luồng tích hợp]
+        UC3[UC-FLOW-03<br/>Xem chi tiết luồng]
+        UC4[UC-FLOW-04<br/>Thêm mới luồng tích hợp]
+        UC5[UC-FLOW-05<br/>Sửa luồng tích hợp]
+        UC6[UC-FLOW-06<br/>Vô hiệu hóa luồng tích hợp]
+        UC7[UC-FLOW-07<br/>Ghi lịch sử thao tác]
+    end
+
+    subgraph SYS[Hệ thống liên quan]
+        SSO[SSO / Keycloak]
+        DB[(CSDL TTHDL)]
+        APIM[WSO2 APIM / Cổng tích hợp]
+    end
+
+    Admin --> UC1
+    Admin --> UC2
+    Admin --> UC3
+    Admin --> UC4
+    Admin --> UC5
+    Admin --> UC6
+
+    UC1 --> SSO
+    UC4 --> DB
+    UC5 --> DB
+    UC6 --> DB
+    UC3 --> DB
+
+    UC4 --> APIM
+    UC5 --> APIM
+    UC6 --> APIM
+
+    UC4 --> UC7
+    UC5 --> UC7
+    UC6 --> UC7
+
+    UC7 --> DB
+
+    classDef actor fill:#f8fafc,stroke:#475569,stroke-width:2px;
+    classDef usecase fill:#eef2ff,stroke:#4f46e5,stroke-width:1.5px;
+    classDef system fill:#ecfdf5,stroke:#059669,stroke-width:1.5px;
+    classDef db fill:#fefce8,stroke:#ca8a04,stroke-width:1.5px;
+
+    class Admin actor
+    class UC1,UC2,UC3,UC4,UC5,UC6,UC7 usecase
+    class SSO,APIM system
+    class DB db

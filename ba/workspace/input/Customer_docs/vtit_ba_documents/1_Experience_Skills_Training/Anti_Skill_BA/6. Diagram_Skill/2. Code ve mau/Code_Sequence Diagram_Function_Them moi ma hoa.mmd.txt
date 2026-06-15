@@ -1,0 +1,31 @@
+sequenceDiagram
+    actor Admin as Quản trị viên
+    participant UI as Admin UI
+    participant SSO as SSO/Keycloak
+    participant API as Backend TTHDL
+    participant DB as CSDL TTHDL
+    participant LOG as Nhật ký hệ thống
+
+    Admin->>UI: Truy cập module Thiết lập khóa mã hóa
+    UI->>SSO: Kiểm tra phiên đăng nhập / quyền truy cập
+    SSO-->>UI: Hợp lệ
+
+    Admin->>UI: Chọn Thêm mới khóa mã hóa
+    UI->>Admin: Hiển thị form nhập thông tin
+
+    Admin->>UI: Nhập thông tin khóa
+    UI->>API: Gửi yêu cầu thêm mới khóa
+
+    API->>API: Validate dữ liệu
+    API->>DB: Kiểm tra trùng tên khóa / khóa còn hiệu lực
+    DB-->>API: Không trùng
+
+    API->>API: Mã hóa / lưu an toàn giá trị khóa
+    API->>DB: Lưu khóa mã hóa mới
+    DB-->>API: Lưu thành công
+
+    API->>LOG: Ghi lịch sử thao tác
+    LOG-->>API: Thành công
+
+    API-->>UI: Trả kết quả thành công
+    UI-->>Admin: Thông báo thành công, làm mới danh sách
