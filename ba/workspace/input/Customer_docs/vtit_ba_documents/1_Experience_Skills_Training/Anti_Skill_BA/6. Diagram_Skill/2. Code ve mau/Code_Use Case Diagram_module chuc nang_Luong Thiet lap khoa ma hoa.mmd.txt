@@ -1,0 +1,43 @@
+flowchart LR
+    Admin[Quản trị viên / Nhân viên vận hành]
+
+    subgraph KEY[Module Thiết lập khóa mã hóa]
+        UC1[Xem danh sách khóa mã hóa]
+        UC2[Lọc / tìm kiếm khóa mã hóa]
+        UC3[Xem chi tiết khóa mã hóa]
+        UC4[Thêm mới khóa mã hóa]
+        UC5[Sửa khóa mã hóa]
+        UC6[Vô hiệu hóa khóa mã hóa]
+        UC7[Sao chép khóa mã hóa]
+        UC8[Ghi lịch sử thao tác]
+    end
+
+    subgraph SYS[Hệ thống liên quan]
+        SSO[SSO / Keycloak]
+        DB[(CSDL TTHDL)]
+        FLOW[Luồng tích hợp]
+    end
+
+    Admin --> UC1
+    Admin --> UC2
+    Admin --> UC3
+    Admin --> UC4
+    Admin --> UC5
+    Admin --> UC6
+    Admin --> UC7
+
+    UC1 --> SSO
+    UC4 --> DB
+    UC5 --> DB
+    UC6 --> DB
+    UC7 --> DB
+
+    UC5 --> FLOW
+    UC6 --> FLOW
+
+    UC4 --> UC8
+    UC5 --> UC8
+    UC6 --> UC8
+    UC7 --> UC8
+
+    UC8 --> DB

@@ -1,0 +1,41 @@
+---
+config:
+  layout: elk
+  theme: base
+  themeVariables:
+    primaryColor: '#eef2ff'
+    primaryBorderColor: '#818cf8'
+    lineColor: '#818cf8'
+    background: '#ffffff'
+---
+flowchart TB
+
+    A([Bắt đầu]) --> B[Đăng nhập hệ thống qua SSO/Keycloak]
+    B --> C{"Có quyền truy cập module<br/>Quản lý Danh sách dịch vụ?"}
+    C -- Không --> Z([Kết thúc<br/>Thông báo 'Không có quyền'])
+    C -- Có --> D[Hiển thị danh sách API dịch vụ]
+
+    D --> E{"Người dùng chọn thao tác?"}
+
+    %% Nhánh Xem chi tiết
+    E -- Xem chi tiết --> F[Xem thông tin chi tiết API] --> D
+
+    %% Nhánh Thêm mới / Sửa / Vô hiệu hóa / Cấu hình
+    E -- Thêm mới / Sửa / Vô hiệu hóa / Cấu hình --> G["Nhập thông tin / cấu hình API"]
+    G --> H{"Dữ liệu hợp lệ?"}
+    H -- Không --> I[Hiển thị thông báo lỗi<br/>Yêu cầu nhập lại] --> G
+    H -- Có --> J[Lưu dữ liệu / cập nhật trạng thái]
+    J --> K["Ghi lịch sử thao tác & làm mới danh sách"] --> D
+
+    %% Thoát
+    E -- Thoát --> Z
+
+    %% Style
+    classDef step fill:#eef2ff,stroke:#818cf8,stroke-width:2px;
+    classDef decision fill:#fefce8,stroke:#facc15,stroke-width:2px;
+    classDef action fill:#f0fdfa,stroke:#2dd4bf,stroke-width:2px;
+    classDef endNode fill:#fff1f2,stroke:#fb7185,stroke-width:2px;
+
+    class A,Z endNode
+    class B,D,E,F,G,H,I,J,K action
+    class C,H decision

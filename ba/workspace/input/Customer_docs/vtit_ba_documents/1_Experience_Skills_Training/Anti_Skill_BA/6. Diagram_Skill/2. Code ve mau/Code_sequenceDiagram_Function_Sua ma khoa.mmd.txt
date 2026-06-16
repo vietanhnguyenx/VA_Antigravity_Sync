@@ -1,0 +1,40 @@
+sequenceDiagram
+    actor Admin as Quản trị viên
+    participant UI as Admin UI
+    participant SSO as SSO/Keycloak
+    participant API as Backend TTHDL
+    participant FLOW as Luồng tích hợp
+    participant DB as CSDL TTHDL
+    participant LOG as Nhật ký hệ thống
+
+    Admin->>UI: Chọn khóa cần sửa
+    UI->>SSO: Kiểm tra quyền thao tác
+    SSO-->>UI: Có quyền
+
+    UI->>API: Lấy thông tin chi tiết khóa
+    API->>DB: Truy vấn thông tin khóa
+    DB-->>API: Trả thông tin khóa
+    API-->>UI: Hiển thị thông tin khóa
+
+    Admin->>UI: Cập nhật thông tin khóa
+    UI->>API: Gửi yêu cầu cập nhật
+
+    API->>FLOW: Kiểm tra khóa đang được sử dụng?
+    FLOW-->>API: Trạng thái sử dụng
+
+    alt Khóa đang được sử dụng
+        API->>API: Chỉ cho phép sửa trường hạn chế
+    else Khóa chưa được sử dụng
+        API->>API: Cho phép sửa đầy đủ theo quyền
+    end
+
+    API->>API: Validate dữ liệu
+    API->>API: Mã hóa lại giá trị khóa nếu có thay đổi
+    API->>DB: Lưu thông tin cập nhật
+    DB-->>API: Cập nhật thành công
+
+    API->>LOG: Ghi lịch sử thao tác
+    LOG-->>API: Thành công
+
+    API-->>UI: Trả kết quả thành công
+    UI-->>Admin: Thông báo thành công, làm mới danh sách
