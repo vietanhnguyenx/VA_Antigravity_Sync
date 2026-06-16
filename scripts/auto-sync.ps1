@@ -1,6 +1,7 @@
 # auto-sync.ps1 — He thong tu dong dong bo hoa Git du an TOSS
 # Chay ngam moi 5 phut de tai thay doi moi va day cac thay doi cuc bo len GitHub ca nhan.
 
+$env:GIT_TERMINAL_PROMPT = "0"
 $ScriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
 $ProjectDir = Resolve-Path (Join-Path $ScriptDir "..")
 $LogDir = Join-Path $ProjectDir "logs"
