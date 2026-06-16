@@ -14,3 +14,6 @@
 | `Ke-hoach-khao-sat-TOSS.extracted.md` | 90 | **Kế hoạch khảo sát 4 tuần/20 ngày** (xlsx): module M1–M10, lịch theo ngày, mốc freeze Batch 1–3, đầu mối VNA, giả định A1–A6 |
 | `tong-hop-dien-acars.extracted.md` | 202 | Tổng hợp điện ACARS cần phân tích (xlsx) |
 | `Aircraft_FIMS.extracted.md` | 146 | Master tàu bay nguồn FIMS (21 cột) → PH4 |
+| `VNA-KTKTB-Buoi2.extracted.md` | — | Khảo sát buổi 2 — Phòng Kỹ thuật khai thác bay: MEL authoring (Boeing FrameMaker+IXP, Airbus FODM), W&B tool |
+| `VNA-KTKTB-Buoi3.extracted.md` | — | Khảo sát buổi 3 — Phòng Kỹ thuật khai thác bay: Lập phương án đường bay (LIDO), Thư viện khai thác (SkyOffice) |
+| `toss-glossary-v0.4-confirm-khach-hang-2026-06-10.tsv` | — | Glossary v0.4 gửi khách hàng xác nhận (TSV) |
