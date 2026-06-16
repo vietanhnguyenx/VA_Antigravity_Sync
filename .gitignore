@@ -6,6 +6,15 @@ logs/
 identity.local.md
 *.local.md
 
+# --- SECRETS: credential, service-account key (TUYỆT ĐỐI không commit) ---
+.secrets/
+*service-account*.json
+*-service-account*.json
+*.sa.json
+toss-*.json
+credentials.json
+client_secret*.json
+
 # --- OS / editor ---
 Thumbs.db
 .DS_Store

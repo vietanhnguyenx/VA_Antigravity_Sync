@@ -77,6 +77,7 @@ Claude Code fires a `PostToolUse` hook reminding about dual-scope mirrors. Codex
   - **Office** (DOCX/PPTX/XLSX/HTML/CSV) → `python -m markitdown "<file>" -o "<out.md>"`. Cài: `python -m pip install --user "markitdown[all]"` (đã cài v0.1.6).
   - **PDF** → `pdftotext -layout` (giữ bảng tốt hơn). Máy này chỉ có WSL distro `docker-desktop` (Alpine) — cài: `wsl -d docker-desktop -- apk add --no-cache poppler-utils`; **ephemeral**, chạy lại khi báo `pdftotext: not found`.
   - Bản trích là **raw extract** (CLAUDE.md §0). Chi tiết + script: `.claude/skills/crawl-pdf/SKILL.md` §0.
+- **Pull Google Drive / Sheets (LIVE)** → Markdown: `python .claude/skills/crawl-pdf/scripts/gsheet-to-md.py <id|url> <out.md>` (Sheet native, sạch) hoặc `gdrive-to-md.py` (file Office trên Drive). Cài `pip install --user gspread google-auth`; bật Sheets API + Drive API. **Auth = việc HUMAN (§0.3):** Service Account key JSON ở `.secrets/` (gitignore, KHÔNG commit/chia sẻ), Share file cho `client_email` của SA. Chi tiết: skill crawl-pdf §0.1.
 
 ---
 
@@ -93,5 +94,6 @@ Claude Code fires a `PostToolUse` hook reminding about dual-scope mirrors. Codex
 
 ---
 
-*AGENTS.md version 1.1 — 2026-06-16. Thin adapter for non-Claude agents; canonical context = [CLAUDE.md](CLAUDE.md). No HUMAN mirror required (content lives in CLAUDE.md/HUMAN.md).*
+*AGENTS.md version 1.2 — 2026-06-16. Thin adapter for non-Claude agents; canonical context = [CLAUDE.md](CLAUDE.md). No HUMAN mirror required (content lives in CLAUDE.md/HUMAN.md).*
+*v1.2: §3.4 — bổ sung kết nối **Google Drive/Sheets LIVE** (gsheet-to-md.py / gdrive-to-md.py qua Service Account; key JSON ở `.secrets/` gitignore, auth = việc human §0.3) cho mọi loại agent.*
 *v1.1: §3.1 + §3.4 — bổ sung engine phân rã tài liệu (markitdown cho Office, pdftotext -layout cho PDF + cài poppler-utils trong docker-desktop) để MỌI loại agent (không chỉ Claude) đều dùng được; trỏ chi tiết về skill crawl-pdf §0.*

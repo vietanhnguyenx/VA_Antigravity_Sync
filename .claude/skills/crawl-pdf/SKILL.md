@@ -24,6 +24,19 @@ description: Crawl một website để thu thập liên kết PDF, tải các fi
 
 **Lưu ý chất lượng:** bản trích là **raw extract** (CLAUDE.md §0). XLSX qua markitdown để ô trống thành `NaN`/cột không tên thành `Unnamed: N` — dọn tay khi cần bản chính thức. PDF nhiều cột/bảng phức tạp ưu tiên pdftotext -layout.
 
+### 0.1 Kết nối Google Drive / Sheets (LIVE, qua Service Account)
+Pull tài liệu **đang ở Google Drive/Sheets** về `.md` (re-pull khi nguồn đổi). Chạy ở máy → 0 token.
+
+| Loại nguồn Google | Script | Lệnh |
+|---|---|---|
+| **Google Sheet native** (đọc cell trực tiếp, **sạch hơn** — không `NaN`/`Unnamed`) | `scripts/gsheet-to-md.py` | `python scripts/gsheet-to-md.py <id\|url> <out.md>` |
+| **File Office trên Drive** (xlsx/docx upload) **hoặc** native | `scripts/gdrive-to-md.py` | `python scripts/gdrive-to-md.py <id\|url> <out.md>` |
+
+- **Native sheet → ưu tiên `gsheet-to-md.py`** (mỗi tab = 1 `##`, đọc cell sạch). File Office-trên-Drive (lỗi *"must not be an Office file"* khi gọi Sheets API) → dùng `gdrive-to-md.py` (Drive API tải thô → markitdown).
+- **Cài (một lần):** `python -m pip install --user gspread google-auth`. Bật **Google Sheets API** + **Drive API** trong GCP project.
+- **Auth (việc của HUMAN — §0.3):** tạo **Service Account** (KHÔNG cần role project) → tạo **key JSON** → đặt ở `.secrets/` (đã gitignore, **không bao giờ commit/chia sẻ**) → **Share** file/sheet cho `client_email` của SA (Viewer). Bàn giao máy khác: người nhận tự tạo SA key riêng.
+- Key mặc định script đọc: `.secrets/toss-sa.json` (đổi bằng `--key`).
+
 ## 1. Khi nào dùng
 Người dùng muốn: "crawl các link PDF", "tải PDF của trang X", "liệt kê link PDF song ngữ", "chỉ tải PDF phạm vi …", "phân rã PDF/DOCX/XLSX sang md".
 
