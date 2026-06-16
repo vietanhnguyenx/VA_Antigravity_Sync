@@ -33,6 +33,10 @@ ba/workspace/input/Customer_docs/PEP5.16/
 # ACARS: gói điện văn nén theo ngày (~377MB) — giữ README/PDF/xlsx mô tả, bỏ .zip dữ liệu thô
 ba/workspace/input/Customer_docs/ACARS/*.zip
 
+# --- Python ---
+__pycache__/
+*.pyc
+
 # --- DEV (bổ sung khi có code) ---
 node_modules/
 dist/

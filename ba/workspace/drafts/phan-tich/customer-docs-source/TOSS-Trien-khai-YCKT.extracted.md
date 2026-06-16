@@ -1,14 +1,17 @@
 ---
-source_gsheet: "https://docs.google.com/spreadsheets/d/1DGIytCh-7EY2YVrBhKKctunitOVtMcxIPouCbhjRuFA"
-document_type: "Google Sheet → MD (gspread, read-only)"
+source_gdrive: "https://docs.google.com/spreadsheets/d/1DGIytCh-7EY2YVrBhKKctunitOVtMcxIPouCbhjRuFA"
+source_name: "TOSS - Triển khai-YCKT- VTIT"
+document_type: "Google Sheet → MD (read-only)"
+source_version: "288"
+source_modified: "2026-06-16T04:09:26.019Z"
+last_modifying_user: "vietanh3796"
 pulled: "2026-06-16"
 status: "Raw pull — chưa biên tập"
 ---
 
-# TOSS - Triển khai-YCKT- VTIT
+> **Nguồn (Google Sheet, live):** TOSS - Triển khai-YCKT- VTIT — https://drive.google.com/file/d/1DGIytCh-7EY2YVrBhKKctunitOVtMcxIPouCbhjRuFA  
+> Pull 2026-06-16 (version 288, sửa 2026-06-16T04:09:26.019Z bởi vietanh3796).
 
-> **Nguồn (Google Sheet, live):** https://docs.google.com/spreadsheets/d/1DGIytCh-7EY2YVrBhKKctunitOVtMcxIPouCbhjRuFA  
-> Pull tự động 2026-06-16 bằng `gsheet-to-md.py` — trích trung thực; con người mở link gốc để xem/sửa.
 
 ## Lịch KS
 
