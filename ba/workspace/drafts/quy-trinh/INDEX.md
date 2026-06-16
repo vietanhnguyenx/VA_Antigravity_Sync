@@ -21,6 +21,7 @@
 | `SOP-LUONG-TAI-LIEU-v0.1.md` | 135 | SOP luồng tài liệu BA |
 | `SOP-BAO-CAO-KHAO-SAT-v0.1.md` | 77 | SOP lập báo cáo khảo sát (Discovery) |
 | `SOP-THAM-CHIEU-DOMAIN-KNOWLEDGE-v0.1.md` | — | SOP tra cứu domain-knowledge khi phân tích (vừa làm vừa tham chiếu, tài liệu sống) |
+| `SOP-GHI-CHEP-DU-AN-v0.1.md` | 171 | SOP phương pháp ghi chép: chuẩn Markdown phân lớp dùng chung agent+người; chọn Cornell ghi meeting trước khi tổng hợp báo cáo; quy ước Mermaid luồng nghiệp vụ |
 | `CHANGE-CONTROL-SOP-v0.1.md` | 138 | SOP kiểm soát thay đổi yêu cầu |
 | `REVIEW-APPROVAL-FLOW-v0.1.md` | 92 | Quy trình review & approval |
 | `QUALITY-GATE-v0.1.md` | 104 | Cổng kiểm tra chất lượng tài liệu |

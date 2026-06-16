@@ -24,6 +24,7 @@ document_id: "SOP-BCKS-001"
 ## 2. Đầu vào
 - Transcript trong `ba/workspace/input/Customer_docs/meeting-notes/<DDMMYYYY>/` (ưu tiên bản `_fixed` nếu có; nếu chỉ có `.srt`/`.txt` thô → đọc thẳng bản `.txt` dày).
 - Một buổi có thể có **nhiều part** (Part1, Part2…) → đọc HẾT, sau đó **gộp thành 1 báo cáo "buổi sáng/chiều"** (như 11/06).
+- **Bản ghi chép Cornell** của buổi (`GHI-CHEP-<DDMMYYYY>-<buoi>.md` nếu có) — đầu vào bổ trợ giúp phân loại chủ đề và bắt sớm các điểm mở; xem `SOP-GHI-CHEP-DU-AN-v0.1.md` §4. Transcript vẫn là nguồn gốc tuyệt đối, bản ghi Cornell không thay thế transcript.
 
 ## 3. Các bước thực hiện
 
