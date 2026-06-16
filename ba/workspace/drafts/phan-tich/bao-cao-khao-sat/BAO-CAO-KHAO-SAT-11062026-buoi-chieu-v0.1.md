@@ -1,8 +1,8 @@
 ---
 project: "TOSS — Hệ thống Điều hành Khai thác Hãng Hàng không"
 author: "BA Lead"
-version: "0.1"
-date: "2026-06-12"
+version: "0.3"
+date: "2026-06-16"
 survey_date: "2026-06-11"
 status: "Draft"
 document_type: "Báo cáo Khảo sát (Discovery) — Phỏng vấn Dispatcher buổi chiều 11/06/2026"
@@ -10,304 +10,270 @@ document_type: "Báo cáo Khảo sát (Discovery) — Phỏng vấn Dispatcher b
 
 # Báo cáo Khảo sát TOSS — Buổi chiều 11/06/2026 (Phỏng vấn Dispatcher)
 
-> Báo cáo này tổng hợp **buổi chiều 11/06/2026** của buổi phỏng vấn điều phái viên (Dispatcher), nối tiếp buổi sáng cùng ngày. Trọng tâm: hoàn thiện danh sách cảnh báo còn lại, đi sâu **cơ chế Dispatch Release ↔ Captain's Release ↔ quản lý phiên bản OFP** giữa TOSS – MO Plus – Lido, làm rõ **các bước (step) trong quy trình điều phái** (Pre-Flight Prep → Pre-Flight Briefing → Post-Release Transition → Monitoring → Post-Flight), và một số chức năng phụ trợ (upload file thời tiết đa chuyến, payload extra, backup Lido, báo cáo Pallet Relief).
+> Báo cáo này được lập trực tiếp từ transcript buổi chiều 11/06/2026 nối tiếp buổi sáng cùng ngày. Nội dung trao đổi tập trung vào hai cảnh báo còn thiếu liên quan đến tài liệu chuyến bay, cảnh báo chuyến không thường lệ thiếu STS/HEAD, kiến trúc sáu giai đoạn của quy trình điều phái trên TOSS, cơ chế Release và Unrelease OFP cùng quản lý phiên bản giữa TOSS, MO Plus và Lido, các yêu cầu giám sát real-time, chức năng upload file thời tiết đa chuyến, báo cáo Pallet Relief và Payload Extra, sửa thông số trên OFP, log truy cập tài liệu tổ bay và phương án backup khi Lido lỗi.
 
 ## I. Thông tin chung
 
-- **Thời gian:** buổi chiều ngày 11/06/2026 (nối tiếp buổi sáng).
-- **Mục đích:** (1) hoàn tất danh sách cảnh báo còn thiếu của khâu chuẩn bị chuyến bay; (2) thống nhất cơ chế Release/Unrelease OFP và đồng bộ phiên bản giữa TOSS–MO Plus–Lido; (3) chốt phạm vi các bước (step) còn lại của quy trình điều phái (Post-Release Transition, Monitoring, Post-Flight); (4) bàn các chức năng phụ trợ: upload file thời tiết đa chuyến (Weather Multi-Flight), payload extra, backup Lido, báo cáo Pallet Relief, sửa OFP để bốc tách MO Plus.
-- **Đối tượng phỏng vấn:** điều phái viên (Dispatcher) của VNA — đại diện khối khai thác chuyến bay.
-- **Phía khảo sát:** đội phân tích nghiệp vụ TOSS.
-- **Cảnh báo chất lượng ghi âm (ASR):** chất lượng ghi âm buổi chiều **kém hơn buổi sáng**; nhiều đoạn lặp/đứt câu, nhiều thuật ngữ kỹ thuật bị nhận dạng sai (ASR đọc "OSP" thành "OFP" và ngược lại nhiều chỗ; "ACARS" thành "ACAD"/"A-Card"; "Pallet Relief" thành "Palloy X-cha"; "IFV" thành "Lapplock"; "Show on" thành "showdown"; "Flight Level" thành "Tí SL"; "MO Plus" thành "Emo/Mo/màu O"…). Các đoạn không suy luận chắc chắn được giữ + gắn cờ `[cần xác nhận]`.
+| Mục | Nội dung |
+|---|---|
+| **Thời gian** | Buổi chiều ngày 11/06/2026, nối tiếp buổi sáng cùng ngày |
+| **Mục đích** | Hoàn tất danh sách cảnh báo còn thiếu của khâu chuẩn bị chuyến bay, thống nhất kiến trúc sáu phase của quy trình điều phái trên TOSS, làm rõ cơ chế Dispatch Release và Unrelease cùng quản lý phiên bản OFP giữa TOSS, MO Plus và Lido, bàn về giám sát real-time trong Phase 4 và Phase 5, đồng thời thống nhất các chức năng phụ trợ gồm upload file thời tiết đa chuyến, báo cáo Pallet Relief với cột Payload Extra, sửa thông số trên OFP, log truy cập tài liệu và backup khi Lido lỗi |
+| **Đối tượng phỏng vấn** | Điều phái viên (Dispatcher) của VNA, đại diện khối khai thác chuyến bay |
+| **Phía khảo sát** | Đội phân tích nghiệp vụ TOSS |
 
 ---
 
 ## II. Nội dung trao đổi
 
-### 1. Bổ sung cảnh báo "chuyến bay thiếu tài liệu" và "tổ bay chưa tải tài liệu mới nhất"
+### II.1 — Bổ sung cảnh báo "chuyến bay thiếu tài liệu" và "tổ bay chưa tải tài liệu mới nhất"
 
-#### Yêu cầu
-- Tiếp nối danh sách cảnh báo của buổi sáng (đã có ~15 cảnh báo). Điều phái nhắc lại hai cảnh báo còn thiếu liên quan đến **tài liệu chuyến bay**:
-  - **Chuyến bay thiếu tài liệu:** đến thời điểm đáng lẽ phải có tài liệu (OFP, NOTAM, thời tiết) nhưng tài liệu chưa lên hệ thống, hoặc luồng tự động (Lido → MO Plus) bị lỗi không đẩy được.
-  - **Tổ bay chưa tải tài liệu mới nhất:** tài liệu đã được tải lên MO Plus nhưng vì lý do gì đó tổ bay chưa download phiên bản mới, hoặc version đang lệch.
-- Anh Dũng (Dispatcher) trước đó đã đề xuất cảnh báo này để có thể chủ động nhắc nhở tổ bay với các chuyến bay quan trọng.
+**Yêu cầu**
 
-#### Thảo luận – Đề xuất
-- MO Plus hiện tại có ghi nhận history tổ bay đã vào xem/download tài liệu hay chưa → có sẵn cơ sở dữ liệu để TOSS đối chiếu.
-- TOSS cần lấy dữ liệu này từ MO Plus và phát cảnh báo ngược về điều phái khi tổ bay chưa download bản tài liệu mới nhất trong khoảng thời gian quy định trước chuyến bay.
+Tiếp nối danh sách cảnh báo đã thống nhất ở buổi sáng, điều phái đề nghị bổ sung hai cảnh báo còn thiếu liên quan đến tài liệu chuyến bay. Cảnh báo thứ nhất là "chuyến bay thiếu tài liệu", phát sinh khi đến thời điểm đáng lẽ phải có tài liệu OFP, NOTAM hay thời tiết nhưng tài liệu chưa lên hệ thống, hoặc khi luồng tự động đẩy tài liệu vì một lý do nào đó không hoạt động. Cảnh báo thứ hai là "tổ bay chưa tải tài liệu mới nhất", phát sinh khi tài liệu đã được đưa lên MO Plus nhưng tổ bay chưa download phiên bản mới hoặc bản tổ bay đang sử dụng đã lệch phiên bản so với bản mới nhất. Theo điều phái, anh Dũng từ trước cũng đã nêu nhu cầu có cảnh báo này để điều phái chủ động nhắc nhở tổ bay đối với các chuyến bay quan trọng.
 
-#### Kết luận
-- Bổ sung hai cảnh báo vào module Dispatch của TOSS: **"Chuyến bay thiếu tài liệu"** và **"Tổ bay chưa tải tài liệu mới"**.
-- TOSS cần kết nối với MO Plus để lấy trạng thái download tài liệu của tổ bay (phục vụ cảnh báo thứ hai).
+**Thảo luận và Đề xuất**
 
-### 2. Cảnh báo chuyến không thường lệ thiếu STS/HEAD trong OFP
+MO Plus hiện đã ghi nhận lịch sử tổ bay đã vào xem hoặc đã tải tài liệu, do đó có sẵn cơ sở dữ liệu để TOSS đối chiếu. Nhóm phân tích đề xuất TOSS kết nối lấy dữ liệu này từ MO Plus và phát cảnh báo ngược về điều phái khi tổ bay chưa download bản tài liệu mới nhất trong khoảng thời gian quy định trước chuyến bay.
 
-#### Yêu cầu
-- Trong OFP của chuyến **không thường lệ** (chuyên cơ/VIP, ferry, charter, chuyến đặc biệt) cần có **STS/HEAD** (chỉ thị trạng thái đặc biệt trong mục 18 ATC FPL theo ICAO Doc 4444). Hiện trạng: một số chuyến không thường lệ phát hành nhưng **thiếu STS/HEAD** trong OFP → vướng quy định và mất quyền claim phí khí thải về sau.
+**Kết luận**
 
-#### Thảo luận – Đề xuất
-- Cơ chế nhận diện chuyến không thường lệ: dựa vào **mã loại chuyến (flight type code)** — VNA sử dụng các code O, Z, G, H, A, P, V, S, H… [cần xác nhận danh mục đầy đủ và ý nghĩa từng code].
-  - Ở **ATC FPL**, chuyến thường lệ là `S` (Scheduled); chuyến không thường lệ chuyển sang `N` (Non-scheduled) — TOSS dùng code O để nhận diện (ASR đọc lệch nhưng ngữ cảnh cho thấy code phân biệt qua **Flight Type/Service Type**).
-- Yêu cầu cảnh báo: khi TOSS nhận chuyến không thường lệ (code O) mà OFP tương ứng **không có STS/HEAD** → cảnh báo điều phái yêu cầu chỉnh OFP bổ sung STS/HEAD.
-- Lý do nghiệp vụ then chốt: ngoài tuân thủ quy định, STS/HEAD là **căn cứ để hãng claim miễn trừ phí khí thải (CORSIA/ETS [cần xác nhận tên cơ chế])** — không có STS/HEAD thì phải chứng minh bằng tài liệu khác, "cãi nhau với người ta" về việc miễn trừ.
+Hai bên thống nhất bổ sung vào module Dispatch của TOSS hai cảnh báo gồm "Chuyến bay thiếu tài liệu" và "Tổ bay chưa tải tài liệu mới nhất". TOSS cần kết nối với MO Plus để lấy trạng thái download tài liệu của tổ bay phục vụ cảnh báo thứ hai.
 
-#### Kết luận
-- Bổ sung cảnh báo: **"Chuyến không thường lệ — OFP chưa có STS/HEAD"** vào TOSS.
-- Phạm vi cảnh báo: ở giai đoạn **trước chuyến bay** (trước thời điểm Captain's Release).
-- Sau khi MO Plus đã release phần này, TOSS không cảnh báo nữa.
-- Danh mục mã loại chuyến (O, Z, G, H, A, P, V, S…) và cơ chế chuyển sang `N` ở ATC FPL: cần làm rõ buổi sau.
+---
 
-### 3. Quy trình điều phái chia 6 giai đoạn — phạm vi TOSS giai đoạn này
+### II.2 — Cảnh báo chuyến không thường lệ thiếu STS/HEAD trong OFP
 
-#### Yêu cầu
-- Đội khảo sát cần thống nhất với điều phái về **kiến trúc quy trình** của module Dispatch: nó gồm bao nhiêu giai đoạn (step/phase), TOSS đảm nhận giai đoạn nào, giai đoạn nào nằm ở hệ thống khác.
+**Yêu cầu**
 
-#### Thảo luận – Đề xuất
-- Phía khảo sát chia quy trình điều phái thành **6 phần (phase)** chính:
-  1. **Pre-Flight Preparation** — kiểm tra đầu ca, nạp dữ liệu, xem các cảnh báo phase 1 (đã bàn buổi sáng).
-  2. **Pre-Flight Briefing** — đánh giá các cảnh báo phase 1, quyết định làm OFP, gửi CCD [cần xác nhận viết tắt; nhiều khả năng là **CSD — Crew Schedule Document** hoặc **CRD — Crew Release Document**] và đóng gói tài liệu.
-  3. **Post-Release Transition** — sau khi Dispatch Release, hệ thống vẫn quét cảnh báo liên tục; khi có thay đổi (NOTAM, thời tiết, tàu, tải) → cập nhật OFP version mới và làm Release lại.
-  4. **Pre-Departure Monitoring** — theo dõi chuyến chuẩn bị khởi hành (taxi-out, cất cánh đúng giờ/trễ); tích hợp ACARS để lấy mốc thời gian thực tế.
-  5. **In-Flight Monitoring** — giám sát chuyến đang bay (Flight Watch); cập nhật cảnh báo NOTAM/thời tiết en-route ảnh hưởng phần đường còn lại.
-  6. **Post-Flight & Shift Handover** — tổng hợp tình hình, sinh báo cáo, bàn giao ca.
-- Điều phái xác nhận: hôm nay (sáng + chiều buổi đầu) **mới chỉ xong Phase 1 + một phần Phase 2**. Sẽ tiếp tục các phase còn lại ở buổi/đợt khảo sát kế tiếp.
-- Tiếp cận thiết kế: mỗi phase trên TOSS gồm 3 lớp — **giao diện**, **trường thông tin** và **logic kiểm tra / cảnh báo**; khi nào cảnh báo, hiển thị màu sắc gì, hành động gì là hợp lý — cần xác định cho từng cảnh báo.
+Đối với các chuyến không thường lệ như chuyên cơ, VIP, ferry hay charter, OFP cần có chỉ thị STS/HEAD theo quy định. Hiện trạng cho thấy có những chuyến không thường lệ đã phát hành nhưng OFP thiếu STS/HEAD, gây vướng quy định và ảnh hưởng tới khả năng claim miễn trừ phí khí thải về sau.
 
-#### Kết luận
-- Quy trình Dispatch trên TOSS chia **6 phase**, tên tạm chốt: **Pre-Flight Prep**, **Pre-Flight Briefing**, **Post-Release Transition**, **Pre-Departure Monitoring**, **In-Flight Monitoring**, **Post-Flight & Handover**.
-- Buổi sáng + đầu buổi chiều đã xong Phase 1; Phase 2 đang dở dang (cảnh báo bổ sung như §1, §2 trên).
-- Các phase 3–6 sẽ tiếp tục bàn ở buổi/đợt kế tiếp; phạm vi Phase 6 sơ bộ chỉ là **báo cáo + bàn giao ca**, không phát sinh thao tác.
+**Thảo luận và Đề xuất**
 
-### 4. Cơ chế Release / Unrelease OFP và quản lý phiên bản (TOSS – MO Plus – Lido)
+Việc nhận diện chuyến không thường lệ dựa vào mã loại chuyến (Flight Type Code). VNA hiện sử dụng các mã O, Z, G, H, A, P, V, S và một số mã khác, tuy nhiên danh mục đầy đủ cùng ý nghĩa từng mã cần xác nhận thêm. Trên flight plan, chuyến thường lệ được mã hóa là `S` (Scheduled) trong khi chuyến không thường lệ chuyển sang `N` (Non-scheduled), và TOSS dùng mã O để nhận diện thông qua trường Flight Type. Khi TOSS nhận một chuyến không thường lệ mang mã O mà OFP tương ứng không có STS/HEAD, hệ thống cần phát cảnh báo để điều phái chỉnh OFP bổ sung trường này.
 
-> Đây là phần nội dung **dài và quan trọng nhất** của buổi chiều, làm rõ kiến trúc dữ liệu OFP qua ba hệ thống.
+Lý do nghiệp vụ then chốt được điều phái nhấn mạnh là về sau nếu hãng muốn claim miễn trừ phí khí thải cho các chuyến bay không thường lệ, hồ sơ phải căn cứ vào dữ liệu thể hiện trong OFP. Nếu OFP không có STS/HEAD thì hãng phải tranh luận với cơ quan thu phí và có rủi ro mất quyền miễn trừ.
 
-#### Yêu cầu
-- Mô hình hiện tại: Lido tự sinh OFP → adapter lấy về → bắn sang MO Plus → MO Plus gọi ngược về Lido khi cần. **Chưa có TOSS**.
-- Khi TOSS được đưa vào: TOSS đứng giữa, **quyết định MO Plus dùng phiên bản nào**, nhưng TOSS **không phải là nguồn dữ liệu gốc**.
-- Vấn đề cần giải: phi công có thể chấp nhận một version cũ thay vì version mới — TOSS phải hỗ trợ trường hợp này mà không làm rối luồng dữ liệu.
+**Kết luận**
 
-#### Thảo luận – Đề xuất
+TOSS bổ sung cảnh báo "Chuyến không thường lệ — OFP chưa có STS/HEAD". Phạm vi cảnh báo nằm ở giai đoạn trước chuyến bay, cụ thể là trước khi Captain's Release. Sau khi MO Plus đã release phần này thì TOSS không tiếp tục cảnh báo nữa. Danh mục mã loại chuyến đầy đủ và cơ chế chuyển mã `S` sang `N` sẽ được làm rõ ở buổi khảo sát sau. `[cần xác nhận]`
 
-**Khung tình huống ví dụ (xuyên suốt cuộc thảo luận):**
-- Lido sinh OFP lần lượt version 1, 2, 3. Phi công đã "accept" version 2. Sau đó điều phái release version 3.
-- Nhưng vì lý do tổ bay/khai thác (vd tổ quay cũ chở ít dầu hơn tổ quay mới; tổ quay mới buộc phải xả dầu cho mấy người ra), tổ bay **đòi quay về version 2** thay vì dùng version 3.
+---
 
-**Phương án ban đầu (bị loại):** Lido sinh tiếp version 4 với thông số của version 2, push tiếp lên MO Plus.
-- Nhược điểm: tăng thời gian xử lý của điều phái + Lido, phải làm lại OFP cho mỗi lần quay lui, dễ rối/lỗi.
+### II.3 — Quy trình điều phái chia sáu giai đoạn và phạm vi TOSS trong từng giai đoạn
 
-**Phương án thống nhất:**
-1. **TOSS lưu danh sách phiên bản OFP** lấy từ luồng MO Plus / adapter (đã có sẵn).
-2. Khi cần quay về version cũ, điều phái **bấm "Unrelease" version hiện tại** trên TOSS.
-3. TOSS **chọn version cũ hơn** (vd version 2) → đẩy version đó về MO Plus với một **revision/version number mới** (vd 2.1 hoặc auto-tăng).
-4. Phi công **không phải vào Lido**, không phải release lại từ đầu — chỉ thấy bản mới trên MO Plus, "đánh lại" cập nhật.
-5. Điều phái **không phải lên Lido** thao tác lại — toàn bộ xử lý trên TOSS.
+**Yêu cầu**
 
-**Nguyên tắc version:**
-- "Lido không có version, chỉ có **OFP number**. **Version là do mình (TOSS) gán**." → TOSS gán version theo thứ tự nhận: nhận lần 1 = R1, nhận lần 2 = R2…
-- Khi quay về version cũ: TOSS bắn ra một version mới (auto tăng), nhưng **nội dung là của bản cũ** (vd "v4" với data của v2; hoặc "v2.1") — quy ước cụ thể TOSS tự định nghĩa.
-- Trên MO Plus: cơ chế **luôn lấy bản mới nhất** ("latest"); để quay lui, TOSS đẩy bản cũ **dưới dạng version mới hơn** thì MO Plus mới override được.
+Đội khảo sát cần thống nhất với điều phái về kiến trúc tổng thể của module Dispatch trên TOSS, bao gồm số giai đoạn của quy trình, giai đoạn nào do TOSS đảm nhận và giai đoạn nào thuộc các hệ thống khác.
 
-**Cơ chế Confirm/Unconfirm trên MO Plus:**
-- Khi TOSS Unrelease một version → MO Plus **reset trạng thái Confirm Release** của phi công về 0; phi công phải Confirm lại trên version mới.
-- Khi TOSS Release version mới → MO Plus tiếp tục yêu cầu phi công Confirm.
+**Thảo luận và Đề xuất**
 
-**Cơ chế chọn version để release lại:**
-- Khi Unrelease, TOSS hiển thị danh sách các version OFP **dưới** (lịch sử) → điều phái chọn version muốn release lại; TOSS bắn version đó lên MO Plus dưới dạng revision mới.
-- Cho phép giảm thao tác cho điều phái và Lido: không phải sinh thêm OFP mới từ Lido cho mỗi lần "đi tới rồi quay lui".
+Phía khảo sát đề xuất chia quy trình điều phái thành sáu giai đoạn chính. Giai đoạn đầu tiên là chuẩn bị đầu ca, trong đó điều phái xem các thông tin ban đầu khi vào trực và nạp dữ liệu. Giai đoạn thứ hai là chuẩn bị OFP, gồm việc đánh giá các cảnh báo của giai đoạn một để quyết định làm OFP, sau đó gửi tài liệu CCD và đóng gói tài liệu chuyến bay. Giai đoạn thứ ba là Post-Release Transition, trong đó sau khi đã Dispatch Release hệ thống vẫn tiếp tục quét cảnh báo và khi có thay đổi về NOTAM, thời tiết, tàu bay hay tải trọng thì cập nhật OFP phiên bản mới. Giai đoạn thứ tư là theo dõi chuẩn bị khởi hành, gồm việc giám sát chuyến đang ở giai đoạn taxi-out hay cất cánh đúng giờ hay trễ. Giai đoạn thứ năm là theo dõi trong khi bay theo cơ chế giám sát tổng quan và cập nhật cảnh báo NOTAM, thời tiết ảnh hưởng phần đường bay còn lại. Giai đoạn cuối cùng là sau chuyến bay và bàn giao ca trực, bao gồm tổng hợp tình hình, lập báo cáo và bàn giao ca.
 
-**Backup khi Lido lỗi:**
-- TOSS phải có chức năng **dự phòng cho adapter**: nếu adapter Lido lỗi, điều phái có thể **upload thủ công file OFP** lên TOSS → TOSS đẩy lên MO Plus.
+Điều phái xác nhận rằng buổi sáng cùng đầu buổi chiều mới hoàn tất giai đoạn một và một phần giai đoạn hai, các giai đoạn còn lại sẽ tiếp tục ở buổi khảo sát kế tiếp. Về tiếp cận thiết kế, mỗi giai đoạn trên TOSS gồm ba lớp là giao diện hệ thống, các trường thông tin và logic kiểm tra cảnh báo. Đối với mỗi cảnh báo cần xác định rõ thời điểm phát cảnh báo, màu sắc hiển thị và hành động đề xuất kèm theo.
 
-#### Kết luận
-- **Mô hình version OFP:** Lido có OFP number; TOSS gán version (R1, R2…) theo thứ tự nhận. Version chỉ tồn tại trên TOSS và MO Plus.
-- **Unrelease là thao tác chủ động trên TOSS:** khi điều phái Unrelease, TOSS sinh revision mới với nội dung của version cũ (lấy ngược từ danh sách OFP của MO Plus) → bắn sang MO Plus → reset Confirm Release của phi công → phi công Confirm version mới.
-- **Phi công không thao tác Lido**, điều phái cũng **không cần lên Lido** trong tình huống quay lui — toàn bộ xử lý qua TOSS.
-- **Backup Lido:** TOSS có chức năng cho điều phái upload OFP thủ công khi adapter Lido lỗi, đẩy lên MO Plus.
-- **Phụ thuộc tích hợp MO Plus:** MO Plus phải xử lý reset trạng thái Confirm Release của phi công khi nhận revision mới từ TOSS (luồng "đè" version cũ bằng version mới). Cần khớp với đội MO Plus về cơ chế notification trên app.
+**Kết luận**
 
-### 5. Phase 3 — Post-Release Transition: TOSS chỉ quét cảnh báo + tham chiếu, KHÔNG cập nhật OFP
+Quy trình Dispatch trên TOSS được chia thành sáu giai đoạn với tên tạm chốt gồm chuẩn bị đầu ca, chuẩn bị OFP, Post-Release Transition, theo dõi chuẩn bị khởi hành, theo dõi trong khi bay và sau chuyến bay cùng bàn giao ca. Buổi sáng và đầu buổi chiều đã hoàn tất giai đoạn một, trong khi giai đoạn hai đang dở dang với các cảnh báo bổ sung tại §II.1 và §II.2. Các giai đoạn ba đến sáu sẽ tiếp tục bàn ở buổi khảo sát kế tiếp, trong đó phạm vi giai đoạn sáu sơ bộ chỉ là báo cáo và bàn giao ca, không phát sinh thao tác nghiệp vụ riêng.
 
-#### Yêu cầu
-- Phase 3 ("Post-Release Transition") định nghĩa: sau khi đã Release OFP, vẫn tiếp tục **quét cảnh báo liên tục** (NOTAM, thời tiết, tàu bay, tải…) cho đến khi tàu bay cất cánh.
-- Vấn đề cần làm rõ: việc **làm lại OFP version mới** ở phase này nằm ở đâu — TOSS hay Lido?
+---
 
-#### Thảo luận – Đề xuất
-- Điều phái khẳng định: **thao tác cập nhật OFP version mới (post-release) nằm ở Lido**, không nằm trên TOSS.
-- TOSS ở phase 3 chỉ làm: **quét cảnh báo + tham chiếu/đề xuất cập nhật OFP**. Khi có cảnh báo, điều phái đánh giá; nếu cần cập nhật → mở Lido làm OFP mới (như §4 đã quy ước).
-- Lido **không phát cảnh báo "thời tiết / NOTAM mới"** kiểu real-time — Lido chỉ cảnh báo tại thời điểm "làm bước bay" (sinh OFP). Đây là lý do TOSS phải đảm nhận monitoring & cảnh báo liên tục.
-- Phạm vi cảnh báo phase 3: gồm thay đổi loại tàu, thay đổi tàu, tải, NOTAM, thời tiết — về cơ bản giống các cảnh báo phase 1 nhưng vẫn duy trì cho đến lúc cất cánh.
+### II.4 — Cơ chế Release và Unrelease OFP cùng quản lý phiên bản giữa TOSS, MO Plus và Lido
 
-#### Kết luận
-- TOSS Phase 3 **chỉ làm cảnh báo + tham chiếu**, không có chức năng cập nhật OFP trực tiếp.
-- Khi điều phái cần làm OFP version mới sau Release → mở Lido (Phase 3 step "cập nhật tài liệu OSP version mới" thuộc Lido).
-- TOSS duy trì quét cảnh báo **liên tục từ Release đến cất cánh**; khi cất cánh thì các cảnh báo chuẩn bị chuyến bay (tải, dầu mỡ…) tắt; cảnh báo ảnh hưởng đường bay (NOTAM, thời tiết en-route) **vẫn duy trì cho đến khi hạ cánh**.
+**Yêu cầu**
 
-### 6. Phase 4–5 — Monitoring: tích hợp ACARS, refresh real-time, cơ chế hiển thị "nhấp nháy"
+Đây là nội dung trọng tâm và dài nhất của buổi chiều, làm rõ kiến trúc dữ liệu OFP qua ba hệ thống. Mô hình hiện tại vận hành theo luồng Lido tự sinh OFP, adapter lấy về rồi đẩy sang MO Plus, sau đó MO Plus gọi ngược về Lido khi cần và chưa có TOSS trong luồng này. Khi TOSS được đưa vào vận hành, TOSS đứng giữa và quyết định MO Plus sử dụng phiên bản nào, tuy nhiên TOSS không phải là nguồn dữ liệu gốc. Vấn đề cần giải quyết là tổ bay có thể không chấp nhận phiên bản OFP mới và đòi quay về phiên bản OFP cũ hơn, và TOSS phải hỗ trợ tình huống này mà không làm rối luồng dữ liệu.
 
-#### Yêu cầu
-- Phase 4–5 (Pre-Departure Monitoring + In-Flight Monitoring): TOSS cần một **màn hình overview** để điều phái mở cả ngày, theo dõi từng chuyến bay đang ở **giai đoạn (phase) nào** (taxi-out, cất cánh, đang bay, taxi-in…).
-- Yêu cầu UX: cập nhật **real-time**, không bắt điều phái nhấn refresh; có cơ chế cảnh báo bằng màu/nháy.
+**Thảo luận và Đề xuất**
 
-#### Thảo luận – Đề xuất
-- **Nguồn dữ liệu mốc thời gian thực tế:** lấy từ **ACARS** (đọc message ACARS để bóc tách các mốc out/off/on/in). Mission Watch [cần xác nhận hệ thống nội bộ — có khả năng là tên hệ thống/màn hình hiện hành] cũng tích hợp ACARS, nhưng TOSS sẽ **lấy thẳng nguồn ACARS** thay vì qua Mission Watch.
-- **Thông tin cần giám sát mỗi chuyến:**
-  - ETA (Estimated Time of Arrival).
-  - Giờ thực tế đi/đến.
-  - Giờ kế hoạch — so sánh **sớm/trễ bao nhiêu phút**.
-  - Tình trạng "đang taxi-out", "đã cất cánh", "đang bay", "taxi-in"…
-  - Với chuyến chuẩn bị: dự kiến cất cánh giờ, đã phục vụ đến giai đoạn nào tại sân (boarding, đóng cửa, push-back…) — tích hợp ACDM để biết.
-- **Cơ chế refresh:**
-  - **KHÔNG** dùng nút "refresh" thủ công — điều phái mở màn hình cả ngày, không thể bấm refresh mỗi vài giây.
-  - Phương án 1 (đề xuất): **WebSocket / Server-Sent Events / webhook** — server đẩy thay đổi xuống client.
-  - Phương án 2: **auto-refresh** theo chu kỳ (mỗi vài giây / mỗi phút) **chỉ ô có thay đổi**, không reload toàn trang.
-  - Hạ tầng: chấp nhận ~20 row hiển thị, mỗi row ~20–30 cột; tải lại theo "khoảng/scope" thay đổi (Show On / từng ô) thay vì cả màn hình.
-- **Cảnh báo bằng màu/nháy:**
-  - Hiển thị **đỏ → xanh** theo trạng thái; khi tàu bay cất cánh → cảnh báo chuẩn bị chuyến bay **tắt** (chuyển xanh).
-  - Tham khảo Sketch Check (Schedule Check?) — màn hình tương tự đang dùng — có nhấp nháy/auto-refresh.
-  - Một số ô (vd thời tiết mưa dông) sau khi bản tin được clear thì ô tự tắt cảnh báo.
-- **Phân nhóm trên màn overview:** chia ít nhất 3 nhóm: "chuẩn bị cất cánh / chưa cất cánh", "đang bay", "đã hạ cánh".
+Tình huống ví dụ xuyên suốt cuộc thảo luận diễn ra như sau. Lido sinh OFP lần lượt phiên bản 1, 2 và 3. Phi công đã accept phiên bản 2, sau đó điều phái đã release phiên bản 3 và phi công cũng đã release phiên bản 3. Tuy nhiên vì lý do của tổ quay, tổ bay đòi quay lại phiên bản trước. Lý do thường gặp được điều phái nêu là tổ quay cũ chở ít dầu hơn tổ quay mới, khiến nếu lấy theo bản OFP mới thì tổ bay phải xả dầu cho đúng định mức của tổ quay cũ.
 
-#### Kết luận
-- TOSS có **một màn Monitoring overview** (cho Phase 4+5) — điều phái mở cả ngày — cập nhật real-time bằng webhook/SSE; chỉ cập nhật phần dữ liệu có thay đổi, không reload toàn trang.
-- Nguồn dữ liệu mốc thời gian: **ACARS** trực tiếp.
-- Cơ chế cảnh báo: màu sắc / nhấp nháy theo trạng thái; mỗi cảnh báo có quy tắc "raise" và "clear" rõ ràng (vd "cảnh báo A đến OFF thì tắt; cảnh báo B đến ON thì tắt; cảnh báo C đến IN mới tắt" — ý là từng cảnh báo gắn với mốc ACARS khác nhau).
-- Phân nhóm chuyến trên overview: chưa cất cánh / đang bay / đã hạ cánh.
-- Trong Phase 5 (In-Flight): **không monitoring chi tiết tiêu hao dầu real-time** (không có dữ liệu live); chỉ cập nhật trạng thái mốc bay. Phân tích chi tiết dầu/đường bay thuộc **báo cáo Post-Flight** (lấy dữ liệu sau khi tàu về In-block).
+Phương án ban đầu được đưa ra là Lido sinh tiếp phiên bản 4 lấy thông số của phiên bản 2 rồi push tiếp lên MO Plus. Phương án này bị loại do làm tăng thời gian xử lý cho điều phái, phải làm lại OFP cho mỗi lần quay lui, đồng thời gây phức tạp cho quy trình.
 
-### 7. Phase 6 — Post-Flight & Shift Handover: chỉ là báo cáo
+Phương án được thống nhất là điều phái thao tác hoàn toàn trên TOSS mà không phải lên Lido làm lại. TOSS lưu danh sách phiên bản OFP nhận từ luồng MO Plus và adapter. Khi cần quay về phiên bản cũ, điều phái bấm Unrelease phiên bản hiện tại trên TOSS. TOSS lấy phiên bản cũ mà điều phái chọn từ danh sách OFP rồi đẩy phiên bản đó sang MO Plus như một revision mới. Phi công trên MO Plus thấy bản mới và confirm lại, còn ở phía điều phái không phải lên Lido thao tác lại.
 
-#### Yêu cầu
-- Phase 6 sau khi chuyến bay kết thúc: tổng hợp tình hình, bàn giao ca trực.
+Về nguyên tắc đánh phiên bản, điều phái nhấn mạnh rằng Lido không có khái niệm phiên bản mà chỉ có số OFP, còn phiên bản là do TOSS tự gán. TOSS gán theo thứ tự nhận, ví dụ nhận lần một là R1, nhận lần hai là R2 và tiếp tục như vậy. Khi quay về phiên bản cũ, TOSS có thể đặt tên phiên bản mới là 2.1 với ý nghĩa "né việc gọi là phiên bản chính thức mới mà thực ra đẩy lại bản 2", hoặc có thể auto-tăng số phiên bản lên 4. Trên MO Plus, hệ thống áp dụng cơ chế luôn lấy bản mới nhất, do đó để quay lui thì TOSS phải đẩy bản cũ dưới dạng phiên bản mới hơn để MO Plus override được.
 
-#### Thảo luận – Đề xuất
-- Phase 6 thuần là **báo cáo** (chuyến đáp → đóng trễ → tổng hợp tình hình).
-- Dữ liệu chuyến đã hạ cánh + Confirm Release của phi công → đã lưu bên MO Plus.
-- TOSS chỉ **kéo về để báo cáo**, không phát sinh thao tác nghiệp vụ.
+Về cơ chế Confirm Release trên MO Plus, khi TOSS Unrelease một phiên bản thì trạng thái Confirm Release của phi công được reset và đính sang bản dân kia, do đó phi công phải Confirm Release lại trên phiên bản mới. Cơ chế notification trên app cần được thiết kế tương ứng để phi công nhận biết được sự thay đổi và xác nhận lại.
 
-#### Kết luận
-- Phase 6 trên TOSS = báo cáo + bàn giao ca; **không cần chức năng nghiệp vụ riêng**.
+Về sự đối xứng với việc Dispatch Release, hai bên đồng ý rằng khi điều phái Unrelease một bản OFP thì mặc định trên TOSS và MO Plus sẽ có một revision mới, và để bản mới đó được khai thác chính thức thì điều phái phải bấm Dispatch Release thêm một lần nữa lên bản đấy. Việc Unrelease tự sinh revision mới giúp tiết kiệm công lấy lại bản từ Lido, còn việc Dispatch Release lần nữa vẫn cần thực hiện để bản đó được chính thức.
 
-### 8. Module Flight Dispatch — chỉ 3 chức năng chính
+Về tình huống phi công sau khi đã accept một bản OFP mà muốn quay về phiên bản trước, hai bên thống nhất chỉ cần TOSS cho phép điều phái chọn phiên bản OFP cũ từ danh sách, không cần Release nhiều lần. Lý do tổ bay từ chối bản OFP mới và lấy bản OFP cũ chủ yếu liên quan đến số lượng dầu mỡ giữa các tổ quay khác nhau.
 
-#### Yêu cầu
-- Sau khi đi qua đủ 6 phase, chốt lại trên TOSS, module Flight Dispatch chỉ có ít chức năng "xử lý dữ liệu OFP" thực sự.
+**Kết luận**
 
-#### Thảo luận – Đề xuất
-- Điều phái và khảo sát thống nhất: trên module Flight Dispatch của TOSS, **3 chức năng chính** là:
-  1. **Đưa dữ liệu OFP lên** (nhận từ adapter hoặc upload backup).
-  2. **Release** (Dispatch Release).
-  3. **Unrelease** (kèm chọn version cũ để đẩy ngược, §4).
-- Các chức năng còn lại (cảnh báo, monitoring) là **lớp hỗ trợ** dựa trên dữ liệu OFP + nguồn ngoài (NOTAM, WX, AMOS, CLC, ACARS).
+Mô hình phiên bản OFP được chốt như sau. Lido có số OFP, còn TOSS gán phiên bản theo thứ tự nhận với quy ước có thể là R1, R2 hoặc 2.1, và phiên bản chỉ tồn tại trên TOSS và MO Plus. Unrelease là thao tác chủ động trên TOSS, trong đó khi điều phái Unrelease thì TOSS sinh revision mới với nội dung của phiên bản cũ được chọn từ danh sách OFP của MO Plus, bắn sang MO Plus, đồng thời reset Confirm Release của phi công và phi công phải Confirm Release lại trên bản mới. Trong tình huống quay lui, phi công không thao tác Lido và điều phái cũng không cần lên Lido, toàn bộ xử lý diễn ra trên TOSS. Cơ chế notification trên app MO Plus cần khớp với đội MO Plus và quy ước gán phiên bản (auto-tăng so với sub-version 2.1) cần được chọn chính thức. `[cần xác nhận]`
 
-#### Kết luận
-- Module Flight Dispatch trên TOSS chốt **3 chức năng cốt lõi: Đẩy OFP / Release / Unrelease.**
-- Ngoài ra: chức năng phụ là cảnh báo, monitoring (xem các phase tương ứng).
+---
 
-### 9. Upload tài liệu thời tiết đa chuyến (Weather Multi-Flight)
+### II.5 — Phase 3 (Post-Release Transition): TOSS chỉ quét cảnh báo và tham chiếu, không cập nhật OFP
 
-#### Yêu cầu
-- Hiện trạng: với tài liệu thời tiết khu vực/đường bay (vd Weather Multi-Flight), điều phái **gửi qua mail**; AIJS [cần xác nhận tên đầy đủ — có thể là phần mềm soạn/đính tài liệu bay] **tự nhận diện và đính** file vào nhiều chuyến cùng lúc (theo khung giờ hiệu lực).
+**Yêu cầu**
 
-#### Thảo luận – Đề xuất
-- TOSS cần một **menu upload file thời tiết đa chuyến**, người dùng chọn:
-  - **Khoảng thời gian hiệu lực** (từ ngày X giờ Y → ngày Z giờ T).
-  - Hệ thống tự gắn file vào **tất cả chuyến** có ETD nằm trong khoảng hiệu lực.
-- Quy tắc xếp chồng file:
-  - Một chuyến có thể có **nhiều file** (1 file chung + 1 file riêng) — vd chuyến Châu Âu có file chung khu vực + file riêng đặc thù.
-  - File chung (Weather Multi-Flight) áp cho mọi chuyến trong khoảng hiệu lực.
-  - File riêng (attach từ FME [cần xác nhận viết tắt — Flight Management Editor?]) áp cho từng chuyến cụ thể.
-- Khoảng hiệu lực thường khoảng **3 tiếng**; ví dụ điều phái upload lúc 6h sáng, file hiệu lực đến 9h sáng → mọi chuyến cất cánh từ 6–9h được attach.
-- Nếu hai khoảng hiệu lực **chồng nhau** trong một chuyến → chuyến đó nhận **cả hai file**.
-- Format file:
-  - Cùng cấu trúc tên file thì MO Plus **replace** (overwrite).
-  - Khác cấu trúc tên thì MO Plus **giữ cả 2** (hiển thị song song).
-- Hiện tại MO Plus có thuật toán **hardcode** chỉ hiển thị file cuối cùng theo tên → cần phối hợp với đội MO Plus để xử lý đúng.
+Phase 3 được định nghĩa là giai đoạn sau khi đã Release OFP nhưng vẫn cần tiếp tục quét cảnh báo liên tục về NOTAM, thời tiết, tàu bay và tải trọng cho đến trước khi cất cánh. Vấn đề cần làm rõ là việc làm lại OFP phiên bản mới ở phase này được thực hiện trên TOSS hay trên Lido.
 
-#### Kết luận
-- TOSS có chức năng **Upload Weather Multi-Flight**: chọn khoảng thời gian hiệu lực + danh sách chuyến trong khoảng → gắn file vào toàn bộ chuyến.
-- Hỗ trợ song song: **attach file riêng cho từng chuyến** (từ FME hiện hành) — TOSS có thể có 2 menu/tab: (a) upload file riêng theo chuyến, (b) upload file chung cho nhiều chuyến.
-- Cần đối chiếu với đội MO Plus: cơ chế hiển thị 2 file cùng lúc (latest by name vs giữ cả 2).
-- Khi tài liệu (file riêng) ẩn trên app MO Plus, vẫn cần hiển thị trên TOSS để điều phái quyết định có hiện lại/ẩn không.
+**Thảo luận và Đề xuất**
 
-### 10. Payload Extra (dầu / nhiên liệu tổ bay lấy thêm) + báo cáo Pallet Relief
+Điều phái khẳng định rằng thao tác cập nhật OFP phiên bản mới sau khi đã release nằm ở Lido chứ không nằm trên TOSS. Ở phase này TOSS chỉ làm hai việc là quét cảnh báo và tham chiếu để đề xuất cập nhật OFP. Khi có cảnh báo thì điều phái đánh giá và nếu cần cập nhật thì mở Lido làm OFP mới. Lido không phát cảnh báo thời tiết hay NOTAM mới theo kiểu real-time mà chỉ cảnh báo tại thời điểm làm bước bay khi sinh OFP, do đó TOSS phải đảm nhận vai trò giám sát và cảnh báo liên tục. Phạm vi cảnh báo phase 3 gồm thay đổi loại tàu, thay đổi tàu cụ thể, tải trọng, NOTAM và thời tiết, về cơ bản tương đồng các cảnh báo phase 1 nhưng được duy trì cho đến lúc cất cánh.
 
-#### Yêu cầu
-- Điều phái cần một **báo cáo** giúp xem nhanh: với những chuyến cùng đường bay (vd về Sài Gòn) trong cùng khung giờ, **chuyến nào tổ bay đã lấy thêm dầu (payload extra)**, đã cộng bao nhiêu — để biết quyết định cộng dầu cho chuyến hiện tại có hợp lý không.
-- Hiện trạng: thông tin payload extra chỉ thấy qua việc mở từng chuyến (~20 chuyến/sortie) → không khả thi mở từng cái.
+**Kết luận**
 
-#### Thảo luận – Đề xuất
-- Khái niệm:
-  - **Payload Extra:** dầu/nhiên liệu **tổ bay tự đề nghị lấy thêm** so với OFP của điều phái (thường trước khoảng 30 phút trước khởi hành).
-  - Cộng dầu (extra fuel): điều phái có thể cộng vào OFP; tổ bay có thể yêu cầu lấy thêm độc lập với phần điều phái cộng.
-- TOSS đã có **báo cáo Pallet Relief** (ASR đọc "Palloy X-cha") — báo cáo nội bộ liệt kê chuyến và payload extra theo ngày, có lọc theo đường bay.
-- Cải tiến yêu cầu:
-  - **Hiển thị thêm cột Payload Extra** trong báo cáo (đã có).
-  - Hoặc **trừ luôn** giữa OFP và X-actual của phi công → đưa vào một cột "Delta" để điều phái nhìn nhanh — chấp nhận hiển thị cả hai giá trị hoặc chỉ delta.
-- Cơ chế tính: lấy dầu thực tế tổ bay lấy − dầu OFP = số kg lấy thêm.
-- Truy vấn theo: ngày, đường bay (vd HAN-SGN), khung giờ cất cánh, loại tàu.
-- Hiệu năng: query có thể lớn → cần **chuẩn hóa dữ liệu cho query nhanh**; với report nặng, áp dụng **cơ chế tab kết quả + lưu link 7 ngày** (tương tự gửi mail báo cáo).
+TOSS ở Phase 3 chỉ thực hiện cảnh báo và tham chiếu, không có chức năng cập nhật OFP trực tiếp. Khi điều phái cần làm OFP phiên bản mới sau Release thì mở Lido, do đó bước cập nhật tài liệu OFP phiên bản mới trong Phase 3 thuộc về Lido. TOSS duy trì quét cảnh báo liên tục từ thời điểm Release cho đến khi cất cánh. Khi tàu cất cánh, các cảnh báo về tải trọng và nhiên liệu chuẩn bị chuyến bay sẽ tắt, trong khi các cảnh báo về NOTAM và thời tiết en-route vẫn duy trì cho đến khi tàu hạ cánh.
 
-#### Kết luận
-- TOSS bổ sung cột **Payload Extra** (hoặc **Delta = Actual − OFP**) vào báo cáo Pallet Relief.
-- Cho phép lọc theo: ngày, đường bay, khung giờ, loại tàu.
-- Cơ chế UX cho report nặng: trả về tab kết quả riêng, lưu link tải trong **7 ngày**, hỗ trợ tải lại — tương đương luồng gửi mail báo cáo.
+---
 
-### 11. Tự sửa thông số trên OFP (Flight Level) trước khi đẩy lên MO Plus
+### II.6 — Phase 4 và Phase 5 (Monitoring): tích hợp ACARS, refresh real-time và cơ chế hiển thị nhấp nháy
 
-#### Yêu cầu
-- Một số chuyến điều phái cần **sửa Flight Level (FL)** trên OFP (vd lấy FL từ ICON [cần xác nhận tên hệ thống — có thể là tham số khí tượng/hệ thống lập kế hoạch] để chèn vào).
-- Hiện trạng: điều phái phải **sửa ở cả 2 file nguồn — TXT và email gốc** — để MO Plus bốc tách đúng. Vất vả, dễ sai.
+**Yêu cầu**
 
-#### Thảo luận – Đề xuất
-- Hai phương án để điều phái sửa OFP:
-  - **PA1 (TOSS sửa giúp):** TOSS cung cấp form sửa Flight Level (theo Climb/Cruise/Descend) → TOSS tự sửa nhất quán cả TXT và email gốc → đẩy lên MO Plus.
-  - **PA2 (điều phái sửa thủ công):** TOSS chỉ ra **những trường cần sửa** + **giá trị cần sửa**, điều phái download file gốc, sửa tay, upload lại lên TOSS → TOSS đẩy lên MO Plus.
-- Phía MO Plus có ràng buộc: **chỉ tê PDF không đủ** — phải có TXT (và email) cho luật bốc tách. → Không thể chỉ sửa PDF.
-- Trường thường sửa: **giờ, Brady [cần xác nhận — Bra'di/loại brake?], dầu mỡ, ADC [cần xác nhận]** — chủ yếu dầu mỡ.
-- Trường cố định không sửa: số hiệu tàu + đường bay.
+Phase 4 và Phase 5 gồm theo dõi chuẩn bị khởi hành và theo dõi trong khi bay đòi hỏi TOSS cung cấp một màn hình giám sát tổng quan để điều phái mở cả ngày, theo dõi từng chuyến bay đang ở giai đoạn nào từ taxi-out, cất cánh, đang bay đến taxi-in. Về trải nghiệm sử dụng, màn hình phải cập nhật real-time mà không bắt điều phái nhấn nút refresh, đồng thời có cơ chế cảnh báo bằng màu sắc và hiệu ứng nhấp nháy.
 
-#### Kết luận
-- TOSS hỗ trợ điều phái sửa OFP theo **một trong hai phương án** (chốt sau theo phân tích kỹ thuật):
-  - PA1: form trên TOSS → TOSS sửa file gốc.
-  - PA2: TOSS chỉ ra chỗ cần sửa → điều phái sửa tay → upload lại.
-- Trường sửa: ưu tiên Flight Level (lấy từ ICON), dầu mỡ, giờ, Brady, ADC.
-- Phải đảm bảo **đầu ra TXT + email** đúng format để MO Plus bốc tách.
+**Thảo luận và Đề xuất**
 
-### 12. Logitech / GD TN / Logitech.com (?) — tài liệu/dịch vụ liên quan upload
+Về nguồn dữ liệu mốc thời gian thực tế, TOSS lấy từ ACARS bằng cách đọc message ACARS để bóc tách các mốc bao gồm giờ thực tế đi và đến. Hệ thống Mission Watch hiện hành cũng tích hợp ACARS, tuy nhiên TOSS sẽ lấy thẳng từ nguồn ACARS thay vì đi qua Mission Watch.
 
-#### Yêu cầu
-- Điều phái nhắc đến **"Logitech, GDTN, Logitech.com"** [cần xác nhận — ASR có thể đọc sai một thuật ngữ nội bộ VNA] khi bàn về quản lý chứng cứ tổ bay đã upload tài liệu.
+Thông tin cần giám sát đối với mỗi chuyến bay bao gồm ETA, giờ thực tế đi và đến, giờ kế hoạch để so sánh sớm hoặc trễ bao nhiêu phút, tình trạng hiện tại như đang taxi gian (taxi-out), đã cất cánh, đang bay hay đã in (taxi-in). Đối với chuyến đang chuẩn bị, cần thêm dự kiến cất cánh và mức độ đã phục vụ đến giai đoạn nào tại sân, các thông tin này được tích hợp từ A-CDM.
 
-#### Thảo luận – Đề xuất
-- Có vẻ là **trang/cổng cho tổ bay tự khai báo đã upload** một số tài liệu — TOSS muốn xem được thông tin "tổ bay đã/chưa upload" để hiển thị cho điều phái.
-- Hỗ trợ quy trình: khi tổ bay vào xem cổng tài liệu, điều phái có **log** để biết tổ bay đã xem hay chưa.
+Về cơ chế refresh, TOSS sẽ không sử dụng nút refresh thủ công vì điều phái mở màn hình cả ngày và không thể bấm refresh mỗi vài giây. Phương án đề xuất là sử dụng webhook hoặc cơ chế tương đương để server đẩy thay đổi xuống client. Hệ thống có thể chỉ làm tươi từng phần dữ liệu thay vì reload toàn trang. Về hạ tầng, ví dụ điển hình là khoảng hai mươi hàng với mỗi hàng từ hai mươi đến ba mươi cột, tải lại theo phần thay đổi thay vì cả màn hình. Cơ chế hiển thị tham khảo Sketch Check (Schedule Check), một màn hình tương tự đang được sử dụng có khả năng cập nhật real-time mà không cần người dùng bấm nút.
 
-#### Kết luận
-- Bổ sung TOSS hiển thị **log truy cập/upload tài liệu của tổ bay** từ nguồn "Logitech/GDTN" [cần xác nhận tên chính xác].
-- Phạm vi cụ thể (đọc-only hay có thao tác): cần làm rõ ở buổi sau.
+Về cảnh báo bằng màu và hiệu ứng nhấp nháy, hệ thống hiển thị màu đỏ chuyển sang xanh theo trạng thái và có thể có hiệu ứng nhấp nháy để thu hút sự chú ý. Khi tàu bay cất cánh, các cảnh báo chuẩn bị chuyến bay tự động tắt và chuyển sang màu xanh. Một số ô như cảnh báo thời tiết mưa dông sẽ tự tắt sau khi bản tin được clear. Về quy tắc gắn cảnh báo với mốc ACARS, hệ thống chia tinh hơn theo loại cảnh báo, ví dụ cảnh báo A đến mốc OFF thì tắt, cảnh báo B đến mốc ON thì tắt và cảnh báo C đến mốc IN thì tắt.
 
-### 13. Backup nguồn dữ liệu khi Lido lỗi
+Về phân nhóm trên màn hình giám sát tổng quan, hệ thống chia tối thiểu ba nhóm gồm chưa cất cánh, đang bay và đã hạ cánh.
 
-#### Yêu cầu
-- Khi Lido lỗi (không sinh được OFP), TOSS phải có cách giúp đẩy OFP lên MO Plus để chuyến bay vẫn khai thác được.
+Về theo dõi sự kiện phát sinh trong khi bay, điều phái lưu ý rằng TOSS không có dữ liệu tiêu hao dầu real-time của chuyến đang bay, do đó không thể monitoring chi tiết về tiêu hao dầu trong khi bay. Dữ liệu chi tiết về tiêu hao dầu chỉ có sau khi chuyến bay kết thúc và tàu về in-block, dùng cho mục đích báo cáo và phân tích Post-Flight.
 
-#### Thảo luận – Đề xuất
-- Lido xuất ra **3 định dạng**: **PDF, TXT, HTML**. Cả 3 đều cần thiết:
-  - **TXT** dùng để bốc tách NOTAM/giờ.
-  - **HTML** dùng để bốc tách group/section.
-  - **PDF** dùng để hiển thị + lưu trữ.
-- Hiện tại adapter Lido cung cấp đủ 3 nguồn → MO Plus mix lại.
-- Khi Lido lỗi:
-  - Phương án 1: TOSS có sẵn nguồn 3 file gốc đã từng lưu → cho điều phái **lấy chuyến tương tự ngày trước** làm template, sửa lại các thông số chính (giờ, dầu, ADC) → đẩy lên MO Plus.
-  - Adapter hiện đã lưu file raw → TOSS làm link download để điều phái lấy về sửa.
-  - Sau khi sửa, điều phái upload lại lên TOSS → TOSS đẩy đủ 3 file (PDF, TXT, HTML) lên MO Plus theo đúng luật bốc tách.
+**Kết luận**
 
-#### Kết luận
-- TOSS có chức năng backup khi Lido lỗi:
-  - **(a)** Cho download file raw (PDF/TXT/HTML) của chuyến trước/chuyến tương tự — làm template.
-  - **(b)** Cho điều phái sửa tay (theo PA của §11) → upload lại lên TOSS → TOSS đẩy đủ 3 định dạng lên MO Plus.
-- Đảm bảo định dạng đầu ra của TOSS đúng "luật bốc tách" của MO Plus.
+TOSS cung cấp một màn Monitoring tổng quan phục vụ Phase 4 và Phase 5 để điều phái mở cả ngày, cập nhật real-time qua webhook hoặc cơ chế tương đương, chỉ cập nhật phần dữ liệu có thay đổi và không reload toàn trang. Nguồn dữ liệu mốc thời gian lấy thẳng từ ACARS. Cơ chế cảnh báo sử dụng màu sắc kết hợp hiệu ứng nhấp nháy theo trạng thái, mỗi cảnh báo có quy tắc raise và clear rõ ràng gắn với mốc ACARS riêng. Chuyến trên màn tổng quan được phân thành ba nhóm gồm chưa cất cánh, đang bay và đã hạ cánh. Trong Phase 5, TOSS không monitoring chi tiết tiêu hao dầu real-time do không có dữ liệu live, hệ thống chỉ cập nhật trạng thái các mốc bay. Phân tích chi tiết về tiêu hao dầu và đường bay thuộc về báo cáo Post-Flight được lập sau khi tàu về in-block.
+
+---
+
+### II.7 — Phase 6 (Post-Flight và Shift Handover): chỉ là báo cáo
+
+**Yêu cầu**
+
+Phase 6 diễn ra sau khi chuyến bay kết thúc, gồm các hoạt động tổng hợp tình hình và bàn giao ca trực.
+
+**Thảo luận và Đề xuất**
+
+Phase 6 thuần túy là hoạt động báo cáo theo trình tự chuyến đáp, đóng trễ và tổng hợp tình hình. Dữ liệu chuyến đã hạ cánh cùng với Confirm Release của phi công đã được lưu bên MO Plus, do đó TOSS chỉ kéo dữ liệu về để báo cáo và không phát sinh thao tác nghiệp vụ.
+
+**Kết luận**
+
+Phase 6 trên TOSS bao gồm hai hoạt động là báo cáo và bàn giao ca, không cần thiết kế chức năng nghiệp vụ riêng cho phase này.
+
+---
+
+### II.8 — Module Flight Dispatch chỉ có ba chức năng chính
+
+**Yêu cầu**
+
+Sau khi đi qua đủ sáu phase, các bên thống nhất rằng trên TOSS, module Flight Dispatch chỉ có một số ít chức năng xử lý dữ liệu OFP thực sự, phần còn lại là cảnh báo và monitoring.
+
+**Thảo luận và Đề xuất**
+
+Điều phái và đội khảo sát thống nhất rằng module Flight Dispatch của TOSS không có nhiều chức năng theo kiểu import. Các chức năng chính chỉ thuần đưa dữ liệu OFP lên hệ thống, sau đó Release và Unrelease. Các chức năng còn lại liên quan đến cảnh báo và monitoring được coi là lớp hỗ trợ dựa trên dữ liệu OFP cùng các nguồn ngoài như NOTAM, thời tiết, tàu bay và ACARS.
+
+**Kết luận**
+
+Module Flight Dispatch trên TOSS chốt ba chức năng cốt lõi gồm đẩy OFP, Release và Unrelease. Ngoài ra, hệ thống còn cung cấp các chức năng phụ trợ là cảnh báo và monitoring tương ứng theo từng phase đã trình bày ở các mục trên.
+
+---
+
+### II.9 — Upload tài liệu thời tiết đa chuyến (Weather Multi-Flight)
+
+**Yêu cầu**
+
+Hiện trạng đối với tài liệu thời tiết khu vực hoặc đường bay là điều phái gửi qua mail, sau đó hệ thống AIJS tự nhận diện và đính file vào nhiều chuyến cùng lúc theo khung giờ hiệu lực. Tên đầy đủ của AIJS cần được xác nhận, có khả năng là phần mềm soạn và đính tài liệu bay nội bộ. `[cần xác nhận]`
+
+**Thảo luận và Đề xuất**
+
+TOSS cần cung cấp một menu upload file thời tiết đa chuyến, cho phép người dùng chọn khoảng thời gian hiệu lực từ ngày X giờ Y đến ngày Z giờ T, sau đó hệ thống tự gắn file vào tất cả chuyến có giờ cất cánh nằm trong khoảng hiệu lực này.
+
+Về quy tắc xếp chồng file, một chuyến có thể có nhiều file gồm một file chung và một file riêng. File chung Weather Multi-Flight áp dụng cho mọi chuyến trong khoảng hiệu lực, trong khi file riêng được attach từ FME (giả định Flight Management Editor, cần xác nhận) áp dụng cho từng chuyến cụ thể. Khoảng hiệu lực thường vào khoảng ba tiếng, ví dụ điều phái upload lúc 6 giờ sáng thì file hiệu lực đến 9 giờ sáng và mọi chuyến cất cánh trong khung 6 đến 9 giờ đều được attach. Nếu hai khoảng hiệu lực chồng nhau trong một chuyến thì chuyến đó nhận cả hai file.
+
+Về định dạng và đặt tên file, nếu hai file cùng cấu trúc tên thì MO Plus thực hiện replace tức là ghi đè, còn nếu khác cấu trúc tên thì theo lý thuyết MO Plus giữ cả hai và hiển thị song song. Trên thực tế MO Plus đang hardcode chỉ hiển thị file cuối cùng theo tên, do đó cần phối hợp với đội MO Plus để xử lý đúng theo nguyên tắc trên.
+
+Về việc ẩn hiện tài liệu trên MO Plus, một số tài liệu sau khi áp lên có thể không phù hợp và cần được ẩn không hiển thị cho tổ bay. TOSS cần cung cấp chức năng cho điều phái quyết định ẩn hay hiện tài liệu trên app MO Plus, áp dụng cho cả file chung và file riêng. Tuy nhiên việc xử lý cho file riêng phức tạp hơn nên trước mắt chỉ làm cho file chung.
+
+**Kết luận**
+
+TOSS cung cấp chức năng Upload Weather Multi-Flight cho phép chọn khoảng thời gian hiệu lực và tự gắn file vào toàn bộ chuyến nằm trong khoảng. Hệ thống hỗ trợ song song hai luồng gồm attach file riêng cho từng chuyến tương đương luồng FME hiện hành và upload file chung cho nhiều chuyến. TOSS có thể tổ chức thành hai menu hoặc hai tab cho hai luồng này. Đội phân tích cần đối chiếu với đội MO Plus về cơ chế hiển thị hai file cùng lúc theo nguyên tắc latest by name so với giữ cả hai. TOSS bổ sung chức năng ẩn hiện tài liệu trên MO Plus, áp dụng cho file chung trước, file riêng sẽ xem xét ở giai đoạn sau.
+
+---
+
+### II.10 — Payload Extra (dầu và nhiên liệu tổ bay lấy thêm) cùng báo cáo Pallet Relief
+
+**Yêu cầu**
+
+Điều phái cần một báo cáo giúp xem nhanh đối với những chuyến cùng đường bay và cùng khung giờ, chuyến nào tổ bay đã lấy thêm dầu cùng số lượng đã cộng, nhằm đánh giá quyết định cộng dầu cho chuyến hiện tại có hợp lý hay không. Ví dụ tiêu biểu được nêu là các chuyến về Sài Gòn trong cùng khung giờ chiều muộn. Hiện trạng cho thấy thông tin Payload Extra chỉ có thể xem được bằng cách mở từng chuyến với khoảng hai mươi chuyến mỗi sortie, do đó việc mở từng chuyến không khả thi trong thực tế khai thác.
+
+**Thảo luận và Đề xuất**
+
+Về khái niệm, Payload Extra là phần dầu hoặc nhiên liệu mà tổ bay tự đề nghị lấy thêm so với OFP của điều phái, thường được đưa ra trước khoảng ba mươi phút trước khởi hành. Việc điều phái cộng dầu vào OFP và việc tổ bay lấy thêm là hai hành động độc lập nhưng đều dẫn đến lượng dầu thực tế cao hơn OFP gốc.
+
+TOSS đã có báo cáo Pallet Relief liệt kê các chuyến cùng Payload Extra theo ngày và có khả năng lọc theo đường bay. Cải tiến yêu cầu là bổ sung cột Payload Extra trong báo cáo, hoặc thay vào đó tính sẵn delta giữa OFP và giá trị thực tế của phi công rồi đưa vào một cột delta để điều phái nhìn nhanh. Hệ thống có thể hiển thị cả hai giá trị hoặc chỉ hiển thị delta tùy lựa chọn. Cơ chế tính delta là lấy dầu thực tế tổ bay lấy trừ đi dầu OFP để ra số kilogram lấy thêm. Báo cáo hỗ trợ truy vấn theo ngày, đường bay (ví dụ HAN-SGN), khung giờ cất cánh và loại tàu.
+
+Về hiệu năng, query có thể lớn nên cần chuẩn xác dữ liệu để query nhanh. Đối với các báo cáo nặng, hệ thống áp dụng cơ chế trả kết quả ra một tab riêng, lưu link tải kết quả trong vòng bảy ngày để người dùng tải lại khi cần, tương tự cơ chế gửi mail báo cáo. Bản chất là di chuyển link từ mail sang tab này thay vì người dùng phải vào mail tải.
+
+**Kết luận**
+
+TOSS bổ sung cột Payload Extra hoặc cột delta tính bằng Actual trừ OFP vào báo cáo Pallet Relief. Báo cáo cho phép lọc theo ngày, đường bay, khung giờ và loại tàu. Cơ chế trải nghiệm sử dụng cho báo cáo nặng là trả kết quả ra tab riêng, lưu link tải trong vòng bảy ngày và hỗ trợ tải lại, tương đương luồng gửi mail báo cáo.
+
+---
+
+### II.11 — Tự sửa thông số trên OFP (Flight Level) trước khi đẩy lên MO Plus
+
+**Yêu cầu**
+
+Một số chuyến điều phái cần sửa Flight Level trên OFP, ví dụ lấy Flight Level từ ICON để chèn vào tài liệu, trong đó ICON cung cấp Flight Level cho các giai đoạn Climb, Cruise và Descend. Tên đầy đủ của ICON cần được xác nhận. Hiện trạng cho thấy điều phái phải sửa ở cả hai file nguồn là TXT và email gốc để MO Plus bốc tách đúng, công việc này vất vả và dễ phát sinh sai sót.
+
+**Thảo luận và Đề xuất**
+
+Hai phương án sửa OFP được đưa ra để cân nhắc. Phương án thứ nhất là TOSS sửa giúp, trong đó TOSS cung cấp form sửa Flight Level theo các giai đoạn Climb, Cruise và Descend, sau đó tự đồng bộ sửa cả TXT và email gốc rồi đẩy lên MO Plus. Phương án thứ hai là điều phái sửa thủ công, trong đó TOSS chỉ ra những trường cần sửa cùng giá trị cần sửa, điều phái download file gốc, sửa tay rồi upload lại lên TOSS và TOSS đẩy lên MO Plus.
+
+Về ràng buộc kỹ thuật phía MO Plus, hệ thống yêu cầu cả PDF, TXT và email vì luật bốc tách phụ thuộc các nguồn này, do đó không thể chỉ sửa PDF. Các trường thường sửa gồm giờ, Brady, dầu mỡ và ADC, trong đó chủ yếu là dầu mỡ. Tên đầy đủ của Brady và ADC cần được xác nhận. Các trường gần như cố định không cần sửa là số hiệu tàu bay và đường bay.
+
+Hai bên thống nhất nguyên tắc TOSS sẽ chỉ ra rõ chỗ cần sửa và giá trị cần sửa để điều phái cố gắng sửa cho tương thích, sau đó hệ thống nhập lên MO Plus theo đúng luật bốc tách. Phương án thuận tiện nhất cho điều phái là sửa tay trên file gốc rồi upload, MO Plus sẽ nhận thêm nguồn từ TOSS, bốc tách rồi đẩy sang app.
+
+**Kết luận**
+
+TOSS hỗ trợ điều phái sửa OFP theo một trong hai phương án trên, lựa chọn cuối cùng sẽ chốt sau khi có phân tích kỹ thuật chi tiết. Phương án 1 cung cấp form trên TOSS để TOSS sửa file gốc, trong khi phương án 2 là TOSS chỉ ra chỗ cần sửa và điều phái sửa tay rồi upload lại. Trường sửa ưu tiên gồm Flight Level lấy từ ICON, dầu mỡ, giờ, Brady và ADC. Đầu ra phải đúng format để MO Plus bốc tách. `[cần xác nhận tên đầy đủ ICON, Brady, ADC]`
+
+---
+
+### II.12 — Logitech, GDTN, Logitech.com (tài liệu và dịch vụ liên quan đến upload)
+
+**Yêu cầu**
+
+Điều phái nhắc đến các tên Logitech, GDTN và Logitech.com khi bàn về quản lý chứng cứ tổ bay đã upload tài liệu. Các tên này có thể bị nhận dạng sai do chất lượng âm thanh và cần được xác nhận tên chính xác. `[cần xác nhận]`
+
+**Thảo luận và Đề xuất**
+
+Theo ngữ cảnh, đây có vẻ là trang hoặc cổng cho tổ bay tự khai báo đã upload một số tài liệu, và TOSS muốn xem được thông tin tổ bay đã upload hay chưa để hiển thị cho điều phái. Để hỗ trợ quy trình, khi tổ bay vào xem cổng tài liệu, điều phái cần có log để biết tổ bay đã xem hay chưa và đã lấy thêm câu hỏi nào. TOSS có thể hiển thị thêm thông tin log truy cập tại đây cho điều phái khi cần. Một phương án giao diện được nhắc tới là hiển thị thêm cột log hoặc đếm số lần truy cập.
+
+**Kết luận**
+
+TOSS bổ sung chức năng hiển thị log truy cập và upload tài liệu của tổ bay từ nguồn Logitech hoặc GDTN. Phạm vi cụ thể là chỉ đọc hay có thao tác sẽ được làm rõ ở buổi khảo sát sau.
+
+---
+
+### II.13 — Backup nguồn dữ liệu khi Lido lỗi
+
+**Yêu cầu**
+
+Khi Lido lỗi và không sinh được OFP, TOSS phải có cách giúp đẩy OFP lên MO Plus để chuyến bay vẫn khai thác được.
+
+**Thảo luận và Đề xuất**
+
+Lido xuất ra ba định dạng song song là PDF, TXT và HTML, và cả ba định dạng đều cần thiết cho luồng vận hành. Định dạng TXT dùng để bốc tách NOTAM và giờ. Định dạng HTML dùng để bốc tách group và một số phần khác. Định dạng PDF dùng cho hiển thị. Hiện tại adapter Lido cung cấp đủ ba nguồn này và MO Plus mix lại.
+
+Khi Lido lỗi, phương án xử lý là TOSS dùng nguồn ba file gốc đã từng lưu để cho điều phái lấy chuyến tương tự ngày trước làm template. Adapter hiện đã lưu file raw, do đó TOSS cung cấp link download để điều phái lấy về sửa. Điều phái xem một danh sách dạng gói tài liệu chuyến bay, download cả gói gồm email và TXT, sửa nội dung cần thiết bao gồm chủ yếu là giờ, Brady, dầu mỡ và ADC, sau đó upload lại lên TOSS và TOSS đẩy ba định dạng lên MO Plus. Các trường giữ nguyên gồm số hiệu tàu bay và đường bay. Trường ADC chỉ cần đúng số hiệu tàu và đường bay là phù hợp.
+
+Hai bên cũng cân nhắc phương án sửa duy nhất file PDF rồi nhờ AI document phân tích lại, tuy nhiên đánh giá là không khả thi do MO Plus phụ thuộc cả ba nguồn để bốc tách đúng theo luật. Người dùng sửa tay không tránh được sai sót, do đó cần TOSS chỉ rõ chỗ cần sửa và cách sửa để giảm rủi ro, sau đó vẫn upload đầy đủ ba định dạng để MO Plus xử lý theo luồng cũ.
+
+**Kết luận**
+
+TOSS có chức năng backup khi Lido lỗi với hai hoạt động chính. Hoạt động thứ nhất là cho phép download file raw PDF, TXT và HTML của chuyến trước hoặc chuyến tương tự làm template. Hoạt động thứ hai là cho phép điều phái sửa tay theo phương án đã chọn tại §II.11, sau đó upload lại lên TOSS và TOSS đẩy đủ ba định dạng lên MO Plus. Định dạng đầu ra của TOSS phải đúng luật bốc tách của MO Plus.
 
 ---
 
@@ -315,76 +281,94 @@ document_type: "Báo cáo Khảo sát (Discovery) — Phỏng vấn Dispatcher b
 
 | # | Nội dung thống nhất | Liên kết §II |
 |---|---|---|
-| 1 | Bổ sung cảnh báo **"Chuyến bay thiếu tài liệu"** vào module Dispatch | §1 |
-| 2 | Bổ sung cảnh báo **"Tổ bay chưa tải tài liệu mới nhất"** — TOSS kéo trạng thái download từ MO Plus | §1 |
-| 3 | Bổ sung cảnh báo **"Chuyến không thường lệ — OFP chưa có STS/HEAD"** (chuyến nhận diện qua code O / Service Type N) | §2 |
-| 4 | Quy trình điều phái trên TOSS chia **6 phase**: Pre-Flight Prep / Pre-Flight Briefing / Post-Release Transition / Pre-Departure Monitoring / In-Flight Monitoring / Post-Flight & Handover | §3 |
-| 5 | Hôm nay đã xong **Phase 1 + một phần Phase 2**; các phase còn lại sẽ tiếp tục ở buổi/đợt kế tiếp | §3 |
-| 6 | **Lido không có version** — TOSS gán version (R1, R2…) theo thứ tự nhận; OFP number là của Lido | §4 |
-| 7 | **Cơ chế Unrelease:** điều phái bấm Unrelease trên TOSS → TOSS sinh revision mới với nội dung của version cũ (chọn từ danh sách) → bắn sang MO Plus | §4 |
-| 8 | MO Plus phải **reset trạng thái Confirm Release** của phi công khi nhận revision mới từ TOSS | §4 |
-| 9 | Phi công và điều phái **không cần lên Lido** trong tình huống quay lui — toàn bộ qua TOSS | §4 |
-| 10 | TOSS Phase 3 (Post-Release Transition) **chỉ quét cảnh báo + tham chiếu**, không có chức năng cập nhật OFP — cập nhật OFP version mới nằm ở Lido | §5 |
-| 11 | Cảnh báo chuẩn bị chuyến bay tắt khi tàu cất cánh; cảnh báo NOTAM/thời tiết en-route duy trì đến khi hạ cánh | §5, §6 |
-| 12 | Phase 4–5 (Monitoring) lấy mốc thời gian thực tế từ **ACARS trực tiếp** | §6 |
-| 13 | Màn Monitoring overview **cập nhật real-time** qua webhook/SSE; chỉ refresh ô có thay đổi, không reload toàn trang | §6 |
-| 14 | Cảnh báo có quy tắc raise/clear theo mốc ACARS riêng cho mỗi loại; phân nhóm chuyến: chưa cất cánh / đang bay / đã hạ cánh | §6 |
-| 15 | Phase 5 (In-Flight) **không monitoring chi tiết tiêu hao dầu real-time**; phân tích chi tiết thuộc báo cáo Post-Flight | §6 |
-| 16 | Phase 6 trên TOSS = **báo cáo + bàn giao ca**, không phát sinh chức năng nghiệp vụ riêng | §7 |
-| 17 | Module Flight Dispatch TOSS có **3 chức năng cốt lõi**: Đẩy OFP / Release / Unrelease | §8 |
-| 18 | TOSS có chức năng **Upload Weather Multi-Flight** theo khoảng thời gian hiệu lực; tự gắn vào toàn bộ chuyến trong khoảng | §9 |
-| 19 | TOSS hỗ trợ song song: **attach file riêng cho từng chuyến** và **upload file chung cho nhiều chuyến** | §9 |
-| 20 | TOSS bổ sung cột **Payload Extra** (hoặc Delta = Actual − OFP) vào báo cáo Pallet Relief; cho lọc theo ngày/đường bay/khung giờ/loại tàu | §10 |
-| 21 | Với report nặng: trả tab kết quả riêng + lưu link tải 7 ngày | §10 |
-| 22 | TOSS hỗ trợ điều phái **sửa Flight Level + dầu/giờ/ADC** trên OFP, đảm bảo đầu ra TXT+email đúng format để MO Plus bốc tách | §11 |
-| 23 | TOSS hiển thị **log upload/truy cập tài liệu của tổ bay** từ nguồn "Logitech/GDTN" [tên cần xác nhận] | §12 |
-| 24 | TOSS có chức năng **backup khi Lido lỗi**: download file raw template + sửa tay + upload lại + đẩy đủ 3 định dạng (PDF/TXT/HTML) lên MO Plus | §13 |
-
-## IV. Vấn đề cần làm rõ (buổi chiều)
-
-- **Danh mục mã loại chuyến (Flight Type Code)** — đầy đủ các code O, Z, G, H, A, P, V, S… (ý nghĩa từng code, code nào cần STS/HEAD, code nào không).
-- **Tên cơ chế claim phí khí thải** (CORSIA, EU ETS, hoặc cả hai) mà STS/HEAD là căn cứ — để TOSS xếp trường này vào nhóm "có ảnh hưởng quy định".
-- **Cơ chế phối hợp TOSS ↔ MO Plus** khi MO Plus reset Confirm Release của phi công: signal/payload, timing, hành vi notification trên app MO Plus.
-- **Cách TOSS gán version** sau Unrelease: dùng "2.1" (sub-version) hay auto-tăng "v4" — chọn quy ước chính thức.
-- **CCD** trong Phase 2 viết tắt là gì? (CSD — Crew Schedule Document? CRD — Crew Release Document? Hay nội bộ VNA?)
-- **Tên hệ thống "Mission Watch"** và quan hệ với ACARS — TOSS lấy thẳng từ ACARS hay qua Mission Watch.
-- **AIJS** — viết tắt và phạm vi (nhận diện file Weather Multi-Flight + đính chuyến tự động).
-- **FME** — viết tắt (Flight Management Editor?), hiện đang là chỗ điều phái attach file riêng cho từng chuyến.
-- **ICON** — tên hệ thống/tham số khí tượng cung cấp Flight Level cho Climb/Cruise/Descend.
-- **"Logitech / GDTN / Logitech.com"** — tên nguồn dữ liệu chính xác (log tổ bay upload tài liệu).
-- **"Sketch Check"** trong tài liệu monitoring — có phải Schedule Check không? Cách hiển thị tham khảo.
-- **Brady / ADC** ở §11 — viết tắt/ý nghĩa, các trường cụ thể nào trong OFP/TXT cần sửa.
-- **Hệ thống xử lý nguồn 3 file (TXT + HTML + PDF)** ở phía MO Plus — quy tắc bốc tách chi tiết để TOSS đảm bảo đầu ra.
-
-> Các điểm trên cần ghi nhận tập trung tại sổ theo dõi `SO-THEO-DOI-DIEM-CHOT-v0.1.md` (OID-TOSS-001) — đề xuất mã kế tiếp SME-19+, KS-20+.
-
-## V. Thuật ngữ đề xuất bổ sung domain-knowledge
-
-> **CHỈ ĐỀ XUẤT, KHÔNG TỰ GHI VÀO GLOSSARY.** Chờ BA Lead confirm theo quy ước [Glossary: trình đề xuất trước khi ghi].
-
-| # | Thuật ngữ | Mô tả từ ngữ cảnh | Nguồn dòng |
-|---|---|---|---|
-| 1 | **STS/HEAD** (đã có trong glossary, đề xuất mở rộng) | Bổ sung ngữ cảnh: chỉ thị bắt buộc cho **mọi chuyến không thường lệ** (không chỉ riêng VIP). Là **căn cứ claim miễn trừ phí khí thải** — không có STS/HEAD trong OFP thì hãng có thể bị tính phí khí thải cho chuyến đó. Cảnh báo "OFP chưa có STS/HEAD" cho chuyến không thường lệ là cảnh báo bắt buộc. | dòng 50–115 |
-| 2 | **Flight Type Code (O / Z / G / H / A / P / V / S…)** | Mã loại chuyến nội bộ VNA dùng để phân biệt chuyến thường/không thường lệ; nhận diện ở Lido/ATC FPL. Một số code (vd O) tương ứng "non-scheduled" trên ATC FPL (chuyển S→N). Danh mục đầy đủ chưa rõ. | dòng 80–95 |
-| 3 | **Dispatch Release** (đã có, đề xuất mở rộng) | Bổ sung: Release/Unrelease là **cặp thao tác đối xứng** trên TOSS; Unrelease sinh ra một revision mới với nội dung của version cũ, đẩy ngược về MO Plus và reset Confirm Release của phi công. | dòng 220–600 |
-| 4 | **Unrelease (TOSS)** | Thao tác chủ động của điều phái trên TOSS để hủy bỏ Dispatch Release của version hiện tại và quay về một version OFP cũ hơn. TOSS sinh revision mới (vd v2.1 hoặc v4 chứa data v2) → đẩy lên MO Plus. Phi công không thao tác Lido. | dòng 270–550 |
-| 5 | **OFP Number vs OFP Version** | OFP Number là định danh do Lido sinh; OFP Version là chỉ số do TOSS gán (R1, R2…). Lido không có khái niệm version. | dòng 525–545 |
-| 6 | **Confirm Release / Reload OSP** | Hành động phi công xác nhận đã nhận tài liệu OFP trên MO Plus; reset về 0 khi TOSS Unrelease và sinh revision mới. (ASR đọc lệch "Reload OSP" — ngữ cảnh chính xác là "Confirm Release" trong nghiệp vụ Captain's Release.) | dòng 583–614 |
-| 7 | **Post-Release Transition (Phase 3)** | Giai đoạn sau Release đến trước cất cánh — TOSS quét cảnh báo liên tục (NOTAM, WX, tàu, tải); thao tác cập nhật OFP version mới nằm ở Lido. | dòng 635–745 |
-| 8 | **Mission Watch** | Hệ thống/màn hình giám sát chuyến bay hiện hành (ngoài TOSS) — đã tích hợp ACARS để biết chuyến đang ở phase nào. TOSS tham chiếu nhưng lấy thẳng nguồn ACARS, không qua Mission Watch. | dòng 765–815 |
-| 9 | **A-CDM** (đã có) — bổ sung ngữ cảnh phase 4 | TOSS dùng A-CDM để biết chuyến đã phục vụ đến giai đoạn nào tại sân (boarding, đóng cửa, push-back, taxi-out, take-off) cho màn monitoring overview. | dòng 832–845 |
-| 10 | **ACARS Phase Trigger** | Quy tắc raise/clear cảnh báo gắn với mốc ACARS riêng cho mỗi loại cảnh báo: cảnh báo về tải tắt khi OUT/OFF; cảnh báo về NOTAM/WX en-route tắt khi IN. | dòng 903–910, 882–895 |
-| 11 | **Sketch Check / Schedule Check** | Hệ thống/màn hình tham khảo cho cơ chế hiển thị real-time + nhấp nháy + auto-refresh (theo chu kỳ ngắn). | dòng 1020–1030 |
-| 12 | **Weather Multi-Flight** | File thời tiết khu vực/đường bay áp cho nhiều chuyến trong khoảng thời gian hiệu lực (vd 3 tiếng); upload qua TOSS, tự đính vào toàn bộ chuyến trong khoảng. | dòng 1199–1265 |
-| 13 | **AIJS** | Hệ thống/phần mềm trung gian (nội bộ VNA) hiện đang nhận diện file Weather Multi-Flight gửi qua email và tự đính vào nhiều chuyến. TOSS sẽ thay thế / phối hợp. | dòng 1275–1310 |
-| 14 | **FME** | Chỗ điều phái hiện đang attach file riêng cho từng chuyến (giả định: Flight Management Editor — cần xác nhận). | dòng 1285–1290 |
-| 15 | **Payload Extra (Pallet Relief)** | Lượng dầu/nhiên liệu tổ bay tự đề nghị lấy thêm so với OFP của điều phái, thường ~30 phút trước khởi hành. Báo cáo "Pallet Relief" hiện đang liệt kê các chuyến + payload extra theo ngày + đường bay. TOSS bổ sung cột "Delta = Actual − OFP" để điều phái đối chiếu nhanh. | dòng 1542–1600 |
-| 16 | **ICON** | Hệ thống/tham số khí tượng cung cấp Flight Level cho Climb/Cruise/Descend; điều phái lấy FL từ ICON và sửa vào OFP (TXT + email) để MO Plus bốc tách đúng. | dòng 1700–1715 |
-| 17 | **OFP Source — 3 định dạng (PDF / TXT / HTML)** | Lido xuất OFP ở 3 định dạng song song: TXT dùng để bốc tách NOTAM/giờ; HTML dùng để bốc tách group/section; PDF dùng hiển thị + lưu trữ. MO Plus mix 3 nguồn. TOSS backup phải đẩy đủ 3 nguồn. | dòng 1626–1660 |
-| 18 | **MO Plus Latest by Filename** | Cơ chế MO Plus chỉ hiển thị file cuối cùng theo tên (replace); file khác tên sẽ giữ song song (theo lý thuyết) nhưng thực tế thuật toán đang hardcode replace. | dòng 1437–1500 |
-| 19 | **Logitech / GDTN** [tên chưa xác nhận] | Nguồn dữ liệu log tổ bay đã upload/truy cập tài liệu — TOSS hiển thị cho điều phái biết tổ bay đã vào xem hay chưa. | dòng 1504–1525 |
-| 20 | **Report Tab + Link 7-day** | Cơ chế UX cho báo cáo nặng: trả kết quả ra tab riêng, lưu link tải 7 ngày, hỗ trợ tải lại — tương tự gửi mail báo cáo. | dòng 1614–1623 |
+| 1 | Bổ sung cảnh báo "Chuyến bay thiếu tài liệu" vào module Dispatch | §II.1 |
+| 2 | Bổ sung cảnh báo "Tổ bay chưa tải tài liệu mới nhất", TOSS kéo trạng thái download từ MO Plus | §II.1 |
+| 3 | Bổ sung cảnh báo "Chuyến không thường lệ — OFP chưa có STS/HEAD", chuyến nhận diện qua mã O hoặc trường Flight Type | §II.2 |
+| 4 | Quy trình điều phái trên TOSS chia sáu giai đoạn gồm chuẩn bị đầu ca, chuẩn bị OFP, Post-Release Transition, theo dõi chuẩn bị khởi hành, theo dõi trong khi bay và sau chuyến bay cùng bàn giao ca | §II.3 |
+| 5 | Buổi hôm nay đã hoàn tất giai đoạn một và một phần giai đoạn hai, các giai đoạn còn lại sẽ tiếp tục ở buổi khảo sát kế tiếp | §II.3 |
+| 6 | Lido không có khái niệm phiên bản, TOSS gán phiên bản theo thứ tự nhận với quy ước R1, R2 hoặc 2.1, Lido chỉ có số OFP | §II.4 |
+| 7 | Cơ chế Unrelease: điều phái bấm Unrelease trên TOSS, TOSS sinh revision mới với nội dung của phiên bản cũ được chọn từ danh sách rồi bắn sang MO Plus | §II.4 |
+| 8 | MO Plus phải reset trạng thái Confirm Release của phi công khi nhận revision mới từ TOSS, phi công phải Confirm Release lại | §II.4 |
+| 9 | Sau Unrelease, điều phái phải bấm Dispatch Release thêm một lần nữa trên revision mới để bản đó được khai thác chính thức | §II.4 |
+| 10 | Phi công và điều phái không cần lên Lido trong tình huống quay lui, toàn bộ xử lý qua TOSS | §II.4 |
+| 11 | TOSS Phase 3 (Post-Release Transition) chỉ quét cảnh báo và tham chiếu, không cập nhật OFP, thao tác cập nhật phiên bản mới nằm ở Lido | §II.5 |
+| 12 | Cảnh báo chuẩn bị chuyến bay tắt khi tàu cất cánh, cảnh báo NOTAM và thời tiết en-route duy trì đến khi hạ cánh | §II.5, §II.6 |
+| 13 | Phase 4 và Phase 5 (Monitoring) lấy mốc thời gian thực tế từ ACARS trực tiếp, không qua Mission Watch | §II.6 |
+| 14 | Màn Monitoring tổng quan cập nhật real-time qua webhook hoặc cơ chế tương đương, chỉ refresh phần dữ liệu có thay đổi, không reload toàn trang | §II.6 |
+| 15 | Cảnh báo có quy tắc raise và clear theo mốc ACARS riêng cho mỗi loại, chuyến phân thành ba nhóm chưa cất cánh, đang bay và đã hạ cánh | §II.6 |
+| 16 | Phase 5 (In-Flight) không monitoring chi tiết tiêu hao dầu real-time, phân tích chi tiết thuộc báo cáo Post-Flight | §II.6 |
+| 17 | Phase 6 trên TOSS gồm báo cáo và bàn giao ca, không phát sinh chức năng nghiệp vụ riêng | §II.7 |
+| 18 | Module Flight Dispatch TOSS có ba chức năng cốt lõi: đẩy OFP, Release và Unrelease | §II.8 |
+| 19 | TOSS có chức năng Upload Weather Multi-Flight theo khoảng thời gian hiệu lực, tự gắn vào toàn bộ chuyến trong khoảng | §II.9 |
+| 20 | TOSS hỗ trợ song song hai luồng: attach file riêng cho từng chuyến và upload file chung cho nhiều chuyến | §II.9 |
+| 21 | TOSS bổ sung chức năng ẩn hiện tài liệu trên MO Plus, áp dụng cho file chung trước, file riêng xem xét ở giai đoạn sau | §II.9 |
+| 22 | TOSS bổ sung cột Payload Extra hoặc delta tính bằng Actual trừ OFP vào báo cáo Pallet Relief, cho phép lọc theo ngày, đường bay, khung giờ và loại tàu | §II.10 |
+| 23 | Báo cáo nặng trả tab kết quả riêng và lưu link tải bảy ngày | §II.10 |
+| 24 | TOSS hỗ trợ điều phái sửa Flight Level, dầu mỡ, giờ và ADC trên OFP, đảm bảo đầu ra TXT và email đúng format để MO Plus bốc tách | §II.11 |
+| 25 | TOSS hiển thị log upload và truy cập tài liệu của tổ bay từ nguồn Logitech hoặc GDTN `[tên cần xác nhận]` | §II.12 |
+| 26 | TOSS có chức năng backup khi Lido lỗi gồm download file raw template, sửa tay và upload lại, sau đó đẩy đủ ba định dạng PDF, TXT và HTML lên MO Plus | §II.13 |
 
 ---
 
-*Báo cáo buổi chiều 11/06/2026, lập 2026-06-12. Chất lượng ghi âm kém ở nhiều đoạn; các điểm gắn cờ `[cần xác nhận]` cần phỏng vấn bổ sung/đối chiếu SME trước khi đưa vào tài liệu yêu cầu chính thức. Điểm cần chốt được theo dõi tại OID-TOSS-001.*
+## IV. Vấn đề cần làm rõ (buổi chiều)
+
+1. **Danh mục mã loại chuyến (Flight Type Code):** Liệt kê đầy đủ các mã O, Z, G, H, A, P, V, S cùng những mã khác chưa được nêu, kèm ý nghĩa từng mã và phân loại mã nào yêu cầu STS/HEAD trong OFP, mã nào không.
+
+2. **Tên cơ chế claim phí khí thải:** Cơ chế là CORSIA, EU ETS hay cả hai, mục đích để TOSS xếp trường STS/HEAD vào nhóm trường có ảnh hưởng quy định và quản lý chi phí.
+
+3. **Cơ chế phối hợp TOSS với MO Plus khi reset Confirm Release:** Cần làm rõ tín hiệu, payload, timing và hành vi notification trên app MO Plus khi MO Plus reset Confirm Release của phi công.
+
+4. **Cách TOSS gán phiên bản sau Unrelease:** Hệ thống dùng quy ước sub-version dạng 2.1 hay quy ước auto-tăng dạng 4, cần chọn quy ước chính thức.
+
+5. **Viết tắt CCD trong giai đoạn chuẩn bị OFP:** Tên đầy đủ và phạm vi tài liệu CCD được điều phái nhắc tới ở phần kế trình hôm sáng.
+
+6. **Tên hệ thống Mission Watch và quan hệ với ACARS:** TOSS lấy thẳng từ ACARS hay qua Mission Watch, và Mission Watch có còn vai trò song song trong giai đoạn theo dõi không.
+
+7. **Viết tắt AIJS:** Tên đầy đủ và phạm vi của hệ thống AIJS hiện đang nhận diện file Weather Multi-Flight và đính chuyến tự động.
+
+8. **Viết tắt FME:** Có phải là Flight Management Editor hay không, hiện đang là chỗ điều phái attach file riêng cho từng chuyến.
+
+9. **Tên hệ thống hoặc tham số ICON:** Cung cấp Flight Level cho các giai đoạn Climb, Cruise và Descend.
+
+10. **Tên chính xác Logitech, GDTN, Logitech.com:** Nguồn dữ liệu log tổ bay upload tài liệu, các tên trên có thể bị nhận dạng sai và cần xác nhận tên gốc.
+
+11. **Sketch Check trong tài liệu monitoring:** Có phải Schedule Check hay không, cách hiển thị tham khảo của hệ thống này.
+
+12. **Viết tắt Brady và ADC ở §II.11:** Tên đầy đủ và các trường cụ thể trong OFP hoặc TXT cần sửa.
+
+13. **Hệ thống xử lý nguồn ba file TXT, HTML và PDF ở phía MO Plus:** Quy tắc bốc tách chi tiết để TOSS đảm bảo đầu ra đúng format khi backup Lido.
+
+> Các điểm trên cần được ghi nhận tập trung tại sổ theo dõi `SO-THEO-DOI-DIEM-CHOT-v0.1.md` (OID-TOSS-001), đề xuất mã kế tiếp SME-19 trở đi và KS-20 trở đi.
+
+---
+
+## V. Thuật ngữ đề xuất bổ sung domain-knowledge
+
+> **Chỉ đề xuất, không tự ghi vào glossary.** Chờ BA Lead confirm theo quy ước "Glossary: trình đề xuất trước khi ghi".
+
+| # | Thuật ngữ | Mô tả từ ngữ cảnh | Nguồn dòng |
+|---|---|---|---|
+| 1 | **STS/HEAD** (đã có trong glossary, đề xuất mở rộng) | Bổ sung ngữ cảnh: chỉ thị bắt buộc cho mọi chuyến không thường lệ chứ không chỉ riêng VIP. Là căn cứ claim miễn trừ phí khí thải, nếu OFP không có STS/HEAD thì hãng có thể bị tính phí cho chuyến đó. Cảnh báo "OFP chưa có STS/HEAD" cho chuyến không thường lệ là cảnh báo bắt buộc trước Captain's Release | dòng 50–115 |
+| 2 | **Flight Type Code (O, Z, G, H, A, P, V, S)** | Mã loại chuyến nội bộ VNA dùng để phân biệt chuyến thường và không thường lệ, nhận diện ở Lido và flight plan. Một số mã (ví dụ mã O) tương ứng "non-scheduled" với chuyển đổi `S` sang `N`. Danh mục đầy đủ chưa rõ | dòng 80–95 |
+| 3 | **Dispatch Release** (đã có, đề xuất mở rộng) | Bổ sung: Release và Unrelease là cặp thao tác đối xứng trên TOSS. Sau Unrelease, điều phái phải bấm Dispatch Release thêm một lần nữa trên revision mới để bản đó được khai thác chính thức | dòng 220–620 |
+| 4 | **Unrelease (TOSS)** | Thao tác chủ động của điều phái trên TOSS để hủy bỏ Dispatch Release của phiên bản hiện tại và quay về một phiên bản OFP cũ hơn. TOSS sinh revision mới (ví dụ 2.1 hoặc 4 chứa data của 2) rồi đẩy lên MO Plus. Phi công không thao tác Lido | dòng 270–620 |
+| 5 | **OFP Number so với OFP Version** | OFP Number là định danh do Lido sinh, OFP Version là chỉ số do TOSS gán theo dãy R1, R2. Lido không có khái niệm version | dòng 525–545 |
+| 6 | **Confirm Release** | Hành động phi công xác nhận đã nhận tài liệu OFP đã Dispatch Release trên MO Plus. Bị reset về không khi TOSS Unrelease và sinh revision mới. ASR đôi chỗ đọc lệch thành "Reload OSP" nhưng ngữ cảnh chính xác là "Confirm Release" trong nghiệp vụ Captain's Release | dòng 583–614 |
+| 7 | **Post-Release Transition (Phase 3)** | Giai đoạn sau Release đến trước cất cánh, TOSS quét cảnh báo liên tục về NOTAM, thời tiết, tàu bay và tải, thao tác cập nhật OFP phiên bản mới nằm ở Lido | dòng 635–745 |
+| 8 | **Mission Watch** | Hệ thống hoặc màn hình giám sát chuyến bay hiện hành ngoài TOSS, đã tích hợp ACARS để biết chuyến đang ở phase nào. TOSS tham chiếu nhưng lấy thẳng nguồn ACARS chứ không qua Mission Watch | dòng 765–815 |
+| 9 | **A-CDM** (đã có) bổ sung ngữ cảnh phase 4 | TOSS dùng A-CDM để biết chuyến đã phục vụ đến giai đoạn nào tại sân, phục vụ màn monitoring tổng quan | dòng 832–845 |
+| 10 | **ACARS Phase Trigger** | Quy tắc raise và clear cảnh báo gắn với mốc ACARS riêng cho mỗi loại cảnh báo: cảnh báo loại A tắt khi OFF, cảnh báo loại B tắt khi ON, cảnh báo loại C tắt khi IN | dòng 903–910 |
+| 11 | **Sketch Check / Schedule Check** | Hệ thống hoặc màn hình tham khảo cho cơ chế hiển thị real-time kết hợp hiệu ứng nhấp nháy và auto-refresh theo chu kỳ ngắn | dòng 1020–1030 |
+| 12 | **Weather Multi-Flight** | File thời tiết khu vực hoặc đường bay áp cho nhiều chuyến trong khoảng thời gian hiệu lực, thường khoảng ba tiếng. Upload qua TOSS và tự đính vào toàn bộ chuyến trong khoảng | dòng 1199–1265 |
+| 13 | **AIJS** | Hệ thống hoặc phần mềm trung gian nội bộ VNA hiện đang nhận diện file Weather Multi-Flight gửi qua email và tự đính vào nhiều chuyến. TOSS sẽ thay thế hoặc phối hợp | dòng 1275–1310 |
+| 14 | **FME** | Chỗ điều phái hiện đang attach file riêng cho từng chuyến (giả định Flight Management Editor, cần xác nhận) | dòng 1285–1290 |
+| 15 | **Payload Extra (Pallet Relief)** | Lượng dầu hoặc nhiên liệu tổ bay tự đề nghị lấy thêm so với OFP của điều phái, thường khoảng ba mươi phút trước khởi hành. Báo cáo Pallet Relief hiện đang liệt kê các chuyến cùng Payload Extra theo ngày và đường bay. TOSS bổ sung cột delta tính bằng Actual trừ OFP để điều phái đối chiếu nhanh | dòng 1542–1600 |
+| 16 | **ICON** | Hệ thống hoặc tham số khí tượng cung cấp Flight Level cho các giai đoạn Climb, Cruise và Descend. Điều phái lấy Flight Level từ ICON và sửa vào OFP (TXT cùng email) để MO Plus bốc tách đúng | dòng 1700–1715 |
+| 17 | **OFP Source — ba định dạng PDF, TXT, HTML** | Lido xuất OFP ở ba định dạng song song. TXT dùng để bốc tách NOTAM và giờ, HTML dùng để bốc tách group, PDF dùng hiển thị. MO Plus mix ba nguồn. TOSS backup phải đẩy đủ ba nguồn | dòng 1626–1660 |
+| 18 | **MO Plus Latest by Filename** | Cơ chế MO Plus chỉ hiển thị file cuối cùng theo tên (replace), file khác tên theo lý thuyết sẽ giữ song song nhưng thực tế thuật toán đang hardcode replace | dòng 1437–1500 |
+| 19 | **Logitech / GDTN** `[tên chưa xác nhận]` | Nguồn dữ liệu log tổ bay đã upload và truy cập tài liệu. TOSS hiển thị cho điều phái biết tổ bay đã vào xem hay chưa | dòng 1504–1525 |
+| 20 | **Report Tab + Link 7-day** | Cơ chế trải nghiệm sử dụng cho báo cáo nặng: trả kết quả ra tab riêng, lưu link tải bảy ngày và hỗ trợ tải lại, tương tự gửi mail báo cáo | dòng 1614–1623 |
+
+---
+
+*Báo cáo buổi chiều 11/06/2026, lập ngày 2026-06-16, phiên bản v0.3. Các điểm gắn cờ `[cần xác nhận]` cần phỏng vấn bổ sung hoặc đối chiếu SME trước khi đưa vào tài liệu yêu cầu chính thức. Điểm cần chốt được theo dõi tại OID-TOSS-001.*

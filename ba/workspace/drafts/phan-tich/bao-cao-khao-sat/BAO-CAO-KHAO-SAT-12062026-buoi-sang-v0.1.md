@@ -1,8 +1,8 @@
 ---
 project: "TOSS — Hệ thống Điều hành Khai thác Hãng Hàng không"
 author: "BA Lead"
-version: "0.1"
-date: "2026-06-12"
+version: "0.3"
+date: "2026-06-16"
 survey_date: "2026-06-12"
 status: "Draft"
 document_type: "Báo cáo Khảo sát (Discovery) — Phỏng vấn Dispatcher buổi sáng 12/06/2026"
@@ -10,16 +10,17 @@ document_type: "Báo cáo Khảo sát (Discovery) — Phỏng vấn Dispatcher b
 
 # Báo cáo Khảo sát TOSS — Buổi sáng 12/06/2026 (Phỏng vấn Dispatcher)
 
-> Báo cáo tổng hợp buổi sáng ngày 12/06/2026 (Phần 1 + Phần 2). Phần 1 bàn về màn chi tiết chuyến bay (Flight Detail) và cấu trúc Flight Number trên Netline. Phần 2 đi sâu thiết kế màn hình **Giám sát chuyến bay (Flight Monitoring)** của điều phái — toàn bộ Phần 2 được thảo luận trực tiếp trên **bản mẫu giao diện** `dsp_monitoring_poc.html` (Flight Monitoring — DSP) do đội phân tích trình bày.
+> Báo cáo tổng hợp buổi sáng ngày 12/06/2026 gồm hai phần nối tiếp. Phần 1 bàn về màn chi tiết chuyến bay (Flight Detail) và cấu trúc Flight Number trên Netline. Phần 2 đi sâu thiết kế màn hình Giám sát chuyến bay (Flight Monitoring) của điều phái, toàn bộ Phần 2 được thảo luận trực tiếp trên bản mẫu giao diện `dsp_monitoring_poc.html` do đội phân tích trình bày.
 
 ## I. Thông tin chung
 
-- **Thời gian:** buổi sáng ngày 12/06/2026 (hai phần nối tiếp).
-- **Đối tượng phỏng vấn:** điều phái viên (Dispatcher) của VNA — chị Lê, anh Dũng, anh Bình.
-- **Phía khảo sát:** đội phân tích nghiệp vụ TOSS (anh Dương và nhóm).
-- **Tài liệu trực quan:** bản mẫu giao diện `dsp_monitoring_poc.html` — màn Flight Monitoring (sidebar điều hướng, topbar thống kê, thanh bộ lọc, bảng giám sát nhiều cột, mã màu trạng thái) — được dùng làm cơ sở thảo luận thiết kế chi tiết.
-- **Mục đích:** (1) thống nhất hình thức hiển thị Flight Detail và cấu trúc tab phụ; (2) làm rõ cấu trúc Flight Number trên Netline; (3) thiết kế chi tiết màn Giám sát: phân quyền theo phạm vi, quy ước giao diện chung, bộ mã màu cảnh báo, cơ chế "trôi" theo thời gian và logic cảnh báo của từng cột (Tàu bay, Dispatch Release, Flight Number, ETA/IN).
-- *Lưu ý nội bộ: chất lượng ghi âm buổi sáng kém ở một số đoạn (Phần 1 và cuối Phần 2); một số thuật ngữ tiếng Anh nhận dạng sai đã được suy luận theo ngữ cảnh; nội dung chưa chắc chắn được đưa vào mục IV để đối chiếu lại.*
+| Mục | Nội dung |
+|---|---|
+| **Thời gian** | Buổi sáng ngày 12/06/2026 (hai phần nối tiếp) |
+| **Đối tượng phỏng vấn** | Điều phái viên (Dispatcher) của VNA — chị Lê, anh Dũng, anh Bình |
+| **Phía khảo sát** | Đội phân tích nghiệp vụ TOSS (anh Dương và nhóm) |
+| **Tài liệu trực quan** | Bản mẫu giao diện `dsp_monitoring_poc.html` mô phỏng màn Flight Monitoring với sidebar điều hướng, topbar thống kê, thanh bộ lọc, bảng giám sát nhiều cột và mã màu trạng thái, được dùng làm cơ sở thảo luận thiết kế chi tiết |
+| **Mục đích** | Thống nhất hình thức hiển thị Flight Detail và cấu trúc tab phụ. Làm rõ cấu trúc Flight Number trên Netline. Thiết kế chi tiết màn Giám sát bao gồm phân quyền theo phạm vi, quy ước giao diện chung, bộ mã màu cảnh báo, cơ chế trôi theo thời gian và logic cảnh báo của từng cột (Tàu bay, Dispatch Release, Flight Number, ETA/IN) |
 
 ---
 
@@ -27,55 +28,53 @@ document_type: "Báo cáo Khảo sát (Discovery) — Phỏng vấn Dispatcher b
 
 ## II. Nội dung trao đổi (chủ đề 1–3)
 
-### 1. Hình thức hiển thị Flight Detail: pop-up từ trên xuống vs tab mới
+### 1. Hình thức hiển thị Flight Detail: pop-up từ trên xuống hay tab mới
 
-#### Yêu cầu
-- Điều phái cần cơ chế hiển thị chi tiết chuyến bay (Flight Detail) truy cập nhanh, hạn chế cuộn, cho phép mở nhiều chuyến để tham chiếu. (P1 d.1–11)
+**Yêu cầu**
 
-#### Thảo luận – Đề xuất
-- Phương án pop-up dạng "từ trên xuống dưới" gom thông tin theo nhóm thu/mở: hạn chế là độ dài các phần khác nhau nên phải kéo chuột, chậm hơn click. (P1 d.2–12, 24–27)
-- Nhu cầu so sánh hai chuyến cùng lúc: điều phái xác nhận không phức tạp đến mức phải so sánh đồng thời; khi cần thì mở hai cửa sổ riêng. (P1 d.13–23)
-- Phương án thay thế: từ màn Giám sát, click một chuyến → nhảy sang **một tab mới** chứa Flight Detail của chuyến đó; cho phép mở nhiều tab. (P1 d.91–105)
-- Khi click vào một cảnh báo bên ngoài → mở Flight Detail và **active đúng tab phụ** chứa thông tin tương ứng (click cảnh báo OFP Release → tab OFP Release; click cảnh báo NOTAM/thời tiết → tab NOTAM/thời tiết). (P1 d.191–223)
+Điều phái cần một cơ chế hiển thị chi tiết chuyến bay (Flight Detail) cho phép truy cập nhanh, hạn chế phải cuộn dài và có thể mở đồng thời nhiều chuyến để tham chiếu chéo trong quá trình theo dõi.
 
-#### Kết luận
-- Click chuyến từ màn Giám sát → mở **một tab mới** Flight Detail (không dùng pop-up duy nhất); cho phép mở **nhiều tab** đồng thời.
-- Click vào một cảnh báo → mở Flight Detail và **active đúng tab phụ** tương ứng với cảnh báo đó.
+**Thảo luận và Đề xuất**
 
-### 2. Cấu trúc các tab phụ và lịch sử (history) trong Flight Detail
+Phương án đầu tiên được đưa ra là pop-up dạng từ trên xuống dưới, gom thông tin theo các nhóm có thể thu gọn hoặc mở rộng. Nhược điểm của phương án này là độ dài các nhóm không đều nhau khiến người dùng phải kéo chuột nhiều, thao tác chậm hơn so với click. Khi được hỏi về nhu cầu so sánh hai chuyến cùng lúc, điều phái xác nhận rằng nghiệp vụ không phức tạp đến mức phải so sánh đồng thời trên một màn hình, khi cần thì có thể mở hai cửa sổ riêng.
 
-#### Yêu cầu
-- Flight Detail phải hiển thị **toàn bộ vết thông tin** từ đầu đến cuối chuyến, không chỉ trạng thái cuối — phục vụ truy vết. (P1 d.85–87)
+Phương án thay thế được đề xuất là từ màn Giám sát, click vào một chuyến sẽ mở sang một tab mới chứa Flight Detail của chuyến đó và cho phép mở nhiều tab cùng lúc. Bên cạnh đó, khi điều phái click vào một cảnh báo cụ thể, hệ thống sẽ mở Flight Detail và đồng thời active đúng tab phụ chứa thông tin tương ứng. Ví dụ, click cảnh báo OFP Release sẽ dẫn tới tab OFP Release, click cảnh báo NOTAM hoặc thời tiết sẽ dẫn tới tab NOTAM hoặc thời tiết tương ứng.
 
-#### Thảo luận – Đề xuất
-- Hình dung sơ bộ của điều phái về các tab phụ:
-  - **Tab Cảnh báo (Warnings):** từ đầu đến cuối chuyến đã phát sinh cảnh báo gì, đã xử lý hay chưa, thời gian phát sinh và thời gian "kích" cảnh báo (raise time). (P1 d.43–51)
-  - **Tab Flight Release (gồm Dispatch Release và Pilot Release):** bên ngoài chỉ cảnh báo trạng thái tổng quát và việc Pilot Release đã đến bản cuối do điều phái phát hành hay chưa; bên trong hiển thị toàn bộ phiên bản OFP đã phát hành kèm thông tin cơ bản (Block Fuel kế hoạch, Block Fuel trên OFP, lượng phi công confirm, có lấy thêm tải/dầu (extra) hay không và lý do). (P1 d.52–74)
-  - **Tab Tàu bay (Aircraft):** hiện trạng tàu, MEL/CDL, lưu ý về tàu quay. (P1 d.75–79) *(cụm "FTP Mail CDL", "vơ phong tàu quay" cần đối chiếu lại — mục IV)*
-  - **Tab Tổ bay (Crew):** luồng thay đổi tổ bay — gán ban đầu cho ai, đổi bởi ai/lúc nào, cuối cùng là ai — lưu đầy đủ "story", không chỉ trạng thái cuối. (P1 d.80–87)
-- Nguyên tắc: mỗi tab phụ là một nhóm thông tin nghiệp vụ độc lập; click cảnh báo dẫn thẳng tới tab tương ứng. (P1 d.196–223)
+**Kết luận**
 
-#### Kết luận
-- Flight Detail gồm nhiều tab phụ, tối thiểu: **Cảnh báo**, **Flight Release (Dispatch Release + Pilot Release)**, **Tàu bay (kèm MEL/CDL)**, **Tổ bay** — chi tiết hóa ở buổi sau.
-- Mỗi tab hiển thị **đầy đủ lịch sử thay đổi** từ đầu đến cuối chuyến; tab cảnh báo hiển thị "raise time" và trạng thái xử lý.
+Khi click chuyến từ màn Giám sát, hệ thống mở một tab mới chứa Flight Detail thay vì pop-up duy nhất, đồng thời cho phép mở nhiều tab song song. Khi click vào một cảnh báo, hệ thống mở Flight Detail và active sẵn đúng tab phụ tương ứng với cảnh báo đó.
 
-### 3. Cấu trúc dữ liệu Flight Number trên Netline (3 cột) và lịch sử đổi giờ EPD
+### 2. Cấu trúc các tab phụ và lịch sử trong Flight Detail
 
-#### Yêu cầu
-- Cần thống nhất cách tách dữ liệu Flight Number trên Netline khi tích hợp về TOSS, phục vụ hiển thị và phân quyền/lọc theo hãng. (P1 d.139–149)
+**Yêu cầu**
 
-#### Thảo luận – Đề xuất
-- Trên Netline, Flight Number được tách **3 cột riêng biệt** (P1 d.150–163):
-  - **Cột 1 — Carrier:** mã hãng (vd VN…) hoặc mã khác. (P1 d.152–153)
-  - **Cột 2 — Fly Number:** chỉ phần số của số hiệu chuyến (vd 247). (P1 d.154–158)
-  - **Cột 3 — FN Surface (suffix):** ký tự hậu tố `Z` hoặc `D`, cho biết chuyến có chuyển/delay sang ngày sau hay không. (P1 d.159–163)
-- Khi tích hợp Netline, TOSS lấy dữ liệu đã tách 3 cột; phân biệt được 393 (cột 2) khác 393D (cột 2 + cột 3). (P1 d.168–173)
-- **Leg history của Netline:** ghi nhận từng lần thay đổi giờ EPD của chuyến — thời điểm thay đổi, chuyển từ ngày nào sang ngày khác, mức delay bao nhiêu giờ; được khẳng định "đầy đủ", TOSS đối chiếu/đồng bộ từ Netline, không tự xây song song. (P1 d.174–183)
+Flight Detail phải hiển thị toàn bộ vết thông tin từ đầu đến cuối chuyến chứ không chỉ trạng thái cuối, nhằm phục vụ nhu cầu truy vết và đối chiếu khi xảy ra sự cố.
 
-#### Kết luận
-- TOSS lấy Flight Number **3 cột tách biệt từ Netline** (carrier, fly number, FN suffix D/Z) và hiển thị gộp trên màn Giám sát.
-- Lịch sử thay đổi giờ EPD (leg history) lấy từ Netline.
-- Ý nghĩa chính xác của ký tự `Z` so với `D` cần làm rõ (mục IV).
+**Thảo luận và Đề xuất**
+
+Điều phái hình dung sơ bộ cấu trúc Flight Detail gồm bốn nhóm tab phụ. Tab Cảnh báo (Warnings) ghi nhận toàn bộ cảnh báo phát sinh từ đầu đến cuối chuyến, trạng thái đã xử lý hay chưa, thời gian phát sinh và thời gian kích cảnh báo (raise time). Tab Flight Release bao gồm cả Dispatch Release và Pilot Release, bên ngoài chỉ thể hiện cảnh báo trạng thái tổng quát và việc Pilot Release đã đến bản cuối do điều phái phát hành hay chưa, còn bên trong hiển thị toàn bộ phiên bản OFP đã phát hành kèm thông tin cơ bản như Block Fuel kế hoạch, Block Fuel trên OFP, lượng phi công confirm, có lấy thêm tải hoặc dầu (extra) hay không và lý do kèm theo. Tab Tàu bay (Aircraft) phản ánh hiện trạng tàu cùng với MEL/CDL và các lưu ý về tàu quay đầu. Tab Tổ bay (Crew) ghi đầy đủ luồng thay đổi tổ bay, từ ai được gán ban đầu, ai đổi và đổi lúc nào, cho đến cuối cùng tổ bay là ai, đảm bảo lưu trọn câu chuyện thay đổi chứ không chỉ trạng thái cuối.
+
+Nguyên tắc xuyên suốt là mỗi tab phụ đại diện cho một nhóm thông tin nghiệp vụ độc lập, và mọi cảnh báo bên ngoài đều có đích đến chính xác là tab tương ứng khi điều phái click vào.
+
+**Kết luận**
+
+Flight Detail được tổ chức thành nhiều tab phụ với cấu trúc tối thiểu gồm Cảnh báo, Flight Release (bao gồm Dispatch Release và Pilot Release), Tàu bay kèm MEL/CDL, và Tổ bay. Mỗi tab hiển thị đầy đủ lịch sử thay đổi từ đầu đến cuối chuyến, riêng tab Cảnh báo hiển thị thêm raise time và trạng thái xử lý. Chi tiết hóa từng tab sẽ được tiếp tục ở các buổi khảo sát sau.
+
+### 3. Cấu trúc dữ liệu Flight Number trên Netline và lịch sử đổi giờ EPD
+
+**Yêu cầu**
+
+Hai bên cần thống nhất cách tách dữ liệu Flight Number trên Netline khi tích hợp về TOSS, phục vụ cả hiển thị trên màn Giám sát lẫn phân quyền và lọc theo hãng.
+
+**Thảo luận và Đề xuất**
+
+Trên Netline, Flight Number được tách thành ba cột riêng biệt. Cột thứ nhất là Carrier — mã hãng (ví dụ VN…) hoặc mã khác. Cột thứ hai là Fly Number — chỉ phần số của số hiệu chuyến (ví dụ 247). Cột thứ ba là FN Surface, hay còn gọi là suffix, mang ký tự hậu tố `Z` hoặc `D` cho biết chuyến có chuyển hoặc delay sang ngày sau hay không. Khi tích hợp Netline, TOSS sẽ lấy dữ liệu theo đúng cấu trúc ba cột này, từ đó phân biệt được 393 (cột 2) khác với 393D (cột 2 kết hợp cột 3).
+
+Về lịch sử đổi giờ, Netline đã duy trì leg history ghi nhận từng lần thay đổi giờ EPD của chuyến, bao gồm thời điểm thay đổi, chuyển từ ngày nào sang ngày khác và mức delay bao nhiêu giờ. Điều phái khẳng định dữ liệu này đầy đủ nên TOSS sẽ đối chiếu và đồng bộ trực tiếp từ Netline thay vì tự xây dựng song song một module lịch sử khác.
+
+**Kết luận**
+
+TOSS lấy Flight Number ba cột tách biệt từ Netline gồm carrier, fly number và FN suffix D/Z, sau đó hiển thị gộp trên màn Giám sát. Lịch sử thay đổi giờ EPD (leg history) cũng được lấy trực tiếp từ Netline. Ý nghĩa chính xác của ký tự `Z` so với `D` còn chưa rõ và cần được làm rõ ở buổi sau.
 
 ---
 
@@ -83,187 +82,163 @@ document_type: "Báo cáo Khảo sát (Discovery) — Phỏng vấn Dispatcher b
 
 ### 4. Bản mẫu giao diện Giám sát và quy ước thể hiện cảnh báo trong ô bảng
 
-#### Yêu cầu
-- Màn Giám sát là một bảng tổng quan nhiều chuyến, cảnh báo các vấn đề cần lưu ý trước/trong/sau chuyến (NOTAM, thời tiết, đổi giờ, lệch tải, MEL/CDL, Dispatch Release…), cho phép xem chi tiết của từng lưu ý để biết action. (P2 d.1–13, 53–71)
-- Toàn bộ cảnh báo theo bộ quy trình chuẩn của điều phái; bản quy trình chỉ để tham khảo, vận hành vẫn linh hoạt giữa TOSS và Lido. (P2 d.20–32)
+**Yêu cầu**
 
-#### Thảo luận – Đề xuất
-- Đội phân tích trình bày một **bản mẫu giao diện** ("bản gian tạm") để thống nhất chi tiết: mỗi dòng là một chuyến, các cột thể hiện tàu, tuyến, giờ, trạng thái và các cảnh báo. (P2 d.288–296)
-- **Cách thể hiện cảnh báo trong ô:** thống nhất **tô màu cả ô (cell-level)**, không "bo box", không chỉ đổi màu chữ — tô full nền ô. Điều phái quen nhìn nguyên ô được tô màu. (P2 d.482–498)
-- Trên bản mẫu có hai kiểu thể hiện đang đặt cạnh nhau để chọn: cột "Missing Document" bó thành box, và các cột khác chỉ đổi màu chữ — điều phái không thích kiểu phức tạp, ưu tiên ký hiệu **đơn giản (tích / tam giác)**, càng đơn giản càng tốt; cột Missing Document giữ kiểu hiện có. (P2 d.508–534)
-- Bản mẫu đang vẽ nhiều màu để minh họa; thực tế đa phần các dòng sẽ ở trạng thái phông nền bình thường (không màu), cảnh báo chỉ chiếm số ít. (P2 d.1175–1191)
+Màn Giám sát phải đóng vai trò một bảng tổng quan nhiều chuyến, cảnh báo các vấn đề cần lưu ý trước, trong và sau chuyến như NOTAM, thời tiết, đổi giờ, lệch tải, MEL/CDL, Dispatch Release và nhiều yếu tố khác. Người dùng cần xem được chi tiết của từng lưu ý để biết hành động cần thực hiện. Toàn bộ cảnh báo được xây dựng theo bộ quy trình chuẩn của điều phái, trong đó bản quy trình chỉ mang tính tham khảo còn vận hành thực tế vẫn linh hoạt phối hợp giữa TOSS và Lido.
 
-#### Kết luận
-- Màn Giám sát trình bày dạng bảng, mỗi dòng một chuyến; **tô màu cả ô** để thể hiện cảnh báo (không bo box, không chỉ đổi màu chữ).
-- Ưu tiên ký hiệu trạng thái đơn giản; cột Missing Document giữ cách thể hiện danh sách tài liệu thiếu.
+**Thảo luận và Đề xuất**
 
-### 5. Phân quyền view theo phạm vi (role / carrier) và lưu cấu hình theo profile
+Đội phân tích trình bày một bản mẫu giao diện làm cơ sở thống nhất chi tiết thiết kế, trong đó mỗi dòng tương ứng với một chuyến và các cột thể hiện tàu, tuyến, giờ, trạng thái cùng các cảnh báo. Về cách thể hiện cảnh báo trong ô, các bên thống nhất tô màu cả ô (cell-level) thay vì bo box hay chỉ đổi màu chữ, lý do là điều phái đã quen với thói quen nhìn nguyên ô được tô màu khi giám sát. Trên bản mẫu hiện đang đặt cạnh nhau hai kiểu thể hiện để lựa chọn, trong đó cột Missing Document được bó thành box còn các cột khác chỉ đổi màu chữ. Điều phái không thích kiểu phức tạp và ưu tiên ký hiệu trạng thái đơn giản như dấu tích hoặc tam giác, với nguyên tắc càng đơn giản càng tốt, riêng cột Missing Document được giữ nguyên kiểu danh sách tài liệu thiếu như hiện có. Cuối cùng, dù bản mẫu đang vẽ nhiều màu để minh họa, thực tế đa phần các dòng sẽ ở trạng thái phông nền bình thường (không màu) và cảnh báo chỉ chiếm số ít.
 
-#### Yêu cầu
-- Mỗi điều phái có **phạm vi chức nhiệm** khác nhau (vd điều phái khu vực châu Âu/Mỹ, Hàn, khu vực khác); màn Giám sát cần mặc định hiển thị đúng phạm vi từng người nhưng vẫn xem rộng hơn khi cần. (P2 d.72–96)
+**Kết luận**
 
-#### Thảo luận – Đề xuất
-- **Chức năng giống nhau** giữa các user; chỉ **phạm vi dữ liệu (view)** khác nhau theo role. (P2 d.88–93, 109–111)
-- Phân quyền hai lớp: **phân quyền chức năng** (ai dùng chức năng gì) và **phân quyền dữ liệu** (scope theo carrier/khu vực/đường bay). (P2 d.156–179)
-- Cấp quản trị: super admin xem toàn bộ; có **sub-admin** phân chia view theo nhiệm vụ vì điều phái có thể **rotate vị trí trong ca**. User có thể được định nghĩa nhiều role và **chọn xem role của mình hoặc role của người khác** (switch view). (P2 d.133–154)
-- **Filter mặc định gắn theo phạm vi** của role; user vẫn search/chọn phạm vi khác khi cần. (P2 d.181–197)
-- Khi user mở tab Giám sát, hệ thống **load cấu hình đã lưu của user đó** (cột hiển thị, filter…); lưu vào **profile cá nhân (mức user)**, không theo máy — đăng nhập máy nào cũng giữ nguyên. Tối thiểu chỉ cần lưu **trạng thái gần nhất** (last-used), không cần lưu data. (P2 d.198–229)
-- Thanh **bộ lọc thu/mở (expand/collapse)** để tối ưu diện tích; mặc định mở giữ cấu hình mặc định. (P2 d.240–268)
+Màn Giám sát được trình bày dưới dạng bảng với mỗi dòng tương ứng một chuyến, sử dụng cách tô màu cả ô để thể hiện cảnh báo thay vì bo box hay chỉ đổi màu chữ. Ký hiệu trạng thái được ưu tiên thiết kế đơn giản, riêng cột Missing Document tiếp tục giữ cách thể hiện danh sách tài liệu thiếu.
 
-#### Kết luận
-- Phân quyền **2 lớp**: chức năng + dữ liệu (theo carrier/khu vực/role).
-- User có thể có **nhiều role** và **switch view**; super admin xem toàn bộ; có sub-admin phân chia theo nhiệm vụ.
-- Filter + cấu hình hiển thị + "trạng thái gần nhất" lưu ở **profile cá nhân** (không theo máy).
-- Bộ lọc có cơ chế **thu/mở**.
+### 5. Phân quyền view theo phạm vi và lưu cấu hình theo profile
 
-### 6. Quy ước giao diện chung (ngôn ngữ, giờ, format, theme)
+**Yêu cầu**
 
-#### Yêu cầu
-- Chốt quy ước giao diện chung từ đầu để đội phát triển nắm, tránh sửa về sau. (P2 d.285–287)
+Mỗi điều phái phụ trách một phạm vi chức nhiệm khác nhau, có người phụ trách khu vực châu Âu, Mỹ, Hàn hay các khu vực khác. Vì vậy màn Giám sát cần mặc định hiển thị đúng phạm vi của từng người nhưng vẫn cho phép mở rộng để xem các phạm vi khác khi cần.
 
-#### Thảo luận – Đề xuất (chị Lê chốt)
-- **Ngôn ngữ giao diện: 100% tiếng Anh**, không dùng tiếng Việt. (P2 d.270–272)
-- **Mọi giờ là UTC** — kể cả khi user submit từ thiết bị theo giờ Việt Nam, history ghi nhận trong hệ thống đều là UTC. (Bản demo còn vướng phần giờ, cần sửa.) (P2 d.273–281)
-- **Format giờ luôn 24h**, không dùng 12h (AM/PM). (P2 d.282–283)
-- **Theme:** ưu tiên tối ưu **dark mode** giai đoạn đầu (điều phái làm ca đêm, nhìn nền trắng lóa/đau mắt); trên nền tối các màu cảnh báo nổi hơn; light mode tinh chỉnh sau. (P2 d.538–568)
+**Thảo luận và Đề xuất**
 
-#### Kết luận
-- Giao diện **tiếng Anh** + **giờ UTC** + **format 24h** + **dark mode ưu tiên** — áp dụng toàn bộ TOSS.
+Các bên thống nhất chức năng giữa các user là giống nhau, chỉ khác nhau ở phạm vi dữ liệu (view) theo role. Trên cơ sở đó, hệ thống phân quyền hai lớp gồm phân quyền chức năng (ai dùng chức năng gì) và phân quyền dữ liệu (scope theo carrier, khu vực hoặc đường bay). Ở cấp quản trị, super admin xem được toàn bộ dữ liệu, đồng thời có thêm vai trò sub-admin để phân chia view theo nhiệm vụ vì điều phái có thể rotate vị trí trong ca trực. Mỗi user có thể được định nghĩa nhiều role và chủ động chọn xem theo role của mình hoặc role của người khác (switch view).
 
-### 7. Bộ mã màu cảnh báo (4 trạng thái) áp dụng thống nhất mọi cột
+Về cấu hình, filter mặc định gắn theo phạm vi của role được gán, người dùng vẫn có thể search hoặc chọn phạm vi khác khi cần. Khi user mở tab Giám sát, hệ thống sẽ load cấu hình đã lưu của user đó bao gồm cột hiển thị và filter. Cấu hình này được lưu vào profile cá nhân ở mức user thay vì theo máy, đảm bảo khi đăng nhập ở máy nào người dùng cũng giữ nguyên trải nghiệm. Ở mức tối thiểu, hệ thống chỉ cần lưu trạng thái gần nhất (last-used) chứ không cần lưu lại data. Ngoài ra, thanh bộ lọc được thiết kế có cơ chế thu mở (expand/collapse) để tối ưu diện tích hiển thị, với cấu hình mặc định ở trạng thái mở.
 
-#### Yêu cầu
-- Cần một **bộ mã màu thống nhất** dùng xuyên suốt mọi cột; tránh cùng một màu mang nghĩa khác nhau ở các cột khác nhau. (P2 d.452–469)
+**Kết luận**
 
-#### Thảo luận – Đề xuất
-- Bộ mã màu **4 trạng thái** (đi từ nặng đến nhẹ) (P2 d.447–459, 1092–1149):
-  - **Đỏ (Red):** phát sinh cảnh báo **cần action ngay**, chưa xử lý — bắt buộc xử lý để mất đỏ. (P2 d.456, 583–586, 1102–1111)
-  - **Vàng (Yellow):** thông tin **cần lưu ý**, có thể chưa cần xử lý ngay. (P2 d.457–458, 1112–1116)
-  - **Xanh lá (Green):** đã có cảnh báo (đỏ) và **đã được xử lý xong**. Quy tắc: **xanh chỉ xuất hiện sau khi đã từng có đỏ**; không có "xanh từ đầu". (P2 d.459, 1118–1125, 1482–1491)
-  - **Không màu (phông nền bình thường):** trạng thái mặc định, không phát sinh cảnh báo; đa phần các dòng ở trạng thái này. (P2 d.454–455, 1093–1101)
-- Tối đa khoảng 4–5 màu để giữ dễ đọc. (P2 d.471–474)
-- Lý do giữ "xanh đã xử lý" thay vì cho về không màu: để điều phái biết mình đã xử lý, và phục vụ **thống kê khối lượng công việc** theo ngày/cao điểm (đếm số "xanh" để đánh giá cường độ, làm cơ sở chia ca/tăng giảm nhân lực). (P2 d.1163–1248)
-- **Đổi màu tự động:** điều phái **không tự tick** để chuyển trạng thái; màu đổi tự động khi điều phái xử lý ở hệ thống nguồn (làm lại OFP trên Lido, bấm Dispatch Release…) rồi TOSS tích hợp tín hiệu để đổi màu. Màn Giám sát **chỉ giám sát + cảnh báo**, không thao tác trực tiếp trên bảng để thay đổi data; mọi hành động ở hệ thống chuyên dụng. (P2 d.607–629)
+Hệ thống áp dụng phân quyền hai lớp gồm phân quyền chức năng và phân quyền dữ liệu theo carrier, khu vực hoặc role. Mỗi user có thể được gán nhiều role và switch view giữa các role, super admin xem được toàn bộ và có thêm sub-admin để phân chia theo nhiệm vụ. Filter, cấu hình hiển thị và trạng thái gần nhất được lưu ở profile cá nhân thay vì theo máy. Bộ lọc trên màn Giám sát có cơ chế thu mở để tối ưu không gian.
 
-#### Kết luận
-- Bộ mã màu thống nhất **4 trạng thái: Đỏ / Vàng / Xanh lá / Không màu**, áp dụng cho mọi cột.
-- **Xanh = đã có đỏ rồi xử lý xong**; không có "xanh từ đầu". Không màu = bình thường.
-- Đổi màu **tự động** theo trạng thái dữ liệu nguồn; điều phái **không tick thủ công**.
-- Màn Giám sát chỉ "view + cảnh báo", không thao tác trực tiếp (ngoại lệ: cột Dispatch Release — xem §10).
-- Giữ "xanh" để **thống kê khối lượng công việc** theo ngày/cao điểm.
+### 6. Quy ước giao diện chung về ngôn ngữ, giờ, format và theme
 
-### 8. Cơ chế "trôi" theo thời gian, time window và chuyến đường dài chưa đáp
+**Yêu cầu**
 
-#### Yêu cầu
-- Lịch bay một ngày của VNA có thể ~500–700 chuyến; không thể hiển thị hết — cần một **time window** quanh thời điểm hiện tại. (P2 d.881–916)
+Các bên cần chốt quy ước giao diện chung ngay từ đầu để đội phát triển nắm bắt và áp dụng đồng nhất, tránh phải sửa đổi về sau.
 
-#### Thảo luận – Đề xuất
-- Bảng Giám sát **trôi theo giờ thực**: chuyến mới (ETD sắp tới) được đẩy vào, chuyến cũ trôi xuống/ra. (P2 d.630–631, 841–875)
-- **Time window cấu hình được**, không hardcode, gồm: **lùi lại (look-back)** vd 15/30 phút/1 giờ và **tiến tới (look-ahead)** vd 30 phút/1 giờ. Do mốc upload OFP quốc tế là **240 phút (4 giờ)** trước STD, look-ahead cần đủ rộng. (P2 d.853–863, 1019–1090) *(Đối chiếu domain-knowledge: mốc 240 phút nhất quán với mốc upload OFP đã ghi nhận các buổi trước.)*
-- **Admin cấu hình mặc định** theo từng vị trí/role; user vẫn **scroll** xem ngoài window và tự đặt lại cấu hình cá nhân (lưu profile — §5). (P2 d.1064–1090)
-- Số dòng thường trực ~25 dòng để nhìn nhanh, không phải scroll; vẫn kéo được nếu cần. (P2 d.931–953)
-- **Chuyến đường dài chưa đáp** (vd đi Mỹ ~13–16 tiếng): dù ETD đã trôi qua nhưng chưa kết thúc thì điều phái vẫn phải monitor đến khi vào gate; cơ chế giữ lại trong bảng (so với để trôi/scroll/filter phụ) chưa chốt cụ thể. Việc giám sát giai đoạn đang bay đến lúc vào gate được nhắc tới gắn với **Flight Watch** (màn/giai đoạn riêng). (P2 d.651–807)
-- **Cảnh báo "vào gate chậm":** chuyến vào gate chậm so với **ETA kết điểm** phải được cảnh báo (anh Phúc nêu buổi 11/06: điều phái monitor đến chặng hạ cánh vào gate). (P2 d.664–669)
-- Sắp xếp danh sách mặc định theo **ETD**. (P2 d.954–958)
+**Thảo luận và Đề xuất**
 
-#### Kết luận
-- Giám sát dùng **time window cấu hình được** (look-back + look-ahead); admin set mặc định theo role, user override + lưu profile; bảng **trôi theo giờ thực**.
-- **Chuyến đường dài chưa đáp** phải được monitor đến khi vào gate; cơ chế giữ lại chưa chốt (mục IV).
-- TOSS cảnh báo "**vào gate chậm**" so với ETA kết điểm (gắn phạm vi Flight Watch).
-- Sắp xếp mặc định theo **ETD**.
+Chị Lê chốt bốn quy ước cơ bản áp dụng toàn bộ TOSS. Thứ nhất, ngôn ngữ giao diện sử dụng 100% tiếng Anh, không dùng tiếng Việt. Thứ hai, mọi giờ trong hệ thống đều là UTC, kể cả khi người dùng submit từ thiết bị đang theo giờ Việt Nam thì history vẫn được ghi nhận theo UTC, riêng bản demo hiện còn vướng phần giờ cần được sửa lại. Thứ ba, format giờ luôn theo chuẩn 24 giờ, không dùng định dạng 12 giờ kèm AM/PM. Thứ tư, về theme hiển thị, giai đoạn đầu ưu tiên tối ưu dark mode vì điều phái thường làm ca đêm và nhìn nền trắng gây lóa, mỏi mắt, đồng thời trên nền tối các màu cảnh báo cũng nổi bật hơn, còn light mode sẽ được tinh chỉnh ở giai đoạn sau.
 
-### 9. Cột Aircraft Registration (REG): logic màu, hover, lịch sử đổi tàu, hiển thị
+**Kết luận**
 
-#### Yêu cầu
-- Cột **Aircraft Registration (REG — số đăng ký tàu bay)** phải cảnh báo khi tàu thực tế trên Netline bị **đổi** so với phiên bản OFP đã phát hành, và cho xem **lịch sử đổi tàu**. (P2 d.337–343, 1448–1454)
+Toàn bộ giao diện TOSS thống nhất sử dụng tiếng Anh, giờ UTC, format 24 giờ và ưu tiên dark mode ở giai đoạn đầu.
 
-#### Thảo luận – Đề xuất
-- **Logic màu cột REG** (P2 d.1444–1508, 1641–1659):
-  - **Đỏ:** tàu Netline **khác** tàu trên OFP **đã được Dispatch Release** → phải làm lại OFP cho tàu mới. (P2 d.1447–1473)
-  - **Vàng:** đã có OFP mới khớp tàu Netline nhưng **chưa Dispatch Release** → cần bước Release. (P2 d.1503–1521)
-  - **Xanh:** đã có OFP mới khớp tàu **và đã Dispatch Release**. (P2 d.1480–1481, 1533–1535)
-  - **Không màu:** chưa có OFP, hoặc OFP chưa release (chuyến giai đoạn sớm). (P2 d.1469–1478)
-- Hai điều kiện để xanh: (1) tàu Netline = tàu trên OFP, (2) đã Dispatch Release. Thỏa 1 điều kiện → vàng; không thỏa nào → đỏ ("2 chốt kiểm soát"). (P2 d.1652–1659)
-- Cột REG và cột Dispatch Release **liên kết với nhau**: bấm Release ở cột Dispatch Release sẽ **clear luôn vàng** ở cột REG (nếu chỉ thiếu điều kiện đã-release). (P2 d.1660–1681)
-- **Trường hợp Unrelease:** Unrelease quay về OFP phiên bản trước (sinh revision mới mang dữ liệu cũ); nếu phiên bản đó có tàu khác tàu Netline hiện tại → cột REG **đỏ trở lại**, phải release lại bản OFP mới. (P2 d.1536–1559)
-- **Hover (rê chuột vào ô REG):** hiển thị **REG cũ → REG mới** (mũi tên) và **giờ đổi trên Netline** dạng `HH:MM` (giờ UTC). (P2 d.1688–1776)
-- **Click vào REG → mở Flight Detail (tab Aircraft):** hiển thị **lịch sử đổi tàu** đầy đủ (đổi 3 lần thì xem đủ 3 lần). (P2 d.1777–1794)
-- **Hiển thị REG:** với nhóm **VNA/VNB** lược bỏ tiền tố "VN" để tiết kiệm (VNA893 → A893; VNB… → B…); nhóm khác như **XU** giữ nguyên đầy đủ vì không thống nhất được một mẫu cắt. (P2 d.1715–1943)
+### 7. Bộ mã màu cảnh báo bốn trạng thái áp dụng thống nhất mọi cột
 
-#### Kết luận
-- Cột REG cảnh báo theo logic **tàu Netline × tàu trên OFP đã Release**: Đỏ = lệch tàu + đã release; Vàng = khớp tàu nhưng chưa release; Xanh = khớp tàu + đã release; Không màu = chưa có OFP/chưa release.
-- Hover = REG cũ → REG mới + giờ đổi (Netline, UTC); click → tab Aircraft có lịch sử đổi tàu.
-- Hiển thị REG: nhóm VNA/VNB lược "VN" (→ A…/B…); nhóm XU và khác giữ nguyên.
+**Yêu cầu**
 
-### 10. Cột Dispatch Release: cột riêng và action bấm trực tiếp ("2 chốt kiểm soát")
+Hệ thống cần một bộ mã màu thống nhất dùng xuyên suốt mọi cột trên màn Giám sát, tránh tình trạng cùng một màu lại mang nghĩa khác nhau ở các cột khác nhau gây nhầm lẫn cho điều phái.
 
-#### Yêu cầu
-- Cần **cột riêng "Dispatch Release"** trên màn Giám sát để nhìn nhanh chuyến đã/chưa release và **bấm Dispatch Release trực tiếp** ngay trên màn (action shortcut). (P2 d.1269–1278, 1529–1535)
+**Thảo luận và Đề xuất**
 
-#### Thảo luận – Đề xuất
-- Bổ sung một cột Dispatch Release; bấm Release ngay tại cột → trạng thái chuyển sang xanh (kết thúc việc của điều phái). (P2 d.1530–1535)
-- Cột Dispatch Release liên kết cột REG: bấm Release ở đây **clear đồng bộ** vàng các cột liên quan; Dispatch Release là "chốt cuối" để các cột cùng về xanh. (P2 d.1660–1681)
-- Không tạo thêm màn hình thứ hai để xem chi tiết OFP của toàn bộ chuyến; nếu cần chi tiết OFP của một chuyến thì vào **menu báo cáo riêng**; màn Giám sát giữ vai trò overview, chỉ liệt kê trường cần thiết + cảnh báo. (P2 d.1279–1316)
+Các bên thống nhất bộ mã màu gồm bốn trạng thái sắp xếp từ nặng đến nhẹ. Màu đỏ thể hiện cảnh báo cần action ngay và chưa được xử lý, bắt buộc phải xử lý để mất đỏ. Màu vàng thể hiện thông tin cần lưu ý, có thể chưa cần xử lý ngay nhưng phải theo dõi. Màu xanh lá xuất hiện khi một cảnh báo đỏ đã được xử lý xong, với quy tắc nghiêm ngặt là xanh chỉ xuất hiện sau khi đã từng có đỏ, không có trường hợp xanh từ đầu. Trạng thái còn lại là không màu (phông nền bình thường) áp dụng cho các chuyến không phát sinh cảnh báo, đây là trạng thái mặc định và chiếm đa phần các dòng trên bảng. Tổng số màu được giới hạn ở mức 4 đến 5 màu để giữ tính dễ đọc.
 
-#### Kết luận
-- Thêm **cột Dispatch Release** trên màn Giám sát: 2 trạng thái (chưa/đã release) và cho **bấm Dispatch Release ngay tại cột**.
-- Bấm Release ở đây **clear đồng bộ** vàng các cột liên quan (REG…).
-- Không tạo màn thứ hai cho chi tiết OFP toàn bộ; chi tiết một chuyến vào Flight Detail / menu báo cáo riêng.
-- *(Đây là ngoại lệ duy nhất của nguyên tắc "Giám sát chỉ view + cảnh báo, không action" ở §7.)*
+Một câu hỏi đặt ra là tại sao giữ "xanh đã xử lý" thay vì cho về không màu. Lý do là để điều phái biết rõ mình đã xử lý cảnh báo, đồng thời phục vụ thống kê khối lượng công việc theo ngày hoặc theo giờ cao điểm. Số lượng ô xanh trong một khoảng thời gian là cơ sở để đánh giá cường độ làm việc, từ đó phân chia ca trực cũng như tăng giảm nhân lực phù hợp.
+
+Về cơ chế đổi màu, điều phái không tự tick để chuyển trạng thái mà màu sẽ đổi tự động khi điều phái xử lý ở hệ thống nguồn, ví dụ như làm lại OFP trên Lido hoặc bấm Dispatch Release, sau đó TOSS tích hợp tín hiệu để cập nhật màu. Nguyên tắc xuyên suốt là màn Giám sát chỉ giám sát và cảnh báo chứ không cho thao tác trực tiếp trên bảng để thay đổi data, mọi hành động đều thực hiện trên hệ thống chuyên dụng.
+
+**Kết luận**
+
+Bộ mã màu thống nhất gồm bốn trạng thái Đỏ, Vàng, Xanh lá và Không màu, áp dụng cho mọi cột trên màn Giám sát. Xanh chỉ xuất hiện sau khi đã có đỏ và được xử lý xong, không có trường hợp xanh từ đầu, còn không màu thể hiện trạng thái bình thường. Màu được đổi tự động theo trạng thái dữ liệu nguồn, điều phái không tick thủ công. Màn Giám sát chỉ đóng vai trò view và cảnh báo, không cho thao tác trực tiếp, ngoại trừ cột Dispatch Release sẽ được trình bày ở §10. Trạng thái xanh được giữ lại nhằm phục vụ thống kê khối lượng công việc theo ngày và giờ cao điểm.
+
+### 8. Cơ chế trôi theo thời gian, time window và chuyến đường dài chưa đáp
+
+**Yêu cầu**
+
+Lịch bay một ngày của VNA có thể lên tới khoảng 500–700 chuyến nên không thể hiển thị hết trên một bảng. Hệ thống cần một time window quanh thời điểm hiện tại để lọc các chuyến đang cần theo dõi.
+
+**Thảo luận và Đề xuất**
+
+Bảng Giám sát được thiết kế trôi theo giờ thực, các chuyến mới có ETD sắp tới được đẩy vào bảng còn các chuyến cũ trôi xuống và ra khỏi vùng hiển thị. Time window phải cấu hình được chứ không hardcode, bao gồm khoảng lùi lại (look-back) ví dụ 15 phút, 30 phút hoặc 1 giờ và khoảng tiến tới (look-ahead) ví dụ 30 phút hoặc 1 giờ. Do mốc upload OFP cho chuyến quốc tế là 240 phút (4 giờ) trước STD nên look-ahead cần đủ rộng để bao phủ thời điểm này, mốc 240 phút cũng nhất quán với mốc upload OFP đã được ghi nhận ở các buổi trước trong tài liệu domain-knowledge.
+
+Quy trình cấu hình diễn ra hai cấp: admin cấu hình mặc định theo từng vị trí hoặc role, sau đó user vẫn có thể scroll để xem ngoài window và tự đặt lại cấu hình cá nhân (cấu hình này được lưu trong profile như §5 đã mô tả). Về mật độ hiển thị, số dòng thường trực vào khoảng 25 dòng để điều phái nhìn nhanh không phải scroll, nhưng vẫn cho phép kéo bảng khi cần. Mặc định danh sách được sắp xếp theo ETD.
+
+Một vấn đề đặc thù được nêu ra là các chuyến đường dài chưa đáp như chuyến đi Mỹ kéo dài khoảng 13–16 tiếng. Mặc dù ETD đã trôi qua từ lâu nhưng chuyến chưa kết thúc thì điều phái vẫn phải monitor đến khi tàu vào gate, vì vậy cần có cơ chế giữ lại các chuyến này trong bảng. Phương án cụ thể là để trôi tự nhiên, giữ lại trong bảng giám sát, hay đưa vào filter phụ, hoặc dùng scroll vẫn chưa được chốt. Bên cạnh đó, việc giám sát giai đoạn đang bay đến lúc vào gate cũng được nhắc tới gắn với Flight Watch, là một màn hoặc giai đoạn riêng biệt. Liên quan tới chủ đề này, anh Phúc trong buổi 11/06 đã nêu yêu cầu hệ thống phải cảnh báo vào gate chậm khi chuyến vào gate chậm so với ETA kết điểm, vì điều phái có trách nhiệm monitor đến tận chặng hạ cánh vào gate.
+
+**Kết luận**
+
+Màn Giám sát sử dụng time window cấu hình được gồm look-back và look-ahead, trong đó admin set mặc định theo role còn user được phép override và lưu cấu hình vào profile cá nhân. Bảng trôi theo giờ thực và mặc định sắp xếp theo ETD. Các chuyến đường dài chưa đáp vẫn phải được monitor đến khi vào gate, tuy nhiên cơ chế giữ lại cụ thể chưa được chốt và sẽ tiếp tục làm rõ. Hệ thống cảnh báo vào gate chậm so với ETA kết điểm, nội dung này gắn phạm vi Flight Watch.
+
+### 9. Cột Aircraft Registration: logic màu, hover, lịch sử đổi tàu và hiển thị
+
+**Yêu cầu**
+
+Cột Aircraft Registration (REG — số đăng ký tàu bay) phải cảnh báo khi tàu thực tế trên Netline bị đổi so với phiên bản OFP đã phát hành, đồng thời cho phép điều phái xem lịch sử đổi tàu của chuyến đó.
+
+**Thảo luận và Đề xuất**
+
+Logic màu của cột REG được xây dựng dựa trên hai chốt kiểm soát là tàu Netline và tàu trên OFP đã được Dispatch Release. Ô có màu đỏ khi tàu trên Netline khác với tàu trên OFP đã được Dispatch Release, lúc này điều phái phải làm lại OFP cho tàu mới. Ô có màu vàng khi đã có OFP mới khớp tàu Netline nhưng chưa được Dispatch Release, cần thực hiện bước Release. Ô có màu xanh khi đã có OFP mới khớp tàu và đã Dispatch Release. Ô không màu áp dụng cho trường hợp chưa có OFP hoặc OFP chưa release, tức là chuyến còn ở giai đoạn sớm. Có thể tóm gọn rằng hai điều kiện để ô chuyển xanh là tàu Netline khớp tàu trên OFP và OFP đã được Dispatch Release, nếu thỏa một điều kiện thì ô chuyển vàng còn không thỏa điều kiện nào thì ô chuyển đỏ.
+
+Cột REG và cột Dispatch Release liên kết với nhau, khi điều phái bấm Release ở cột Dispatch Release thì hệ thống cũng clear luôn vàng ở cột REG nếu lý do duy nhất khiến cột REG ở trạng thái vàng là chưa được release. Riêng trường hợp Unrelease, hệ thống quay về phiên bản OFP trước đó và sinh ra một revision mới mang dữ liệu cũ. Nếu phiên bản đó có tàu khác với tàu Netline hiện tại thì cột REG sẽ chuyển đỏ trở lại, đòi hỏi điều phái phải release lại bản OFP mới.
+
+Về tương tác, khi điều phái rê chuột vào ô REG, hệ thống hiển thị REG cũ kèm REG mới theo dạng có mũi tên và giờ đổi trên Netline theo định dạng `HH:MM` (UTC). Khi điều phái click vào REG, hệ thống mở Flight Detail và active tab Aircraft hiển thị đầy đủ lịch sử đổi tàu, ví dụ chuyến đã đổi tàu ba lần thì điều phái xem được đủ ba lần. Về cách hiển thị REG trên bảng, với nhóm VNA và VNB hệ thống lược bỏ tiền tố VN để tiết kiệm không gian (ví dụ VNA893 hiển thị thành A893, VNB… hiển thị thành B…), trong khi các nhóm khác như XU sẽ giữ nguyên đầy đủ vì không thống nhất được một mẫu cắt chung.
+
+**Kết luận**
+
+Cột REG được tô màu theo logic giao giữa tàu Netline và tàu trên OFP đã Release. Đỏ khi lệch tàu và đã release, Vàng khi khớp tàu nhưng chưa release, Xanh khi khớp tàu và đã release, Không màu khi chưa có OFP hoặc OFP chưa release. Hover hiển thị REG cũ và REG mới kèm giờ đổi trên Netline theo UTC, click mở tab Aircraft chứa lịch sử đổi tàu đầy đủ. Hiển thị REG cắt tiền tố VN cho nhóm VNA và VNB, nhóm XU và các nhóm khác giữ nguyên.
+
+### 10. Cột Dispatch Release: cột riêng và action bấm trực tiếp
+
+**Yêu cầu**
+
+Trên màn Giám sát cần có một cột riêng dành cho Dispatch Release để điều phái nhìn nhanh chuyến đã release hay chưa, đồng thời cho phép bấm Dispatch Release ngay trên màn giám sát như một action shortcut.
+
+**Thảo luận và Đề xuất**
+
+Các bên thống nhất bổ sung một cột Dispatch Release với hai trạng thái rõ ràng. Khi điều phái bấm Release ngay tại cột này, trạng thái chuyển sang xanh và kết thúc phần việc của điều phái. Cột Dispatch Release liên kết với cột REG, khi bấm Release ở đây hệ thống sẽ clear đồng bộ trạng thái vàng của các cột liên quan, vì Dispatch Release đóng vai trò chốt cuối để các cột cùng chuyển về xanh.
+
+Một câu hỏi khác là có cần tạo thêm màn hình thứ hai để xem chi tiết OFP của toàn bộ chuyến hay không. Các bên thống nhất không tạo màn riêng cho mục đích này, nếu cần xem chi tiết OFP của một chuyến thì điều phái vào menu báo cáo riêng. Màn Giám sát vẫn giữ vai trò overview, chỉ liệt kê các trường cần thiết kèm cảnh báo.
+
+**Kết luận**
+
+Màn Giám sát có thêm cột Dispatch Release với hai trạng thái chưa release và đã release, đồng thời cho phép bấm Dispatch Release ngay tại cột. Khi điều phái bấm Release ở cột này, hệ thống clear đồng bộ vàng các cột liên quan như REG. Không tạo màn thứ hai để hiển thị chi tiết OFP toàn bộ, nếu cần chi tiết của một chuyến thì điều phái vào Flight Detail hoặc menu báo cáo riêng. Đây là ngoại lệ duy nhất của nguyên tắc "Giám sát chỉ view và cảnh báo, không action" đã trình bày ở §7.
 
 ### 11. Cột Flight Number: cảnh báo theo suffix D/Z và lịch sử
 
-#### Yêu cầu
-- Cột **Flight Number** cảnh báo khi chuyến có **suffix D/Z** (chuyển sang ngày hôm sau / tình huống đặc biệt). (P2 d.1944–1979)
+**Yêu cầu**
 
-#### Thảo luận – Đề xuất
-- Logic màu cột Flight Number (P2 d.1948–2073, 2132–2168):
-  - **Không màu:** số hiệu bình thường, không suffix. (P2 d.1956–1957)
-  - **Vàng:** có suffix `D` hoặc `Z` — chuyến đặc biệt (chuyển sang ngày sau), **luôn giữ vàng** để điều phái lưu ý, **không chuyển xanh**. (P2 d.1972–2072)
-  - **Đỏ:** trường hợp chuyến đang ở suffix `D` rồi **mất `D`** (giật về ngày gốc do khắc phục sớm) → đỏ vì có thể đã báo khách/soạn tài liệu gốc, phải làm lại. (P2 d.2132–2168)
-- **Hover:** lịch sử của D/Z — thời điểm Netline thêm D/Z; nếu mất D thì thời điểm mất — phục vụ truy vết/báo cáo cấp trên. (P2 d.2001–2045)
-- Chuyển sang ngày hôm sau **không qua D/Z** (chỉ đổi ETD) → cột Flight Number **không màu**, cảnh báo nằm ở **cột ETD**; xem lịch sử đổi giờ tại ô ETD. (P2 d.1964–1969, 2334–2342)
-- Đỏ ở Flight Number được **clear khi chuyến đã IN/ARR** (xem §12). (P2 d.2169–2186)
+Cột Flight Number phải cảnh báo khi chuyến có suffix `D` hoặc `Z`, tức là chuyến đã chuyển sang ngày hôm sau hoặc rơi vào tình huống đặc biệt cần điều phái lưu ý.
 
-#### Kết luận
-- Cột Flight Number: Không màu = không suffix; **Vàng = có D/Z** (giữ vàng, không sang xanh); **Đỏ = trước có D/Z nay mất** (giật về ngày gốc).
-- Hover = lịch sử D/Z + thời điểm thay đổi trên Netline.
-- Chuyển ngày sau không qua D/Z → cảnh báo ở **cột ETD**, không phải Flight Number.
-- Đỏ ở Flight Number được clear khi chuyến **IN/ARR**.
+**Thảo luận và Đề xuất**
 
-### 12. Cột ETA / IN / ARR: tín hiệu hoàn tất chuyến và nguồn dữ liệu
+Logic màu của cột Flight Number gồm ba mức. Ô không màu áp dụng cho số hiệu chuyến bình thường, không có suffix. Ô màu vàng áp dụng khi chuyến có suffix `D` hoặc `Z`, đây là chuyến đặc biệt đã chuyển sang ngày sau và hệ thống luôn giữ vàng để điều phái lưu ý chứ không chuyển sang xanh dù đã release. Ô màu đỏ áp dụng cho trường hợp chuyến đang ở suffix `D` nhưng sau đó mất `D` do khắc phục sớm đưa về ngày gốc, lý do là điều phái có thể đã báo khách hoặc đã soạn tài liệu theo phương án ngày gốc nên cần làm lại.
 
-#### Yêu cầu
-- Cột **ETA / IN / ARR** biểu thị **hoàn tất chuyến**; là tín hiệu để clear/chuyển trạng thái cuối cho các cảnh báo khác. (P2 d.732–747, 2169–2233)
+Về tương tác, khi điều phái hover lên ô Flight Number, hệ thống hiển thị lịch sử D/Z gồm thời điểm Netline thêm D/Z, và nếu chuyến mất `D` thì hiển thị thời điểm mất, phục vụ truy vết cũng như báo cáo cấp trên. Cần lưu ý rằng trường hợp chuyến chuyển sang ngày hôm sau mà không qua D/Z (chỉ đổi ETD) thì cột Flight Number sẽ không màu, cảnh báo về thay đổi ngày khi đó nằm ở cột ETD và lịch sử đổi giờ cũng xem ngay tại ô ETD. Cuối cùng, trạng thái đỏ ở cột Flight Number được clear khi chuyến đã IN hoặc ARR, nội dung này gắn với §12.
 
-#### Thảo luận – Đề xuất
-- Tín hiệu chuyển **xanh (hoàn tất)**: chuyến nhận **điện IN** rồi chuyển **ARR**; trạng thái IN → xanh. (P2 d.733–747, 2207–2224)
-- Nguồn dữ liệu giờ hạ cánh/vào gate (P2 d.808–836):
-  - **Sân bay nội địa:** tích hợp **A-CDM (Airport Collaborative Decision Making)** — giờ hạ cánh/vào gate thực tế, cập nhật gần real-time. (P2 d.821–827)
-  - **Sân bay quốc tế:** A-CDM **trễ hơn**, phải chấp nhận độ trễ. (P2 d.828–836)
-  - Điện ARR/IN qua **ACARS** cũng được nhận; Netline tích hợp điện và cập nhật trạng thái ARR. (P2 d.808–820, 738–746)
-- Khi cột ETA/IN xanh → các cảnh báo đỏ liên quan trong chuyến được clear/chuyển trạng thái cuối; cảnh báo "vào gate chậm" (§8) giữ riêng. (P2 d.2177–2233)
-- Với các cảnh báo điều phái "vẫn bay" dù đỏ/vàng (vd thời tiết): khi chuyến đã cất cánh, tùy cột, có thể giữ nguyên đỏ để biết "có đỏ nhưng không action" hoặc clear về xanh khi đã đáp — chi tiết theo từng cột chưa chốt đồng nhất. (P2 d.2192–2239)
+**Kết luận**
 
-#### Kết luận
-- Cột ETA/IN/ARR chuyển **xanh** khi nhận **điện IN** (→ ARR); nguồn: **A-CDM** (nội địa real-time / quốc tế trễ) và **điện ACARS ARR/IN** (qua Netline).
-- Khi xanh → cảnh báo đỏ liên quan của chuyến được clear/chuyển trạng thái cuối.
-- Quy tắc clear/giữ đỏ sau khi cất cánh theo từng cột chưa chốt đồng nhất (mục IV).
+Cột Flight Number áp dụng ba mức màu gồm Không màu khi không có suffix, Vàng khi có D/Z (luôn giữ vàng không sang xanh), và Đỏ khi trước có D/Z nay mất tức là giật về ngày gốc. Hover hiển thị lịch sử D/Z kèm thời điểm thay đổi trên Netline. Trường hợp chuyển ngày sau mà không qua D/Z thì cảnh báo nằm ở cột ETD chứ không phải Flight Number. Trạng thái đỏ của cột Flight Number được clear khi chuyến IN hoặc ARR.
 
-### 13. Format hiển thị "lịch sử đổi" chung (history timeline)
+### 12. Cột ETA, IN và ARR: tín hiệu hoàn tất chuyến và nguồn dữ liệu
 
-#### Yêu cầu
-- Nhiều đối tượng cần hiển thị **lịch sử thay đổi** (đổi tàu, đổi tổ bay, đổi giờ ETD, suffix D/Z…); cần một **format chung**. (P2 d.1829–1834)
+**Yêu cầu**
 
-#### Thảo luận – Đề xuất
-- Hai phương án theo các mốc thời gian: **kéo ngang (horizontal)** hoặc **kéo dọc (vertical)** — **ưu tiên kéo dọc** vì dễ nhìn các mốc. (P2 d.1834–1838)
-- Cấu trúc (vd đổi tàu): **tàu đầu tiên** (giá trị khi chuyến sinh ra) → mũi tên (kèm giờ đổi trên Netline, dạng `HH:MM`) → **tàu thứ hai** → … (P2 d.1845–1865)
-- Bảng lịch sử của một chuyến: mỗi lần update là một dòng, sắp theo thứ tự update; nhìn các dòng để biết trường nào thay đổi (vd thay đổi tàu bay), từng người/từng thời điểm thay đổi. (P2 d.2405–2449)
-- Áp dụng chung cho: lịch sử đổi Registration (§9), đổi tổ bay (Phần 1 §2), đổi giờ ETD, lịch sử D/Z (§11). (P2 d.1832–1834)
+Cột ETA, IN, ARR biểu thị thời điểm hoàn tất chuyến và đóng vai trò tín hiệu để clear hoặc chuyển trạng thái cuối cho các cảnh báo khác trên bảng.
 
-#### Kết luận
-- TOSS dùng **một format hiển thị "lịch sử đổi" chung** cho mọi đối tượng cần truy vết — ưu tiên timeline **kéo dọc**, các mốc nối nhau bằng mũi tên kèm giờ thay đổi (UTC).
-- Áp dụng trước cho: lịch sử đổi tàu, đổi tổ bay, đổi giờ ETD, lịch sử D/Z.
+**Thảo luận và Đề xuất**
+
+Tín hiệu chuyển trạng thái xanh (hoàn tất) được kích hoạt khi chuyến nhận điện IN rồi chuyển sang ARR, trạng thái IN khiến ô chuyển xanh. Về nguồn dữ liệu giờ hạ cánh và vào gate, hệ thống lấy từ hai luồng chính. Đối với sân bay nội địa, TOSS tích hợp A-CDM (Airport Collaborative Decision Making) để lấy giờ hạ cánh và vào gate thực tế với độ trễ gần real-time. Đối với sân bay quốc tế, A-CDM có độ trễ lớn hơn nên phải chấp nhận độ trễ này. Song song, điện ARR/IN qua ACARS cũng được tiếp nhận, trong đó Netline tích hợp điện và cập nhật trạng thái ARR về TOSS, ưu tiên lấy theo Netline vì Netline thường cập nhật nhanh hơn so với riêng điện ACARS.
+
+Khi cột ETA/IN chuyển xanh thì các cảnh báo đỏ liên quan trong cùng chuyến được clear hoặc chuyển sang trạng thái cuối tương ứng, riêng cảnh báo vào gate chậm đã trình bày ở §8 được giữ riêng. Với các cảnh báo mà điều phái vẫn bay dù đỏ hoặc vàng (ví dụ thời tiết), khi chuyến đã cất cánh thì tùy cột có thể giữ nguyên đỏ để biết rằng từng có đỏ nhưng không action, hoặc clear về xanh khi đã đáp. Chi tiết theo từng cột chưa được chốt đồng nhất và sẽ tiếp tục làm rõ.
+
+**Kết luận**
+
+Cột ETA, IN, ARR chuyển xanh khi nhận điện IN dẫn đến ARR, với nguồn dữ liệu là A-CDM (nội địa gần real-time, quốc tế trễ hơn) và điện ACARS ARR/IN qua Netline, ưu tiên lấy theo Netline. Khi ô chuyển xanh, các cảnh báo đỏ liên quan của chuyến được clear hoặc chuyển sang trạng thái cuối. Quy tắc clear hoặc giữ đỏ sau khi cất cánh theo từng cột chưa được chốt đồng nhất và sẽ tiếp tục làm rõ ở buổi sau.
+
+### 13. Format hiển thị lịch sử đổi chung (history timeline)
+
+**Yêu cầu**
+
+Nhiều đối tượng trên màn Giám sát đều cần hiển thị lịch sử thay đổi như đổi tàu, đổi tổ bay, đổi giờ ETD hay đổi suffix D/Z, vì vậy hệ thống cần một format chung để áp dụng đồng nhất.
+
+**Thảo luận và Đề xuất**
+
+Hai phương án trình bày timeline được đưa ra là kéo ngang (horizontal) hoặc kéo dọc (vertical), trong đó các bên ưu tiên kéo dọc vì dễ nhìn các mốc thời gian hơn. Cấu trúc một timeline lấy ví dụ trường hợp đổi tàu được trình bày dạng tàu đầu tiên (giá trị khi chuyến sinh ra), sau đó mũi tên kèm giờ đổi trên Netline theo định dạng `HH:MM`, tiếp đến tàu thứ hai và tiếp tục cho các lần đổi sau. Đối với bảng lịch sử của một chuyến, mỗi lần update là một dòng và được sắp xếp theo thứ tự update, điều phái nhìn các dòng để biết trường nào thay đổi (ví dụ đổi tàu bay), do ai và vào thời điểm nào. Format này được áp dụng chung cho lịch sử đổi Registration (§9), đổi tổ bay (Phần 1, §2), đổi giờ ETD và lịch sử D/Z (§11).
+
+**Kết luận**
+
+TOSS dùng một format hiển thị lịch sử đổi chung cho mọi đối tượng cần truy vết, ưu tiên timeline kéo dọc với các mốc nối nhau bằng mũi tên kèm giờ thay đổi theo UTC. Format này được áp dụng trước cho lịch sử đổi tàu, đổi tổ bay, đổi giờ ETD và lịch sử D/Z.
 
 ---
 
@@ -271,65 +246,67 @@ document_type: "Báo cáo Khảo sát (Discovery) — Phỏng vấn Dispatcher b
 
 | # | Nội dung thống nhất | Chủ đề |
 |---|---|---|
-| 1 | Click chuyến trên màn Giám sát → mở **tab mới Flight Detail** (không pop-up); mở nhiều tab cùng lúc | 1 |
-| 2 | Click cảnh báo → mở Flight Detail và **active đúng tab phụ** tương ứng | 1 |
-| 3 | Flight Detail nhiều tab phụ (Cảnh báo / Flight Release / Tàu bay + MEL-CDL / Tổ bay); mỗi tab hiển thị **đầy đủ lịch sử** | 2 |
-| 4 | TOSS lấy Flight Number **3 cột tách biệt từ Netline** (carrier, fly number, FN suffix D/Z); leg history từ Netline | 3 |
-| 5 | Cảnh báo thể hiện bằng **tô màu cả ô** (không bo box, không chỉ đổi màu chữ); ký hiệu trạng thái đơn giản | 4 |
-| 6 | Phân quyền **2 lớp**: chức năng + dữ liệu (carrier/khu vực/role); user nhiều role, switch view; super admin xem toàn bộ | 5 |
-| 7 | Filter + cấu hình + "trạng thái gần nhất" lưu ở **profile cá nhân** (không theo máy); bộ lọc thu/mở | 5 |
-| 8 | Quy ước UI chung: **tiếng Anh + giờ UTC + format 24h + dark mode ưu tiên** | 6 |
-| 9 | Bộ mã màu **4 trạng thái**: Đỏ (action ngay) / Vàng (lưu ý) / Xanh (đã xử lý) / Không màu (bình thường) | 7 |
-| 10 | **Xanh = đã có đỏ rồi xử lý xong**; không có "xanh từ đầu" | 7 |
-| 11 | Đổi màu **tự động** theo trạng thái dữ liệu nguồn; điều phái **không tick thủ công** | 7 |
-| 12 | Màn Giám sát chỉ "view + cảnh báo", không thao tác trực tiếp — **ngoại lệ: cột Dispatch Release** | 7, 10 |
-| 13 | Giữ "xanh" để **thống kê khối lượng công việc** theo ngày/cao điểm | 7 |
-| 14 | **Time window cấu hình được** (look-back + look-ahead); admin set mặc định, user override + lưu profile; bảng **trôi theo giờ thực** | 8 |
-| 15 | Chuyến **đường dài chưa đáp** vẫn giữ monitor đến khi IN/ARR; cảnh báo "**vào gate chậm**" so với ETA kết điểm | 8 |
-| 16 | Sắp xếp danh sách mặc định theo **ETD** | 8 |
-| 17 | Cột **REG** cảnh báo theo **tàu Netline × tàu OFP đã Release** (Đỏ/Vàng/Xanh/Không màu) | 9 |
-| 18 | Hover REG = REG cũ → REG mới + giờ đổi (UTC); click REG → tab Aircraft có lịch sử đổi tàu | 9 |
-| 19 | Hiển thị REG: nhóm VNA/VNB lược "VN" (→ A…/B…); nhóm XU và khác giữ nguyên | 9 |
-| 20 | Thêm **cột Dispatch Release** với action bấm shortcut; **clear đồng bộ** vàng các cột liên quan ("2 chốt kiểm soát") | 10 |
-| 21 | Cột **Flight Number**: Không màu / Vàng (có D-Z, giữ vàng) / Đỏ (trước có D-Z nay mất) | 11 |
-| 22 | Chuyển ngày sau **không qua D/Z** → cảnh báo ở cột **ETD**, không phải Flight Number | 11 |
-| 23 | Cột **ETA/IN/ARR** chuyển xanh khi nhận **điện IN (→ ARR)**; nguồn **A-CDM** + **điện ACARS** (qua Netline) | 12 |
-| 24 | Áp dụng **một format hiển thị "lịch sử đổi" chung** (ưu tiên timeline kéo dọc, mũi tên + giờ UTC) | 13 |
+| 1 | Click chuyến trên màn Giám sát mở một tab mới chứa Flight Detail thay vì pop-up, đồng thời cho phép mở nhiều tab cùng lúc | 1 |
+| 2 | Click cảnh báo mở Flight Detail và active đúng tab phụ tương ứng với cảnh báo đó | 1 |
+| 3 | Flight Detail gồm nhiều tab phụ tối thiểu là Cảnh báo, Flight Release, Tàu bay kèm MEL/CDL và Tổ bay, mỗi tab hiển thị đầy đủ lịch sử thay đổi | 2 |
+| 4 | TOSS lấy Flight Number ba cột tách biệt từ Netline gồm carrier, fly number và FN suffix D/Z, đồng thời lấy leg history từ Netline | 3 |
+| 5 | Cảnh báo thể hiện bằng cách tô màu cả ô thay vì bo box hay chỉ đổi màu chữ, ký hiệu trạng thái ưu tiên thiết kế đơn giản | 4 |
+| 6 | Phân quyền hai lớp gồm chức năng và dữ liệu theo carrier/khu vực/role, user có thể có nhiều role và switch view, super admin xem toàn bộ | 5 |
+| 7 | Filter, cấu hình hiển thị và trạng thái gần nhất được lưu ở profile cá nhân thay vì theo máy, bộ lọc có cơ chế thu mở | 5 |
+| 8 | Quy ước giao diện chung gồm tiếng Anh, giờ UTC, format 24 giờ và ưu tiên dark mode | 6 |
+| 9 | Bộ mã màu bốn trạng thái gồm Đỏ (action ngay), Vàng (cần lưu ý), Xanh (đã xử lý), Không màu (bình thường) | 7 |
+| 10 | Xanh chỉ xuất hiện sau khi đã có đỏ và xử lý xong, không có trường hợp xanh từ đầu | 7 |
+| 11 | Màu được đổi tự động theo trạng thái dữ liệu nguồn, điều phái không tick thủ công | 7 |
+| 12 | Màn Giám sát chỉ view và cảnh báo, không thao tác trực tiếp, ngoại lệ duy nhất là cột Dispatch Release | 7, 10 |
+| 13 | Giữ trạng thái xanh để phục vụ thống kê khối lượng công việc theo ngày và giờ cao điểm | 7 |
+| 14 | Time window cấu hình được gồm look-back và look-ahead, admin set mặc định và user override lưu vào profile, bảng trôi theo giờ thực | 8 |
+| 15 | Chuyến đường dài chưa đáp vẫn được monitor đến khi IN/ARR, hệ thống cảnh báo vào gate chậm so với ETA kết điểm | 8 |
+| 16 | Sắp xếp danh sách mặc định theo ETD | 8 |
+| 17 | Cột REG được tô màu theo giao giữa tàu Netline và tàu trên OFP đã Release với bốn trạng thái Đỏ, Vàng, Xanh, Không màu | 9 |
+| 18 | Hover ô REG hiển thị REG cũ và REG mới kèm giờ đổi theo UTC, click ô REG mở tab Aircraft chứa lịch sử đổi tàu | 9 |
+| 19 | Hiển thị REG cắt tiền tố VN cho nhóm VNA và VNB (thành A… và B…), nhóm XU và các nhóm khác giữ nguyên | 9 |
+| 20 | Thêm cột Dispatch Release với action bấm shortcut, clear đồng bộ vàng các cột liên quan theo nguyên tắc hai chốt kiểm soát | 10 |
+| 21 | Cột Flight Number áp dụng ba mức Không màu, Vàng khi có D/Z (giữ vàng), và Đỏ khi trước có D/Z nay mất | 11 |
+| 22 | Trường hợp chuyển ngày sau không qua D/Z thì cảnh báo nằm ở cột ETD chứ không phải Flight Number | 11 |
+| 23 | Cột ETA/IN/ARR chuyển xanh khi nhận điện IN dẫn đến ARR, nguồn từ A-CDM và điện ACARS qua Netline, ưu tiên Netline | 12 |
+| 24 | Áp dụng một format hiển thị lịch sử đổi chung với timeline kéo dọc, mũi tên kèm giờ UTC | 13 |
 
 ## IV. Vấn đề cần làm rõ (toàn buổi sáng)
 
 **Phần 1:**
-- Ý nghĩa chính xác của ký tự **`Z`** trong FN Surface (so với `D`) và điều kiện sinh `Z`. (P1 d.159–163)
-- Diễn đạt cảnh báo tổng quát của tab Flight Release ("bên ngoài"); cụm **"FTP Mail CDL"** (khả năng là MEL/CDL) và **"vơ phong tàu quay"** trong tab Tàu bay cần đối chiếu lại (đoạn ghi âm nhiễu). (P1 d.57–78)
+
+1. Ý nghĩa chính xác của ký tự `Z` trong FN Surface so với `D` và điều kiện sinh `Z` chưa được làm rõ.
+2. Diễn đạt cảnh báo tổng quát của tab Flight Release ("bên ngoài") cần được làm rõ về nội dung và quy tắc hiển thị.
 
 **Phần 2:**
-- **Tên/mã hóa khu vực điều phái** (châu Âu, Mỹ, Hàn, khu vực khác) dùng cho phân quyền dữ liệu. (P2 d.72–96)
-- **Cơ chế giữ lại chuyến đường dài chưa đáp** ngoài time window (để trôi/giữ trong bảng/filter phụ/scroll) — chưa chốt phương án. (P2 d.651–810)
-- **Ngưỡng "vào gate chậm"** (phút trễ so với ETA kết điểm). (P2 d.664–669)
-- **Quy tắc clear/giữ đỏ sau khi chuyến cất cánh** cho các cảnh báo "vẫn bay" (vd thời tiết) — chưa chốt đồng nhất theo từng cột. (P2 d.2192–2239)
-- **Quy ước version OFP khi Unrelease** (vd `2.1` hay auto-tăng) — đã ghi nhận buổi 11/06, buổi này nhắc lại nhưng chưa chốt. (P2 d.1536–1559)
-- **Hành vi của hệ thống Ops++** (trước chép là "off cộng cộng") khi chuyến `D` quay về ngày gốc — Lido xin lại OFP cũ hay sinh mới; cần làm rõ. (P2 d.2388–2404)
-- **Bộ trạng thái vòng đời chuyến** hiển thị trên bản mẫu (GRD/BRD/OUT/ENR/IN/ARR) — cần SME điều phái xác nhận danh sách, định nghĩa và quy tắc chuyển (bản mẫu đề xuất, chưa nêu trong nội dung phỏng vấn).
+
+3. Tên và mã hóa khu vực điều phái (châu Âu, Mỹ, Hàn, khu vực khác) dùng cho phân quyền dữ liệu cần được xác nhận chính thức.
+4. Cơ chế giữ lại chuyến đường dài chưa đáp ngoài time window chưa được chốt, các phương án để trôi tự nhiên, giữ trong bảng, đưa vào filter phụ hay dùng scroll cần được lựa chọn.
+5. Ngưỡng vào gate chậm tính theo số phút trễ so với ETA kết điểm cần được xác định cụ thể.
+6. Quy tắc clear hoặc giữ đỏ sau khi chuyến cất cánh cho các cảnh báo "vẫn bay" như thời tiết chưa được chốt đồng nhất theo từng cột.
+7. Quy ước version OFP khi Unrelease (ví dụ `2.1` hay auto-tăng) đã được ghi nhận ở buổi 11/06 và nhắc lại trong buổi này nhưng chưa chốt.
+8. Hành vi của hệ thống nguồn (Lido) khi chuyến `D` quay về ngày gốc cần làm rõ, cụ thể là Lido xin lại OFP cũ hay sinh OFP mới. `[cần xác nhận]`
+9. Bộ trạng thái vòng đời chuyến hiển thị trên bản mẫu gồm GRD, BRD, OUT, ENR, IN, ARR cần SME điều phái xác nhận lại danh sách, định nghĩa và quy tắc chuyển trạng thái, do nội dung này xuất phát từ đề xuất của bản mẫu chứ chưa được nêu trong nội dung phỏng vấn.
 
 > Các điểm trên được tổng hợp vào sổ theo dõi điểm chốt OID-TOSS-001.
 
 ## V. Thuật ngữ đề xuất bổ sung domain-knowledge
 
-> **CHỈ đề xuất** — chờ BA Lead confirm trước khi ghi vào glossary.
+> Đây là danh sách đề xuất, chờ BA Lead confirm trước khi ghi vào glossary chính thức.
 
 | # | Thuật ngữ | Mô tả từ ngữ cảnh trong buổi | Nguồn |
 |---|---|---|---|
-| 1 | **FN Surface (suffix D/Z)** | Cột thứ 3 của Flight Number trên Netline — ký tự hậu tố cho biết chuyến chuyển/delay sang ngày sau (`D`) hay tình huống đặc biệt (`Z`); là khóa cảnh báo cột Flight Number. | P1 d.159–163; P2 d.1944–1979 |
-| 2 | **Leg History (Netline)** | Lịch sử các lần thay đổi giờ EPD/delay của chuyến (thời điểm, từ ngày nào sang ngày khác, mức delay) — lưu sẵn trong Netline. | P1 d.174–183 |
-| 3 | **Flight Detail (tab/trang)** | Trang chi tiết một chuyến, mở ở tab mới khi click chuyến; gồm nhiều tab phụ (Cảnh báo / Flight Release / Tàu bay / Tổ bay). | P1 d.91–106 |
-| 4 | **Time Window (Giám sát)** | Khoảng thời gian quanh giờ hiện tại để lọc chuyến hiển thị (look-back + look-ahead); cấu hình bởi admin và user. | P2 d.853–1090 |
-| 5 | **Color Scheme cảnh báo (4 trạng thái)** | Đỏ (action ngay) / Vàng (lưu ý) / Xanh (đã xử lý) / Không màu (bình thường); xanh chỉ sau khi đã đỏ. | P2 d.447–459, 1092–1149 |
-| 6 | **History Timeline (lịch sử đổi)** | Format chung cho mọi lịch sử thay đổi: timeline kéo dọc, mỗi mốc nối bằng mũi tên + giờ UTC. | P2 d.1829–1865 |
-| 7 | **Dispatch Release (cột + action)** | Cột trên màn Giám sát cho phép bấm phát hành Dispatch Release trực tiếp; clear đồng bộ các cột liên quan. | P2 d.1269–1278, 1529–1535 |
-| 8 | **A-CDM (giờ hạ cánh/vào gate)** | Nguồn giờ hạ cánh/vào gate thực tế: nội địa cập nhật gần real-time, quốc tế trễ hơn. | P2 d.808–836 |
-| 9 | **Monitoring User Profile** | Cấu hình cá nhân của user (filter, cột, "trạng thái gần nhất") lưu theo user, không theo máy. | P2 d.198–229 |
-| 10 | **Carrier (cột & phân quyền)** | Mã hãng — vừa là cột 1 của Flight Number, vừa là chiều phân quyền dữ liệu màn Giám sát. | P1 d.152–158; P2 d.156–179 |
+| 1 | **FN Surface (suffix D/Z)** | Cột thứ ba của Flight Number trên Netline, là ký tự hậu tố cho biết chuyến chuyển hoặc delay sang ngày sau (`D`) hoặc rơi vào tình huống đặc biệt (`Z`), đồng thời là khóa kích hoạt cảnh báo của cột Flight Number. | Phần 1 chủ đề 3, Phần 2 chủ đề 11 |
+| 2 | **Leg History (Netline)** | Lịch sử các lần thay đổi giờ EPD hoặc delay của chuyến, bao gồm thời điểm thay đổi, chuyển từ ngày nào sang ngày khác và mức delay bao nhiêu, được lưu sẵn trong Netline. | Phần 1 chủ đề 3 |
+| 3 | **Flight Detail (tab/trang)** | Trang chi tiết một chuyến bay, mở ở tab mới khi điều phái click chuyến trên màn Giám sát, gồm nhiều tab phụ là Cảnh báo, Flight Release, Tàu bay và Tổ bay. | Phần 1 chủ đề 1 |
+| 4 | **Time Window (Giám sát)** | Khoảng thời gian quanh giờ hiện tại để lọc chuyến hiển thị trên màn Giám sát, gồm look-back và look-ahead, có thể cấu hình bởi cả admin và user. | Phần 2 chủ đề 8 |
+| 5 | **Color Scheme cảnh báo (4 trạng thái)** | Bộ mã màu thống nhất gồm Đỏ (action ngay), Vàng (cần lưu ý), Xanh (đã xử lý) và Không màu (bình thường), trong đó xanh chỉ xuất hiện sau khi đã có đỏ. | Phần 2 chủ đề 7 |
+| 6 | **History Timeline (lịch sử đổi)** | Format chung cho mọi lịch sử thay đổi trên TOSS, sử dụng timeline kéo dọc với các mốc nối bằng mũi tên kèm giờ UTC. | Phần 2 chủ đề 13 |
+| 7 | **Dispatch Release (cột + action)** | Cột trên màn Giám sát cho phép điều phái bấm phát hành Dispatch Release trực tiếp, đồng thời clear đồng bộ các cột liên quan khi thực hiện action. | Phần 2 chủ đề 10 |
+| 8 | **A-CDM (giờ hạ cánh/vào gate)** | Nguồn dữ liệu giờ hạ cánh và vào gate thực tế, trong đó sân bay nội địa cập nhật gần real-time còn sân bay quốc tế có độ trễ lớn hơn. | Phần 2 chủ đề 12 |
+| 9 | **Monitoring User Profile** | Cấu hình cá nhân của user trên màn Giám sát gồm filter, cột hiển thị và trạng thái gần nhất, được lưu theo user thay vì theo máy. | Phần 2 chủ đề 5 |
+| 10 | **Carrier (cột & phân quyền)** | Mã hãng, vừa là cột thứ nhất của Flight Number vừa là một chiều phân quyền dữ liệu trên màn Giám sát. | Phần 1 chủ đề 3, Phần 2 chủ đề 5 |
 
 ---
 
-*Báo cáo buổi sáng 12/06/2026 (Phần 1 + Phần 2), lập 2026-06-12. Phần 2 thảo luận trực tiếp trên bản mẫu giao diện dsp_monitoring_poc.html. Các điểm gắn ở mục IV cần đối chiếu/phỏng vấn bổ sung; điểm cần chốt theo dõi tại OID-TOSS-001.*
+*Báo cáo buổi sáng 12/06/2026 gồm Phần 1 và Phần 2, regenerate trực tiếp từ transcript `_fixed` Part1 + Part2 (v0.3 ngày 2026-06-16). Phần 2 thảo luận trực tiếp trên bản mẫu giao diện dsp_monitoring_poc.html. Các điểm cần làm rõ được tổng hợp tại §IV và theo dõi trong sổ điểm chốt OID-TOSS-001.*
