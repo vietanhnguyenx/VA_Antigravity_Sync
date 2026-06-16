@@ -1,7 +1,7 @@
 ---
 project: "TOSS — Hệ thống Điều hành Khai thác Hãng Hàng không"
 author: "BA Lead"
-version: "0.10"
+version: "0.11"
 date: "2026-06-16"
 status: "Draft"
 document_type: "Sổ theo dõi Điểm cần chốt & Câu hỏi mở (Open Items & Decisions Register)"
@@ -43,7 +43,7 @@ document_id: "OID-TOSS-001"
 | SME-06 | **Sunweather** — tên đầy đủ + vai trò (được đánh giá "rủi ro") | BRD §9.3; KS 11/06 §II.7 | Dispatcher / SME khí tượng | 🔴 Mở | |
 | SME-07 | **"Phi Công 11"** — tên hệ thống tham khảo, không official | BRD §9.3; KS 11/06 §II.7 | Dispatcher / SME khí tượng | 🔴 Mở | |
 | SME-08 | **Mốc upload OFP** 90/130/180/200 phút + phân loại chuyến tương ứng | BRD §9.3; KS 11/06 §II.1 | Dispatcher (phần 2) | 🔴 Mở | |
-| SME-09 | **Tên hệ thống nguồn** nhận biết yếu nhân/chuyên cơ trong BCAO | BRD §9.3; KS 09/06 §II.7 | SME trực ban trưởng | 🔴 Mở | |
+| SME-09 | **Tên hệ thống nguồn** nhận biết yếu nhân/chuyên cơ trong BCAO (ứng viên ASR: ANABS/ANABIOS) | BRD §9.3; KS 09/06 §II.7, §IV.3 | SME trực ban trưởng | 🔴 Mở | |
 | SME-10 | **Damp Lease** — tên tiếng Việt chính thức + có cần báo cáo riêng phần nhiên liệu VNA tự cấp | BRD §9.3; KS 09/06 §II.5, §IV | SME khai thác/tài chính | 🔴 Mở | |
 | SME-11 | Phân loại **NOTAM 3 nhóm** chi tiết + quy tắc đánh giá ảnh hưởng tới chuyến | FUNC-179 (PH1) | Workshop NOTAM | 🔴 Mở | |
 | SME-12 | **CLC** — tên đầy đủ (Centralized Load Control?) + phạm vi nghiệp vụ | KS 11/06 P2 §II.1 | SME tải/cân bằng | 🔴 Mở | |
@@ -72,6 +72,10 @@ document_id: "OID-TOSS-001"
 | SME-35 | **Ops++** (trước chép "OFF cộng cộng") — vai trò khi xử lý chuyến `D` quay về ngày gốc | KS 12/06 P2 §11 | SME điều phái | 🟡 Đang xử lý | **12/06: tên hệ thống = Ops++ (BA Lead xác nhận). Hành vi xử lý chuyến `D` về gốc còn mở — gắn KS-36.** |
 | SME-36 | **Mã khu vực điều phái** (ĐNA/Hàn/Âu/Mỹ…) dùng trong phân quyền dữ liệu | KS 12/06 P2 §4 | SME điều phái + admin | 🔴 Mở | |
 | SME-37 | **"FTP Mail CDL"** trong tab Tàu bay (khả năng MEL/CDL) — xác nhận viết tắt FTP | KS 12/06 P1 §2 | SME điều phái | 🔴 Mở | |
+| SME-38 | **pgepoid** — tên đầy đủ phần mềm liên quan luồng performance factor | KS 08/06 §IV.8, §V | SME kỹ thuật/khai thác | 🔴 Mở | |
+| SME-39 | **Vasco** (tên đầy đủ) + ý nghĩa **"HT 30-31"** trong câu chuyện hợp nhất khai thác | KS 09/06 §IV.8 (cuối Part 2 nhiễu) | SME điều phái/lãnh đạo | 🔴 Mở | |
+| SME-40 | Chuẩn hóa thuật ngữ **take-off weight** (ASR ghi "loft power") và **trọng lượng ướt** (ASR ghi "phi vết") — cách tính chính xác | KS 11/06 P2 §IV.9 | SME tải/cân bằng | 🔴 Mở | |
+| SME-41 | **"Quả đấy dầu"** và **"anh Ngọt"** — danh mục/nguồn bảng dầu Lido (ASR có thể đọc lệch) | KS 11/06 P2 §IV.11 | Dispatcher / SME bảng dầu | 🔴 Mở | |
 
 ## C. Vấn đề nghiệp vụ cần làm rõ qua khảo sát (KS)
 
@@ -120,6 +124,17 @@ document_id: "OID-TOSS-001"
 | KS-41 | **Cột PIC confirm** — có ngưỡng nhắc/cảnh báo nếu Pilot chưa confirm sát giờ không (không quy định cứng thời điểm) | KS 15/06 §II.2 | SME điều phái | 🔴 Mở | |
 | KS-42 | **Attribution khi bàn giao ca** — version OFP mới do ca sau up mang tên ai; cơ chế ghi nhận đúng người thực hiện từng version | KS 15/06 §II.3 | Nội bộ + SME | 🔴 Mở | |
 | KS-43 | **Nghĩa viết tắt nghe trong ghi âm 15/06**: OAP / OSP / OMP / AOS — `[cần xác nhận]` (có thể chuyển nhóm SME) | KS 15/06 §IV | SME điều phái | 🔴 Mở | |
+| KS-44 | **Điện văn bổ sung gửi SITA** (ngoài điện chuyển động chuyến bay) — TOSS có xử lý đầy đủ hay không | KS 08/06 §IV.5 | Workshop điện văn ACARS/SITA | 🔴 Mở | |
+| KS-45 | **Môi trường kiểm thử** — đi thẳng vào tài nguyên thật hay phải có môi trường riêng tách bạch | KS 08/06 §IV.6 | Workshop hạ tầng/CĐS-CN | 🔴 Mở | |
+| KS-46 | **BackPACK + pgepoid** — có hỗ trợ RPA/tự đọc dữ liệu được không (đang nhập tay) | KS 08/06 §IV.8 | SME kỹ thuật + Hãng sản xuất tàu bay | 🔴 Mở | |
+| KS-47 | **Cụm dữ liệu phục vụ FMS thay thế** — sẵn có chưa và lấy qua phương thức gì (dự kiến thứ Tư mới có thông tin) | KS 08/06 §IV.10 | Workshop tích hợp FMS | 🔴 Mở | |
+| KS-48 | **Bốn nhóm KPI gồm hai OTP và hai OSP** — định nghĩa + công thức chi tiết + tiêu chí mục tiêu 80% áp dụng nhóm nào | KS 09/06 §IV.4 | SME điều phái/lãnh đạo | 🔴 Mở | |
+| KS-49 | **Cấu hình thời gian lưu trữ theo từng loại tài liệu** trong server lưu trữ tập trung (ngoài mức 3 ngày đã chốt cho tài liệu MO Plus) | KS 09/06 §IV.6 | SME tài liệu + hạ tầng | 🔴 Mở | |
+| KS-50 | **Luồng tích chọn thủ công** cho trợ lý trực ban trưởng khi nguồn ANABS không trả mác phân loại chuyến đặc biệt | KS 09/06 §IV.7 | SME trực ban trưởng | 🔴 Mở | |
+| KS-51 | **Định dạng dữ liệu nhập tay** cho yếu nhân/VIP (Chủ tịch nước, Chủ tịch Quốc hội, Thủ tướng, Tổng Bí thư…) + cấu trúc dữ liệu lưu | KS 09/06 §IV.9 | SME trực ban trưởng + master data | 🔴 Mở | |
+| KS-52 | **Cơ chế đa phiên tham chiếu** từ hệ thống nước ngoài (multi-session theo vai trò) — TOSS có triển khai trong giai đoạn này hay không | KS 09/06 §IV.10 | Nội bộ + SME | 🔴 Mở | |
+| KS-53 | **Cơ chế ghi nhận lịch sử làm lại OFP sát giờ** — định danh, version, audit trail | KS 11/06 P1 §IV.4 | SME điều phái | 🔴 Mở | |
+| KS-54 | **Cảnh báo tổng quát tab Flight Release ("bên ngoài")** — nội dung + quy tắc hiển thị | KS 12/06 P1 §IV.2 | SME điều phái + UX | 🔴 Mở | |
 
 ## D. Tham số/ngưỡng & mô hình dữ liệu chưa có nguồn (DL)
 
@@ -165,11 +180,13 @@ document_id: "OID-TOSS-001"
 | Nhóm | Tổng | 🔴 Mở | 🟡 Đang xử lý | 🟢 Đã chốt |
 |---|---|---|---|---|
 | A. Quyết định BA Lead (QĐ) | 6 | 6 | 0 | 0 |
-| B. Thuật ngữ/hệ thống (SME) | 37 | 35 | 1 | 1 |
-| C. Nghiệp vụ-khảo sát (KS) | 38 | 37 | 1 | 0 |
+| B. Thuật ngữ/hệ thống (SME) | 41 | 39 | 1 | 1 |
+| C. Nghiệp vụ-khảo sát (KS) | 54 | 52 | 2 | 0 |
 | D. Tham số/dữ liệu (DL) | 5 | 5 | 0 | 0 |
 | E. Hành chính/hạ tầng (HC) | 3 | 1 | 2 | 0 |
-| **Tổng** | **89** | **84** | **4** | **1** |
+| **Tổng** | **109** | **103** | **5** | **1** |
+
+> Cập nhật sau khi regenerate 5 báo cáo khảo sát (rà 2026-06-16): +4 SME (SME-38…41: pgepoid, Vasco+HT 30-31, take-off/wet weight, "quả đấy dầu"/"anh Ngọt") và +11 KS (KS-44…54: SITA điện văn bổ sung, môi trường kiểm thử, BackPACK RPA, FMS thay thế, 4 KPI OTP/OSP, retention theo loại tài liệu, luồng thủ công ANABS, định dạng dữ liệu VIP, multi-session, lịch sử OFP sát giờ, cảnh báo tab Flight Release "bên ngoài"). SME-09 cập nhật chú thích ASR "ANABS/ANABIOS". Không có điểm nào được đóng trong đợt này (§IV chỉ liệt kê câu hỏi, không kèm kết quả). Tổng 109 điểm (103 Mở / 5 Đang xử lý / 1 Đã chốt).
 
 > Đính chính ASR 12/06: **SME-02 (Lotang) → 🟢 Đã chốt = NOTAM** (lỗi ASR; không có "chuyến Lotang"). Điểm 🟢 đầu tiên của sổ.
 
@@ -197,6 +214,7 @@ document_id: "OID-TOSS-001"
 
 ---
 
+*OID-TOSS-001 v0.11 — 2026-06-16. Rà sau khi regenerate 5 báo cáo khảo sát (08/06, 09/06, 11/06 sáng, 11/06 chiều, 12/06 sáng) theo SKILL survey-report Option B: +4 SME (SME-38 pgepoid; SME-39 Vasco + HT 30-31; SME-40 chuẩn hóa take-off weight/"loft power" & trọng lượng ướt/"phi vết"; SME-41 "quả đấy dầu" + "anh Ngọt"), +11 KS (KS-44 SITA điện văn bổ sung; KS-45 môi trường kiểm thử; KS-46 BackPACK + pgepoid RPA; KS-47 cụm dữ liệu FMS thay thế; KS-48 định nghĩa/công thức 4 KPI OTP/OSP + tiêu chí 80%; KS-49 retention theo loại tài liệu; KS-50 luồng tích chọn thủ công khi ANABS thiếu mác; KS-51 định dạng dữ liệu nhập tay VIP; KS-52 multi-session tham chiếu; KS-53 lịch sử làm lại OFP sát giờ; KS-54 cảnh báo tab Flight Release "bên ngoài"). Cập nhật SME-09 ghi chú ứng viên ASR "ANABS/ANABIOS". Không đóng điểm nào — §IV của 5 báo cáo chỉ liệt kê câu hỏi chưa có kết quả. Tổng 109 điểm (103 Mở / 5 Đang xử lý / 1 Đã chốt).*
 *OID-TOSS-001 v0.10 — 2026-06-16. Rà sau buổi 15/06 (Màn hình Flight Dispatch & quy trình OFP Release): +5 KS (KS-39…43: phạm vi A-CDM đợt đầu, nguồn dự phòng parking stand "VR", cột PIC confirm ngưỡng nhắc, attribution bàn giao ca, nghĩa viết tắt OAP/OSP/OMP/AOS). 15/06 trả lời một phần: KS-21 (auto-tăng version sau Un-Release) → 🟡; DL-01 (ngưỡng release/cảnh báo màu OFP: quốc nội 210/75/60′, quốc tế 270/90/75′ trước ETD). Tổng 94 điểm (88 Mở / 5 Đang xử lý / 1 Đã chốt).*
 *OID-TOSS-001 v0.9 — 2026-06-12. Đính chính ASR: SME-35 "off cộng cộng" = **Ops++** (tên hệ thống, BA Lead xác nhận) → 🟡 Đang xử lý (hành vi xử lý chuyến `D` về gốc còn mở, gắn KS-36). Tổng 89 điểm (84 Mở / 4 Đang xử lý / 1 Đã chốt).*
 *OID-TOSS-001 v0.8 — 2026-06-12. Rà sau khi viết lại báo cáo 12/06 sáng: +1 KS-38 (quy tắc clear/giữ đỏ sau cất cánh cho cảnh báo "vẫn bay"). Các điểm IV còn lại đã có sẵn (SME-34…37, KS-32…37, KS-21). Tổng 89 điểm (85 Mở / 3 Đang xử lý / 1 Đã chốt).*
