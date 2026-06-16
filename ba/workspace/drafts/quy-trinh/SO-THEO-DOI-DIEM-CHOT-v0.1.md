@@ -1,8 +1,8 @@
 ---
 project: "TOSS — Hệ thống Điều hành Khai thác Hãng Hàng không"
 author: "BA Lead"
-version: "0.9"
-date: "2026-06-12"
+version: "0.10"
+date: "2026-06-16"
 status: "Draft"
 document_type: "Sổ theo dõi Điểm cần chốt & Câu hỏi mở (Open Items & Decisions Register)"
 document_id: "OID-TOSS-001"
@@ -97,7 +97,7 @@ document_id: "OID-TOSS-001"
 | KS-18 | **Ngưỡng cảnh báo PAX time / lịch PAX** — số phút cụ thể trước STD | KS 11/06 P2 §II.6 | Dispatcher (đoạn nhiễu — phỏng vấn bổ sung) | 🔴 Mở | |
 | KS-19 | **Hệ thống "long"** phân tích QAR/QAI — tên đầy đủ + quan hệ với QAI | KS 11/06 P2 §II.7 | SME dữ liệu vận hành | 🔴 Mở | |
 | KS-20 | Cơ chế phối hợp **TOSS↔MO Plus khi reset Confirm Release** (signal/payload/timing/notification UX) | KS 11/06 chiều §II.4 | Workshop + đối tác MO Plus | 🔴 Mở | |
-| KS-21 | Quy ước **TOSS gán version OFP sau Unrelease** ("2.1" vs auto-tăng "v4") | KS 11/06 chiều §II.4 | Nội bộ + SME | 🔴 Mở | |
+| KS-21 | Quy ước **TOSS gán version OFP sau Unrelease** ("2.1" vs auto-tăng "v4") | KS 11/06 chiều §II.4 | Nội bộ + SME | 🟡 Đang xử lý | 15/06: chốt **auto-tăng version cao hơn** khi Un-Release (v2→v3), quay về trạng thái "có OFP chưa release"; quy ước số cụ thể (2.1 vs v4) vẫn chờ. |
 | KS-22 | Quy tắc **bóc tách nguồn 3 file OFP (TXT+HTML+PDF)** phía MO Plus | KS 11/06 chiều §II.13 | Workshop MO Plus/Lido | 🔴 Mở | |
 | KS-23 | **TOSS sửa OFP** — chọn PA1 (form trên TOSS) hay PA2 (sửa tay + upload) | KS 11/06 chiều §II.11 | Nội bộ + SME | 🔴 Mở | |
 | KS-24 | **MO Plus "latest by name"** (hardcode) — phối hợp đội MO Plus điều chỉnh | KS 11/06 chiều §II.9 | Đối tác MO Plus | 🔴 Mở | |
@@ -115,6 +115,11 @@ document_id: "OID-TOSS-001"
 | KS-36 | **Hành vi Lido khi chuyến mất `D`** (giật về ngày gốc): xin OFP cũ hay sinh OFP mới [ASR nhiễu] | KS 12/06 P2 §11 | Workshop Lido + SME | 🔴 Mở | |
 | KS-37 | **Action shortcut "Dispatch Release" trên Monitoring** ↔ clear cảnh báo vàng đa cột (REG+DR…) — cơ chế đồng bộ | KS 12/06 P2 §9,§10 | Nội bộ + SME | 🔴 Mở | |
 | KS-38 | **Quy tắc clear/giữ "đỏ" sau khi chuyến cất cánh** cho các cảnh báo "vẫn bay dù đỏ/vàng" (vd thời tiết): giữ nguyên đỏ để ghi nhận "có đỏ nhưng không action" hay clear về xanh khi đã đáp — chưa chốt đồng nhất theo từng cột | KS 12/06 P2 §12 | SME điều phái | 🔴 Mở | |
+| KS-39 | **Phạm vi sân bay tích hợp A-CDM đợt đầu** (ngoài HAN/TSN gồm những đâu; sân bay ngoài dùng Amadeus/Flight Status) | KS 15/06 §II.1 | SME + tích hợp | 🔴 Mở | |
+| KS-40 | **Nguồn dự phòng parking stand** khi thiếu A-CDM (cụm nghe như "VR" — `[cần xác nhận]`) | KS 15/06 §II.1 | SME điều phái | 🔴 Mở | |
+| KS-41 | **Cột PIC confirm** — có ngưỡng nhắc/cảnh báo nếu Pilot chưa confirm sát giờ không (không quy định cứng thời điểm) | KS 15/06 §II.2 | SME điều phái | 🔴 Mở | |
+| KS-42 | **Attribution khi bàn giao ca** — version OFP mới do ca sau up mang tên ai; cơ chế ghi nhận đúng người thực hiện từng version | KS 15/06 §II.3 | Nội bộ + SME | 🔴 Mở | |
+| KS-43 | **Nghĩa viết tắt nghe trong ghi âm 15/06**: OAP / OSP / OMP / AOS — `[cần xác nhận]` (có thể chuyển nhóm SME) | KS 15/06 §IV | SME điều phái | 🔴 Mở | |
 
 ## D. Tham số/ngưỡng & mô hình dữ liệu chưa có nguồn (DL)
 
@@ -122,7 +127,7 @@ document_id: "OID-TOSS-001"
 
 | ID | Nhóm điểm cần chốt | Nguồn (file FUNC) | Buổi làm rõ | Trạng thái | Kết quả & ngày |
 |---|---|---|---|---|---|
-| DL-01 | **Ngưỡng cảnh báo**: load factor thấp / chậm chuyến / FTL / Delta ZFW / biên an toàn VMA / rate-limit API | PH1 (FUNC-108,125,188), PH2 (FUNC-273), PH5 | SME từng phân hệ | 🔴 Mở | |
+| DL-01 | **Ngưỡng cảnh báo**: load factor thấp / chậm chuyến / FTL / Delta ZFW / biên an toàn VMA / rate-limit API | PH1 (FUNC-108,125,188), PH2 (FUNC-273), PH5 | SME từng phân hệ | 🔴 Mở | 15/06: chốt **ngưỡng release/cảnh báo màu OFP** — quốc nội **210/75/60′**, quốc tế **270/90/75′** trước ETD (lưu ý/sớm nhất/muộn nhất release). Các ngưỡng khác (load factor, FTL, VMA, Delta ZFW…) vẫn mở. |
 | DL-02 | **Mô hình dữ liệu chi tiết**: bộ trường danh mục sân bay, Master MEL, công thức Tankering, tham số vận hành | PH4 §3.2 | GĐ1 (data model) + SME | 🔴 Mở | |
 | DL-03 | **Data contract** API/Webhook + danh sách hệ thống vệ tinh nhận dữ liệu danh mục | PH4 (FUNC-404), PH5 (FUNC-511) | Workshop tích hợp | 🔴 Mở | |
 | DL-04 | **Ô YCKT V3 còn trống** (TOSS-003/004/021–024/058–061…) + sheet Nhân sự CQĐV thiếu đầu mối | PH5 §3.2; PHAN-TICH-YCKT | Rà soát YCKT với khách hàng | 🔴 Mở | |
@@ -192,6 +197,7 @@ document_id: "OID-TOSS-001"
 
 ---
 
+*OID-TOSS-001 v0.10 — 2026-06-16. Rà sau buổi 15/06 (Màn hình Flight Dispatch & quy trình OFP Release): +5 KS (KS-39…43: phạm vi A-CDM đợt đầu, nguồn dự phòng parking stand "VR", cột PIC confirm ngưỡng nhắc, attribution bàn giao ca, nghĩa viết tắt OAP/OSP/OMP/AOS). 15/06 trả lời một phần: KS-21 (auto-tăng version sau Un-Release) → 🟡; DL-01 (ngưỡng release/cảnh báo màu OFP: quốc nội 210/75/60′, quốc tế 270/90/75′ trước ETD). Tổng 94 điểm (88 Mở / 5 Đang xử lý / 1 Đã chốt).*
 *OID-TOSS-001 v0.9 — 2026-06-12. Đính chính ASR: SME-35 "off cộng cộng" = **Ops++** (tên hệ thống, BA Lead xác nhận) → 🟡 Đang xử lý (hành vi xử lý chuyến `D` về gốc còn mở, gắn KS-36). Tổng 89 điểm (84 Mở / 4 Đang xử lý / 1 Đã chốt).*
 *OID-TOSS-001 v0.8 — 2026-06-12. Rà sau khi viết lại báo cáo 12/06 sáng: +1 KS-38 (quy tắc clear/giữ đỏ sau cất cánh cho cảnh báo "vẫn bay"). Các điểm IV còn lại đã có sẵn (SME-34…37, KS-32…37, KS-21). Tổng 89 điểm (85 Mở / 3 Đang xử lý / 1 Đã chốt).*
 *OID-TOSS-001 v0.7 — 2026-06-12. Đính chính ASR: SME-02 (Lotang) chốt 🟢 = NOTAM (lỗi ASR; không có "chuyến Lotang"). Lan tỏa sửa glossary/BRD/FUNC/báo cáo. Tổng 88 điểm (84 Mở / 3 Đang xử lý / 1 Đã chốt).*

@@ -7,6 +7,7 @@
 | `main-flight-dispatcher-operating-procedure.md` | 2433 | Quy trình Flight Dispatcher (docx, đầy đủ) — bản phân rã ở `../flight-dispatcher-procedure/` |
 | `TOSS-Trien-khai-YCKT.extracted.md` | 937 | **LIVE** YCKT-VTIT (Google Sheet native, 13 tab) — refresh `gsheet-to-md.py` id `1DGIy…`; phân tích từng sheet ở `../yckt-trien-khai/` (bản tĩnh đã lệch) |
 | `VNA-TOSS-Function-list-v1.0.extracted.md` | 231 | **LIVE** Danh sách chức năng TOSS (Drive xlsx, 3 tab: Tổng Quan/Function list/Màn hình Flight Dispatch) — refresh `gdrive-to-md.py` id `15icZM…` |
+| `TOSS-Total-Operations-Steering-System-v0.1.extracted.md` | 877 | "TOSS - Total Operations Steering System v0.1" (xlsx) — giống YCKT (YCKT V3/MENU/FOS…) + tab **"giải thích thuật ngữ"** (nguồn glossary). ⚠ tên "Total Operations Steering System" — cần BA Lead xác nhận vs tên TOSS hiện hành |
 | `Aircraft_Netline.extracted.md` | 697 | Master tàu bay nguồn Netline (39 cột) → PH4 |
 | `BCAO_10Jun2025_11Jun2025-v2.extracted.md` | 434 | Báo cáo ngày khai thác 10–11/Jun (docx) |
 | `Sizing-update-260609-4T.extracted.md` | 299 | Sizing hạ tầng (xlsx) → BR-516 |

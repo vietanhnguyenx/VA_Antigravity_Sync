@@ -1,8 +1,8 @@
 ---
 project: "TOSS — Hệ thống Điều hành Khai thác Hãng Hàng không"
 author: "BA Lead"
-version: "0.10"
-date: "2026-06-12"
+version: "0.11"
+date: "2026-06-16"
 status: "Draft"
 document_type: "Domain Knowledge — Từ điển Thuật ngữ TOSS"
 ---
@@ -23,6 +23,7 @@ document_type: "Domain Knowledge — Từ điển Thuật ngữ TOSS"
 | **ATC** (Air Traffic Control) | Kiểm soát Không lưu | Đơn vị điều hành không phận, cấp phép cất/hạ cánh. TOSS không trực tiếp tích hợp ATC nhưng cần lưu thông tin ATC clearance. |
 | **AOC** (Air Operator Certificate) | Giấy phép Khai thác Hàng không | Chứng chỉ cho phép hãng hàng không khai thác thương mại, cấp bởi CAAV. Mọi hoạt động khai thác trong TOSS phải tuân thủ điều kiện AOC. |
 | **AOG** (Aircraft On Ground) | Tàu bay nằm đất | Tình trạng tàu bay không thể khai thác (thường do hỏng hóc kỹ thuật/thiếu vật tư), cần xử lý khẩn để đưa trở lại bay. Ảnh hưởng trực tiếp lịch bay/đội tàu — TOSS cần cảnh báo và hỗ trợ điều hành (đổi tàu, gián đoạn). Nguồn xác nhận thuật ngữ: tài liệu FOCA Dangerous Goods (`dangerous-goods-notoc/`). |
+| **AOS** | *(cần xác nhận tên đầy đủ)* | Tài khoản bot/tự động hóa dùng để upload OFP vào hệ thống thay người dùng thông thường. Cần đặt tên theo vai trò (ví dụ theo shift/ca trực) để phân biệt attribution khi xem lịch sử phiên bản OFP. *(Nghĩa đầy đủ chưa xác nhận — xem OID KS-40.)* (nguồn: phỏng vấn Dispatcher 15/06/2026 P3 d.~11–13). |
 | **APU** (Auxiliary Power Unit) | Động cơ phụ trợ | Thiết bị động lực phụ trên tàu bay, cung cấp điện và khí nén khi động cơ chính tắt (khởi động động cơ, điều hòa khi đỗ). Nhiên liệu APU được tính khi lập kế hoạch nhiên liệu. Trong BCAO, trạng thái APU được phân loại: **APU GEN INOP** (hỏng phát điện → cần GPU), **APU BLEED INOP** (hỏng cấp khí → cần ASU, ACU), **APU SMELL** (có mùi → cần ACU), **APU INOP** (hỏng hoàn toàn → cần ASU, ACU, GPU), **MONITOR APU** (theo dõi). Bảng APU/PACK trong BCAO theo dõi tất cả tàu trong các tình trạng này mỗi ngày. Nguồn xác nhận: ICAO Annex 6 Part I + FAA 14 CFR Part 121; mẫu BCAO (họp 09/06). |
 | **ACDM / A-CDM** (Airport Collaborative Decision Making) | Ra quyết định phối hợp tại sân bay | Cơ chế chia sẻ dữ liệu thời gian thực giữa các bên tại sân bay (milestone times, vị trí, trạng thái chuyến bay, điều phối mặt đất/không lưu). TOSS tích hợp ACDM (YCKT TOSS-080). **Phỏng vấn 11/06 chiều: A-CDM là nguồn cho màn giám sát tổng quan (monitoring overview) giai đoạn sau cất cánh.** |
 | **ACARS Fuel Unit** | Đơn vị nhiên liệu trên điện ACARS | Đơn vị nhiên liệu trong điện ACARS có thể khác kg (vd tấn) và **thay đổi theo giai đoạn** trên cùng một tàu → TOSS cần **hệ số quy đổi về kg có hiệu lực theo giai đoạn** (nguồn: họp 09/06). |
@@ -194,6 +195,7 @@ document_type: "Domain Knowledge — Từ điển Thuật ngữ TOSS"
 |---|---|---|
 | **NOTAM** (Notice to Airmen / **Notice to Air Missions** — FAA) | Thông báo cho Phi công | Thông tin về sân bay, không phận, hoặc thiết bị ảnh hưởng đến an toàn bay. Dispatcher trong TOSS phải xem xét NOTAM trước khi phát hành Dispatch Release. *Tên gọi: ICAO/truyền thống là "Notice to Airmen"; FAA đã đổi thành "Notice to Air Missions" (xem `aircraft_dispatcher_pts_10`).* **Phân loại 3 nhóm theo phạm vi ảnh hưởng:** (1) NOTAM sân bay — ảnh hưởng hoạt động tại sân bay cụ thể; (2) NOTAM vùng trời (FIR/airspace) — ảnh hưởng quyền bay qua không phận; (3) NOTAM đường bay (route/AWY) — ảnh hưởng tuyến đường bay. Cách phân loại chi tiết và đánh giá mức độ ảnh hưởng tới từng chuyến cần workshop riêng với SME điều phái. NOTAM cứu hỏa (RFFS): khi cấp RFFS sân bay thay đổi → NOTAM phát ra → TOSS cảnh báo; không cần lưu tiêu chuẩn RFFS riêng (nguồn: phỏng vấn Dispatcher 11/06/2026). **Lỗi ASR cần map:** "Lotang", "lô tam", "nô tam" trong transcript = NOTAM (BA Lead xác nhận 12/06) — KHÔNG có "chuyến Lotang"; "cảnh báo NOTAM mới phát sinh + đánh giá ảnh hưởng" gộp tại cảnh báo NOTAM (BR-118). |
 | **NOTOC** (Notification To Captain) | Thông báo cho Cơ trưởng | Văn bản thông báo cho cơ trưởng về **hàng nguy hiểm (Dangerous Goods)** xếp trên tàu bay. Cơ trưởng phải tiếp nhận và **xác nhận đã nhận** (ký trên một bản sao NOTOC); một bản sao phải lưu giữ tại mặt đất, truy cập được suốt thời gian chuyến bay. Cơ sở: ICAO Annex 18 + FOCA GM-INFO Dangerous Goods (xem `dangerous-goods-notoc/`). TOSS sinh/đính kèm NOTOC trong bộ tài liệu chuyến bay khi có DG. |
+| **Ngưỡng release OFP** | Ngưỡng thời gian phát hành OFP | Bộ tham số thời gian trước ETD quy định cửa sổ cho phép release OFP: **quốc nội — sớm nhất 210′, thông thường 75′, muộn nhất 60′ trước ETD; quốc tế — sớm nhất 270′, thông thường 90′, muộn nhất 75′ trước ETD.** TOSS dùng các ngưỡng này để đổi màu cảnh báo (trắng → vàng → đỏ) trên màn Dispatch Monitoring (nguồn: phỏng vấn Dispatcher 15/06/2026 P2 d.~26; đối chiếu Function list). |
 
 ---
 
@@ -222,6 +224,7 @@ document_type: "Domain Knowledge — Từ điển Thuật ngữ TOSS"
 | **Payload Extra** | Tải/dầu lấy thêm | Phần tải/nhiên liệu tổ bay đề nghị lấy thêm so với OFP; được TOSS ghi nhận và đưa vào báo cáo (nguồn: phỏng vấn Dispatcher 11/06/2026 buổi chiều §II.10). *(Tên "Pallet Relief": xem OID.)* |
 | **Post-Release Transition** (Phase 3) | Giai đoạn chuyển tiếp sau Dispatch Release | Giai đoạn từ sau khi [Dispatch Release](#d) đến khi cất cánh; TOSS tiếp tục quét và phát cảnh báo nếu phát sinh thay đổi — một trong các giai đoạn của quy trình điều phái (nguồn: phỏng vấn Dispatcher 11/06/2026 buổi chiều §II.3). |
 | **Phase 4 / Phase 5 Monitoring** | Giám sát trước khởi hành / trong khi bay | Hai giai đoạn giám sát của điều phái nối tiếp [Post-Release Transition](#p): **Phase 4 — Pre-Departure Monitoring** (theo dõi từ sau release đến khi cất cánh) và **Phase 5 — In-Flight Monitoring** (theo dõi khi đang bay — chỉ cập nhật trạng thái mốc bay, KHÔNG monitor tiêu hao dầu real-time; phân tích dầu/đường bay thuộc báo cáo Post-Flight). Là khung của màn hình Monitoring overview (BR-125) (nguồn: phỏng vấn Dispatcher 11/06/2026 buổi chiều §II.6). |
+| **PIC Confirm** | Xác nhận của PIC | Cột/trạng thái trên màn hình Dispatch: phi công (PIC) xác nhận đã nhận và đọc OFP sau khi Dispatch đã release. Không có quy định cứng về thời điểm confirm. Đây là thông tin bổ sung ngoài **Dispatch Release** và **Pilot Release** — cần thêm cột riêng trên màn Monitoring (nguồn: phỏng vấn Dispatcher 15/06/2026 P2 d.~67). |
 | **POD** | (giữ nguyên — viết tắt nội bộ VNA) | Nguồn bản tin/đánh giá tại các thời điểm cập nhật hằng ngày mà điều phái NOTAM/WX tham khảo (nguồn: FDOP §3.2.2). *(Cần xác nhận tên đầy đủ với VNA — chưa có nguồn.)* |
 | **PER Group** (Aircraft Performance Group) | Nhóm tính năng tàu bay (FOE) | Nhóm thuộc FOE phụ trách tính năng tàu bay; nhận tài liệu Weigh and Balance / Chapter 2 từ Tech Dept khi nhận tàu mới (nguồn: FDOP §3.5 — "Aircarft performance Group (FOE)", "send to PER Group"). *(Cần xác nhận tên chính thức với VNA.)* |
 
@@ -334,6 +337,52 @@ document_type: "Domain Knowledge — Từ điển Thuật ngữ TOSS"
 
 ---
 
+## ★ Thuật ngữ nguồn Khách hàng (CỐT LÕI) — bộ "giải thích thuật ngữ" VNA
+
+> **Ưu tiên cốt lõi (BA Lead, 2026-06-16):** 35 thuật ngữ dưới lấy nguyên từ tab **"giải thích thuật ngữ"** do khách hàng (VNA) tự soạn — nguồn `customer-docs-source/TOSS-Total-Operations-Steering-System-v0.1.extracted.md`. **Khi mâu thuẫn với entry A–Z phía trên, lấy định nghĩa khách hàng làm chuẩn.** Khách hàng xác nhận **TOSS = Transformative Operations Support System** (tên file "Total Operations Steering System" là nhầm/cũ — KHÔNG phải tên chính thức).
+
+| Viết tắt / Thuật ngữ | Tiếng Anh | Nhóm | Mô tả (nguồn khách hàng) |
+|---|---|---|---|
+| **AKE** | AKE / LD3 Container | Hàng hóa | Thùng nhôm chứa hàng hóa/hành lý tiêu chuẩn (ULD) phổ biến nhất trên tàu thân rộng. |
+| **Amadeus PSS** | Amadeus Passenger Service System | Hành khách | PSS quản lý đặt chỗ, bán vé, check-in, dữ liệu hành khách; nguồn số khách/booking/cấu hình khai thác cho lập KH bay, tải trọng, báo cáo. |
+| **ANCM** | Air Navigation Charges Management | Chi phí khai thác | Quản lý chi phí điều hành bay: phí bay qua FIR, điều hướng, cất/hạ cánh. |
+| **BH** | Block Hour | Kế hoạch bay | Giờ lăn + bay (rút chèn rời bến → đóng chèn vào bến). Dùng tính lương + tuổi thọ tàu bay. (phân biệt FH) |
+| **CDE** | Cargo Data Exchange | Hàng hóa | Nền tảng trao đổi dữ liệu điện tử hàng hóa giữa Hãng – Sân bay – Hải quan. |
+| **CFP / OFP** | Computerized / Operational Flight Plan | Kế hoạch bay | KH bay chi tiết (đường bay/thời tiết/nhiên liệu). OFP = bản chốt cuối có chữ ký pháp lý của tổ lái. |
+| **Cirium** | Cirium Aviation Analytics | Dữ liệu | Nền tảng dữ liệu lịch bay toàn cầu + phân tích chuyên sâu hàng không. |
+| **Contingency** | Contingency Fuel | Nhiên liệu | Xăng dự phòng tình huống bất thường (gió ngược, bão, bay vòng tránh mây). |
+| **Cassiopee Alpha** | Cassiopee Alpha Safety System | An toàn bay | Quản lý báo cáo an toàn khai thác (Safety Reporting); TOSS nhận để giám sát/phân tích an toàn. |
+| **EFF** | Electronic Flight Folder | Kế hoạch bay | Thư mục tài liệu chuyến bay điện tử; FIMS đóng gói OFP/WX/NOTAM đẩy lên iPad tổ lái. |
+| **EGS** | Environmental Governance System | Môi trường | Quản lý dữ liệu môi trường/bền vững; TOSS cấp dữ liệu nhiên liệu/phát thải cho ESG/ETS. |
+| **eTechlog** | Electronic Technical Logbook | Kỹ thuật | Nhật ký kỹ thuật điện tử: Flight Log, Defect Log, hạn định khai thác, bất thường kỹ thuật. |
+| **FC** | Flight Crew / Flight Cycle | Nhân sự/Kỹ thuật | Tùy ngữ cảnh: Tổ lái HOẶC Chu kỳ bay (1 cất + 1 hạ) dùng tính hạn bảo dưỡng. |
+| **FH** | Flight Hour | Kế hoạch bay | Giờ bay thực tế trên không (cất cánh → chạm đường băng hạ cánh). |
+| **FIMS** | Flight Information Management System | Hệ thống Cốt lõi | "Trái tim dữ liệu" — tổng hợp lịch bay, thời tiết, nhiên liệu, tải trọng. |
+| **Final Reserve** | Final Reserve Fuel | Nhiên liệu | Xăng dự trữ bắt buộc theo luật quốc tế (≈30′ bay chờ, tuyệt đối không dùng lẹm). |
+| **HRMS / SkyHR** | Human Resource Management System | Nhân sự | Hệ thống quản lý nhân sự (SkyHR của VNA): mã NV, họ tên, phòng ban, chức vụ, email, trạng thái. |
+| **LDAP / AD** | LDAP / Active Directory | Nhân sự/Bảo mật | Dịch vụ quản lý tài khoản tập trung; TOSS đồng bộ user (tên đăng nhập, email, phòng ban, trạng thái). |
+| **LMC** | Last Minute Change | Tải trọng | Thay đổi tải trọng phút chót sát giờ cất cánh (khách hủy, dỡ bớt hàng). |
+| **LMS** | Learning Management System | Nhân sự | Quản lý đào tạo; tổ bay thi sát hạch lý thuyết định kỳ. |
+| **Lotus Airport** | Lotus Airport System | Khai thác mặt đất | Quản lý thông tin khai thác sân bay/dịch vụ mặt đất hỗ trợ điều hành. |
+| **LOMS** | Line Operations Monitoring System | Khai thác | Giám sát điều hành bay, ghi số liệu khai thác thực tế + sự cố chuyến bay. |
+| **MCMR** | Master Crew Member Record | Nhân sự | Hồ sơ gốc lý lịch/bằng cấp/năng định (Type Rating) của từng tổ bay. |
+| **MFA / 2FA** | Multi-Factor / Two-Factor Authentication | Bảo mật | Xác thực đa yếu tố. |
+| **Mail manifest** | Mail Manifest | Hàng hóa | Bản kê khai bưu kiện/bưu phẩm; đồng bộ API/điện văn bưu chính; đầu vào FOS Report. |
+| **Overflight Permit** | Overflight Permit | Phép bay | Giấy phép bay qua vùng trời/FIR; TOSS theo dõi hiệu lực để cảnh báo chuyến chưa đủ điều kiện. |
+| **PMC** | PMC Pallet | Hàng hóa | Khay (mâm) nhôm phẳng chuẩn xếp hàng cỡ lớn (thuộc ULD). |
+| **RPS** | Rostering Planning System | Nhân sự | Xếp lịch làm việc (Roster) tự động cho tổ lái/tiếp viên. |
+| **RTK** | Revenue Tonne Kilometer | Thương mại | Tấn-Km doanh thu (1 tấn tải trả tiền vận chuyển 1 km). |
+| **SPECTRA** | SPECTRA Schedule | Lịch bay | Quản lý/lập kế hoạch/tối ưu lịch bay mùa. |
+| **Tankering** | Tankering Fuel | Nhiên liệu | Bay dầu: bơm thừa xăng từ sân nhà do giá sân đến đắt; báo cáo hiệu quả tra nạp tối ưu chênh lệch. |
+| **TIMS** | Technical Information Management System | Kỹ thuật | Quản lý thông tin kỹ thuật tàu bay (cấu hình, hồ sơ khai thác) hỗ trợ bảo dưỡng. |
+| **Trip Fuel** | Trip Fuel | Nhiên liệu | Lượng nhiên liệu vừa đủ bay từ điểm xuất phát đến điểm đích. |
+| **WNI** | Weathernews Inc | Khí tượng | Đối tác cung cấp nền tảng dữ liệu/bản đồ/cảnh báo thời tiết chuyên dụng. |
+| **ZFW = DOW + Payload** | Zero Fuel Weight | Tải trọng | Trọng lượng thực tế máy bay khi không có xăng (= DOW + Payload thực tế). |
+
+---
+
+*v0.12 (2026-06-16): Bổ sung 3 thuật ngữ từ buổi khảo sát 15/06/2026 (Màn hình Flight Dispatch / OFP Release) sau khi BA Lead confirm: **AOS** (bot upload OFP, nghĩa đầy đủ chờ xác nhận — OID KS-40), **Ngưỡng release OFP** (210/75/60′ nội địa; 270/90/75′ quốc tế), **PIC Confirm** (cột xác nhận PIC đã nhận OFP). Quyết định: BA Lead 2026-06-16.*
+*v0.11 (2026-06-16): Bổ sung 35 thuật ngữ nguồn khách hàng (tab "giải thích thuật ngữ" — TOSS Total Operations Steering System v0.1) thành mục "CỐT LÕI", sau khi BA Lead xác nhận merge + chỉ đạo "ưu tiên thuật ngữ khách hàng làm cốt lõi". Làm rõ **TOSS = Transformative Operations Support System** (tên file "Total Operations Steering System" là nhầm/cũ). Quyết định: BA Lead 2026-06-16.*
 *v0.10 (2026-06-12): ĐÍNH CHÍNH ASR — "Lotang"/"lô tam"/"nô tam" = **NOTAM** (BA Lead xác nhận; transcript 11/06 dòng 670). Bỏ khái niệm "chuyến Lotang" (lỗi ASR); chuyển entry Lotang thành đính chính trỏ NOTAM + thêm ghi chú map vào entry NOTAM. Lan tỏa sửa: OID SME-02 (chốt), BRD BR-116, FUNC PH1, báo cáo 11/06 + 12/06.*
 *v0.9 (2026-06-12): Bổ sung 8 entry từ khảo sát Dispatcher 12/06/2026 buổi sáng (thiết kế màn Monitoring) sau khi BA Lead confirm: Carrier, Color Scheme cảnh báo, Flight Detail, FN Surface (D/Z), History Timeline, Leg History, Monitoring User Profile, Time Window. "Z" của FN Surface còn chờ xác nhận (OID SME-34). Quyết định: BA Lead 2026-06-12.*
 *v0.8 (2026-06-12): Bổ sung 4 entry nhóm mốc thời gian phục vụ màn hình Monitoring (rà soát FUNC màn giám sát với domain-knowledge): ACARS OOOI (OUT/OFF/ON/IN), A-CDM Milestone Times (SOBT/EOBT/TOBT/AOBT/TSAT/CTOT/TTOT/ATOT/ELDT/ALDT/EIBT/AIBT…), ETA, Phase 4/Phase 5 Monitoring. Nguồn: YCKT FOS sheet-09 (tài liệu khách hàng). Quyết định: BA Lead 2026-06-12.*
