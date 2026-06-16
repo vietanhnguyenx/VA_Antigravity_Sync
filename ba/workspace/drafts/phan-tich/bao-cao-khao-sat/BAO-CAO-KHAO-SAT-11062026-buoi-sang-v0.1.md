@@ -126,7 +126,7 @@ TOSS cần tích hợp NOTAM, phân loại tự động và cảnh báo các NOT
 
 **Thảo luận và Đề xuất**
 
-Hiện trạng cho thấy nguồn NOTAM được lấy từ trang quản lý của cơ quan quản lý bay (trong transcript ghi nhận là "VNCM" `[cần xác nhận]`), và điều phái đang tra cứu thủ công. Tài liệu cứu hỏa sân bay (RFFS) trên thực tế cũng nằm trong NOTAM chứ không tách riêng. Vấn đề nằm ở chỗ NOTAM có hàng trăm loại, không phải tất cả đều ảnh hưởng đến chuyến bay, nên không thể đọc và đánh giá toàn bộ một cách thủ công.
+Hiện trạng cho thấy nguồn NOTAM được lấy từ trang quản lý của Tổng công ty Quản lý bay Việt Nam - VATM (VNCM), và điều phái đang tra cứu thủ công. Tài liệu cứu hỏa sân bay (RFFS) trên thực tế cũng nằm trong NOTAM chứ không tách riêng. Vấn đề nằm ở chỗ NOTAM có hàng trăm loại, không phải tất cả đều ảnh hưởng đến chuyến bay, nên không thể đọc và đánh giá toàn bộ một cách thủ công.
 
 Phía khảo sát đề xuất tiếp cận theo nhiều mức. Mức một là trích xuất NOTAM từ nguồn chính thức. Mức hai là phân loại NOTAM thành NOTAM sân bay, NOTAM vùng trời và NOTAM đường bay, trong đó phân loại chi tiết cần workshop riêng với chuyên gia nghiệp vụ (SME) điều phái. Mức ba là đánh giá mức độ ảnh hưởng tới chuyến cụ thể để highlight.
 
@@ -146,7 +146,7 @@ TOSS cần tích hợp và cảnh báo thời tiết tại các sân bay khai th
 
 Nguyên tắc cảnh báo được thống nhất là chỉ phát cảnh báo khi thông số tiến gần hoặc xuống dưới ngưỡng tối thiểu (VMA `[cần xác nhận viết tắt]`) cộng thêm một biên an toàn (margin). Một con số biên cụ thể là 500m đã được nhắc tới trong thảo luận, gắn với ngưỡng tầm nhìn. Đối với sân bay cất cánh và hạ cánh, ba thông số cần cảnh báo bao gồm tầm nhìn (Visibility), trần mây (Cloud Ceiling) và mưa dông TSRA (Thunderstorm và Rain). Thời tiết đường bay (en-route) liên quan đến SIGMET và bản tin chuyên dụng, tuy nhiên đoạn transcript ở phần này bị nhiễu nặng nên cần xác nhận lại.
 
-Về nguồn dữ liệu thời tiết, đối với sân bay nội địa, METAR và SPECI được lấy từ cơ quan khí tượng hàng không Việt Nam (transcript ghi nhận là "Vy Vy" `[cần xác nhận]`) và đây là nguồn chính thức. Đối với sân bay quốc tế, hệ thống dùng nguồn trong gói Lido, lưu ý rằng Lido chỉ "release" theo gói tài liệu chuyến bay chứ không phải quan trắc liên tục. Nguồn "UA PASMOS" `[cần xác nhận]` là giao diện hiển thị dữ liệu thời tiết có thể export và cần phương án kỹ thuật để tích hợp. Nguồn "Sunweather" `[cần xác nhận]` bị đánh giá là rủi ro và không ổn định nên cần cân nhắc khi sử dụng. Nguồn "Phi Công 11" `[cần xác nhận]` không phải nguồn chính thức và chỉ dùng để tham khảo.
+Về nguồn dữ liệu thời tiết, đối với sân bay nội địa, METAR và SPECI được lấy từ cơ quan khí tượng hàng không Việt Nam (transcript ghi nhận là "Vy Vy" `[cần xác nhận]`) và đây là nguồn chính thức. Đối với sân bay quốc tế, hệ thống dùng nguồn trong gói Lido, lưu ý rằng Lido chỉ "release" theo gói tài liệu chuyến bay chứ không phải quan trắc liên tục. Nguồn AMOS (Aircraft Maintenance Operations Software — phần mềm quản lý bảo dưỡng kỹ thuật hàng không của Thụy Sỹ) là giao diện hiển thị dữ liệu thời tiết có thể export và cần phương án kỹ thuật để tích hợp. Nguồn "Sunweather" `[cần xác nhận]` bị đánh giá là rủi ro và không ổn định nên cần cân nhắc khi sử dụng. Nguồn "Phi Công 11" `[cần xác nhận]` không phải nguồn chính thức và chỉ dùng để tham khảo.
 
 Về METAR và SPECI, METAR là bản tin quan trắc định kỳ trong khi SPECI là bản tin đặc biệt được phát khi có biến động đáng kể, cả hai có cùng cấu trúc. Hai loại bản tin này đều ở dạng văn bản mã hóa, cần được parse ra các trường để đối chiếu với ngưỡng cảnh báo.
 
@@ -328,7 +328,7 @@ Hai bên nhất trí bỏ cảnh báo Cost Index trong giai đoạn này. Khi Li
 **Từ Phần 1:**
 
 1. Xác nhận các mốc upload OFP quốc tế (90, 130, 180 và 200 phút) và phân loại chuyến tương ứng.
-2. Xác nhận tên và viết tắt của các thuật ngữ: VMA, VNCM/VNCS, "Vy Vy", UA PASMOS, Sunweather và "Phi Công 11". `[cần xác nhận]`
+2. Xác nhận tên và viết tắt của các thuật ngữ: VMA, VNCS, "Vy Vy", Sunweather và "Phi Công 11". `[cần xác nhận]`
 3. Làm rõ giao diện và cơ chế đồng bộ trạng thái Dispatch Release giữa TOSS và MO Plus, bao gồm timing, payload và cơ chế fail-safe.
 4. Xác định cơ chế ghi nhận lịch sử làm lại OFP sát giờ.
 5. Lựa chọn phương án parse METAR và SPECI: tự xây hay dùng thư viện/dịch vụ.
