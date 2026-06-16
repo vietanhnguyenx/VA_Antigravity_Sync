@@ -264,6 +264,12 @@ Khi xuất (pandoc):
 4. **Hậu xử lý mỗi file docx xuất ra** (pandoc bỏ ảnh logo của header): chèn lại `word/media/logo.png` + `word/_rels/header1.xml.rels` + `Default png` vào `[Content_Types].xml` bằng `ZipArchive` chế độ 'Update'. File `.md` nguồn **giữ nguyên link** (cho agent); style/letterhead chỉ áp **khi xuất**.
 5. **QC file đã xuất** (đọc `word/document.xml`/`styles.xml`/`theme1.xml`): tiêu chí PASS — `.md`=0, `](`=0, slug-stem=0, không lọt khóa YAML, không mojibake; entry dùng `/`; có `word/media/logo.png` + `header1.xml` + `footer1.xml` + field TOC; đủ các mục; XML well-formed; **FONT đồng bộ — mọi `w:ascii`/theme đều Times New Roman (theme latin = TNR, `Aptos`/`Calibri` = 0); chỉ cho phép `Consolas` và chỉ ở code/verbatim**. Lỗi thì sửa và xuất lại.
 
+**Theo dõi tài liệu đầu vào (BẮT BUỘC khi nhận file mới):** Khi agent nhận/phát hiện file mới trong `ba/workspace/input/Customer_docs/` hoặc `meeting-notes/` (không tính bulk ACARS/PEP5.16):
+
+1. Cập nhật `ba/workspace/drafts/phan-tich/TIMELINE-INPUT-DOCS.md` (mục A + mục B, bump version + ghi changelog).
+2. Chạy `.claude/sync/check-input-timeline.ps1` (Scan/Check/Both) để xác nhận không bỏ sót.
+3. Nếu phát hiện entry TIMELINE không có file → thông báo BA Lead, **KHÔNG tự xóa** (theo §D2 của TIMELINE-INPUT-DOCS.md).
+
 ---
 
 ## 7. Cơ chế Đồng bộ
@@ -276,7 +282,8 @@ Khi chỉnh sửa file được theo dõi, hook tự động (`sync-check.ps1`) 
 
 ---
 
-*HUMAN.md phiên bản 2.3 — 2026-06-16. File gốc: [CLAUDE.md](CLAUDE.md).*
+*HUMAN.md phiên bản 2.4 — 2026-06-16. File gốc: [CLAUDE.md](CLAUDE.md).*
+*v2.4: §6 — thêm quy tắc Theo dõi tài liệu đầu vào: agent cập nhật TIMELINE-INPUT-DOCS.md mỗi khi nhận file mới; script `.claude/sync/check-input-timeline.ps1` (Scan/Check/Both) chỉ báo cáo, không tự sửa; xóa entry thiếu file là quyết định BA Lead.*
 *v2.3: bổ sung subagent **project-coordinator (PC)** — Điều phối & nhắc nhở công việc dự án còn tồn đọng (tổng hợp OID/lộ trình/TASK/action item/cờ cần xác nhận thành báo cáo nhắc việc có ưu tiên; chỉ tổng hợp nguồn đã ghi, không tự quyết — §0/§0.3). Định nghĩa: `.claude/agents/project-coordinator.md` (+ bản VI `.claude/human/agents/`). Đăng ký ở CLAUDE.md §5.*
 *v2.2: thêm §0.4 Thiết lập Danh tính & Vai trò ở Phiên Đầu tiên — quy tắc bàn giao thư mục di động: trên máy mới (agent chưa có bộ nhớ về người dùng) phải hỏi họ tên/vai trò/phân hệ, đối chiếu PHAN-CONG-ROLE-BA, lưu bộ nhớ, và khóa các hành động gắn thẩm quyền cho tới khi xác nhận.*
 *v2.1: §2 — bổ sung mục tiêu/phạm vi **OSP (Operational Schedule Performance)** (bổ trợ OTP); hệ thống phải đo lường & hỗ trợ duy trì khai thác bám sát lịch hoạch định.*

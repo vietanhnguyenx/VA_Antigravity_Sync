@@ -329,6 +329,12 @@ When exporting (pandoc):
 4. **Post-process each exported docx** (pandoc drops the reference's header image): inject `word/media/logo.png` + `word/_rels/header1.xml.rels` + `png` Default into `[Content_Types].xml` via a `ZipArchive` 'Update' patch. Source `.md` keeps its links (for agents); styling/letterhead applied **only at export**.
 5. **QC the exported file** (read `word/document.xml`/`styles.xml`/`theme1.xml`). PASS criteria: `.md`=0, `](`=0, slug-stems=0, no leaked YAML keys, no mojibake; entries use `/` (no `\`); contains `word/media/logo.png` + `header1.xml` + `footer1.xml` + TOC field; all expected sections present; XML well-formed; **FONT consistent — every `w:ascii`/theme font is Times New Roman (theme latin = TNR, `Aptos`/`Calibri` count = 0); only `Consolas` allowed, and only for code/verbatim**. Fix and re-export until clean.
 
+**Input tracking (MANDATORY khi nhận tài liệu mới):** Bất kỳ khi nào agent nhận/phát hiện file mới trong `ba/workspace/input/Customer_docs/` hoặc `meeting-notes/` (không tính bulk ACARS/PEP5.16):
+
+1. Cập nhật `ba/workspace/drafts/phan-tich/TIMELINE-INPUT-DOCS.md` (mục A + B + bump version).
+2. Chạy `.claude/sync/check-input-timeline.ps1` để xác nhận không bỏ sót.
+3. Nếu phát hiện entry TIMELINE không có file → thông báo BA Lead, KHÔNG tự xóa (§D2 của TIMELINE).
+
 ---
 
 ## 9. Sync Mechanism (CRITICAL)
@@ -358,7 +364,8 @@ Full protocol: [.claude/sync/SYNC-PROTOCOL.md](.claude/sync/SYNC-PROTOCOL.md).
 
 ---
 
-*CLAUDE.md version 2.3 — 2026-06-16. Mirror: [HUMAN.md](HUMAN.md). Update both when project structure or conventions change.*
+*CLAUDE.md version 2.4 — 2026-06-16. Mirror: [HUMAN.md](HUMAN.md). Update both when project structure or conventions change.*
+*v2.4: §8 — thêm Input tracking rule: agent cập nhật TIMELINE-INPUT-DOCS.md khi nhận file mới; script `.claude/sync/check-input-timeline.ps1` (Scan/Check/Both) chỉ báo cáo, không tự sửa; xác nhận xóa entry thiếu file là quyết định BA Lead.*
 *v2.3: §5 — thêm subagent **project-coordinator (PC)**: điều phối & nhắc nhở công việc dự án còn tồn đọng (tổng hợp OID/roadmap/TASK/action item/cờ cần xác nhận thành báo cáo nhắc việc có ưu tiên; chỉ tổng hợp nguồn đã ghi, không tự quyết — §0/§0.3). Định nghĩa: `.claude/agents/project-coordinator.md` (+ mirror VI `.claude/human/agents/`).*
 *v2.2: added §0.4 First-Session Identity & Role Setup — portable-folder handover rule: on a machine with no memory of the user, the agent must ask name/role/subsystem, cross-check PHAN-CONG-ROLE-BA, persist to memory, and gate role-bound actions until confirmed.*
 *v2.1: §2 — bổ sung mục tiêu/phạm vi **OSP (Operational Schedule Performance)** (bổ trợ OTP); hệ thống phải đo lường & hỗ trợ duy trì khai thác bám sát lịch hoạch định.*
