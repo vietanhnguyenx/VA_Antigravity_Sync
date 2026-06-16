@@ -35,8 +35,8 @@ Tài liệu phân rã trung thực các Yêu cầu nghiệp vụ (BR — Busines
 | NG-3 | `BAO-CAO-KHAO-SAT-09062026-v0.2.md` | §II.1 Cây menu và danh mục chức năng; §II.5 Quản lý tàu bay; §II.6 Quản lý sân bay và cảnh báo dịch vụ |
 | NG-4 | `BAO-CAO-KHAO-SAT-11062026-buoi-sang-v0.1.md` | §II.9 Bảng dầu (AHM); §II.11 Phép bay; §II.12 Chứng chỉ tổ bay theo sân bay đặc biệt; §II.14 Standard Taxi Time |
 | NG-5 | `BAO-CAO-KHAO-SAT-11062026-buoi-chieu-v0.1.md` | §II.2 Cảnh báo chuyến không thường lệ thiếu STS/HEAD (cơ sở danh mục Flight Type Code) |
-| NG-6 | `ba/workspace/drafts/phan-tich/aircraft-source/Aircraft_Netline.extracted.md` | Header 39 cột Netline (AC_STATE, REMARK, STD_VERSION, STD_VERSION_ALT_1..4, AC_INDEX, CREWSIZE_COCKPIT/CABIN, ILS_EQUIPMENT, AUTOLAND, ACARS, SPECIAL_EQUIPMENT, NOISE, RADIO, PHONE, AP_RESTRICTION, AC_SUBTYPE…) và mẫu dữ liệu |
-| NG-7 | `ba/workspace/drafts/phan-tich/aircraft-source/Aircraft_FIMS.extracted.md` | Header 21 cột FIMS (AC_REG, AC_TYPE, AC_SUBTYPE, SEAT, C_CLASS/WY_CLASS, AC_TYPE_1, AC_MODEL, AC_TYPE_ICAO, MTOW_CONFIG, MAX_PAYLOAD, TANK_CAPACITY, SUB_GROUP…) và mẫu dữ liệu |
+| NG-6 | `ba/workspace/drafts/phan-tich/customer-docs-source/Aircraft_Netline.extracted.md` | Header 39 cột Netline (AC_STATE, REMARK, STD_VERSION, STD_VERSION_ALT_1..4, AC_INDEX, CREWSIZE_COCKPIT/CABIN, ILS_EQUIPMENT, AUTOLAND, ACARS, SPECIAL_EQUIPMENT, NOISE, RADIO, PHONE, AP_RESTRICTION, AC_SUBTYPE…) và mẫu dữ liệu |
+| NG-7 | `ba/workspace/drafts/phan-tich/customer-docs-source/Aircraft_FIMS.extracted.md` | Header 21 cột FIMS (AC_REG, AC_TYPE, AC_SUBTYPE, SEAT, C_CLASS/WY_CLASS, AC_TYPE_1, AC_MODEL, AC_TYPE_ICAO, MTOW_CONFIG, MAX_PAYLOAD, TANK_CAPACITY, SUB_GROUP…) và mẫu dữ liệu |
 | NG-8 | `ba/workspace/drafts/phan-tich/yckt-trien-khai/sheet-04-yckt-v3.md` | Dòng 206 (Included Baggage Allowance), 207 (Sector Groups by FH), 208 (Scheduled TAT), 209 (Commercial Config), 235 (Planned Version) |
 
 ---

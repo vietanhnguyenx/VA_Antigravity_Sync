@@ -310,8 +310,8 @@ Mức kỳ vọng vận hành: dịch vụ 24/7/365, độ sẵn sàng SLA tối
 
 | # | Nguồn | Đường dẫn |
 |---|---|---|
-| a | Aircraft FIMS (trích xuất) | `aircraft-source/Aircraft_FIMS.extracted.md` |
-| b | Aircraft Netline (trích xuất) | `aircraft-source/Aircraft_Netline.extracted.md` |
+| a | Aircraft FIMS (trích xuất) | `customer-docs-source/Aircraft_FIMS.extracted.md` |
+| b | Aircraft Netline (trích xuất) | `customer-docs-source/Aircraft_Netline.extracted.md` |
 | c | YCKT V3 (478 dòng) | `yckt-trien-khai/sheet-04-yckt-v3.md` |
 | d | FOS (Flight Operations Summary) | `yckt-trien-khai/sheet-09-fos.md` |
 | e | Sheet cảnh báo | `yckt-trien-khai/sheet-08` |
