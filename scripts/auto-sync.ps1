@@ -71,7 +71,7 @@ while ($true) {
 
                     # 4. Pull tu remote personal (su dung rebase)
                     Write-SyncLog "Dang keo thay doi moi nhat tu remote personal (pull --rebase)..." "INFO"
-                    $pullResult = & $git pull personal main --rebase 2>&1
+                    $pullResult = & $git -c credential.helper= pull personal main --rebase 2>&1
                     $lastExitCode = $LASTEXITCODE
 
                     if ($lastExitCode -ne 0) {
@@ -89,7 +89,7 @@ while ($true) {
                     else {
                         # 5. Push len remote personal
                         Write-SyncLog "Dang day cac thay doi len remote personal..." "INFO"
-                        $pushResult = & $git push personal main 2>&1
+                        $pushResult = & $git -c credential.helper= push personal main 2>&1
                         $pushExitCode = $LASTEXITCODE
 
                         if ($pushExitCode -ne 0) {
