@@ -54,10 +54,10 @@ function StripSlugs($t){ [regex]::Replace($t,'(?<![A-Za-z0-9./-])(?:(?:wf-)?\d+(
 # (d) bỏ chú thích/cảnh báo lỗi nhận dạng giọng nói (ASR) — CHỈ ở .md nội bộ, KHÔNG vào bản giao khách (SKILL §0.0)
 function StripAsr($t){
   $kw='ASR|đính chính|chép nhầm|lỗi nhận dạng'
-  # d1: bỏ TRỌN dòng "Cảnh báo chất lượng ghi âm" / "Cảnh báo ASR" (bullet/blockquote/heading/table row)
-  $t=[regex]::Replace($t,'(?im)^[ \t]*(?:>[ \t]*)?[-*>#]*[ \t]*\**Cảnh báo (?:chất lượng ghi âm|ASR)[^\r\n]*\r?\n?','')
-  # d1b: bỏ TRỌN hàng bảng (| ... |) chứa "Cảnh báo ... ASR" hoặc ký hiệu ⚠ kèm ASR
-  $t=[regex]::Replace($t,'(?im)^[ \t]*\|[^\r\n]*(?:Cảnh báo (?:chất lượng ghi âm|ASR)|⚠[^\r\n]*ASR)[^\r\n]*\r?\n?','')
+  # d1: bỏ TRỌN dòng "Cảnh báo chất lượng ghi âm/nguồn/ASR" / "Cảnh báo ASR" (bullet/blockquote/heading/table row)
+  $t=[regex]::Replace($t,'(?im)^[ \t]*(?:>[ \t]*)?[-*>#]*[ \t]*\**Cảnh báo (?:chất lượng (?:ghi âm|nguồn|ASR)|ASR)[^\r\n]*\r?\n?','')
+  # d1b: bỏ TRỌN hàng bảng (| ... |) chứa "Cảnh báo ... ASR" hoặc ký hiệu ⚠ kèm ASR hoặc "ASR đọc/phiên"
+  $t=[regex]::Replace($t,'(?im)^[ \t]*\|[^\r\n]*(?:Cảnh báo (?:chất lượng ghi âm|ASR)|⚠[^\r\n]*ASR|ASR (?:đọc|phiên|đôi))[^\r\n]*\r?\n?','')
   # d2: bỏ TRỌN dòng chỉ chứa ghi chú *(...)* có từ khoá ASR (vd dòng đính chính độc lập)
   $t=[regex]::Replace($t,"(?im)^[ \t]*(?:>[ \t]*)?[-*][ \t]*\*\([^)]*(?:$kw)[^)]*\)\*[ \t]*\r?\n?",'')
   # d3: bỏ redirect strikethrough '~~...~~ → X' (giữ thuật ngữ đúng X)
@@ -70,26 +70,36 @@ function StripAsr($t){
   $t=[regex]::Replace($t,'[ \t]*\[[^\]]*ASR[^\]]*\]','')
   # d7: bỏ ghi chú ASR dạng văn bản thuần (không ngoặc) — từ 'đính chính'/'lỗi nhận dạng' tới hết ô bảng (|) hoặc hết dòng
   $t=[regex]::Replace($t,'(?:[ \t]*[—–-])?[ \t]*(?:đính chính|lỗi nhận dạng)[^|\r\n]*','')
+  # d8: bỏ cụm ASR inline trong câu chạy — "phỏng âm ASR là ...", "ASR phiên/đọc/đôi ..."
+  $t=[regex]::Replace($t,'[ \t]*(?:phỏng âm ASR[^,.\|\r\n]*|ASR (?:phiên|đọc|đôi)[^,.\|\r\n]*)','')
+  # d9: bỏ TRỌN dòng italic (*...*) là changelog/footer chứa từ khoá quy trình nội bộ
+  $t=[regex]::Replace($t,'(?im)^[ \t]*\*[^\r\n]*(?:transcript ASR|Option B|regenerate from|lập trực tiếp từ transcript|SKILL \.claude)[^\r\n]*\*[ \t]*\r?\n?','')
   $t
 }
 # (e) bỏ dấu vết NỘI BỘ khác (suy diễn/đối chiếu/truy vết) — CHỈ ở .md, KHÔNG vào bản giao khách (SKILL §0.0)
 function StripInternal($t){
   # e1: bỏ TRỌN dòng "Lưu ý nội bộ" (cảnh báo chất lượng ghi âm / ghi chú quy trình)
   $t=[regex]::Replace($t,'(?im)^[^\r\n]*Lưu ý nội bộ[^\r\n]*\r?\n?','')
-  # e2: bỏ TRỌN dòng khung nội bộ: "CHỈ đề xuất" (đề xuất glossary), trỏ "sổ theo dõi điểm chốt"/"tổng hợp vào sổ"
-  $t=[regex]::Replace($t,'(?im)^[^\r\n]*(?:CHỈ đề xuất|sổ theo dõi điểm chốt|tổng hợp vào sổ)[^\r\n]*\r?\n?','')
+  # e2: bỏ TRỌN dòng khung nội bộ: "CHỈ đề xuất" (đề xuất glossary), trỏ OID/sổ theo dõi
+  $t=[regex]::Replace($t,'(?im)^[^\r\n]*(?:CHỈ đề xuất|sổ theo dõi điểm chốt|tổng hợp vào sổ|Chờ BA Lead confirm theo quy ước)[^\r\n]*\r?\n?','')
+  # e2b: bỏ TRỌN dòng blockquote trỏ OID-TOSS hoặc sổ theo dõi
+  $t=[regex]::Replace($t,'(?im)^[ \t]*>[ \t]*[^\r\n]*(?:OID-TOSS|sổ theo dõi)[^\r\n]*\r?\n?','')
   # e3: bỏ ghi chú đối chiếu nội bộ trong ngoặc/in nghiêng có 'domain-knowledge'/'glossary'
   $t=[regex]::Replace($t,'\*\([^)]*(?:domain-knowledge|glossary)[^)]*\)\*','')
   $t=[regex]::Replace($t,'[ \t]*\([^()]*(?:domain-knowledge|glossary)[^()]*\)','')
-  # e3b: bỏ TRỌN dòng blockquote/thường chứa 'glossary'/'toss-glossary' (vd intro §V)
+  # e3b: bỏ TRỌN dòng blockquote chứa 'glossary'/'toss-glossary' (vd intro §V)
   $t=[regex]::Replace($t,'(?im)^[ \t]*>[ \t]*[^\r\n]*(?:glossary|toss-glossary)[^\r\n]*\r?\n?','')
-  # e4: bỏ từ khoá nội bộ còn sót ở tiêu đề/câu ('domain-knowledge', tệp glossary)
+  # e4: bỏ từ khoá nội bộ còn sót ('domain-knowledge', OID-TOSS)
   $t=[regex]::Replace($t,'[ \t]*domain-knowledge','')
   $t=[regex]::Replace($t,';?[ \t]*[Đđ]iểm cần chốt theo dõi tại OID-TOSS-001\.?','')
-  $t=[regex]::Replace($t,'[ \t]*\(OID-TOSS-001\)','')
-  # e5: bỏ trích dẫn dòng transcript — dạng ngoặc "(P# d.x)" (P1/P2/P3/P4…) rồi dạng trần trong ô bảng
+  $t=[regex]::Replace($t,'[ \t]*\(?OID-TOSS[-\w]*\)?','')
+  # e5: bỏ trích dẫn dòng transcript — dạng ngoặc "(P# d.x)" rồi dạng trần trong ô bảng
   $t=[regex]::Replace($t,'[ \t]*\([ \t]*P\d+[ \t]*d\.[^)]*\)','')
   $t=[regex]::Replace($t,'P\d+[ \t]*d\.[~\s0-9.,–\t-]+(?:;[ \t]*P\d+[ \t]*d\.[~\s0-9.,–\t-]+)*','')
+  # e6: bỏ §V Thuật ngữ đề xuất toàn bộ — đây là metadata nội bộ BA, không thuộc bản giao khách
+  $t=[regex]::Replace($t,'(?ms)(?<=\r?\n|^)## V\..*?(?=\r?\n## |\Z)','')
+  # e7: bỏ TRỌN dòng italic (*...*) là footer changelog chứa keyword quy trình nội bộ
+  $t=[regex]::Replace($t,'(?im)^[ \t]*\*[^\r\n]*(?:glossary|toss-glossary|OID-TOSS|SKILL \.claude|kế hoạch buổi tiếp theo)[^\r\n]*\*[ \t]*\r?\n?','')
   $t
 }
 function Transform($p){ StripInternal (StripAsr (StripSlugs (StripMdTokens (CleanLinks (StripFrontmatter $p))))) }
