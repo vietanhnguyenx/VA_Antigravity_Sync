@@ -276,7 +276,8 @@ Khi chỉnh sửa file được theo dõi, hook tự động (`sync-check.ps1`) 
 
 ---
 
-*HUMAN.md phiên bản 2.2 — 2026-06-10. File gốc: [CLAUDE.md](CLAUDE.md).*
+*HUMAN.md phiên bản 2.3 — 2026-06-16. File gốc: [CLAUDE.md](CLAUDE.md).*
+*v2.3: bổ sung subagent **project-coordinator (PC)** — Điều phối & nhắc nhở công việc dự án còn tồn đọng (tổng hợp OID/lộ trình/TASK/action item/cờ cần xác nhận thành báo cáo nhắc việc có ưu tiên; chỉ tổng hợp nguồn đã ghi, không tự quyết — §0/§0.3). Định nghĩa: `.claude/agents/project-coordinator.md` (+ bản VI `.claude/human/agents/`). Đăng ký ở CLAUDE.md §5.*
 *v2.2: thêm §0.4 Thiết lập Danh tính & Vai trò ở Phiên Đầu tiên — quy tắc bàn giao thư mục di động: trên máy mới (agent chưa có bộ nhớ về người dùng) phải hỏi họ tên/vai trò/phân hệ, đối chiếu PHAN-CONG-ROLE-BA, lưu bộ nhớ, và khóa các hành động gắn thẩm quyền cho tới khi xác nhận.*
 *v2.1: §2 — bổ sung mục tiêu/phạm vi **OSP (Operational Schedule Performance)** (bổ trợ OTP); hệ thống phải đo lường & hỗ trợ duy trì khai thác bám sát lịch hoạch định.*
 *v1.3: tái cấu trúc ba/ thành input/process/output(human+agents); cập nhật Mục 4/6/7.*

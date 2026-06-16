@@ -217,6 +217,7 @@ TOSS/
 | Agent | When to Use | Key Tools |
 |---|---|---|
 | **business-analyst** | Requirements analysis, BRD/SRS/FRD/URD, user stories, use cases, meeting minutes, change requests, gap analysis | Read, Grep, Glob, WebFetch, Write, Edit, TodoWrite |
+| **project-coordinator** (PC) | Điều phối & nhắc nhở công việc dự án còn tồn đọng: tổng hợp điểm mở/OID, action item quá hạn, cờ `[cần xác nhận]`, mốc lộ trình/TASK chưa xong → báo cáo nhắc việc có ưu tiên (chỉ tổng hợp nguồn đã ghi, không tự quyết — §0/§0.3) | Read, Grep, Glob, Write, Edit, TodoWrite |
 | **Explore** | Fast lookup of files / definitions / references | Read-only |
 | **general-purpose** | Multi-step tasks not covered by a specialized agent | All tools |
 | **Plan** | Plan implementation strategy for complex requests | Read-only |
@@ -357,7 +358,8 @@ Full protocol: [.claude/sync/SYNC-PROTOCOL.md](.claude/sync/SYNC-PROTOCOL.md).
 
 ---
 
-*CLAUDE.md version 2.2 — 2026-06-10. Mirror: [HUMAN.md](HUMAN.md). Update both when project structure or conventions change.*
+*CLAUDE.md version 2.3 — 2026-06-16. Mirror: [HUMAN.md](HUMAN.md). Update both when project structure or conventions change.*
+*v2.3: §5 — thêm subagent **project-coordinator (PC)**: điều phối & nhắc nhở công việc dự án còn tồn đọng (tổng hợp OID/roadmap/TASK/action item/cờ cần xác nhận thành báo cáo nhắc việc có ưu tiên; chỉ tổng hợp nguồn đã ghi, không tự quyết — §0/§0.3). Định nghĩa: `.claude/agents/project-coordinator.md` (+ mirror VI `.claude/human/agents/`).*
 *v2.2: added §0.4 First-Session Identity & Role Setup — portable-folder handover rule: on a machine with no memory of the user, the agent must ask name/role/subsystem, cross-check PHAN-CONG-ROLE-BA, persist to memory, and gate role-bound actions until confirmed.*
 *v2.1: §2 — bổ sung mục tiêu/phạm vi **OSP (Operational Schedule Performance)** (bổ trợ OTP); hệ thống phải đo lường & hỗ trợ duy trì khai thác bám sát lịch hoạch định.*
 *v1.3: restructured ba/ to input/process/output(human+agents) — ba/sources→input, ba/deliverables/presentation→process/presentation and output/human/presentation; added ba/output/agents scaffold. Updated §4 tree, §8 storage, §9 exceptions.*
