@@ -68,6 +68,18 @@ date: "2026-06-15"
 | [02-giai-phap-nghiep-vu/](vnaocc-proposal-decomposed/02-giai-phap-nghiep-vu/) | Yêu cầu nghiệp vụ — 5 phân hệ | Nguồn chính cho BR/FUNC |
 | [03-giai-phap-ky-thuat/](vnaocc-proposal-decomposed/03-giai-phap-ky-thuat/) | Giải pháp kỹ thuật — 13 chương | — |
 
+### atfm-acdm — ATFM & A-CDM (đã phân rã MD)
+
+| Folder | Chủ đề | Liên quan scope (YCKT) |
+|---|---|---|
+| [atfm-acdm/](atfm-acdm/INDEX.md) | A-CDM (6) + ATFM (5) — mỗi PDF có bản `.md` (pdftotext -layout), có bản Việt Nam SP08 | Tích hợp **080 ACDM**; Slot/Permit API; OTP/OSP |
+
+### datalink-pbcs — Datalink & PBCS (đã phân rã MD)
+
+| Folder | Chủ đề | Liên quan scope (YCKT) |
+|---|---|---|
+| [datalink-pbcs/](datalink-pbcs/INDEX.md) | Datalink air-ground, hiệu năng datalink phía hãng, PBCS (5) — mỗi PDF có bản `.md` | Tích hợp **095 ACARS / 096 SITA / 100 AMHS-AFTN**; PF từ ACARS |
+
 ---
 
 ## B. Danh mục Link — `_links/` (tài liệu chưa tải hoặc chỉ có URL)
