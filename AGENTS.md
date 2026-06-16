@@ -58,6 +58,7 @@ Claude Code skills (`/brd`, `/interview`, `/userstory`, `/meeting-notes`, export
 | Mockup / prototype HTML | `.claude/skills/gen-mockup/SKILL.md` |
 | Tổng hợp biên bản họp từ transcript | `.claude/skills/meeting-synthesize/SKILL.md` (if present) or `.claude/commands/meeting-notes.md` |
 | Angular feature code-gen | `.claude/skills/gen-*/SKILL.md` + `.claude/rules/angular-guidelines.md` |
+| Phân rã PDF / tài liệu Office (DOCX/PPTX/XLSX/HTML) sang Markdown | `.claude/skills/crawl-pdf/SKILL.md` **§0** — định tuyến engine + cài đặt (markitdown cho Office, pdftotext -layout cho PDF). Lệnh python/wsl/apk chạy được cho MỌI loại agent |
 
 ### 3.2 Sync hook → manual discipline
 
@@ -72,6 +73,10 @@ Claude Code fires a `PostToolUse` hook reminding about dual-scope mirrors. Codex
 - Platform: Windows; prefer PowerShell syntax in shell commands.
 - `ba/workspace/input/` is **read-only** — never write there.
 - Respect `.aiignore` (token-heavy paths: logs, exports, binaries).
+- **Phân rã tài liệu → Markdown** (đỡ token: convert chạy ở máy, 0 token mô hình; sau đó đọc/Grep chọn lọc bản `.md`). Định tuyến engine theo định dạng — **lệnh tool-neutral, mọi agent chạy được**:
+  - **Office** (DOCX/PPTX/XLSX/HTML/CSV) → `python -m markitdown "<file>" -o "<out.md>"`. Cài: `python -m pip install --user "markitdown[all]"` (đã cài v0.1.6).
+  - **PDF** → `pdftotext -layout` (giữ bảng tốt hơn). Máy này chỉ có WSL distro `docker-desktop` (Alpine) — cài: `wsl -d docker-desktop -- apk add --no-cache poppler-utils`; **ephemeral**, chạy lại khi báo `pdftotext: not found`.
+  - Bản trích là **raw extract** (CLAUDE.md §0). Chi tiết + script: `.claude/skills/crawl-pdf/SKILL.md` §0.
 
 ---
 
@@ -88,4 +93,5 @@ Claude Code fires a `PostToolUse` hook reminding about dual-scope mirrors. Codex
 
 ---
 
-*AGENTS.md version 1.0 — 2026-06-10. Thin adapter for non-Claude agents; canonical context = [CLAUDE.md](CLAUDE.md). No HUMAN mirror required (content lives in CLAUDE.md/HUMAN.md).*
+*AGENTS.md version 1.1 — 2026-06-16. Thin adapter for non-Claude agents; canonical context = [CLAUDE.md](CLAUDE.md). No HUMAN mirror required (content lives in CLAUDE.md/HUMAN.md).*
+*v1.1: §3.1 + §3.4 — bổ sung engine phân rã tài liệu (markitdown cho Office, pdftotext -layout cho PDF + cài poppler-utils trong docker-desktop) để MỌI loại agent (không chỉ Claude) đều dùng được; trỏ chi tiết về skill crawl-pdf §0.*

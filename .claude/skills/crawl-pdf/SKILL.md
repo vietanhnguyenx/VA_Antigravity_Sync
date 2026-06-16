@@ -1,6 +1,6 @@
 ---
 name: crawl-pdf
-description: Crawl một website để thu thập liên kết PDF, tải các file PDF về máy, và (tuỳ chọn) phân rã sang Markdown bằng pdftotext. Dùng khi người dùng muốn "crawl PDF", "lấy/tải các link PDF", "tải tài liệu PDF của trang X về", "liệt kê link PDF", hoặc "phân rã/chuyển PDF sang md" từ một nguồn web (vd ffac.ch, iata.org, govinfo.gov, ccaa.hr...).
+description: Crawl một website để thu thập liên kết PDF, tải các file PDF về máy, và (tuỳ chọn) phân rã sang Markdown — PDF bằng pdftotext -layout, tài liệu Office (DOCX/PPTX/XLSX/HTML) bằng markitdown. Dùng khi người dùng muốn "crawl PDF", "lấy/tải các link PDF", "tải tài liệu PDF của trang X về", "liệt kê link PDF", hoặc "phân rã/chuyển PDF/DOCX/XLSX sang md" từ một nguồn web hay tài liệu nội bộ (vd ffac.ch, iata.org, govinfo.gov, ccaa.hr, Customer_docs...).
 ---
 
 # Skill: Crawl + Tải + Phân rã PDF từ website
@@ -9,8 +9,23 @@ description: Crawl một website để thu thập liên kết PDF, tải các fi
 >
 > **Nguyên tắc (CLAUDE.md §0):** bản .md phân rã là **trích trung thực** (raw extract), không diễn giải. Việc lọc "phạm vi nào" và dịch tiêu đề là quyết định bám yêu cầu người dùng.
 
+## 0. Engine phân rã & cài đặt môi trường (ĐỌC TRƯỚC)
+
+> Cập nhật 2026-06-16. Định tuyến engine theo định dạng nguồn — **đỡ token vì convert chạy ở máy (0 token mô hình)**, sau đó Grep/đọc chọn lọc bản `.md`.
+
+| Định dạng nguồn | Engine | Lệnh | Ghi chú |
+|---|---|---|---|
+| **PDF** | `pdftotext -layout` | qua `scripts/pdf-to-md.ps1` (đọc PDF qua `/mnt/host`, ghi `.md` phía Windows) | Giữ bảng/cột tốt hơn — **ưu tiên cho PDF** |
+| **Office/HTML** (DOCX, PPTX, XLSX, HTML, CSV) | **markitdown** | `python -m markitdown "<file>" -o "<out.md>"` | pdftotext KHÔNG đọc được Office → dùng markitdown |
+
+**Cài đặt (một lần / khi mất):**
+- **markitdown** — pure Python: `python -m pip install --user "markitdown[all]"` (đã cài v0.1.6). Kiểm tra: `python -m markitdown --version`.
+- **pdftotext** — máy hiện tại chỉ có 1 WSL distro `docker-desktop` (Alpine), **mặc định CHƯA có** pdftotext. Cài: `wsl -d docker-desktop -- apk add --no-cache poppler-utils` → có `pdftotext`. **Lưu ý:** distro docker-desktop ephemeral → có thể **mất sau khi WSL/Docker restart**, chạy lại lệnh trên khi `pdftotext: not found`.
+
+**Lưu ý chất lượng:** bản trích là **raw extract** (CLAUDE.md §0). XLSX qua markitdown để ô trống thành `NaN`/cột không tên thành `Unnamed: N` — dọn tay khi cần bản chính thức. PDF nhiều cột/bảng phức tạp ưu tiên pdftotext -layout.
+
 ## 1. Khi nào dùng
-Người dùng muốn: "crawl các link PDF", "tải PDF của trang X", "liệt kê link PDF song ngữ", "chỉ tải PDF phạm vi …", "phân rã PDF sang md".
+Người dùng muốn: "crawl các link PDF", "tải PDF của trang X", "liệt kê link PDF song ngữ", "chỉ tải PDF phạm vi …", "phân rã PDF/DOCX/XLSX sang md".
 
 ## 2. Quy trình 4 bước
 
