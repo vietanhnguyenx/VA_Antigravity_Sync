@@ -131,7 +131,76 @@ graph TD
 
 ---
 
-## III. Các Bước Triển Khai Tiếp Theo Cho BA
+## III. Hướng Dẫn Bổ Sung Vào Tài Liệu MOPLUS_SRS_EFF_WEB_v2.5.docx
+
+Khi anh thực hiện chỉnh sửa tài liệu gốc [MOPLUS_SRS_EFF_WEB_v2.5.docx](file:///c:/Users/anhnlv/Downloads/TOSS-20260611T014328Z-3-001/TOSS/ba/workspace/drafts/srs/MOPLUS_SRS_EFF_WEB_v2.5.docx), anh cần thực hiện điền thông tin vào các vị trí và phần cấu trúc sau đây để đảm bảo tính nhất quán của tài liệu:
+
+### 1. Cập nhật Bảng ghi nhận thay đổi (Trang 2)
+* **Ngày:** `17/06/2026`
+* **Vị trí thay đổi:** `Mục 3.48...3.53`
+* **Loại thay đổi (A/M/D):** `A` (Tạo mới)
+* **Mô tả thay đổi:** `Bổ sung phân hệ Quản lý nước sạch (Potable Water Service) bao gồm: Tab hiển thị/Nhập tay chỉ số nước trên chuyến bay, 5 báo cáo đối chiếu & giám sát, và 4 màn hình cấu hình tham số đệm/danh mục.`
+* **Version:** `2.6` (tăng phiên bản tài liệu từ 2.5 lên 2.6).
+
+### 2. Định vị trí chèn các yêu cầu chức năng mới trong Mục 3
+Do tài liệu hiện tại kết thúc phần báo cáo ở mục **`3.47 Báo cáo tuân thủ Confirm/Upload`**, các yêu cầu mới của Phân hệ Nước sạch sẽ được chèn tiếp nối vào sau mục 3.47 như sau:
+
+#### A. Nhóm Yêu cầu Chuyến bay (Tab Nước sạch)
+Chèn mới mục **3.48** để mô tả Tab chi tiết chuyến bay:
+* **`3.48 Nước sạch — Xem và Nhập liệu nước sạch chuyến bay`**
+  * *`3.48.1 Sơ đồ luồng hệ thống`* (Vẽ luồng tương tác giữa Web EFF $\rightarrow$ Database $\rightarrow$ ACARS/App MO).
+  * *`3.48.2 Mô tả luồng xử lý`* (Đặc tả logic hiển thị nước gợi ý từ Amadeus, tự động bóc tách Loadsheet, hiển thị ACARS và xử lý lưu vết của người dùng khi gửi số đầu/cuối chuyến - YC33).
+  * *`3.48.3 Màn hình chức năng`* (Nhúng ảnh Mockup giao diện Tab Nước sạch).
+  * *`3.48.4 Mô tả chi tiết màn hình`* (Bảng định nghĩa các trường nhập % đầu/cuối, trường quy đổi lít, trường nhập lý do khi sửa đổi).
+
+#### B. Nhóm Báo cáo Nước sạch
+Chèn mới các mục từ **3.49 đến 3.53** để mô tả các màn hình báo cáo:
+* **`3.49 Báo cáo suất tiêu thụ nước sạch lịch sử (YC34)`**
+* **`3.50 Báo cáo nước đầu/cuối chuyến bay (YC35)`**
+* **`3.51 Báo cáo chuyến bay nạp thừa nước sạch (YC36)`**
+* **`3.52 Báo cáo chuyến bay dùng cạn nước sạch (YC37)`**
+* **`3.53 Báo cáo chuyến bay nạp nước vượt lượng tính toán (YC38)`**
+  * *(Lưu ý: Chức năng xuất Excel YC39 và tùy biến cột sẽ được đặc tả trực tiếp trong bảng "Mô tả chi tiết màn hình" của từng báo cáo trên dưới dạng mô tả hành động nút bấm).*
+
+#### C. Nhóm Cấu hình Danh mục & Tham số (Admin)
+Chèn mới mục **3.54** ở cuối cùng của phần yêu cầu chức năng để mô tả các màn cấu hình quản trị:
+* **`3.54 Cấu hình danh mục và tham số nước sạch (Admin)`**
+  * *`3.54.1 Cấu hình dung tích bồn nước sạch (YC25)`*
+  * *`3.54.2 Cấu hình định mức tiêu thụ nước mặc định (YC26)`*
+  * *`3.54.3 Cấu hình tham số đệm (YC27)`*
+  * *`3.54.4 Cấu hình ngưỡng ngoại lệ (YC28)`*
+
+---
+
+### 3. Biểu mẫu Đặc tả chi tiết từng tính năng (Tuân thủ mẫu chung)
+Đối với mỗi chức năng được bổ sung ở trên, anh cần viết đầy đủ 4 phần thông tin theo cấu trúc chuẩn của tài liệu:
+
+#### Cấu trúc bảng tóm tắt đầu chức năng:
+| Thuộc tính | Mô tả |
+| :--- | :--- |
+| **Tên chức năng** | Ví dụ: `Cấu hình dung tích bồn nước sạch` |
+| **Mục đích** | Cho phép người dùng cấu hình dung tích bồn chứa nước sạch của từng tàu bay phục vụ quy đổi tỷ lệ % sang lít. |
+| **Trigger** | Người dùng truy cập Menu `Admin` -> chọn mục `Water Service Config` -> Chọn tab `Tank Capacity`. |
+| **Tiền điều kiện** | Người dùng đăng nhập thành công và được phân quyền thuộc nhóm `Admin`. |
+| **Hậu điều kiện** | Lưu vết thay đổi vào Database và đồng bộ cấu hình tới các engine tính toán. |
+
+#### Mô tả luồng xử lý (Bảng các bước):
+| Bước | Người dùng / Tác nhân | Hệ thống xử lý |
+| :--- | :--- | :--- |
+| 1 | Truy cập màn hình cấu hình. | Hiển thị danh sách dung tích tank hiện tại. |
+| 2 | Nhập thông tin và nhấn "Lưu". | Kiểm tra tính hợp lệ của dữ liệu (Validate). |
+| ... | ... | ... |
+
+#### Mô tả chi tiết màn hình (Bảng định nghĩa Control):
+| STT | Tên | Loại control | Mô tả |
+| :---: | :--- | :--- | :--- |
+| 1 | Loại tàu bay | Combobox | Lấy danh mục tàu bay hiện tại của VNA để chọn. |
+| 2 | Dung tích (Lít)| Textbox | Nhập số dung tích bồn. Bắt buộc nhập, định dạng số nguyên dương. |
+| 3 | Nút Lưu | Button | Click để thực hiện kiểm tra và lưu cấu hình. |
+
+---
+
+## IV. Các Bước Triển Khai Tiếp Theo Cho BA
 
 1. **Bước 1: Thiết kế giao diện nháp (Mockup)**
    * Dựa vào ảnh thiết kế giao diện **Web EFF** hiện tại để thiết kế thêm Tab "Nước sạch" bên khung phải.
@@ -141,3 +210,4 @@ graph TD
    * Đặc tả chi tiết hành vi, logic validate, các mốc thời gian UTC và phân quyền cho 11 tính năng trên.
 3. **Bước 3: Biên dịch tài liệu sang Word (.docx)**
    * Chạy script `export-word.ps1` để chuyển đổi tệp Markdown SRS sang tệp Word đúng biểu mẫu Viettel phục vụ nghiệm thu tài liệu thiết kế.
+
