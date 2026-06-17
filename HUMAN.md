@@ -268,6 +268,8 @@ document_type: "<BRD | SRS | FRD | URD | User Story | ...>"
 
 **Chuẩn xuất Word giao người (BẮT BUỘC):** Markdown chỉ là kênh nội bộ giữa các agent; bản Word/PDF giao cho con người phải **tự mô tả đầy đủ và trình bày đẹp, dễ nhìn**. **Toàn bộ quy trình đã đóng gói thành skill `export-word`** — `.claude/skills/export-word/` (chạy `scripts/export-word.ps1` kèm manifest; `build-reference-template.ps1` dựng lại mẫu). Ưu tiên dùng skill.
 
+> **QUY TẮC TẠO SKILL (BẮT BUỘC):** Mỗi khi có yêu cầu **tạo / khởi tạo / tái cấu trúc một Skill** (thư mục `SKILL.md` trong `.claude/skills/`), agent PHẢI đọc trước và tuân thủ **Hướng dẫn xây Skill** — [`.claude/knowledge/The-Complete-Guide-to-Building-Skill-for-Claude.extracted.md`](.claude/knowledge/The-Complete-Guide-to-Building-Skill-for-Claude.extracted.md). Tối thiểu: `SKILL.md` đặt đúng tên (phân biệt hoa-thường); thư mục + `name` kebab-case (không chứa "claude"/"anthropic"); `description` nêu **làm gì + khi nào dùng (cụm trigger)**, < 1024 ký tự, **không thẻ `< >`**; không để `README.md` trong thư mục; progressive disclosure (đẩy chi tiết sang `references/`, giữ `SKILL.md` < 5.000 từ); soát theo checklist **Reference A** trước khi tuyên bố xong. Không áp dụng cho lệnh scaffold code `gen-*` (theo bộ quy tắc DEV).
+
 > **QUY TẮC VERSION (BẮT BUỘC — áp dụng cho MỌI tài liệu, không chỉ file xuất):**
 > 1. **File chỉ chứa nội dung hiện tại.** Không nhúng CHANGELOG, bảng lịch sử hay ghi chú "v0.x thêm Y" bên trong file tài liệu. Người đọc chỉ thấy trạng thái đúng hiện tại.
 > 2. **Lịch sử version → `BA-VERSION-LOG.md`.** Mọi thay đổi được ghi vào `ba/workspace/drafts/quy-trinh/BA-VERSION-LOG.md` (1 dòng mỗi lần bump version). Agent PHẢI bổ sung vào log này khi tạo version mới.
@@ -325,7 +327,8 @@ Khi chỉnh sửa file được theo dõi, hook tự động (`sync-check.ps1`) 
 
 ---
 
-*HUMAN.md phiên bản 2.7 — 2026-06-17. File gốc: [CLAUDE.md](CLAUDE.md).*
+*HUMAN.md phiên bản 2.8 — 2026-06-17. File gốc: [CLAUDE.md](CLAUDE.md).*
+*v2.8: §6 — QUY TẮC TẠO SKILL (BẮT BUỘC): mỗi lần tạo/khởi tạo/tái cấu trúc Skill phải đọc & tuân thủ Hướng dẫn xây Skill (`The-Complete-Guide-to-Building-Skill-for-Claude.extracted.md`). Nguồn: audit skill 2026-06-17.*
 *v2.7: §0.5 Định hướng đầu phiên & Kỷ luật "đã xong" (định hướng trước khi làm, không tuyên bố hoàn thành sớm, tracker pass/fail suy-ra-không-bịa, SOP rà harness mỗi đời model); §6 — tracker máy đọc (deliverable-status.json, RTM JSON) dùng JSON/TSV. Nguồn: agent-harness-engineering.md (N1–N4).*
 *v2.6: §6 — Quy tắc Version mở rộng toàn bộ tài liệu: file chỉ chứa nội dung hiện tại, không nhúng CHANGELOG; lịch sử ghi vào `BA-VERSION-LOG.md`; bump version = file mới + xóa file cũ.*
 *v2.5: §4 + §6 — phân tách "Xử lý tài liệu đầu vào" thành 2 quy tắc: (1) Customer_docs → agent tự extract DOCX/XLSX/PDF → 01-nguon + cập nhật INDEX + TIMELINE; (2) domain-knowledge → người dùng + agent cập nhật song song, không có chủ sở hữu duy nhất. Cập nhật cây §4 để hiện rõ Customer_docs/ và domain-knowledge/.*

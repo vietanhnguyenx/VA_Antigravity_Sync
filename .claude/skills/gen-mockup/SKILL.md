@@ -1,6 +1,8 @@
 ---
 name: gen-mockup
 description: Dựng MOCKUP (blueprint tĩnh) hoặc PROTOTYPE (bản tương tác clickable) giao diện HTML TỰ CHỨA (offline), TUÂN THỦ Angular Material (mỗi element map 1:1 sang component trong catalog angular-material-components.md) + chú thích component để DEV implement trung thực. Dùng khi người dùng muốn "tạo mockup", "dựng mockup", "prototype", "demo màn hình", "bản tương tác", "gen mockup".
+metadata:
+  version: "1.0.0"
 ---
 
 # Skill: Gen Mockup (giao diện tuân thủ Angular Material)

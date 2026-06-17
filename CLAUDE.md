@@ -266,8 +266,11 @@ TOSS/
 | Slash Commands | [.claude/commands/](.claude/commands/) | `/brd`, `/userstory`, `/asis-tobe`, `/stakeholder`, `/interview` |
 | Word Export Skill | [.claude/skills/export-word/](.claude/skills/export-word/) | Export `.md` → polished, self-contained `.docx` per Viettel QT02.BM.04 |
 | Word Reference Template | [.claude/templates/word-reference.docx](.claude/templates/word-reference.docx) | QT02 visual standard (Times New Roman, black headings, logo + footer) |
+| **Skill-building Guide** | [.claude/knowledge/The-Complete-Guide-to-Building-Skill-for-Claude.extracted.md](.claude/knowledge/The-Complete-Guide-to-Building-Skill-for-Claude.extracted.md) | Anthropic official guide — **MANDATORY reference** before creating/initializing any Skill |
 | Sync Protocol | [.claude/sync/SYNC-PROTOCOL.md](.claude/sync/SYNC-PROTOCOL.md) | Dual-scope sync rules |
 | Sync Log | [.claude/sync/SYNC-LOG.md](.claude/sync/SYNC-LOG.md) | Append-only change history |
+
+> **SKILL-CREATION RULE (MANDATORY):** Whenever a task asks to create, initialize, or restructure a **Skill** (a `SKILL.md` folder under `.claude/skills/`), the agent MUST first read and comply with the **Skill-building Guide** above. Minimum compliance: `SKILL.md` named exactly (case-sensitive); folder + `name` in kebab-case (no "claude"/"anthropic"); `description` states **what + when (trigger phrases)**, < 1024 chars, **no `< >` angle brackets**; no `README.md` inside the folder; progressive disclosure (push detail to `references/`, keep `SKILL.md` < 5,000 words); validate against **Reference A** checklist before declaring done. This does not apply to `gen-*` code-scaffold commands (those follow the DEV toolkit rules).
 
 ---
 
@@ -408,7 +411,8 @@ Full protocol: [.claude/sync/SYNC-PROTOCOL.md](.claude/sync/SYNC-PROTOCOL.md).
 
 ---
 
-*CLAUDE.md version 2.7 — 2026-06-17. Mirror: [HUMAN.md](HUMAN.md). Update both when project structure or conventions change.*
+*CLAUDE.md version 2.8 — 2026-06-17. Mirror: [HUMAN.md](HUMAN.md). Update both when project structure or conventions change.*
+*v2.8: §6 — đăng ký Skill-building Guide (`.claude/knowledge/The-Complete-Guide-to-Building-Skill-for-Claude.extracted.md`) + **SKILL-CREATION RULE (MANDATORY)**: mọi lần tạo/khởi tạo/tái cấu trúc Skill phải đọc & tuân thủ guide (SKILL.md đúng tên, kebab-case, description what+when <1024 ký tự không thẻ `< >`, không README, progressive disclosure, soát Reference A). Nguồn: audit skill 2026-06-17.*
 *v2.7: §0.5 Getting Bearings & Done-Discipline (định hướng đầu phiên, không tuyên bố hoàn thành sớm, tracker pass/fail derived-not-invented, SOP rà harness mỗi đời model); §8 — machine-read trackers (deliverable-status.json, RTM JSON) dùng JSON/TSV thay Markdown. Nguồn: `.claude/knowledge/agent-harness-engineering.md` (N1–N4). Kèm: hook guard-safety + quality-gate; few-shot scorecard cho ba-reviewer/requirement-validator/code-reviewer; PC v1.3 (Mode B quick-bearings + maintain tracker + handoff); business-analyst v2.1 (done-discipline).*
 *v2.6: §8 — Versioning rule mở rộng toàn bộ tài liệu (không chỉ export): file chỉ chứa nội dung hiện tại, không nhúng CHANGELOG; lịch sử version ghi vào `BA-VERSION-LOG.md`; version bump = file mới + xóa file cũ.*
 *v2.5: §4 + §8 — phân tách "Input processing" thành 2 quy tắc rõ ràng: (1) Customer_docs → agent tự extract DOCX/XLSX/PDF → 01-nguon + cập nhật INDEX + TIMELINE; (2) domain-knowledge → human + agent cập nhật song song, không có chủ sở hữu duy nhất. Cập nhật cây §4 để hiện rõ Customer_docs/ và domain-knowledge/.*

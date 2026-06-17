@@ -1,6 +1,8 @@
 ---
 name: crawl-pdf
 description: Crawl một website để thu thập liên kết PDF, tải các file PDF về máy, và (tuỳ chọn) phân rã sang Markdown — PDF bằng pdftotext -layout, tài liệu Office (DOCX/PPTX/XLSX/HTML) bằng markitdown. Dùng khi người dùng muốn "crawl PDF", "lấy/tải các link PDF", "tải tài liệu PDF của trang X về", "liệt kê link PDF", hoặc "phân rã/chuyển PDF/DOCX/XLSX sang md" từ một nguồn web hay tài liệu nội bộ (vd ffac.ch, iata.org, govinfo.gov, ccaa.hr, Customer_docs...).
+metadata:
+  version: "1.0.0"
 ---
 
 # Skill: Crawl + Tải + Phân rã PDF từ website

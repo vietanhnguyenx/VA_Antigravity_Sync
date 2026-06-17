@@ -1,6 +1,8 @@
 ---
 name: survey-report
-description: Lập BÁO CÁO KHẢO SÁT (Discovery) cho TOSS từ transcript phỏng vấn/khảo sát stakeholder (file trong Customer_docs/meeting-notes/<ngày>/). Cấu trúc Yêu cầu / Thảo luận–Đề xuất / Kết luận; sửa lỗi ASR bằng domain-knowledge; hậu xử lý cập nhật sổ OID + đề xuất glossary. Dùng khi người dùng nói "tạo báo cáo khảo sát cho <ngày>", "lập báo cáo discovery", "tổng hợp buổi khảo sát".
+description: Lập BÁO CÁO KHẢO SÁT (Discovery) cho TOSS từ transcript phỏng vấn/khảo sát stakeholder (file trong Customer_docs/meeting-notes/[ngày]/). Cấu trúc Yêu cầu / Thảo luận–Đề xuất / Kết luận; sửa lỗi ASR bằng domain-knowledge; hậu xử lý cập nhật sổ OID + đề xuất glossary. Dùng khi người dùng nói "tạo báo cáo khảo sát cho [ngày]", "lập báo cáo discovery", "tổng hợp buổi khảo sát".
+metadata:
+  version: "1.0.0"
 ---
 
 # Skill: Lập Báo cáo Khảo sát (Discovery)
