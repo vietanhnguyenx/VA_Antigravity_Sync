@@ -1,0 +1,2286 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VNA EFF — Potable Water Service Mockup Dashboard</title>
+  <!-- Google Fonts: Inter, Manrope, Open Sans & Material Symbols -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Manrope:wght@400;500;600;700&family=Open+Sans:wght@400;600;700&family=Material+Symbols+Outlined" rel="stylesheet">
+  
+  <style>
+    /* ===== VNA Brand Design System ===== */
+    :root {
+      --primary-vna: #006079;       /* Xanh cổ vịt đậm Vietnam Airlines */
+      --gold-vna: #DBA410;          /* Vàng sen VNA */
+      --blue-accent: #2E90FA;       /* Xanh dương tương tác */
+      --gray-50: #F9FAFB;
+      --gray-100: #F2F4F7;
+      --gray-200: #E4E7EC;
+      --gray-300: #D0D5DD;
+      --gray-500: #667085;
+      --gray-600: #475467;
+      --gray-700: #344054;
+      --gray-900: #101828;
+      
+      --red-alert: #FA3939;         /* Đỏ cảnh báo */
+      --green-success: #12B76A;     /* Xanh lục thành công */
+      --yellow-warning: #FEC84B;    /* Vàng cảnh báo */
+      
+      --glass-bg: rgba(255, 255, 255, 0.2);
+      --glass-border: rgba(255, 255, 255, 0.4);
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      margin: 0;
+      padding: 20px;
+      background: #eaecf0;
+      font-family: 'Inter', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      overflow-x: auto;
+    }
+    
+    /* Layout Container 1920x1080 */
+    .eff-layout-container {
+      width: 1920px;
+      height: 1080px;
+      position: relative;
+      background: var(--gray-100);
+      overflow: hidden;
+      box-shadow: 0 12px 48px rgba(0, 0, 0, 0.25);
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .material-symbols-outlined {
+      font-family: 'Material Symbols Outlined';
+      font-size: 20px;
+      vertical-align: middle;
+      line-height: 1;
+      user-select: none;
+    }
+    
+    /* Chrome browser mockup tab header */
+    .chrome-tab-header {
+      width: 100%;
+      height: 80px;
+      background: #DEE1E6;
+      border-top-left-radius: 12px;
+      border-top-right-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+      border-bottom: 1px var(--gray-200) solid;
+    }
+    
+    .chrome-tab-row {
+      height: 42px;
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      padding-left: 20px;
+    }
+    
+    .chrome-address-row {
+      height: 38px;
+      background: white;
+      display: flex;
+      align-items: center;
+      padding: 0 16px;
+      gap: 16px;
+    }
+    
+    /* Dropdown Menus */
+    .nav-dropdown {
+      position: relative;
+      cursor: pointer;
+    }
+    
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: white;
+      min-width: 320px;
+      box-shadow: 0px 8px 16px rgba(0,0,0,0.15);
+      z-index: 999;
+      border-radius: 8px;
+      border: 1px solid var(--gray-200);
+      padding: 8px 0;
+      margin-top: 8px;
+    }
+    
+    .dropdown-content a {
+      color: var(--gray-900);
+      padding: 10px 16px;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: 'Inter', sans-serif;
+      font-size: 13.5px;
+      font-weight: 500;
+      transition: background 0.15s;
+    }
+    
+    .dropdown-content a:hover {
+      background-color: var(--gray-100);
+      color: var(--primary-vna);
+    }
+    
+    .dropdown-divider {
+      height: 1px;
+      background-color: var(--gray-200);
+      margin: 6px 0;
+    }
+    
+    /* Active indicator for navigation */
+    .nav-item-active {
+      background: rgba(255, 255, 255, 0.3) !important;
+      outline: 1px rgba(249, 250, 251, 0.3) solid;
+    }
+    
+    /* Hover state for rows */
+    .clickable-row {
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    
+    .clickable-row:hover {
+      background-color: var(--gray-50) !important;
+    }
+    
+    .row-selected {
+      background-color: #DAEEFF !important; /* Blue selection */
+    }
+    
+    /* Right Pane Documents Tab styles */
+    .eff-tab {
+      height: 44px;
+      cursor: pointer;
+      position: relative;
+      padding: 0 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: color 0.2s;
+    }
+    
+    .eff-tab:hover {
+      color: var(--primary-vna);
+    }
+    
+    .eff-tab-active {
+      color: var(--gold-vna) !important;
+      font-weight: 600 !important;
+    }
+    
+    .eff-tab-active .active-indicator {
+      display: block !important;
+    }
+    
+    /* ===== Water Glass Indicator ("Giả Nước") ===== */
+    .water-tank-glass {
+      position: relative;
+      width: 96px;
+      height: 320px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 4px solid #ffffff;
+      border-radius: 48px;
+      box-shadow: 
+        0 8px 32px rgba(0, 42, 84, 0.15),
+        inset 0 0 24px rgba(255, 255, 255, 0.15),
+        inset 0 12px 24px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      backdrop-filter: blur(10px);
+    }
+    
+    .water-fill {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: linear-gradient(180deg, #53d3ff 0%, #0082c3 100%);
+      box-shadow: 0 0 20px rgba(83, 211, 255, 0.6);
+      transition: height 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .water-wave-front {
+      position: absolute;
+      top: -12px;
+      left: 0;
+      width: 200%;
+      height: 24px;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V0C26.9,8.75,55.05,17.43,84.14,24.58,162.72,43.9,240.23,60,321.39,56.44Z' fill='%2353d3ff' opacity='0.7'/%3E%3C/svg%3E") repeat-x;
+      background-size: 50% 100%;
+      animation: wave-move-front 3s linear infinite;
+    }
+    
+    .water-wave-back {
+      position: absolute;
+      top: -16px;
+      left: -50%;
+      width: 200%;
+      height: 28px;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V0C26.9,8.75,55.05,17.43,84.14,24.58,162.72,43.9,240.23,60,321.39,56.44Z' fill='%230082c3' opacity='0.4'/%3E%3C/svg%3E") repeat-x;
+      background-size: 50% 100%;
+      animation: wave-move-back 4.5s linear infinite;
+    }
+    
+    @keyframes wave-move-front {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    
+    @keyframes wave-move-back {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(50%); }
+    }
+    
+    .tank-marks {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: 5;
+    }
+    
+    .tank-marks .mark {
+      position: absolute;
+      left: 10px;
+      width: 14px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+    }
+    
+    .tank-marks .mark span {
+      position: absolute;
+      left: 20px;
+      top: -7px;
+      font-family: 'Inter', sans-serif;
+      font-size: 9px;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.6);
+      white-space: nowrap;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+    }
+    
+    .recommend-line {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      border-bottom: 2px dashed var(--gold-vna);
+      z-index: 6;
+      box-shadow: 0 0 4px rgba(219, 164, 16, 0.8);
+    }
+    
+    .recommend-tooltip {
+      position: absolute;
+      right: -86px;
+      top: -10px;
+      background: var(--gold-vna);
+      color: white;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 9.5px;
+      font-weight: 700;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      white-space: nowrap;
+    }
+    
+    /* Dashboard sub-panels */
+    .dashboard-panel {
+      width: 100%;
+      height: 999px;
+      position: relative;
+      display: none;
+      box-sizing: border-box;
+    }
+    
+    .dashboard-panel.active {
+      display: flex !important;
+    }
+    
+    /* Overlay views for full screen toggles (Reports, Admin) */
+    .full-overlay-view {
+      display: none;
+      width: 100%;
+      height: 899px;
+      background: var(--gray-100);
+      padding: 24px;
+      box-sizing: border-box;
+      flex-direction: column;
+      gap: 20px;
+      overflow-y: auto;
+    }
+    
+    /* Detail View Tables */
+    .details-card {
+      background: white;
+      border-radius: 12px;
+      border: 1px solid var(--gray-200);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    
+    .pax-badge {
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-family: 'Inter', sans-serif;
+    }
+    
+    .badge-green {
+      background: #E6F4EA;
+      color: #137333;
+    }
+    
+    .badge-yellow {
+      background: #FEF7E0;
+      color: #B06000;
+    }
+    
+    .badge-red {
+      background: #FCE8E6;
+      color: #C5221F;
+    }
+    
+    /* Standard Input Field */
+    .input-field {
+      width: 100%;
+      height: 36px;
+      border: 1px solid var(--gray-300);
+      border-radius: 8px;
+      padding: 0 12px;
+      font-size: 13.5px;
+      font-family: inherit;
+      color: var(--gray-900);
+      outline: none;
+      background: white;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    
+    .input-field:focus {
+      border-color: var(--primary-vna);
+      box-shadow: 0 0 0 3px rgba(0, 96, 121, 0.15);
+    }
+    
+    /* Standard Button */
+    .btn-action {
+      height: 36px;
+      padding: 0 16px;
+      border-radius: 8px;
+      font-size: 13.5px;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border: none;
+      outline: none;
+      transition: all 0.2s;
+    }
+    
+    .btn-action-primary {
+      background: var(--gold-vna);
+      color: white;
+    }
+    
+    .btn-action-primary:hover {
+      background: #c3910c;
+      box-shadow: 0 4px 10px rgba(219, 164, 16, 0.25);
+    }
+    
+    .btn-action-secondary {
+      background: white;
+      border: 1px solid var(--gray-300);
+      color: var(--gray-700);
+    }
+    
+    .btn-action-secondary:hover {
+      background: var(--gray-50);
+      border-color: var(--gray-500);
+    }
+    
+    .btn-action-teal {
+      background: var(--primary-vna);
+      color: white;
+    }
+    
+    .btn-action-teal:hover {
+      background: #004c60;
+    }
+    
+    /* Modal styles */
+    .modal-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 11, 23, 0.6);
+      backdrop-filter: blur(4px);
+      z-index: 9999;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .modal-content {
+      background: white;
+      border-radius: 12px;
+      width: 480px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      border: 1px solid var(--gray-200);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      animation: modalSlide 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    @keyframes modalSlide {
+      from { transform: translateY(-30px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    
+    .modal-header {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--gray-200);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--gray-50);
+    }
+    
+    .modal-header h3 {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--gray-900);
+    }
+    
+    .close-modal-btn {
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: var(--gray-500);
+    }
+    
+    .close-modal-btn:hover {
+      color: var(--gray-900);
+    }
+    
+    .modal-body {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+    
+    /* Analog Water Gauge meter drawing */
+    .analog-gauge-wrap {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: #0f172a;
+      border: 6px solid #475467;
+      position: relative;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.3), inset 0 0 15px rgba(0,0,0,0.6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .gauge-dial-scale {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    
+    .gauge-scale-mark {
+      position: absolute;
+      width: 2px;
+      height: 12px;
+      background: #94a3b8;
+      left: 99px;
+      top: 6px;
+      transform-origin: 50% 94px;
+    }
+    
+    .gauge-center-cap {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #e2e8f0;
+      border: 3px solid #64748b;
+      z-index: 10;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.4);
+    }
+    
+    .gauge-needle {
+      position: absolute;
+      width: 4px;
+      height: 75px;
+      background: #FA3939;
+      bottom: 100px;
+      left: 98px;
+      transform-origin: 50% 100%;
+      z-index: 9;
+      border-top-left-radius: 2px;
+      border-top-right-radius: 2px;
+      transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 0 6px rgba(250, 57, 57, 0.6);
+    }
+    
+    .gauge-needle-shadow {
+      position: absolute;
+      width: 4px;
+      height: 75px;
+      background: rgba(0,0,0,0.5);
+      bottom: 100px;
+      left: 102px;
+      transform-origin: 50% 100%;
+      z-index: 8;
+      filter: blur(1.5px);
+      transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .gauge-label {
+      position: absolute;
+      color: #94a3b8;
+      font-size: 10px;
+      font-weight: 700;
+      font-family: 'Inter', sans-serif;
+    }
+    
+    /* Toast notification */
+    .toast-notif {
+      position: absolute;
+      bottom: 30px;
+      right: 30px;
+      background: #101828;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 8px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+      display: none;
+      align-items: center;
+      gap: 10px;
+      z-index: 99999;
+      font-family: 'Inter', sans-serif;
+      font-size: 13.5px;
+      animation: toastSlide 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+    }
+    
+    @keyframes toastSlide {
+      from { transform: translateY(50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Layout Container -->
+  <div class="eff-layout-container">
+    
+    <!-- 1. Chrome browser tab bars -->
+    <div class="chrome-tab-header">
+      <div class="chrome-tab-row">
+        <!-- Close/Min/Max browser buttons -->
+        <div style="left: 26px; top: 18.5px; position: absolute; justify-content: flex-start; align-items: flex-start; gap: 8px; display: inline-flex">
+          <div style="width: 12px; height: 12px; background: #FF5E5D; border-radius: 9999px; border: 0.5px #E14942 solid"></div>
+          <div style="width: 12px; height: 12px; background: #FFBC4F; border-radius: 9999px; border: 0.5px #E1A325 solid"></div>
+          <div style="width: 12px; height: 12px; background: #22CB58; border-radius: 9999px; border: 0.5px #3EAF3F solid"></div>
+        </div>
+        
+        <!-- Tab 1 -->
+        <div style="width: 256px; height: 34px; left: 83px; position: absolute; background: white; border-top-left-radius: 8px; border-top-right-radius: 8px; display: flex; align-items: center; padding: 0 16px; justify-content: space-between;">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span class="material-symbols-outlined" style="color: var(--primary-vna); font-size: 16px;">flight</span>
+            <span style="color: #36373A; font-size: 12px; font-family: Manrope; font-weight: 600;">Mobile Operation (MO EFF)</span>
+          </div>
+          <span class="material-symbols-outlined" style="font-size: 14px; color: #5f6368; cursor: pointer;">close</span>
+        </div>
+      </div>
+      
+      <!-- Chrome Address Bar -->
+      <div class="chrome-address-row">
+        <div style="display: flex; gap: 16px; align-items: center;">
+          <span class="material-symbols-outlined" style="color: #5f6368; cursor: pointer;">arrow_back</span>
+          <span class="material-symbols-outlined" style="color: #5f6368; cursor: pointer;">arrow_forward</span>
+          <span class="material-symbols-outlined" style="color: #5f6368; cursor: pointer;">refresh</span>
+        </div>
+        
+        <!-- Address field -->
+        <div style="flex: 1; height: 28px; background: #F1F3F4; border-radius: 20px; display: flex; align-items: center; padding: 0 16px;">
+          <span class="material-symbols-outlined" style="font-size: 14px; color: #5f6368; margin-right: 8px;">lock</span>
+          <span style="color: #2b2b2b; font-size: 12px; font-family: Manrope; font-weight: 500;">vnaOcc.com/eff/flight-dispatch/water-service</span>
+        </div>
+        
+        <div style="display: flex; align-items: center; gap: 16px;">
+          <img style="width: 22px; height: 22px; border-radius: 9999px;" src="https://placehold.co/22x22" alt="avatar"/>
+          <span class="material-symbols-outlined" style="color: #5f6368; cursor: pointer;">more_vert</span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 2. Main EFF Header (Navy background VNA theme) -->
+    <div style="align-self: stretch; padding: 18px 40px; background: linear-gradient(133deg, #11647C 0%, #3A9DB7 50%, #0090B3 100%); flex-shrink: 0; display: flex; justify-content: space-between; align-items: center; z-index: 10;">
+      <!-- Logo brand VNA -->
+      <div style="display: flex; align-items: center; gap: 16px; cursor: pointer;" onclick="backToDashboard()">
+        <div style="flex-direction: column; justify-content: center; align-items: center; gap: 3.2px; display: inline-flex">
+          <div style="width: 32px; height: 20px; background: #DBA410; border-radius: 2px;"></div>
+          <div style="width: 48px; height: 6px; background: white; border-radius: 1px;"></div>
+        </div>
+        <div style="width: 1px; height: 32px; background: rgba(255, 255, 255, 0.4);"></div>
+        <div style="color: white; font-size: 24px; font-family: Open Sans; font-weight: 700; line-height: 24px;">EFF - MOBILE OPERATION</div>
+      </div>
+      
+      <!-- Top Navigation Tabs with Dropdowns -->
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <!-- Dispatch Tab -->
+        <div id="nav-dispatch" class="nav-item-active" style="min-width: 60px; padding: 10px 20px; overflow: hidden; border-radius: 999px; justify-content: center; align-items: center; gap: 8px; display: flex; cursor: pointer; color: white; transition: background 0.15s;" onclick="backToDashboard()">
+          <span class="material-symbols-outlined">description</span>
+          <span style="font-size: 15px; font-family: Inter; font-weight: 600;">Điều hành Bay</span>
+        </div>
+        
+        <!-- Report Tab with Dropdown -->
+        <div id="nav-reports" class="nav-dropdown" style="min-width: 60px; padding: 10px 20px; overflow: hidden; border-radius: 999px; justify-content: center; align-items: center; gap: 8px; display: flex; color: white; transition: background 0.15s;" onclick="toggleDropdown('reports-dropdown', event)">
+          <span class="material-symbols-outlined">analytics</span>
+          <span style="font-size: 15px; font-family: Inter; font-weight: 500;">Báo Cáo Nước Sạch</span>
+          <span class="material-symbols-outlined" style="font-size: 16px;">keyboard_arrow_down</span>
+          
+          <!-- Dropdown menu -->
+          <div id="reports-dropdown" class="dropdown-content">
+            <a href="#" onclick="openReportView('YC34')">
+              <span class="material-symbols-outlined" style="color: var(--primary-vna);">trending_up</span>
+              YC34: Báo cáo suất tiêu thụ lịch sử
+            </a>
+            <a href="#" onclick="openReportView('YC35')">
+              <span class="material-symbols-outlined" style="color: var(--primary-vna);">balance</span>
+              YC35: Báo cáo đối chiếu nước Đầu/Cuối
+            </a>
+            <a href="#" onclick="openReportView('YC36')">
+              <span class="material-symbols-outlined" style="color: var(--primary-vna);">trending_down</span>
+              YC36: Báo cáo chuyến nạp thừa nước
+            </a>
+            <a href="#" onclick="openReportView('YC37')">
+              <span class="material-symbols-outlined" style="color: var(--red-alert);">warning</span>
+              YC37: Báo cáo chuyến bay dùng cạn nước
+            </a>
+            <a href="#" onclick="openReportView('YC38')">
+              <span class="material-symbols-outlined" style="color: var(--primary-vna);">chat</span>
+              YC38: Báo cáo tổ bay yêu cầu vượt mức
+            </a>
+          </div>
+        </div>
+        
+        <!-- Admin Tab with Dropdown -->
+        <div id="nav-admin" class="nav-dropdown" style="min-width: 60px; padding: 10px 20px; overflow: hidden; border-radius: 999px; justify-content: center; align-items: center; gap: 8px; display: flex; color: white; transition: background 0.15s;" onclick="toggleDropdown('admin-dropdown', event)">
+          <span class="material-symbols-outlined">settings</span>
+          <span style="font-size: 15px; font-family: Inter; font-weight: 500;">Cấu Hình Admin</span>
+          <span class="material-symbols-outlined" style="font-size: 16px;">keyboard_arrow_down</span>
+          
+          <!-- Dropdown menu -->
+          <div id="admin-dropdown" class="dropdown-content">
+            <a href="#" onclick="openAdminView('YC25')">
+              <span class="material-symbols-outlined" style="color: var(--gold-vna);">database</span>
+              YC25: Cấu hình dung tích bồn nước
+            </a>
+            <a href="#" onclick="openAdminView('YC26')">
+              <span class="material-symbols-outlined" style="color: var(--gold-vna);">tune</span>
+              YC26: Cấu hình định mức mặc định
+            </a>
+            <a href="#" onclick="openAdminView('YC27')">
+              <span class="material-symbols-outlined" style="color: var(--gold-vna);">shield</span>
+              YC27: Cấu hình tham số đệm (Buffer)
+            </a>
+            <a href="#" onclick="openAdminView('YC28')">
+              <span class="material-symbols-outlined" style="color: var(--red-alert);">notifications_active</span>
+              YC28: Cấu hình ngưỡng cảnh báo ngoại lệ
+            </a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Right Header Profile & Alert icon -->
+      <div style="display: flex; align-items: center; gap: 20px;">
+        <div style="position: relative; cursor: pointer; padding: 4px;">
+          <span class="material-symbols-outlined" style="color: white; font-size: 26px;">notifications</span>
+          <div style="position: absolute; top: 0; right: 0; background: var(--red-alert); color: white; font-size: 9px; font-weight: 700; padding: 2px 5px; border-radius: 99px; line-height: 1;">1</div>
+        </div>
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <img style="width: 38px; height: 38px; border-radius: 999px; border: 2px solid var(--gold-vna);" src="https://placehold.co/38x38" alt="user avatar"/>
+          <div style="display: flex; flex-direction: column; justify-content: center;">
+            <span style="color: white; font-size: 13px; font-weight: 600;">Việt Anh (Senior BA)</span>
+            <span style="color: rgba(255,255,255,0.7); font-size: 11px;">Điều hành bay VNA OCC</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 3. Operations Dashboard Pane (List & Detail view) -->
+    <div id="operations-dashboard" class="dashboard-panel active" style="align-self: stretch; padding: 24px; gap: 24px; display: flex; flex: 1;">
+      
+      <!-- Left Panel: List of flights (Width: 920px) -->
+      <div style="width: 920px; background: white; border-radius: 12px; border: 1px var(--gray-200) solid; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.02);">
+        <div style="padding: 16px 24px; border-bottom: 1px var(--gray-200) solid; display: flex; justify-content: space-between; align-items: center;">
+          <span style="color: var(--gray-900); font-size: 18px; font-family: Inter; font-weight: 700;">Danh sách chuyến bay</span>
+          <div style="display: flex; gap: 8px;">
+            <button class="btn-action btn-action-secondary" style="height: 32px; font-size: 12.5px;" onclick="alert('Làm mới danh sách chuyến bay thành công!')">
+              <span class="material-symbols-outlined" style="font-size: 16px;">refresh</span> Làm mới
+            </button>
+          </div>
+        </div>
+        
+        <!-- Filter Row -->
+        <div style="padding: 12px 16px; background: var(--gray-50); border-bottom: 1px var(--gray-200) solid; display: flex; flex-wrap: wrap; gap: 8px; align-items: center;">
+          <!-- Date Filter -->
+          <div style="display: flex; height: 32px; border-radius: 6px; border: 1px var(--gray-200) solid; overflow: hidden; font-size: 12px;">
+            <div style="background: var(--gray-100); padding: 0 10px; display: flex; align-items: center; color: var(--gray-700); font-weight: 600;">FLT DATE</div>
+            <div style="background: white; padding: 0 12px; display: flex; align-items: center; color: var(--gray-900);">28/08/2024</div>
+          </div>
+          
+          <!-- Flt No Filter -->
+          <div style="display: flex; height: 32px; border-radius: 6px; border: 1px var(--gray-200) solid; overflow: hidden; font-size: 12px;">
+            <div style="background: var(--gray-100); padding: 0 10px; display: flex; align-items: center; color: var(--gray-700); font-weight: 600;">FLT NO</div>
+            <input type="text" value="VN" style="width: 60px; border: none; outline: none; padding: 0 8px; font-size: 12px; font-family: inherit; font-weight: 600;" />
+          </div>
+          
+          <!-- Confirm doc Filter -->
+          <div style="display: flex; height: 32px; border-radius: 6px; border: 1px var(--gray-200) solid; overflow: hidden; font-size: 12px;">
+            <div style="background: var(--gray-100); padding: 0 10px; display: flex; align-items: center; color: var(--gray-700); font-weight: 600;">CONFIRM DOC</div>
+            <select style="border: none; outline: none; padding: 0 8px; font-size: 12px; font-family: inherit; background: white;">
+              <option>ALL</option>
+              <option>CONFIRMED</option>
+              <option>PENDING</option>
+            </select>
+          </div>
+          
+          <!-- Reg Filter -->
+          <div style="display: flex; height: 32px; border-radius: 6px; border: 1px var(--gray-200) solid; overflow: hidden; font-size: 12px;">
+            <div style="background: var(--gray-100); padding: 0 10px; display: flex; align-items: center; color: var(--gray-700); font-weight: 600;">AC REG</div>
+            <input type="text" placeholder="B787/A350" style="width: 75px; border: none; outline: none; padding: 0 8px; font-size: 12px; font-family: inherit;" />
+          </div>
+          
+          <!-- Search Buttons -->
+          <button class="btn-action btn-action-primary" style="height: 32px; padding: 0 12px; font-size: 12px; border-radius: 6px;">Lọc</button>
+          <span style="color: var(--blue-accent); font-size: 12px; cursor: pointer; text-decoration: underline;" onclick="alert('Đã thiết lập lại bộ lọc')">Reset</span>
+        </div>
+        
+        <!-- Flights Table -->
+        <div style="flex: 1; overflow-y: auto;">
+          <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 12.5px; font-family: 'Inter', sans-serif;">
+            <thead>
+              <tr style="background: var(--gray-100); border-bottom: 1px solid var(--gray-200); position: sticky; top: 0; z-index: 1;">
+                <th style="padding: 12px; color: var(--gray-900); font-weight: 600;">TÀU BAY</th>
+                <th style="padding: 12px; color: var(--gray-900); font-weight: 600;">SỐ HIỆU AC</th>
+                <th style="padding: 12px; color: var(--gray-900); font-weight: 600;">CHUYẾN BAY</th>
+                <th style="padding: 12px; color: var(--gray-900); font-weight: 600;">NGÀY BAY</th>
+                <th style="padding: 12px; color: var(--gray-900); font-weight: 600;">DEP</th>
+                <th style="padding: 12px; color: var(--gray-900); font-weight: 600;">ARR</th>
+                <th style="padding: 12px; color: var(--gray-900); font-weight: 600;">ETD (UTC)</th>
+                <th style="padding: 12px; color: var(--gray-900); font-weight: 600;">ETA (UTC)</th>
+              </tr>
+            </thead>
+            <tbody id="flight-table-rows">
+              <!-- Rendered dynamically via javascript -->
+            </tbody>
+          </table>
+        </div>
+        
+        <!-- Table Pagination bar -->
+        <div style="padding: 12px 16px; border-top: 1px var(--gray-200) solid; display: flex; justify-content: space-between; align-items: center; font-size: 12.5px; color: var(--gray-500); background: white;">
+          <div>Hiển thị <strong>4</strong> trên <strong>4</strong> chuyến bay điều hành nước sạch</div>
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <button disabled style="background: transparent; border: 1px solid var(--gray-200); padding: 4px 8px; border-radius: 4px; cursor: not-allowed;"><span class="material-symbols-outlined" style="font-size: 16px;">chevron_left</span></button>
+            <span style="font-weight: 600; color: var(--gray-900);">Trang 1</span>
+            <button disabled style="background: transparent; border: 1px solid var(--gray-200); padding: 4px 8px; border-radius: 4px; cursor: not-allowed;"><span class="material-symbols-outlined" style="font-size: 16px;">chevron_right</span></button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Right Panel: Flight Details Container (Flex: 1) -->
+      <div style="flex: 1; background: white; border-radius: 12px; border: 1px var(--gray-200) solid; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.02);">
+        <!-- Tabs Header Bar -->
+        <div style="width: 100%; border-bottom: 1px var(--gray-200) solid; background: var(--gray-50); display: flex; align-items: flex-end; padding-left: 12px; overflow-x: auto;">
+          <div class="eff-tab" id="tab-alldoc" onclick="selectTab('alldoc')">
+            <span class="material-symbols-outlined" style="font-size: 18px;">folder</span>
+            <span style="font-size: 13.5px; font-weight: 500;">All Documents</span>
+          </div>
+          <div class="eff-tab" id="tab-ecfp" onclick="selectTab('ecfp')">
+            <span class="material-symbols-outlined" style="font-size: 18px;">description</span>
+            <span style="font-size: 13.5px; font-weight: 500;">E-CFP</span>
+            <div class="active-indicator" style="display:none; width: 100%; height: 3px; position: absolute; bottom: 0; left: 0; background: var(--primary-vna); border-radius: 8px;"></div>
+          </div>
+          <div class="eff-tab" id="tab-release" onclick="selectTab('release')">
+            <span class="material-symbols-outlined" style="font-size: 18px;">task_alt</span>
+            <span style="font-size: 13.5px; font-weight: 500;">Flight release</span>
+          </div>
+          <div class="eff-tab" id="tab-confirm" onclick="selectTab('confirm')">
+            <span class="material-symbols-outlined" style="font-size: 18px;">assignment_turned_in</span>
+            <span style="font-size: 13.5px; font-weight: 500;">Confirm documents</span>
+          </div>
+          <div class="eff-tab" id="tab-request" onclick="selectTab('request')">
+            <span class="material-symbols-outlined" style="font-size: 18px;">question_answer</span>
+            <span style="font-size: 13.5px; font-weight: 500;">Request documents</span>
+          </div>
+          
+          <!-- [NEW] Tab Nước sạch -->
+          <div class="eff-tab eff-tab-active" id="tab-water" onclick="selectTab('water')" style="background: white; border: 1px solid var(--gray-200); border-bottom-color: transparent; border-top-left-radius: 6px; border-top-right-radius: 6px; z-index: 1;">
+            <span class="material-symbols-outlined" style="font-size: 18px; color: #0086C9;">water_drop</span>
+            <span style="font-size: 13.5px; font-weight: 600; color: #0086C9;">Nước sạch</span>
+            <div class="active-indicator" style="display:block; width: 100%; height: 3px; position: absolute; bottom: 0; left: 0; background: #0086C9; border-radius: 8px;"></div>
+          </div>
+          
+          <div class="eff-tab" id="tab-takeoff" onclick="selectTab('takeoff')">
+            <span class="material-symbols-outlined" style="font-size: 18px;">flight_takeoff</span>
+            <span style="font-size: 13.5px; font-weight: 500;">Take off card</span>
+          </div>
+          <div class="eff-tab" id="tab-landing" onclick="selectTab('landing')">
+            <span class="material-symbols-outlined" style="font-size: 18px;">flight_land</span>
+            <span style="font-size: 13.5px; font-weight: 500;">Landing card</span>
+          </div>
+        </div>
+        
+        <!-- Tab Content Panes -->
+        <div style="flex: 1; padding: 20px; overflow-y: auto; background: white;">
+          
+          <!-- 3a. Placeholder Pane -->
+          <div id="pane-placeholder" style="display: none; height: 100%; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: var(--gray-500); gap: 12px;">
+            <span class="material-symbols-outlined" style="font-size: 64px; color: var(--gray-300);">insert_drive_file</span>
+            <h3 id="placeholder-title" style="font-size: 16px; font-weight: 600; color: var(--gray-900);">Tài liệu chuyến bay</h3>
+            <p style="font-size: 13px; max-width: 300px;">Tính năng tài liệu này đang được tích hợp. Vui lòng chọn tab "Nước sạch" để xem phân hệ điều hành quản lý chỉ số bồn nước sạch.</p>
+          </div>
+          
+          <!-- 3b. Original E-CFP Tab Pane (Fallback) -->
+          <div id="pane-ecfp" style="display: none; flex-direction: column; gap: 16px;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <h3 style="font-size: 16px; font-weight: 700; color: var(--gray-900);" id="ecfp-pane-title">E-CFP list - VN7128</h3>
+              <div style="display: flex; gap: 8px;">
+                <button class="btn-action btn-action-secondary" style="height: 32px; font-size: 12.5px;"><span class="material-symbols-outlined" style="font-size: 16px;">upload</span> Upload E-CFP</button>
+                <button class="btn-action btn-action-secondary" style="height: 32px; font-size: 12.5px;"><span class="material-symbols-outlined" style="font-size: 16px;">download</span> Tải về tất cả</button>
+              </div>
+            </div>
+            
+            <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 13px;">
+              <thead>
+                <tr style="background: var(--gray-50); border: 1px solid var(--gray-200);">
+                  <th style="padding: 10px; font-weight: 600;">STT</th>
+                  <th style="padding: 10px; font-weight: 600;">Thời gian nộp (UTC)</th>
+                  <th style="padding: 10px; font-weight: 600;">Tài khoản</th>
+                  <th style="padding: 10px; font-weight: 600;">Người nộp</th>
+                  <th style="padding: 10px; font-weight: 600;">Phiên bản</th>
+                  <th style="padding: 10px; font-weight: 600;">Hành động</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="border-bottom: 1px solid var(--gray-200);">
+                  <td style="padding: 10px;">01</td>
+                  <td style="padding: 10px;">28/08/2024 - 10:50</td>
+                  <td style="padding: 10px;">Hiepdv13</td>
+                  <td style="padding: 10px;">Nguyễn Văn Đức (6368)</td>
+                  <td style="padding: 10px;">Rev 01</td>
+                  <td style="padding: 10px; display: flex; gap: 8px;">
+                    <span class="material-symbols-outlined" style="color: var(--gray-500); cursor: pointer;">visibility</span>
+                    <span class="material-symbols-outlined" style="color: var(--gray-500); cursor: pointer;">download</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          
+          <!-- 3c. [NEW] Tab Potable Water Service Details Dashboard -->
+          <div id="pane-water" style="display: flex; flex-direction: column; gap: 20px;">
+            
+            <!-- Dashboard Title Row -->
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--gray-200); padding-bottom: 12px;">
+              <div>
+                <h3 style="font-size: 17px; font-weight: 700; color: var(--primary-vna);" id="water-dispatch-title">Giám sát & Nhập liệu Nước Sạch - VN7128</h3>
+                <p style="font-size: 12.5px; color: var(--gray-500); margin-top: 2px;" id="water-dispatch-subtitle">Dòng tàu: B787-9 | Số hiệu: VN-A314 | Hành trình: SGN-HAN</p>
+              </div>
+              <div style="display: flex; gap: 8px;">
+                <button class="btn-action btn-action-secondary" style="height: 32px; font-size: 12.5px;" onclick="refreshWaterData()">
+                  <span class="material-symbols-outlined" style="font-size: 16px;">sync</span> Đồng bộ ACARS
+                </button>
+              </div>
+            </div>
+            
+            <!-- Grid Layout: Left Info & Form (60%) vs Right Visual Gauge (40%) -->
+            <div style="display: flex; gap: 20px; align-items: stretch;">
+              
+              <!-- Left Column: Details & Calculation & Input Table (62% width) -->
+              <div style="flex: 62; display: flex; flex-direction: column; gap: 16px;">
+                
+                <!-- Section 1: Recommended Calculation details -->
+                <div class="details-card">
+                  <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <span style="font-size: 14px; font-weight: 700; color: var(--gray-900);">1. Thông số tính toán lượng nước đề xuất</span>
+                    <div style="display: flex; gap: 6px;">
+                      <span class="pax-badge" id="water-pax-badge">Loadsheet Confirmed</span>
+                    </div>
+                  </div>
+                  
+                  <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; font-size: 13px; color: var(--gray-700);">
+                    <div style="background: var(--gray-50); padding: 8px 12px; border-radius: 8px;">
+                      <div style="color: var(--gray-500); font-size: 11px; font-weight: 600; text-transform: uppercase;">Tổng khách & Tổ bay</div>
+                      <div style="font-size: 15px; font-weight: 700; color: var(--gray-900); margin-top: 4px;" id="water-pax-count">170 người (160 + 10)</div>
+                    </div>
+                    <div style="background: var(--gray-50); padding: 8px 12px; border-radius: 8px;">
+                      <div style="color: var(--gray-500); font-size: 11px; font-weight: 600; text-transform: uppercase;">Giờ bay + Taxi dự phòng</div>
+                      <div style="font-size: 15px; font-weight: 700; color: var(--gray-900); margin-top: 4px;" id="water-duration">1.75 giờ (1.5h + 15m)</div>
+                    </div>
+                    <div style="background: var(--gray-50); padding: 8px 12px; border-radius: 8px;">
+                      <div style="color: var(--gray-500); font-size: 11px; font-weight: 600; text-transform: uppercase;">Suất tiêu thụ lịch sử</div>
+                      <div style="font-size: 15px; font-weight: 700; color: var(--gray-900); margin-top: 4px;" id="water-rate">1.5 Lít / người / giờ</div>
+                    </div>
+                  </div>
+                  
+                  <!-- Buffer explanations and Formula -->
+                  <div style="font-size: 12px; color: var(--gray-600); background: #F0F9FF; border-left: 4px solid var(--blue-accent); padding: 10px 14px; border-radius: 4px; display: flex; flex-direction: column; gap: 4px;">
+                    <div><strong>Công thức tính toán:</strong> <code>Lượng khuyến nghị = (Hành khách + 5 Buffer) &times; Định mức &times; (Thời gian bay + 15m Taxi) + 10% Reserve (Min)</code></div>
+                    <div id="water-formula-text" style="font-family: monospace; color: var(--primary-vna); margin-top: 2px;">= (170 + 5) &times; 1.5 &times; 1.75 + 100 = 459.37L &rarr; Làm tròn: 460 Lít (46% bồn)</div>
+                  </div>
+                </div>
+                
+                <!-- Section 2: Data comparison matrix table -->
+                <div class="details-card" style="padding: 16px;">
+                  <span style="font-size: 14px; font-weight: 700; color: var(--gray-900);">2. So khớp số liệu đầu & cuối chuyến bay (YC33)</span>
+                  
+                  <table style="width: 100%; border-collapse: collapse; font-size: 12.5px; text-align: left; margin-top: 8px;">
+                    <thead>
+                      <tr style="background: var(--gray-50); border-bottom: 1px solid var(--gray-200);">
+                        <th style="padding: 8px; color: var(--gray-600); font-weight: 600;">Nguồn Dữ Liệu</th>
+                        <th style="padding: 8px; color: var(--gray-600); font-weight: 600; text-align: center;">% Đầu (DEP)</th>
+                        <th style="padding: 8px; color: var(--gray-600); font-weight: 600; text-align: center;">% Cuối (ARR)</th>
+                        <th style="padding: 8px; color: var(--gray-600); font-weight: 600; text-align: center;">Thực tế dùng</th>
+                        <th style="padding: 8px; color: var(--gray-600); font-weight: 600;">Thời gian &amp; Minh chứng</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <!-- Row 1: ACARS Telemetry -->
+                      <tr style="border-bottom: 1px solid var(--gray-200);">
+                        <td style="padding: 8px; font-weight: 600;">1. ACARS tự động (A-CAD)</td>
+                        <td style="padding: 8px; text-align: center;" id="acars-dep-val">85% (850L)</td>
+                        <td style="padding: 8px; text-align: center;" id="acars-arr-val">42% (420L)</td>
+                        <td style="padding: 8px; text-align: center; color: var(--primary-vna); font-weight: 600;" id="acars-use-val">430 Lít (43%)</td>
+                        <td style="padding: 8px;">
+                          <div style="font-size: 11px; color: var(--gray-500);" id="acars-time-val">28/08/2024 02:45 UTC</div>
+                          <span class="pax-badge badge-green" id="acars-status-badge" style="font-size: 9px; padding: 1px 6px; margin-top: 2px;">Tự động gửi</span>
+                        </td>
+                      </tr>
+                      
+                      <!-- Row 2: Crew Input -->
+                      <tr style="border-bottom: 1px solid var(--gray-200);">
+                        <td style="padding: 8px; font-weight: 600;">2. Tổ bay gửi (MO Plus)</td>
+                        <td style="padding: 8px; text-align: center;" id="crew-dep-val">85% (850L)</td>
+                        <td style="padding: 8px; text-align: center;" id="crew-arr-val">40% (400L)</td>
+                        <td style="padding: 8px; text-align: center; color: var(--primary-vna); font-weight: 600;" id="crew-use-val">450 Lít (45%)</td>
+                        <td style="padding: 8px;">
+                          <div style="font-size: 11px; color: var(--gray-500);" id="crew-time-val">28/08/2024 03:05 UTC</div>
+                          <a href="#" onclick="openPhotoModal()" style="color: var(--blue-accent); font-weight: 600; text-decoration: underline; font-size: 11px; display: inline-flex; align-items: center; gap: 2px; margin-top: 2px;">
+                            <span class="material-symbols-outlined" style="font-size: 12px;">image</span> Xem ảnh đồng hồ
+                          </a>
+                        </td>
+                      </tr>
+                      
+                      <!-- Row 3: Admin Manual Entry -->
+                      <tr style="background: #FFFBEB;">
+                        <td style="padding: 8px; font-weight: 700; color: #B45309;">3. Admin điều chỉnh</td>
+                        <td style="padding: 8px; text-align: center;">
+                          <input type="number" id="admin-dep-input" class="input-field" style="width: 65px; height: 28px; text-align: center; font-weight: 700;" value="85" oninput="calculateAdminUsage()" />
+                          <div style="font-size: 10px; color: var(--gray-500); margin-top: 2px;" id="admin-dep-liters">850L</div>
+                        </td>
+                        <td style="padding: 8px; text-align: center;">
+                          <input type="number" id="admin-arr-input" class="input-field" style="width: 65px; height: 28px; text-align: center; font-weight: 700;" value="40" oninput="calculateAdminUsage()" />
+                          <div style="font-size: 10px; color: var(--gray-500); margin-top: 2px;" id="admin-arr-liters">400L</div>
+                        </td>
+                        <td style="padding: 8px; text-align: center; color: #B45309; font-weight: 700;" id="admin-use-val">
+                          450 Lít (45%)
+                        </td>
+                        <td style="padding: 8px;">
+                          <select id="admin-reason-select" class="input-field" style="width: 140px; height: 28px; font-size: 11px;">
+                            <option value="">-- Chọn lý do điều chỉnh --</option>
+                            <option value="acars-deviation" selected>Lệch ACARS nhẹ, chốt theo số tổ bay cơ</option>
+                            <option value="telemetry-error">Lỗi ACARS không truyền tin</option>
+                            <option value="crew-error">Tổ bay nhập sai cú pháp</option>
+                            <option value="other">Lý do khác (ghi rõ ở Note)</option>
+                          </select>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  
+                  <!-- Note and Submit -->
+                  <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 10px; border-top: 1px solid var(--gray-200); padding-top: 10px;">
+                    <div style="display: flex; gap: 10px; align-items: center;">
+                      <span style="font-size: 12px; font-weight: 600; color: var(--gray-700); min-width: 120px;">Ghi chú chi tiết:</span>
+                      <input type="text" id="admin-note-input" class="input-field" placeholder="Nhập ghi chú hoặc giải thích bổ sung..." value="Số liệu cuối chuyến ACARS lệch 2%, tổ bay chụp đồng hồ cơ báo 40%." style="flex: 1;" />
+                    </div>
+                    
+                    <div style="display: flex; justify-content: flex-end; gap: 8px; margin-top: 4px;">
+                      <button class="btn-action btn-action-secondary" style="height: 32px;" onclick="resetAdminForm()">Hủy bỏ</button>
+                      <button class="btn-action btn-action-primary" style="height: 32px;" onclick="saveAdminWaterData()">Lưu số liệu điều chỉnh (YC33)</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Right Column: Visual Tank Indicator (38% width) -->
+              <div style="flex: 38; display: flex; flex-direction: column; gap: 16px;">
+                <div class="details-card" style="align-items: center; justify-content: center; height: 100%; min-height: 480px; background: radial-gradient(circle, #f9fafb 0%, #f3eded 100%);">
+                  
+                  <div class="water-tank-wrapper" style="display: flex; flex-direction: column; align-items: center; width: 100%;">
+                    <h4 style="margin: 0 0 15px 0; font-family: Inter; color: var(--gray-900); font-weight: 700; font-size: 14px; text-align: center; text-transform: uppercase; letter-spacing: 0.5px;">Trực quan bồn chứa nước sạch</h4>
+                    
+                    <div class="water-tank-glass">
+                      <!-- Marks -->
+                      <div class="tank-marks">
+                        <div class="mark" style="bottom: 100%;"><span>100% (<span id="gauge-capacity-mark">1000L</span>)</span></div>
+                        <div class="mark" style="bottom: 80%;"><span>80%</span></div>
+                        <div class="mark" style="bottom: 50%;"><span>50%</span></div>
+                        <div class="mark" style="bottom: 30%;"><span>30%</span></div>
+                        <div class="mark" style="bottom: 10%; border-bottom-color: var(--red-alert);"><span style="color: var(--red-alert); font-weight: 700;">10% (Min)</span></div>
+                      </div>
+                      
+                      <!-- Water fill -->
+                      <div class="water-fill" id="water-fill-level" style="height: 46%;">
+                        <div class="water-wave-front"></div>
+                        <div class="water-wave-back"></div>
+                        
+                        <!-- Recommended target marker line -->
+                        <div class="recommend-line" id="recommend-marker" style="bottom: 46%;">
+                          <div class="recommend-tooltip">Đề xuất: <span id="recommend-val-text">460L</span></div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div style="margin-top: 25px; text-align: center;">
+                      <div style="font-size: 26px; font-weight: 800; color: #0082c3; font-family: Inter; text-shadow: 0 1px 1px rgba(0,0,0,0.05);" id="gauge-percent-text">46%</div>
+                      <div style="font-size: 13px; color: var(--gray-600); font-family: Inter; margin-top: 4px; font-weight: 600;" id="gauge-liters-text">Lượng đề xuất: 460L / 1,000L</div>
+                    </div>
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+            
+            <!-- Section 3: Audit Trail Log history -->
+            <div class="details-card" style="padding: 16px;">
+              <span style="font-size: 13.5px; font-weight: 700; color: var(--gray-900); display: flex; align-items: center; gap: 6px;">
+                <span class="material-symbols-outlined" style="font-size: 18px; color: var(--gray-600);">history</span> Lịch sử thay đổi hệ thống (Audit Trail)
+              </span>
+              <div id="water-audit-logs" style="display: flex; flex-direction: column; gap: 8px; font-size: 12px; max-height: 120px; overflow-y: auto; padding-right: 10px;">
+                <!-- Logs rendered dynamically -->
+              </div>
+            </div>
+            
+          </div><!-- /pane-water -->
+          
+        </div>
+      </div>
+    </div>
+    
+    <!-- 4. Reports Overlay Screen (YC34 - YC38) -->
+    <div id="report-view-overlay" class="full-overlay-view">
+      <!-- Breadcrumb row -->
+      <div style="display: flex; justify-content: space-between; align-items: center; background: white; padding: 14px 24px; border-radius: 8px; border: 1px solid var(--gray-200); box-shadow: 0 1px 3px rgba(0,0,0,0.02);">
+        <div style="display: flex; align-items: center; gap: 8px; font-size: 14px;">
+          <span style="color: var(--gray-500); cursor: pointer;" onclick="backToDashboard()">Điều hành bay</span>
+          <span style="color: var(--gray-300);">/</span>
+          <span style="color: var(--gray-500);">Báo cáo</span>
+          <span style="color: var(--gray-300);">/</span>
+          <strong style="color: var(--primary-vna);" id="report-title-breadcrumb">Báo cáo suất tiêu thụ lịch sử</strong>
+        </div>
+        <button class="btn-action btn-action-secondary" style="height: 32px; font-size: 12.5px;" onclick="backToDashboard()">
+          <span class="material-symbols-outlined" style="font-size: 16px;">arrow_back</span> Quay lại Điều hành
+        </button>
+      </div>
+      
+      <!-- Filter and search card -->
+      <div style="background: white; border-radius: 8px; border: 1px solid var(--gray-200); padding: 16px; display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-end;">
+        <div style="display: flex; flex-direction: column; gap: 4px; flex: 1 1 200px;">
+          <label style="font-size: 11.5px; font-weight: 600; color: var(--gray-500); text-transform: uppercase;">Dòng Tàu Bay</label>
+          <select id="report-filter-ac" class="input-field">
+            <option value="ALL">Tất cả dòng tàu</option>
+            <option value="B787">Boeing 787</option>
+            <option value="A350">Airbus A350</option>
+            <option value="A321">Airbus A321</option>
+          </select>
+        </div>
+        
+        <div style="display: flex; flex-direction: column; gap: 4px; flex: 1 1 200px;">
+          <label style="font-size: 11.5px; font-weight: 600; color: var(--gray-500); text-transform: uppercase;">Chặng Bay</label>
+          <select id="report-filter-route" class="input-field">
+            <option value="ALL">Tất cả chặng bay</option>
+            <option value="SGN-HAN">SGN - HAN (Nội địa trục)</option>
+            <option value="SGN-DAD">SGN - DAD (Miền Trung)</option>
+            <option value="HAN-CXR">HAN - CXR (Du lịch Nha Trang)</option>
+          </select>
+        </div>
+        
+        <div style="display: flex; flex-direction: column; gap: 4px; flex: 1 1 200px;">
+          <label style="font-size: 11.5px; font-weight: 600; color: var(--gray-500); text-transform: uppercase;">Thời gian báo cáo (UTC)</label>
+          <input type="date" class="input-field" value="2026-06-17" />
+        </div>
+        
+        <div style="display: flex; gap: 10px; margin-left: auto;">
+          <button class="btn-action btn-action-teal" onclick="alert('Đã cập nhật bộ lọc báo cáo thành công!')">Tìm kiếm</button>
+          <button class="btn-action btn-action-secondary" onclick="alert('Đã xuất báo cáo ra Excel (YC39) dưới dạng tệp XLSX thành công!')" style="color: #137333; border-color: #A3E635;">
+            <span class="material-symbols-outlined" style="font-size: 18px; color: #137333;">table_view</span> Xuất Excel (YC39)
+          </button>
+        </div>
+      </div>
+      
+      <!-- Visual chart block for YC34 (Only show when selected YC34) -->
+      <div id="yc34-chart-card" style="background: white; border-radius: 8px; border: 1px solid var(--gray-200); padding: 20px; display: flex; flex-direction: column; gap: 10px;">
+        <h4 style="font-size: 13.5px; font-weight: 700; color: var(--gray-900);">Biểu đồ trực quan suất tiêu thụ trung bình chặng bay (lít/khách/giờ)</h4>
+        <div style="display: flex; justify-content: space-around; align-items: flex-end; height: 160px; padding: 20px 40px; border-bottom: 2px solid var(--gray-200);">
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+            <div style="font-size: 11px; font-weight: 600; color: var(--primary-vna);">1.54L</div>
+            <div style="width: 60px; height: 110px; background: var(--primary-vna); border-radius: 4px; opacity: 0.85;"></div>
+            <div style="font-size: 11px; font-weight: 700;">SGN-HAN</div>
+          </div>
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+            <div style="font-size: 11px; font-weight: 600; color: var(--primary-vna);">1.35L</div>
+            <div style="width: 60px; height: 96px; background: var(--primary-vna); border-radius: 4px; opacity: 0.85;"></div>
+            <div style="font-size: 11px; font-weight: 700;">SGN-DAD</div>
+          </div>
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+            <div style="font-size: 11px; font-weight: 600; color: var(--primary-vna);">1.20L</div>
+            <div style="width: 60px; height: 85px; background: var(--primary-vna); border-radius: 4px; opacity: 0.85;"></div>
+            <div style="font-size: 11px; font-weight: 700;">HAN-CXR</div>
+          </div>
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+            <div style="font-size: 11px; font-weight: 600; color: var(--gold-vna);">1.42L</div>
+            <div style="width: 60px; height: 101px; background: var(--gold-vna); border-radius: 4px; border: 2px dashed #000;"></div>
+            <div style="font-size: 11.5px; font-weight: 800; color: var(--gold-vna);">Định mức TB</div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Report Data Table Card -->
+      <div style="background: white; border-radius: 8px; border: 1px solid var(--gray-200); flex: 1; overflow: hidden; display: flex; flex-direction: column;">
+        <div style="flex: 1; overflow-y: auto;">
+          <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 13px;" id="report-table">
+            <!-- Rendered dynamically -->
+          </table>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 5. Admin Settings Configuration Overlay Screen (YC25 - YC28) -->
+    <div id="admin-view-overlay" class="full-overlay-view">
+      <!-- Breadcrumb row -->
+      <div style="display: flex; justify-content: space-between; align-items: center; background: white; padding: 14px 24px; border-radius: 8px; border: 1px solid var(--gray-200); box-shadow: 0 1px 3px rgba(0,0,0,0.02);">
+        <div style="display: flex; align-items: center; gap: 8px; font-size: 14px;">
+          <span style="color: var(--gray-500); cursor: pointer;" onclick="backToDashboard()">Điều hành bay</span>
+          <span style="color: var(--gray-300);">/</span>
+          <span style="color: var(--gray-500);">Quản trị hệ thống</span>
+          <span style="color: var(--gray-300);">/</span>
+          <strong style="color: var(--gold-vna);" id="admin-title-breadcrumb">Cấu hình tham số nước sạch</strong>
+        </div>
+        <button class="btn-action btn-action-secondary" style="height: 32px; font-size: 12.5px;" onclick="backToDashboard()">
+          <span class="material-symbols-outlined" style="font-size: 16px;">arrow_back</span> Quay lại Điều hành
+        </button>
+      </div>
+      
+      <!-- Admin Config Horizontal tabs -->
+      <div style="display: flex; border-bottom: 2px solid var(--gray-200); gap: 16px; padding: 0 8px;">
+        <div class="eff-tab eff-tab-active" id="adm-tab-yc25" onclick="selectAdminSubTab('YC25')" style="height: 36px; padding-bottom: 8px;">
+          <span style="font-size: 14px; font-weight: 600;">YC25: Dung tích bồn tàu bay</span>
+        </div>
+        <div class="eff-tab" id="adm-tab-yc26" onclick="selectAdminSubTab('YC26')" style="height: 36px; padding-bottom: 8px;">
+          <span style="font-size: 14px; font-weight: 600;">YC26: Định mức mặc định</span>
+        </div>
+        <div class="eff-tab" id="adm-tab-yc27" onclick="selectAdminSubTab('YC27')" style="height: 36px; padding-bottom: 8px;">
+          <span style="font-size: 14px; font-weight: 600;">YC27: Cấu hình tham số đệm</span>
+        </div>
+        <div class="eff-tab" id="adm-tab-yc28" onclick="selectAdminSubTab('YC28')" style="height: 36px; padding-bottom: 8px;">
+          <span style="font-size: 14px; font-weight: 600;">YC28: Cấu hình ngưỡng cảnh báo</span>
+        </div>
+      </div>
+      
+      <!-- Sub Tab content panels -->
+      <div style="background: white; border-radius: 8px; border: 1px solid var(--gray-200); padding: 24px; flex: 1; overflow-y: auto;" id="admin-sub-pane">
+        <!-- Rendered dynamically depending on selected config tab -->
+      </div>
+    </div>
+    
+  </div><!-- /eff-layout-container -->
+
+  <!-- Modal 1: Analog Gauge meter mockup -->
+  <div id="photo-modal" class="modal-overlay" style="display: none;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Minh chứng Tổ bay chụp đồng hồ nước cơ học</h3>
+        <button class="close-modal-btn" onclick="closePhotoModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="analog-gauge-wrap">
+          <div class="gauge-dial-scale">
+            <!-- Render scale ticks using JS -->
+            <div class="gauge-scale-mark" style="transform: rotate(-135deg);"></div>
+            <div class="gauge-scale-mark" style="transform: rotate(-90deg);"></div>
+            <div class="gauge-scale-mark" style="transform: rotate(-45deg);"></div>
+            <div class="gauge-scale-mark" style="transform: rotate(0deg); height: 18px; background: #FFF;"></div>
+            <div class="gauge-scale-mark" style="transform: rotate(45deg);"></div>
+            <div class="gauge-scale-mark" style="transform: rotate(90deg);"></div>
+            <div class="gauge-scale-mark" style="transform: rotate(135deg);"></div>
+          </div>
+          <div class="gauge-needle-shadow" id="gauge-needle-shadow"></div>
+          <div class="gauge-needle" id="gauge-needle"></div>
+          <div class="gauge-center-cap"></div>
+          
+          <!-- Label placements -->
+          <span class="gauge-label" style="bottom: 120px; left: 30px;">0%</span>
+          <span class="gauge-label" style="top: 30px; left: 24px;">25%</span>
+          <span class="gauge-label" style="top: 10px; left: 90px;">50%</span>
+          <span class="gauge-label" style="top: 30px; right: 24px;">75%</span>
+          <span class="gauge-label" style="bottom: 120px; right: 22px;">100%</span>
+          <span style="position: absolute; bottom: 35px; color: #38bdf8; font-size: 11px; font-weight: 700;">POTABLE WATER</span>
+        </div>
+        <p style="font-size: 13.5px; font-weight: 600; color: var(--gray-900); text-align: center; margin-top: 10px;" id="photo-modal-caption">
+          Đồng hồ báo chỉ số bồn nước thực tế cuối chuyến bay: 40% (400L)
+        </p>
+        <p style="font-size: 11.5px; color: var(--gray-500); text-align: center; max-width: 380px;">
+          Gửi từ thiết bị iPad tổ bay qua App MO Plus lúc 17/06/2026 05:45 UTC. Ảnh chụp số hóa ghi nhận trùng khớp với chỉ số nhập tay.
+        </p>
+        <button class="btn-action btn-action-teal" onclick="closePhotoModal()" style="margin-top: 10px; width: 100px; justify-content: center;">Đóng</button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Success Toast -->
+  <div id="success-toast" class="toast-notif">
+    <span class="material-symbols-outlined" style="color: var(--green-success); font-size: 22px;">check_circle</span>
+    <span id="toast-message-text">Lưu số liệu điều chỉnh thành công!</span>
+  </div>
+
+  <!-- Javascript Logic -->
+  <script>
+    // ===== Flight datasets (Mock database) =====
+    const flightsDb = {
+      "VN7128": {
+        fltNo: "VN7128",
+        date: "28/08/2024",
+        route: "SGN - HAN",
+        acReg: "VN-A314",
+        acType: "B787-9",
+        tankCapacity: 1000,
+        bookingPax: 160,
+        crew: 10,
+        paxSource: "Loadsheet Confirmed",
+        paxSourceClass: "badge-green",
+        duration: 1.5,
+        rate: 1.5,
+        paxBuffer: 5,
+        taxiBuffer: 0.25,
+        minReserve: 100, // 10%
+        acars: { dep: 85, arr: 42, use: 430, time: "28/08/2024 02:45 UTC" },
+        crewInput: { dep: 85, arr: 40, use: 450, time: "28/08/2024 03:05 UTC" },
+        adminInput: { dep: 85, arr: 40, reason: "acars-deviation", note: "Số liệu cuối chuyến ACARS lệch 2%, tổ bay chụp đồng hồ cơ báo 40%." },
+        history: [
+          { time: "28/08/2024 03:15 UTC", user: "admin_vietanh", action: "Đã cập nhật số cuối chuyến thành 40% (400L). Lý do: Chốt theo ảnh đồng hồ tổ bay chụp." },
+          { time: "28/08/2024 03:05 UTC", user: "crew_vn7128", action: "Tổ bay gửi dữ liệu qua App MO Plus (DEP: 85%, ARR: 40%)." },
+          { time: "28/08/2024 02:45 UTC", user: "SYSTEM", action: "Đồng bộ tự động ACARS (DEP: 85%, ARR: 42%)." }
+        ]
+      },
+      "VN216": {
+        fltNo: "VN216",
+        date: "28/08/2024",
+        route: "SGN - DAD",
+        acReg: "VN-A886",
+        acType: "A350-900",
+        tankCapacity: 1200,
+        bookingPax: 220,
+        crew: 12,
+        paxSource: "Loadsheet Confirmed",
+        paxSourceClass: "badge-green",
+        duration: 1.2,
+        rate: 1.6,
+        paxBuffer: 5,
+        taxiBuffer: 0.25,
+        minReserve: 120, // 10%
+        acars: { dep: 90, arr: 50, use: 480, time: "28/08/2024 04:15 UTC" },
+        crewInput: { dep: 90, arr: 50, use: 480, time: "28/08/2024 04:30 UTC" },
+        adminInput: { dep: "", arr: "", reason: "", note: "" },
+        history: [
+          { time: "28/08/2024 04:30 UTC", user: "crew_vn216", action: "Tổ bay gửi dữ liệu qua App MO Plus (DEP: 90%, ARR: 50%)." },
+          { time: "28/08/2024 04:15 UTC", user: "SYSTEM", action: "Đồng bộ tự động ACARS (DEP: 90%, ARR: 50%)." }
+        ]
+      },
+      "VN1344": {
+        fltNo: "VN1344",
+        date: "28/08/2024",
+        route: "HAN - CXR",
+        acReg: "VN-A612",
+        acType: "A321-200",
+        tankCapacity: 300,
+        bookingPax: 175,
+        crew: 8,
+        paxSource: "Amadeus Booking",
+        paxSourceClass: "badge-yellow",
+        duration: 1.8,
+        rate: 1.4,
+        paxBuffer: 5,
+        taxiBuffer: 0.25,
+        minReserve: 30, // 10%
+        acars: { dep: null, arr: null, use: null, time: "" }, // ACARS not supported
+        crewInput: { dep: 100, arr: 30, use: 210, time: "28/08/2024 06:40 UTC" },
+        adminInput: { dep: 100, arr: 30, reason: "telemetry-error", note: "Tàu A321 không hỗ trợ tự động ACARS nước sạch. Chốt theo số tổ bay cơ." },
+        history: [
+          { time: "28/08/2024 06:45 UTC", user: "SYSTEM", action: "Tự động duyệt số liệu chốt theo tổ bay (DEP: 100%, ARR: 30%)." },
+          { time: "28/08/2024 06:40 UTC", user: "crew_vn1344", action: "Tổ bay gửi dữ liệu qua App MO Plus (DEP: 100%, ARR: 30%)." }
+        ]
+      },
+      "VN208": {
+        fltNo: "VN208",
+        date: "28/08/2024",
+        route: "SGN - HAN",
+        acReg: "VN-A872",
+        acType: "B787-10",
+        tankCapacity: 1200,
+        bookingPax: 280,
+        crew: 15,
+        paxSource: "Loadsheet Confirmed",
+        paxSourceClass: "badge-green",
+        duration: 1.5,
+        rate: 1.5,
+        paxBuffer: 5,
+        taxiBuffer: 0.25,
+        minReserve: 120, // 10%
+        acars: { dep: 95, arr: 10, use: 1020, time: "28/08/2024 08:30 UTC" },
+        crewInput: { dep: 95, arr: 8, use: 1044, time: "28/08/2024 08:50 UTC" },
+        adminInput: { dep: "", arr: "", reason: "", note: "" },
+        history: [
+          { time: "28/08/2024 08:50 UTC", user: "crew_vn208", action: "Tổ bay gửi dữ liệu qua App MO Plus (DEP: 95%, ARR: 8%)." },
+          { time: "28/08/2024 08:30 UTC", user: "SYSTEM", action: "Đồng bộ tự động ACARS (DEP: 95%, ARR: 10%). Cảnh báo: ARR nước sạch dưới ngưỡng an toàn (10%)." }
+        ]
+      }
+    };
+    
+    let selectedFlightId = "VN7128";
+    let activeDetailTab = "water";
+    let activeAdminSubTab = "YC25";
+    
+    // Admin Configuration Tables master data
+    let configTankCapacity = [
+      { acType: "B787-9", manufacturer: "Boeing", capacity: 1000, status: "Active", user: "admin_vietanh", time: "16/06/2026 09:30" },
+      { acType: "B787-10", manufacturer: "Boeing", capacity: 1200, status: "Active", user: "admin_vietanh", time: "16/06/2026 09:30" },
+      { acType: "A350-900", manufacturer: "Airbus", capacity: 1200, status: "Active", user: "admin_vietanh", time: "15/06/2026 14:15" },
+      { acType: "A321-200", manufacturer: "Airbus", capacity: 300, status: "Active", user: "admin_vietanh", time: "12/06/2026 10:20" },
+      { acType: "A321-neo", manufacturer: "Airbus", capacity: 300, status: "Active", user: "admin_vietanh", time: "12/06/2026 10:20" },
+      { acType: "ATR-72", manufacturer: "ATR", capacity: 100, status: "Active", user: "admin_vietanh", time: "10/06/2026 08:00" }
+    ];
+    
+    // Page Onload initialization
+    window.onload = function() {
+      renderFlightList();
+      selectFlight(selectedFlightId);
+    };
+    
+    // Close dropdowns if clicking outside
+    window.onclick = function(event) {
+      if (!event.target.closest('.nav-dropdown')) {
+        document.querySelectorAll('.dropdown-content').forEach(d => d.style.display = 'none');
+      }
+    };
+    
+    function toggleDropdown(id, e) {
+      e.stopPropagation();
+      const element = document.getElementById(id);
+      const isVisible = element.style.display === 'block';
+      document.querySelectorAll('.dropdown-content').forEach(d => d.style.display = 'none');
+      element.style.display = isVisible ? 'none' : 'block';
+    }
+    
+    // Render Flight List on the Left
+    function renderFlightList() {
+      const tbody = document.getElementById("flight-table-rows");
+      tbody.innerHTML = "";
+      
+      Object.keys(flightsDb).forEach(key => {
+        const flight = flightsDb[key];
+        const isSelected = key === selectedFlightId;
+        
+        let alertBadge = "";
+        if (flight.acars.arr !== null && flight.acars.arr <= 10) {
+          alertBadge = `<span class="pax-badge badge-red" style="font-size: 8px; padding: 1px 4px; display: block; margin-top: 2px;">Cạn nước</span>`;
+        }
+        
+        const row = document.createElement("tr");
+        row.className = `clickable-row ${isSelected ? 'row-selected' : ''}`;
+        row.setAttribute("onclick", `selectFlight('${key}')`);
+        row.style.borderBottom = "1px solid var(--gray-200)";
+        
+        row.innerHTML = `
+          <td style="padding: 12px; font-weight: 600;">${flight.acType}</td>
+          <td style="padding: 12px; color: var(--gray-700);">${flight.acReg}</td>
+          <td style="padding: 12px; font-weight: 700; color: var(--primary-vna);">${flight.fltNo} ${alertBadge}</td>
+          <td style="padding: 12px; color: var(--gray-700);">${flight.date}</td>
+          <td style="padding: 12px; font-weight: 600;">${flight.route.split(" - ")[0]}</td>
+          <td style="padding: 12px; font-weight: 600;">${flight.route.split(" - ")[1]}</td>
+          <td style="padding: 12px; color: var(--gray-500);">01:00</td>
+          <td style="padding: 12px; color: var(--gray-500);">${flight.duration === 1.5 ? "02:30" : (flight.duration === 1.2 ? "02:12" : "02:48")}</td>
+        `;
+        tbody.appendChild(row);
+      });
+    }
+    
+    // Select flight callback
+    function selectFlight(key) {
+      selectedFlightId = key;
+      
+      // Update selected row styling
+      const rows = document.querySelectorAll("#flight-table-rows tr");
+      const flightKeys = Object.keys(flightsDb);
+      rows.forEach((row, idx) => {
+        if (flightKeys[idx] === key) {
+          row.classList.add("row-selected");
+        } else {
+          row.classList.remove("row-selected");
+        }
+      });
+      
+      const flight = flightsDb[key];
+      
+      // 1. Update Title and metadata
+      document.getElementById("water-dispatch-title").innerText = `Giám sát & Nhập liệu Nước Sạch - ${flight.fltNo}`;
+      document.getElementById("water-dispatch-subtitle").innerText = `Dòng tàu: ${flight.acType} | Số hiệu: ${flight.acReg} | Hành trình: ${flight.route}`;
+      document.getElementById("ecfp-pane-title").innerText = `E-CFP list - ${flight.fltNo} (${flight.route})`;
+      
+      // 2. Update Calculation details
+      document.getElementById("water-pax-count").innerText = `${flight.bookingPax + flight.crew} người (${flight.bookingPax} Pax + ${flight.crew} Crew)`;
+      document.getElementById("water-duration").innerText = `${flight.duration + flight.taxiBuffer} giờ (${flight.duration}h bay + 15m taxi)`;
+      document.getElementById("water-rate").innerText = `${flight.rate} Lít / người / giờ`;
+      
+      const paxBadge = document.getElementById("water-pax-badge");
+      paxBadge.innerText = flight.paxSource;
+      paxBadge.className = `pax-badge ${flight.paxSourceClass}`;
+      
+      // Recommended water calculation math formula
+      const recommendedLiters = Math.round((flight.bookingPax + flight.paxBuffer) * flight.rate * (flight.duration + flight.taxiBuffer) + flight.minReserve);
+      const recommendedPercent = Math.round((recommendedLiters / flight.tankCapacity) * 100);
+      
+      document.getElementById("water-formula-text").innerHTML = `
+        = (${flight.bookingPax} Pax + ${flight.paxBuffer} Buffer) &times; ${flight.rate}L/h &times; (${flight.duration}h + ${flight.taxiBuffer}h Taxi) + ${flight.minReserve}L Reserve = ${recommendedLiters} Lít (&asymp; ${recommendedPercent}% bồn)
+      `;
+      
+      // 3. Update Visual gauge
+      document.getElementById("gauge-capacity-mark").innerText = `${flight.tankCapacity}L`;
+      document.getElementById("water-fill-level").style.height = `${recommendedPercent}%`;
+      document.getElementById("recommend-marker").style.bottom = `${recommendedPercent}%`;
+      document.getElementById("recommend-val-text").innerText = `${recommendedLiters}L (${recommendedPercent}%)`;
+      
+      document.getElementById("gauge-percent-text").innerText = `${recommendedPercent}%`;
+      document.getElementById("gauge-percent-text").style.color = recommendedPercent <= 10 ? 'var(--red-alert)' : '#0082c3';
+      document.getElementById("gauge-liters-text").innerText = `Lượng đề xuất: ${recommendedLiters}L / ${flight.tankCapacity}L`;
+      
+      // 4. Update Telemetry vs Crew vs Admin table
+      // ACARS Telemetry
+      if (flight.acars.dep !== null) {
+        document.getElementById("acars-dep-val").innerText = `${flight.acars.dep}% (${Math.round(flight.acars.dep * flight.tankCapacity / 100)}L)`;
+        document.getElementById("acars-arr-val").innerText = `${flight.acars.arr}% (${Math.round(flight.acars.arr * flight.tankCapacity / 100)}L)`;
+        const consumption = Math.round((flight.acars.dep - flight.acars.arr) * flight.tankCapacity / 100);
+        document.getElementById("acars-use-val").innerText = `${consumption} Lít (${flight.acars.dep - flight.acars.arr}%)`;
+        document.getElementById("acars-time-val").innerText = flight.acars.time;
+        document.getElementById("acars-status-badge").innerText = "Đồng bộ tự động";
+        document.getElementById("acars-status-badge").className = "pax-badge badge-green";
+      } else {
+        document.getElementById("acars-dep-val").innerText = "N/A";
+        document.getElementById("acars-arr-val").innerText = "N/A";
+        document.getElementById("acars-use-val").innerText = "N/A";
+        document.getElementById("acars-time-val").innerText = "-";
+        document.getElementById("acars-status-badge").innerText = "Không hỗ trợ";
+        document.getElementById("acars-status-badge").className = "pax-badge badge-yellow";
+      }
+      
+      // Crew input
+      document.getElementById("crew-dep-val").innerText = `${flight.crewInput.dep}% (${Math.round(flight.crewInput.dep * flight.tankCapacity / 100)}L)`;
+      document.getElementById("crew-arr-val").innerText = `${flight.crewInput.arr}% (${Math.round(flight.crewInput.arr * flight.tankCapacity / 100)}L)`;
+      const crewConsumption = Math.round((flight.crewInput.dep - flight.crewInput.arr) * flight.tankCapacity / 100);
+      document.getElementById("crew-use-val").innerText = `${crewConsumption} Lít (${flight.crewInput.dep - flight.crewInput.arr}%)`;
+      document.getElementById("crew-time-val").innerText = flight.crewInput.time;
+      
+      // Admin adjustment
+      document.getElementById("admin-dep-input").value = flight.adminInput.dep !== null ? flight.adminInput.dep : flight.crewInput.dep;
+      document.getElementById("admin-arr-input").value = flight.adminInput.arr !== null ? flight.adminInput.arr : flight.crewInput.arr;
+      document.getElementById("admin-reason-select").value = flight.adminInput.reason || "";
+      document.getElementById("admin-note-input").value = flight.adminInput.note || "";
+      calculateAdminUsage();
+      
+      // 5. Update Audit Logs
+      renderAuditLogs(flight.history);
+    }
+    
+    // Calculate admin water consumption rate dynamically
+    function calculateAdminUsage() {
+      const flight = flightsDb[selectedFlightId];
+      const depPercent = parseFloat(document.getElementById("admin-dep-input").value) || 0;
+      const arrPercent = parseFloat(document.getElementById("admin-arr-input").value) || 0;
+      
+      const depLiters = Math.round(depPercent * flight.tankCapacity / 100);
+      const arrLiters = Math.round(arrPercent * flight.tankCapacity / 100);
+      const useLiters = depLiters - arrLiters;
+      const usePercent = depPercent - arrPercent;
+      
+      document.getElementById("admin-dep-liters").innerText = `${depLiters}L`;
+      document.getElementById("admin-arr-liters").innerText = `${arrLiters}L`;
+      
+      const useCell = document.getElementById("admin-use-val");
+      if (useLiters < 0) {
+        useCell.innerText = `Lỗi: Cuối > Đầu`;
+        useCell.style.color = "var(--red-alert)";
+      } else {
+        useCell.innerText = `${useLiters} Lít (${usePercent}%)`;
+        useCell.style.color = "#B45309";
+      }
+    }
+    
+    // Render Audit trail list
+    function renderAuditLogs(history) {
+      const container = document.getElementById("water-audit-logs");
+      container.innerHTML = "";
+      if (history.length === 0) {
+        container.innerHTML = `<div style="color: var(--gray-500); font-style: italic;">Không có lịch sử lưu vết.</div>`;
+        return;
+      }
+      history.forEach(log => {
+        const item = document.createElement("div");
+        item.style.borderBottom = "1px dashed var(--gray-200)";
+        item.style.paddingBottom = "4px";
+        item.innerHTML = `
+          <span style="color: var(--gray-500); font-family: monospace;">[${log.time}]</span>
+          <strong>${log.user}</strong>: <span style="color: var(--gray-700);">${log.action}</span>
+        `;
+        container.appendChild(item);
+      });
+    }
+    
+    // Reset Admin Adjustment inputs
+    function resetAdminForm() {
+      const flight = flightsDb[selectedFlightId];
+      document.getElementById("admin-dep-input").value = flight.crewInput.dep;
+      document.getElementById("admin-arr-input").value = flight.crewInput.arr;
+      document.getElementById("admin-reason-select").value = "";
+      document.getElementById("admin-note-input").value = "";
+      calculateAdminUsage();
+      showToast("Đã khôi phục số liệu gốc.");
+    }
+    
+    // Save Admin Manual Entry (YC33)
+    function saveAdminWaterData() {
+      const flight = flightsDb[selectedFlightId];
+      const depVal = parseFloat(document.getElementById("admin-dep-input").value);
+      const arrVal = parseFloat(document.getElementById("admin-arr-input").value);
+      const reasonSelect = document.getElementById("admin-reason-select").value;
+      const noteInput = document.getElementById("admin-note-input").value;
+      
+      // Validation rules (YC33)
+      if (isNaN(depVal) || depVal < 0 || depVal > 100) {
+        alert("Lỗi nhập liệu: Phần trăm nước đầu chuyến (DEP) phải từ 0% đến 100%.");
+        return;
+      }
+      if (isNaN(arrVal) || arrVal < 0 || arrVal > 100) {
+        alert("Lỗi nhập liệu: Phần trăm nước cuối chuyến (ARR) phải từ 0% đến 100%.");
+        return;
+      }
+      if (depVal < arrVal) {
+        alert("Lỗi nhập liệu: Mức nước đầu chuyến (DEP) không thể nhỏ hơn mức nước cuối chuyến (ARR).");
+        return;
+      }
+      
+      // Bắt buộc nhập lý do điều chỉnh khi có thay đổi so với số tổ bay gửi
+      const isChanged = depVal !== flight.crewInput.dep || arrVal !== flight.crewInput.arr;
+      if (isChanged && !reasonSelect) {
+        alert("Yêu cầu bắt buộc: Khi điều chỉnh số liệu sai lệch so với Tổ bay gửi, vui lòng chọn lý do điều chỉnh.");
+        return;
+      }
+      
+      // Save data
+      flight.adminInput.dep = depVal;
+      flight.adminInput.arr = arrVal;
+      flight.adminInput.reason = reasonSelect;
+      flight.adminInput.note = noteInput;
+      
+      // Append to audit trail log
+      const timeNow = new Date().toISOString().replace('T', ' ').substring(0, 19) + ' UTC';
+      const changeText = `Đã điều chỉnh chỉ số nước (DEP: ${depVal}%, ARR: ${arrVal}%). Lý do: ${reasonSelect || "Đồng bộ chuẩn"}. Ghi chú: ${noteInput || "Không"}`;
+      flight.history.unshift({
+        time: timeNow,
+        user: "admin_vietanh",
+        action: changeText
+      });
+      
+      // Update UI
+      renderAuditLogs(flight.history);
+      showToast("Lưu số liệu điều chỉnh chuyến bay thành công (YC33)!");
+    }
+    
+    // Refresh water data mock (simulate ACARS sync delay)
+    function refreshWaterData() {
+      showToast("Đang kết nối cổng A-CAD đồng bộ dữ liệu ACARS...");
+      setTimeout(() => {
+        selectFlight(selectedFlightId);
+        showToast("Đồng bộ dữ liệu bồn chứa thành công!");
+      }, 500);
+    }
+    
+    // Right panel tab selection
+    function selectTab(tabName) {
+      activeDetailTab = tabName;
+      
+      // Update Tab styling
+      const tabs = document.querySelectorAll(".eff-tab");
+      tabs.forEach(tab => {
+        if (tab.id === `tab-${tabName}`) {
+          tab.classList.add("eff-tab-active");
+          tab.style.background = "white";
+          tab.style.border = "1px solid var(--gray-200)";
+          tab.style.borderBottomColor = "transparent";
+          tab.style.borderTopLeftRadius = "6px";
+          tab.style.borderTopRightRadius = "6px";
+          tab.style.zIndex = "1";
+          // Change text color
+          tab.querySelector('span:not(.material-symbols-outlined)').style.color = tabName === 'water' ? '#0086C9' : 'var(--primary-vna)';
+          if (tab.querySelector('.active-indicator')) {
+            tab.querySelector('.active-indicator').style.display = 'block';
+            tab.querySelector('.active-indicator').style.backgroundColor = tabName === 'water' ? '#0086C9' : 'var(--primary-vna)';
+          }
+        } else {
+          tab.classList.remove("eff-tab-active");
+          tab.style.background = "transparent";
+          tab.style.border = "none";
+          tab.style.zIndex = "0";
+          if (tab.querySelector('span:not(.material-symbols-outlined)')) {
+            tab.querySelector('span:not(.material-symbols-outlined)').style.color = 'var(--gray-700)';
+          }
+          if (tab.querySelector('.active-indicator')) {
+            tab.querySelector('.active-indicator').style.display = 'none';
+          }
+        }
+      });
+      
+      // Show/Hide panes
+      const paneEcfp = document.getElementById("pane-ecfp");
+      const paneWater = document.getElementById("pane-water");
+      const panePlaceholder = document.getElementById("pane-placeholder");
+      
+      if (tabName === 'water') {
+        paneEcfp.style.display = 'none';
+        paneWater.style.display = 'flex';
+        panePlaceholder.style.display = 'none';
+      } else if (tabName === 'ecfp') {
+        paneEcfp.style.display = 'flex';
+        paneWater.style.display = 'none';
+        panePlaceholder.style.display = 'none';
+      } else {
+        paneEcfp.style.display = 'none';
+        paneWater.style.display = 'none';
+        panePlaceholder.style.display = 'flex';
+        
+        // Update placeholder text
+        const titleText = document.getElementById("tab-" + tabName).innerText.replace(/[^\w\s\-\/]/g, '').trim();
+        document.getElementById("placeholder-title").innerText = `Tài liệu: ${titleText}`;
+      }
+    }
+    
+    // Show Toast notifications
+    function showToast(msg) {
+      const toast = document.getElementById("success-toast");
+      document.getElementById("toast-message-text").innerText = msg;
+      toast.style.display = "flex";
+      setTimeout(() => {
+        toast.style.display = "none";
+      }, 3000);
+    }
+    
+    // Modal controls for pilot water clock gauge photo
+    function openPhotoModal() {
+      const flight = flightsDb[selectedFlightId];
+      
+      // Point the analog clock pointer based on the ARR percentage of selected flight!
+      const pointer = document.getElementById("gauge-needle");
+      const pointerShadow = document.getElementById("gauge-needle-shadow");
+      const arrPercent = flight.crewInput.arr;
+      
+      // Dial degree: 0% is -135deg, 100% is 135deg (total sweep 270 degrees)
+      const degrees = -135 + (arrPercent * 270 / 100);
+      pointer.style.transform = `rotate(${degrees}deg)`;
+      pointerShadow.style.transform = `rotate(${degrees}deg)`;
+      
+      document.getElementById("photo-modal-caption").innerHTML = `
+        Đồng hồ bồn chứa thực tế cuối chuyến bay: <strong style="color:#38bdf8; font-size:16px;">${arrPercent}%</strong> (${Math.round(arrPercent * flight.tankCapacity / 100)}L)
+      `;
+      document.getElementById("photo-modal").style.display = "flex";
+    }
+    
+    function closePhotoModal() {
+      document.getElementById("photo-modal").style.display = "none";
+    }
+    
+    // Navigation back to flight dispatch dashboard
+    function backToDashboard() {
+      // Set Dispatch nav tab active
+      document.getElementById("nav-dispatch").className = "nav-item-active";
+      document.getElementById("nav-reports").className = "";
+      document.getElementById("nav-admin").className = "";
+      
+      // Toggle panes
+      document.getElementById("operations-dashboard").style.display = "flex";
+      document.getElementById("report-view-overlay").style.display = "none";
+      document.getElementById("admin-view-overlay").style.display = "none";
+      
+      // Close dropdowns
+      document.querySelectorAll('.dropdown-content').forEach(d => d.style.display = 'none');
+    }
+    
+    // Toggle Report Overlays (YC34 - YC38)
+    function openReportView(reportId) {
+      // Activate nav menu tab style
+      document.getElementById("nav-dispatch").className = "";
+      document.getElementById("nav-reports").className = "nav-item-active";
+      document.getElementById("nav-admin").className = "";
+      
+      // Hide dashboard & show report overlay
+      document.getElementById("operations-dashboard").style.display = "none";
+      document.getElementById("admin-view-overlay").style.display = "none";
+      document.getElementById("report-view-overlay").style.display = "flex";
+      
+      // Toggle chart for YC34
+      document.getElementById("yc34-chart-card").style.display = reportId === 'YC34' ? 'flex' : 'none';
+      
+      // Render correct report breadcrumb and data
+      let title = "";
+      switch(reportId) {
+        case "YC34":
+          title = "YC34: Báo cáo suất tiêu thụ nước sạch lịch sử";
+          renderReportYC34();
+          break;
+        case "YC35":
+          title = "YC35: Báo cáo đối chiếu số liệu nước đầu/cuối";
+          renderReportYC35();
+          break;
+        case "YC36":
+          title = "YC36: Báo cáo chuyến bay nạp thừa nước";
+          renderReportYC36();
+          break;
+        case "YC37":
+          title = "YC37: Báo cáo chuyến bay dùng cạn nước sạch";
+          renderReportYC37();
+          break;
+        case "YC38":
+          title = "YC38: Báo cáo tổ bay yêu cầu nạp vượt mức khuyến nghị";
+          renderReportYC38();
+          break;
+      }
+      document.getElementById("report-title-breadcrumb").innerText = title;
+      
+      // Close dropdown
+      document.querySelectorAll('.dropdown-content').forEach(d => d.style.display = 'none');
+    }
+    
+    // Render YC34 Historical report data table
+    function renderReportYC34() {
+      const table = document.getElementById("report-table");
+      table.innerHTML = `
+        <thead>
+          <tr style="background: var(--gray-50); border-bottom: 2px solid var(--gray-200);">
+            <th style="padding: 12px; font-weight: 700;">Dòng tàu</th>
+            <th style="padding: 12px; font-weight: 700;">Chặng bay</th>
+            <th style="padding: 12px; font-weight: 700; text-align: center;">Số chuyến thống kê</th>
+            <th style="padding: 12px; font-weight: 700; text-align: center;">Tổng Pax &amp; Crew</th>
+            <th style="padding: 12px; font-weight: 700; text-align: center;">Lượng nước đã nạp (L)</th>
+            <th style="padding: 12px; font-weight: 700; text-align: center;">Lượng nước tiêu thụ (L)</th>
+            <th style="padding: 12px; font-weight: 700; text-align: center; color: var(--primary-vna);">Suất thực tế trung bình</th>
+            <th style="padding: 12px; font-weight: 700; text-align: center; color: var(--gold-vna);">Định mức mặc định</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom: 1px solid var(--gray-200);">
+            <td style="padding: 12px; font-weight: 600;">B787-9</td>
+            <td style="padding: 12px; font-weight: 600;">SGN - HAN</td>
+            <td style="padding: 12px; text-align: center;">48 chuyến</td>
+            <td style="padding: 12px; text-align: center;">9,120 người</td>
+            <td style="padding: 12px; text-align: center;">41,200 Lít</td>
+            <td style="padding: 12px; text-align: center;">21,070 Lít</td>
+            <td style="padding: 12px; text-align: center; font-weight: 700; color: var(--primary-vna);">1.54 Lít/khách/giờ</td>
+            <td style="padding: 12px; text-align: center; font-weight: 600; color: var(--gold-vna);">1.50 Lít/khách/giờ</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--gray-200);">
+            <td style="padding: 12px; font-weight: 600;">A350-900</td>
+            <td style="padding: 12px; font-weight: 600;">SGN - DAD</td>
+            <td style="padding: 12px; text-align: center;">32 chuyến</td>
+            <td style="padding: 12px; text-align: center;">7,440 người</td>
+            <td style="padding: 12px; text-align: center;">34,800 Lít</td>
+            <td style="padding: 12px; text-align: center;">12,050 Lít</td>
+            <td style="padding: 12px; text-align: center; font-weight: 700; color: var(--primary-vna);">1.35 Lít/khách/giờ</td>
+            <td style="padding: 12px; text-align: center; font-weight: 600; color: var(--gold-vna);">1.60 Lít/khách/giờ</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--gray-200);">
+            <td style="padding: 12px; font-weight: 600;">A321-200</td>
+            <td style="padding: 12px; font-weight: 600;">HAN - CXR</td>
+            <td style="padding: 12px; text-align: center;">64 chuyến</td>
+            <td style="padding: 12px; text-align: center;">11,520 người</td>
+            <td style="padding: 12px; text-align: center;">19,200 Lít</td>
+            <td style="padding: 12px; text-align: center;">13,010 Lít</td>
+            <td style="padding: 12px; text-align: center; font-weight: 700; color: var(--primary-vna);">1.20 Lít/khách/giờ</td>
+            <td style="padding: 12px; text-align: center; font-weight: 600; color: var(--gold-vna);">1.40 Lít/khách/giờ</td>
+          </tr>
+        </tbody>
+      `;
+    }
+    
+    // Render YC35 Dep/Arr discrepancy report table
+    function renderReportYC35() {
+      const table = document.getElementById("report-table");
+      table.innerHTML = `
+        <thead>
+          <tr style="background: var(--gray-50); border-bottom: 2px solid var(--gray-200);">
+            <th style="padding: 12px; font-weight: 700;">Chuyến bay</th>
+            <th style="padding: 12px; font-weight: 700;">Ngày bay</th>
+            <th style="padding: 12px; font-weight: 700;">Dòng tàu</th>
+            <th style="padding: 12px; font-weight: 700; text-align: center;">Đề xuất nạp</th>
+            <th style="padding: 12px; font-weight: 700; text-align: center;">Đầu ACARS</th>
+            <th style="padding: 12px; font-weight: 700; text-align: center;">Đầu Tổ bay</th>
+            <th style="padding: 12px; font-weight: 700; text-align: center;">Cuối ACARS</th>
+            <th style="padding: 12px; font-weight: 700; text-align: center;">Cuối Tổ bay</th>
+            <th style="padding: 12px; font-weight: 700; text-align: center; color: var(--red-alert);">Lệch Số Liệu</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Selected flight rows matching database -->
+          <tr style="border-bottom: 1px solid var(--gray-200);">
+            <td style="padding: 12px; font-weight: 700; color: var(--primary-vna);">VN7128</td>
+            <td style="padding: 12px;">28/08/2024</td>
+            <td style="padding: 12px;">B787-9</td>
+            <td style="padding: 12px; text-align: center;">460L (46%)</td>
+            <td style="padding: 12px; text-align: center;">850L (85%)</td>
+            <td style="padding: 12px; text-align: center;">850L (85%)</td>
+            <td style="padding: 12px; text-align: center; background: #FEF7E0;">420L (42%)</td>
+            <td style="padding: 12px; text-align: center; background: #FEF7E0;">400L (40%)</td>
+            <td style="padding: 12px; text-align: center; font-weight: 700; color: #B06000; background: #FFFBEB;">Lệch 20L (Cuối)</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--gray-200);">
+            <td style="padding: 12px; font-weight: 700; color: var(--primary-vna);">VN216</td>
+            <td style="padding: 12px;">28/08/2024</td>
+            <td style="padding: 12px;">A350-900</td>
+            <td style="padding: 12px; text-align: center;">580L (48%)</td>
+            <td style="padding: 12px; text-align: center;">1080L (90%)</td>
+            <td style="padding: 12px; text-align: center;">1080L (90%)</td>
+            <td style="padding: 12px; text-align: center;">600L (50%)</td>
+            <td style="padding: 12px; text-align: center;">600L (50%)</td>
+            <td style="padding: 12px; text-align: center; color: var(--green-success); font-weight: 600;">Khớp 100%</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--gray-200);">
+            <td style="padding: 12px; font-weight: 700; color: var(--primary-vna);">VN1344</td>
+            <td style="padding: 12px;">28/08/2024</td>
+            <td style="padding: 12px;">A321-200</td>
+            <td style="padding: 12px; text-align: center;">220L (73%)</td>
+            <td style="padding: 12px; text-align: center; color: var(--gray-500);">N/A</td>
+            <td style="padding: 12px; text-align: center;">300L (100%)</td>
+            <td style="padding: 12px; text-align: center; color: var(--gray-500);">N/A</td>
+            <td style="padding: 12px; text-align: center;">90L (30%)</td>
+            <td style="padding: 12px; text-align: center; color: var(--gray-500);">Không có ACARS</td>
+          </tr>
+        </tbody>
+      `;
+    }
+    
+    // Render YC36 Overfueled report table
+    function renderReportYC36() {
+      const table = document.getElementById("report-table");
+      table.innerHTML = `
+        <thead>
+          <tr style="background: var(--gray-50); border-bottom: 2px solid var(--gray-200);">
+            <th style="padding: 12px; font-weight: 700;">Chuyến bay</th>
+            <th style="padding: 12px; font-weight: 700;">Dòng tàu</th>
+            <th style="padding: 12px; font-weight: 700; text-align: center;">Dung tích bồn</th>
+            <th style="padding: 12px; font-weight: 700; text-align: center; color: var(--primary-vna);">Lượng đề xuất nạp</th>
+            <th style="padding: 12px; font-weight: 700; text-align: center; color: var(--gold-vna);">Nạp thực tế (DEP)</th>
+            <th style="padding: 12px; font-weight: 700; text-align: center; color: var(--red-alert);">Lượng thừa (Lít)</th>
+            <th style="padding: 12px; font-weight: 700; text-align: center;">Tỷ lệ nạp thừa %</th>
+            <th style="padding: 12px; font-weight: 700; text-align: center;">Tác hại kéo tải (Ước tính hao dầu)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom: 1px solid var(--gray-200);">
+            <td style="padding: 12px; font-weight: 700; color: var(--primary-vna);">VN7128</td>
+            <td style="padding: 12px;">B787-9</td>
+            <td style="padding: 12px; text-align: center;">1,000 Lít</td>
+            <td style="padding: 12px; text-align: center; font-weight: 600;">460 Lít (46%)</td>
+            <td style="padding: 12px; text-align: center; font-weight: 600; color: var(--gold-vna);">850 Lít (85%)</td>
+            <td style="padding: 12px; text-align: center; font-weight: 700; color: var(--red-alert); background: #FCE8E6;">+390 Lít</td>
+            <td style="padding: 12px; text-align: center; font-weight: 600; color: var(--red-alert);">84.7%</td>
+            <td style="padding: 12px; text-align: center; color: var(--gray-700);">~ 15.6 kg FO lãng phí / chuyến</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--gray-200);">
+            <td style="padding: 12px; font-weight: 700; color: var(--primary-vna);">VN216</td>
+            <td style="padding: 12px;">A350-900</td>
+            <td style="padding: 12px; text-align: center;">1,200 Lít</td>
+            <td style="padding: 12px; text-align: center; font-weight: 600;">580 Lít (48%)</td>
+            <td style="padding: 12px; text-align: center; font-weight: 600; color: var(--gold-vna);">1,080 Lít (90%)</td>
+            <td style="padding: 12px; text-align: center; font-weight: 700; color: var(--red-alert); background: #FCE8E6;">+500 Lít</td>
+            <td style="padding: 12px; text-align: center; font-weight: 600; color: var(--red-alert);">86.2%</td>
+            <td style="padding: 12px; text-align: center; color: var(--gray-700);">~ 20.0 kg FO lãng phí / chuyến</td>
+          </tr>
+        </tbody>
+      `;
+    }
+    
+    // Render YC37 Depleted water alert report table
+    function renderReportYC37() {
+      const table = document.getElementById("report-table");
+      table.innerHTML = `
+        <thead>
+          <tr style="background: var(--gray-50); border-bottom: 2px solid var(--gray-200);">
+            <th style="padding: 12px; font-weight: 700;">Chuyến bay</th>
+            <th style="padding: 12px; font-weight: 700;">Ngày bay</th>
+            <th style="padding: 12px; font-weight: 700;">Dòng tàu</th>
+            <th style="padding: 12px; font-weight: 700; text-align: center;">Tổng khách</th>
+            <th style="padding: 12px; font-weight: 700; text-align: center;">Mức nạp (DEP)</th>
+            <th style="padding: 12px; font-weight: 700; text-align: center; color: var(--red-alert);">Nước còn lại (ARR)</th>
+            <th style="padding: 12px; font-weight: 700; text-align: center;">Dung tích còn lại</th>
+            <th style="padding: 12px; font-weight: 700;">Trạng thái / Đánh giá</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="background: #FCE8E6; border-bottom: 1px solid var(--gray-200);">
+            <td style="padding: 12px; font-weight: 700; color: var(--red-alert);">VN208</td>
+            <td style="padding: 12px; font-weight: 600;">28/08/2024</td>
+            <td style="padding: 12px;">B787-10</td>
+            <td style="padding: 12px; text-align: center;">295 người</td>
+            <td style="padding: 12px; text-align: center;">95% (1140L)</td>
+            <td style="padding: 12px; text-align: center; font-weight: 800; color: var(--red-alert);">8% (Tổ bay)</td>
+            <td style="padding: 12px; text-align: center; font-weight: 700;">96 Lít</td>
+            <td style="padding: 12px;">
+              <span class="pax-badge badge-red">Nguy cơ cạn nước (< 10%)</span>
+            </td>
+          </tr>
+        </tbody>
+      `;
+    }
+    
+    // Render YC38 Overrequested water by crew report table
+    function renderReportYC38() {
+      const table = document.getElementById("report-table");
+      table.innerHTML = `
+        <thead>
+          <tr style="background: var(--gray-50); border-bottom: 2px solid var(--gray-200);">
+            <th style="padding: 12px; font-weight: 700;">Chuyến bay</th>
+            <th style="padding: 12px; font-weight: 700;">Dòng tàu</th>
+            <th style="padding: 12px; font-weight: 700; text-align: center;">Lượng nước khuyến nghị</th>
+            <th style="padding: 12px; font-weight: 700; text-align: center; color: var(--gold-vna);">Mức tổ bay yêu cầu</th>
+            <th style="padding: 12px; font-weight: 700; text-align: center; color: var(--red-alert);">Chênh lệch vượt đề xuất</th>
+            <th style="padding: 12px; font-weight: 700;">Tài khoản phi công gửi</th>
+            <th style="padding: 12px; font-weight: 700; width: 400px;">Lý do giải trình vượt khuyến nghị (MO Plus)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom: 1px solid var(--gray-200);">
+            <td style="padding: 12px; font-weight: 700; color: var(--primary-vna);">VN7128</td>
+            <td style="padding: 12px;">B787-9</td>
+            <td style="padding: 12px; text-align: center;">460 Lít (46%)</td>
+            <td style="padding: 12px; text-align: center; font-weight: 600; color: var(--gold-vna);">850 Lít (85%)</td>
+            <td style="padding: 12px; text-align: center; font-weight: 700; color: var(--red-alert);">+390 Lít</td>
+            <td style="padding: 12px;">captain_ducnguyen</td>
+            <td style="padding: 12px; font-style: italic; color: var(--gray-700);">"Chuyến bay có nhiều khách VIP đặc biệt, cabin crew báo nhu cầu sử dụng nước sinh hoạt cao chặng bay đông."</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--gray-200);">
+            <td style="padding: 12px; font-weight: 700; color: var(--primary-vna);">VN216</td>
+            <td style="padding: 12px;">A350-900</td>
+            <td style="padding: 12px; text-align: center;">580 Lít (48%)</td>
+            <td style="padding: 12px; text-align: center; font-weight: 600; color: var(--gold-vna);">1,080 Lít (90%)</td>
+            <td style="padding: 12px; text-align: center; font-weight: 700; color: var(--red-alert);">+500 Lít</td>
+            <td style="padding: 12px;">fo_hiepnguyen</td>
+            <td style="padding: 12px; font-style: italic; color: var(--gray-700);">"Thời tiết nắng nóng nhiệt độ mặt đất cao, chặng bay dự kiến kéo dài do không lưu."</td>
+          </tr>
+        </tbody>
+      `;
+    }
+    
+    // Toggle Admin Configuration view (YC25 - YC28)
+    function openAdminView(subTabId) {
+      // Activate nav menu tab style
+      document.getElementById("nav-dispatch").className = "";
+      document.getElementById("nav-reports").className = "";
+      document.getElementById("nav-admin").className = "nav-item-active";
+      
+      // Hide dashboard & show admin overlay
+      document.getElementById("operations-dashboard").style.display = "none";
+      document.getElementById("report-view-overlay").style.display = "none";
+      document.getElementById("admin-view-overlay").style.display = "flex";
+      
+      selectAdminSubTab(subTabId);
+      
+      // Close dropdown
+      document.querySelectorAll('.dropdown-content').forEach(d => d.style.display = 'none');
+    }
+    
+    // Switch between the 4 admin sub configs
+    function selectAdminSubTab(subTabId) {
+      activeAdminSubTab = subTabId;
+      
+      // Toggle Tab Style
+      const subTabs = ["YC25", "YC26", "YC27", "YC28"];
+      subTabs.forEach(tab => {
+        const tabEl = document.getElementById(`adm-tab-${tab.toLowerCase()}`);
+        if (tab === subTabId) {
+          tabEl.className = "eff-tab eff-tab-active";
+        } else {
+          tabEl.className = "eff-tab";
+        }
+      });
+      
+      // Render Content Pane
+      const pane = document.getElementById("admin-sub-pane");
+      pane.innerHTML = "";
+      
+      switch(subTabId) {
+        case "YC25":
+          renderAdminYC25(pane);
+          break;
+        case "YC26":
+          renderAdminYC26(pane);
+          break;
+        case "YC27":
+          renderAdminYC27(pane);
+          break;
+        case "YC28":
+          renderAdminYC28(pane);
+          break;
+      }
+    }
+    
+    // Render YC25 Tank Capacity config form/table
+    function renderAdminYC25(pane) {
+      pane.innerHTML = `
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+          <h3 style="font-size: 15px; font-weight: 700; color: var(--gray-900);">YC25: Danh mục cấu hình dung tích bồn nước sạch tối đa tàu bay</h3>
+          <button class="btn-action btn-action-primary" style="height: 32px;" onclick="addTankConfig()">
+            <span class="material-symbols-outlined" style="font-size: 16px;">add</span> Thêm cấu hình mới
+          </button>
+        </div>
+        
+        <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 13px;">
+          <thead>
+            <tr style="background: var(--gray-50); border-bottom: 2px solid var(--gray-200);">
+              <th style="padding: 10px; font-weight: 700;">Loại tàu bay</th>
+              <th style="padding: 10px; font-weight: 700;">Hãng sản xuất</th>
+              <th style="padding: 10px; font-weight: 700; text-align: right;">Dung tích bồn chứa (Lít)</th>
+              <th style="padding: 10px; font-weight: 700; text-align: center;">Trạng thái</th>
+              <th style="padding: 10px; font-weight: 700;">Người cập nhật</th>
+              <th style="padding: 10px; font-weight: 700;">Thời gian cập nhật (UTC)</th>
+              <th style="padding: 10px; font-weight: 700; text-align: center;">Thao tác</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${configTankCapacity.map((item, idx) => `
+              <tr style="border-bottom: 1px solid var(--gray-200);">
+                <td style="padding: 10px; font-weight: 600;">${item.acType}</td>
+                <td style="padding: 10px;">${item.manufacturer}</td>
+                <td style="padding: 10px; text-align: right; font-weight: 700;">${item.capacity} Lít</td>
+                <td style="padding: 10px; text-align: center;">
+                  <span class="pax-badge badge-green" style="font-size: 10px; padding: 2px 8px;">${item.status}</span>
+                </td>
+                <td style="padding: 10px; color: var(--gray-700);">${item.user}</td>
+                <td style="padding: 10px; color: var(--gray-500);">${item.time}</td>
+                <td style="padding: 10px; text-align: center;">
+                  <a href="#" style="color: var(--blue-accent); font-weight: 600; text-decoration: underline;" onclick="editTankConfig(${idx})">Sửa</a>
+                </td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+      `;
+    }
+    
+    function addTankConfig() {
+      const type = prompt("Nhập loại tàu bay mới (VD: A330-900):");
+      if(!type) return;
+      const cap = parseInt(prompt("Nhập dung tích bồn (VD: 800):"));
+      if(isNaN(cap) || cap <= 0) {
+        alert("Dung tích không hợp lệ!");
+        return;
+      }
+      
+      // Push record
+      const timeNow = new Date().toISOString().substring(0, 10) + ' ' + new Date().toTimeString().substring(0, 5);
+      configTankCapacity.push({
+        acType: type,
+        manufacturer: type.startsWith('A3') ? 'Airbus' : 'Boeing',
+        capacity: cap,
+        status: 'Active',
+        user: 'admin_vietanh',
+        time: timeNow
+      });
+      
+      selectAdminSubTab('YC25');
+      showToast("Thêm mới cấu hình dung tích bồn tàu bay thành công (YC25)!");
+    }
+    
+    function editTankConfig(index) {
+      const item = configTankCapacity[index];
+      const cap = parseInt(prompt(`Sửa dung tích cho ${item.acType}:`, item.capacity));
+      if(isNaN(cap) || cap <= 0) {
+        alert("Dung tích không hợp lệ!");
+        return;
+      }
+      
+      item.capacity = cap;
+      item.user = "admin_vietanh";
+      item.time = new Date().toISOString().substring(0, 10) + ' ' + new Date().toTimeString().substring(0, 5);
+      
+      selectAdminSubTab('YC25');
+      showToast(`Cập nhật dung tích tàu ${item.acType} thành ${cap}L thành công!`);
+    }
+    
+    // Render YC26 Default Rate config form
+    function renderAdminYC26(pane) {
+      pane.innerHTML = `
+        <h3 style="font-size: 15px; font-weight: 700; color: var(--gray-900); margin-bottom: 16px;">YC26: Cấu hình định mức tiêu thụ nước mặc định (Lít/Khách/Giờ) khi chặng/tàu chưa có dữ liệu lịch sử</h3>
+        
+        <div style="display: flex; flex-direction: column; gap: 20px; max-width: 800px;">
+          <div style="background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: 8px; padding: 16px; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 16px; align-items: center;">
+            <strong style="font-size: 13.5px; color: var(--gray-900);">Nhóm chặng / Dòng tàu bay</strong>
+            <strong style="font-size: 13.5px; color: var(--gray-900); text-align: center;">Định mức mặc định (L)</strong>
+            <strong style="font-size: 13.5px; color: var(--gray-900); text-align: center;">Trạng thái áp dụng</strong>
+            
+            <span style="font-size: 13px;">Chặng Nội địa ngắn (< 2 giờ bay) - Tàu Thân rộng (B787/A350)</span>
+            <input type="number" step="0.1" class="input-field" style="width: 100px; margin: 0 auto; text-align: center;" value="1.5" />
+            <span class="pax-badge badge-green" style="width: 80px; margin: 0 auto; justify-content: center;">Active</span>
+            
+            <span style="font-size: 13px;">Chặng Nội địa trục (SGN-HAN) - Tàu Thân hẹp (A321)</span>
+            <input type="number" step="0.1" class="input-field" style="width: 100px; margin: 0 auto; text-align: center;" value="1.4" />
+            <span class="pax-badge badge-green" style="width: 80px; margin: 0 auto; justify-content: center;">Active</span>
+            
+            <span style="font-size: 13px;">Chặng Quốc tế ngắn (Đông Nam Á < 4 giờ) - Tất cả tàu</span>
+            <input type="number" step="0.1" class="input-field" style="width: 100px; margin: 0 auto; text-align: center;" value="1.8" />
+            <span class="pax-badge badge-green" style="width: 80px; margin: 0 auto; justify-content: center;">Active</span>
+            
+            <span style="font-size: 13px;">Chặng Quốc tế dài (Châu Âu, Úc, Mỹ) - Tàu Thân rộng</span>
+            <input type="number" step="0.1" class="input-field" style="width: 100px; margin: 0 auto; text-align: center;" value="2.2" />
+            <span class="pax-badge badge-green" style="width: 80px; margin: 0 auto; justify-content: center;">Active</span>
+          </div>
+          
+          <div style="display: flex; justify-content: flex-end; gap: 10px;">
+            <button class="btn-action btn-action-primary" onclick="showToast('Lưu cấu hình định mức mặc định YC26 thành công!')">Lưu cấu hình YC26</button>
+          </div>
+        </div>
+      `;
+    }
+    
+    // Render YC27 Buffer Config form
+    function renderAdminYC27(pane) {
+      pane.innerHTML = `
+        <h3 style="font-size: 15px; font-weight: 700; color: var(--gray-900); margin-bottom: 16px;">YC27: Cấu hình tham số đệm (Buffer) an toàn tính toán</h3>
+        
+        <div style="display: flex; flex-direction: column; gap: 20px; max-width: 600px;">
+          <!-- Taxi buffer -->
+          <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--gray-200); padding-bottom: 10px;">
+            <div>
+              <strong style="font-size: 13.5px; display: block; color: var(--gray-900);">Taxi time buffer (Phút)</strong>
+              <span style="font-size: 12px; color: var(--gray-500);">Lượng thời gian dự phòng cộng thêm cho di chuyển lăn bánh sân bay</span>
+            </div>
+            <input type="number" class="input-field" style="width: 100px; text-align: center;" value="15" />
+          </div>
+          
+          <!-- Pax buffer -->
+          <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--gray-200); padding-bottom: 10px;">
+            <div>
+              <strong style="font-size: 13.5px; display: block; color: var(--gray-900);">Hành khách đệm quy đổi (+Pax)</strong>
+              <span style="font-size: 12px; color: var(--gray-500);">Số lượng người tương đương cộng thêm để dự phòng biến động pax</span>
+            </div>
+            <input type="number" class="input-field" style="width: 100px; text-align: center;" value="5" />
+          </div>
+          
+          <!-- Safe minimum reserve level -->
+          <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--gray-200); padding-bottom: 10px;">
+            <div>
+              <strong style="font-size: 13.5px; display: block; color: var(--gray-900);">Dự phòng an toàn tối thiểu (%)</strong>
+              <span style="font-size: 12px; color: var(--gray-500);">Lượng nước duy trì tối thiểu trong bồn chứa khi hạ cánh</span>
+            </div>
+            <input type="number" class="input-field" style="width: 100px; text-align: center;" value="10" />
+          </div>
+          
+          <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 10px;">
+            <button class="btn-action btn-action-primary" onclick="showToast('Cập nhật cấu hình tham số đệm YC27 thành công!')">Lưu cấu hình YC27</button>
+          </div>
+        </div>
+      `;
+    }
+    
+    // Render YC28 Exception threshold config form
+    function renderAdminYC28(pane) {
+      pane.innerHTML = `
+        <h3 style="font-size: 15px; font-weight: 700; color: var(--gray-900); margin-bottom: 16px;">YC28: Cấu hình ngưỡng cảnh báo ngoại lệ & Gửi thông báo</h3>
+        
+        <div style="display: flex; flex-direction: column; gap: 20px; max-width: 600px;">
+          <!-- Overfuel Alert -->
+          <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--gray-200); padding-bottom: 10px;">
+            <div>
+              <strong style="font-size: 13.5px; display: block; color: var(--gray-900);">Biên độ cảnh báo Nạp Thừa (%)</strong>
+              <span style="font-size: 12px; color: var(--gray-500);">Cảnh báo khi lượng nước nạp thực tế vượt đề xuất quá mức cấu hình</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <input type="number" class="input-field" style="width: 80px; text-align: center;" value="15" />
+              <span style="font-size: 13px;">%</span>
+            </div>
+          </div>
+          
+          <!-- Depleted Alert -->
+          <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--gray-200); padding-bottom: 10px;">
+            <div>
+              <strong style="font-size: 13.5px; display: block; color: var(--gray-900);">Mức cảnh báo Dùng Cạn (%)</strong>
+              <span style="font-size: 12px; color: var(--gray-500);">Cảnh báo khi hạ cánh với chỉ số bồn chứa dưới mức an toàn</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <input type="number" class="input-field" style="width: 80px; text-align: center;" value="10" />
+              <span style="font-size: 13px;">%</span>
+            </div>
+          </div>
+          
+          <!-- Data discrepancy Alert -->
+          <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--gray-200); padding-bottom: 10px;">
+            <div>
+              <strong style="font-size: 13.5px; display: block; color: var(--gray-900);">Ngưỡng lệch ACARS vs Tổ bay (Lít)</strong>
+              <span style="font-size: 12px; color: var(--gray-500);">Gắn cờ cảnh báo đối soát khi lượng tiêu thụ giữa 2 bên lệch vượt ngưỡng</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <input type="number" class="input-field" style="width: 80px; text-align: center;" value="50" />
+              <span style="font-size: 13px;">Lít</span>
+            </div>
+          </div>
+          
+          <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 10px;">
+            <button class="btn-action btn-action-primary" onclick="showToast('Lưu ngưỡng cảnh báo ngoại lệ YC28 thành công!')">Lưu cấu hình YC28</button>
+          </div>
+        </div>
+      `;
+    }
+  </script>
+</body>
+</html>
