@@ -20,7 +20,7 @@
 | File | Dòng | Mô tả |
 |---|---|---|
 | `PHAN-CONG-ROLE-BA-v0.1.md` | 226 | Ma trận role × skill × phân hệ × quyền workspace — CLAUDE.md §0.4 trỏ tới |
-| `PHAN-TACH-PHAM-VI-WORKFLOW-v0.4.md` | 221 | Phân tách phạm vi & workflow theo role (bản hiện hành) |
+| `PHAN-TACH-PHAM-VI-WORKFLOW-v0.5.md` | ~224 | Phân tách phạm vi & workflow theo role (bản hiện hành) |
 | `PIPELINE-AGENT-v0.1.md` | — | 12 agent theo thứ tự bàn giao: BA (1–5) + DEV (6–12); checkpoint review; quy tắc kích hoạt |
 
 ## Tiến độ dự án 📋

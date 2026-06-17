@@ -59,12 +59,12 @@ document_id: "PIPELINE-001"
 
 | Mục | Nội dung |
 |---|---|
-| **Làm gì** | Vẽ luồng quy trình As-Is và To-Be dạng Mermaid (BPMN-style, sequence, state diagram) có chú thích tiếng Việt. Tạo thành cặp so sánh + gap analysis |
-| **Đầu vào** | SOP/quy trình As-Is từ nguồn · yêu cầu To-Be từ BRD/PHAN-RA |
-| **Đầu ra** | `*.mermaid` / `.md` chứa diagram · bảng gap As-Is → To-Be → lưu `sync/models/` |
+| **Làm gì** | Vẽ luồng quy trình As-Is và To-Be dạng Mermaid (BPMN-style, sequence, state diagram) có chú thích tiếng Việt. Tạo thành cặp so sánh + gap analysis. Kết quả làm **process backbone** cho P4 — UC/User Story (S2) phải dựa trên To-Be đã xác nhận |
+| **Đầu vào** | SOP/quy trình As-Is từ nguồn · PHAN-RA-BRD + cờ đã làm rõ (sau S1) |
+| **Đầu ra** | `ba/sync/models/TOBE-PH{n}-*.md` — Mermaid To-Be + bảng gap As-Is→To-Be |
 | **Checkpoint review** | Luồng có đúng thực tế vận hành? Bước nào thiếu/thừa? |
-| **Chuyển sang** | Agent 5 (PC) khi diagram được xác nhận |
-| **Khi gọi** | Song song với Agent 1 khi có đủ SOP nguồn; hoặc sau Agent 3 khi cần Gap formal |
+| **Chuyển sang** | Agent 1 tiếp tục S2 (phân rã UC/US dựa trên To-Be đã xác nhận) khi BA Lead confirm |
+| **Khi gọi** | **Bước S1b** (xem PHAN-TACH-PHAM-VI-WORKFLOW §6): kích hoạt sau khi Agent 1 hoàn thành PHAN-RA + S1 (làm rõ cờ SME), **trước** khi Agent 1 tiếp tục S2 (UC/User Story). Có thể chạy song song Agent 2 đang review PHAN-RA cùng lúc |
 
 ---
 
@@ -171,13 +171,16 @@ document_id: "PIPELINE-001"
 ```
 [BA Lead cung cấp nguồn]
         ↓
-  business-analyst  ──→ [BA Lead review] ──→
+  business-analyst  ──→ [BA Lead review] ──→  (S0: PHAN-RA + S1: làm rõ cờ SME)
+        ↓
+  process-modeler   ──→ [BA Lead review] ──→  (S1b: To-Be process models — backbone P4)
+   (song song:  ba-reviewer đang review PHAN-RA)
+        ↓
+  business-analyst  ──→ [BA Lead review] ──→  (S2: UC/User Story + AC; S3b: Wireframe; S5: SRS)
         ↓
     ba-reviewer     ──→ [BA Lead review] ──→ (vòng sửa nếu còn Critical)
         ↓
 requirement-validator──→ [BA Lead review] ──→
-        ↓
-  process-modeler   ──→ [BA Lead review] ──→
         ↓
 project-coordinator ──→ [BA Lead review] ──→ lên kế hoạch tiếp
         ↓
@@ -204,7 +207,7 @@ project-coordinator ──→ [BA Lead review] ──→ lên kế hoạch tiế
 
 1. **BA Lead kích hoạt — agent không tự chuyển giao.** Mỗi bước phải có lệnh rõ ràng từ BA Lead.
 2. **Vòng sửa:** Agent 2 có thể gửi comment → Agent 1 sửa → Agent 2 re-review; tối đa 2 vòng trước khi báo BA Lead quyết định thủ công.
-3. **Parallel được phép giữa:** Agent 4 (process-modeler) và Agent 1+2+3 (vẽ As-Is từ nguồn có sẵn trong khi phân tích đang chạy).
+3. **Process-modeler (Agent 4) kích hoạt tại S1b** — sau khi Agent 1 hoàn thành PHAN-RA + làm rõ cờ (S1), trước khi Agent 1 tiếp tục S2 (UC/US). Agent 2 (ba-reviewer) có thể review PHAN-RA song song trong cùng thời điểm. Sau khi BA Lead xác nhận To-Be, Agent 1 mới tiếp tục S2.
 4. **Checkpoint bàn giao BA → DEV là cứng:** Không bỏ qua — đây là điều kiện tiên quyết để DEV không build sai spec.
 5. **PC (Agent 5) chạy độc lập**, không thuộc chuỗi bàn giao; gọi bất cứ lúc nào để nhắc việc.
 

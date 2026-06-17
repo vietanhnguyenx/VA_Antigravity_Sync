@@ -1,8 +1,8 @@
 ﻿---
 project: "TOSS — Hệ thống Điều hành Khai thác Hãng Hàng không"
 author: "BA Lead"
-version: "0.4"
-date: "2026-06-12"
+version: "0.5"
+date: "2026-06-17"
 status: "Draft"
 document_type: "Quy trình — Phân tách Phạm vi & Workflow theo Role"
 document_id: "WF-TOSS-001"
@@ -150,7 +150,8 @@ document_id: "WF-TOSS-001"
 |---|---|---|---|---|---|
 | S0 | **Đã xong** — Phân rã FUNC | (đã có) | — | BA Lead | `PHAN-RA-BRD-PH{n}-*.md` |
 | S1 | Làm rõ cờ `[cần xác nhận]` với SME | Chủ trì phân hệ | SME, BA Lead | BA Lead | FUNC + glossary cập nhật |
-| S2 | Phân rã **UC / User Story + AC** | Chủ trì phân hệ | Hỗ trợ | BA Lead | `US-*`, `UC-*` |
+| S1b | **As-Is / To-Be process models** — vẽ luồng nghiệp vụ BPMN/Mermaid làm *process backbone* cho P4; chạy song song S1 hoặc ngay sau khi cờ chốt, trước khi phân rã UC | Chuyên gia Data Model + `process-modeler` | Chủ trì phân hệ | BA Lead | `ba/sync/models/TOBE-PH{n}-*.md` |
+| S2 | Phân rã **UC / User Story + AC** (dựa trên To-Be từ S1b) | Chủ trì phân hệ | Hỗ trợ | BA Lead | `US-*`, `UC-*` |
 | S3a | **Data model / ERD** (∥ S3b) | Chuyên gia Data Model | Chủ trì phân hệ | BA Lead | `sync/models/` ERD |
 | S3b | **Wireframe** (∥ S3a) | Chuyên gia Wireframe | Chủ trì phân hệ | BA Lead | `drafts/wireframe/PH{n}/` |
 | S4 | **Mockup** (`gen-mockup`) | Chuyên gia Wireframe | Chủ trì phân hệ | BA Lead | `drafts/mockup/PH{n}/` |
@@ -215,6 +216,7 @@ document_id: "WF-TOSS-001"
 
 ---
 
+*WF-TOSS-001 v0.5 — 2026-06-17. Bổ sung bước **S1b — As-Is/To-Be process models** (§6): `process-modeler` tạo BPMN/Mermaid To-Be làm process backbone cho P4, chạy song song/sau S1, trước S2 (UC/US). S2 cập nhật: dựa trên To-Be từ S1b. Lý do: pipeline v0.4 thiếu bước process modeling nên `process-modeler` chưa bao giờ được kích hoạt có hệ thống.*
 *WF-TOSS-001 v0.4 — 2026-06-12. Cập nhật PH1 sau Khảo sát 12/06 (Monitoring & Flight Detail): PH1 đã đặc tả chi tiết màn Giám sát (BR-133…150 / FUNC-236…276); cập nhật §1.1 (mức sẵn sàng PH1 ●●●●, cờ mở mới: enum LEG STATE, mã khu vực, ngưỡng "vào gate chậm", Ops++), §3 (PH1 BR-101…150 = 50 BR, 176 FUNC), §4.1 Exit. Tham chiếu BRD v0.5 / FUNC PH1 v0.5.*
 *WF-TOSS-001 v0.3 — 2026-06-11. Hiệu chỉnh thứ tự giai đoạn theo căn cứ khảo sát 08/06, 09/06, 11/06: PH4+PH1 (nền tảng+lõi, GĐ1) → PH3 Báo cáo (ưu tiên lãnh đạo, đã khảo sát đủ, GĐ2) → PH2 Tài liệu (chờ workshop chuyên đề, GĐ3); PH5 cắt nhỏ trải 3 GĐ. Thứ tự PH2/PH3 và mốc thời gian chờ BA Lead chốt (§0, §0.1, §0.3).*
 *v0.2 — 2026-06-11: phương án theo giai đoạn (3 đợt) lần đầu (PH2 GĐ2, PH3 GĐ3 — đã sửa ở v0.3).*

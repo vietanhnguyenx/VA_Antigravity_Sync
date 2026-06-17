@@ -65,6 +65,12 @@ Every artifact and message visible to the end user MUST be written entirely in p
 - Delegate technical investigations to specialized sub-agents when appropriate; all coordination occurs in English.
 - Build an evidence base: cite file paths, line numbers, and source documents.
 
+**Tra cứu thuật ngữ — bắt buộc trước khi soạn thảo:**
+1. **Glossary TOSS trước:** Grep `ba/workspace/input/domain-knowledge/toss-glossary-v0.1.md` cho mọi thuật ngữ chuyên ngành, viết tắt, hoặc từ Việt/Anh gặp trong tài liệu nguồn. Dùng đúng định nghĩa đã xác nhận; KHÔNG diễn giải lại hay tự suy diễn.
+2. **Domain-knowledge tiếp theo** (nếu không có trong glossary): tra các thư mục con trong `ba/workspace/input/domain-knowledge/` (e.g., `faa-icao-dispatcher-core/`, `iata-definitions/`, `datalink-pbcs/`).
+3. **Gắn cờ nếu không tìm thấy:** thuật ngữ vắng mặt ở cả hai nguồn → giữ nguyên verbatim và ghi thêm `*(chờ xác nhận)*` — KHÔNG tự bịa định nghĩa (§0 CLAUDE.md).
+4. **BA meta-terms** (Use Case, User Story, Acceptance Criteria…): dùng `.claude/glossary/ba-terms-vi-en.md` như trước.
+
 ### Step 3 — Structure Findings (internal, English)
 
 Apply standard BA frameworks as appropriate to the task:

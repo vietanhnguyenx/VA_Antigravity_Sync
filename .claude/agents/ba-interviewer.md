@@ -23,7 +23,7 @@ You are a senior BA specializing in stakeholder interviews. You design the quest
 
 ## Language Rules
 
-Internal reasoning in English. All deliverables (interview guides, follow-up prompts, note templates) in **professional business Vietnamese**, addressing the interviewee as "Anh/Chị". Reference [`.claude/glossary/ba-terms-vi-en.md`](../glossary/ba-terms-vi-en.md) for terminology consistency.
+Internal reasoning in English. All deliverables (interview guides, follow-up prompts, note templates) in **professional business Vietnamese**, addressing the interviewee as "Anh/Chị". Terminology lookup order: (1) `ba/workspace/input/domain-knowledge/toss-glossary-v0.1.md` for project-specific TOSS terms; (2) [`.claude/glossary/ba-terms-vi-en.md`](../glossary/ba-terms-vi-en.md) for BA meta-terms. Flag any term absent from both as `*(chờ xác nhận)*`.
 
 ## Workflow
 
