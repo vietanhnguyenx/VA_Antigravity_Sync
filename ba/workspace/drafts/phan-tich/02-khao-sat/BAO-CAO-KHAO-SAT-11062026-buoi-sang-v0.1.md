@@ -34,7 +34,7 @@ document_type: "Báo cáo Khảo sát (Discovery) — Phỏng vấn Dispatcher b
 
 Điều phái cần một quy trình chuẩn hóa cho việc phát hành kế hoạch bay (OFP — Operational Flight Plan) và đẩy tài liệu lên hệ thống MO Plus, kèm dấu hiệu rõ ràng để nhận biết phiên bản nào đã được điều phái chốt.
 
-Hiện trạng được điều phái mô tả như sau. Hệ thống Lido tự động sinh OFP và tự động đẩy tài liệu lên MO Plus mà không có bước review hay thao tác chủ động nào của điều phái trước khi tài liệu được phát hành cho phi công. Về thời điểm upload, chuyến quốc tế được upload trước 90 phút so với giờ khởi hành dự kiến (STD), chuyến nội địa upload trước 60 phút. Trong buổi phỏng vấn, điều phái còn nhắc đến các mốc 130 phút, 180 phút và 200 phút cho các giai đoạn của chuyến quốc tế dài, tuy nhiên phân loại chính xác từng mốc cần làm rõ thêm `[cần xác nhận]`. Khi tải, dầu hoặc thông tin tàu bay có thay đổi, Lido có thể tự sinh lại OFP và tự đẩy bản mới lên MO Plus mà không cần điều phái can thiệp.
+Hiện trạng được điều phái mô tả như sau. Hệ thống Lido tự động sinh OFP và tự động đẩy tài liệu lên MO Plus mà không có bước rà soát hay thao tác chủ động nào của điều phái trước khi tài liệu được phát hành cho phi công. Về thời điểm upload, chuyến quốc tế được upload trước 90 phút so với giờ khởi hành dự kiến (STD), chuyến nội địa upload trước 60 phút. Trong buổi phỏng vấn, điều phái còn nhắc đến các mốc 130 phút, 180 phút và 200 phút cho các giai đoạn của chuyến quốc tế dài, tuy nhiên phân loại chính xác từng mốc cần làm rõ thêm `[cần xác nhận]`. Khi tải, dầu hoặc thông tin tàu bay có thay đổi, Lido có thể tự sinh lại OFP và tự đẩy bản mới lên MO Plus mà không cần điều phái can thiệp.
 
 Vấn đề cốt lõi nằm ở chỗ vì việc đẩy OFP lên MO Plus được tự động hóa hoàn toàn, hiện chưa có cơ chế nào để phi công cũng như chính điều phái phân biệt được đâu là phiên bản OFP đã được điều phái chốt và đâu là phiên bản hệ thống tự sinh do thay đổi tải hoặc thay đổi giờ.
 
@@ -108,7 +108,7 @@ TOSS cần cảnh báo khi lịch bay có biến động vượt ngưỡng OSP h
 
 Có hai yếu tố chính cần cảnh báo. Yếu tố thứ nhất là thay đổi giờ bay. Khi giờ bay lệch từ 15 phút trở lên so với kế hoạch theo ngưỡng OSP thì cảnh báo được phát ra, áp dụng cho cả hai chiều sớm hơn hoặc muộn hơn. Yếu tố thứ hai là thay đổi loại tàu (aircraft type) và thay đổi tàu bay cụ thể (tail number), cần cảnh báo vì ảnh hưởng đến cấu hình khai thác và tài liệu chuyến.
 
-Về cảnh báo chuyển đổi loại chuyến bay, các bên thống nhất một số tình huống cụ thể. Khi phát sinh chuyến ferry (chuyến không thương mại, chỉ điều chuyển tàu bay), hệ thống cần highlight để điều phái xử lý tài liệu riêng. Khi chuyển từ chuyến thường sang VIP, hệ thống phải highlight do thay đổi cấp độ phục vụ và yêu cầu tài liệu khác. Ngược lại, khi chuyển từ VIP về thường (downgrade), hệ thống chỉ ghi nhận mà không cần cảnh báo đặc biệt. Đối với việc trả tải qua đổi nhân sự, kế hoạch thường được lập sẵn và không thay đổi sát giờ nên không cần cảnh báo riêng.
+Về cảnh báo chuyển đổi loại chuyến bay, các bên thống nhất một số tình huống cụ thể. Khi phát sinh chuyến ferry (chuyến không thương mại, chỉ điều chuyển tàu bay), hệ thống cần đánh dấu để điều phái xử lý tài liệu riêng. Khi chuyển từ chuyến thường sang VIP, hệ thống phải đánh dấu do thay đổi cấp độ phục vụ và yêu cầu tài liệu khác. Ngược lại, khi chuyển từ VIP về thường (downgrade), hệ thống chỉ ghi nhận mà không cần cảnh báo đặc biệt. Đối với việc trả tải qua đổi nhân sự, kế hoạch thường được lập sẵn và không thay đổi sát giờ nên không cần cảnh báo riêng.
 
 Trong transcript xuất hiện các cụm "Lotang", "lô tam" và "nô tam" — đây là lỗi nhận dạng giọng nói (ASR) của thuật ngữ NOTAM, không tồn tại khái niệm "chuyến Lotang". Nội dung thực là cảnh báo NOTAM mới phát sinh kèm đánh giá ảnh hưởng, được gộp vào chủ đề NOTAM ở mục 6.
 
@@ -128,7 +128,7 @@ TOSS cần tích hợp NOTAM, phân loại tự động và cảnh báo các NOT
 
 Hiện trạng cho thấy nguồn NOTAM được lấy từ trang quản lý của Tổng công ty Quản lý bay Việt Nam - VATM (VNCM), và điều phái đang tra cứu thủ công. Tài liệu cứu hỏa sân bay (RFFS) trên thực tế cũng nằm trong NOTAM chứ không tách riêng. Vấn đề nằm ở chỗ NOTAM có hàng trăm loại, không phải tất cả đều ảnh hưởng đến chuyến bay, nên không thể đọc và đánh giá toàn bộ một cách thủ công.
 
-Phía khảo sát đề xuất tiếp cận theo nhiều mức. Mức một là trích xuất NOTAM từ nguồn chính thức. Mức hai là phân loại NOTAM thành NOTAM sân bay, NOTAM vùng trời và NOTAM đường bay, trong đó phân loại chi tiết cần workshop riêng với chuyên gia nghiệp vụ (SME) điều phái. Mức ba là đánh giá mức độ ảnh hưởng tới chuyến cụ thể để highlight.
+Phía khảo sát đề xuất tiếp cận theo nhiều mức. Mức một là trích xuất NOTAM từ nguồn chính thức. Mức hai là phân loại NOTAM thành NOTAM sân bay, NOTAM vùng trời và NOTAM đường bay, trong đó phân loại chi tiết cần workshop riêng với chuyên gia nghiệp vụ (SME) điều phái. Mức ba là đánh giá mức độ ảnh hưởng tới chuyến cụ thể để đánh dấu cảnh báo.
 
 Trường hợp NOTAM cứu hỏa (RFFS) có đặc thù riêng. Mỗi sân bay có cấp cứu hỏa cố định gắn với loại tàu được phép khai thác, và khi cấp này thay đổi thì NOTAM tương ứng sẽ được phát ra. TOSS chỉ cần phát hiện NOTAM cứu hỏa là đủ để cảnh báo, không cần lưu bảng tiêu chuẩn RFFS hiện hành. Để đánh giá ảnh hưởng cụ thể, sau này hệ thống cần được cung cấp thông tin tiêu chuẩn của từng sân bay. Điều phái sẽ cung cấp tài liệu định nghĩa NOTAM cùng ảnh trang quản lý để đội phân tích chuẩn bị buổi làm việc riêng.
 
@@ -148,11 +148,11 @@ Nguyên tắc cảnh báo được thống nhất là chỉ phát cảnh báo kh
 
 Về nguồn dữ liệu thời tiết, đối với sân bay nội địa, METAR và SPECI được lấy từ cơ quan khí tượng hàng không Việt Nam (transcript ghi nhận là "Vy Vy" `[cần xác nhận]`) và đây là nguồn chính thức. Đối với sân bay quốc tế, hệ thống dùng nguồn trong gói Lido, lưu ý rằng Lido chỉ "release" theo gói tài liệu chuyến bay chứ không phải quan trắc liên tục. Nguồn AMOS (Aircraft Maintenance Operations Software — phần mềm quản lý bảo dưỡng kỹ thuật hàng không của Thụy Sỹ) là giao diện hiển thị dữ liệu thời tiết có thể export và cần phương án kỹ thuật để tích hợp. Nguồn "Sunweather" `[cần xác nhận]` bị đánh giá là rủi ro và không ổn định nên cần cân nhắc khi sử dụng. Nguồn "Phi Công 11" `[cần xác nhận]` không phải nguồn chính thức và chỉ dùng để tham khảo.
 
-Về METAR và SPECI, METAR là bản tin quan trắc định kỳ trong khi SPECI là bản tin đặc biệt được phát khi có biến động đáng kể, cả hai có cùng cấu trúc. Hai loại bản tin này đều ở dạng văn bản mã hóa, cần được parse ra các trường để đối chiếu với ngưỡng cảnh báo.
+Về METAR và SPECI, METAR là bản tin quan trắc định kỳ trong khi SPECI là bản tin đặc biệt được phát khi có biến động đáng kể, cả hai có cùng cấu trúc. Hai loại bản tin này đều ở dạng văn bản mã hóa, cần được phân tích thành các trường để đối chiếu với ngưỡng cảnh báo.
 
 **Kết luận**
 
-Cảnh báo thời tiết sân bay tập trung vào ba thông số là tầm nhìn, trần mây và TSRA, so sánh với VMA cộng biên an toàn. Nguồn nội địa là cơ quan khí tượng hàng không Việt Nam cung cấp METAR và SPECI, tên cụ thể cần xác nhận. Nguồn quốc tế ưu tiên gói Lido làm nguồn chính thức, còn Sunweather và "Phi Công 11" chỉ dùng để tham khảo. TOSS phải tích hợp METAR và SPECI, đồng thời parse được nội dung để cảnh báo tự động. Chi tiết về thời tiết en-route bao gồm SIGMET, nguồn quốc tế và cơ chế parse cần làm rõ ở buổi riêng do đoạn ghi âm bị nhiễu.
+Cảnh báo thời tiết sân bay tập trung vào ba thông số là tầm nhìn, trần mây và TSRA, so sánh với VMA cộng biên an toàn. Nguồn nội địa là cơ quan khí tượng hàng không Việt Nam cung cấp METAR và SPECI, tên cụ thể cần xác nhận. Nguồn quốc tế ưu tiên gói Lido làm nguồn chính thức, còn Sunweather và "Phi Công 11" chỉ dùng để tham khảo. TOSS phải tích hợp METAR và SPECI, đồng thời phân tích được nội dung để cảnh báo tự động. Chi tiết về thời tiết en-route bao gồm SIGMET, nguồn quốc tế và cơ chế phân tích cần làm rõ ở buổi riêng do đoạn ghi âm bị nhiễu.
 
 ---
 
@@ -308,7 +308,7 @@ Hai bên nhất trí bỏ cảnh báo Cost Index trong giai đoạn này. Khi Li
 | 10 | NOTAM phân thành 3 nhóm: sân bay, vùng trời và đường bay; cần workshop SME để chi tiết hóa | 1 |
 | 11 | NOTAM cứu hỏa (RFFS) khi phát ra thì cảnh báo trực tiếp; không lưu danh sách tiêu chuẩn RFFS hiện hành | 1 |
 | 12 | Cảnh báo thời tiết sân bay tập trung 3 thông số: tầm nhìn, trần mây và TSRA, so với VMA cộng biên an toàn | 1 |
-| 13 | TOSS tích hợp và parse METAR cùng SPECI; ưu tiên nguồn chính thức là nội địa và gói Lido cho quốc tế | 1 |
+| 13 | TOSS tích hợp và phân tích METAR cùng SPECI; ưu tiên nguồn chính thức là nội địa và gói Lido cho quốc tế | 1 |
 | 14 | So sánh OFP với số liệu thực tế CLC/Lido trên ZFW, payload, take-off weight; ngưỡng theo ma trận loại tàu × giờ bay × trên/dưới | 2 |
 | 15 | TOSS luôn dùng số liệu CLC nhập cuối cùng để đối chiếu với OFP cuối cùng | 2 |
 | 16 | TOSS cho điều phái khai báo bảng dầu (AHM) thủ công trong giai đoạn đầu; chuyển sang IFV khi sẵn sàng | 2 |
@@ -331,7 +331,7 @@ Hai bên nhất trí bỏ cảnh báo Cost Index trong giai đoạn này. Khi Li
 2. Xác nhận tên và viết tắt của các thuật ngữ: VMA, VNCS, "Vy Vy", Sunweather và "Phi Công 11". `[cần xác nhận]`
 3. Làm rõ giao diện và cơ chế đồng bộ trạng thái Dispatch Release giữa TOSS và MO Plus, bao gồm timing, payload và cơ chế fail-safe.
 4. Xác định cơ chế ghi nhận lịch sử làm lại OFP sát giờ.
-5. Lựa chọn phương án parse METAR và SPECI: tự xây hay dùng thư viện/dịch vụ.
+5. Lựa chọn phương án phân tích METAR và SPECI: tự xây hay dùng thư viện/dịch vụ.
 6. Tổ chức workshop với SME để xây quy tắc đánh giá mức độ ảnh hưởng NOTAM tới chuyến cụ thể.
 7. Khảo sát nguồn thời tiết quốc tế ngoài gói Lido và chi tiết en-route/SIGMET (đoạn ghi âm bị nhiễu).
 

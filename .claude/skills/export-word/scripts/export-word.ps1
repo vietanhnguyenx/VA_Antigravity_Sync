@@ -172,6 +172,11 @@ $qc=[ordered]@{
   'no AI phrase: Hai phía (§0.0)'    = (([regex]'Hai phía\s+(?:thảo luận|làm rõ|chia sẻ|nhận định|đề xuất|cho biết)').Matches($txt).Count -eq 0)
   'no AI phrase: arrow in prose (§0.0)' = (([regex]'(?<!\bAMOS\b|\bTOSS\b|\be-FON\b)\s+→\s+(?!\bTOSS\b|\bAMOS\b|\be-FON\b|\bLido\b)').Matches($txt).Count -eq 0)
   'no AI phrase: clichés (§0.0)'     = (([regex]'Cũng được đề cập|Logic kết nối|Định hướng thống nhất là|Điều này giúp').Matches($txt).Count -eq 0)
+  'no non-technical EN: team (§0.0)' = (([regex]'\bteam\b').Matches($txt).Count -eq 0)
+  'no non-technical EN: decode/parse/highlight/review (§0.0)' = (([regex]'\b(?:decode|parse|highlight)\b|\breview\b(?!ed\b)').Matches($txt).Count -eq 0)
+  'no non-technical EN: raw/edited content (§0.0)' = (([regex]'\braw content\b|\bedited content\b').Matches($txt).Count -eq 0)
+  'no non-technical EN: realtime/batch (§0.0)' = (([regex]'\brealtime\b|\bbatch\b(?!\s+export\s+format)').Matches($txt).Count -eq 0)
+  'no non-technical EN: data sample/sub-level (§0.0)' = (([regex]'\bdata sample\b|\bsub-level\b').Matches($txt).Count -eq 0)
   'FONT = Times New Roman only (+Consolas code)' = (($theme -match 'minorFont[\s\S]*?Times New Roman') -and (([regex]'Aptos|Calibri|Cambria').Matches($styles+$theme).Count -eq 0) -and (-not $badFonts))
   'XML well-formed'                  = $true
 }

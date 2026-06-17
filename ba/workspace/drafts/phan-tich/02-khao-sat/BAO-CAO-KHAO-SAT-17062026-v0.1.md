@@ -27,7 +27,7 @@ document_type: "Báo cáo Khảo sát (Discovery) — Quản lý MEL/CDL & Tích
 | **Mục đích** | Khảo sát yêu cầu quản lý MEL (Minimum Equipment List) / CDL (Configuration Deviation List) trong TOSS; xác định phạm vi tích hợp với AMOS (Aircraft Maintenance & Operations System) |
 | **Đối tượng khảo sát** | Đại diện VNA — phụ trách quản lý dữ liệu MEL bên bộ phận kỹ thuật (được gọi là "Nga" trong transcript); có sự tham gia của đại diện VNA bên khai thác |
 | **Phía khảo sát** | Nhóm TOSS/VTIT (Hiệp và các thành viên) |
-| **Phạm vi buổi** | Cấu trúc Master MEL; tích hợp AMOS → TOSS cho MEL active; cảnh báo Dispatcher; phương án nhập liệu ban đầu; format dữ liệu (Lido ePot, XML) |
+| **Phạm vi buổi** | Cấu trúc Master MEL; tích hợp AMOS → TOSS cho MEL active; cảnh báo Dispatcher; phương án nhập liệu ban đầu; định dạng dữ liệu (Lido ePot, XML) |
 
 ---
 
@@ -37,7 +37,7 @@ document_type: "Báo cáo Khảo sát (Discovery) — Quản lý MEL/CDL & Tích
 
 **Yêu cầu**
 
-Phía VNA xác nhận rằng trong YCKT của hai hệ thống đều có yêu cầu tích hợp AMOS để lấy thông tin MEL/CDL và hỏng hóc kỹ thuật. Cụ thể, mục 3-2 trong tài liệu YCKT của một hệ thống phía VNA đã ghi rõ: tích hợp AMOS, định bảo dưỡng tàu bay, hỏng hóc MEL/CDL, take log và thông tin kỹ thuật khác. TOSS sẽ là đầu mối tích hợp AMOS và cung cấp dữ liệu MEL cho các hệ thống phụ trợ khác về sau.
+VNA xác nhận trong YCKT của cả hai hệ thống đều có yêu cầu tích hợp AMOS để lấy thông tin MEL/CDL và hỏng hóc kỹ thuật. Cụ thể, mục 3-2 trong tài liệu YCKT ghi rõ: tích hợp AMOS, kế hoạch bảo dưỡng tàu bay, hỏng hóc MEL/CDL và thông tin kỹ thuật liên quan. TOSS sẽ là đầu mối tích hợp AMOS và cung cấp dữ liệu MEL cho các hệ thống phụ trợ về sau.
 
 **Thảo luận và Đề xuất**
 
@@ -65,13 +65,13 @@ Master MEL có cấu trúc phân cấp tối đa 5–6 level, ví dụ mã dạn
 
 Mỗi MEL item tại level cuối cùng có thể có nhiều trường hợp phân nhánh (ký hiệu x1, x2, x3…), mỗi trường hợp có các giá trị penalty khác nhau (ví dụ: x1 — giảm tải 500 kg; x2 — giới hạn autopilot; x3 — không bay sân bay X). Việc quyết định áp dụng trường hợp nào vẫn thuộc trách nhiệm của Dispatcher dựa trên tình huống thực tế; TOSS chỉ hiển thị thông tin để hỗ trợ quyết định.
 
-Đề xuất từ phía TOSS là lưu trữ Master MEL với hai lớp: (a) raw content — nội dung gốc từ tài liệu nhà sản xuất; (b) edited content — phiên bản đã được bộ phận kỹ thuật VNA bổ sung metadata khai thác (fuel factor, payload reduction, altitude cap…). Cấu trúc này cho phép so sánh khi nhà sản xuất phát hành phiên bản mới: hệ thống highlight những item có raw content thay đổi để người dùng chỉ cần review và cập nhật phần metadata của những item đó.
+Nhóm TOSS đề xuất lưu trữ Master MEL với hai lớp: (a) nội dung gốc — nguyên văn từ tài liệu nhà sản xuất; (b) bản biên soạn — phiên bản đã được bộ phận kỹ thuật VNA bổ sung metadata khai thác (fuel factor, payload reduction, altitude cap…). Cấu trúc hai lớp này cho phép so sánh khi nhà sản xuất phát hành phiên bản mới: hệ thống đánh dấu những item có nội dung gốc thay đổi để người dùng chỉ cần rà soát và cập nhật phần metadata của những item đó.
 
 Trong dài hạn, VNA đang nghiên cứu hệ thống DDMS (Document & Data Management System — hệ thống số hóa tài liệu kỹ thuật) có khả năng export dữ liệu MEL theo định dạng số hóa, giúp tích hợp tự động hơn. Tuy nhiên DDMS chưa được triển khai nên TOSS giai đoạn đầu vẫn dùng phương án nhập liệu thủ công và import từ file.
 
 **Kết luận**
 
-Kiến trúc dữ liệu MEL trong TOSS gồm hai tầng: Master MEL (tĩnh, theo loại tàu) và MEL Active (từ AMOS, theo từng tàu). Master MEL lưu hai lớp nội dung: raw content và edited content có metadata khai thác. Cần khảo sát thêm cấu trúc DB AMOS để xác định level nào được active và các trường dữ liệu AMOS cung cấp.
+Kiến trúc dữ liệu MEL trong TOSS gồm hai tầng: Master MEL (tĩnh, theo loại tàu) và MEL Active (từ AMOS, theo từng tàu). Master MEL lưu hai lớp nội dung: nội dung gốc từ nhà sản xuất và bản biên soạn có metadata khai thác do VNA bổ sung. Cần khảo sát thêm cấu trúc DB AMOS để xác định level nào được active và các trường dữ liệu AMOS cung cấp.
 
 ---
 
@@ -83,9 +83,9 @@ Khi AMOS gắn một MEL item mới lên tàu, TOSS phải cảnh báo Dispatche
 
 **Thảo luận và Đề xuất**
 
-Thảo luận tập trung vào luồng: AMOS đồng bộ MEL active lên TOSS → TOSS mapping với Master MEL và metadata ảnh hưởng → TOSS hiển thị cảnh báo cho Dispatcher với đầy đủ thông tin penalty. Dispatcher đọc thông tin, quyết định áp dụng trường hợp nào (x1/x2/x3), sau đó chạy OFP với các thông số mới.
+Khi AMOS đồng bộ MEL active lên TOSS, hệ thống thực hiện mapping với Master MEL để xác định metadata ảnh hưởng khai thác, sau đó hiển thị cảnh báo cho Dispatcher với đầy đủ thông tin penalty. Dispatcher đọc thông tin, quyết định áp dụng trường hợp nào (x1/x2/x3), rồi chạy OFP với các thông số tương ứng.
 
-Phía VNA chia sẻ kỳ vọng về một màn hình tổng hợp cho Dispatcher, gom tất cả cảnh báo liên quan đến một chuyến bay vào một nơi, bao gồm MEL, NOTAM, thời tiết và các cảnh báo khác, thay vì phải xem nhiều nguồn rời rạc. Mỗi cảnh báo MEL trong màn hình tổng hợp sẽ có link xem chi tiết nội dung item.
+VNA kỳ vọng có một màn hình tổng hợp cho Dispatcher, gom tất cả cảnh báo liên quan đến một chuyến bay vào một nơi, gồm MEL, NOTAM, thời tiết và các cảnh báo khác, thay vì phải xem nhiều nguồn rời rạc. Mỗi cảnh báo MEL trong màn hình tổng hợp sẽ có liên kết xem chi tiết nội dung item.
 
 Dashboard tổng hợp MEL theo đội tàu cũng được đề cập: Trực ban trưởng cần nhìn thấy toàn bộ MEL đang active trên tất cả tàu bay, phân loại theo mức độ ảnh hưởng khai thác, phục vụ báo cáo BCAO (Báo cáo Khai thác hàng ngày) hàng ngày.
 
@@ -93,7 +93,7 @@ TOSS nhận danh mục MEL active từ AMOS, mapping với danh sách MEL item c
 
 **Kết luận**
 
-TOSS sẽ nhận MEL active từ AMOS, hiển thị cảnh báo cho Dispatcher khi MEL phát sinh hoặc được clear. Dispatcher vẫn là người quyết định áp dụng trường hợp penalty nào. Dashboard tổng hợp MEL theo đội tàu phục vụ Trực ban trưởng và BCAO. Cơ chế nhận dữ liệu từ AMOS (realtime, polling, hay batch) cần được xác định thêm.
+TOSS sẽ nhận MEL active từ AMOS, hiển thị cảnh báo cho Dispatcher khi MEL phát sinh hoặc được clear. Dispatcher vẫn là người quyết định áp dụng trường hợp penalty nào. Dashboard tổng hợp MEL theo đội tàu phục vụ Trực ban trưởng và BCAO. Cơ chế nhận dữ liệu từ AMOS (thời gian thực, theo chu kỳ, hay theo lô) cần được xác định thêm.
 
 ---
 
@@ -101,23 +101,23 @@ TOSS sẽ nhận MEL active từ AMOS, hiển thị cảnh báo cho Dispatcher k
 
 **Yêu cầu**
 
-Master MEL cần được nhập vào TOSS lần đầu từ tài liệu MEL do nhà sản xuất cung cấp. Tần suất cập nhật thấp — ước tính 1–2 tháng một lần khi nhà sản xuất ra phiên bản mới. Phía VNA (Nga) là người sẽ thực hiện nhập liệu và duy trì dữ liệu này.
+Master MEL cần được nhập vào TOSS lần đầu từ tài liệu MEL do nhà sản xuất cung cấp. Tần suất cập nhật thấp, ước tính 1–2 tháng một lần khi nhà sản xuất ra phiên bản mới. VNA (Nga) là người sẽ thực hiện nhập liệu và duy trì dữ liệu này.
 
 **Thảo luận và Đề xuất**
 
-Tài liệu MEL Boeing được cung cấp theo format "FILMATER" [cần xác nhận: tên phần mềm/format chính xác — KS-57 còn mở]; tài liệu MEL Airbus theo phần mềm **FODM** (Flight Ops Documentation Manager). Mỗi hãng sản xuất dùng một công cụ/format riêng. Hiện tại Nga đọc tài liệu MEL dạng PDF, sau đó nhập thủ công các thông tin cần thiết, đặc biệt là phần nội dung ảnh hưởng khai thác (free text) — quy trình này tốn nhiều công sức.
+Tài liệu MEL Boeing được cung cấp theo định dạng "FILMATER" [cần xác nhận: tên phần mềm/định dạng chính xác — KS-57 còn mở]; tài liệu MEL Airbus theo phần mềm **FODM** (Flight Ops Documentation Manager). Mỗi hãng sản xuất dùng một công cụ và định dạng riêng. Hiện tại Nga đọc tài liệu MEL dạng PDF, sau đó nhập thủ công các thông tin cần thiết, đặc biệt là phần nội dung ảnh hưởng khai thác (free text) — quy trình này tốn nhiều công sức.
 
-Lido (hệ thống lập kế hoạch OFP) có một format import riêng gọi là Lido ePot. Phía TOSS đề xuất: TOSS sẽ parse tài liệu MEL và decode ra các trường có thể trích xuất tự động (item code, tên item), còn phần nội dung free text và metadata khai thác vẫn cần người dùng đọc và nhập. Khi Nga cần xem chi tiết, hệ thống hiển thị nội dung raw của item để Nga đọc và điền metadata mà không cần mở file gốc song song.
+Lido (hệ thống lập kế hoạch OFP) có một định dạng nhập liệu riêng gọi là Lido ePot. Nhóm TOSS đề xuất: TOSS sẽ đọc và phân tích tài liệu MEL để giải mã các trường có thể trích xuất tự động (item code, tên item), còn phần nội dung free text và metadata khai thác vẫn cần người dùng đọc và nhập. Khi Nga cần xem chi tiết, hệ thống hiển thị nội dung gốc của item để Nga đọc và điền metadata mà không cần mở file nguồn song song.
 
-Khi nhà sản xuất phát hành phiên bản MEL mới, TOSS sẽ so sánh raw content cũ và mới, highlight những item thay đổi. Nga chỉ cần review và cập nhật metadata cho những item đó, không phải làm lại toàn bộ.
+Khi nhà sản xuất phát hành phiên bản MEL mới, TOSS sẽ so sánh nội dung gốc cũ và mới, đánh dấu những item thay đổi. Nga chỉ cần rà soát và cập nhật metadata cho những item đó, không phải làm lại toàn bộ.
 
-Về phía Lido ePot: XML file chứa MEL active theo chuyến bay nhưng có vấn đề cấu trúc — một item có thể bị chia thành nhiều bản ghi ở sub-level khác nhau, gây khó mapping. Ngoài ra, một số chỗ trong file dùng lệnh "insert" thay vì "update", dẫn đến lỗi duplicate khi nạp lại.
+Về phía Lido ePot: XML file chứa MEL active theo chuyến bay nhưng có vấn đề cấu trúc — một item có thể bị chia thành nhiều bản ghi ở cấp con khác nhau, gây khó mapping. Ngoài ra, một số chỗ trong file dùng lệnh "insert" thay vì "update", dẫn đến lỗi duplicate khi nạp lại.
 
 Về số lượng item ảnh hưởng khai thác cần quản lý: VNA có ước tính khoảng vài trăm item cần theo dõi đặc biệt (có penalty khai thác), trong tổng số ~3.000 item Master MEL.
 
 **Kết luận**
 
-Phương án nhập liệu: import + decode bán tự động (trích xuất item code, tên) kết hợp nhập thủ công metadata khai thác. Cần xin mẫu dữ liệu (data sample) và mô tả format Lido ePot từ VNA để thiết kế cấu trúc DB và màn hình nhập liệu. Vấn đề "insert vs update" trong XML Lido cần điều tra thêm.
+Phương án nhập liệu: nhập từ file kết hợp giải mã bán tự động (trích xuất item code, tên) và nhập thủ công metadata khai thác. Cần xin dữ liệu mẫu và mô tả định dạng Lido ePot từ VNA để thiết kế cấu trúc DB và màn hình nhập liệu. Vấn đề "insert vs update" trong XML Lido cần điều tra thêm.
 
 ---
 
@@ -129,13 +129,13 @@ Phương án nhập liệu: import + decode bán tự động (trích xuất ite
 
 **Thảo luận và Đề xuất**
 
-Phía VNA cho biết đã có kết nối AMOS (team "Hà Tần" đã tham gia), nhưng chưa khảo sát chi tiết về cấu trúc DB. Có sự phân công: bên VICO (đơn vị hỗ trợ VNA triển khai AMOS) có nhân sự hiểu rõ DB AMOS; chị "Vy An" tên trong transcript được nhắc đến là người có thể hỗ trợ mapping DB. Phía VNA sẽ sắp xếp một buổi làm việc riêng với team AMOS/VICO để khảo sát cấu trúc dữ liệu.
+VNA cho biết đã có kết nối AMOS (nhóm "Hà Tần" đã tham gia), nhưng chưa khảo sát chi tiết cấu trúc DB. VICO (đơn vị hỗ trợ VNA triển khai AMOS) có nhân sự hiểu rõ DB AMOS và có thể hỗ trợ mapping dữ liệu. VNA sẽ sắp xếp một buổi làm việc riêng với nhóm AMOS/VICO để khảo sát cấu trúc dữ liệu.
 
-Trong buổi làm việc đó, team TOSS cần chuẩn bị: danh sách các trường dữ liệu cần lấy từ AMOS (dựa trên yêu cầu cảnh báo MEL đã được xác định), từ đó mapping sang bảng/trường tương ứng trong DB AMOS.
+Trong buổi làm việc đó, nhóm TOSS cần chuẩn bị danh sách các trường dữ liệu cần lấy từ AMOS (dựa trên yêu cầu cảnh báo MEL đã được xác định), từ đó mapping sang bảng/trường tương ứng trong DB AMOS.
 
 **Kết luận**
 
-Cần tổ chức một buổi khảo sát riêng với team AMOS/VICO để xác định cấu trúc dữ liệu DB AMOS phục vụ tích hợp MEL. Team TOSS chuẩn bị danh sách yêu cầu dữ liệu trước buổi đó.
+Cần tổ chức một buổi khảo sát riêng với nhóm AMOS/VICO để xác định cấu trúc dữ liệu DB AMOS phục vụ tích hợp MEL. Nhóm TOSS chuẩn bị danh sách yêu cầu dữ liệu trước buổi đó.
 
 ---
 
@@ -145,23 +145,23 @@ Cần tổ chức một buổi khảo sát riêng với team AMOS/VICO để xá
 |---|---|
 | 1 | TOSS chịu trách nhiệm tích hợp AMOS cho MEL/CDL; e-FON không tích hợp AMOS riêng — khi e-FON sẵn sàng, lấy dữ liệu từ TOSS. |
 | 2 | Kiến trúc 2 tầng: Master MEL (tĩnh, theo loại tàu) + MEL Active (từ AMOS, theo từng tàu cụ thể). |
-| 3 | Master MEL lưu 2 lớp: raw content (gốc từ nhà sản xuất) + edited content (metadata khai thác do VNA bổ sung). |
+| 3 | Master MEL lưu 2 lớp: nội dung gốc (từ nhà sản xuất) + bản biên soạn (bổ sung metadata khai thác do VNA). |
 | 4 | MEL item có thể có nhiều trường hợp penalty (x1/x2/x3…); Dispatcher là người quyết định áp dụng trường hợp nào — TOSS chỉ hiển thị thông tin hỗ trợ. |
 | 5 | Khi MEL phát sinh mới hoặc được clear, TOSS cảnh báo Dispatcher để làm lại OFP. |
 | 6 | Dashboard MEL tổng hợp theo đội tàu phục vụ Trực ban trưởng và BCAO hàng ngày. |
-| 7 | Phương án nhập liệu ban đầu: bán tự động (decode item code/tên) + nhập thủ công metadata khai thác; tần suất cập nhật ~1–2 tháng/lần. |
+| 7 | Phương án nhập liệu ban đầu: giải mã bán tự động (trích item code/tên) kết hợp nhập thủ công metadata khai thác; tần suất cập nhật ~1–2 tháng/lần. |
 | 8 | Giai đoạn đầu TOSS dùng free text + nhập tay cho phần metadata MEL; tích hợp DDMS (số hóa tài liệu kỹ thuật) để sau khi DDMS triển khai. |
-| 9 | Cần tổ chức buổi khảo sát riêng với team AMOS/VICO để xác định cấu trúc DB AMOS cho tích hợp MEL. |
+| 9 | Cần tổ chức buổi khảo sát riêng với nhóm AMOS/VICO để xác định cấu trúc DB AMOS cho tích hợp MEL. |
 
 ---
 
 ## IV. Vấn đề cần làm rõ
 
 1. ~~Tên đầy đủ hệ thống trong transcript~~ → **Đã xác nhận:** Hệ thống là **e-FON** (Electronic Flight Operations Notice — Thông báo Khai thác Bay Điện tử). ASR ghi sai thành "FOIE/FOI/FOM/FOEM". `[SME-45 — Đã chốt 17/06/2026]`
-2. AMOS active MEL item ở level tối đa nào (level 3? level 4? sâu hơn)? Cần xác nhận với team AMOS/VICO để thiết kế schema MEL phù hợp. `[cần xác nhận — KS-55]`
-3. Cơ chế tích hợp AMOS → TOSS cho dữ liệu MEL active: API realtime, polling (tần suất?), hay batch export? Format dữ liệu trao đổi? `[cần khảo sát — KS-56]`
-4. Format file tài liệu MEL Boeing ("FILMATER") — tên phần mềm/format chính xác và khả năng parse/import tự động? *(Airbus = FODM đã xác nhận.)* `[Boeing còn chờ — KS-57 Đang xử lý]`
-5. Mô tả chi tiết format Lido ePot: danh sách trường, kiểu dữ liệu, mapping sang MEL data TOSS? VNA (Nga) đã đề nghị cung cấp template — cần nhận file. `[cần khảo sát — KS-58]`
+2. AMOS active MEL item ở level tối đa nào (level 3? level 4? sâu hơn)? Cần xác nhận với nhóm AMOS/VICO để thiết kế cấu trúc dữ liệu MEL phù hợp. `[cần xác nhận — KS-55]`
+3. Cơ chế tích hợp AMOS → TOSS cho dữ liệu MEL active: API theo thời gian thực, theo chu kỳ polling, hay xuất theo lô? Định dạng dữ liệu trao đổi? `[cần khảo sát — KS-56]`
+4. Định dạng file tài liệu MEL Boeing ("FILMATER") — tên phần mềm/định dạng chính xác và khả năng đọc/nhập tự động? *(Airbus = FODM đã xác nhận.)* `[Boeing còn chờ — KS-57 Đang xử lý]`
+5. Mô tả chi tiết định dạng Lido ePot: danh sách trường, kiểu dữ liệu, mapping sang dữ liệu MEL TOSS? VNA (Nga) đã đề nghị cung cấp mẫu — cần nhận file. `[cần khảo sát — KS-58]`
 6. Vấn đề "insert vs update" trong file XML Lido ePot: nguyên nhân chính xác và cách xử lý trong quy trình import? `[cần xác nhận — KS-59]`
 7. Phạm vi dữ liệu cụ thể cần lấy từ AMOS: bảng/trường nào trong DB AMOS chứa MEL active, MEL item code, trạng thái, tàu áp dụng? `[cần khảo sát DB AMOS — KS-55]`
 8. Những MEL item nào được xác định là "ảnh hưởng khai thác" (cần cảnh báo Dispatcher)? Số lượng ước tính và tiêu chí lọc? Cần xin danh sách từ Nga. `[cần xác nhận — SME-46]`
