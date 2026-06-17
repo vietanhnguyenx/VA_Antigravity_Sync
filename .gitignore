@@ -22,6 +22,7 @@ desktop.ini
 .vscode/
 .idea/
 *~
+~$*
 
 # --- Build artifacts: bản sinh lại được (Word/PPTX) từ nguồn ---
 # Mặc định KHÔNG commit. Muốn lưu vết bàn giao khách → comment dòng tương ứng.
