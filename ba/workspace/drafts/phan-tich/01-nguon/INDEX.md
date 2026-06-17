@@ -19,3 +19,4 @@
 | `toss-glossary-v0.4-confirm-khach-hang-2026-06-10.tsv` | — | Glossary v0.4 gửi khách hàng xác nhận (TSV) |
 | `DIVERSION_REPORT-HVN678-KULSGN-11JUN2026.extracted.md` | 57 | Báo cáo chệch hướng chuyến HVN678 KUL→SGN ngày 11/06/2026 (lý do: thunderstorm) — có TAF/METAR/ATIS/quyết định tổ bay |
 | `DIVERSION_REPORT-HVN678-KULSGN-11JUN2026_-_comments.extracted.md` | 57 | Bản có bình luận của báo cáo chệch hướng HVN678 (cùng sự kiện) |
+| `acars-rcv-analysis.extracted.md` | ~200 | **Phân tích kỹ thuật ACARS** — 31 ZIP tháng 03/2026 (757.474 điện); 14 loại message (DFD/A80/M16/DEP/ARR/ENG/CFD/FML/ATC…); traceability PH1/PH3/PH5; 8 điểm cần xác nhận SME |
