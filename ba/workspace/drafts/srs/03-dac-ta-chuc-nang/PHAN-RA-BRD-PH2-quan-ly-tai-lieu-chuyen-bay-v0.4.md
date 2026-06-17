@@ -1,26 +1,37 @@
 ---
 project: "TOSS — Hệ thống Điều hành Khai thác Hãng Hàng không"
 author: "BA Lead"
-version: "0.3"
-date: "2026-06-12"
+version: "0.4"
+date: "2026-06-17"
 status: "Draft"
 document_type: "Functional Decomposition"
 document_id: "FUNC-DEC-PH2"
+brd_version: "0.6"
+parent: "BRD-TOSS-PH2-tai-lieu-chuyen-bay-v0.6.md"
 ---
 
-# Phân rã Yêu cầu nghiệp vụ → Yêu cầu chức năng — Phân hệ 2: Quản lý tài liệu chuyến bay (v0.3)
+# Phân rã Yêu cầu nghiệp vụ → Yêu cầu chức năng — Phân hệ 2: Quản lý tài liệu chuyến bay (v0.4)
 
-> **Nguồn cha:** `BRD-TOSS-PH2-tai-lieu-chuyen-bay-v0.1.md` (BR-201 … BR-231) — §7.2 trích từ `BRD-TOSS-001-khung-v0.6.md`.
+> **Nguồn cha:** `BRD-TOSS-PH2-tai-lieu-chuyen-bay-v0.6.md` (BR-201 … BR-261) — Khung tổng: `BRD-TOSS-001-khung-v0.11.md` (§7.2).
 >
-> **Ghi chú v0.3 (2026-06-12):** Bổ sung phân rã cho 9 BR mới của BRD v0.3 — BR-223 (Cảnh báo lệch ATC FPL vs điện ATC đã filed), BR-224 (Cảnh báo phiên bản OFP mới khác bản cũ ở các trường then chốt), BR-225 (Số hóa và lưu trữ EOFP), BR-226 (Số hóa và lưu trữ trường ATC FPL), BR-227 (Số hóa và lưu trữ RCL — Re-Clearance), BR-228 (Số hóa và lưu trữ EDTO Critical Point), BR-229 (Số hóa và lưu trữ ACARS CDA — Clearance Delivery), BR-230 (Chức năng Attach file lên MO Plus như thao tác riêng), BR-231 (Giám sát và cảnh báo luồng tự động Lido 4D). Thêm FUNC-299 … FUNC-329 (31 FUNC mới). Cập nhật bảng truy vết §2 và danh mục cờ §3. Không thay đổi FUNC-201 … FUNC-298 đã có ở v0.2. Đổi tham chiếu BRD cha sang `BRD-TOSS-001-khung-v0.6.md`.
+> **Ghi chú v0.4 (2026-06-17):** Cập nhật theo BRD PH2 v0.6 (VALIDATION Agent 3):
+> - **Bổ sung Khối F (mới)** — phân rã 5 BR chuyển từ PH1/PH4 sang PH2 v0.5+v0.6: **BR-257** (dashboard tài liệu chuyến bay + luồng phê duyệt request/confirm/reject — từ PH1 BR-112), **BR-258** (quản lý phần mềm + tính năng máy bay — từ PH4 BR-470), **BR-259** (SkyOffice master → auto push MO/MO Plus/VNA Library — từ PH4 BR-471), **BR-260** (Service Order tự động từ email LIDO — từ PH4 BR-472, BR canonical thay cho BR-247 PH2 cũ), **BR-261** (quản lý công việc Phòng KTKTB — từ PH4 BR-473). Thêm 16 FUNC mới (FUNC-332…FUNC-347).
+> - **Ghi chú thay đổi ngữ cảnh trên BR đã có:**
+>   - **BR-247 cũ (PH2 v0.4 — Service Order tự động):** đã xóa khỏi BRD PH2 v0.5 do trùng BR-260 canonical. Trong tài liệu phân rã này không có FUNC nào của v0.3 trỏ BR-247 (v0.3 chỉ phân rã đến BR-231) nên không có FUNC bị ảnh hưởng. Khi BR Service Order được tiêu thụ tại FUNC, mã BR cha = **BR-260** (xem mục §1 Khối F).
+>   - **BR-235 (chế độ test/sandbox NOTOC):** chưa có FUNC phân rã trong v0.3 (nằm ngoài dải BR-201…BR-231 của v0.3). Khi triển khai phân rã ở bản sau, FUNC sẽ ghi chú "(cơ chế đồng bộ PROD→TEST: xem PH5 BR-542)" theo chú thích mới của BRD v0.6.
+>   - **BR-234 (mobile NOTOC) hạ Must → Should; BR-215 (lịch sử OFP sát giờ) hạ Must → Should.** Tài liệu phân rã này không có cột "Ưu tiên" ở mức FUNC; mức ưu tiên áp dụng theo BR cha tại BRD PH2 v0.6 và không thay đổi nội dung FUNC. FUNC-259/260/261 (BR-215) giữ nguyên mô tả.
+> - **Đổi tham chiếu BRD cha** sang `BRD-TOSS-PH2-tai-lieu-chuyen-bay-v0.6.md`. Bump version 0.3 → 0.4; date 2026-06-17.
+> - **Lưu ý dải BR cha:** v0.3 phân rã BR-201…BR-231 theo bộ mã BRD PH2 phiên bản đầu (trước khi đánh số lại trong BRD v0.4–v0.6). Bản v0.4 này **không remap lại** các FUNC-201…FUNC-331 đã có (theo nguyên tắc CLAUDE.md §0 — không suy diễn ngoài chỉ thị); chỉ **bổ sung Khối F mới** ánh xạ chính xác sang BR-257…BR-261 của BRD PH2 v0.6. Việc remap đầy đủ BR cũ ↔ BR mới do BA Lead chốt ở bản sau (gắn cờ ở §3).
 >
-> **Ghi chú v0.2 (2026-06-12):** Bổ sung phân rã cho 5 BR mới của BRD v0.2 — BR-218 (Unrelease), BR-219 (Backup khi Lido lỗi — OFP 3 định dạng), BR-220 (Upload Weather Multi-Flight), BR-221 (Sửa thông số OFP trước khi đẩy MO Plus), BR-222 (Cảnh báo "thiếu tài liệu" / "tổ bay chưa tải tài liệu mới"). Thêm FUNC-276 … FUNC-296 (21 FUNC mới). Cập nhật bảng truy vết §2 và danh mục cờ §3. Không thay đổi FUNC-201 … FUNC-275 đã có ở v0.1. BR-213, BR-214 (đã mở rộng mô tả ở BRD v0.2 liên quan version/Unrelease/reset Confirm Release) — phần mở rộng được phân rã dưới các BR mới (BR-218) để tránh trùng lặp FUNC; các FUNC cũ FUNC-252 … FUNC-258 giữ nguyên.
+> **Ghi chú v0.3 (2026-06-12):** Bổ sung phân rã cho 9 BR mới của BRD v0.3 — BR-223 … BR-231 (9 BR). Thêm FUNC-299 … FUNC-331 (31 FUNC). Chi tiết xem `BA-VERSION-LOG.md`.
 >
-> **Nguyên tắc TỐI THƯỢNG (CLAUDE.md §0):** Tài liệu này chỉ **phân rã + lắp ráp trung thực** nội dung đã có trong nguồn (Đề xuất §II.2, Khảo sát 11/06 §II.1–II.3, Khảo sát 09/06 §II.3–II.4). **KHÔNG suy diễn**, không bịa chức năng. Mọi FUNC đều truy vết về BR cha + trích nguồn cụ thể. Nội dung nguồn chưa đủ chi tiết được ghi rõ "(chưa có nguồn — cần SME bổ sung)" hoặc gắn cờ `[cần xác nhận]`.
+> **Ghi chú v0.2 (2026-06-12):** Bổ sung phân rã cho 5 BR mới (BR-218 … BR-222). Thêm FUNC-276 … FUNC-298 (23 FUNC). Chi tiết xem `BA-VERSION-LOG.md`.
 >
-> **Phạm vi mức:** Yêu cầu chức năng (FUNC — Functional Requirement). Chưa bóc xuống Trường hợp sử dụng (Use Case), Câu chuyện người dùng (User Story) hay đặc tả trường dữ liệu — các nội dung này thuộc các tài liệu SRS/FRD kế tiếp.
+> **Nguyên tắc TỐI THƯỢNG (CLAUDE.md §0):** Tài liệu này chỉ **phân rã + lắp ráp trung thực** nội dung đã có trong nguồn (Đề xuất §II.2, các báo cáo Khảo sát, YCKT VTIT các sheet). **KHÔNG suy diễn**, không bịa chức năng. Mọi FUNC đều truy vết về BR cha + trích nguồn cụ thể. Nội dung nguồn chưa đủ chi tiết được ghi rõ "(chưa có nguồn — cần SME bổ sung)" hoặc gắn cờ `[cần xác nhận]` (kèm trỏ về OID khi áp dụng).
 >
-> **Quy ước mã:** `FUNC-2xx-yy` — `2xx` là BR cha (theo §7.2), `yy` là số thứ tự FUNC con trong BR đó. Mã FUNC tổng (cấp phân hệ 2) tăng tuần tự bắt đầu từ FUNC-201.
+> **Phạm vi mức:** Yêu cầu chức năng (FUNC — Functional Requirement). Chưa bóc xuống Trường hợp sử dụng (Use Case), Câu chuyện người dùng (User Story) hay đặc tả trường dữ liệu.
+>
+> **Quy ước mã:** `FUNC-2xx-yy` — `2xx` là BR cha (theo §7.2), `yy` là số thứ tự FUNC con trong BR đó. Mã FUNC tổng cấp phân hệ 2 tăng tuần tự bắt đầu từ FUNC-201.
 
 ## Mục lục
 
@@ -161,6 +172,8 @@ document_id: "FUNC-DEC-PH2"
 | FUNC-258 | MO Plus hiển thị thông báo "Dispatch chưa Release" cho phi công khi chưa có Dispatch Release tương ứng. *(Việc hiển thị diễn ra trên MO Plus; phạm vi sửa MO Plus nằm ngoài TOSS, cần làm rõ)* | BR-214 | Khảo sát 11/06 §II.2 |
 
 ### 1.15 BR-215 — Ghi nhận lịch sử làm lại OFP sát giờ
+
+> **Ghi chú v0.4:** BR-215 đã hạ Must → **Should** ở BRD PH2 v0.6 do OID KS-53 còn mở (audit trail chưa chốt). Nội dung FUNC không đổi; mức ưu tiên áp dụng theo BR cha tại BRD.
 
 | Mã FUNC | Mô tả chức năng | BR cha | Nguồn |
 |---|---|---|---|
@@ -320,6 +333,53 @@ document_id: "FUNC-DEC-PH2"
 
 ---
 
+## Khối F — Tài liệu khai thác KTKTB và luồng phê duyệt tài liệu chuyến (mới ở v0.4)
+
+> **Phạm vi Khối F:** phân rã các BR mới của BRD PH2 v0.6 — BR-257 (tiếp nhận từ PH1 BR-112) và BR-258…BR-261 (tiếp nhận từ PH4 Nhóm K). Tất cả trỏ BR cha theo bộ mã của BRD PH2 v0.6.
+
+### 1.32 BR-257 — Dashboard tài liệu chuyến bay + luồng phê duyệt request/confirm/reject
+
+| Mã FUNC | Mô tả chức năng | BR cha | Nguồn |
+|---|---|---|---|
+| FUNC-332 | Cung cấp dashboard tài liệu chuyến bay hiển thị danh sách tài liệu của từng chuyến (OFP, NOTAM, WX, Briefing Package, Load Sheet, NOTOC, GD, PM, Cargo/Mail Manifest…) kèm trạng thái phê duyệt hiện hành theo từng tài liệu. | BR-257 | KS 08/06 §II.5; KS 11/06 sáng §II.4 |
+| FUNC-333 | Cho phép tổ bay/phi công gửi yêu cầu bất thường (Request) liên quan đến tài liệu chuyến bay (yêu cầu sửa, yêu cầu bổ sung, yêu cầu phát hành lại) kèm nội dung yêu cầu, lý do và thời gian gửi. | BR-257 | KS 08/06 §II.5; KS 11/06 sáng §II.4 |
+| FUNC-334 | Cung cấp luồng xử lý Confirm/Reject cho điều phái viên đối với từng Request từ tổ bay, kèm trường nhập lý do khi Reject; sau khi Confirm/Reject, hệ thống cập nhật trạng thái phê duyệt tương ứng trên dashboard. | BR-257 | KS 08/06 §II.5; KS 11/06 sáng §II.4 |
+| FUNC-335 | Ghi nhận và hiển thị lịch sử phê duyệt tài liệu (chuỗi Request → Confirm/Reject) theo từng tài liệu và từng chuyến bay, gồm: người thực hiện, thời điểm, hành động, lý do (khi có), tài liệu/phiên bản đích. | BR-257 | KS 08/06 §II.5; KS 11/06 sáng §II.4 |
+
+### 1.33 BR-258 — Quản lý phần mềm và tính năng máy bay
+
+| Mã FUNC | Mô tả chức năng | BR cha | Nguồn |
+|---|---|---|---|
+| FUNC-336 | Cho phép tạo và lưu bản ghi phần mềm theo từng tàu bay, ghi nhận các lần chỉnh sửa phần mềm/tính năng theo thời gian (lịch sử thay đổi). | BR-258 | KS 11/06 KTKTB Buổi 3 §5 |
+| FUNC-337 | Cho phép người dùng comment trên bản ghi phần mềm/tính năng của tàu bay và đánh dấu (flag) tàu bay đang cần cập nhật. | BR-258 | KS 11/06 KTKTB Buổi 3 §5 |
+
+### 1.34 BR-259 — Đăng tải tài liệu khai thác tại SkyOffice và auto push MO/MO Plus/VNA Library
+
+| Mã FUNC | Mô tả chức năng | BR cha | Nguồn |
+|---|---|---|---|
+| FUNC-338 | Cho phép người dùng đăng tải tài liệu khai thác tại SkyOffice (SkyOffice là master cho thư viện tài liệu khai thác). | BR-259 | KS 11/06 KTKTB Buổi 3 §4 |
+| FUNC-339 | Sau khi tài liệu được đăng tải thành công tại SkyOffice, hệ thống tự động đẩy bản đã đăng tải sang các hệ thống đích (MO, MO Plus, VNA Library). | BR-259 | KS 11/06 KTKTB Buổi 3 §4 |
+| FUNC-340 | Sinh cảnh báo cho người dùng khi quá trình đẩy tự động sang MO, MO Plus hoặc VNA Library bị thất bại; ghi nhận lịch sử kết quả đẩy (thành công/thất bại + lý do nếu có) theo từng hệ thống đích. | BR-259 | KS 11/06 KTKTB Buổi 3 §4 |
+
+### 1.35 BR-260 — Service Order tự động từ email LIDO (BR canonical, thay BR-247 cũ)
+
+| Mã FUNC | Mô tả chức năng | BR cha | Nguồn |
+|---|---|---|---|
+| FUNC-341 | Cấu hình một địa chỉ email cố định nhận email Service Order do nhà cung cấp LIDO gửi đến; hệ thống tự động đọc các email gửi đến địa chỉ này. | BR-260 | KS 11/06 KTKTB Buổi 3 §4 |
+| FUNC-342 | Tự động bóc tách nội dung email LIDO và tạo bản ghi Service Order trên hệ thống, gắn với từng tàu bay tương ứng. | BR-260 | KS 11/06 KTKTB Buổi 3 §4 |
+| FUNC-343 | Cho phép người dùng đánh dấu thủ công trạng thái Service Order là "đã hoàn thành" sau khi order được thực hiện xong; ghi nhận người đánh dấu và thời điểm. | BR-260 | KS 11/06 KTKTB Buổi 3 §4 |
+
+### 1.36 BR-261 — Quản lý công việc Phòng KTKTB
+
+| Mã FUNC | Mô tả chức năng | BR cha | Nguồn |
+|---|---|---|---|
+| FUNC-344 | Cho phép tạo công việc (task) và giao việc cho nhân viên Phòng KTKTB, kèm các thuộc tính cơ bản của công việc (người giao, người nhận, nội dung, thời hạn). | BR-261 | KS 11/06 KTKTB Buổi 3 §5 |
+| FUNC-345 | Cho phép nhân viên Phòng KTKTB báo cáo tiến độ công việc đã được giao (cập nhật trạng thái, ghi nhận tiến độ, ghi chú). | BR-261 | KS 11/06 KTKTB Buổi 3 §5 |
+| FUNC-346 | Cho phép xuất báo cáo tuần tổng hợp công việc của Phòng KTKTB (danh sách công việc, trạng thái, người thực hiện, tiến độ trong tuần). | BR-261 | KS 11/06 KTKTB Buổi 3 §5 |
+| FUNC-347 | Cung cấp biểu đồ trực quan trên báo cáo công việc của Phòng KTKTB (ví dụ biểu đồ tiến độ, biểu đồ phân bổ công việc theo nhân viên/trạng thái). | BR-261 | KS 11/06 KTKTB Buổi 3 §5 |
+
+---
+
 ## 2. Bảng truy vết BR ↔ FUNC (tóm tắt)
 
 | BR cha | Số FUNC con | Dải mã FUNC |
@@ -355,7 +415,14 @@ document_id: "FUNC-DEC-PH2"
 | BR-229 | 3 | FUNC-324 … FUNC-326 |
 | BR-230 | 2 | FUNC-327 … FUNC-328 |
 | BR-231 | 3 | FUNC-329 … FUNC-331 |
-| **Tổng** | **131** | **FUNC-201 … FUNC-331** |
+| **BR-257** | **4** | **FUNC-332 … FUNC-335** |
+| **BR-258** | **2** | **FUNC-336 … FUNC-337** |
+| **BR-259** | **3** | **FUNC-338 … FUNC-340** |
+| **BR-260** | **3** | **FUNC-341 … FUNC-343** |
+| **BR-261** | **4** | **FUNC-344 … FUNC-347** |
+| **Tổng** | **147** | **FUNC-201 … FUNC-347** |
+
+> **Ghi chú remap BR:** dải BR-201…BR-231 trong v0.3 sử dụng bộ mã BRD PH2 phiên bản đầu (trước khi đánh số lại trong BRD v0.4–v0.6). Trong BRD PH2 v0.6 hiện hành, các BR-201…BR-231 đã có ngữ nghĩa mới (Lido luồng → bot, ngưỡng release, Phase 3, W&B, NOTOC SGN, MEL Boeing+Airbus, weather multi-flight, etc.). Việc **remap đầy đủ BR cũ ↔ BR mới** cho dải FUNC-201…FUNC-331 do BA Lead chốt ở bản sau (đưa vào §3 cờ).
 
 ---
 
@@ -365,31 +432,42 @@ Các điểm sau cần BA Lead/SME bổ sung nguồn hoặc xác nhận thêm tr
 
 | Mã FUNC | Vấn đề cần làm rõ | Loại |
 |---|---|---|
-| FUNC-247 | Quy ước đặt tên tệp cụ thể để tự gắn tài liệu vào đúng chuyến bay khi tải hàng loạt — Khảo sát 09/06 §II.3 chỉ ghi "VTIT đề nghị làm rõ định dạng và quy ước đặt tên của tài liệu nguồn"; chưa có quy ước chốt. | (chưa có nguồn) |
-| FUNC-256 | Phạm vi giao diện cụ thể giữa TOSS và MO Plus (giao diện trạng thái, thời điểm đồng bộ, cơ chế thông báo) — Khảo sát 11/06 §II.2 ghi "cần được làm rõ trong buổi làm việc tiếp theo". | `[cần xác nhận]` |
-| FUNC-257 | Cơ chế chặn Captain's Release trên MO Plus — thuộc phạm vi sửa MO Plus, nằm ngoài TOSS; chưa có nguồn chốt thiết kế. | `[cần xác nhận]` |
-| FUNC-258 | Thông báo "Dispatch chưa Release" hiển thị trên MO Plus — thuộc phạm vi sửa MO Plus, nằm ngoài TOSS; chưa có nguồn chốt thiết kế. | `[cần xác nhận]` |
-| FUNC-273 | Ngưỡng Delta cụ thể giữa ZFW trên OFP và ZFW ước tính thực tế để kích hoạt cảnh báo — Đề xuất §II.2 chỉ ghi "Mọi sai lệch (Delta)… sẽ được hiển thị cảnh báo" mà không nêu ngưỡng số. | (chưa có nguồn) |
-| FUNC-279 | Cơ chế MO Plus reset trạng thái Confirm Release của phi công về 0 khi nhận revision mới do Unrelease — thuộc phạm vi sửa MO Plus, nằm ngoài TOSS; cần phối hợp với chủ sở hữu MO Plus. | `[cần xác nhận]` |
-| FUNC-281 | Quy ước gán số phiên bản cho phiên bản sinh ra sau thao tác Unrelease (vd "2.1" sub-version hay auto-tăng "v4") — Khảo sát 11/06 chiều §II.4 nêu hai lựa chọn, chưa chốt. | `[cần xác nhận]` |
-| FUNC-284 | Viết tắt ADC trong các trường thông số chính của OFP backup — Khảo sát 11/06 chiều §II.13 nhắc tới nhưng chưa xác nhận tên đầy đủ. | `[cần xác nhận]` |
-| FUNC-289 | Viết tắt FME (Flight Management Editor?) — cơ chế attach file thời tiết riêng hiện hành — Khảo sát 11/06 chiều §II.9 nêu nhưng chưa xác nhận tên đầy đủ. | `[cần xác nhận]` |
-| FUNC-291 | Cơ chế hiển thị trên MO Plus khi có hai file thời tiết cùng áp cho một chuyến (latest by filename vs giữ song song) — thuộc phạm vi sửa MO Plus, nằm ngoài TOSS; cần phối hợp với đội MO Plus. | `[cần xác nhận]` |
-| FUNC-293 | Tên đầy đủ của hệ thống ICON (nguồn tham chiếu giá trị Flight Level theo Climb/Cruise/Descend) và viết tắt Brady, ADC — Khảo sát 11/06 chiều §II.11 chưa xác nhận. | `[cần xác nhận]` |
-| FUNC-295 | Lựa chọn phương án triển khai chức năng sửa OFP (PA1 — TOSS sửa giúp qua form vs PA2 — TOSS chỉ ra trường cần sửa, điều phái sửa tay rồi upload lại) — Khảo sát 11/06 chiều §II.11 nêu hai phương án, chốt sau theo phân tích kỹ thuật. | `[cần xác nhận]` |
-| FUNC-296 | Mốc thời gian cụ thể (số phút/giờ trước STD/ETD) để kích hoạt cảnh báo "Chuyến bay thiếu tài liệu" — Khảo sát 11/06 chiều §II.1 chưa nêu mốc cụ thể. | (chưa có nguồn) |
-| FUNC-297 | Phạm vi giao diện cụ thể TOSS — MO Plus để TOSS lấy trạng thái download tài liệu của tổ bay (API, frequency, format) — cần phối hợp với đội MO Plus. | `[cần xác nhận]` |
-| FUNC-298 | Khoảng thời gian quy định trước chuyến bay để xác định "tổ bay chưa tải tài liệu mới nhất" — Khảo sát 11/06 chiều §II.1 chưa nêu cụ thể. | (chưa có nguồn) |
-| FUNC-299 | Nguồn lấy điện ATC đã filed để đối chiếu với ATC FPL trong OFP và phạm vi giao diện cụ thể với hệ thống ATC — YCKT V3 dòng 303 và sheet-08 #4 chỉ nêu yêu cầu cảnh báo, chưa nêu nguồn dữ liệu/giao diện cụ thể. | `[cần xác nhận]` |
-| FUNC-300 | Quy ước màu sắc cụ thể cho cảnh báo lệch ATC FPL — YCKT V3 dòng 303 và sheet-08 #4 chỉ nêu "Cảnh báo màu", chưa nêu bảng màu cụ thể. | (chưa có nguồn) |
-| FUNC-304 | Ngưỡng "ngoài giới hạn" cụ thể đối với DOW/Payload khi so sánh hai phiên bản OFP — YCKT sheet-08 #4 chỉ nêu "DOW/PAYLOAD ngoài giới hạn", chưa nêu giá trị ngưỡng. | (chưa có nguồn) |
-| FUNC-314 | Phạm vi nghiệp vụ RCL (Re-Clearance) — BR-227 ở BRD v0.3 đã gắn cờ `[cần xác nhận phạm vi nghiệp vụ RCL]`. | `[cần xác nhận]` |
-| FUNC-327 | Phạm vi giao diện cụ thể TOSS ↔ MO Plus cho thao tác Attach file (API, payload, kênh truyền, xác nhận kết quả) — YCKT sheet-05 #10 chỉ nêu nhu cầu thao tác. | `[cần xác nhận]` |
-| FUNC-329 | Danh mục cảnh báo cụ thể của luồng tự động Lido 4D — BR-231 ở BRD v0.3 đã gắn cờ `[cần xác nhận danh mục cảnh báo cụ thể]`. | `[cần xác nhận]` |
-| FUNC-331 | Phạm vi giao diện cụ thể TOSS ↔ MO Plus cho cảnh báo lỗi đẩy OFP — cần phối hợp với đội MO Plus. | `[cần xác nhận]` |
+| FUNC-201…FUNC-331 (toàn dải) | **Remap BR cha cũ ↔ BR mới của BRD PH2 v0.6.** Các FUNC này được phân rã trên bộ mã BR PH2 phiên bản đầu (v0.1–v0.3); BRD PH2 v0.6 đã đánh số lại toàn bộ BR. Cần BA Lead chốt bảng remap để đồng bộ trace BR↔FUNC trước khi đẩy xuống UC/US. | `[cần xác nhận]` |
+| FUNC-247 | Quy ước đặt tên tệp cụ thể để tự gắn tài liệu vào đúng chuyến bay khi tải hàng loạt — Khảo sát 09/06 §II.3 chỉ ghi "VTIT đề nghị làm rõ định dạng và quy ước đặt tên của tài liệu nguồn". | (chưa có nguồn) |
+| FUNC-256 | Phạm vi giao diện cụ thể giữa TOSS và MO Plus — Khảo sát 11/06 §II.2. | `[cần xác nhận]` |
+| FUNC-257 | Cơ chế chặn Captain's Release trên MO Plus — thuộc phạm vi sửa MO Plus, nằm ngoài TOSS. | `[cần xác nhận]` |
+| FUNC-258 | Thông báo "Dispatch chưa Release" hiển thị trên MO Plus — thuộc phạm vi sửa MO Plus, nằm ngoài TOSS. | `[cần xác nhận]` |
+| FUNC-273 | Ngưỡng Delta cụ thể giữa ZFW trên OFP và ZFW ước tính thực tế để kích hoạt cảnh báo. | (chưa có nguồn) |
+| FUNC-279 | Cơ chế MO Plus reset trạng thái Confirm Release của phi công về 0 khi nhận revision mới do Unrelease. | `[cần xác nhận]` |
+| FUNC-281 | Quy ước gán số phiên bản cho phiên bản sinh ra sau thao tác Unrelease (vd "2.1" sub-version hay auto-tăng "v4"). | `[cần xác nhận]` |
+| FUNC-284 | Viết tắt ADC trong các trường thông số chính của OFP backup. | `[cần xác nhận]` |
+| FUNC-289 | Viết tắt FME (Flight Management Editor?) — cơ chế attach file thời tiết riêng hiện hành. | `[cần xác nhận]` |
+| FUNC-291 | Cơ chế hiển thị trên MO Plus khi có hai file thời tiết cùng áp cho một chuyến (latest by filename vs giữ song song). | `[cần xác nhận]` |
+| FUNC-293 | Tên đầy đủ của hệ thống ICON và viết tắt Brady, ADC. | `[cần xác nhận]` |
+| FUNC-295 | Lựa chọn phương án triển khai chức năng sửa OFP (PA1 vs PA2). | `[cần xác nhận]` |
+| FUNC-296 | Mốc thời gian cụ thể (số phút/giờ trước STD/ETD) để kích hoạt cảnh báo "Chuyến bay thiếu tài liệu". | (chưa có nguồn) |
+| FUNC-297 | Phạm vi giao diện cụ thể TOSS — MO Plus để TOSS lấy trạng thái download tài liệu của tổ bay. | `[cần xác nhận]` |
+| FUNC-298 | Khoảng thời gian quy định trước chuyến bay để xác định "tổ bay chưa tải tài liệu mới nhất". | (chưa có nguồn) |
+| FUNC-299 | Nguồn lấy điện ATC đã filed để đối chiếu với ATC FPL trong OFP và phạm vi giao diện cụ thể với hệ thống ATC. | `[cần xác nhận]` |
+| FUNC-300 | Quy ước màu sắc cụ thể cho cảnh báo lệch ATC FPL. | (chưa có nguồn) |
+| FUNC-304 | Ngưỡng "ngoài giới hạn" cụ thể đối với DOW/Payload khi so sánh hai phiên bản OFP. | (chưa có nguồn) |
+| FUNC-314 | Phạm vi nghiệp vụ RCL (Re-Clearance). | `[cần xác nhận]` |
+| FUNC-327 | Phạm vi giao diện cụ thể TOSS ↔ MO Plus cho thao tác Attach file. | `[cần xác nhận]` |
+| FUNC-329 | Danh mục cảnh báo cụ thể của luồng tự động Lido 4D. | `[cần xác nhận]` |
+| FUNC-331 | Phạm vi giao diện cụ thể TOSS ↔ MO Plus cho cảnh báo lỗi đẩy OFP. | `[cần xác nhận]` |
+| **FUNC-332…FUNC-335** | **BR-257 — Khối F mới.** Quy ước chi tiết các loại "yêu cầu bất thường" của tổ bay (danh mục loại request), SLA xử lý Confirm/Reject, mức phân quyền theo vai trò — BRD v0.6 mô tả mức cao, chi tiết chờ SME bổ sung. | `[cần xác nhận]` |
+| **FUNC-336…FUNC-337** | **BR-258 — Khối F mới.** Danh mục thuộc tính cụ thể của bản ghi phần mềm tàu bay (version phần mềm, ngày cập nhật, tài liệu kèm theo) và quy tắc đánh dấu "cần cập nhật" (ngưỡng thời gian, điều kiện) — BRD v0.6 mới mức cao. | `[cần xác nhận]` |
+| **FUNC-340** | **BR-259 — Khối F mới.** Phạm vi giao diện cụ thể giữa SkyOffice ↔ MO / MO Plus / VNA Library cho luồng auto push (API, payload, retry, lưu kết quả). | `[cần xác nhận]` |
+| **FUNC-341…FUNC-343** | **BR-260 — Khối F mới.** Format email LIDO (chủ thể, mẫu nội dung, attachment) và bộ trường Service Order trên hệ thống (mã, loại, mức độ ưu tiên). Cờ canonical thay thế BR-247 PH2 cũ. | `[cần xác nhận]` |
+| **FUNC-344…FUNC-347** | **BR-261 — Khối F mới.** Mô hình dữ liệu công việc Phòng KTKTB (trạng thái, vai trò, định kỳ), bộ trường báo cáo tuần và chuẩn biểu đồ — BRD v0.6 mới mức cao (Could). | `[cần xác nhận]` |
 
-**Ghi chú phạm vi chung (theo CLAUDE.md §0 và Khảo sát 11/06 §II.2 Kết luận):** Phạm vi tích hợp Dispatch Release ↔ Captain's Release giữa TOSS và MO Plus (BR-214, FUNC-256/257/258, và mở rộng tới các FUNC mới FUNC-279/291/297 ở v0.2) vẫn thuộc nhóm "phạm vi cần làm rõ thêm" của BRD §5.3. Mọi mô tả thiết kế chi tiết giao diện (API, payload, kênh đồng bộ, retry, fallback, cơ chế reset Confirm Release, cơ chế "latest by filename" hay "giữ song song" cho tài liệu thời tiết, đầu mối lấy history download tài liệu tổ bay) sẽ chỉ được phát triển sau khi có buổi làm việc thống nhất với chủ sở hữu MO Plus — tài liệu này không suy diễn các nội dung đó.
+**Ghi chú phạm vi chung (theo CLAUDE.md §0 và BRD PH2 v0.6):**
+
+- **Phạm vi tích hợp TOSS ↔ MO Plus** (Dispatch Release ↔ Captain's Release, reset Confirm Release sau Unrelease, hiển thị "latest by filename" cho weather, lịch sử download tài liệu tổ bay, cảnh báo lỗi đẩy OFP, thao tác Attach file): vẫn thuộc nhóm "phạm vi cần làm rõ thêm" với chủ sở hữu MO Plus — trỏ về **OID KS-08** (xem `SO-THEO-DOI-DIEM-CHOT-v0.1.md`).
+- **BR-235 (chế độ test/sandbox NOTOC):** chưa được phân rã trong tài liệu này. Khi triển khai phân rã ở bản sau, FUNC cần ghi chú "cơ chế đồng bộ dữ liệu PROD→TEST: xem PH5 BR-542" và "sandbox UI riêng cho NOTOC trên PH2" theo chú thích BRD v0.6.
+- **BR-242/243/244 (công cụ MEL Boeing+Airbus, revision/compare, áp SB hotfix):** chưa được phân rã trong tài liệu này. Khi phân rã, FUNC cần ghi chú "(xem PH4 BR-425/426 — MEL master data owner; PH2 tiêu thụ trong luồng tài liệu chuyến bay.)" theo chú thích BRD v0.6.
+- **BR-219/220 (bot AOS / tài khoản ca riêng):** chưa được phân rã trong tài liệu này. Khi phân rã, FUNC cần ghi chú "(quy tắc đặt tên tài khoản bot / cơ chế IAM tài khoản ca: xem PH5 BR-513.)" theo chú thích BRD v0.6.
 
 ---
 
-*Hết tài liệu FUNC-DEC-PH2 v0.3 (2026-06-12).*
+*Hết tài liệu FUNC-DEC-PH2 v0.4 (2026-06-17). Lịch sử version: xem `BA-VERSION-LOG.md`.*

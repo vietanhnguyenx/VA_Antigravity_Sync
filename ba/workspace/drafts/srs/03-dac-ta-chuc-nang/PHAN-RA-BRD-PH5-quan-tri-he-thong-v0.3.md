@@ -1,4 +1,4 @@
----
+﻿---
 project: "TOSS — Hệ thống Điều hành Khai thác Hãng Hàng không"
 author: "BA Lead"
 version: "0.3"
@@ -10,7 +10,7 @@ document_id: "FUNC-DEC-PH5"
 
 # Phân rã Yêu cầu nghiệp vụ (BR) → Yêu cầu chức năng (FUNC) — Phân hệ 5: Quản trị hệ thống (IAM/RBAC, Tích hợp, Hạ tầng)
 
-> **Phạm vi tài liệu:** Phân rã các Yêu cầu nghiệp vụ (BR) thuộc `BRD-TOSS-PH5-quan-tri-he-thong-v0.1.md` (BR-501 … BR-529) — §7.5 trích từ `BRD-TOSS-001-khung-v0.6.md` xuống lớp Yêu cầu chức năng (FUNC — Functional Requirement) / Yêu cầu phi chức năng (NFR — Non-functional Requirement). Mỗi FUNC truy vết về BR cha và cột "Nguồn" trích lại đúng tài liệu/sheet/mục đã ghi trong BRD.
+> **Phạm vi tài liệu:** Phân rã các Yêu cầu nghiệp vụ (BR) thuộc `BRD-TOSS-PH5-quan-tri-he-thong-v0.1.md` (BR-501 … BR-529) — §7.5 trích từ `BRD-TOSS-001-khung-v0.7.md` xuống lớp Yêu cầu chức năng (FUNC — Functional Requirement) / Yêu cầu phi chức năng (NFR — Non-functional Requirement). Mỗi FUNC truy vết về BR cha và cột "Nguồn" trích lại đúng tài liệu/sheet/mục đã ghi trong BRD.
 >
 > **Phiên bản này (v0.3 — 2026-06-12):** bổ sung phân rã FUNC/NFR cho 9 BR mới của Phân hệ 5 trong BRD v0.3 (bottom-up từ Customer Docs): BR-521 (CI/CD), BR-522 (tương thích OS/browser trong 30 ngày), BR-523 (bàn giao tài liệu + đào tạo + chuyển giao công nghệ), BR-524 (migrate FIMS + Netline), BR-525 (tập API ra cho hệ thống vệ tinh), BR-526 (giao diện giám sát luồng dữ liệu vào/ra), BR-527 (đồng bộ PROD → TEST), BR-528 (khảo sát + cấu hình tích hợp CĐV), BR-529 (chuẩn UX/UI). Không sửa nội dung phân rã BR-501 … BR-520 của bản v0.2; tiếp tục đánh số theo style `FUNC-5NN-NN` / `NFR-5NN-NN`.
 >

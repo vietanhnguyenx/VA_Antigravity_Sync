@@ -1,4 +1,4 @@
----
+﻿---
 project: "TOSS — Hệ thống Điều hành Khai thác Hãng Hàng không"
 author: "BA Lead"
 version: "0.3"
@@ -18,7 +18,7 @@ subsystem: "Phân hệ 3 — Quản lý báo cáo, đánh giá tối ưu khai th
 
 ## Mục đích và nguyên tắc
 
-Tài liệu này phân rã các Yêu cầu nghiệp vụ (BR — Business Requirement) BR-301 … BR-334 thuộc `BRD-TOSS-PH3-bao-cao-toi-uu-v0.1.md` (§7.3 trích từ `BRD-TOSS-001-khung-v0.6.md`) xuống lớp Yêu cầu chức năng (FUNC — Functional Requirement), tuân thủ tuyệt đối nguyên tắc tại CLAUDE.md §0:
+Tài liệu này phân rã các Yêu cầu nghiệp vụ (BR — Business Requirement) BR-301 … BR-334 thuộc `BRD-TOSS-PH3-bao-cao-toi-uu-v0.1.md` (§7.3 trích từ `BRD-TOSS-001-khung-v0.7.md`) xuống lớp Yêu cầu chức năng (FUNC — Functional Requirement), tuân thủ tuyệt đối nguyên tắc tại CLAUDE.md §0:
 
 - Chỉ **phân rã + lắp ráp trung thực** theo nguồn đã trích dẫn; **không suy diễn**, không bịa chỉ số/loại báo cáo ngoài nguồn.
 - Mỗi FUNC nêu rõ **BR cha** và **nguồn** (file/mục cụ thể).
@@ -26,7 +26,7 @@ Tài liệu này phân rã các Yêu cầu nghiệp vụ (BR — Business Requir
 
 **Nguồn được phân rã:**
 
-1. BRD Phân hệ 3: `ba/workspace/drafts/brd/BRD-TOSS-PH3-bao-cao-toi-uu-v0.1.md` (BR-301…334; khung cha: `BRD-TOSS-001-khung-v0.6.md` §7.3).
+1. BRD Phân hệ 3: `ba/workspace/drafts/brd/BRD-TOSS-PH3-bao-cao-toi-uu-v0.1.md` (BR-301…334; khung cha: `BRD-TOSS-001-khung-v0.7.md` §7.3).
 2. Đề xuất giải pháp kỹ thuật — Phân hệ 3 (chi tiết các loại báo cáo): `ba/workspace/input/domain-knowledge/vnaocc-proposal-decomposed/02-giai-phap-nghiep-vu/03-phan-he-quan-ly-bao-cao-danh-gia-toi-uu-khai-thac.md`.
 3. Báo cáo khảo sát ngày 09/06/2026: `ba/workspace/drafts/phan-tich/bao-cao-khao-sat/BAO-CAO-KHAO-SAT-09062026-v0.2.md` §II.7 (BCAO), §II.8 (giám sát dữ liệu, quản lý mục tiêu).
 4. Báo cáo khảo sát ngày 08/06/2026: `ba/workspace/drafts/phan-tich/bao-cao-khao-sat/BAO-CAO-KHAO-SAT-08062026-v0.2.md` §II.4 (báo cáo, phát hành qua thư điện tử, không ký số).

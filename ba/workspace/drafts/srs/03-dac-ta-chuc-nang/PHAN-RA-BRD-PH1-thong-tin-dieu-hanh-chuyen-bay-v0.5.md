@@ -1,4 +1,4 @@
----
+﻿---
 project: "TOSS — Hệ thống Điều hành Khai thác Hãng Hàng không"
 author: "BA Lead"
 version: "0.5"
@@ -12,7 +12,7 @@ document_id: "FUNC-DEC-PH1"
 
 > **Nguyên tắc tối thượng (CLAUDE.md §0):** Tài liệu này chỉ **phân rã + lắp ráp trung thực** các yêu cầu nghiệp vụ (BR) đã được ghi nhận trong nguồn. Tuyệt đối không suy diễn, không bịa chức năng, không tự "hoàn thiện" logic mà nguồn chưa nêu. Mỗi yêu cầu chức năng (FUNC — Functional Requirement) được phân rã đều phải truy vết về **BR cha** và **trích nguồn gốc** (file + mục §). Khi nguồn không cung cấp đủ chi tiết, ghi rõ **"(chưa có nguồn — cần SME bổ sung)"** thay vì tự điền.
 >
-> **Phạm vi tài liệu (v0.5):** Phân hệ 1 — Thông tin điều hành chuyến bay (BR-101 … BR-150, theo `BRD-TOSS-PH1-thong-tin-dieu-hanh-v0.1.md`; §7.1 từ `BRD-TOSS-001-khung-v0.6.md`). Phân rã ở mức **chức năng (FUNC)** — cụ thể hơn BR nhưng **chưa** tới mức Trường hợp sử dụng (UC — Use Case), màn hình hoặc trường dữ liệu chi tiết. Các tầng đó sẽ được làm tại SRS/FRD kế tiếp.
+> **Phạm vi tài liệu (v0.5):** Phân hệ 1 — Thông tin điều hành chuyến bay (BR-101 … BR-150, theo `BRD-TOSS-PH1-thong-tin-dieu-hanh-v0.2.md`; §7.1 từ `BRD-TOSS-001-khung-v0.7.md`). Phân rã ở mức **chức năng (FUNC)** — cụ thể hơn BR nhưng **chưa** tới mức Trường hợp sử dụng (UC — Use Case), màn hình hoặc trường dữ liệu chi tiết. Các tầng đó sẽ được làm tại SRS/FRD kế tiếp.
 >
 > **Quy ước đánh số:** `FUNC-1xx` cho Phân hệ 1 (1xx — lớp 100).
 >
@@ -28,7 +28,7 @@ document_id: "FUNC-DEC-PH1"
 ## 1. Phạm vi & quy ước
 
 - **Nguồn chính:**
-  - `ba/workspace/drafts/brd/BRD-TOSS-PH1-thong-tin-dieu-hanh-v0.1.md` — danh sách BR-101 … BR-150 (§7.1 từ `BRD-TOSS-001-khung-v0.6.md`).
+  - `ba/workspace/drafts/brd/BRD-TOSS-PH1-thong-tin-dieu-hanh-v0.2.md` — danh sách BR-101 … BR-150 (§7.1 từ `BRD-TOSS-001-khung-v0.7.md`).
   - `ba/workspace/drafts/phan-tich/bao-cao-khao-sat/BAO-CAO-KHAO-SAT-12062026-buoi-sang-v0.1.md` §II (chủ đề 1–13), §III (24 nội dung thống nhất) — nguồn BR-133 … BR-150.
   - `ba/workspace/drafts/phan-tich/yckt-trien-khai/sheet-08-cảnh-báo-tham-số.md` — sheet "Cảnh báo & Tham số" (BR-127 filed ATC, BR-128 TAT, BR-131 APU INOP, BR-132 bật/tắt cảnh báo hai cấp).
   - `ba/workspace/drafts/phan-tich/yckt-trien-khai/sheet-04-yckt-v3.md` dòng 374 (Airport Constraints — BR-129), dòng 376 (tự kiểm tra bất thường lịch bay — BR-130), dòng 167 (AC APU INOP / TOSS-126/127 — BR-131).
