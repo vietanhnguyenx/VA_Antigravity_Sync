@@ -18,7 +18,8 @@ document_id: "BA-VLOG-001"
 
 | File hiện hành | Version | Ngày | Thay đổi chính |
 |---|---|---|---|
-| `BRD-TOSS-001-khung-v0.11.md` | 0.11 | 2026-06-17 | **Đồng bộ link PHn mới nhất + cập nhật tổng BR sau VALIDATION Agent 3.** (C-links) Replace toàn bộ link §5.1 + §7: `BRD-TOSS-PH1-...-v0.6.md` → `v0.7.md`; `PH2 v0.5` → `v0.6`; `PH3 v0.4` → `v0.5`; `PH4 v0.4` → `v0.5`; `PH5 v0.4` → `v0.5`. (C-counts) Cập nhật bảng §7 + §7.6 tổng BR **338 → 337**: PH2 60 → **59** (xóa BR-256 placeholder theo OID BA-04 — không có nội dung nghiệp vụ); PH1=75 / PH3=66 / PH4=69 / PH5=68 giữ nguyên. Frontmatter bump 0.10 → 0.11; date 2026-06-17. Footer ghi chú: "v0.11: đồng bộ link PHn mới nhất; tổng BR 338→337; G1/G3/G5/G6/G8 từ VALIDATION Agent 3 đã thực hiện." Mọi nội dung khác (§1–§6, §8 Business Process, §9.1, §9.2, §10 References) giữ nguyên y bản v0.10. KHÔNG xóa v0.10 (giữ song song trong cây). |
+| `BRD-TOSS-001-khung-v0.12.md` | 0.12 | 2026-06-17 | **Bổ sung cột "To-Be model" vào bảng BP §8.** Cột mới liên kết BP-001…BP-015 sang `TOBE-PHn-*.md` trong `ba/sync/models/`; PH1 trỏ file hiện hành; PH2/PH3/PH4/PH5 ghi *(đang tạo)* (S1b đang thực hiện). Frontmatter bump 0.11→0.12. Nội dung BR và toàn bộ §1–§7, §9, §10 giữ nguyên v0.11. |
+| _(BRD-TOSS-001-khung-v0.11)_ | 0.11 | 2026-06-17 | **Đồng bộ link PHn mới nhất + cập nhật tổng BR sau VALIDATION Agent 3.** (C-links) Replace toàn bộ link §5.1 + §7: `BRD-TOSS-PH1-...-v0.6.md` → `v0.7.md`; `PH2 v0.5` → `v0.6`; `PH3 v0.4` → `v0.5`; `PH4 v0.4` → `v0.5`; `PH5 v0.4` → `v0.5`. (C-counts) Cập nhật bảng §7 + §7.6 tổng BR **338 → 337**: PH2 60 → **59** (xóa BR-256 placeholder theo OID BA-04 — không có nội dung nghiệp vụ); PH1=75 / PH3=66 / PH4=69 / PH5=68 giữ nguyên. Frontmatter bump 0.10 → 0.11; date 2026-06-17. Footer ghi chú: "v0.11: đồng bộ link PHn mới nhất; tổng BR 338→337; G1/G3/G5/G6/G8 từ VALIDATION Agent 3 đã thực hiện." Mọi nội dung khác (§1–§6, §8 Business Process, §9.1, §9.2, §10 References) giữ nguyên y bản v0.10. KHÔNG xóa v0.10 (giữ song song trong cây). |
 | `BRD-TOSS-001-khung-v0.10.md` | 0.10 | 2026-06-17 | **C1 + C2 theo review.** (C2) Sửa toàn bộ link sai phiên bản trong §5.1 và §7 sang đúng phiên bản hiện hành: PH1 v0.4 → v0.6, PH2 v0.3 → v0.5, PH3 v0.2 → v0.4, PH4 v0.2 → v0.4, PH5 v0.2 → v0.4. (C1) Cập nhật bảng tóm tắt §7 + §7.6 Tổng kết số lượng BR theo phiên bản mới: PH1 55→**75 BR (BR-101…192)**, PH2 28→**60 BR (BR-201…261)**, PH3 34→**66 BR (BR-301…366)**, PH4 32→**69 BR (BR-401…469)**, PH5 29→**68 BR (BR-501…555 + 528a…h + 530a…g)**; tổng 178→**338 BR**. §9.3 cập nhật OID 111→**112 điểm** (đã thêm SME-44 vào v0.13). Footer cuối file đồng bộ tổng 338 BR. Mọi nội dung khác (OBJ, BP, Stakeholders, §9.1, §9.2 ràng buộc UI/UX, §10 References) giữ nguyên y bản v0.9. |
 | `BRD-TOSS-001-khung-v0.9.md` | 0.9 | 2026-06-17 | **Viết lại từ tài liệu nguồn gốc** (7 báo cáo khảo sát 08–15/06/2026 + YCKT-VTIT 12 sheet + FDOP §3.1–3.5 + 14 Customer Docs đã extract + Đề xuất giải pháp kỹ thuật §I, §II), KHÔNG kế thừa nội dung v0.8. Bổ sung: +3 OBJ (OBJ-010 BCAO số hóa, OBJ-011 Dispatch ↔ Captain's Release, OBJ-012 Monitoring overview); +4 BP (BP-007 Unrelease, BP-008 6 giai đoạn Dispatch, BP-014 NOTOC, BP-015 backup Lido); §6 mở rộng từ 13 → 19 nhóm stakeholder (thêm KTKTB, CLC, PVHH/PVMĐ, Lido, MO Plus, SkyCheck, lessor); §9.2 thêm 14 ràng buộc UI/UX & logic chuẩn (cell-level coloring 4 trạng thái, refresh real-time, Phase Trigger ACARS, Time Window, lưu cấu hình profile, tiếng Anh/UTC/24h/dark mode, chữ hoa mặc định, web mobile, migrate Netline, logic Actual Remaining Fuel…); §5.1 In-scope mô tả chi tiết hơn cho từng phân hệ; §10 Tài liệu nguồn tổ chức lại thành 5 nhóm (báo cáo KS, YCKT, Customer Docs, Đề xuất kỹ thuật, BA nội bộ). Tổng 178 BR (không thay đổi). |
 | _(BRD-TOSS-001-khung-v0.8)_ | 0.8 | 2026-06-17 | M3 (REVIEW-BRD §E) — Hợp nhất quản lý cờ `[cần xác nhận]` về OID-TOSS-001: §9.3 rút gọn thành 1 dòng tham chiếu (xóa danh sách items 1, 2, 8–17); §10.3 mục 2 cập nhật; §5.1 + §7 cập nhật link version mới cho 5 BRD-PHn (PH1 v0.4, PH2 v0.3, PH3 v0.2, PH4 v0.2, PH5 v0.2); tổng 178 BR. |
@@ -80,7 +81,9 @@ document_id: "BA-VLOG-001"
 
 | File hiện hành | Version | Ngày | Thay đổi chính |
 |---|---|---|---|
-| `PIPELINE-AGENT-v0.1.md` | 0.1 | 2026-06-17 | Khởi tạo — 12 agent (BA 1–5, DEV 6–12) + quy tắc bàn giao + checkpoint |
+| `PHAN-TACH-PHAM-VI-WORKFLOW-v0.5.md` | 0.5 | 2026-06-17 | Bổ sung bước **S1b — As-Is/To-Be process models**: `process-modeler` tạo BPMN/Mermaid To-Be làm process backbone P4, chạy song song/sau S1, trước S2. S2 cập nhật: UC/US dựa trên To-Be từ S1b. Lý do: pipeline v0.4 thiếu bước nên `process-modeler` chưa được kích hoạt có hệ thống. |
+| _(PHAN-TACH-PHAM-VI-WORKFLOW-v0.4)_ | 0.4 | 2026-06-12 | Pipeline 7 bước S0–S7; lộ trình 3 giai đoạn theo khảo sát 08–12/06 |
+| `PIPELINE-AGENT-v0.1.md` | 0.1 | 2026-06-17 | Cập nhật Agent 4 (process-modeler): kích hoạt tại **S1b** (sau PHAN-RA+S1, trước S2 UC/US); sơ đồ tổng quan thêm 2 pha business-analyst (S0+S1 / S2+S5), process-modeler chạy song song ba-reviewer; Quy tắc 3 cập nhật lịch kích hoạt S1b. _(Khởi tạo 2026-06-17: 12 agent BA 1–5 DEV 6–12)_ |
 | `BA-ROADMAP-v0.1.md` | 0.1 | 2026-06-05 | Khởi tạo lộ trình BA 5 phase |
 | `PHAN-TACH-PHAM-VI-WORKFLOW-v0.4.md` | 0.4 | 2026-06-14 | Phân tách phạm vi + workflow hiện hành |
 | `PHAN-CONG-ROLE-BA-v0.1.md` | 0.1 | 2026-06-05 | Khởi tạo ma trận role × skill × phân hệ |
@@ -91,7 +94,8 @@ document_id: "BA-VLOG-001"
 
 | File hiện hành | Version | Ngày | Thay đổi chính |
 |---|---|---|---|
-| `tien_do/DANH-GIA-TIEN-DO-v0.1-2026-06-17.md` | 0.1 | 2026-06-17 | Khởi tạo — Phase 1 70%, Phase 2 55%, Phase 3 25%; Batch 1 chưa freeze (thiếu M9); 5 ưu tiên; tham chiếu kép BA-ROADMAP + Kế hoạch khảo sát |
+| `tien_do/DANH-GIA-TIEN-DO-v0.2-2026-06-17.md` | 0.2 | 2026-06-17 | Cập nhật sau phiên S1b — Phase 2 55% → 60% (S1b — 5 TOBE-PHn ở Draft); BRD bump v0.12 (thêm cột "To-Be model" §8); thêm §5 ghi nhận phiên 2026-06-17 (BRD v0.12, 4 file TOBE-PH2/3/4/5, pipeline workflow v0.4→v0.5, 4 agent definitions cập nhật); thêm §6 bàn giao tiến độ cho phiên kế tiếp. Phase 1/3/4/5 và 5 ưu tiên giữ nguyên. Tracker `deliverable-status.json` đồng bộ (v0.1→v0.2 — thêm BRD-TOSS-001 + TOBE-PH1…PH5). |
+| _(tien_do/DANH-GIA-TIEN-DO-v0.1-2026-06-17)_ | 0.1 | 2026-06-17 | Khởi tạo — Phase 1 70%, Phase 2 55%, Phase 3 25%; Batch 1 chưa freeze (thiếu M9); 5 ưu tiên; tham chiếu kép BA-ROADMAP + Kế hoạch khảo sát |
 
 ---
 
@@ -100,6 +104,25 @@ document_id: "BA-VLOG-001"
 | File hiện hành | Version | Ngày | Thay đổi chính |
 |---|---|---|---|
 | `REVIEW-BRD-v0.7-2026-06-17.md` | 1.0 | 2026-06-17 | Review lần đầu 6 file BRD (khung v0.7 + PH1–5 v0.1): 38 vấn đề (3C·12M·16Mi·7I); chưa đủ điều kiện Agent 3 |
+
+---
+
+## Domain Knowledge / Glossary
+
+| File hiện hành | Version | Ngày | Thay đổi chính |
+|---|---|---|---|
+| `toss-glossary-v0.1.md` | 0.14 | 2026-06-17 | Bổ sung 17 entry ACARS từ phân tích kho 03/2026: A80, ARR(ACARS), DEP(ACARS), M49, M11/M13/M14/M44, MVA, FML, FOB (đã rõ); ADS-B/ADS-C, ARINC 618, CFD, CPDLC, DFD, ENG, QAR, SATCOM, SMA, TT5/TT6 (chờ xác nhận). Cập nhật ACARS Fuel Unit (A320=LITERS) + ACARS OOOI (3 label theo avionics). |
+| _(toss-glossary-v0.1.md v0.13)_ | 0.13 | 2026-06-16 | 31 entry từ báo cáo khảo sát 08–12/06 |
+
+## Mô hình quy trình To-Be (ba/sync/models)
+
+| File hiện hành | Version | Ngày | Thay đổi chính |
+|---|---|---|---|
+| `TOBE-PH1-OCC-DISPATCH-v0.1.md` | 0.1 | 2026-06-17 | Khởi tạo S1b PH1 — sơ đồ To-Be Dispatcher/OCC, vòng đời cảnh báo, Dispatch Release, so sánh As-Is→To-Be. Backbone P4 cho UC/US PH1. |
+| `TOBE-PH2-tai-lieu-chuyen-bay-v0.1.md` | 0.1 | 2026-06-17 | Khởi tạo S1b PH2 — Dispatch Release↔Captain's Release, Unrelease OFP, 6 giai đoạn Dispatch, NOTOC, Load Balance, Document Lifecycle. Nguồn: BRD-PH2 v0.6 + PHAN-RA-PH2 v0.4. |
+| `TOBE-PH3-bao-cao-toi-uu-v0.1.md` | 0.1 | 2026-06-17 | Khởi tạo S1b PH3 — BCAO lập & phát hành, OTP/OSP, báo cáo nhiên liệu. Nguồn: BRD-PH3 v0.5 + PHAN-RA-PH3 v0.3. |
+| `TOBE-PH4-quan-ly-danh-muc-v0.1.md` | 0.1 | 2026-06-17 | Khởi tạo S1b PH4 — Aircraft Master (đồng bộ Netline/FIMS), Airport Master, Route Master, Nhận tàu bay→Master update. Nguồn: BRD-PH4 v0.5 + PHAN-RA-PH4 v0.4. |
+| `TOBE-PH5-quan-tri-he-thong-v0.1.md` | 0.1 | 2026-06-17 | Khởi tạo S1b PH5 — IAM/RBAC vòng đời user, bản đồ tích hợp ~40 hệ thống ngoài, thu nạp movement. Nhiều luồng chờ workshop chuyên đề. Nguồn: BRD-PH5 v0.5 + PHAN-RA-PH5 v0.3. |
 
 ---
 
