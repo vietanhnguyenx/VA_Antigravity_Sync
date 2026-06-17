@@ -234,6 +234,10 @@ TOSS/
 |---|---|---|
 | **business-analyst** | Requirements analysis, BRD/SRS/FRD/URD, user stories, use cases, meeting minutes, change requests, gap analysis | Read, Grep, Glob, WebFetch, Write, Edit, TodoWrite |
 | **project-coordinator** (PC) | Điều phối & nhắc nhở công việc dự án còn tồn đọng: tổng hợp điểm mở/OID, action item quá hạn, cờ `[cần xác nhận]`, mốc lộ trình/TASK chưa xong → báo cáo nhắc việc có ưu tiên (chỉ tổng hợp nguồn đã ghi, không tự quyết — §0/§0.3) | Read, Grep, Glob, Write, Edit, TodoWrite |
+| **gen-mockup** | Dựng mockup/prototype HTML tương tác Angular Material 3 dark-mode từ báo cáo khảo sát + SRS. data-mat + data-src trên mọi vùng UI. Trigger: "tạo mockup", "dựng prototype", "gen mockup", "demo màn hình". | Read, Grep, Glob, Write, Edit, TodoWrite |
+| **ui-reviewer** | Review mockup/prototype: độ phủ yêu cầu, truy vết data-src, component catalog, văn phong tiếng Việt, không tự thêm nội dung. Báo cáo audit điểm số. Trigger: "review mockup", "kiểm tra prototype", "QC mockup". | Read, Grep, Glob, Write, Edit, TodoWrite |
+| **srs-writer** | Viết chương SRS đặc tả chức năng từ báo cáo khảo sát: FUNC-xxx items, use cases, AC (Given-When-Then), ma trận truy vết. Chỉ từ nguồn đã ghi, không suy diễn. Trigger: "viết SRS", "đặc tả chức năng", "gen SRS". | Read, Grep, Glob, Write, Edit, TodoWrite |
+| **data-modeler** | Xây entity map khái niệm + ERD Mermaid + data dictionary từ yêu cầu BA. Chỉ tầng khái niệm, trước/song song wireframe (P4). Trigger: "data model", "entity map", "ERD khái niệm", "mô hình dữ liệu". | Read, Grep, Glob, Write, Edit, TodoWrite |
 | **Explore** | Fast lookup of files / definitions / references | Read-only |
 | **general-purpose** | Multi-step tasks not covered by a specialized agent | All tools |
 | **Plan** | Plan implementation strategy for complex requests | Read-only |
