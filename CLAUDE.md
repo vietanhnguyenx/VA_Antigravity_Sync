@@ -230,33 +230,68 @@ TOSS/
 
 ## 5. Available Agents
 
-| Agent | When to Use | Key Tools |
-|---|---|---|
-| **business-analyst** | Requirements analysis, BRD/SRS/FRD/URD, user stories, use cases, meeting minutes, change requests, gap analysis | Read, Grep, Glob, WebFetch, Write, Edit, TodoWrite |
-| **project-coordinator** (PC) | Điều phối & nhắc nhở công việc dự án còn tồn đọng: tổng hợp điểm mở/OID, action item quá hạn, cờ `[cần xác nhận]`, mốc lộ trình/TASK chưa xong → báo cáo nhắc việc có ưu tiên (chỉ tổng hợp nguồn đã ghi, không tự quyết — §0/§0.3) | Read, Grep, Glob, Write, Edit, TodoWrite |
-| **gen-mockup** | Dựng mockup/prototype HTML tương tác Angular Material 3 dark-mode từ báo cáo khảo sát + SRS. data-mat + data-src trên mọi vùng UI. Trigger: "tạo mockup", "dựng prototype", "gen mockup", "demo màn hình". | Read, Grep, Glob, Write, Edit, TodoWrite |
-| **ui-reviewer** | Review mockup/prototype: độ phủ yêu cầu, truy vết data-src, component catalog, văn phong tiếng Việt, không tự thêm nội dung. Báo cáo audit điểm số. Trigger: "review mockup", "kiểm tra prototype", "QC mockup". | Read, Grep, Glob, Write, Edit, TodoWrite |
-| **srs-writer** | Viết chương SRS đặc tả chức năng từ báo cáo khảo sát: FUNC-xxx items, use cases, AC (Given-When-Then), ma trận truy vết. Chỉ từ nguồn đã ghi, không suy diễn. Trigger: "viết SRS", "đặc tả chức năng", "gen SRS". | Read, Grep, Glob, Write, Edit, TodoWrite |
-| **data-modeler** | Xây entity map khái niệm + ERD Mermaid + data dictionary từ yêu cầu BA. Chỉ tầng khái niệm, trước/song song wireframe (P4). Trigger: "data model", "entity map", "ERD khái niệm", "mô hình dữ liệu". | Read, Grep, Glob, Write, Edit, TodoWrite |
-| **Explore** | Fast lookup of files / definitions / references | Read-only |
-| **general-purpose** | Multi-step tasks not covered by a specialized agent | All tools |
-| **Plan** | Plan implementation strategy for complex requests | Read-only |
+Two linked pipelines: **BA Pipeline** (discovery → analysis → design → QC) feeds into **DEV Pipeline** (SA → code → test → review). The handoff artifact is the approved SRS + entity map + mockup.
 
-**DEV/QC pipeline agents (frontend — Angular 21 / ESB-FE architecture):** in [`.claude/agents/`](.claude/agents/), chained BA → SA → Coder → Mock → i18n → Runtime-verify → QA → Review:
+---
+
+### BA Pipeline — Requirements & Design
+
+```
+[Discovery]        [Analysis]          [Decomposition — parallel]   [Design]     [QC]
+ba-interviewer ──► business-analyst ──► srs-writer ──────────────► gen-mockup ──► ui-reviewer
+                        │               data-modeler ─────────────►              ba-reviewer
+                        │               process-modeler ──────────►              requirement-validator
+                        ▼
+                  project-coordinator (cross-cutting — OID/action items/status)
+```
+
+| Stage | Agent | When to Use | Trigger phrases |
+|---|---|---|---|
+| **1 — Discovery** | **ba-interviewer** | Design interview question sets; active listening scaffolds | "tạo bộ câu hỏi", `/interview` |
+| **2 — Analysis** | **business-analyst** | BRD/SRS/FRD/URD, user stories, use cases, meeting minutes, gap analysis, change requests | Default for most BA tasks |
+| **3a — Spec** | **srs-writer** | Write SRS functional chapters: FUNC-xxx, use cases, AC, RTM — source-only | "viết SRS", "đặc tả chức năng", "gen SRS" |
+| **3b — Data** | **data-modeler** | Conceptual entity map + Mermaid ERD + data dictionary — before/parallel wireframe (P4) | "data model", "entity map", "ERD khái niệm" |
+| **3c — Process** | **process-modeler** | BPMN-style flowcharts, sequence/state diagrams, As-Is/To-Be pairs | "vẽ luồng", "BPMN", "As-Is/To-Be" |
+| **4 — Design** | **gen-mockup** | Self-contained HTML prototypes: AM3 dark-mode, `data-mat` + `data-src` annotations | "tạo mockup", "dựng prototype", "demo màn hình" |
+| **5a — UI QC** | **ui-reviewer** | Review prototype: requirement coverage, data-src traceability, component catalog, Vietnamese text | "review mockup", "QC mockup", "kiểm tra prototype" |
+| **5b — Doc QC** | **ba-reviewer** | Review BRD/SRS/user story: logic gaps, terminology drift, missing AC, hidden assumptions | "review BRD/SRS", "soát tài liệu" |
+| **5c — Req QC** | **requirement-validator** | SMART/INVEST/MoSCoW audit; conflict, duplicate, coverage-gap detection | "validate yêu cầu", "kiểm tra yêu cầu" |
+| **Cross-cutting** | **project-coordinator** | OID aggregation, overdue action items, open flags `[cần xác nhận]`, roadmap status | "tổng hợp tồn đọng", "nhắc việc" |
+
+**Parallel at Stage 3:** `srs-writer`, `data-modeler`, `process-modeler` run concurrently — each reads the same survey reports independently; outputs inform each other before DEV handoff.
+
+**Handoff to DEV:** approved SRS (FUNC-xxx) + entity map (`ba/sync/models/`) + prototype (`ba/workspace/drafts/mockup/`) → `02-sa` picks up.
+
+---
+
+### DEV/QC Pipeline — Frontend (Angular 21 / ESB-FE)
+
+```
+[Design]       [Architecture]   [Code]       [Data]       [i18n]   [Verify]           [Test]   [Review]
+gen-mockup ──► 02-sa ─────────► 03-coder ──► 04-mock ──► 05-i18n ► 06-runtime-verif ► 07-qa ──► code-reviewer
+```
+
+| Agent | Position | When to Use |
+|---|---|---|
+| **02-sa** (Solution Architect) | BA → **SA** | Design file tree, shared interfaces/types from the BA spec |
+| **03-coder** (Senior FE Developer) | SA → **Coder** | Build UI (dumb) + logic (smart) components; apply dynamic-form-handler skill |
+| **04-mock-data** | Coder → **Mock** | Generate realistic mock data/services for offline UI testing |
+| **05-i18n** | Mock → **i18n** | Extract & manage i18n keys |
+| **06-runtime-verifier** | i18n → **Runtime** | Verify the running app behaves per spec |
+| **07-qa** (QA Automation) | Runtime → **QA** | Write unit/component tests (`.spec.ts`) covering validation & dynamic rules |
+| **code-reviewer** | → **Review** | Review Angular code against the FE checklist (44 items, 8 categories) |
+
+> **Frontend stack (adopted):** Angular 21 · Signals · Standalone Components · Facade pattern · feature-based folders — see [`.claude/rules/angular-guidelines.md`](.claude/rules/angular-guidelines.md). Code-gen via `gen-*` commands/skills; multi-agent orchestration via [`.claude/workflows/`](.claude/workflows/).
+
+---
+
+### Utility Agents (cross-pipeline)
 
 | Agent | When to Use |
 |---|---|
-| **02-sa** (Solution Architect) | Design file tree, shared interfaces/types from the BA spec |
-| **03-coder** (Senior FE Developer) | Build UI (dumb) + logic (smart) components; apply dynamic-form-handler skill |
-| **04-mock-data** | Generate realistic mock data/services for offline UI testing |
-| **05-i18n** | Extract & manage i18n keys |
-| **06-runtime-verifier** | Verify the running app behaves per spec |
-| **07-qa** (QA Automation) | Write unit/component tests (`.spec.ts`) covering validation & dynamic rules |
-| **code-reviewer** | Review Angular code against the FE checklist (44 items, 8 categories) |
-
-> **Frontend stack (adopted):** Angular 21 · Signals · Standalone Components · Facade pattern · feature-based folders — see [`.claude/rules/angular-guidelines.md`](.claude/rules/angular-guidelines.md). Code-gen via `gen-*` commands/skills; multi-agent orchestration via [`.claude/workflows/`](.claude/workflows/).
->
-> For BA tasks, prefer `business-analyst`. For frontend feature work, use the gen-* commands + the DEV pipeline agents above.
+| **Explore** | Fast lookup of files / definitions / references (read-only) |
+| **general-purpose** | Multi-step tasks not covered by a specialized agent |
+| **Plan** | Plan implementation strategy before coding complex requests |
 
 ---
 
@@ -415,7 +450,8 @@ Full protocol: [.claude/sync/SYNC-PROTOCOL.md](.claude/sync/SYNC-PROTOCOL.md).
 
 ---
 
-*CLAUDE.md version 2.8 — 2026-06-17. Mirror: [HUMAN.md](HUMAN.md). Update both when project structure or conventions change.*
+*CLAUDE.md version 2.9 — 2026-06-17. Mirror: [HUMAN.md](HUMAN.md). Update both when project structure or conventions change.*
+*v2.9: §5 — tái cấu trúc thành 2 pipeline rõ ràng: BA Pipeline (ba-interviewer → business-analyst → srs-writer/data-modeler/process-modeler [song song] → gen-mockup → ui-reviewer/ba-reviewer/requirement-validator) + DEV Pipeline (02-sa → 03-coder → 04-mock-data → 05-i18n → 06-runtime-verifier → 07-qa → code-reviewer). Sơ đồ ASCII luồng + bảng stage. Mirror: HUMAN.md §5 thêm mới, §5–7 cũ đánh số lại §6–8.*
 *v2.8: §6 — đăng ký Skill-building Guide (`.claude/knowledge/The-Complete-Guide-to-Building-Skill-for-Claude.extracted.md`) + **SKILL-CREATION RULE (MANDATORY)**: mọi lần tạo/khởi tạo/tái cấu trúc Skill phải đọc & tuân thủ guide (SKILL.md đúng tên, kebab-case, description what+when <1024 ký tự không thẻ `< >`, không README, progressive disclosure, soát Reference A). Nguồn: audit skill 2026-06-17.*
 *v2.7: §0.5 Getting Bearings & Done-Discipline (định hướng đầu phiên, không tuyên bố hoàn thành sớm, tracker pass/fail derived-not-invented, SOP rà harness mỗi đời model); §8 — machine-read trackers (deliverable-status.json, RTM JSON) dùng JSON/TSV thay Markdown. Nguồn: `.claude/knowledge/agent-harness-engineering.md` (N1–N4). Kèm: hook guard-safety + quality-gate; few-shot scorecard cho ba-reviewer/requirement-validator/code-reviewer; PC v1.3 (Mode B quick-bearings + maintain tracker + handoff); business-analyst v2.1 (done-discipline).*
 *v2.6: §8 — Versioning rule mở rộng toàn bộ tài liệu (không chỉ export): file chỉ chứa nội dung hiện tại, không nhúng CHANGELOG; lịch sử version ghi vào `BA-VERSION-LOG.md`; version bump = file mới + xóa file cũ.*
