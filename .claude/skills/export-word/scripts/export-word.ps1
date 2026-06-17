@@ -70,8 +70,8 @@ function StripAsr($t){
   $t=[regex]::Replace($t,'[ \t]*\[[^\]]*ASR[^\]]*\]','')
   # d7: bỏ ghi chú ASR dạng văn bản thuần (không ngoặc) — từ 'đính chính'/'lỗi nhận dạng' tới hết ô bảng (|) hoặc hết dòng
   $t=[regex]::Replace($t,'(?:[ \t]*[—–-])?[ \t]*(?:đính chính|lỗi nhận dạng)[^|\r\n]*','')
-  # d8: bỏ cụm ASR inline trong câu chạy — "phỏng âm ASR là ...", "ASR phiên/đọc/đôi ..."
-  $t=[regex]::Replace($t,'[ \t]*(?:phỏng âm ASR[^,.\|\r\n]*|ASR (?:phiên|đọc|đôi)[^,.\|\r\n]*)','')
+  # d8: bỏ cụm ASR inline trong câu chạy — "phỏng âm ASR là ...", "ASR phiên/đọc/đôi/ghi ..."
+  $t=[regex]::Replace($t,'[ \t]*(?:phỏng âm ASR[^,.\|\r\n]*|ASR (?:phiên|đọc|đôi|ghi)[^,.\|\r\n]*)','')
   # d9: bỏ TRỌN dòng italic (*...*) là changelog/footer chứa từ khoá quy trình nội bộ
   $t=[regex]::Replace($t,'(?im)^[ \t]*\*[^\r\n]*(?:transcript ASR|Option B|regenerate from|lập trực tiếp từ transcript|SKILL \.claude)[^\r\n]*\*[ \t]*\r?\n?','')
   $t
@@ -100,6 +100,27 @@ function StripInternal($t){
   $t=[regex]::Replace($t,'(?ms)(?<=\r?\n|^)## V\..*?(?=\r?\n## |\Z)','')
   # e7: bỏ TRỌN dòng italic (*...*) là footer changelog chứa keyword quy trình nội bộ
   $t=[regex]::Replace($t,'(?im)^[ \t]*\*[^\r\n]*(?:glossary|toss-glossary|OID-TOSS|SKILL \.claude|kế hoạch buổi tiếp theo)[^\r\n]*\*[ \t]*\r?\n?','')
+  # e8: bỏ mã OID tracking inline — [cần xác nhận/khảo sát — KS-xx], [SME-xx — ...], [KS-57 Đang xử lý], [Boeing...]
+  $t=[regex]::Replace($t,'[ \t]*\[cần (?:xác nhận|khảo sát)[^\]]*\]','')
+  $t=[regex]::Replace($t,'[ \t]*\[(?:SME|KS|HC|QĐ|DL)-\d+[^\]]*\]','')
+  $t=[regex]::Replace($t,'[ \t]*\[Boeing[^\]]*KS[^\]]*\]','')
+  # e9: bỏ ghi chú quy trình về transcript trong ngoặc đơn — "(... trong transcript)", "(khoảng xx:xx theo timestamp transcript)"
+  $t=[regex]::Replace($t,'[ \t]*\([^)]{0,120}trong transcript[^)]{0,120}\)','')
+  $t=[regex]::Replace($t,'[ \t]*\([^)]{0,80}theo timestamp transcript[^)]{0,80}\)','')
+  # e9b: bỏ ghi chú xác nhận nội bộ trong ngoặc — "(X = Y đã xác nhận.)", "(Airbus = FODM đã xác nhận.)"
+  $t=[regex]::Replace($t,'[ \t]*\([^()]{0,80}(?:đã xác nhận|còn mở|còn chờ)[^()]{0,80}\)','')
+  # e9c: bỏ cụm "tên trong transcript" inline — "chị X tên trong transcript được nhắc đến"
+  $t=[regex]::Replace($t,'[ \t]*tên trong transcript(?:[ \t]+được nhắc đến)?','')
+  # e10: bỏ TRỌN dòng §IV đã được chốt — "1. (**) Đã xác nhận: ...[SME-xx — Đã chốt...]"
+  $t=[regex]::Replace($t,'(?im)^[ \t]*\d+\.[ \t]*(?:~~[^~\r\n]*~~\s*)?(?:\*\*)?Đã xác nhận:[^\r\n]*\r?\n?','')
+  # e11: bỏ backtick pair rỗng còn sót sau khi e8 strip nội dung bên trong `[...]` — "`  `", "` `"
+  $t=[regex]::Replace($t,'`[ \t]*`','')
+  # e11b: bỏ backtick đơn lẻ (không có cặp) còn sót cuối dòng/sau strip
+  $t=[regex]::Replace($t,'[ \t]*`[ \t]*(?=\r?\n|$)','')
+  # e12: bỏ double/triple period do strip để lại — ".." hoặc ". ." → "."
+  $t=[regex]::Replace($t,'\.[ \t]*\.','.')
+  # e13: bỏ orphan "**" còn lại sau khi e8/e9 strip nội dung giữa bold markers
+  $t=[regex]::Replace($t,'\*\*[ \t]*\*\*','')
   $t
 }
 function Transform($p){ StripInternal (StripAsr (StripSlugs (StripMdTokens (CleanLinks (StripFrontmatter $p))))) }
@@ -145,6 +166,12 @@ $qc=[ordered]@{
   'no YAML key leak'                 = (([regex]'document_type:|source_template:|^project:\s*"').Matches($txt).Count -eq 0)
   'no ASR note leak (§0.0)'          = (([regex]'\bASR\b|đính chính|chép nhầm|lỗi nhận dạng').Matches($txt).Count -eq 0)
   'no internal note leak (§0.0)'     = (([regex]'Lưu ý nội bộ|domain-knowledge|glossary|OID-TOSS|sổ theo dõi điểm chốt|P\d+\s*d\.').Matches($txt).Count -eq 0)
+  'no OID code leak (§0.0)'          = (([regex]'\[cần (?:xác nhận|khảo sát)|\b(?:KS|SME|HC)-\d+\b').Matches($txt).Count -eq 0)
+  'no transcript process note (§0.0)'= (([regex]'trong transcript|theo timestamp transcript').Matches($txt).Count -eq 0)
+  'no residual backtick (§0.0)'      = (([regex]'`').Matches($txt).Count -eq 0)
+  'no AI phrase: Hai phía (§0.0)'    = (([regex]'Hai phía\s+(?:thảo luận|làm rõ|chia sẻ|nhận định|đề xuất|cho biết)').Matches($txt).Count -eq 0)
+  'no AI phrase: arrow in prose (§0.0)' = (([regex]'(?<!\bAMOS\b|\bTOSS\b|\be-FON\b)\s+→\s+(?!\bTOSS\b|\bAMOS\b|\be-FON\b|\bLido\b)').Matches($txt).Count -eq 0)
+  'no AI phrase: clichés (§0.0)'     = (([regex]'Cũng được đề cập|Logic kết nối|Định hướng thống nhất là|Điều này giúp').Matches($txt).Count -eq 0)
   'FONT = Times New Roman only (+Consolas code)' = (($theme -match 'minorFont[\s\S]*?Times New Roman') -and (([regex]'Aptos|Calibri|Cambria').Matches($styles+$theme).Count -eq 0) -and (-not $badFonts))
   'XML well-formed'                  = $true
 }

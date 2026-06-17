@@ -1,6 +1,8 @@
 ---
 name: export-word
 description: Xuất bộ tài liệu Markdown của dự án TOSS (SRS, Wireframe, BRD…) thành file Word .docx TỰ MÔ TẢ (không link .md nội bộ) và TRÌNH BÀY theo biểu mẫu chính thức Viettel QT02.BM.04 (Times New Roman, heading đen, bảng viền đen + header xám, logo + footer mã hiệu/số trang, mục lục tự động). Dùng khi người dùng muốn "xuất file Word", "đóng gói tài liệu giao khách hàng", "export docx", hoặc cần bản giao người (human-facing) từ các file .md nội bộ.
+metadata:
+  version: "1.0.0"
 ---
 
 # Skill: Xuất Word chuẩn Viettel QT02.BM.04
