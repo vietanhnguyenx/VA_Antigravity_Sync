@@ -1,7 +1,7 @@
 ﻿---
 project: "TOSS — Hệ thống Điều hành Khai thác Hãng Hàng không"
 author: "BA Lead"
-version: "0.14"
+version: "0.15"
 date: "2026-06-17"
 status: "Draft"
 document_type: "Sổ theo dõi Điểm cần chốt & Câu hỏi mở (Open Items & Decisions Register)"
@@ -80,6 +80,9 @@ document_id: "OID-TOSS-001"
 | SME-42 | **Sunweather** — tên đầy đủ và vai trò (được đánh giá "rủi ro/không ổn định") | BRD Khung §9.3; KS 11/06 §II.7 | Dispatcher / SME khí tượng | 🟢 Đã gộp | **17/06: Đã gộp vào SME-06 (trùng nội dung — cùng là Sunweather). Nguồn BRD Khung §9.3 đã bổ sung vào dòng nguồn của SME-06.** |
 | SME-43 | **"Phi Công 11"** — tên hệ thống tham khảo, không official | BRD Khung §9.3; KS 11/06 §II.7 | Dispatcher / SME khí tượng | 🟢 Đã gộp | **17/06: Đã gộp vào SME-07 (trùng hoàn toàn — cùng là "Phi Công 11"). Nguồn BRD Khung §9.3 đã bổ sung vào dòng nguồn của SME-07.** |
 | SME-44 | **Định dạng thứ ba MEL Airbus** (ngoài FrameMaker+IXP và FODM 10.8) — cần SME KTKTB xác nhận tên hệ thống/công cụ và lý do chọn | PH4 BR-425 | SME KTKTB / SME tài liệu kỹ thuật | 🔴 Mở | |
+| SME-45 | **Tên đầy đủ hệ thống "FOEM"** trong transcript 17/06 — ASR ghi nhiều dạng: "FOIE", "FOI", "FOEM", "FOM"; đây là hệ thống gì của VNA và tên chính xác? | KS 17/06 §1 | SME bên VNA | 🟢 Đã chốt | **17/06: e-FON (Electronic Flight Operations Notice — Thông báo Khai thác Bay Điện tử). BA Lead xác nhận. Glossary v0.16 đã cập nhật entry e-FON; entry FON cập nhật link.** |
+| SME-46 | **Danh sách MEL item "ảnh hưởng khai thác"** cần cảnh báo Dispatcher — số lượng, tiêu chí lọc, và file danh sách từ Nga (VNA) | KS 17/06 §3 | Nga (VNA maintenance) | 🔴 Mở | |
+| SME-47 | **Hệ thống DDMS** (Document & Data Management System) VNA đang nghiên cứu — tên đầy đủ, tiến độ, khả năng export MEL dạng số hóa và tích hợp TOSS về sau | KS 17/06 §4 | SME VNA / đội DDMS | 🔴 Mở | |
 
 ## C. Vấn đề nghiệp vụ cần làm rõ qua khảo sát (KS)
 
@@ -139,6 +142,11 @@ document_id: "OID-TOSS-001"
 | KS-52 | **Cơ chế đa phiên tham chiếu** từ hệ thống nước ngoài (multi-session theo vai trò) — TOSS có triển khai trong giai đoạn này hay không | KS 09/06 §IV.10 | Nội bộ + SME | 🔴 Mở | |
 | KS-53 | **Cơ chế ghi nhận lịch sử làm lại OFP sát giờ** — định danh, version, audit trail | KS 11/06 P1 §IV.4 | SME điều phái | 🔴 Mở | |
 | KS-54 | **Cảnh báo tổng quát tab Flight Release ("bên ngoài")** — nội dung + quy tắc hiển thị | KS 12/06 P1 §IV.2 | SME điều phái + UX | 🔴 Mở | |
+| KS-55 | **Cấu trúc DB AMOS cho MEL active**: bảng/trường nào lưu MEL item active, tàu áp dụng, trạng thái, và level tối đa AMOS kích hoạt (level 3 hay 4?) | KS 17/06 §2, §5 | Workshop AMOS/VICO | 🔴 Mở | |
+| KS-56 | **Cơ chế tích hợp AMOS → TOSS cho dữ liệu MEL active**: API realtime, polling (tần suất?), hay batch export? Format dữ liệu trao đổi? | KS 17/06 §1, §5 | Workshop AMOS/VICO | 🔴 Mở | |
+| KS-57 | **Format file MEL nhà sản xuất**: Boeing dùng "FILMATER" và Airbus dùng **FODM** (Flight Ops Documentation Manager) — tên phần mềm/format chính xác và khả năng parse/import tự động | KS 17/06 §4 | SME tài liệu kỹ thuật (Nga) | 🟡 Đang xử lý | **17/06: Airbus = FODM (Flight Ops Documentation Manager) — BA Lead xác nhận. Glossary v0.17 cập nhật.** Boeing "FILMATER" vẫn cần xác nhận tên chính xác. |
+| KS-58 | **Format Lido ePot** — mô tả chi tiết từng trường, kiểu dữ liệu, mapping sang MEL data TOSS; xin template từ VNA | KS 17/06 §4 | VNA (Nga) cung cấp template | 🔴 Mở | |
+| KS-59 | **Vấn đề "insert vs update" trong XML Lido ePot** — nguyên nhân và cách xử lý trong quy trình import MEL | KS 17/06 §4 | Workshop kỹ thuật Lido | 🔴 Mở | |
 
 ## D. Tham số/ngưỡng & mô hình dữ liệu chưa có nguồn (DL)
 
@@ -159,6 +167,7 @@ document_id: "OID-TOSS-001"
 | HC-01 | **Danh sách người dự + vai trò + thẩm quyền quyết định** từng bên (cập nhật STAKEHOLDER-REGISTER) | KS 08/06 §IV; KS 09/06 §IV | Mỗi buổi meeting | 🟡 Đang thu thập | |
 | HC-02 | **Tiến độ cấp hạ tầng đám mây** + chốt số máy chủ & địa chỉ mạng (ràng buộc 30/06/2026) | KS 08/06 §II.7, §IV | Phối hợp CĐS-CN | 🟡 Đang xử lý | |
 | HC-03 | **Lịch buổi khảo sát chuyên đề luồng tài liệu + điện văn ACARS** (gỡ chặn PH2) | KS 09/06 §II.3, §V; WF-TOSS-001 §9 | BA Lead lên lịch | 🔴 Mở | |
+| HC-04 | **Lịch buổi khảo sát riêng với team AMOS/VICO** để xác định cấu trúc DB AMOS phục vụ tích hợp MEL (đã thống nhất trong 17/06) | KS 17/06 §5 | BA Lead + VNA sắp xếp | 🔴 Mở | |
 
 ---
 
@@ -184,13 +193,15 @@ document_id: "OID-TOSS-001"
 | Nhóm | Tổng | 🔴 Mở | 🟡 Đang xử lý | 🟢 Đã chốt |
 |---|---|---|---|---|
 | A. Quyết định BA Lead (QĐ) | 7 | 7 | 0 | 0 |
-| B. Thuật ngữ/hệ thống (SME) | 44 | 40 | 1 | 3 (gồm 2 "Đã gộp" + 1 "Đã chốt") |
-| C. Nghiệp vụ-khảo sát (KS) | 54 | 52 | 2 | 0 |
+| B. Thuật ngữ/hệ thống (SME) | 47 | 42 | 1 | 4 (gồm 2 "Đã gộp" + 2 "Đã chốt") |
+| C. Nghiệp vụ-khảo sát (KS) | 59 | 56 | 3 | 0 |
 | D. Tham số/dữ liệu (DL) | 5 | 5 | 0 | 0 |
-| E. Hành chính/hạ tầng (HC) | 3 | 1 | 2 | 0 |
-| **Tổng** | **113** | **105** | **5** | **3** |
+| E. Hành chính/hạ tầng (HC) | 4 | 3 | 1 | 0 |
+| **Tổng** | **122** | **113** | **5** | **4** |
 
-> Cập nhật sau khi regenerate 5 báo cáo khảo sát (rà 2026-06-16): +4 SME (SME-38…41: pgepoid, Vasco+HT 30-31, take-off/wet weight, "quả đấy dầu"/"anh Ngọt") và +11 KS (KS-44…54: SITA điện văn bổ sung, môi trường kiểm thử, BackPACK RPA, FMS thay thế, 4 KPI OTP/OSP, retention theo loại tài liệu, luồng thủ công ANABS, định dạng dữ liệu VIP, multi-session, lịch sử OFP sát giờ, cảnh báo tab Flight Release "bên ngoài"). SME-09 cập nhật chú thích ASR "ANABS/ANABIOS". Không có điểm nào được đóng trong đợt này (§IV chỉ liệt kê câu hỏi, không kèm kết quả). Tổng 109 điểm (103 Mở / 5 Đang xử lý / 1 Đã chốt).
+> Cập nhật sau khi regenerate 5 báo cáo khảo sát (rà 2026-06-16): +4 SME (SME-38…41: pgepoid, Vasco+HT 30-31, take-off/wet weight, "quả đấy dầu"/"anh Ngọt") và +11 KS (KS-44…54: SITA điện văn bổ sung, môi trường kiểm thử, BackPACK RPA, FMS thay thế, 4 KPI OTP/OSP, retention theo loại tài liệu, luồng thủ công ANABS, định dạng dữ liệu VIP, multi-session, lịch sử OFP sát giờ, cảnh báo tab Flight Release "bên ngoài"). SME-09 cập nhật chú thích ASR "ANABS/ANABIOS". Tổng 109 điểm sau 2026-06-16 (103 Mở / 5 Đang xử lý / 1 Đã chốt).
+>
+> **Cập nhật 2026-06-17 (sau KS MEL/CDL buổi 17/06):** +3 SME (SME-45: tên hệ thống FOEM; SME-46: danh sách MEL item ảnh hưởng khai thác; SME-47: DDMS), +5 KS (KS-55: cấu trúc DB AMOS MEL; KS-56: cơ chế tích hợp AMOS→TOSS; KS-57: format file MEL nhà sản xuất; KS-58: Lido ePot mapping; KS-59: XML insert/update), +1 HC (HC-04: lịch buổi khảo sát AMOS/VICO). **Đóng SME-45** (e-FON = Electronic Flight Operations Notice — BA Lead xác nhận 17/06). Tổng 122 điểm (114 Mở / 4 Đang xử lý / 4 Đã chốt).
 
 > Đính chính ASR 12/06: **SME-02 (Lotang) → 🟢 Đã chốt = NOTAM** (lỗi ASR; không có "chuyến Lotang"). Điểm 🟢 đầu tiên của sổ.
 
