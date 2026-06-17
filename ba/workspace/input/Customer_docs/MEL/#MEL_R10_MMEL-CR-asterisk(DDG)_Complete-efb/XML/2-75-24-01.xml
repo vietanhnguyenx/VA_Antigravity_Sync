@@ -1,0 +1,490 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM">]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.2-75-24-01.9803.2-75-24-01" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="75" superSectionNumber="2" sectionName="MEL" chapterName="Bleed Air" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2025-09-30" rev:revStatus="R" rev:revNumber="10" />
+</PUMetaData>
+<MELItem itemNbr="75-24-01" id="X-BOEING:FTID:81205.787.DDG.CU.MEL.2-75-24-01.1.2-75-24-01">
+<Title>Turbine Case Cooling Air Flow Systems (GE)</Title>
+<MELSubItem itemNbr="75-24-01-01">
+<Title>
+<?FTID-xref 1288310.2-75-24-01?>HPTACC Valves</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="2" nbrRequired="0" maintIndicator="(M)" opsIndicator="(O)">
+<DispatchConditionRemarks>
+<Para>May be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Inoperative HPTACC valve is locked in the closed position.</Para>
+</ListItem>
+<ListItem>
+<Para>Associated engine CCC valve is locked in the open position.</Para>
+</ListItem>
+<ListItem>
+<Para>Associated engine LPTACC valve operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Both EECs operate in the normal mode.</Para>
+</ListItem>
+<ListItem>
+<Para>Appropriate takeoff thrust settings are applied.</Para>
+</ListItem>
+<ListItem>
+<Para>Appropriate performance adjustments are applied.</Para>
+</ListItem>
+</List>
+<?FTID-rev deleted highlight="Delete Note"?>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Lock the inoperative HPTACC valve in the closed position and the associated engine Core Compartment Cooling (CCC) valve open (AMM DDG 75-24-01).</Para>
+<List listType="1.">
+<ListItem>
+<Para>Retract and deactivate the leading edge slats.</Para>
+</ListItem>
+<ListItem>
+<Para>Deactivate the associated engine thrust reverser for ground maintenance.</Para>
+</ListItem>
+<ListItem>
+<Para>Gain access to the HPTACC valve.</Para>
+</ListItem>
+<ListItem>
+<Para>Lock the inoperative HPTACC valve in the closed position.</Para>
+</ListItem>
+<ListItem>
+<Para>Gain access to the associated CCC valve.</Para>
+</ListItem>
+<ListItem>
+<Para>Lock the associated CCC valve in the open position.</Para>
+</ListItem>
+<ListItem>
+<Para>Activate the associated engine thrust reverser after ground maintenance.</Para>
+</ListItem>
+<ListItem>
+<Para>Activate the leading edge slats.</Para>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+<OperationProcedure rev:revStatus="R" rev:revHighlight="Updated performance penalty with additional procedural restriction to mitigate potential EGT exceedance events">
+<?FTID-rev start?>
+<List listType="1.">
+<ListItem>
+<Effectivities>
+<Effectivity>For 787-9:</Effectivity>
+</Effectivities>
+</ListItem>
+<ListItem>
+<Para>Reduce performance limited weights as follows:</Para>
+<table frame="all">
+<tgroup cols="4" colsep="1">
+<colspec colname="1" colwidth="25%" />
+<colspec colname="2" colwidth="25%" />
+<colspec colname="3" colwidth="25%" />
+<colspec colname="4" colwidth="25%" />
+<thead>
+<row rowsep="1">
+<entry colname="1">
+<Para>
+<Emphasis txtStyle="bold">Takeoff Field Length, Climb, and Obstacle Clearance </Emphasis>
+</Para>
+</entry>
+<entry colname="2">
+<Para>
+<Emphasis txtStyle="bold">Takeoff Fuel-Jettison </Emphasis>
+</Para>
+</entry>
+<entry colname="3">
+<Para>
+<Emphasis txtStyle="bold">Approach &amp; Landing Climb</Emphasis>
+</Para>
+</entry>
+<entry colname="4">
+<Para>
+<Emphasis txtStyle="bold">Enroute 
+Climb</Emphasis>
+</Para>
+</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep="0">
+<entry colname="1">
+<Para align="center" />
+</entry>
+<entry colname="2">
+<Para align="center" />
+</entry>
+<entry colname="3">
+<Para align="center" />
+</entry>
+<entry colname="4">
+<Para align="center" />
+</entry>
+</row>
+</tbody>
+</tgroup>
+<tgroup cols="4" colsep="1">
+<tbody>
+<row rowsep="0">
+<entry colname="1">
+<Para align="center">4,500 lb        (2,041 kg)</Para>
+</entry>
+<entry colname="2">
+<Para align="center">11,300 lb     (5,126 kg)</Para>
+</entry>
+<entry colname="3">
+<Para align="center">11,300 lb     (5,126 kg)</Para>
+</entry>
+<entry colname="4">
+<Para align="center">11,600 lb     (5,262 kg)</Para>
+</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+<Note>
+<Para>The enroute climb weight penalties are based on single engine operating speeds that approximate maximum lift-to-drag ratio speed.  To account for the difference in level-off altitude when operating at other speeds, multiply the enroute climb weight penalty listed above by the appropriate factor listed on page 3.00-01-00.2 in the ENROUTE DIVERSION SPEED EFFECTS paragraph.</Para>
+</Note>
+</ListItem>
+<ListItem>
+<Para>Increase flight planning fuel by either using a fuel flow correction factor of 1.3% or increase the flight planning fuel by 1.7% for each inoperative valve.</Para>
+</ListItem>
+<ListItem>
+<Para>Full rated takeoff thrust is not allowed. Reduce full rated takeoff thrust by using either derated takeoff thrust of 3% or more, or reducing thrust with an assumed temperature of the greater of 6 degree C above OAT or 6 degree C above the thrust break temperature.</Para>
+</ListItem>
+<ListItem>
+<Para>Reduce the all-engine, thrust limited maximum altitude by 2,600 feet to protect EGT margins.</Para>
+</ListItem>
+</List>
+<List listType="1.">
+<Effectivities>
+<Effectivity>For 787-10:</Effectivity>
+</Effectivities>
+<ListItem>
+<Para>Reduce performance limited weights as follows:</Para>
+<table frame="all">
+<tgroup cols="4" colsep="1">
+<colspec colname="1" colwidth="25%" />
+<colspec colname="2" colwidth="25%" />
+<colspec colname="3" colwidth="25%" />
+<colspec colname="4" colwidth="25%" />
+<thead>
+<row rowsep="1">
+<entry colname="1">
+<Para>
+<Emphasis txtStyle="bold">Takeoff Field Length, Climb, and Obstacle Clearance </Emphasis>
+</Para>
+</entry>
+<entry colname="2">
+<Para>
+<Emphasis txtStyle="bold">Takeoff Fuel-Jettison </Emphasis>
+</Para>
+</entry>
+<entry colname="3">
+<Para>
+<Emphasis txtStyle="bold">Approach &amp; Landing Climb</Emphasis>
+</Para>
+</entry>
+<entry colname="4">
+<Para>
+<Emphasis txtStyle="bold">Enroute 
+Climb</Emphasis>
+</Para>
+</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep="0">
+<entry colname="1">
+<Para align="center" />
+</entry>
+<entry colname="2">
+<Para align="center" />
+</entry>
+<entry colname="3">
+<Para align="center" />
+</entry>
+<entry colname="4">
+<Para align="center" />
+</entry>
+</row>
+</tbody>
+</tgroup>
+<tgroup cols="4" colsep="1">
+<tbody>
+<row rowsep="0">
+<entry colname="1">
+<Para align="center">4,700 lb        (2,132 kg)</Para>
+</entry>
+<entry colname="2">
+<Para align="center">11,800 lb     (5,352 kg)</Para>
+</entry>
+<entry colname="3">
+<Para align="center">11,800 lb     (5,352 kg)</Para>
+</entry>
+<entry colname="4">
+<Para align="center">11,400 lb     (5,171 kg)</Para>
+</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+<Note>
+<Para>The enroute climb weight penalties are based on single engine operating speeds that approximate maximum lift-to-drag ratio speed.  To account for the difference in level-off altitude when operating at other speeds, multiply the enroute climb weight penalty listed above by the appropriate factor listed on page 3.00-01-00.2 in the ENROUTE DIVERSION SPEED EFFECTS paragraph.</Para>
+</Note>
+</ListItem>
+<ListItem>
+<Para>Increase flight planning fuel by either using a fuel flow correction factor of 1.3% or increase the flight planning fuel by 1.6% for each inoperative valve.</Para>
+</ListItem>
+<ListItem>
+<Para>Full rated takeoff thrust is not allowed. Reduce full rated takeoff thrust by using either derated takeoff thrust of 3% or more, or reducing thrust with an assumed temperature of the greater of 6 degree C above OAT or 6 degree C above the thrust break temperature.</Para>
+</ListItem>
+<ListItem>
+<Para>Reduce the all-engine, thrust-limited maximum altitude by 4,700 feet to protect EGT margins.</Para>
+</ListItem>
+</List>
+<?FTID-rev end?>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="75-24-01-02">
+<Title>
+<?FTID-xref 1288161.2-75-24-01?>LPTACC Valves</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="2" nbrRequired="0" maintIndicator="(M)" opsIndicator="(O)">
+<DispatchConditionRemarks>
+<Para>May be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Inoperative LPTACC valve is locked in the closed position.</Para>
+</ListItem>
+<ListItem>
+<Para>Associated engine CCC valve is locked in the open position.</Para>
+</ListItem>
+<ListItem>
+<Para>Associated engine HPTACC valve operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Both EECs operate in the normal mode.</Para>
+</ListItem>
+<ListItem>
+<Para>Appropriate takeoff thrust settings are applied.</Para>
+</ListItem>
+<ListItem>
+<Para>Appropriate performance adjustments are applied.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Lock the inoperative LPTACC valve in the closed position and lock the associated engine Core Compartment Cooling (CCC) valve open (AMM DDG 75-24-01).</Para>
+<List listType="1.">
+<ListItem>
+<Para>Retract and deactivate the leading edge slats.</Para>
+</ListItem>
+<ListItem>
+<Para>Deactivate the associated engine thrust reverser for ground maintenance.</Para>
+</ListItem>
+<ListItem>
+<Para>Gain access to the LPTACC valve.</Para>
+</ListItem>
+<ListItem>
+<Para>Lock the inoperative LPTACC valve in the closed position.</Para>
+</ListItem>
+<ListItem>
+<Para>Gain access to the associated CCC valve.</Para>
+</ListItem>
+<ListItem>
+<Para>Lock the associated CCC valve in the open position.</Para>
+</ListItem>
+<ListItem>
+<Para>Activate the associated engine thrust reverser after ground maintenance.</Para>
+</ListItem>
+<ListItem>
+<Para>Activate the leading edge slats.</Para>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+<OperationProcedure rev:revStatus="R" rev:revHighlight="Updated performance penalty with additional procedural restriction to mitigate potential EGT exceedance events">
+<?FTID-rev start?>
+<List listType="1.">
+<ListItem>
+<Effectivities>
+<Effectivity>For 787-9:</Effectivity>
+</Effectivities>
+</ListItem>
+<ListItem>
+<Para>Use OPT to determine performance weight without impacted MEL (do not select impacted MEL in OPT)</Para>
+</ListItem>
+<ListItem>
+<Para>Then directly reduce performance limited weights as follows:</Para>
+<table frame="all">
+<tgroup cols="4" colsep="1">
+<colspec colname="1" colwidth="25%" />
+<colspec colname="2" colwidth="25%" />
+<colspec colname="3" colwidth="25%" />
+<colspec colname="4" colwidth="25%" />
+<thead>
+<row rowsep="1">
+<entry colname="1">
+<Para>
+<Emphasis txtStyle="bold">Takeoff Field
+Length, Climb,
+and Obstacle
+Clearance</Emphasis>
+</Para>
+</entry>
+<entry colname="2">
+<Para>
+<Emphasis txtStyle="bold">Takeoff
+Fuel-Jettison</Emphasis>
+</Para>
+</entry>
+<entry colname="3">
+<Para>
+<Emphasis txtStyle="bold">Approach &amp;
+Landing Climb</Emphasis>
+</Para>
+</entry>
+<entry colname="4">
+<Para>
+<Emphasis txtStyle="bold">Enroute
+Climb</Emphasis>
+</Para>
+</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep="0">
+<entry colname="1">
+<Para align="center">4,500 lb
+(2,041 kg)</Para>
+</entry>
+<entry colname="2">
+<Para align="center">5,200 lb
+(2,359 kg)</Para>
+</entry>
+<entry colname="3">
+<Para align="center">5,200 lb
+(2,359 kg)</Para>
+</entry>
+<entry colname="4">
+<Para>2,100 lb
+(953 kg)</Para>
+</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+<Note>
+<Para>The enroute climb weight penalties are based on single engine operating speeds that approximate maximum lift-to-drag ratio speed. To account for the difference in level-off altitude when operating at other speeds, multiply the enroute climb weight penalty listed above by the appropriate factor
+listed on page 3.00-01-00.2 in the ENROUTE DIVERSION SPEED EFFECTS paragraph. </Para>
+</Note>
+</ListItem>
+<ListItem>
+<Para>Increase flight planning fuel by either using a fuel flow correction factor of 0.6% or increase the flight planning fuel by 0.8% for each inoperative valve.</Para>
+</ListItem>
+<ListItem>
+<Para>For ETOPS flight planning, increase engine inoperative Critical Fuel Reserves by 1.1%</Para>
+</ListItem>
+<ListItem>
+<Para>Full rated takeoff thrust is not allowed. Reduce full rated takeoff thrust by using either derated takeoff thrust of 2% or more, or reducing thrust with an assumed temperature of the greater of 6 degree C above OAT or 6 degree C above the thrust break temperature.</Para>
+</ListItem>
+</List>
+<List listType="1.">
+<Effectivities>
+<Effectivity>For 787-10:</Effectivity>
+</Effectivities>
+<ListItem>
+<Para>Reduce performance limited weights as follows:</Para>
+<table frame="all">
+<tgroup cols="4" colsep="1">
+<colspec colname="1" colwidth="25%" />
+<colspec colname="2" colwidth="25%" />
+<colspec colname="3" colwidth="25%" />
+<colspec colname="4" colwidth="25%" />
+<thead>
+<row rowsep="1">
+<entry colname="1">
+<Para>
+<Emphasis txtStyle="bold">Takeoff Field Length, Climb, and Obstacle Clearance </Emphasis>
+</Para>
+</entry>
+<entry colname="2">
+<Para>
+<Emphasis txtStyle="bold">Takeoff Fuel-Jettison </Emphasis>
+</Para>
+</entry>
+<entry colname="3">
+<Para>
+<Emphasis txtStyle="bold">Approach &amp; Landing Climb</Emphasis>
+</Para>
+</entry>
+<entry colname="4">
+<Para>
+<Emphasis txtStyle="bold">Enroute 
+Climb</Emphasis>
+</Para>
+</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep="0">
+<entry colname="1">
+<Para align="center" />
+</entry>
+<entry colname="2">
+<Para align="center" />
+</entry>
+<entry colname="3">
+<Para align="center" />
+</entry>
+<entry colname="4">
+<Para align="center" />
+</entry>
+</row>
+</tbody>
+</tgroup>
+<tgroup cols="4" colsep="1">
+<tbody>
+<row rowsep="0">
+<entry colname="1">
+<Para align="center">4,700 lb        (2,132 kg)</Para>
+</entry>
+<entry colname="2">
+<Para align="center">5,500 lb         (2,495 kg)</Para>
+</entry>
+<entry colname="3">
+<Para align="center">5,500 lb        (2,495 kg)</Para>
+</entry>
+<entry colname="4">
+<Para align="center">2,100 lb           (953 kg)</Para>
+</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+<Note>
+<Para>The enroute climb weight penalties are based on single engine operating speeds that approximate maximum lift-to-drag ratio speed.  To account for the difference in level-off altitude when operating at other speeds, multiply the enroute climb weight penalty listed above by the appropriate factor listed on page 3.00-01-00.2 in the ENROUTE DIVERSION SPEED EFFECTS paragraph.</Para>
+</Note>
+</ListItem>
+<ListItem>
+<Para>Increase flight planning fuel by either using a fuel flow correction factor of 0.6% or increase the flight planning fuel by 0.7% for each inoperative valve.</Para>
+</ListItem>
+<ListItem>
+<Para>For ETOPS flight planning, increase engine inoperative Critical Fuel Reserves by 1.1%.</Para>
+</ListItem>
+<ListItem>
+<Para>Full rated takeoff thrust is not allowed. Reduce full rated takeoff thrust by using either derated takeoff thrust of 2% or more, or reducing thrust with an assumed temperature of the greater of 6 degree C above OAT or 6 degree C above the thrust break temperature.</Para>
+</ListItem>
+</List>
+<?FTID-rev end?>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+</MELItem>
+</DispatchItems>

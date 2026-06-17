@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM">]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.2-27-41-03.975.2-27-41-03_FAA" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="27" superSectionNumber="2" sectionName="MEL" chapterName="Flight Controls" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2024-06-19" rev:revStatus="U" rev:revNumber="10" />
+</PUMetaData>
+<MELItem itemNbr="27-41-03" id="X-BOEING:FTID:81205.787.DDG.CU.MEL.2-27-41-03.1.2-27-41-03_FAA">
+<Title>Stabilizer Control Channels</Title>
+<DispatchCondition repairInterval="A" nbrInstalled="2" nbrRequired="1" maintIndicator="(M)">
+<DispatchConditionRemarks>
+<Para>One may be inoperative provided: </Para>
+<List listType="a.">
+<ListItem>
+<Para>Inoperative channel is deactivated.</Para>
+</ListItem>
+<ListItem>
+<Para>Repairs are made within 10 flights.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Deactivate the inoperative stabilizer control channel (AMM DDG 27-41-03).</Para>
+<List listType="1.">
+<ListItem>
+<Para>For L2 stabilizer control channel inoperative, deactivate L2 channel: </Para>
+<List listType="A.">
+<ListItem>
+<Para>Using a flight deck multi-function display only, open circuit breaker ELECT STAB-L and lock with an INOP tag.</Para>
+</ListItem>
+<ListItem>
+<Para>Gain access to the horizontal stabilizer trim actuator (HSTA).</Para>
+</ListItem>
+<ListItem>
+<Para>Disconnect, cap, and stow the 235 VAC electrical connector for the L2 electronic motor control unit (EMCU).</Para>
+</ListItem>
+<ListItem>
+<Para>If the L2 STAB BRK RELEASE indication on FLIGHT CONTROL maintenance page 3 is NO, removal of the associated motor / brake assembly is not required.</Para>
+</ListItem>
+<ListItem>
+<Para>If the L2 STAB BRK RELEASE indication on FLIGHT CONTROL maintenance page 3 is YES, remove the associated motor / brake assembly and install dispatch tool K27048.</Para>
+</ListItem>
+</List>
+<Note>
+<Para>If the L2 STAB BRK RELEASE indication on FLIGHT CONTROL maintenance page 3 is blank, existing Flight Controls electronics faults must be resolved until either a YES or NO is displayed.</Para>
+</Note>
+</ListItem>
+<ListItem>
+<Para>For R2 stabilizer control channel inoperative, deactivate R2 channel: </Para>
+<List listType="A.">
+<ListItem>
+<Para>Using a flight deck multi-function display only, open circuit breaker ELECT STAB-R and lock with an INOP tag.</Para>
+</ListItem>
+<ListItem>
+<Para>Gain access to the horizontal stabilizer trim actuator (HSTA).</Para>
+</ListItem>
+<ListItem>
+<Para>Disconnect, cap, and stow the 235 VAC electrical connector for the R2 electronic motor control unit (EMCU).</Para>
+</ListItem>
+<ListItem>
+<Para>If the R2 STAB BRK RELEASE indication on FLIGHT CONTROL maintenance page 3 is NO, removal of the associated motor / brake assembly is not required.</Para>
+</ListItem>
+<ListItem>
+<Para>If the R2 STAB BRK RELEASE indication on FLIGHT CONTROL maintenance page 3 is YES, remove the associated motor / brake assembly and install dispatch tool K27048.</Para>
+</ListItem>
+</List>
+<Note>
+<Para>If the R2 STAB BRK RELEASE indication on FLIGHT CONTROL maintenance page 3 is blank, existing Flight Controls electronics faults must be resolved until either a YES or NO is displayed.</Para>
+</Note>
+</ListItem>
+<ListItem>
+<Para>Confirm the STABILIZER SYS status message is not displayed.</Para>
+</ListItem>
+<ListItem>
+<Para>Verify remaining stabilizer channel operates normally.</Para>
+<List listType="A.">
+<ListItem>
+<Para>From either control wheel trim switch, trim in either direction and confirm stabilizer movement on the EICAS stabilizer position indication.  Stabilizer will move at half the normal rate.</Para>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+<OperationNote>
+<List listType="1.">
+<ListItem>
+<Para>The STABILIZER L2 or STABILIZER R2 advisory message will be displayed</Para>
+</ListItem>
+<ListItem>
+<Para>Stabilizer will move at half the normal rate.</Para>
+</ListItem>
+</List>
+</OperationNote>
+</DispatchProcedure>
+</DispatchCondition>
+</MELItem>
+</DispatchItems>

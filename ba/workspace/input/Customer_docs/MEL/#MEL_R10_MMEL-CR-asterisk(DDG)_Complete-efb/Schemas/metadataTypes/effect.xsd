@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://www.boeing.com/FTID-ML"
+    xmlns:rev="http://www.boeing.com/FTID-ML/Revision"
+    targetNamespace="http://www.boeing.com/FTID-ML" 
+    elementFormDefault="qualified" 
+    attributeFormDefault="unqualified"
+    version="FTID 2.8">
+
+<!-- 	
+=================================================================
+
+
+Copyright Information:
+      Boeing Proprietary and Confidential - 
+      All Rights Reserved since 2006.
+
+      This schema file is part of the Boeing Flight Technical 
+      Integrated Data (FTID) Specification based on XML.
+      All rights are reserved under Boeing Flight Operations 
+      digital data entitlements, products or services.
+
+     
+Contact Information:   	
+        The Boeing Company
+        Flight Operations Support
+        P.O. Box 3707	MS 20-89
+        Seattle, WA 98124-2207
+        USA
+        email:  flighttraining@Boeing.com
+        Phone:  (206) 662-4000
+        Fax:    (206) 662-4743
+
+		
+===================================================================
+-->
+
+<xs:include schemaLocation="../attributeTypes/generalAttrs.xsd"/>
+<xs:import namespace="http://www.boeing.com/FTID-ML/Revision" schemaLocation="../metadataTypes/revision.xsd"/>
+<xs:include schemaLocation="../basicDataTypes/basicDataInclude.xsd"/>
+
+
+<!--=====================================================-->
+<!-- Effectivities element definition -->
+<!--=====================================================-->
+<xs:complexType name="EffectivitiesType">
+    <xs:annotation>
+        <xs:documentation>Container to store effectivity information</xs:documentation>
+    </xs:annotation>
+
+    <xs:choice maxOccurs="unbounded">
+        <xs:element name="Effectivity" type="EffectivityType"/>
+        <xs:element name="EffectivitywSB" type="EffectivitywSBType"/>
+    </xs:choice>
+
+    <xs:attributeGroup ref="globalAttrGrp"/>
+</xs:complexType>
+
+
+<!--=====================================================-->
+<!-- Effectivity element definition -->
+<!--=====================================================-->
+<xs:complexType name="EffectivityType" mixed="true">
+    <xs:annotation>
+        <xs:documentation>Specify airplane effectivity</xs:documentation>
+    </xs:annotation>
+
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Emphasis" type="EmphasisType"/>
+    </xs:choice>
+        
+    <xs:attribute name="effectAirplaneList" type="AirplaneListType" use="optional"/>
+    <xs:attribute name="effectCondition" type="effectConditionType" use="optional"/>
+    <xs:attribute name="effectIcon" type="graphicEntityType" use="optional"/>
+    <xs:attributeGroup ref="globalAttrGrp"/>
+</xs:complexType>
+
+
+<!--=====================================================-->
+<!-- EffectivitywSB element definition -->
+<!--=====================================================-->
+<xs:complexType name="EffectivitywSBType" mixed="true">
+    <xs:annotation>
+        <xs:documentation>Specify airplane effectity where Service Bulletin(s) is involved</xs:documentation>
+    </xs:annotation>
+
+    <xs:sequence>
+        <xs:element name="EffectSB" type="EffectSBType" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+
+    <xs:attribute name="effectAirplaneList" type="AirplaneListType" use="optional"/>
+    <xs:attribute name="effectCondition" type="effectConditionType" use="optional"/>
+    <xs:attributeGroup ref="globalAttrGrp"/>
+</xs:complexType>
+
+
+<!--=====================================================-->
+<!-- EffectSB element definition -->
+<!--=====================================================-->
+<xs:complexType name="EffectSBType">
+    <xs:annotation>
+        <xs:documentation>Info on the effective Service Bulletin</xs:documentation>
+    </xs:annotation>
+
+    <xs:attribute name="effectSBNbr" type="effectSBNbrType"/>
+    <xs:attribute name="effectSBName" type="effectSBNameType"/>
+    <xs:attribute name="effectSBDate" type="effectSBDateType"/>
+    <xs:attribute name="effectSBStatus" type="effectSBStatusType"/>
+</xs:complexType>
+
+
+<!--=====================================================-->
+<!-- AirplaneList attribute definition -->
+<!--=====================================================-->
+<xs:simpleType name="AirplaneListType">
+    <xs:annotation>
+        <xs:documentation>List of airplane tab-number(s) that is effected.</xs:documentation>
+    </xs:annotation>
+
+    <xs:restriction base="xs:string">
+    </xs:restriction>
+</xs:simpleType>
+
+
+<!--=====================================================-->
+<!-- effectCondition attribute definition -->
+<!--=====================================================-->
+<xs:simpleType name="effectConditionType">
+    <xs:annotation>
+        <xs:documentation>Technical information on the condition of the effectivity</xs:documentation>
+    </xs:annotation>
+
+    <xs:restriction base="xs:string">
+    </xs:restriction>
+</xs:simpleType>
+
+
+<!--=====================================================-->
+<!-- effectSBNbr attribute definition -->
+<!--=====================================================-->
+<xs:simpleType name="effectSBNbrType">
+    <xs:annotation>
+        <xs:documentation>SB Number</xs:documentation>
+    </xs:annotation>
+
+    <xs:restriction base="xs:string">
+    </xs:restriction>
+</xs:simpleType>
+
+<!--=====================================================-->
+<!-- effectSBName attribute definition -->
+<!--=====================================================-->
+<xs:simpleType name="effectSBNameType">
+    <xs:annotation>
+        <xs:documentation>SB Name</xs:documentation>
+    </xs:annotation>
+
+    <xs:restriction base="xs:string">
+    </xs:restriction>
+</xs:simpleType>
+
+
+<!--=====================================================-->
+<!-- effectSBDate attribute definition -->
+<!--=====================================================-->
+<xs:simpleType name="effectSBDateType">
+    <xs:annotation>
+        <xs:documentation>SB Date</xs:documentation>
+    </xs:annotation>
+
+    <xs:restriction base="xs:date">
+    </xs:restriction>
+</xs:simpleType>
+
+<!--=====================================================-->
+<!-- effectSBStatus attribute definition -->
+<!--=====================================================-->
+<xs:simpleType name="effectSBStatusType">
+    <xs:annotation>
+        <xs:documentation>SB Status</xs:documentation>
+    </xs:annotation>
+
+    <xs:restriction base="xs:string">
+    </xs:restriction>
+</xs:simpleType>
+
+
+</xs:schema>
+

@@ -1,0 +1,414 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM">]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.2-49-15-01.22993.2-49-15-01" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="49" superSectionNumber="2" sectionName="MEL" chapterName="Airborne Auxiliary Power" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2024-06-19" rev:revStatus="U" rev:revNumber="10" />
+</PUMetaData>
+<MELItem itemNbr="49-15-01" id="X-BOEING:FTID:81205.787.DDG.CU.MEL.2-49-15-01.1.2-49-15-01">
+<Title>APU Air Inlet Door Actuation System</Title>
+<DispatchCondition dispCondOptions="A" repairInterval="C" nbrInstalled="1" nbrRequired="0" opsIndicator="(O)">
+<Title>APU Not Required For Flight</Title>
+<DispatchConditionRemarks>
+<Para>May be inoperative with door in any position provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Left AGCU operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>VFSG systems operate normally.</Para>
+</ListItem>
+<ListItem>
+<Para>EDTO beyond 180 minutes is not conducted.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceNote>
+<Para>A VFSG system is considered to be operating normally if its associated status message (ELEC GEN SYS L1, L2, R1 or R2) is not displayed.</Para>
+</MaintenanceNote>
+<OperationProcedure>
+<List listType="1.">
+<ListItem>
+<Para>Reduce performance limited weights as follows for APU inlet door not closed with APU not running:</Para>
+<table frame="all">
+<Effectivities>
+<Effectivity>For 787-9 (VN-A861, VN-A862, VN-A863, VN-A864,
+VN-A865, VN-A866, VN-A867, VN-A868, VN-A869, VN-A870, VN-A871):</Effectivity>
+</Effectivities>
+<tgroup cols="3" colsep="1">
+<colspec colname="1" colwidth="31%" />
+<colspec colname="2" colwidth="31%" />
+<colspec colname="3" colwidth="38%" />
+<thead>
+<row rowsep="1">
+<entry colname="1">
+<Para>
+<Emphasis txtStyle="bold">Takeoff </Emphasis>
+</Para>
+</entry>
+<entry colname="2">
+<Para>
+<Emphasis txtStyle="bold">Approach &amp; Landing Climb</Emphasis>
+</Para>
+</entry>
+<entry colname="3">
+<Para>
+<Emphasis txtStyle="bold">Enroute 
+Climb</Emphasis>
+</Para>
+</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep="0">
+<entry colname="1">
+<Para />
+</entry>
+<entry colname="2">
+<Para />
+</entry>
+<entry colname="3">
+<Para />
+</entry>
+</row>
+</tbody>
+</tgroup>
+<tgroup cols="3" colsep="1">
+<tbody>
+<row rowsep="0">
+<entry colname="1">
+<Para align="center">5,500 lb (2,495 kg)</Para>
+</entry>
+<entry colname="2">
+<Para align="center">1,200 (544 kg)</Para>
+</entry>
+<entry colname="3">
+<Para align="center">4,600 lb (2,087 kg)</Para>
+</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+<table frame="all">
+<Effectivities>
+<Effectivity>For 787-10 (VN-A872, VN-A873, VN-A874, VN-A877,
+VN-A878, VN-A879):</Effectivity>
+</Effectivities>
+<tgroup cols="3" colsep="1">
+<colspec colname="1" colwidth="31%" />
+<colspec colname="2" colwidth="31%" />
+<colspec colname="3" colwidth="38%" />
+<thead>
+<row rowsep="1">
+<entry colname="1">
+<Para>
+<Emphasis txtStyle="bold">Takeoff</Emphasis>
+</Para>
+</entry>
+<entry colname="2">
+<Para>
+<Emphasis txtStyle="bold">Approach &amp; Landing Climb</Emphasis>
+</Para>
+</entry>
+<entry colname="3">
+<Para>
+<Emphasis txtStyle="bold">Enroute 
+Climb</Emphasis>
+</Para>
+</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep="0">
+<entry colname="1">
+<Para />
+</entry>
+<entry colname="2">
+<Para />
+</entry>
+<entry colname="3">
+<Para />
+</entry>
+</row>
+</tbody>
+</tgroup>
+<tgroup cols="3" colsep="1">
+<tbody>
+<row rowsep="0">
+<entry colname="1">
+<Para align="center">5,500 lb (2,495 kg)</Para>
+</entry>
+<entry colname="2">
+<Para align="center">1,200 lb (544 kg)</Para>
+</entry>
+<entry colname="3">
+<Para align="center">4,400 lb (1,996 kg)</Para>
+</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+<Note>
+<Para>The enroute climb weight penalties are based on single engine operating speeds that approximate maximum lift-to-drag ratio speed.  To account for the difference in level-off altitude when operating at other speeds, multiply the enroute climb weight penalty listed above by the appropriate factor listed on page 3.00-01-00.2 in the ENROUTE DIVERSION SPEED EFFECTS paragraph.</Para>
+</Note>
+</ListItem>
+<ListItem>
+<Para>For APU inlet door not closed with APU not running, increase flight planning fuel by either using an airplane drag correction factor of 2.5% or increase the flight planning fuel by 2.9%.</Para>
+</ListItem>
+<ListItem>
+<Para>Flight must remain within 180 minutes of landing at a suitable airport.</Para>
+</ListItem>
+<ListItem>
+<Para>Start the first engine using the Ground Power Engine Start Supplementary Procedure.</Para>
+</ListItem>
+</List>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+<DispatchCondition dispCondOptions="B" repairInterval="C" nbrInstalled="1" nbrRequired="0" maintIndicator="(M)" opsIndicator="(O)">
+<Title>APU Available</Title>
+<DispatchConditionRemarks>
+<Para>May be inoperative provided door is deactivated in the inflight open position.</Para>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Manually position and deactivate the door in the inflight open position (AMM DDG 49-15-01).</Para>
+<List listType="1.">
+<ListItem>
+<Para>Set P5 panel APU selector OFF.</Para>
+</ListItem>
+<ListItem>
+<Para>Open the P49 panel APUC-1 circuit breaker.</Para>
+</ListItem>
+<ListItem>
+<Para>Open the P300 panel FIRE EXT BOTTLE-APU and APU REMOTE FIRE IND AUTO DISCH ARM circuit breakers.</Para>
+</ListItem>
+<ListItem>
+<Para>Using a flight deck multi-function display only, open circuit breaker APU DC PUMP and lock with an INOP tag.</Para>
+</ListItem>
+<ListItem>
+<Para>Open and collar the P49 panel ACTR-APU INLET DR circuit breaker.</Para>
+</ListItem>
+<ListItem>
+<Para>Gain access to the inlet door actuator.</Para>
+</ListItem>
+<ListItem>
+<Para>Turn the transfer flag socket counter clockwise until the manual drive socket shows.</Para>
+</ListItem>
+<ListItem>
+<Para>Turn the manual drive socket counter clockwise until the torque value suddenly increases.</Para>
+</ListItem>
+<ListItem>
+<Para>Turn the manual drive socket clockwise approximately 7.5 turns.</Para>
+</ListItem>
+<ListItem>
+<Para>Turn the transfer flag socket clockwise until E shows.</Para>
+</ListItem>
+<ListItem>
+<Para>Close the P49 panel APUC-1 circuit breaker.</Para>
+</ListItem>
+<ListItem>
+<Para>Close the P300 panel FIRE EXT BOTTLE-APU and APU REMOTE FIRE IND AUTO DISCH ARM circuit breakers.</Para>
+</ListItem>
+<ListItem>
+<Para>Using a flight deck multi-function display only, close circuit breaker APU DC PUMP.</Para>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+<OperationProcedure>
+<List listType="1.">
+<ListItem>
+<Para>Reduce performance limited weights as follows for APU inlet door fully open with APU not running:</Para>
+<table frame="all">
+<Effectivities>
+<Effectivity>For 787-9 (VN-A861, VN-A862, VN-A863, VN-A864,
+VN-A865, VN-A866, VN-A867, VN-A868, VN-A869, VN-A870, VN-A871)::</Effectivity>
+</Effectivities>
+<tgroup cols="3" colsep="1">
+<colspec colname="1" colwidth="31%" />
+<colspec colname="2" colwidth="31%" />
+<colspec colname="3" colwidth="38%" />
+<thead>
+<row rowsep="1">
+<entry colname="1">
+<Para>
+<Emphasis txtStyle="bold">Takeoff</Emphasis>
+</Para>
+</entry>
+<entry colname="2">
+<Para>
+<Emphasis txtStyle="bold">Approach &amp; Landing Climb</Emphasis>
+</Para>
+</entry>
+<entry colname="3">
+<Para>
+<Emphasis txtStyle="bold">Enroute 
+Climb</Emphasis>
+</Para>
+</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep="0">
+<entry colname="1">
+<Para />
+</entry>
+<entry colname="2">
+<Para />
+</entry>
+<entry colname="3">
+<Para />
+</entry>
+</row>
+</tbody>
+</tgroup>
+<tgroup cols="3" colsep="1">
+<tbody>
+<row rowsep="0">
+<entry colname="1">
+<Para align="center">5,500 lb (2,495 kg)</Para>
+</entry>
+<entry colname="2">
+<Para align="center">1,200 lb (544 kg)</Para>
+</entry>
+<entry colname="3">
+<Para align="center">4,600 lb (2,087 kg)</Para>
+</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+<table frame="all">
+<Effectivities>
+<Effectivity>For 787-10 (VN-A872, VN-A873, VN-A874, VN-A877,
+VN-A878, VN-A879):</Effectivity>
+</Effectivities>
+<tgroup cols="3" colsep="1">
+<colspec colname="1" colwidth="31%" />
+<colspec colname="2" colwidth="31%" />
+<colspec colname="3" colwidth="38%" />
+<thead>
+<row rowsep="1">
+<entry colname="1">
+<Para>
+<Emphasis txtStyle="bold">Takeoff</Emphasis>
+</Para>
+</entry>
+<entry colname="2">
+<Para>
+<Emphasis txtStyle="bold">Approach &amp; Landing Climb</Emphasis>
+</Para>
+</entry>
+<entry colname="3">
+<Para>
+<Emphasis txtStyle="bold">Enroute 
+Climb</Emphasis>
+</Para>
+</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep="0">
+<entry colname="1">
+<Para />
+</entry>
+<entry colname="2">
+<Para />
+</entry>
+<entry colname="3">
+<Para />
+</entry>
+</row>
+</tbody>
+</tgroup>
+<tgroup cols="3" colsep="1">
+<tbody>
+<row rowsep="0">
+<entry colname="1">
+<Para align="center">5,500 lb (2,495 kg)</Para>
+</entry>
+<entry colname="2">
+<Para align="center">1,200 lb (544 kg)</Para>
+</entry>
+<entry colname="3">
+<Para align="center">4,400 lb (1,996 kg)</Para>
+</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+<Note>
+<Para>The enroute climb weight penalties are based on single engine operating speeds that approximate maximum lift-to-drag ratio speed.  To account for the difference in level-off altitude when operating at other speeds, multiply the enroute climb weight penalty listed above by the appropriate factor listed on page 3.00-01-00.2 in the ENROUTE DIVERSION SPEED EFFECTS paragraph.</Para>
+</Note>
+</ListItem>
+<ListItem>
+<Para>For APU inlet door not closed with APU not running, increase flight planning fuel by either using an airplane drag correction factor of 2.5% or increase the flight planning fuel by 2.9%.</Para>
+</ListItem>
+<ListItem>
+<Para>For APU inlet door not closed with APU running, increase flight planning fuel by either using an airplane drag correction factor of 1.0% or increase the flight planning fuel by 1.2% plus 250 lb/hr of APU flight time and 480 lb/hr of APU ground time.</Para>
+</ListItem>
+</List>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+<MELSubItem itemNbr="49-15-01-01">
+<Title>APU Air Inlet Door Actuator Position Indication Switch</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="1" nbrRequired="0" maintIndicator="(M)">
+<DispatchConditionRemarks>
+<Para>May be inoperative provided APU inlet door is verified to operate normally before each departure.</Para>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Verify the APU door operates normally before each departure (AMM DDG 49-15-01).</Para>
+<List listType="1.">
+<ListItem>
+<Para>For APU off:</Para>
+<List listType="A.">
+<ListItem>
+<Para>On APU maintenance page, confirm the APU DOOR POSITION indicates CLOSED.</Para>
+</ListItem>
+<ListItem>
+<Para>Set Electrical Panel (P5) APU selector ON.</Para>
+</ListItem>
+<ListItem>
+<Para>Wait 120 seconds and on APU maintenance page, confirm APU DOOR POSITION indicates OPEN.</Para>
+</ListItem>
+<ListItem>
+<Para>Set Electrical Panel (P5) APU selector OFF. </Para>
+</ListItem>
+<ListItem>
+<Para>Wait 120 seconds and on APU maintenance page, confirm APU DOOR POSITION indicates CLOSED.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>For APU on:</Para>
+<List listType="A.">
+<ListItem>
+<Para>On APU maintenance page, confirm the APU DOOR POSITION indicates OPEN.</Para>
+</ListItem>
+<ListItem>
+<Para>Set Electrical Panel (P5) APU selector OFF.</Para>
+</ListItem>
+<ListItem>
+<Para>Wait 120 seconds and on APU maintenance page, confirm APU DOOR POSITION indicates CLOSED.</Para>
+</ListItem>
+<ListItem>
+<Para>Start the APU.</Para>
+</ListItem>
+<ListItem>
+<Para>Wait 120 seconds and on APU maintenance page, confirm APU DOOR POSITION indicates OPEN.</Para>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+</MELItem>
+</DispatchItems>

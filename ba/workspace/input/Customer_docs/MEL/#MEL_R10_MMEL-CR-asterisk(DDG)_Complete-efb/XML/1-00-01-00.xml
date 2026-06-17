@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE FrontMatter[<!NOTATION CGM SYSTEM "CGM">]>
+<FrontMatter id="X-BOEING:FTID:81205.787.DDG.PU.FM.1-00-01-00.128638.1-00-01-00" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/FrontMatter.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="" superSectionNumber="1" sectionName="EICAS Messages" chapterName="Introduction" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2025-09-30" rev:revStatus="U" rev:revNumber="10" />
+</PUMetaData>
+<Introduction id="X-BOEING:FTID:81205.787.DDG.CU.INT.1-00-01-00.128638.1-00-01-00">
+<FMtopic>
+<Title>EICAS Messages Cross Reference List</Title>
+<Para>A Cross Reference List of Engine Indication and Crew Alerting System (EICAS) messages and corresponding MEL items is provided in this section. The Cross Reference List is intended to assist operators in quickly identifying the proper MEL item to consult for possible dispatch relief. All EICAS messages at Status level or higher are listed by message text in alphabetic
+order.   A description of the information provided in each column of the Cross Reference List follows.</Para>
+<table frame="none">
+<tgroup cols="3" colsep="0">
+<colspec colname="1" colwidth="24%" />
+<colspec colname="2" colwidth="12%" />
+<colspec colname="3" colwidth="64%" />
+<tbody>
+<row rowsep="0">
+<entry colname="1">
+<Para align="left">Message Text	 </Para>
+</entry>
+<entry namest="2" nameend="3">
+<Para align="left">This column alphabetically lists each message exactly as they would appear on EICAS.</Para>
+</entry>
+</row>
+<row rowsep="0">
+<entry colname="1">
+<Para align="left">Level	</Para>
+</entry>
+<entry namest="2" nameend="3">
+<Para align="left">The appropriate EICAS message level is listed: Warning, Caution, Advisory, Memo, Comm, or Status.</Para>
+</entry>
+</row>
+<row rowsep="0">
+<entry colname="1">
+<Para align="left">MEL Item</Para>
+</entry>
+<entry namest="2" nameend="3">
+<Para align="left">	This column lists the appropriate MEL item(s) to consult for possible dispatch relief with the associated message displayed. EICAS messages that do not have a specific MEL item to allow dispatch are listed with one of the following cross references:</Para>
+</entry>
+</row>
+<row rowsep="0">
+<entry colname="1">
+<Para />
+</entry>
+<entry colname="2">
+<Para align="left">N/A	</Para>
+</entry>
+<entry colname="3">
+<Para align="left">Not Applicable: There is no MEL item listed because the message does not indicate a system failure.</Para>
+</entry>
+</row>
+<row rowsep="0">
+<entry colname="1">
+<Para />
+</entry>
+<entry colname="2">
+<Para align="left">None	</Para>
+</entry>
+<entry colname="3">
+<Para align="left">There is no MEL item for the failure condition indicated by this message.</Para>
+</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+</FMtopic>
+<FMtopic>
+<Title>EICAS Messages</Title>
+<Para>EICAS is the primary means of displaying airplane system information to the flight crew. EICAS consolidates engine and subsystem indications and provides a centrally located crew alerting function. EICAS displays System Alerts (Warning, Caution, and Advisory), Communication Alerts, Memo messages, and Status messages.    </Para>
+<table frame="none">
+<tgroup cols="2" colsep="0">
+<colspec colname="1" colwidth="24%" />
+<colspec colname="2" colwidth="76%" />
+<tbody>
+<row rowsep="0">
+<entry colname="1">
+<Para align="left">Warning</Para>
+</entry>
+<entry colname="2">
+<Para align="left">A non-normal operational or system condition displayed in red text accompanied by annunciation of the master warning lights and an aural
+tone. Immediate crew awareness and corrective action is required.</Para>
+</entry>
+</row>
+<row rowsep="0">
+<entry colname="1">
+<Para align="left">Caution</Para>
+</entry>
+<entry colname="2">
+<Para align="left">	 A non-normal operational or system condition displayed in amber text accompanied by annunciation of the master caution lights and an aural tone. Immediate crew awareness
+is required and corrective action may be required.</Para>
+</entry>
+</row>
+<row rowsep="0">
+<entry colname="1">
+<Para align="left">Advisory	</Para>
+</entry>
+<entry colname="2">
+<Para align="left">A non-normal operational or system condition displayed in amber text without other visual or aural annunciations. Routine crew awareness is required and corrective action may be required.</Para>
+</entry>
+</row>
+<row rowsep="0">
+<entry colname="1">
+<Para align="left">Comm	</Para>
+</entry>
+<entry colname="2">
+<Para align="left">A reminder of normal incoming flight crew communications displayed in white text.</Para>
+</entry>
+</row>
+<row rowsep="0">
+<entry colname="1">
+<Para align="left">Memo</Para>
+</entry>
+<entry colname="2">
+<Para align="left">	A reminder of a normal condition
+in white text that indicates the current state of certain manually and automatically configured airplane systems.</Para>
+</entry>
+</row>
+<row rowsep="0">
+<entry colname="1">
+<Para align="left">Status	</Para>
+</entry>
+<entry colname="2">
+<Para align="left">A system condition which affects airplane dispatch, displayed in white text on the MFD status page. Status messages are checked
+prior to engine start and the condition should be corrected or dispatched per the operator’s MEL. There are no inflight crew procedures associated with Status messages.</Para>
+</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+</FMtopic>
+<FMtopic>
+<Title>Maintenance Level Messages</Title>
+<Para>Maintenance level messages are not included in the Cross Reference List, since they do not affect the airworthiness release of the airplane. Maintenance level messages are provided by EICAS and the Central Maintenance Computing Function (CMCF) as follows.</Para>
+<Para>Scheduled Maintenance Task (SMT): These are a special category of  messages that are uniquely associated with a Certification Maintenance Requirement (CMR) or a Scheduled Maintenance Task (SMT). They are displayed on a special MFD maintenance page. SMT messages are checked as a result of a specified maintenance task defined by the CMR or maintenance program requirement,
+which also defines a specific time interval when corrective maintenance action is required. There is no requirement to check SMT messages prior to each flight. SMT messages are not included in the Cross Reference List.</Para>
+<Para>Central Maintenance Computing Function (CMCF) Messages: The Central Maintenance Computing Function of the Onboard Maintenance System processes BITE fault reports into maintenance messages. These are nonessential messages that are displayed on Maintenance Laptops or specific flight deck display formats. Maintenance messages are not displayed on EICAS and they are not
+used to determine the airworthiness of the airplane. They provide diagnostic information useful in troubleshooting or maintenance planning. There are two general types of CMCF maintenance messages: correlated and uncorrelated. Correlated messages are associated with a specific EICAS message or other flight deck effect. Each fault indicated by an EICAS message has at least one correlated maintenance
+message to assist the maintenance personnel in determining the root cause of the fault indicated on EICAS. Uncorrelated messages do not have a corresponding flight deck effect. Some uncorrelated messages, known as Maintenance Memos, provide information regarding the condition of a redundant component or system that is installed to enhance departure reliability, but is not required for certification.
+Maintenance Memos provide airline maintenance departments the ability to monitor system degradation and plan appropriate action before annunciation of an EICAS message which affects the airworthiness release of the airplane. CMCF maintenance messages are not included in the Cross Reference List.</Para>
+</FMtopic>
+<FMtopic>
+<Title>Considerations for Dispatch with Displayed EICAS and CMCF Messages</Title>
+<Para>Any monitored faults that affect airplane dispatchability will be displayed on EICAS as a Status or Alert level (Warning, Caution, Advisory) message, with a corresponding correlated maintenance message. System faults displayed at status level or alert level should be resolved by MEL compliance or maintenance action prior to engine start. After engine start, EICAS alert
+messages are the primary means of alerting the
+crew to non-normal conditions or improper configuration.  Display of an alert message requires accomplishment by the flight crew of any applicable steps in the appropriate non-normal procedure. Conditions which can be resolved by flight crew action may allow continued normal operation.  For system faults, following completion of the non-normal procedure and prior to takeoff, the operator’s
+MEL should be consulted to determine if relief is available for continued operation.</Para>
+<Para>Any system faults that result only in a SMT message or a CMCF maintenance message do not require MEL consideration or maintenance action prior to dispatch. They are addressed within an operator’s standard maintenance program.</Para>
+</FMtopic>
+<FMtopic>
+<Title>Considerations for Dispatch Using Synoptic Displays</Title>
+<Para>Airplane system faults and/or Common Data Network (CDN) communication faults may result in missing information on synoptic displays. Missing data may include any synoptic display element such as flow bars, pump or valve symbols, and digital indications. Display elements may be absent from one, two, or all three Multi-Function Displays. Missing information on a specific
+synoptic page caused by CDN communication fault is not indicative of a fault in the system associated with that synoptic page. Decisions regarding dispatch should be based on EICAS Status or Alert level messages and/or other flight deck effects.</Para>
+</FMtopic>
+</Introduction>
+</FrontMatter>

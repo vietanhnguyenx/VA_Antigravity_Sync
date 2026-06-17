@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM">]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.2-24-41-01.1893.2-24-41-01" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="24" superSectionNumber="2" sectionName="MEL" chapterName="Electrical Power" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2025-09-30" rev:revStatus="R" rev:revNumber="10" />
+</PUMetaData>
+<MELItem itemNbr="24-41-01" id="X-BOEING:FTID:81205.787.DDG.CU.MEL.2-24-41-01.1.2-24-41-01">
+<Title>External Power Systems (*)</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="3" nbrRequired="0">
+<DispatchConditionRemarks>
+<Para>One or more may be inoperative.</Para>
+</DispatchConditionRemarks>
+</DispatchCondition>
+<MELSubItem itemNbr="24-41-01-01">
+<Title>EXT PWR Switch AVAIL Lights (Flight Deck)</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="3" nbrRequired="0" opsIndicator="(O)">
+<DispatchConditionRemarks>
+<Para>May be inoperative provided alternate procedures are established and used.</Para>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<OperationProcedure>
+<Para>Alternate procedures:</Para>
+<Para>Before selecting the affected EXT PWR switch on the overhead panel to ON, communicate with ground crew to confirm the associated external power “Connected” light on the external power panel is illuminated, or confirm the associated EXT PWR symbol (i.e. box) turns green on the Electrical synoptic display.</Para>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="24-41-01-02">
+<Title>EXT PWR Switch ON Lights (Flight Deck)</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="3" nbrRequired="0" opsIndicator="(O)">
+<DispatchConditionRemarks>
+<Para>May be inoperative provided alternate procedures are established and used.</Para>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<OperationProcedure>
+<Para>Alternate procedures:</Para>
+<Para>After selecting the affected EXT PWR switch on the overhead panel to ON, communicate with ground crew to confirm the associated external power “Not In Use” light on the external power panel is extinguished, or confirm on the Electrical synoptic display that the associated external power is on-line.</Para>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="24-41-01-03">
+<Title>CONNECTED Lights (External Power Panels)</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="3" nbrRequired="0" opsIndicator="(O)">
+<DispatchConditionRemarks>
+<Para>May be inoperative provided alternate procedures are established and used.</Para>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<OperationProcedure>
+<Para>Alternate procedures:</Para>
+<List listType="1.">
+<ListItem>
+<Para>For both arrival and departure when external power is to be used, after connecting an external power lead to the affected receptacle on the external power panel, confirm the associated AVAIL light on the flight deck overhead panel is illuminated.</Para>
+</ListItem>
+<ListItem>
+<Para>Advise the receipt/dispatch person that the light is inoperative, and that they will be advised verbally, on request, when connection has occurred.</Para>
+</ListItem>
+</List>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="24-41-01-04">
+<Title>NOT IN USE Lights (External Power Panels)</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="3" nbrRequired="0" opsIndicator="(O)">
+<DispatchConditionRemarks>
+<Para>May be inoperative provided alternate procedures are established and used.</Para>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<OperationProcedure>
+<Para>Alternate procedures:</Para>
+<Para>For both arrival and departure when external power is to be used, advise the receipt/dispatch person that the light is inoperative, and that they will be advised verbally when external power is no longer required and that they must not disconnect external power until advised.</Para>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+</MELItem>
+</DispatchItems>

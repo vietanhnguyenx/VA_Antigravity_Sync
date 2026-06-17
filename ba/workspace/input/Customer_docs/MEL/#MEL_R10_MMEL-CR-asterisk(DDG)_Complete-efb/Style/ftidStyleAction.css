@@ -1,0 +1,46 @@
+.comment { margin-left: 1.5em; clear: both; }
+.comment ul { margin-left: .75em; }
+
+
+.opaque { background-color: Black;  }
+.opaque span.RevUnMarked { background-color: black; }
+.opaque span.cocUnMarked { background-color: black; }
+.bold { font-weight: bold; }
+.recall { border: solid 1px; }
+
+
+div.Command { width: 100%; position: relative; clear: both; }
+div.Command .cmdcrm { float: right; text-align: right; margin-right: .2em; }
+div.Command .ProcActionsGrp { margin-left: 2em; }
+
+.action { width: 100%;}
+.action, .action * { position: relative; }
+.action p { margin: 0 0 1.2em 0; }
+
+.challenge { margin-bottom: -2.4em }
+.challenge p { width: 40%; }
+
+.response { overflow: hidden; }
+.response.withCrm { padding-right: 4em; }
+.response p { width: 40%; float: right; text-align: right; text-indent: 3em; }
+.confirm { position: absolute; width: 100%; text-align: center; }
+.crm { position: absolute; right: 0; }
+.crm .opaque { padding-left: 4em; }
+.leader { letter-spacing: .3em; position: absolute; z-index: -1; }
+.addtl .leader, .noChallenge .leader { left: 50%; }
+
+/* ============
+ * IE6 Tweaking
+ * ============ */
+ .challenge {z-index:5}  
+/* ============ 
+ * EFB Tweaking 
+ * ============ */
+
+/* EFB confused by z-index: not pushing leader "behind" the challenge paragraph */
+.EFB .challenge {z-index:15;}
+
+/* EFB confused by overflow:hidden: showing leader past right side of container */
+/* EFB confused by shifted margin-bottom of challenge */
+/* NOTE: this causes hasLayout on response to be true - fixes a lot of ie6 bugs. */
+.EFB .response { width:100%;}

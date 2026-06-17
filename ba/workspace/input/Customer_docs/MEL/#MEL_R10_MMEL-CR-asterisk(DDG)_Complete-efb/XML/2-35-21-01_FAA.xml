@@ -1,0 +1,366 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM">]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.2-35-21-01.4508.2-35-21-01_FAA" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="35" superSectionNumber="2" sectionName="MEL" chapterName="Oxygen" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2021-02-24" rev:revStatus="U" rev:revNumber="10" />
+</PUMetaData>
+<MELItem itemNbr="35-21-01" id="X-BOEING:FTID:81205.787.DDG.CU.MEL.2-35-21-01.1.2-35-21-01_FAA">
+<Title>Passenger Oxygen System</Title>
+<DispatchCondition repairInterval="B" nbrInstalled="1" nbrRequired="0" opsIndicator="(O)">
+<DispatchConditionRemarks>
+<Para>Maybe inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Appropriate portable oxygen supplies are available.</Para>
+</ListItem>
+<ListItem>
+<Para>Both air conditioning packs operate normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Pressurization system operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Appropriate altitude adjustments are applied.</Para>
+</ListItem>
+<ListItem>
+<Para>Passengers are appropriately briefed.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceNote>
+<List listType="1.">
+<ListItem>
+<Para>For an air conditioning pack to be operating normally, certain items associated with that system must operate normally.  See MEL item 21-51-01 for a list of those items.</Para>
+</ListItem>
+<ListItem>
+<Para>For the pressurization system to be operating normally, the following items associated with the pressurization system must be operating normally:</Para>
+<table frame="all">
+<tgroup cols="2" colsep="1">
+<colspec colname="1" colwidth="32%" />
+<colspec colname="2" colwidth="68%" />
+<thead>
+<row rowsep="1">
+<entry colname="1">
+<Para>
+<Emphasis txtStyle="bold">MEL Item</Emphasis>
+</Para>
+</entry>
+<entry colname="2">
+<Para>
+<Emphasis txtStyle="bold">Associated Status Message</Emphasis>
+</Para>
+</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">21-31-01</Para>
+</entry>
+<entry colname="2">
+<Para align="center">CPCS CONTROLS</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">21-31-02</Para>
+</entry>
+<entry colname="2">
+<Para align="center">None</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">21-31-04</Para>
+</entry>
+<entry colname="2">
+<Para align="center">CPCS REMOTE SENSOR FWD 
+CPCS REMOTE SENSOR AFT</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">21-31-05</Para>
+</entry>
+<entry colname="2">
+<Para align="center">None</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">21-31-06</Para>
+</entry>
+<entry colname="2">
+<Para align="center">None</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">21-31-07</Para>
+</entry>
+<entry colname="2">
+<Para align="center">None</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">21-31-08</Para>
+</entry>
+<entry colname="2">
+<Para align="center">None</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">21-32-01</Para>
+</entry>
+<entry colname="2">
+<Para align="center">None</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">MEL item</Para>
+</entry>
+<entry colname="2">
+<Para align="center">Associated Status Message</Para>
+</entry>
+</row>
+<row rowsep="0">
+<entry colname="1">
+<Para align="center">21-31-03</Para>
+</entry>
+<entry colname="2">
+<Para align="center">OUTFLOW VALVE FWD 
+OUTFLOW VALVE AFT</Para>
+</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+</ListItem>
+</List>
+</MaintenanceNote>
+<OperationProcedure>
+<Para>Passenger oxygen requirements vary with the cruise altitude, the cabin pressure altitude to which an airplane may descend in the event of a depressurization during the flight, and the time required to make the emergency descent.  If the airplane is operated at FL 250 or below and is able to descend to 14,000 feet cabin pressure altitude or below within four minutes following
+depressurization, oxygen must be available for 10% of passenger cabin occupants for 30 minutes. </Para>
+<Para>If the airplane is operated at or below FL 250 and is unable to descend to 14,000 or below within four minutes, or if the airplane is operated above FL 250 regardless of the time to descend to 14,000 feet cabin pressure altitude or below following depressurization, oxygen must be available for 10% of the passenger cabin occupants for the duration of the flight with cabin
+pressure altitudes above 10,000 feet and at or below 14,000 feet, except that there must not be less than a 10-minute supply for the passenger cabin occupants.</Para>
+<Para>If the airplane is able to descend to between 14,000 and 15,000 feet cabin pressure altitude, sufficient oxygen must be available for 30% of passenger cabin occupants.  If the airplane cannot descend below 15,000 feet cabin pressure altitude, oxygen must be available for all (100%) of the passenger cabin occupants.  In these cases, oxygen must be available for the required
+number of passengers for the entire duration of the flight  flown at the cabin pressure altitudes above 14,000 feet.  In all cases, sufficient oxygen must be available for the required number of passengers for at least 10 minutes.</Para>
+<Para>For flights above flight level 250, an undiluted oxygen supply is required for no less than two percent of the passengers for that portion of the flight at cabin pressure altitudes above 8,000 feet following depressurization.  In no case will the supply be less than that required for one person.</Para>
+<table frame="all">
+<tgroup cols="5" colsep="1">
+<colspec colname="1" colwidth="14%" />
+<colspec colname="2" colwidth="13%" />
+<colspec colname="3" colwidth="17%" />
+<colspec colname="4" colwidth="19%" />
+<colspec colname="5" colwidth="38%" />
+<thead>
+<row rowsep="1">
+<entry colname="1">
+<Para>
+<Emphasis txtStyle="bold">Airplane Altitude (ft)</Emphasis>
+</Para>
+</entry>
+<entry colname="2">
+<Para>
+<Emphasis txtStyle="bold">Cabin Altitude (ft)</Emphasis>
+</Para>
+</entry>
+<entry colname="3">
+<Para>
+<Emphasis txtStyle="bold">Passenger Oxygen Usage</Emphasis>
+</Para>
+</entry>
+<entry colname="4">
+<Para>
+<Emphasis txtStyle="bold">Passenger Oxygen Supply</Emphasis>
+</Para>
+</entry>
+<entry colname="5">
+<Para>
+<Emphasis txtStyle="bold">Remarks</Emphasis>
+</Para>
+</entry>
+</row>
+</thead>
+<tfoot>
+<row rowsep="1">
+<entry namest="1" nameend="5">
+<Para align="left">[1]  As required by emergency descent profile following cabin depressurization</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry namest="1" nameend="5">
+<Para align="left">[2]  A 10 minute minimum supply is required</Para>
+</entry>
+</row>
+<row rowsep="0">
+<entry namest="1" nameend="5">
+<Para align="left">[3] The quantity of oxygen required is based upon an average flow rate of three liters per minute per person for first-aid treatment.</Para>
+</entry>
+</row>
+</tfoot>
+<tbody>
+<row rowsep="1">
+<entry colname="1">
+<Para />
+</entry>
+<entry colname="2">
+<Para align="left">&gt;10,000 - 14,000</Para>
+</entry>
+<entry colname="3">
+<Para align="left">10% after 30 min</Para>
+</entry>
+<entry colname="4">
+<Para align="left">After 30 min</Para>
+</entry>
+<entry colname="5" morerows="2">
+<Para align="left">Covers both pressurized and unpressurized aircraft.  Requirements based on cabin
+pressure altitude.</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para />
+</entry>
+<entry colname="2">
+<Para align="left">&gt;14,000 - 15,000</Para>
+</entry>
+<entry colname="3">
+<Para align="left">30%</Para>
+</entry>
+<entry colname="4">
+<Para align="left">[1]</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para />
+</entry>
+<entry colname="2">
+<Para align="left">&gt;15,000</Para>
+</entry>
+<entry colname="3">
+<Para align="left">All</Para>
+</entry>
+<entry colname="4">
+<Para align="left">[1]</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">&lt;FL250</Para>
+</entry>
+<entry colname="2">
+<Para align="left">&lt;14,000</Para>
+</entry>
+<entry colname="3">
+<Para align="left">10%</Para>
+</entry>
+<entry colname="4">
+<Para align="left">30 min</Para>
+</entry>
+<entry colname="5">
+<Para align="left">Descent to 14,000 ft can be made within 4 min.</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">&lt;FL250 or</Para>
+</entry>
+<entry colname="2">
+<Para align="left">&gt;10,000 - 14,000</Para>
+</entry>
+<entry colname="3">
+<Para align="left">10%</Para>
+</entry>
+<entry colname="4">
+<Para align="left">[1] [2]</Para>
+</entry>
+<entry colname="5" morerows="2">
+<Para align="left">Descent
+to 14,000 ft cannot be made within 4 min.  Passenger briefing required.</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">&gt;FL250</Para>
+</entry>
+<entry colname="2">
+<Para align="left">&gt;14,000 - 15,000</Para>
+</entry>
+<entry colname="3">
+<Para align="left">30%</Para>
+</entry>
+<entry colname="4">
+<Para align="left">[1] [2]</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para />
+</entry>
+<entry colname="2">
+<Para align="left">&gt;15,000</Para>
+</entry>
+<entry colname="3">
+<Para align="left">All</Para>
+</entry>
+<entry colname="4">
+<Para align="left">[1] [2]</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">&gt;FL250</Para>
+</entry>
+<entry colname="2">
+<Para align="left">&gt;8,000</Para>
+</entry>
+<entry colname="3">
+<Para align="left">2%</Para>
+</entry>
+<entry colname="4">
+<Para align="left">[3]</Para>
+</entry>
+<entry colname="5" morerows="1">
+<Para align="left">Not less than one person, nor less than two dispensing units.</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para />
+</entry>
+<entry colname="2">
+<Para />
+</entry>
+<entry colname="3">
+<Para />
+</entry>
+<entry colname="4">
+<Para />
+</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+<MELSubItem itemNbr="35-21-01-01">
+<Title>Power Channels (*)</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="18" nbrRequired="9">
+<DispatchConditionRemarks>
+<Para>One channel in each PSU zone may be inoperative.</Para>
+</DispatchConditionRemarks>
+</DispatchCondition>
+</MELSubItem>
+</MELItem>
+</DispatchItems>

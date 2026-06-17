@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM">]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.2-25-64-03.489694.2-25-64-03_FAA" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="25" superSectionNumber="2" sectionName="MEL" chapterName="Equipment Furnishings" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2024-06-19" rev:revStatus="U" rev:revNumber="10" />
+</PUMetaData>
+<MELItem itemNbr="25-64-03" id="X-BOEING:FTID:81205.787.DDG.CU.MEL.2-25-64-03.1.2-25-64-03_FAA">
+<Title>Emergency Medical Equipment</Title>
+<MELSubItem itemNbr="25-64-03-01">
+<Title>Automatic External Defibrillator (AED) and/or Associated Equipment</Title>
+<DispatchCondition repairInterval="A" nbrInstalled="1" nbrRequired="0" opsIndicator="(O)">
+<DispatchConditionRemarks>
+<Para>May be incomplete, inoperative, or removed provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>AED is labeled or placarded in a manner that will identify it as a unit that cannot be mistaken for a fully serviceable unit.</Para>
+</ListItem>
+<ListItem>
+<Para>Location placarding is removed or obscured.</Para>
+</ListItem>
+<ListItem>
+<Para>Repairs or replacements are made within one flight.</Para>
+</ListItem>
+</List>
+<Note>
+<Para>Medical equipment installed in the aircraft as part of an Emergency Medical Service (EMS) operation is not considered part of the normal complement of equipment. </Para>
+</Note>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<OperationProcedure>
+<Para>Any placard associated with the inoperative or removed equipment is to be obscured from view by placarding "INOPERATIVE" or "INOP".</Para>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="25-64-03-01-01">
+<Title>Tamper Seals or Tags</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="1" nbrRequired="-" opsIndicator="(O)">
+<DispatchConditionRemarks>
+<Para>May be inoperative, damaged, or missing provided proper installation and operation is verified at each preflight.</Para>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<OperationProcedure>
+<Para>Verify the associated AEDs are properly installed and operate correctly before each flight.</Para>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="25-64-03-02">
+<Title>Emergency Medical Kit (EMK) and/or Associated Equipment</Title>
+<DispatchCondition repairInterval="A" nbrInstalled="1" nbrRequired="0" opsIndicator="(O)">
+<DispatchConditionRemarks>
+<Para>May be incomplete or removed provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>EMK is labeled or placarded in a manner that will identify it as a unit that cannot be mistaken for a fully serviceable unit.</Para>
+</ListItem>
+<ListItem>
+<Para>Location placarding is removed or obscured.</Para>
+</ListItem>
+<ListItem>
+<Para>Repairs or replacements are made within two consecutive calendar days</Para>
+</ListItem>
+</List>
+<Note>
+<Para>Medical equipment installed in the aircraft as part of an Emergency Medical Service (EMS) operation is not considered part of the normal complement of equipment. </Para>
+</Note>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<OperationProcedure>
+<Para>The incomplete kit must be sealed and clearly labeled (or placarded) to identify the missing or inoperative components, as appropriate.</Para>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="25-64-03-02-01">
+<Title>Tamper Seals or Tags</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="1" nbrRequired="-" opsIndicator="(O)">
+<DispatchConditionRemarks>
+<Para>May be inoperative, damaged, or missing provided proper installation and operation is verified at each preflight.</Para>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<OperationProcedure>
+<Para>Verify the associated EMKs are properly installed and operate correctly before each flight.</Para>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="25-64-03-03">
+<Title>First Aid Kit (FAK) and/or Associated Equipment</Title>
+<DispatchCondition dispCondOptions="A" repairInterval="A" nbrInstalled="4" nbrRequired="-" opsIndicator="(O)">
+<Title>Required by VAR</Title>
+<DispatchConditionRemarks>
+<Para>Number required: 3 - Applicable to: VN-A861, VN-A862, VN-A863, VN-A864, VN-A867, VN-A868, VN-A870, VN-A871.</Para>
+<Para>Number required: 4 - Applicable to: VN-A865, VN-A866, VN-A869, VN-A872, VN-A873, VN-A874, VN-A877, VN-A878,  VN-A879.</Para>
+<Para>If more than one is required by VAR, only one of the required FAKs may be incomplete or removed provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>The FAK is labeled or placarded in a manner that will identify it as a unit that cannot be mistaken for a fully serviceable unit.</Para>
+</ListItem>
+<ListItem>
+<Para>Location placarding is removed or obscured.</Para>
+</ListItem>
+<ListItem>
+<Para>Repairs or replacements are made within one flight.</Para>
+</ListItem>
+</List>
+<Note>
+<Para>Medical equipment installed in the aircraft as part of an Emergency Medical Service (EMS) operation is not considered part of the normal complement of equipment. </Para>
+</Note>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<OperationProcedure>
+<Para>The incomplete kit must be sealed and clearly labeled (or placarded) to identify the missing or inoperative components, as appropriate.</Para>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+<DispatchCondition dispCondOptions="B" repairInterval="D" nbrInstalled="4" nbrRequired="3">
+<Title>Any In Excess Of Those Required By VAR</Title>
+<DispatchConditionRemarks>
+<Para>Applicable to: VN-A861, VN-A862, VN-A863, VN-A864, VN-A867, VN-A868, VN-A870, VN-A871.</Para>
+<Para>Any in excess of those required by VAR may be incomplete, or removed.  </Para>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<OperationProcedure>
+<Para>The incomplete kit must be sealed and clearly labeled (or placarded) to identify the missing or inoperative components, as appropriate.</Para>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="25-64-03-03-01">
+<Title>Tamper Seals or Tags</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="-" nbrRequired="-" opsIndicator="(O)">
+<DispatchConditionRemarks>
+<Para>May be inoperative, damaged, or missing provided proper installation and operation is verified at each preflight.</Para>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<OperationProcedure>
+<Para>Verify the associated FAKs are properly installed and operate correctly before each flight.</Para>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+</MELItem>
+</DispatchItems>

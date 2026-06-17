@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM"><!ENTITY G3-32-12-06.fm_1290547 SYSTEM "..\Images\3-32-12-06.fm_1290547.cgm" NDATA CGM>]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.3-32-12-06.12274.3-32-12-06" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="32" superSectionNumber="3" sectionName="CDL" chapterName="Landing Gear" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2021-02-24" rev:revStatus="U" rev:revNumber="10" />
+</PUMetaData>
+<CDLItem itemNbr="32-12-06" id="X-BOEING:FTID:81205.787.DDG.CU.CDL.3-32-12-06.1.3-32-12-06">
+<Title>Main Landing Gear Drag Brace Door</Title>
+<DispatchCondition>
+<DispatchConditionRemarks>
+<Para>One may be missing provided gear remains extended for 10 minutes after takeoff and the takeoff performance adjustment is applied. Main landing gear drag brace door may not be missing in combination with main landing gear strut door or main landing gear lower strut door or main landing gear trunnion door</Para>
+<Para>Limit speed to 270 KIAS / 0.73 Mach. </Para>
+<Para>On the MISC SYSTEM CTRLS (MSC) maintenance page, set the Overspeed Warning switch to GEAR DOWN.</Para>
+<Para>Procedure:
+Do not retract landing gear for 10 minutes after takeoff. In the event of an engine failure after V1, retract the landing gear until a minimum of 1,500 feet above airport elevation and terrain clearance is assured. While maintaining terrain clearance, extend the gear for the balance of the 10 minutes.</Para>
+<Para>For model 787-9 only: Apply the takeoff performance adjustment provided in the AFM Appendix 1, ’Performance Conditions and Procedures - Takeoff’ for main gear door opening not deactivated.</Para>
+<Para>No additional weight reductions relative to AFM-DPI Gear Down Dispatch calculations are required for the  787-10.</Para>
+<Para>Reduce performance limited weights by:</Para>
+<table frame="all">
+<tgroup cols="5" colsep="1">
+<colspec colname="1" colwidth="17%" />
+<colspec colname="2" colwidth="17%" />
+<colspec colname="3" colwidth="17%" />
+<colspec colname="4" colwidth="25%" />
+<colspec colname="5" colwidth="25%" />
+<thead>
+<row rowsep="1">
+<entry colname="1">
+<Para>
+<Emphasis txtStyle="bold">Applicable Models</Emphasis>
+</Para>
+</entry>
+<entry colname="2">
+<Para>
+<Emphasis txtStyle="bold">Number Installed</Emphasis>
+</Para>
+</entry>
+<entry colname="3">
+<Para>
+<Emphasis txtStyle="bold">Takeoff</Emphasis>
+</Para>
+</entry>
+<entry colname="4">
+<Para>
+<Emphasis txtStyle="bold">Enroute Climb</Emphasis>
+</Para>
+</entry>
+<entry colname="5">
+<Para>
+<Emphasis txtStyle="bold">Approach and Landing</Emphasis>
+</Para>
+</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep="0">
+<entry colname="1">
+<Para />
+</entry>
+<entry colname="2">
+<Para>
+<Emphasis txtStyle="bold" />
+</Para>
+</entry>
+<entry colname="3">
+<Para>
+<Emphasis txtStyle="bold" />
+</Para>
+</entry>
+<entry colname="4">
+<Para>
+<Emphasis txtStyle="bold" />
+</Para>
+</entry>
+<entry colname="5">
+<Para />
+</entry>
+</row>
+</tbody>
+</tgroup>
+<tgroup cols="5" colsep="1">
+<tbody>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">787-9</Para>
+</entry>
+<entry colname="2">
+<Para align="center"> 2</Para>
+</entry>
+<entry colname="3">
+<Para align="center">2000
+lb (907 kg)</Para>
+</entry>
+<entry colname="4">
+<Para align="center"> 550 lb (249 kg)</Para>
+</entry>
+<entry colname="5">
+<Para align="center">200 lb (91 kg)</Para>
+</entry>
+</row>
+<row rowsep="0">
+<entry colname="1">
+<Para align="center">787-10</Para>
+</entry>
+<entry colname="2">
+<Para align="center"> 2</Para>
+</entry>
+<entry colname="3">
+<Para align="center">4000 lb (1814 kg)</Para>
+</entry>
+<entry colname="4">
+<Para align="center"> 550 lb (249 kg)</Para>
+</entry>
+<entry colname="5">
+<Para align="center">150 lb (68 kg)</Para>
+</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+<Note>
+<Para>The CDL penalty for a missing door is zero and the above procedure does not apply when operating with the landing gear extended (Appendix 1) for the entire flight.</Para>
+</Note>
+<Para>For 787-9, increase flight planning fuel by 2,900 pounds (1,315 kg) for landing gear extended for 10 minutes.</Para>
+<Para>For 787-10, increase flight planning fuel by 2,800 pounds (1,270 kg) for landing gear extended for 10 minutes.</Para>
+</DispatchConditionRemarks>
+</DispatchCondition>
+<LocationDiagram id="X-BOEING:FTID:81205.787.DDG.CU.GR.3-32-12-06.1290544.3-32-12-06">
+<Illustration fileRef="G3-32-12-06.fm_1290547" linkRef="URN:X-BOEING:FTID:81205.787.DDG.NX.GR.3-32-12-06.1290547." />
+</LocationDiagram>
+</CDLItem>
+</DispatchItems>

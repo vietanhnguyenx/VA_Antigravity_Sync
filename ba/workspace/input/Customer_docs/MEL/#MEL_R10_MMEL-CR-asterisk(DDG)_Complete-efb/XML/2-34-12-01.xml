@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM">]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.2-34-12-01.14415.2-34-12-01" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="34" superSectionNumber="2" sectionName="MEL" chapterName="Navigation" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2021-02-24" rev:revStatus="U" rev:revNumber="10" />
+</PUMetaData>
+<MELItem itemNbr="34-12-01" id="X-BOEING:FTID:81205.787.DDG.CU.MEL.2-34-12-01.1.2-34-12-01">
+<Title>Pitot Air Data Modules</Title>
+<MELSubItem itemNbr="34-12-01-01">
+<Title>Right Pitot Air Data Module</Title>
+<DispatchCondition repairInterval="B" nbrInstalled="1" nbrRequired="0" maintIndicator="(M)">
+<DispatchConditionRemarks>
+<Para>May be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Left and center pitot probes are inspected before each departure.</Para>
+</ListItem>
+<ListItem>
+<Para>Left and center pitot probe heater systems operate normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Left and center pitot air data modules operate normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Static air data modules operate normally.</Para>
+</ListItem>
+<ListItem>
+<Para>AIR DATA/ATT instrument source switches operate normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Approach minimums do not require its use.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Note>
+<Para>The left, center and right pitot and static ADMs are interchangeable.</Para>
+</Note>
+<Para>Inspect the left and center pitot probes before each departure (AMM DDG 34-12-01).</Para>
+<List listType="1.">
+<ListItem>
+<Para>Visually examine the left and center pitot probe external installations.  Confirm there is no damage or unwanted material in the pitot probe opening.  </Para>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+<OperationNote>
+<Para>The NO LAND 3 advisory message will be displayed.</Para>
+</OperationNote>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="34-12-01-02">
+<Title>Left Pitot Air Data Module</Title>
+<DispatchCondition repairInterval="B" nbrInstalled="1" nbrRequired="0" maintIndicator="(M)">
+<DispatchConditionRemarks>
+<Para>May be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Right and center pitot probes are inspected before each departure.</Para>
+</ListItem>
+<ListItem>
+<Para>Right and center pitot probe heater systems operate normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Right and center pitot air data modules operate normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Static air data modules operate normally.</Para>
+</ListItem>
+<ListItem>
+<Para>AIR DATA/ATT instrument source switches operate normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Approach minimums do not require its use.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Note>
+<Para>The left, center and right pitot and static ADMs are interchangeable.</Para>
+</Note>
+<Para>Inspect the right and center pitot probes before each departure  (AMM DDG 34-12-01).</Para>
+<List listType="1.">
+<ListItem>
+<Para>Visually examine the right and center pitot probe external installations.  Confirm there is no damage or unwanted material in the pitot probe opening.  </Para>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+<OperationNote>
+<Para>The NO LAND 3 advisory message will be displayed.</Para>
+</OperationNote>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="34-12-01-03">
+<Title>Center Pitot Air Data Module</Title>
+<DispatchCondition repairInterval="B" nbrInstalled="1" nbrRequired="0" maintIndicator="(M)">
+<DispatchConditionRemarks>
+<Para>May be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Left and right pitot probes are inspected before each departure.</Para>
+</ListItem>
+<ListItem>
+<Para>Left and right pitot probe heater systems operate normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Left and right pitot air data modules operate normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Static air data modules operate normally.</Para>
+</ListItem>
+<ListItem>
+<Para>AIR DATA/ATT instrument source switches operate normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Approach minimums do not require its use.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<Note>
+<Para>ISFD airspeed will be inoperative. The airplane must also be dispatched using MEL item 34-24-01-02.</Para>
+</Note>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Note>
+<Para>The left, center and right pitot and static ADMs are interchangeable.</Para>
+</Note>
+<Para>Inspect the left and right pitot probes before each departure  (AMM DDG 34-12-01).</Para>
+<List listType="1.">
+<ListItem>
+<Para>Visually examine the left and right pitot probe external installations.  Confirm there is no damage or unwanted material in the pitot probe opening.  </Para>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+<OperationNote>
+<Para>The NO LAND 3 advisory message will be displayed.</Para>
+</OperationNote>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+</MELItem>
+</DispatchItems>

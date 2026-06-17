@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://www.boeing.com/FTID-ML"
+    xmlns:rev="http://www.boeing.com/FTID-ML/Revision"
+    targetNamespace="http://www.boeing.com/FTID-ML" 
+    elementFormDefault="qualified" 
+    attributeFormDefault="unqualified"
+    version="FTID 2.8">
+
+<!-- 	
+=================================================================
+
+
+Copyright Information:
+      Boeing Proprietary and Confidential - 
+      All Rights Reserved since 2006.
+
+      This schema file is part of the Boeing Flight Technical 
+      Integrated Data (FTID) Specification based on XML.
+      All rights are reserved under Boeing Flight Operations 
+      digital data entitlements, products or services.
+
+     
+Contact Information:   	
+        The Boeing Company
+        Flight Operations Support
+        P.O. Box 3707	MS 20-89
+        Seattle, WA 98124-2207
+        USA
+        email:  flighttraining@Boeing.com
+        Phone:  (206) 662-4000
+        Fax:    (206) 662-4743
+
+		
+===================================================================
+-->
+
+<xs:include schemaLocation="../attributeTypes/generalAttrs.xsd"/>
+<xs:include schemaLocation="../basicDataTypes/basicDataInclude.xsd"/>
+<xs:include schemaLocation="../metadataTypes/effect.xsd"/>
+<xs:import namespace="http://www.boeing.com/FTID-ML/Revision" schemaLocation="../metadataTypes/revision.xsd"/>
+<xs:include schemaLocation="proceduralInclude.xsd"/>
+
+
+<!--=====================================================-->
+<!-- Example element definition -->
+<!--=====================================================-->
+<xs:complexType name="ExampleType">
+    <xs:annotation>
+        <xs:documentation>Container to examplify a procedural item for illustrating only</xs:documentation>
+    </xs:annotation>
+
+    <xs:sequence>
+        <xs:element name="Effectivities" type="EffectivitiesType" minOccurs="0"/>
+        <xs:element name="ProcActionsGrp" type="ProcActionsGrpType"  maxOccurs="unbounded"/>       
+    </xs:sequence>
+
+    <xs:attributeGroup ref="globalAttrGrp"/>
+</xs:complexType>
+
+
+<!--=====================================================-->
+<!-- Light element definition -->
+<!--=====================================================-->
+<xs:complexType name="LightType" mixed="true">
+    <xs:annotation>
+        <xs:documentation>Description of lights in the non-normal checklist</xs:documentation>
+    </xs:annotation>
+
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Emphasis" type="EmphasisType"/>
+        <xs:element name="TechMessage" type="TechMessageType"/>
+        <xs:element name="Illustration" type="IllustrationType"/>
+        <xs:element name="iLink" type="iLinkType"/>
+    </xs:choice>
+
+    <xs:attributeGroup ref="globalAttrGrp"/>
+</xs:complexType>
+
+
+<!--=====================================================-->
+<!-- MemoryEndIndicator element definition -->
+<!--=====================================================-->
+<xs:complexType name="MemoryEndIndicatorType">
+    <xs:annotation>
+        <xs:documentation>Indicates the end of the memorized items</xs:documentation>
+        <xs:documentation>Note: indicatorColor values must match the CSS value strings</xs:documentation>
+    </xs:annotation>
+
+    <xs:attribute name="indicatorColor" type="genericStrType" use="optional"/>
+    <xs:attributeGroup ref="globalAttrGrp"/>
+</xs:complexType>
+
+
+<!--=====================================================-->
+<!-- Precaution element definition -->
+<!--=====================================================-->
+<xs:complexType name="PrecautionType">
+    <xs:annotation>
+        <xs:documentation>Precaution statement when performing the item</xs:documentation>
+    </xs:annotation>
+
+    <xs:sequence>
+        <xs:element name="Effectivities" type="EffectivitiesType" minOccurs="0"/>
+        <xs:element name="Para" type="ParaType" maxOccurs="2"/>
+        <xs:choice maxOccurs="unbounded">
+            <xs:element name="Action" type="ActionType"/>
+            <xs:element name="Command" type="CommandType"/>
+        </xs:choice>
+    </xs:sequence>
+
+    <xs:attributeGroup ref="globalAttrGrp"/>
+</xs:complexType>
+
+
+
+<!--=====================================================-->
+<!-- WarnCondition element definition -->
+<!--=====================================================-->
+<xs:complexType name="WarnConditionType">
+    <xs:annotation>
+        <xs:documentation>Description of a problem condition at the beginning of a non-normal procedure.</xs:documentation>
+    </xs:annotation>
+
+    <xs:sequence>
+        <xs:element name="Effectivities" type="EffectivitiesType" minOccurs="0"/>
+        <xs:choice maxOccurs="unbounded">
+            <xs:group ref="TextGroupType"/>
+        </xs:choice>        
+    </xs:sequence>
+
+    <xs:attributeGroup ref="globalAttrGrp"/>
+</xs:complexType>
+
+
+
+</xs:schema>

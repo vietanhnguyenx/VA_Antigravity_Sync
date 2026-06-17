@@ -1,0 +1,210 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM">]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.2-24-15-01.979.2-24-15-01_FAA" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="24" superSectionNumber="2" sectionName="MEL" chapterName="Electrical Power" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2025-09-30" rev:revStatus="U" rev:revNumber="10" />
+</PUMetaData>
+<MELItem itemNbr="24-15-01" id="X-BOEING:FTID:81205.787.DDG.CU.MEL.2-24-15-01.1.2-24-15-01_FAA">
+<Title>Common Motor Start Controller (CMSC)</Title>
+<MELSubItem itemNbr="24-15-01-01">
+<Title>
+<?FTID-xref 1303683.2-24-15-01_FAA?>Main Engine Start/Cabin Air Compressor</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="4" nbrRequired="3" maintIndicator="(M)" opsIndicator="(O)">
+<DispatchConditionRemarks>
+<Para>One may be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Inoperative CMSC is deactivated.</Para>
+</ListItem>
+<ListItem>
+<Para>Associated VFSG starter system is considered inoperative. </Para>
+</ListItem>
+<ListItem>
+<Para>Associated cabin air compressor is considered inoperative.</Para>
+</ListItem>
+<ListItem>
+<Para>For CMSC L1 inoperative, left ASG starter is considered inoperative.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<Note>
+<Para>For CMSC L1 inoperative, the airplane must also be dispatched using MEL item 21-51-01, 24-22-01-04 and 24-22-02-03.</Para>
+</Note>
+<Note>
+<Para>For CMSC L2 inoperative, the airplane must also be dispatched using MEL item 21-51-01 and 24-22-01-04.</Para>
+</Note>
+<Note>
+<Para>For CMSC R1 inoperative, the airplane must also be dispatched using MEL item 21-51-01 and 24-22-01-04.</Para>
+</Note>
+<Note>
+<Para>For CMSC R2 inoperative, the airplane must also be dispatched using MEL item 21-51-01 and 24-22-01-04.</Para>
+</Note>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Note>
+<Para>CMSCs are interchangeable.</Para>
+</Note>
+<Note>
+<Para>An inoperative CMSC may be removed provided dispatch tool K24002 is installed.</Para>
+</Note>
+<Para>Deactivate the inoperative CMSC (AMM DDG 24-15-01).</Para>
+<List listType="1.">
+<ListItem>
+<Para>Using a flight deck multi-function display only, open the associated circuit breakers and lock with an INOP tag:</Para>
+<List listType="A.">
+<ListItem>
+<Para>For CMSC L1 inoperative: </Para>
+<List listType="1)">
+<ListItem>
+<Para>CMSC-L1 CHAN 1</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>For CMSC L2 inoperative: </Para>
+<List listType="1)">
+<ListItem>
+<Para>CMSC-L2 CHAN 1</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>For CMSC R1 inoperative:</Para>
+<List listType="1)">
+<ListItem>
+<Para>CMSC-R1 CHAN 1</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>For CMSC R2 inoperative:</Para>
+<List listType="1)">
+<ListItem>
+<Para>CMSC-R2 CHAN 1</Para>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+<OperationProcedure>
+<Note>
+<Para>Single engine start is recommended.</Para>
+</Note>
+<List listType="1.">
+<ListItem>
+<Para>For CMSC L2 or CMSC R2 inoperative, do not operate the associated air conditioning pack on the ground when OAT is greater than 40 degrees C</Para>
+</ListItem>
+<ListItem>
+<Para>To minimize PECS heating, operators should consider the following options:</Para>
+<List listType="A.">
+<ListItem>
+<Para>Set packs OFF and use pre-conditioned air prior to engine start.</Para>
+</ListItem>
+<ListItem>
+<Para>Delay closing forward or aft cargo doors until airplane is ready for push back or engine start.</Para>
+</ListItem>
+<ListItem>
+<Para>Minimize APU ground operations.</Para>
+</ListItem>
+<ListItem>
+<Para>Start APU prior to closing cargo doors.</Para>
+</ListItem>
+<ListItem>
+<Para>Minimize time between cargo door closing and first engine start.</Para>
+</ListItem>
+<ListItem>
+<Para>Each engine should be started individually at the gate.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para rev:revStatus="R" rev:revHighlight="MISC SYSTEM CTRLS page does not provide the necessary data to confirm the ram air fan is operating.">
+<?FTID-rev start?>For CMSC L1 or L2 inoperative, On MISC SYSTEM CTRLS (MSC) maintenance page, confirm right ram fan is operating:<?FTID-rev end?></Para>
+<List listType="A.">
+<ListItem>
+<Para rev:revStatus="R" rev:revHighlight="EMPTY">
+<?FTID-rev start?>Select "SYS" switch on the Display Select Panel to display the SYS page on an MFD.<?FTID-rev end?></Para>
+</ListItem>
+<ListItem>
+<Para rev:revStatus="R" rev:revHighlight="EMPTY">
+<?FTID-rev start?>Select the MAINT button on the SYS menu.<?FTID-rev end?></Para>
+</ListItem>
+<ListItem>
+<Para rev:revStatus="R" rev:revHighlight="EMPTY">
+<?FTID-rev start?>Select the DISPLAY button for "21 AIR CONDITIONING".<?FTID-rev end?></Para>
+</ListItem>
+<ListItem>
+<Para rev:revStatus="R" rev:revHighlight="EMPTY">
+<?FTID-rev start?>On AIR CONDITIONING maintenance page 2, confirm RAM FAN SPEED KRPM under R is 6.0 or greater.<?FTID-rev end?></Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para rev:revStatus="R" rev:revHighlight="EMPTY">
+<?FTID-rev start?>For CMSC R1 or R2 inoperative, On MISC SYSTEM CTRLS (MSC) maintenance page, confirm left ram fan is operating:<?FTID-rev end?></Para>
+<List listType="A.">
+<ListItem>
+<Para rev:revStatus="R" rev:revHighlight="EMPTY">
+<?FTID-rev start?>Select "SYS" switch on the Display Select Panel to display the SYS page on an MFD.<?FTID-rev end?></Para>
+</ListItem>
+<ListItem>
+<Para rev:revStatus="R" rev:revHighlight="EMPTY">
+<?FTID-rev start?>Select the MAINT button on the SYS menu.<?FTID-rev end?></Para>
+</ListItem>
+<ListItem>
+<Para rev:revStatus="R" rev:revHighlight="EMPTY">
+<?FTID-rev start?>Select the DISPLAY button for "21 AIR CONDITIONING".<?FTID-rev end?></Para>
+</ListItem>
+<ListItem>
+<Para rev:revStatus="R" rev:revHighlight="EMPTY">
+<?FTID-rev start?>On AIR CONDITIONING maintenance page 2, confirm RAM FAN. SPEED KRPM under L is 6.0 or greater.<?FTID-rev end?></Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>On POWER ELEC COOLING maintenance page 1, confirm SUPPLY TEMP of left and right PECS loop is 142 degrees F (61 degrees C) or lower.</Para>
+</ListItem>
+<ListItem>
+<Para>Start APU</Para>
+</ListItem>
+<ListItem>
+<Para>Start first engine.</Para>
+<Note>
+<Para>Engine start time will be longer than normal</Para>
+</Note>
+</ListItem>
+<ListItem>
+<Para>Start second engine.</Para>
+</ListItem>
+<ListItem>
+<Para>Shutdown APU.</Para>
+</ListItem>
+</List>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="24-15-01-02">
+<Title>Center Hydraulic System</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="2" nbrRequired="1">
+<DispatchConditionRemarks>
+<Para>One may be inoperative provided associated center hydraulic system electric motor-driven pump is considered inoperative.</Para>
+</DispatchConditionRemarks>
+<Note>
+<Para>An inoperative CMSC for a center system hydraulic pump will cause the associated center system hydraulic pump to be inoperative.  The airplane must also be dispatched using MEL item 29-11-02.</Para>
+</Note>
+<DispatchProcedure>
+<MaintenanceNote>
+<Para>An inoperative CMSC may be removed provided dispatch tool K24002 is installed.</Para>
+</MaintenanceNote>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+</MELItem>
+</DispatchItems>

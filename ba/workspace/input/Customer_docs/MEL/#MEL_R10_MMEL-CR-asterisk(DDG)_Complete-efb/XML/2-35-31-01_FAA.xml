@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM"><!ENTITY G2-35-31-01_FAA.fm_1185649 SYSTEM "..\Images\2-35-31-01_FAA.fm_1185649.cgm" NDATA CGM><!ENTITY G2-35-31-01_FAA.fm_1185729 SYSTEM "..\Images\2-35-31-01_FAA.fm_1185729.cgm" NDATA CGM><!ENTITY G2-35-31-01_FAA.fm_1185754 SYSTEM "..\Images\2-35-31-01_FAA.fm_1185754.cgm" NDATA CGM>]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.2-35-31-01.1583.2-35-31-01_FAA" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="35" superSectionNumber="2" sectionName="MEL" chapterName="Oxygen" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2024-06-19" rev:revStatus="U" rev:revNumber="10" />
+</PUMetaData>
+<MELItem itemNbr="35-31-01" id="X-BOEING:FTID:81205.787.DDG.CU.MEL.2-35-31-01.1.2-35-31-01_FAA">
+<Title>Portable Oxygen Bottles or Units (Including Masks and Hoses)</Title>
+<DispatchCondition repairInterval="D" nbrInstalled="12" nbrRequired="8" maintIndicator="(M)">
+<DispatchConditionRemarks>
+<List listType="a.">
+<ListItem>
+<Para>One operative unit is available for each required cabin crew.</Para>
+</ListItem>
+<ListItem>
+<Para>An inoperative or not properly serviced portable oxygen bottle/unit remains in a certified location until removed or serviced at the next suitable maintenance facility.
+Location placarding is removed or obscured.
+Prior to flight, the pilot-in command shall alert crew members of inoperative or missing equipment</Para>
+</ListItem>
+</List>
+<Note>
+<Para>Inoperative portable oxygen bottles or units, removed from a certified location or removed from the aircraft, are subject to dangerous goods regulations.</Para>
+</Note>
+<Note>
+<Para>Medical equipment installed in the aircraft as part of an EMS operation is not considered part of the normal complement of equipment. </Para>
+</Note>
+</DispatchConditionRemarks>
+<?FTID-rev end?>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Ensure the inoperative portable oxygen bottles or units remain in a certified location and required distribution is maintained (AMM DDG 35-31-01)</Para>
+<List listType="1.">
+<ListItem>
+<Para>Ensure inoperative or not properly serviced portable oxygen bottle/unit remains in a certified location until removed or serviced at the next suitable maintenance facility.</Para>
+</ListItem>
+<ListItem>
+<Para>Ensure required distribution of serviceable units is maintained throughout the airplane.</Para>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+<OperationNote>
+<List listType="1.">
+<ListItem>
+<Para>Ensure the total quantity of oxygen in the operative bottles is adequate.</Para>
+</ListItem>
+<ListItem>
+<Para>If maximum cruise altitude is FL250 or less, first aid oxygen is not required.</Para>
+</ListItem>
+</List>
+<Para>Required Portable Oxygen Dispensing Units location:</Para>
+<GraphicSet id="X-BOEING:FTID:81205.787.DDG.CU.GR.2-35-31-01.1185639.2-35-31-01_FAA">
+<Illustration fileRef="G2-35-31-01_FAA.fm_1185649" linkRef="URN:X-BOEING:FTID:81205.787.DDG.NX.GR.2-35-31-01.1185649." />
+</GraphicSet>
+<GraphicSet id="X-BOEING:FTID:81205.787.DDG.CU.GR.2-35-31-01.1185663.2-35-31-01_FAA">
+<Illustration fileRef="G2-35-31-01_FAA.fm_1185729" linkRef="URN:X-BOEING:FTID:81205.787.DDG.NX.GR.2-35-31-01.1185729." />
+</GraphicSet>
+<GraphicSet id="X-BOEING:FTID:81205.787.DDG.CU.GR.2-35-31-01.1185740.2-35-31-01_FAA">
+<Illustration fileRef="G2-35-31-01_FAA.fm_1185754" linkRef="URN:X-BOEING:FTID:81205.787.DDG.NX.GR.2-35-31-01.1185754." />
+</GraphicSet>
+</OperationNote>
+</DispatchProcedure>
+</DispatchCondition>
+<MELSubItem itemNbr="35-31-01-01">
+<Title>Tamper Seals or Tags</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="-" nbrRequired="-" opsIndicator="(O)">
+<DispatchConditionRemarks>
+<Para>May be inoperative, damaged, or missing provided proper installation and operation is verified at each preflight.</Para>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<OperationProcedure>
+<Para>Verify the associated portable oxygen bottles or units are properly installed and operate correctly before each flight.</Para>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+</MELItem>
+</DispatchItems>

@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE GenericDoc[<!NOTATION CGM SYSTEM "CGM"><!ENTITY G2-25-25-01_FAA.fm_1267581 SYSTEM "..\Images\2-25-25-01_FAA.fm_1267581.cgm" NDATA CGM><!ENTITY G2-25-25-01_FAA.fm_1279020 SYSTEM "..\Images\2-25-25-01_FAA.fm_1279020.cgm" NDATA CGM><!ENTITY G2-25-25-01_FAA.fm_1278510 SYSTEM "..\Images\2-25-25-01_FAA.fm_1278510.cgm" NDATA CGM><!ENTITY G2-25-25-01_FAA.fm_1285619 SYSTEM "..\Images\2-25-25-01_FAA.fm_1285619.cgm" NDATA CGM>]>
+<GenericDoc id="X-BOEING:FTID:81205.787.DDG.PU.GD.2-25-25-01.1119.2-25-25-01_FAA" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/GenericDoc.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="25" superSectionNumber="2" sectionName="MEL" chapterName="Equipment Furnishings" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2024-06-19" rev:revStatus="U" rev:revNumber="10" />
+</PUMetaData>
+<GenericUnit id="X-BOEING:FTID:81205..2-25-25-01_FAA">
+<Title />
+<GraphicSet id="X-BOEING:FTID:81205.787.DDG.CU.GR.2-25-25-01.1266964.2-25-25-01_FAA">
+<Illustration fileRef="G2-25-25-01_FAA.fm_1267581" linkRef="URN:X-BOEING:FTID:81205.787.DDG.NX.GR.2-25-25-01.1267581." />
+</GraphicSet>
+<GraphicSet id="X-BOEING:FTID:81205.787.DDG.CU.GR.2-25-25-01.1271540.2-25-25-01_FAA">
+<Illustration fileRef="G2-25-25-01_FAA.fm_1279020" linkRef="URN:X-BOEING:FTID:81205.787.DDG.NX.GR.2-25-25-01.1279020." />
+</GraphicSet>
+<GraphicSet id="X-BOEING:FTID:81205.787.DDG.CU.GR.2-25-25-01.1272180.2-25-25-01_FAA">
+<Illustration fileRef="G2-25-25-01_FAA.fm_1278510" linkRef="URN:X-BOEING:FTID:81205.787.DDG.NX.GR.2-25-25-01.1278510." />
+</GraphicSet>
+<GraphicSet id="X-BOEING:FTID:81205.787.DDG.CU.GR.2-25-25-01.1282871.2-25-25-01_FAA">
+<Illustration fileRef="G2-25-25-01_FAA.fm_1285619" linkRef="URN:X-BOEING:FTID:81205.787.DDG.NX.GR.2-25-25-01.1285619." />
+</GraphicSet>
+</GenericUnit>
+</GenericDoc>

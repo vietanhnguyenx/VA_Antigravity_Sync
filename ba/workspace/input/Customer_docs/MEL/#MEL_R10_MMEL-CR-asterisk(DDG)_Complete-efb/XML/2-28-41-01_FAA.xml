@@ -1,0 +1,317 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM">]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.2-28-41-01.9030.2-28-41-01_FAA" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="28" superSectionNumber="2" sectionName="MEL" chapterName="Fuel" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2025-09-30" rev:revStatus="R" rev:revNumber="10" />
+</PUMetaData>
+<MELItem itemNbr="28-41-01" id="X-BOEING:FTID:81205.787.DDG.CU.MEL.2-28-41-01.1.2-28-41-01_FAA">
+<Title>Fuel Quantity Indication Systems</Title>
+<MELSubItem itemNbr="28-41-01-01">
+<Title>Main Tanks</Title>
+<DispatchCondition repairInterval="B" nbrInstalled="2" nbrRequired="1" maintIndicator="(M)" opsIndicator="(O)">
+<DispatchConditionRemarks>
+<Para>One may be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Fuel quantity in associated tank is verified by an alternate procedure.</Para>
+</ListItem>
+<ListItem>
+<Para>Crossfeed valve is verified to operate normally before each departure.</Para>
+</ListItem>
+<ListItem>
+<Para>Both fuel pumps for the associated main tank operate normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Center tank fuel quantity indication operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Fuel flow indications operate normally.</Para>
+</ListItem>
+<ListItem>
+<Para>FMC FUEL is initialized with the known total fuel quantity.</Para>
+</ListItem>
+<ListItem>
+<Para>Alternate procedures are used for fuel balancing.</Para>
+</ListItem>
+<ListItem>
+<Para>Appropriate amount of center tank fuel is considered unusable and is accounted for in the airplane weight and balance.</Para>
+</ListItem>
+<ListItem>
+<Para>Appropriate performance adjustments are applied.</Para>
+</ListItem>
+<ListItem>
+<Para>EDTO beyond 180 minutes is not conducted.</Para>
+</ListItem>
+</List>
+<Note>
+<Para>AFM fuel loading and usage limitations are for usable fuel.</Para>
+</Note>
+<Note>
+<Para>Use Boeing Onboard Performance Tool (OPT) to determine take-off weight and/or landing weight as it affects aircraft performance.</Para>
+</Note>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Verify the fuel quantity for the associated main tank and the crossfeed valve operates normally (AMM DDG 28-41-01).</Para>
+<List listType="1.">
+<ListItem>
+<Para>Verify the fuel quantity for the associated main tank using one of the following methods:</Para>
+<List listType="A.">
+<ListItem>
+<Para>Use the Refuel Control Panel (RCP) (P28) fuel quantity indication (if operating). </Para>
+</ListItem>
+<ListItem>
+<Para>Determine the associated tank quantity using the FMC Calculated Fuel from the previous flight and the operating fuel quantity indications.  For refueling, transfer fuel from a fuel tank with an operating fuel quantity indication.</Para>
+</ListItem>
+<ListItem>
+<Para>Defuel the associated tank.  For refueling, transfer fuel from a fuel tank with an operating fuel quantity indication.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Verify crossfeed valve operates normally. (Required by AD 2019-19-10)</Para>
+<List listType="A.">
+<ListItem>
+<Para>Gain access to the crossfeed valve in the main gear wheel well.</Para>
+</ListItem>
+<ListItem>
+<Para>Set Fuel Control Panel (P5) CROSSFEED switch to ON and visually confirm the valve drive moves from the closed (C) position to the open (O) position.</Para>
+</ListItem>
+<ListItem>
+<Para>Set Fuel Control Panel (P5) CROSSFEED switch to OFF and visually confirm the valve drive moves from the open (O) position to closed (C) position.</Para>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+<OperationProcedure>
+<Note>
+<Para>The fuel scavenge associated with the inoperative FQIS, the main tank jettison and the fuel balance systems will be inoperative.</Para>
+</Note>
+<Note>
+<Para>The FUEL DISAGREE and FUEL IMBALANCE advisory messages will be inoperative.  The FUEL QTY LOW advisory message for the associated tank will be inoperative.</Para>
+</Note>
+<List listType="1.">
+<ListItem>
+<Para>Limit the takeoff weight to the maximum climb limited landing weight at the departure airport, plus center tank fuel, plus 2600 lb (1179 kg).</Para>
+</ListItem>
+<ListItem>
+<Para>For center tank fuel required:</Para>
+<List listType="A.">
+<ListItem>
+<Para>Increase flight planning fuel by 4800 lb (2177 kg).</Para>
+</ListItem>
+<ListItem>
+<Para>Reduce the maximum zero fuel weight limit by 4800 lb (2177 kg).</Para>
+</ListItem>
+<ListItem>
+<Para>Adjust the zero fuel weight center of gravity forward limit 0.5% MAC aft.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>For center tank fuel not required:</Para>
+<List listType="A.">
+<ListItem>
+<Para>Center tank fuel at or above 4800 lb (2177 kg):</Para>
+<List listType="1)">
+<ListItem>
+<Para>Reduce the maximum zero fuel weight limit by 4800 lb (2177 kg).</Para>
+</ListItem>
+<ListItem>
+<Para>Adjust the zero fuel weight center of gravity forward limit 0.5% MAC aft.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Center tank fuel less than 4800 lb (2177 kg):</Para>
+<List listType="1)">
+<ListItem>
+<Para>Reduce the maximum zero fuel weight limit by the amount of center tank fuel.</Para>
+</ListItem>
+<ListItem>
+<Para>Adjust the zero fuel weight center of gravity forward limit based on the amount of center tank fuel.</Para>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>The flight must remain with 180 minutes of landing at a suitable airport.</Para>
+</ListItem>
+<ListItem>
+<Para>Prior to each flight, verify crossfeed valve operates normally. (Required by AD 2019-19-10) </Para>
+<List listType="A.">
+<ListItem>
+<Para>Set Fuel Control Panel (P5) CROSSFEED switch to ON and after 15 seconds, confirm FUEL CROSSFEED advisory message does not display.</Para>
+</ListItem>
+<ListItem>
+<Para>Set Fuel Control Panel (P5) CROSSFEED switch to OFF and after 15 seconds, confirm FUEL CROSSFEED advisory message does not display.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Total fuel quantity must be calculated and manually initialized on the FMC PERF INIT page.</Para>
+<Note>
+<Para>The total fuel quantity indications will be inoperative.</Para>
+</Note>
+<Note>
+<Para>The FMC CALCULATED fuel quantity will be blank prior to manual initialization.</Para>
+</Note>
+<Note>
+<Para>The manually entered total fuel quantity and the takeoff speeds will blank after engine start.</Para>
+</Note>
+<List listType="A.">
+<ListItem>
+<Para>Manually enter the total fuel quantity on the PERF INIT page (before and after engine start).  MANUAL will be displayed next to the entered fuel quantity.  </Para>
+</ListItem>
+<ListItem>
+<Para>Confirm the fuel quantity entered is displayed under the CALCULATED fuel quantity display on the PROGRESS page (before and after engine start).</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Flight crew should monitor FMC Calculated fuel and the operative fuel tank quantity indications to ensure usages are normal and to derive the amount of fuel in the tank with the inoperative quantity indication when necessary.</Para>
+</ListItem>
+<ListItem>
+<Para>For fuel balancing, do the FUEL BALANCE SYS Non-Normal Checklist. (Required by AD 2019-19-10)</Para>
+<Note>
+<Para>For center tank fuel, the operative scavenge system will cause a fuel imbalance of up to 4800 lb (2177 kg).</Para>
+</Note>
+</ListItem>
+<ListItem>
+<Para>For fuel jettison:</Para>
+<Note>
+<Para>Selection of fuel jettison causes all FMC performance and VNAV data to become invalid.  If VNAV is the current active pitch mode of the Autopilot Flight Director System (AFDS), the AFDS pitch mode will fail with a resulting master caution light illumination, AUTOPILOT caution message and amber bar through the pitch annunciation on the Primary Flight Display (PFD).</Para>
+</Note>
+<Note>
+<Para>The FUEL JETTISON MAIN advisory message will be displayed.</Para>
+</Note>
+<List listType="A.">
+<ListItem>
+<Para>Fuel jettison system maximum landing weight and fuel to remain automatic shutoff functions will be inoperative.</Para>
+</ListItem>
+<ListItem>
+<Para>FUEL AUTO JETTISON caution message will be displayed.  Do the FUEL AUTO JETTISON Non-Normal Checklist.</Para>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="28-41-01-02">
+<Title>Center Tank</Title>
+<DispatchCondition repairInterval="B" nbrInstalled="1" nbrRequired="0" maintIndicator="(M)" opsIndicator="(O)">
+<DispatchConditionRemarks>
+<Para>May be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Fuel quantity in center tank is verified by an alternate procedure.</Para>
+</ListItem>
+<ListItem>
+<Para>Both main tank fuel quantity indication systems operate normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Both center tank fuel pumps operate normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Fuel flow indications operate normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Fuel scavenge system operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>FMC FUEL is initialized with the known total fuel quantity.</Para>
+</ListItem>
+<ListItem>
+<Para>EDTO beyond 180 minutes is not conducted.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Verify the fuel quantity for the center tank using one of the following methods (AMM DDG 28-41-01).</Para>
+<List listType="1.">
+<ListItem>
+<Para>Use the Refuel Control Panel (RCP) (P28) fuel quantity indication (if operating). </Para>
+</ListItem>
+<ListItem>
+<Para>Determine the center tank quantity using the FMC Calculated Fuel from the previous flight and the main tank fuel quantity indications.  For refueling, transfer fuel from a main tank.</Para>
+</ListItem>
+<ListItem>
+<Para>Defuel the center tank.  For refueling, transfer fuel from a main tank.</Para>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+<OperationProcedure>
+<Note>
+<Para>The FUEL DISAGREE, FUEL IN CENTER and FUEL LOW CENTER advisory messages will be inoperative.</Para>
+</Note>
+<List listType="1.">
+<ListItem>
+<Para>EDTO beyond 180 minutes is not conducted.</Para>
+</ListItem>
+<ListItem>
+<Para>Total fuel quantity must be calculated and manually initialized on the FMC PERF INIT page.</Para>
+<Note>
+<Para>The total fuel quantity indications will be inoperative.</Para>
+</Note>
+<Note>
+<Para>The FMC CALCULATED fuel quantity will be blank prior to manual initialization.</Para>
+</Note>
+<Note>
+<Para>The manually entered total fuel quantity and the takeoff speeds will blank after engine start.</Para>
+</Note>
+<List listType="A.">
+<ListItem>
+<Para>Manually enter the total fuel quantity on the PERF INIT page (before and after engine start).  MANUAL will be displayed next to the entered fuel quantity.  </Para>
+</ListItem>
+<ListItem>
+<Para>Verify the fuel quantity entered is displayed under the CALCULATED fuel quantity display on the PROGRESS page (before and after engine start).</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Flight crew should monitor FMC calculated fuel and the main tank quantity indications to ensure usages are normal and to derive the amount of fuel in the tank with the inoperative quantity indication when necessary.</Para>
+</ListItem>
+<ListItem>
+<Para>For center tank fuel:</Para>
+<List listType="A.">
+<ListItem>
+<Para>For takeoff and center tank fuel greater than 16,000 lb (7257 kg), set both center tank fuel pumps on.  Use the FUEL PUMP CENTER L and R advisory message Non-Normal Checklists for setting the center tank pumps off.</Para>
+</ListItem>
+<ListItem>
+<Para>For takeoff and center tank fuel at or below than 16,000 lb (7257 kg), set both center tank fuel pumps off.</Para>
+</ListItem>
+<ListItem>
+<Para>For inflight above 10,000 feet and center tank fuel greater than 4800 lb (2177 kg), set both center tank fuel pumps on.  Use the FUEL PUMP CENTER L and R advisory message Non-Normal Checklists for setting the center tank pumps off.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>For fuel jettison:</Para>
+<Note>
+<Para>Selection of fuel jettison causes all FMC performance and VNAV data to become invalid.  If VNAV is the current active pitch mode of the Autopilot Flight Director System (AFDS), the AFDS pitch mode will fail with a resulting master caution light illumination, AUTOPILOT caution message and amber bar through the pitch annunciation on the Primary Flight Display (PFD).</Para>
+</Note>
+<List listType="A.">
+<ListItem>
+<Para>Fuel jettison system maximum landing weight and fuel to remain automatic shutoff functions will be inoperative.</Para>
+</ListItem>
+<ListItem>
+<Para>FUEL AUTO JETTISON caution message will be displayed.  Do the FUEL AUTO JETTISON Non-Normal Checklist.</Para>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+</MELItem>
+</DispatchItems>

@@ -1,0 +1,352 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM">]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.2-24-22-02.2559.2-24-22-02" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="24" superSectionNumber="2" sectionName="MEL" chapterName="Electrical Power" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2025-09-30" rev:revStatus="R" rev:revNumber="10" />
+</PUMetaData>
+<MELItem itemNbr="24-22-02" id="X-BOEING:FTID:81205.787.DDG.CU.MEL.2-24-22-02.1.2-24-22-02">
+<Title>APU Starter Generator (ASG) Systems</Title>
+<MELSubItem itemNbr="24-22-02-01">
+<Title>Both Inoperative</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="2" nbrRequired="0" maintIndicator="(M)" opsIndicator="(O)">
+<DispatchConditionRemarks>
+<Para>Both may be inoperative provided:  </Para>
+<List listType="a.">
+<ListItem>
+<Para>APU is not used.</Para>
+</ListItem>
+<ListItem>
+<Para>Left AGCU operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>VFSG systems operate normally.</Para>
+</ListItem>
+<ListItem>
+<Para>EDTO beyond 180 minutes is not conducted.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Note>
+<Para>A VFSG system is considered to be operating normally if its associated status message (ELEC GEN SYS L1, L2, R1 or R2) is not displayed</Para>
+</Note>
+<Note>
+<Para>An inoperative ASG may be removed provided dispatch tool K24012 is installed. If the APU is operated for more than 120 hours with an ASG removed, the APU gearbox should be inspected for wear.</Para>
+</Note>
+<Para>Deactivate left and right APU Starter Generator (ASG) generators by positioning
+associated Electrical Panel (P5) APU GEN L and APU GEN R switches OFF.</Para>
+</MaintenanceProcedure>
+<OperationProcedure>
+<Note>
+<Para>Simultaneous engine start is not allowed.</Para>
+</Note>
+<List listType="1.">
+<ListItem>
+<Para>EDTO beyond 180 minutes is not conducted </Para>
+</ListItem>
+<ListItem>
+<Para>Start the first engine using the Ground Power Engine Start Supplementary Procedure.</Para>
+</ListItem>
+</List>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="24-22-02-02">
+<Title>
+<?FTID-xref 1367294.2-24-22-02?>Left ASG Generator</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="1" nbrRequired="0" maintIndicator="(M)" opsIndicator="(O)">
+<DispatchConditionRemarks>
+<Para>May be inoperative provided:  </Para>
+<List listType="a.">
+<ListItem>
+<Para>Left ASG starter is deactivated.</Para>
+</ListItem>
+<ListItem>
+<Para>APU battery operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>APU SPU operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Right ASG generator operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Right ASG starter operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>VFSG systems operate normally.</Para>
+</ListItem>
+<ListItem>
+<Para>EDTO beyond 180 minutes is not conducted.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Note>
+<Para>A VFSG system is considered to be operating normally if its associated status message (ELEC GEN SYS L1, L2, R1 or R2) is not displayed.  </Para>
+</Note>
+<Note>
+<Para>An inoperative ASG may be removed provided dispatch tool K24012 is installed.  If the APU is operated for more than 120 hours with an ASG removed, the APU gearbox should be inspected for wear.</Para>
+</Note>
+<Para>Deactivate the left ASG starter (AMM DDG 24-22-02).</Para>
+<List listType="1.">
+<ListItem>
+<Para>Position associated Electrical Panel (P5) APU GEN L switch OFF.</Para>
+</ListItem>
+<ListItem>
+<Para>Using a flight deck multi-function display only, open circuit breaker APU START EXCITATION L and lock with an INOP tag.</Para>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+<OperationProcedure>
+<Note>
+<Para>Simultaneous engine start is not allowed.</Para>
+</Note>
+<Note>
+<Para>ELEC APU STARTER L status message may be displayed based on day rotation for APU starting with external power.</Para>
+</Note>
+<Note rev:revStatus="R" rev:revHighlight="Added (O) note for further clarification.">
+<?FTID-rev start?>
+<Para>PACK L or PACK R advisory message may be displayed before engine start.</Para>
+<?FTID-rev end?>
+</Note>
+<List listType="1.">
+<ListItem>
+<Para>Flight must remain within 180 minutes of landing at a suitable airport.</Para>
+</ListItem>
+<ListItem>
+<Para rev:revStatus="R" rev:revHighlight="Added further (O) procedure to provide guidance on how to minimize PECS heating.">
+<?FTID-rev start?>To minimize PECS heating, operators should consider the following options:<?FTID-rev end?></Para>
+<List listType="A.">
+<ListItem>
+<Para rev:revStatus="R" rev:revHighlight="EMPTY">
+<?FTID-rev start?>Set packs OFF and use pre-conditioned air prior to engine start.<?FTID-rev end?></Para>
+</ListItem>
+<ListItem>
+<Para rev:revStatus="R" rev:revHighlight="EMPTY">
+<?FTID-rev start?>Delay closing forward or aft cargo doors until airplane is ready for push back or engine start.<?FTID-rev end?></Para>
+</ListItem>
+<ListItem>
+<Para rev:revStatus="R" rev:revHighlight="EMPTY">
+<?FTID-rev start?>Minimize APU ground operations.<?FTID-rev end?></Para>
+</ListItem>
+<ListItem>
+<Para rev:revStatus="R" rev:revHighlight="EMPTY">
+<?FTID-rev start?>Start APU prior to closing cargo doors.<?FTID-rev end?></Para>
+</ListItem>
+<ListItem>
+<Para rev:revStatus="R" rev:revHighlight="EMPTY">
+<?FTID-rev start?>Minimize time between cargo door closing and first engine start.<?FTID-rev end?></Para>
+</ListItem>
+<ListItem>
+<Para rev:revStatus="R" rev:revHighlight="EMPTY">
+<?FTID-rev start?>Each engine should be started individually at the gate.<?FTID-rev end?></Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para rev:revStatus="R" rev:revHighlight="Added further (O) procedure to provide guidance on how to minimize PECS heating.">
+<?FTID-rev start?>On POWER ELEC COOLING maintenance page 1, confirm SUPPLY TEMP of left and right PECS loop is 142 degrees F (61 degrees C) or lower.<?FTID-rev end?></Para>
+</ListItem>
+</List>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="24-22-02-03">
+<Title>
+<?FTID-xref 1367885.2-24-22-02?>Left ASG Starter</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="1" nbrRequired="0">
+<DispatchConditionRemarks>
+<Para>May be inoperative provided:  </Para>
+<List listType="a.">
+<ListItem>
+<Para>APU battery operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>APU SPU operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Right ASG generator operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Right ASG starter operates normally.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<OperationNote rev:revStatus="R" rev:revHighlight="Added (O) note to provide further dispatch clarification.">
+<?FTID-rev start?>
+<Para>On POWER ELEC COOLING maintenance page 1, confirm SUPPLY TEMP of left and right PECS loop is 142 degrees F (61 degrees C) or lower.</Para>
+<?FTID-rev end?>
+</OperationNote>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="24-22-02-04">
+<Title>
+<?FTID-xref 1369181.2-24-22-02?>Right ASG Generator</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="1" nbrRequired="0" maintIndicator="(M)" opsIndicator="(O)">
+<DispatchConditionRemarks>
+<Para>May be inoperative provided:  </Para>
+<List listType="a.">
+<ListItem>
+<Para>Right ASG starter is deactivated.</Para>
+</ListItem>
+<ListItem>
+<Para>Left AGCU operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Left ASG generator operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Left ASG starter operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>VFSG systems operate normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Flight remains within 180 minutes of landing at a suitable airport.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Note>
+<Para>A VFSG system is considered to be operating normally if its associated status message (ELEC GEN SYS L1, L2, R1 or R2) is not displayed.  </Para>
+</Note>
+<Note>
+<Para>An inoperative ASG may be removed provided dispatch tool K24012 is installed.  If the APU is operated for more than 120 hours with an ASG removed, the APU gearbox should be inspected for wear.</Para>
+</Note>
+<Para>Deactivate the right ASG starter (AMM DDG 24-22-02).</Para>
+<List listType="1.">
+<ListItem>
+<Para>Position associated Electrical Panel (P5) APU GEN R switch OFF.</Para>
+</ListItem>
+<ListItem>
+<Para>Open P049 circuit breaker SPU HOLD ON CONTROL and lock with an INOP tag.</Para>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+<OperationProcedure>
+<Note>
+<Para>APU cannot be started using the APU battery.</Para>
+</Note>
+<Note>
+<Para>ELEC APU START POWER UNIT status message may display during the APU start and remain displayed.</Para>
+</Note>
+<Note>
+<Para>Simultaneous engine start is not allowed.</Para>
+</Note>
+<Note>
+<Para>ELEC APU STARTER R status message may be displayed based on day rotation for APU starting with external power.</Para>
+</Note>
+<Note rev:revStatus="R" rev:revHighlight="Added (O) note for further clarification.">
+<?FTID-rev start?>
+<Para>PACK L or PACK R advisory message may be displayed before engine start.</Para>
+<?FTID-rev end?>
+</Note>
+<List listType="1.">
+<ListItem>
+<Para>Flight must remain within 180 minutes of landing at a suitable airport.</Para>
+</ListItem>
+<ListItem>
+<Para rev:revStatus="R" rev:revHighlight="Added further (O) procedure to provide guidance on how to minimize PECS heating.">
+<?FTID-rev start?>To minimize PECS heating, operators should consider the following options:<?FTID-rev end?></Para>
+<List listType="A.">
+<ListItem>
+<Para rev:revStatus="R" rev:revHighlight="EMPTY">
+<?FTID-rev start?>Set packs OFF and use pre-conditioned air prior to engine start.<?FTID-rev end?></Para>
+</ListItem>
+<ListItem>
+<Para rev:revStatus="R" rev:revHighlight="EMPTY">
+<?FTID-rev start?>Delay closing forward or aft cargo doors until airplane is ready for push back or engine start.<?FTID-rev end?></Para>
+</ListItem>
+<ListItem>
+<Para rev:revStatus="R" rev:revHighlight="EMPTY">
+<?FTID-rev start?>Minimize APU ground operations.<?FTID-rev end?></Para>
+</ListItem>
+<ListItem>
+<Para rev:revStatus="R" rev:revHighlight="EMPTY">
+<?FTID-rev start?>Start APU prior to closing cargo doors.<?FTID-rev end?></Para>
+</ListItem>
+<ListItem>
+<Para rev:revStatus="R" rev:revHighlight="EMPTY">
+<?FTID-rev start?>Minimize time between cargo door closing and first engine start.<?FTID-rev end?></Para>
+</ListItem>
+<ListItem>
+<Para rev:revStatus="R" rev:revHighlight="EMPTY">
+<?FTID-rev start?>Each engine should be started individually at the gate.<?FTID-rev end?></Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para rev:revStatus="R" rev:revHighlight="Added additional (O) guidance to monitor PECS temperature.">
+<?FTID-rev start?>On POWER ELEC COOLING maintenance page 1, confirm SUPPLY TEMP of left and right PECS loop is 142 degrees F (61 degrees C) or lower.<?FTID-rev end?></Para>
+</ListItem>
+</List>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="24-22-02-05">
+<Title>
+<?FTID-xref 1369626.2-24-22-02?>Right ASG Starter</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="1" nbrRequired="0">
+<DispatchConditionRemarks>
+<Para>May be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Left AGCU operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Left ASG generator operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Left ASG starter operates normally.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<OperationNote>
+<List listType="1.">
+<ListItem>
+<Para>APU cannot be started using the APU battery.</Para>
+</ListItem>
+<ListItem>
+<Para>ELEC APU START POWER UNIT status message will display during the APU start.</Para>
+</ListItem>
+<ListItem>
+<Para rev:revStatus="R" rev:revHighlight="Added (O) note to provide further dispatch clarification.">
+<?FTID-rev start?>On POWER ELEC COOLING maintenance page 1, confirm SUPPLY TEMP of left and right PECS loop is 142 degrees F (61 degrees C) or lower.<?FTID-rev end?></Para>
+</ListItem>
+</List>
+</OperationNote>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="24-22-02-06">
+<Title>APU GEN Switch OFF Lights (*)</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="2" nbrRequired="0">
+<DispatchConditionRemarks>
+<Para>One or both may be inoperative.</Para>
+</DispatchConditionRemarks>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="24-22-02-07">
+<Title>APU GEN Switch ON Lights (*)</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="2" nbrRequired="0">
+<DispatchConditionRemarks>
+<Para>One or both may be inoperative.</Para>
+</DispatchConditionRemarks>
+</DispatchCondition>
+</MELSubItem>
+</MELItem>
+</DispatchItems>

@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM">]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.2-33-51-02.1067.2-33-51-02_FAA" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="33" superSectionNumber="2" sectionName="MEL" chapterName="Lights" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2025-09-30" rev:revStatus="U" rev:revNumber="10" />
+</PUMetaData>
+<MELItem itemNbr="33-51-02" id="X-BOEING:FTID:81205.787.DDG.CU.MEL.2-33-51-02.1.2-33-51-02_FAA">
+<Title>Floor Proximity Lighting Systems</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="-" nbrRequired="-" opsIndicator="(O)">
+<DispatchConditionRemarks>
+<Para>May be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>No passengers are carried.</Para>
+</ListItem>
+<ListItem>
+<Para>Alternate procedures are established and used.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<OperationProcedure>
+<List listType="1.">
+<ListItem>
+<Para>Regular passengers may not be carried, however remaining crew or engineers that require repositioning due to the unserviceability may travel.</Para>
+</ListItem>
+<ListItem>
+<Para>Any persons carried on the flight must be seated in the forward three rows. They are to be briefed that the emergency lights are inoperative. Advise location of flashlights at cabin crew stations and that they may be utilised as required.</Para>
+</ListItem>
+</List>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+<MELSubItem itemNbr="33-51-02-01">
+<Title>Seat-Mounted Proximity Lights</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="-" nbrRequired="-">
+<DispatchConditionRemarks>
+<Para>May be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Inoperative seat-mounted lights are not adjacent to each other.</Para>
+</ListItem>
+<ListItem>
+<Para>Seat-mounted lights adjacent to each passenger entry door operate normally.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="33-51-02-02">
+<Title>Main-Aisle Monument Mounted Proximity Lights (Applicable to VN-A861, VN-A862, VN-A863, VN-A864, VN-A867, VN-A868, VN-A870, VN-A871)</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="18" nbrRequired="10">
+<DispatchConditionRemarks>
+<Para>One main-aisle light may be inoperative per aisle side on a monument where two adjacent main-aisle lights per aisle side are installed.</Para>
+</DispatchConditionRemarks>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="33-51-02-02">
+<Title>Main-Aisle Monument Mounted Proximity Lights (Applicable to VN-A865, VN-A866, VN-A869)</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="16" nbrRequired="8">
+<DispatchConditionRemarks>
+<Para>One main-aisle light may be inoperative per aisle side on a monument where two adjacent main-aisle lights per aisle side are installed.</Para>
+</DispatchConditionRemarks>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="33-51-02-02">
+<Title>Main-Aisle Monument Mounted Proximity Lights (Applicable to VN-A872, VN-A873, VN-A874, VN-A877, VN-A878, VN-A879)</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="22" nbrRequired="12">
+<DispatchConditionRemarks>
+<Para>One main-aisle light may be inoperative per aisle side on a monument where two adjacent main-aisle lights per aisle side are installed.</Para>
+</DispatchConditionRemarks>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="33-51-02-03">
+<Title>Cross-Aisle Monument-mounted Proximity Lights (Applicable to VN-A861, VN-A862, VN-A863, VN-A864, VN-A865, VN-A866, VN-A867, VN-A868 VN-A869, VN-A870, VN-A871)</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="6" nbrRequired="4">
+<DispatchConditionRemarks>
+<Para>One cross-aisle light may be inoperative on a monument where two cross-aisle lights are installed provided light is not adjacent to attendant seat.</Para>
+</DispatchConditionRemarks>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="33-51-02-03">
+<Title>Cross-Aisle Monument-mounted Proximity Lights (Applicable to VN-A872, VN-A873, VN-A874, VN-A877, VN-A878, VN-A879)</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="7" nbrRequired="4">
+<DispatchConditionRemarks>
+<Para>One cross-aisle light may be inoperative on a monument where two cross-aisle lights are installed provided light is not adjacent to attendant seat.</Para>
+</DispatchConditionRemarks>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="33-51-02-04">
+<Title>Exit Identifiers</Title>
+<MELSubItem itemNbr="33-51-02-04-01">
+<Title>Door 1 (*)</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="4" nbrRequired="2">
+<DispatchConditionRemarks>
+<Para>Aft exit identifier (back-light and/or flood-light) at each door may be inoperative. </Para>
+</DispatchConditionRemarks>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="33-51-02-04-02">
+<Title>Door 2 and Door 3 (*)</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="8" nbrRequired="4">
+<DispatchConditionRemarks>
+<Para>One exit identifier flood-light at each door may be inoperative. </Para>
+</DispatchConditionRemarks>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="33-51-02-04-03">
+<Title>Door 4 (*)</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="4" nbrRequired="2">
+<DispatchConditionRemarks>
+<Para>Forward exit identifier (back-light and/or flood-light) at each door may be inoperative. </Para>
+</DispatchConditionRemarks>
+</DispatchCondition>
+</MELSubItem>
+</MELSubItem>
+</MELItem>
+</DispatchItems>

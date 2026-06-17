@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE FrontMatter[<!NOTATION CGM SYSTEM "CGM"><!ENTITY G4-00-01-00.fm_1771409 SYSTEM "..\Images\4-00-01-00.fm_1771409.cgm" NDATA CGM><!ENTITY G4-00-01-00.fm_1781467 SYSTEM "..\Images\4-00-01-00.fm_1781467.cgm" NDATA CGM>]>
+<FrontMatter id="X-BOEING:FTID:81205.787.DDG.PU.FM.4-00-01-00.128638.4-00-01-00" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/FrontMatter.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="" superSectionNumber="4" sectionName="Miscellaneous" chapterName="General" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2019-09-25" rev:revStatus="U" rev:revNumber="10" />
+</PUMetaData>
+<Introduction id="X-BOEING:FTID:81205.787.DDG.CU.INT.4-00-01-00.128638.4-00-01-00">
+<FMtopic>
+<Title>Airplane Model Information</Title>
+<Para>Where applicable, airplane model information (annotation) is included above affected text to identify configuration-specific information.  The annotation applies only to text aligned immediately below it and any associated indented text.  The following example illustrates the model applicability for a Maintenance procedure:</Para>
+<Para>
+<Emphasis txtStyle="bold" txtEffect="underline">MAINTENANCE (M)</Emphasis>
+</Para>
+<Para>Deactivate the forward cargo heat supply shutoff valve closed and deactivate the forward equipment cooling exhaust overboard exhaust valve open (AMM DDG 21-43-01).</Para>
+<GraphicSet id="X-BOEING:FTID:81205.787.DDG.CU.GR.4-00-01-00.1771402.4-00-01-00">
+<Illustration fileRef="G4-00-01-00.fm_1771409" linkRef="URN:X-BOEING:FTID:81205.787.DDG.NX.GR.4-00-01-00.1771409." />
+</GraphicSet>
+<GraphicSet id="X-BOEING:FTID:81205.787.DDG.CU.GR.4-00-01-00.1781517.4-00-01-00">
+<Illustration fileRef="G4-00-01-00.fm_1781467" linkRef="URN:X-BOEING:FTID:81205.787.DDG.NX.GR.4-00-01-00.1781467." />
+</GraphicSet>
+<Para>For the above example procedure, the applicable steps are as follows:</Para>
+<List>
+<ListItem>
+<Para> In the (M) procedure, step 1A only applies for the FCAC not installed configuration.  The remainder of steps in the (M) procedure apply to all configurations.</Para>
+</ListItem>
+<ListItem>
+<Para>In the (O) procedure, steps 1 thru 3 apply to the FCAC not installed configuration.  Step 1 at the bottom of the procedure applies to the FCAC installed configuration.</Para>
+</ListItem>
+</List>
+<Para>When airplane model information (annotation) is left justified, aligned with the bolded heading or title and not aligned with an individual paragraph, step, or note, it indicates all the information following that annotation is applicable to the end of the listed steps, or until another airplane model is noted.  For this format, all the steps that follow multiple annotations
+are re-numbered beginning from step 1 for each annotation.</Para>
+</FMtopic>
+</Introduction>
+</FrontMatter>

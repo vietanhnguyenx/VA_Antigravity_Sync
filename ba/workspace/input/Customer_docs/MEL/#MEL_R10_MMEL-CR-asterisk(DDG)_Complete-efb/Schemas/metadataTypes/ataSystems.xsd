@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://www.boeing.com/FTID-ML"
+    targetNamespace="http://www.boeing.com/FTID-ML" 
+    elementFormDefault="qualified"
+    attributeFormDefault="unqualified"
+    version="FTID 2.6">
+
+<!-- 	
+=================================================================
+
+
+Copyright Information:
+      Boeing Proprietary and Confidential - 
+      All Rights Reserved since 2006.
+
+      This schema file is part of the Boeing Flight Technical 
+      Integrated Data (FTID) Specification based on XML.
+      All rights are reserved under Boeing Flight Operations 
+      digital data entitlements, products or services.
+
+     
+Contact Information:   	
+        The Boeing Company
+        Flight Operations Support
+        P.O. Box 3707	MS 20-89
+        Seattle, WA 98124-2207
+        USA
+        email:  flighttraining@Boeing.com
+        Phone:  (206) 662-4000
+        Fax:    (206) 662-4743
+
+		
+===================================================================
+-->
+
+
+<!--=====================================================-->
+<!-- ATASystems element definition -->
+<!--=====================================================-->
+<xs:complexType name="ATASystemsType">
+    <xs:annotation>
+        <xs:documentation>ATA Systems Definition</xs:documentation>
+    </xs:annotation>
+
+    <xs:choice>
+        <xs:element name="ATASystemsAll" type="ATASystemsAllType"/>
+        <xs:element name="ATASystemsNone" type="ATASystemsNoneType"/>
+        <xs:element name="ATASystemsList" type="ATASystemsListType" maxOccurs="unbounded"/>
+    </xs:choice>
+</xs:complexType>
+
+
+<!--=====================================================-->
+<!--  ATASystemsAll element definition -->
+<!--=====================================================-->
+<xs:complexType name="ATASystemsAllType">
+    <xs:annotation>
+        <xs:documentation>All applicable systems</xs:documentation>
+    </xs:annotation>
+
+    <xs:attribute name="code" type="xs:string" fixed="ALL"/>
+    <xs:attribute name="desc" type="xs:string" fixed="All Systems"/>
+</xs:complexType>
+
+
+<!--=====================================================-->
+<!--  ATASystemsNone element definition -->
+<!--=====================================================-->
+<xs:complexType name="ATASystemsNoneType">
+    <xs:annotation>
+        <xs:documentation>No applicable system</xs:documentation>
+    </xs:annotation>
+
+    <xs:attribute name="code" type="xs:string" fixed="NIL"/>
+    <xs:attribute name="desc" type="xs:string" fixed="Not Applicable"/>
+</xs:complexType>
+
+
+<!--=====================================================-->
+<!-- ATASystemsList element definition -->
+<!--=====================================================-->
+<xs:complexType name="ATASystemsListType">
+    <xs:annotation>
+        <xs:documentation>ATA Systems that are applicable to Flight Operations domain.</xs:documentation>
+    </xs:annotation>
+
+    <xs:choice>
+        <xs:element name="ATA20" type="ATA20Type"/>
+        <xs:element name="ATA21" type="ATA21Type"/>
+        <xs:element name="ATA22" type="ATA22Type"/>
+        <xs:element name="ATA23" type="ATA23Type"/>
+        <xs:element name="ATA24" type="ATA24Type"/>
+        <xs:element name="ATA25" type="ATA25Type"/>
+        <xs:element name="ATA26" type="ATA26Type"/>
+        <xs:element name="ATA27" type="ATA27Type"/>
+        <xs:element name="ATA28" type="ATA28Type"/>
+        <xs:element name="ATA29" type="ATA29Type"/>
+        <xs:element name="ATA30" type="ATA30Type"/>
+        <xs:element name="ATA31" type="ATA31Type"/>
+        <xs:element name="ATA32" type="ATA32Type"/>
+        <xs:element name="ATA33" type="ATA33Type"/>
+        <xs:element name="ATA34" type="ATA34Type"/>
+        <xs:element name="ATA35" type="ATA35Type"/>
+        <xs:element name="ATA36" type="ATA36Type"/>
+        <xs:element name="ATA38" type="ATA38Type"/>
+        <xs:element name="ATA45" type="ATA45Type"/>
+        <xs:element name="ATA46" type="ATA46Type"/>
+        <xs:element name="ATA49" type="ATA49Type"/>
+        <xs:element name="ATA52" type="ATA52Type"/>
+        <xs:element name="ATA56" type="ATA56Type"/>
+        <xs:element name="ATA71" type="ATA71Type"/>
+    </xs:choice>
+</xs:complexType>
+
+
+<!--=====================================================-->
+<!-- ATA20 element definition -->
+<!--=====================================================-->
+<xs:complexType name="ATA20Type">
+    <xs:annotation>
+        <xs:documentation>General</xs:documentation>
+    </xs:annotation>
+
+    <xs:attribute name="code" type="xs:string" fixed="20"/>
+    <xs:attribute name="desc" type="xs:string" fixed="General"/>
+</xs:complexType>
+
+<!--=====================================================-->
+<!-- ATA21 element definition -->
+<!--=====================================================-->
+<xs:complexType name="ATA21Type">
+    <xs:annotation>
+        <xs:documentation>Air Conditioning and Pressurization</xs:documentation>
+    </xs:annotation>
+
+    <xs:attribute name="code" type="xs:string" fixed="21"/>
+    <xs:attribute name="desc" type="xs:string" fixed="Air Conditioning and Pressurization"/>
+</xs:complexType>
+
+<!--=====================================================-->
+<!-- ATA22 element definition -->
+<!--=====================================================-->
+<xs:complexType name="ATA22Type">
+    <xs:annotation>
+        <xs:documentation>Autoflight</xs:documentation>
+    </xs:annotation>
+
+    <xs:attribute name="code" type="xs:string" fixed="22"/>
+    <xs:attribute name="desc" type="xs:string" fixed="Autoflight"/>
+</xs:complexType>
+
+<!--=====================================================-->
+<!-- ATA23 element definition -->
+<!--=====================================================-->
+<xs:complexType name="ATA23Type">
+    <xs:annotation>
+        <xs:documentation>Communications</xs:documentation>
+    </xs:annotation>
+
+    <xs:attribute name="code" type="xs:string" fixed="23"/>
+    <xs:attribute name="desc" type="xs:string" fixed="Communications"/>
+</xs:complexType>
+
+<!--=====================================================-->
+<!-- ATA24 element definition -->
+<!--=====================================================-->
+<xs:complexType name="ATA24Type">
+    <xs:annotation>
+        <xs:documentation>Electrical</xs:documentation>
+    </xs:annotation>
+
+    <xs:attribute name="code" type="xs:string" fixed="24"/>
+    <xs:attribute name="desc" type="xs:string" fixed="Electrical"/>
+</xs:complexType>
+
+<!--=====================================================-->
+<!-- ATA25 element definition -->
+<!--=====================================================-->
+<xs:complexType name="ATA25Type">
+    <xs:annotation>
+        <xs:documentation>Equipment</xs:documentation>
+    </xs:annotation>
+
+    <xs:attribute name="code" type="xs:string" fixed="25"/>
+    <xs:attribute name="desc" type="xs:string" fixed="Equipment"/>
+</xs:complexType>
+
+<!--=====================================================-->
+<!-- ATA26 element definition -->
+<!--=====================================================-->
+<xs:complexType name="ATA26Type">
+    <xs:annotation>
+        <xs:documentation>Fire Protection</xs:documentation>
+    </xs:annotation>
+
+    <xs:attribute name="code" type="xs:string" fixed="26"/>
+    <xs:attribute name="desc" type="xs:string" fixed="Fire Protection"/>
+</xs:complexType>
+
+<!--=====================================================-->
+<!-- ATA27 element definition -->
+<!--=====================================================-->
+<xs:complexType name="ATA27Type">
+    <xs:annotation>
+        <xs:documentation>Flight Controls</xs:documentation>
+    </xs:annotation>
+
+    <xs:attribute name="code" type="xs:string" fixed="27"/>
+    <xs:attribute name="desc" type="xs:string" fixed="Flight Controls"/>
+</xs:complexType>
+
+<!--=====================================================-->
+<!-- ATA28 element definition -->
+<!--=====================================================-->
+<xs:complexType name="ATA28Type">
+    <xs:annotation>
+        <xs:documentation>FUEL</xs:documentation>
+    </xs:annotation>
+
+    <xs:attribute name="code" type="xs:string" fixed="28"/>
+    <xs:attribute name="desc" type="xs:string" fixed="FUEL"/>
+</xs:complexType>
+
+<!--=====================================================-->
+<!-- ATA29 element definition -->
+<!--=====================================================-->
+<xs:complexType name="ATA29Type">
+    <xs:annotation>
+        <xs:documentation>Hydraulics</xs:documentation>
+    </xs:annotation>
+
+    <xs:attribute name="code" type="xs:string" fixed="29"/>
+    <xs:attribute name="desc" type="xs:string" fixed="Hydraulics"/>
+</xs:complexType>
+
+<!--=====================================================-->
+<!-- ATA30 element definition -->
+<!--=====================================================-->
+<xs:complexType name="ATA30Type">
+    <xs:annotation>
+        <xs:documentation>Ice and Rain Protection</xs:documentation>
+    </xs:annotation>
+
+    <xs:attribute name="code" type="xs:string" fixed="30"/>
+    <xs:attribute name="desc" type="xs:string" fixed="Ice and Rain Protection"/>
+</xs:complexType>
+
+<!--=====================================================-->
+<!-- ATA31 element definition -->
+<!--=====================================================-->
+<xs:complexType name="ATA31Type">
+    <xs:annotation>
+        <xs:documentation>Indicating and Recording</xs:documentation>
+    </xs:annotation>
+
+    <xs:attribute name="code" type="xs:string" fixed="31"/>
+    <xs:attribute name="desc" type="xs:string" fixed="Indicating and Recording"/>
+</xs:complexType>
+
+<!--=====================================================-->
+<!-- ATA32 element definition -->
+<!--=====================================================-->
+<xs:complexType name="ATA32Type">
+    <xs:annotation>
+        <xs:documentation>Landing Gear</xs:documentation>
+    </xs:annotation>
+
+    <xs:attribute name="code" type="xs:string" fixed="32"/>
+    <xs:attribute name="desc" type="xs:string" fixed="Landing Gear"/>
+</xs:complexType>
+
+<!--=====================================================-->
+<!-- ATA33 element definition -->
+<!--=====================================================-->
+<xs:complexType name="ATA33Type">
+    <xs:annotation>
+        <xs:documentation>Lights</xs:documentation>
+    </xs:annotation>
+
+    <xs:attribute name="code" type="xs:string" fixed="33"/>
+    <xs:attribute name="desc" type="xs:string" fixed="Lights"/>
+</xs:complexType>
+
+<!--=====================================================-->
+<!-- ATA34 element definition -->
+<!--=====================================================-->
+<xs:complexType name="ATA34Type">
+    <xs:annotation>
+        <xs:documentation>Navigation</xs:documentation>
+    </xs:annotation>
+
+    <xs:attribute name="code" type="xs:string" fixed="34"/>
+    <xs:attribute name="desc" type="xs:string" fixed="Navigation"/>
+</xs:complexType>
+
+<!--=====================================================-->
+<!-- ATA35 element definition -->
+<!--=====================================================-->
+<xs:complexType name="ATA35Type">
+    <xs:annotation>
+        <xs:documentation>Oxygen</xs:documentation>
+    </xs:annotation>
+
+    <xs:attribute name="code" type="xs:string" fixed="35"/>
+    <xs:attribute name="desc" type="xs:string" fixed="Oxygen"/>
+</xs:complexType>
+
+<!--=====================================================-->
+<!-- ATA36 element definition -->
+<!--=====================================================-->
+<xs:complexType name="ATA36Type">
+    <xs:annotation>
+        <xs:documentation>Pneumatics</xs:documentation>
+    </xs:annotation>
+
+    <xs:attribute name="code" type="xs:string" fixed="36"/>
+    <xs:attribute name="desc" type="xs:string" fixed="Pneumatics"/>
+</xs:complexType>
+
+<!--=====================================================-->
+<!-- ATA38 element definition -->
+<!--=====================================================-->
+<xs:complexType name="ATA38Type">
+    <xs:annotation>
+        <xs:documentation>Water and Waste</xs:documentation>
+    </xs:annotation>
+
+    <xs:attribute name="code" type="xs:string" fixed="38"/>
+    <xs:attribute name="desc" type="xs:string" fixed="Water and Waste"/>
+</xs:complexType>
+
+<!--=====================================================-->
+<!-- ATA45 element definition -->
+<!--=====================================================-->
+<xs:complexType name="ATA45Type">
+    <xs:annotation>
+        <xs:documentation>On Board Maintenance</xs:documentation>
+    </xs:annotation>
+
+    <xs:attribute name="code" type="xs:string" fixed="45"/>
+    <xs:attribute name="desc" type="xs:string" fixed="On Board Maintenance"/>
+</xs:complexType>
+
+<!--=====================================================-->
+<!-- ATA46 element definition -->
+<!--=====================================================-->
+<xs:complexType name="ATA46Type">
+    <xs:annotation>
+        <xs:documentation>Information Systems</xs:documentation>
+    </xs:annotation>
+
+    <xs:attribute name="code" type="xs:string" fixed="46"/>
+    <xs:attribute name="desc" type="xs:string" fixed="Information Systems"/>
+</xs:complexType>
+
+<!--=====================================================-->
+<!-- ATA49 element definition -->
+<!--=====================================================-->
+<xs:complexType name="ATA49Type">
+    <xs:annotation>
+        <xs:documentation>Auxiliary Power</xs:documentation>
+    </xs:annotation>
+
+    <xs:attribute name="code" type="xs:string" fixed="49"/>
+    <xs:attribute name="desc" type="xs:string" fixed="Auxiliary Power"/>
+</xs:complexType>
+
+<!--=====================================================-->
+<!-- ATA52 element definition -->
+<!--=====================================================-->
+<xs:complexType name="ATA52Type">
+    <xs:annotation>
+        <xs:documentation>Doors</xs:documentation>
+    </xs:annotation>
+
+    <xs:attribute name="code" type="xs:string" fixed="52"/>
+    <xs:attribute name="desc" type="xs:string" fixed="Doors"/>
+</xs:complexType>
+
+
+<!--=====================================================-->
+<!-- ATA56 element definition -->
+<!--=====================================================-->
+<xs:complexType name="ATA56Type">
+    <xs:annotation>
+        <xs:documentation>Windows</xs:documentation>
+    </xs:annotation>
+
+    <xs:attribute name="code" type="xs:string" fixed="56"/>
+    <xs:attribute name="desc" type="xs:string" fixed="Windows"/>
+</xs:complexType>
+
+<!--=====================================================-->
+<!-- ATA71 element definition -->
+<!--=====================================================-->
+<xs:complexType name="ATA71Type">
+    <xs:annotation>
+        <xs:documentation>Power Plant</xs:documentation>
+    </xs:annotation>
+
+    <xs:attribute name="code" type="xs:string" fixed="71"/>
+    <xs:attribute name="desc" type="xs:string" fixed="Power Plant"/>
+</xs:complexType>
+
+
+</xs:schema>
+

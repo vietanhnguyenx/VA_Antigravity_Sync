@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM">]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.2-26-14-01.5536.2-26-14-01" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="26" superSectionNumber="2" sectionName="MEL" chapterName="Fire Protection" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2019-07-12" rev:revStatus="U" rev:revNumber="10" />
+</PUMetaData>
+<MELItem itemNbr="26-14-01" id="X-BOEING:FTID:81205.787.DDG.CU.MEL.2-26-14-01.1.2-26-14-01">
+<Title>Overhead Flight Attendant Rest (OFAR) Smoke Detection Systems</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="8" nbrRequired="0" maintIndicator="(M)" opsIndicator="(O)">
+<DispatchConditionRemarks>
+<Para>Applicable to: VN-A861, VN-A862, VN-A863, VN-A864, VN-A867, VN-A868, VN-A870, VN-A871.</Para>
+<Para>May be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Inoperative smoke detection system is deactivated.</Para>
+</ListItem>
+<ListItem>
+<Para>OFAR is deactivated closed.</Para>
+</ListItem>
+</List>
+<Note>
+<Para>These provisions are not intended to prohibit OFAR inspections by crew members.</Para>
+</Note>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Deactivate the inoperative smoke detection system and deactivate the OFAR closed (AMM DDG 26-14-01).</Para>
+<List listType="1.">
+<ListItem>
+<Para>Deactivate the associated attendant rest smoke detection system.</Para>
+<List listType="A.">
+<ListItem>
+<Para>Using a flight deck multi-function display only, open circuit breaker SMOKE DETECTOR-OFAR and lock with an INOP tag.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Deactivate the associated attendant rest area closed.</Para>
+<List listType="A.">
+<ListItem>
+<Para>Remove all baggage and personal items from the associated attendant rest.</Para>
+<Note>
+<Para>Blankets, pillows and other items normally used in the crew rest may remain.</Para>
+</Note>
+</ListItem>
+<ListItem>
+<Para>Close the associated attendant rest entrance door.</Para>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+<OperationProcedure>
+<Para>The crew rest area is not available for inflight use.  Remove personal items and do not enter except for inspections by crew members.</Para>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+<MELSubItem itemNbr="26-14-01-01">
+<Title>Individual Bunk Smoke Detectors</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="6" nbrRequired="0" maintIndicator="(M)" opsIndicator="(O)">
+<DispatchConditionRemarks>
+<Para>Applicable to: VN-A861, VN-A862, VN-A863, VN-A864, VN-A867, VN-A868, VN-A870, VN-A871.</Para>
+<Para>May be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Associated bunk is not used and personal items are removed.</Para>
+</ListItem>
+<ListItem>
+<Para>A conspicuous barrier strap or rope is placed across the associated bunk with a placard attached stating that the bunk is not to be used.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Deactivate associated bunk (AMM DDG 26-14-01).</Para>
+<List listType="1.">
+<ListItem>
+<Para>Remove all personal items from the associated bunk.</Para>
+</ListItem>
+<ListItem>
+<Para>Place a barrier strap or rope across the associated bunk.</Para>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+<OperationProcedure>
+<Para>The bunk associated with the inoperative smoke detector is not available for inflight use.  Remove personal items from the bunk.</Para>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="26-14-01-02">
+<Title>Entrance Area Smoke Detectors</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="2" nbrRequired="1">
+<DispatchConditionRemarks>
+<Para>Applicable to: VN-A861, VN-A862, VN-A863, VN-A864, VN-A867, VN-A868, VN-A870, VN-A871.</Para>
+<Para>One may be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Bunk smoke detectors operate normally.</Para>
+</ListItem>
+<ListItem>
+<Para>For entrance area curtain installed, entrance area curtain is secured open or removed.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+</DispatchCondition>
+</MELSubItem>
+</MELItem>
+</DispatchItems>

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://www.boeing.com/FTID-ML"
+    xmlns:rev="http://www.boeing.com/FTID-ML/Revision"
+    targetNamespace="http://www.boeing.com/FTID-ML" 
+    elementFormDefault="qualified" 
+    attributeFormDefault="unqualified"
+    version="FTID 2.6">
+
+<!-- 	
+=================================================================
+
+
+Copyright Information:
+      Boeing Proprietary and Confidential - 
+      All Rights Reserved since 2006.
+
+      This schema file is part of the Boeing Flight Technical 
+      Integrated Data (FTID) Specification based on XML.
+      All rights are reserved under Boeing Flight Operations 
+      digital data entitlements, products or services.
+
+     
+Contact Information:   	
+        The Boeing Company
+        Flight Operations Support
+        P.O. Box 3707	MS 20-89
+        Seattle, WA 98124-2207
+        USA
+        email:  flighttraining@Boeing.com
+        Phone:  (206) 662-4000
+        Fax:    (206) 662-4743
+
+		
+===================================================================
+-->
+
+<xs:include schemaLocation="../attributeTypes/generalAttrs.xsd"/>
+<xs:include schemaLocation="../basicDataTypes/basicDataInclude.xsd"/>
+<xs:include schemaLocation="../metadataTypes/effect.xsd"/>
+<xs:import namespace="http://www.boeing.com/FTID-ML/Revision" schemaLocation="../metadataTypes/revision.xsd"/>
+
+
+<!--=====================================================-->
+<!--  EffectCrossRefs element declaration -->
+<!--=====================================================-->
+<xs:element name="EffectCrossRefs" type="EffectCrossRefsType"/>
+
+
+<!--=====================================================-->
+<!--  EffectCrossRefs element definition -->
+<!--=====================================================-->
+<xs:complexType name="EffectCrossRefsType">
+    <xs:annotation>
+        <xs:documentation>Content-Unit for list of airplane references</xs:documentation>
+    </xs:annotation>
+
+    <xs:sequence>
+        <xs:element name="Title" type="TitleType"/>
+        <xs:choice maxOccurs="unbounded">
+            <xs:group ref="TextCWNGroupType"/>
+            <xs:element name="EffectXRefList" type="EffectXRefListType" minOccurs="0"/>
+        </xs:choice>
+    </xs:sequence>
+
+    <xs:attribute name="id" type="UIDType" use="required"/>
+    <xs:attributeGroup ref="globalAttrGrp"/>
+</xs:complexType>
+
+
+<!--=====================================================-->
+<!--  EffectXRefList element definition -->
+<!--=====================================================-->
+<xs:complexType name="EffectXRefListType">
+    <xs:annotation>
+        <xs:documentation></xs:documentation>
+    </xs:annotation>
+
+    <xs:sequence maxOccurs="unbounded">
+        <xs:element name="EffectXRefItem" type="EffectXRefItemType"/>
+    </xs:sequence>
+
+    <xs:attributeGroup ref="globalAttrGrp"/>
+</xs:complexType>
+
+
+<!--=====================================================-->
+<!--  EffectXRefItem element definition -->
+<!--=====================================================-->
+<xs:complexType name="EffectXRefItemType">
+    <xs:annotation>
+        <xs:documentation>Cross References info for an aircraft</xs:documentation>
+    </xs:annotation>
+
+    <xs:sequence>
+        <xs:element name="AircraftID" type="AircraftIDType" maxOccurs="unbounded"/>
+    </xs:sequence>
+
+    <xs:attributeGroup ref="globalAttrGrp"/>
+</xs:complexType>
+
+
+<!--=====================================================-->
+<!--  AircraftID element definition -->
+<!--=====================================================-->
+<xs:complexType name="AircraftIDType">
+    <xs:annotation>
+        <xs:documentation>An identifier type and value for an aircraft, airplane-no, registy-no, serial-no, etc.</xs:documentation>
+    </xs:annotation>
+
+    <xs:attribute name="idDesc" type="genericStrType"/>
+    <xs:attribute name="idValue" type="genericStrType"/>
+    <xs:attributeGroup ref="globalAttrGrp"/>
+</xs:complexType>
+
+
+
+</xs:schema>

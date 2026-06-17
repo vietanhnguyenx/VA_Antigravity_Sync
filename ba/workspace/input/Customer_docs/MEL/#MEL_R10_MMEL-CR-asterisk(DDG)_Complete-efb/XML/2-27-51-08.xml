@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM">]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.2-27-51-08.2356.2-27-51-08" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="27" superSectionNumber="2" sectionName="MEL" chapterName="Flight Controls" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2025-09-30" rev:revStatus="R" rev:revNumber="10" />
+</PUMetaData>
+<MELItem itemNbr="27-51-08" id="X-BOEING:FTID:81205.787.DDG.CU.MEL.2-27-51-08.1.2-27-51-08">
+<Title>Alternate Flap/Slat Control</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="1" nbrRequired="0" maintIndicator="(M)" opsIndicator="(O)">
+<DispatchConditionRemarks>
+<Para>May be dispatched with a FLAP ALTERNATE SWITCH fault provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Flap lever position transducers operate normally.</Para>
+</ListItem>
+<ListItem>
+<Para>At least one surface (flap or slat) alternate control is verified to operate normally once each flight day.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Verify operation of slat and/or flap alternate control once each flight day (AMM DDG 27-51-08).</Para>
+<List listType="1.">
+<ListItem>
+<Para>Confirm flaps are UP.</Para>
+</ListItem>
+<ListItem>
+<Para>For all three hydraulic systems available, turn hydraulics on.</Para>
+</ListItem>
+<ListItem>
+<Para>For only one or two of the hydraulic systems available at once:</Para>
+<List listType="A.">
+<ListItem>
+<Para>With hydraulics off, move the speedbrake lever UP.</Para>
+</ListItem>
+<ListItem>
+<Para>Pressurize and depressurize hydraulic systems in this sequence: left, right.</Para>
+</ListItem>
+<ListItem>
+<Para>Pressurize the center hydraulic system.</Para>
+</ListItem>
+<ListItem>
+<Para>Confirm that all spoilers are extended.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Select ALTN on the ALTN FLAPS ARM switch. </Para>
+<Note>
+<Para>The FLAP/SLAT CONTROL caution message will be displayed.</Para>
+</Note>
+</ListItem>
+<ListItem>
+<Para>Move the ALTN FLAPS selector to EXT.</Para>
+<Note>
+<Para>If hydraulic systems are pressurized, spoilers, ailerons, and flaperons will move during test.</Para>
+</Note>
+<Note>
+<Para>Advise the flight crew if a surface (slat or flap) alternate control is inoperative.</Para>
+</Note>
+</ListItem>
+<ListItem>
+<Para>After movement of the appropriate surface is verified on expanded flap or slat position indications, move the ALTN FLAPS selector to OFF.</Para>
+</ListItem>
+<ListItem>
+<Para>Wait at least 30 seconds.</Para>
+</ListItem>
+<ListItem>
+<Para>Move the ALTN FLAPS selector to RET until leading and trailing edges are fully retracted.</Para>
+</ListItem>
+<ListItem>
+<Para>Move the ALTN FLAPS selector to OFF.</Para>
+</ListItem>
+<ListItem>
+<Para>Disarm the ALTN FLAPS ARM switch.</Para>
+</ListItem>
+<ListItem>
+<Para>Confirm the FLAP/SLAT CONTROL caution message is not displayed.</Para>
+</ListItem>
+<ListItem>
+<Para>Retract spoilers if extended:</Para>
+<List listType="A.">
+<ListItem>
+<Para>With hydraulics off, move the speedbrake lever DN.</Para>
+</ListItem>
+<ListItem>
+<Para>Pressurize and depressurize hydraulic systems in this sequence: left, right, center.</Para>
+</ListItem>
+<ListItem>
+<Para>Confirm that all spoilers are retracted.</Para>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+<OperationProcedure>
+<Para>In the event the FLAP/SLAT CONTROL caution message is displayed in flight, alternate mode operation will be required.  Accomplish the associated non-normal checklist, but with the following approach configuration and speed:</Para>
+<List listType="1.">
+<ListItem>
+<Para>If alternate slat control is inoperative:</Para>
+<List listType="A.">
+<ListItem>
+<Para>Use flaps 20 and VREF 30 + 30 for landing.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>If alternate flap control is inoperative:</Para>
+<List listType="A.">
+<ListItem>
+<Para>Choose one:</Para>
+<List listType="1)">
+<ListItem>
+<Para>Flap position is 5 or less: </Para>
+<Note>
+<Para>Ensure slats are in midrange position using alternate mode as required.  Use current flaps and VREF 30 + 40 for landing.</Para>
+</Note>
+</ListItem>
+<ListItem>
+<Para>Flap position is between 5 and 20: </Para>
+<Note>
+<Para>Use current flaps and VREF 30 + 20 for landing.</Para>
+</Note>
+</ListItem>
+<ListItem>
+<Para>Flap position is 20 or greater: </Para>
+<Note>
+<Para>Use current flaps and VREF 20 for landing.</Para>
+</Note>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+<MELSubItem itemNbr="27-51-08-01">
+<Title>ARM Switch ALTN Light (*)</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="1" nbrRequired="0">
+<DispatchConditionRemarks>
+<Para>May be inoperative.</Para>
+</DispatchConditionRemarks>
+</DispatchCondition>
+</MELSubItem>
+</MELItem>
+</DispatchItems>

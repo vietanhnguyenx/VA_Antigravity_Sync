@@ -1,0 +1,210 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM">]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.2-23-75-01.900.2-23-75-01_FAA" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="23" superSectionNumber="2" sectionName="MEL" chapterName="Communications" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2019-07-12" rev:revStatus="U" rev:revNumber="10" />
+</PUMetaData>
+<MELItem itemNbr="23-75-01" id="X-BOEING:FTID:81205.787.DDG.CU.MEL.2-23-75-01.1.2-23-75-01_FAA">
+<Title>Flight Deck Door Visual Surveillance Systems</Title>
+<MELSubItem itemNbr="23-75-01-01">
+<Title>Video Surveillance System</Title>
+<DispatchCondition dispCondOptions="A" repairInterval="A" nbrInstalled="1" nbrRequired="0" opsIndicator="(O)">
+<Title>Alternate Procedures Used</Title>
+<DispatchConditionRemarks>
+<Para>May be inoperative and components may be missing provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Alternate procedures are established and used.</Para>
+</ListItem>
+<ListItem>
+<Para>Repairs are made within three flight days.</Para>
+</ListItem>
+</List>
+<Note>
+<Para>Any portion of the system which operates normally may be used.</Para>
+</Note>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<OperationProcedure>
+<Para>Alternate Procedure:</Para>
+<Para>Prior to flight, the pilot-in-command must brief cabin crew members that Flight Deck Entry Video Surveillance System is inoperative, and the following procedures to be used for requesting access to the cockpit.</Para>
+<List listType="1.">
+<ListItem>
+<Para>Cabin crew requesting access to cockpit:</Para>
+<List listType="A.">
+<ListItem>
+<Para>Request for access to cockpit is made using Interphone / Keypad.</Para>
+</ListItem>
+<ListItem>
+<Para>Verification of request is made using Viewing Lens by the PM.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>At least two crew members must be present in the cockpit throughout the entire flight. During the flight, if two flight crew members are in the cockpit and one of them leaves the cockpit, then a cabin crew member must occupy the cockpit jump seat.</Para>
+<List listType="A.">
+<ListItem>
+<Para>For re-entry, the PM will request access to cockpit using Keypad.</Para>
+</ListItem>
+<ListItem>
+<Para>Verification of request is made using Viewing Lens. </Para>
+</ListItem>
+<ListItem>
+<Para>The cabin crew will unlock the door and exit cockpit when flight crew member returns.</Para>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+<DispatchCondition dispCondOptions="B" repairInterval="C" nbrInstalled="1" nbrRequired="0" opsIndicator="(O)">
+<Title>Flight Deck Door Viewing Port Operates Normally</Title>
+<DispatchConditionRemarks>
+<Para>May be inoperative and components may be missing provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Flight deck door viewing port operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Alternate procedures are established and used.</Para>
+</ListItem>
+<ListItem>
+<Para>Interphone and Keypad systems operate normally.</Para>
+</ListItem>
+</List>
+<Note>
+<Para>Any portion of the system which operates normally may be used.</Para>
+</Note>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<OperationProcedure>
+<Para>Alternate procedures:</Para>
+<List listType="1.">
+<ListItem>
+<Para>Entry password along with prearranged entry timing should be used to access the flight deck.</Para>
+</ListItem>
+<ListItem>
+<Para>Where sufficient crew members are available on the flight deck, after the entry password is provided, the viewing port should be used to verify the identity of persons entering the flight deck.</Para>
+</ListItem>
+</List>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+<DispatchCondition dispCondOptions="C" repairInterval="D" nbrInstalled="1" nbrRequired="0">
+<Title>Procedures Do Not Require Its Use</Title>
+<DispatchConditionRemarks>
+<Para>May be inoperative and components may be missing provided procedures do not require its use.</Para>
+</DispatchConditionRemarks>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="23-75-01-02">
+<Title>Flight Deck Door Viewing Port</Title>
+<DispatchCondition dispCondOptions="A" repairInterval="A" nbrInstalled="1" nbrRequired="0" opsIndicator="(O)">
+<Title>Alternate Procedures Used</Title>
+<DispatchConditionRemarks>
+<Para>May be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Alternate procedures are established and used.</Para>
+</ListItem>
+<ListItem>
+<Para>Repairs are made within three flight days.</Para>
+</ListItem>
+<ListItem>
+<Para>Interphone and Keypad systems operate normally.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<OperationProcedure>
+<Para>Alternate procedures:</Para>
+<Para>Prior to flight, the pilot-in-command must brief cabin crewmembers, that flight deck Door Viewing Port and Electronic Visual Surveillance systems are inoperative, Interphone and Keypad systems operate normally, and the following procedures to be used for requesting access to the cockpit.</Para>
+<List listType="1.">
+<ListItem>
+<Para>Cabin crew requesting access to cockpit:</Para>
+<List listType="A.">
+<ListItem>
+<Para>Request for access to cockpit is made using Interphone and Keypad.</Para>
+</ListItem>
+<ListItem>
+<Para>The code word for each flying duty period will be decided by the pilot-in-command and upon boarding the aircraft to brief the co-pilot and cabin crews.</Para>
+</ListItem>
+<ListItem>
+<Para>The request for entry must be preceded by a decided code word.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>When Flight crew leaves cockpit:</Para>
+<List listType="A.">
+<ListItem>
+<Para>Prior to leaving the cockpit, the crewmember must verify the area around the cockpit is secured by communicating with cabin crew through the interphone system.</Para>
+</ListItem>
+<ListItem>
+<Para>There is no requirement for a cabin crewmember to occupy cockpit jump seat when a flight crew member leaves the cockpit.</Para>
+</ListItem>
+<ListItem>
+<Para>For re-entry, the PNF will request access to the cockpit using Interphone and Keypad preceded by a decided code word.</Para>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+<DispatchCondition dispCondOptions="B" repairInterval="C" nbrInstalled="1" nbrRequired="0" opsIndicator="(O)">
+<Title>Surveillance System Operates Normally</Title>
+<DispatchConditionRemarks>
+<Para>May be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Video surveillance system is installed and operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Alternate procedures are established and used.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<OperationProcedure>
+<Para>Alternate procedures:</Para>
+<Para>Prior to flight, the pilot-in-command must brief cabin crewmembers, that flight deck Door Viewing Port is inoperative, and the following procedures to be used for requesting access to the cockpit.</Para>
+<List listType="1.">
+<ListItem>
+<Para>Cabin crew requesting access to cockpit:</Para>
+<List listType="A.">
+<ListItem>
+<Para>Request for access to cockpit is made using Interphone and Keypad.</Para>
+</ListItem>
+<ListItem>
+<Para>Verification of request is made using the Flight Deck Entry Video Surveillance System by the PNF.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>When Flight crew leaves cockpit:</Para>
+<List listType="A.">
+<ListItem>
+<Para>Interphone System Operative: There is no requirement for a cabin crewmember to occupy cockpit jump seat when a flight crew member leaves the cockpit. For re-entry, the PNF will request access to the cockpit using Interphone / Keypad.</Para>
+</ListItem>
+<ListItem>
+<Para>Interphone System Inoperative: At least two crew members must be present in the cockpit throughout the entire flight. During the flight, if two flight crew members are in the cockpit and one of them leaves the cockpit, then a cabin crew member must occupy the cockpit jump seat. For re-entry, the PNF will request access to cockpit using Keypad. Verification of
+request is made using the Flight Deck Entry Video Surveillance System.</Para>
+</ListItem>
+</List>
+</ListItem>
+</List>
+<Note>
+<Para>For the Flight Deck Entry Video Surveillance System application use, one EFB must be operative. Refer to MEL 46-11-01-01 for (O) procedure.</Para>
+</Note>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+</MELItem>
+</DispatchItems>

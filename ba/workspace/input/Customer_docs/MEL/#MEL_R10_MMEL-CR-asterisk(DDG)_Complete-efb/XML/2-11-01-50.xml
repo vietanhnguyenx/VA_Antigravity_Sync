@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM">]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.2-11-01-50.1180558.2-11-01-50" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="11" superSectionNumber="2" sectionName="" chapterName="" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2025-09-30" rev:revStatus="N" rev:revNumber="10" />
+</PUMetaData>
+<MELItem itemNbr="11-01-50" id="X-BOEING:FTID:81205.787.DDG.CU.MEL.2-11-01-50.1.2-11-01-50" rev:revStatus="R" rev:revHighlight="Create NEW item PLACARD">
+<Title>Essential Placards / Markings</Title>
+<?FTID-rev start?>
+<DispatchCondition dispCondOptions="A" repairInterval="A" nbrInstalled="-" nbrRequired="0">
+<Title>No other alternate measures applied</Title>
+<DispatchConditionRemarks>
+<Para>May be inoperative or missing for flights to main base only.</Para>
+</DispatchConditionRemarks>
+</DispatchCondition>
+<DispatchCondition dispCondOptions="B" repairInterval="C" nbrInstalled="-" nbrRequired="0" opsIndicator="(O)">
+<Title>Other alternate or equivalent measures applied</Title>
+<DispatchConditionRemarks>
+<Para>May be inoperative, missing or damaged provided the following alternate safety measures are applied.</Para>
+<Note />
+<List listType="a.">
+<ListItem>
+<Para>Alternate measures</Para>
+</ListItem>
+<ListItem>
+<Para>Use indelible ink or paint to reproduce missing text so that descriptions are fully recovered (pictorial symbols excluded). The condition of the reproduced text or substituted placard/marking must be verified during each terminal or daily check. And/or</Para>
+</ListItem>
+<ListItem>
+<Para>Use placards or markings that convey information identical to the original (including text-only versions) until the standard replacements are installed. The condition of the reproduced text or substituted placard/marking must be verified during each terminal or daily check.</Para>
+</ListItem>
+</List>
+<List listType="a.">
+<ListItem>
+<Para>Maintenance personnel</Para>
+</ListItem>
+<ListItem>
+<Para>For placards relevant to maintenance/ground personnel or crew, the maintenance personnel must brief relevant personnel before work (e.g., fueling/defueling pressure, emergency equipment locations, operating instructions).</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<OperationProcedure>
+<Para>BEFORE FLIGHT:</Para>
+<Para>The pilot-in-command must brief cabin crew members on the relevant defective placards.</Para>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+<?FTID-rev end?>
+</MELItem>
+</DispatchItems>

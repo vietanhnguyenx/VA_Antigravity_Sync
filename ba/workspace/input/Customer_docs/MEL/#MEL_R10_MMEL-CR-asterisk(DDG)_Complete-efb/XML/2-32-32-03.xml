@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM">]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.2-32-32-03.1710.2-32-32-03" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="32" superSectionNumber="2" sectionName="MEL" chapterName="Landing Gear" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2025-09-30" rev:revStatus="R" rev:revNumber="10" />
+</PUMetaData>
+<MELItem itemNbr="32-32-03" id="X-BOEING:FTID:81205.787.DDG.CU.MEL.2-32-32-03.1.2-32-32-03">
+<Title>Main Gear Side Brace Downlock Springs</Title>
+<DispatchCondition repairInterval="B" nbrInstalled="8" nbrRequired="6">
+<DispatchConditionRemarks>
+<Para>One inner or one outer coil spring may be broken or missing from one downlock spring assembly on each main gear side brace.</Para>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceNote>
+<Para>Each main landing gear side brace includes two downlock spring assemblies.  Each downlock spring assembly incorporates a nested pair of coil springs.  Only one spring may be broken or missing on each side brace.</Para>
+</MaintenanceNote>
+</DispatchProcedure>
+</DispatchCondition>
+</MELItem>
+</DispatchItems>

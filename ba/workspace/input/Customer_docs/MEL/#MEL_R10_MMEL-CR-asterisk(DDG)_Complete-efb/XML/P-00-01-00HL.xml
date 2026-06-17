@@ -1,0 +1,2713 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE FrontMatter[<!NOTATION CGM SYSTEM "CGM">]>
+<FrontMatter id="X-BOEING:FTID:81205.787.DDG.PU.FM.P-00-01-00.4127713.P-00-01-00HL" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/FrontMatter.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="" superSectionNumber="P" sectionName="Preface" chapterName="Highlights" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2025-09-30" rev:revStatus="R" rev:revNumber="10" />
+</PUMetaData>
+<RevisionRecord id="X-BOEING:FTID:81205.787.DDG.CU.FMR.P-00-01-00.4127713.P-00-01-00HL">
+<Para />
+<HighlightList>
+<Title>Preface</Title>
+<HighlightItem>
+<Title>Revision Transmittal Letter</Title>
+<Para>
+<iLink fileRef="P-00-01-00_FAA.xml" linkRef="1331696.P-00-01-00_FAA">P.00-01-00.1	Update revision record</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Temporary Revision</Title>
+<Para>
+<iLink fileRef="P-00-01-00_FAA.xml" linkRef="1331729.P-00-01-00_FAA">P.00-01-00.1	Update contactor</iLink>
+</Para>
+<Para>
+<iLink fileRef="P-00-01-00_FAA.xml" linkRef="1331729.P-00-01-00_FAA">P.00-01-00.2	Update contactor</iLink>
+</Para>
+</HighlightItem>
+</HighlightList>
+<HighlightList>
+<Title>Section 0 - General</Title>
+<HighlightItem>
+<Title>Foreword</Title>
+<Para>
+<iLink fileRef="0-00-01-00_FAA.xml" linkRef="1731554.0-00-01-00_FAA">0.00-01-00.1	Update revision record</iLink>
+</Para>
+</HighlightItem>
+</HighlightList>
+<HighlightList>
+<Title>Section 1 - EICAS Messages</Title>
+<HighlightItem>
+<Title>Messages</Title>
+<Para>
+<iLink fileRef="1-00-02-00_FAA.xml" linkRef="3001743.1-00-02-00_FAA">1.00-02-00.3	Only sub-item -01A remains a valid dispatch configuration.</iLink>
+</Para>
+<Para>
+<iLink fileRef="1-00-02-00_FAA.xml" linkRef="3001743.1-00-02-00_FAA">1.00-02-00.31	Added new status message to cross reference table.</iLink>
+</Para>
+<Para>
+<iLink fileRef="1-00-02-00_FAA.xml" linkRef="3001743.1-00-02-00_FAA">1.00-02-00.38	Deleted MEL item reference to "None" as it was deleted from from the last revision.</iLink>
+</Para>
+<Para>
+<iLink fileRef="1-00-02-00_FAA.xml" linkRef="3001743.1-00-02-00_FAA">1.00-02-00.38	Deleted MEL item reference to "None" as it was deleted from from the last revision.</iLink>
+</Para>
+<Para>
+<iLink fileRef="1-00-02-00_FAA.xml" linkRef="3001743.1-00-02-00_FAA">1.00-02-00.45	Item was recommended to be removed in R19 MEL.</iLink>
+</Para>
+<Para>
+<iLink fileRef="1-00-02-00_FAA.xml" linkRef="3001743.1-00-02-00_FAA">1.00-02-00.45	Item was recommended to be removed in R19 MEL.</iLink>
+</Para>
+</HighlightItem>
+</HighlightList>
+<HighlightList>
+<Title>Section 2 - MEL</Title>
+<HighlightItem>
+<HighlightList>
+<Title>ATA 00 - Introduction</Title>
+<HighlightItem>
+<Title>MEL Definitions</Title>
+<Para>
+<iLink fileRef="2-00-01-00_FAA.xml" linkRef="1718552.2-00-01-00_FAA">2.00-01-00.8	Add FLIGHT DEFERA definition</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-00-01-00_FAA.xml" linkRef="1718552.2-00-01-00_FAA">2.00-01-00.8	Add Crew defer procedure</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-00-01-00_FAA.xml" linkRef="1718552.2-00-01-00_FAA">2.00-01-00.10	Add Fuel penalty item definition</iLink>
+</Para>
+</HighlightItem>
+</HighlightList>
+</HighlightItem>
+<HighlightItem>
+<HighlightList>
+<Title>ATA 21 - Air Conditioning</Title>
+<HighlightItem>
+<Title>Air Synoptic Display</Title>
+<Para>
+<iLink fileRef="2-21-00-01.xml" linkRef="1289202.2-21-00-01">2.21-00-01.1	Add (*) asterisk symbol(*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-21-00-01.xml" linkRef="1289202.2-21-00-01">2.21-00-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Recirculation Fans</Title>
+<Para>
+<iLink fileRef="2-21-25-01.xml" linkRef="1367838.2-21-25-01">2.21-25-01.1	Correct circuit breaker name</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-21-25-01.xml" linkRef="1367838.2-21-25-01">2.21-25-01.4	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-21-25-01.xml" linkRef="1367838.2-21-25-01">2.21-25-01.4	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Lavatory/Galley Crown Temperature Sensor System</Title>
+<Para>
+<iLink fileRef="2-21-25-02.xml" linkRef="1367507.2-21-25-02">2.21-25-02.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-21-25-02.xml" linkRef="1367507.2-21-25-02">2.21-25-02.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Forward EE Cooling Exhaust Overboard Vent Valve</Title>
+<Para>
+<iLink fileRef="2-21-27-04.xml" linkRef="1367994.2-21-27-04">2.21-27-04.1	Corrected the name of the valve for consistency.</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Forward EQUIP COOLING Switch Lights</Title>
+<Para>
+<iLink fileRef="2-21-27-08.xml" linkRef="1281231.2-21-27-08">2.21-27-08.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-21-27-08.xml" linkRef="1281231.2-21-27-08">2.21-27-08.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-21-27-08.xml" linkRef="1281231.2-21-27-08">2.21-27-08.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-21-27-08.xml" linkRef="1281231.2-21-27-08">2.21-27-08.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Aft EQUIP COOLING Switch Lights</Title>
+<Para>
+<iLink fileRef="2-21-27-29.xml" linkRef="1279482.2-21-27-29">2.21-27-29.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-21-27-29.xml" linkRef="1279482.2-21-27-29">2.21-27-29.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-21-27-29.xml" linkRef="1279482.2-21-27-29">2.21-27-29.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-21-27-29.xml" linkRef="1279482.2-21-27-29">2.21-27-29.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Automatic Cabin Pressure Control Channels</Title>
+<Para>
+<iLink fileRef="2-21-31-01.xml" linkRef="1313793.2-21-31-01">2.21-31-01.3	Added a new step 4 for flight without passenger above 14,000 feet.</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-21-31-01.xml" linkRef="1313793.2-21-31-01">2.21-31-01.3	Added a new guidance to step 4 for flight without passenger above 14,000 feet.</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Auto Cabin Pressure Control Communication System</Title>
+<Para>
+<iLink fileRef="2-21-31-09.xml" linkRef="1276768.2-21-31-09">2.21-31-09.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-21-31-09.xml" linkRef="1276768.2-21-31-09">2.21-31-09.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Bulk Cargo Heat System</Title>
+<Para>
+<iLink fileRef="2-21-44-01.xml" linkRef="1293954.2-21-44-01">2.21-44-01.1	Update: Full fleet incorporated CN-AA29229</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-21-44-01.xml" linkRef="1293954.2-21-44-01">2.21-44-01.2	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-21-44-01.xml" linkRef="1293954.2-21-44-01">2.21-44-01.2	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-21-44-01.xml" linkRef="1293954.2-21-44-01">2.21-44-01.3	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-21-44-01.xml" linkRef="1293954.2-21-44-01">2.21-44-01.3	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Galley Area Duct Heaters</Title>
+<Para>
+<iLink fileRef="2-21-45-03.xml" linkRef="1280007.2-21-45-03">2.21-45-03.1	Added missing circuit breaker reference for accuracy.</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-21-45-03.xml" linkRef="1280007.2-21-45-03">2.21-45-03.1	Added missing circuit breaker reference for accuracy.</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-21-45-03.xml" linkRef="1280007.2-21-45-03">2.21-45-03.1	Added missing circuit breaker reference for accuracy.</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Cabin Air Compressor (CAC) Systems</Title>
+<Para>
+<iLink fileRef="2-21-51-01.xml" linkRef="1434879.2-21-51-01">2.21-51-01.1	Corrected the associated status message to remove the word "AIR".</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-21-51-01.xml" linkRef="1434879.2-21-51-01">2.21-51-01.4	Corrected the associated status message to remove the word "AIR".</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-21-51-01.xml" linkRef="1434879.2-21-51-01">2.21-51-01.10	Corrected the associated status message to remove the word "AIR".</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Cabin Air Compressor (CAC) Inlet Pressure Sensors</Title>
+<Para>
+<iLink fileRef="2-21-51-03.xml" linkRef="1289865.2-21-51-03">2.21-51-03.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-21-51-03.xml" linkRef="1289865.2-21-51-03">2.21-51-03.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-21-51-03.xml" linkRef="1289865.2-21-51-03">2.21-51-03.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-21-51-03.xml" linkRef="1289865.2-21-51-03">2.21-51-03.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Air Conditioning Packs</Title>
+<Para>
+<iLink fileRef="2-21-52-01.xml" linkRef="1446790.2-21-52-01">2.21-52-01.5	Deleted step 8 as full fleet has been incorporated with CNAA61225</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-21-52-01.xml" linkRef="1446790.2-21-52-01">2.21-52-01.16	Delete step 9 as CN AA61225 has been corporated for all fleet</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-21-52-01.xml" linkRef="1446790.2-21-52-01">2.21-52-01.16	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-21-52-01.xml" linkRef="1446790.2-21-52-01">2.21-52-01.16	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-21-52-01.xml" linkRef="1446790.2-21-52-01">2.21-52-01.17	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-21-52-01.xml" linkRef="1446790.2-21-52-01">2.21-52-01.17	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Ram Air Fan</Title>
+<Para>
+<iLink fileRef="2-21-52-12.xml" linkRef="1385473.2-21-52-12">2.21-52-12.2	Delete note as CN-AA49115 and 61225 has been corporated for all fleet</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-21-52-12.xml" linkRef="1385473.2-21-52-12">2.21-52-12.5	Deleted NOTE as CN-AA49115 &amp; CN-AA61225 has been corporated for all fleet</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Integrated Cooling System (ICS)</Title>
+<Para>
+<iLink fileRef="2-21-53-01_FAA.xml" linkRef="1332521.2-21-53-01_FAA">2.21-53-01.1	Update (O) note to provide additional guidance to address warm temperature in cabin</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-21-53-01_FAA.xml" linkRef="1332521.2-21-53-01_FAA">2.21-53-01.1	Update (O) note to provide additional guidance to address warm temperature in cabin</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-21-53-01_FAA.xml" linkRef="1332521.2-21-53-01_FAA">2.21-53-01.1	Update (O) note to provide additional guidance to address warm temperature in cabin</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-21-53-01_FAA.xml" linkRef="1332521.2-21-53-01_FAA">2.21-53-01.1	Update (O) note to provide additional guidance to address warm temperature in cabin</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-21-53-01_FAA.xml" linkRef="1332521.2-21-53-01_FAA">2.21-53-01.3	Update (O) note to provide additional guidance to address warm temperature in cabin</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-21-53-01_FAA.xml" linkRef="1332521.2-21-53-01_FAA">2.21-53-01.3	Update (O) note to provide additional guidance to address warm temperature in cabin</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-21-53-01_FAA.xml" linkRef="1332521.2-21-53-01_FAA">2.21-53-01.3	Update (O) note to provide additional guidance to address warm temperature in cabin</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-21-53-01_FAA.xml" linkRef="1332521.2-21-53-01_FAA">2.21-53-01.3	Update (O) note to provide additional guidance to address warm temperature in cabin</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Forward Cargo Air Conditioning (FCAC) System (787-9: VN-A861, VN-A862, VN-A863, VN-A864, VN-A865, VN-A866, VN-A867, VN-A868, VN-A869, VN-A870, VN-A871)</Title>
+<Para>
+<iLink fileRef="2-21-54-01.xml" linkRef="1293184.2-21-54-01">2.21-54-01.2	Deleted COC tag.</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Forward Cargo Air Conditioning (FCAC) Bypass Valve (VN-A861, VN-A862, VN-A863, VN-A864, VN-A865, VN-A866, VN-A867, VN-A868, VN-A869, VN-A870, VN-A871)</Title>
+<Para>
+<iLink fileRef="2-21-54-03.xml" linkRef="1283828.2-21-54-03">2.21-54-03.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-21-54-03.xml" linkRef="1283828.2-21-54-03">2.21-54-03.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-21-54-03.xml" linkRef="1283828.2-21-54-03">2.21-54-04.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-21-54-03.xml" linkRef="1283828.2-21-54-03">2.21-54-04.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-21-54-03.xml" linkRef="1283828.2-21-54-03">2.21-54-04.1	Added new proviso to ensure CRUMC 2 opearating normally in order for the compressor system to work.</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-21-54-03.xml" linkRef="1283828.2-21-54-03">2.21-54-04.1	Added additional info providing a description on how the Cargo Refrigeration Unite Motor Control (CRUMC) functions within the FCAC compressor system</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Forward Cargo Air Conditioning (FCAC) System OFF Light</Title>
+<Para>
+<iLink fileRef="2-21-54-07.xml" linkRef="1289865.2-21-54-07">2.21-54-07.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-21-54-07.xml" linkRef="1289865.2-21-54-07">2.21-54-07.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Trim Air Pressure Regulator Valves</Title>
+<Para>
+<iLink fileRef="2-21-62-01.xml" linkRef="1289865.2-21-62-01">2.21-62-01.2	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-21-62-01.xml" linkRef="1289865.2-21-62-01">2.21-62-01.2	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-21-62-01.xml" linkRef="1289865.2-21-62-01">2.21-62-01.2	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-21-62-01.xml" linkRef="1289865.2-21-62-01">2.21-62-01.2	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Trim Air Pressure Sensor Systems</Title>
+<Para>
+<iLink fileRef="2-21-62-02.xml" linkRef="1289865.2-21-62-02">2.21-62-02.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-21-62-02.xml" linkRef="1289865.2-21-62-02">2.21-62-02.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Flight Deck Humidification System</Title>
+<Para>
+<iLink fileRef="2-21-71-01.xml" linkRef="1289865.2-21-71-01">2.21-71-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-21-71-01.xml" linkRef="1289865.2-21-71-01">2.21-71-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Power Electronics Cooling System (PECS) Liquid Pump Filter</Title>
+<Para>
+<iLink fileRef="2-21-81-07.xml" linkRef="1289865.2-21-81-07">2.21-81-07.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-21-81-07.xml" linkRef="1289865.2-21-81-07">2.21-81-07.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+</HighlightList>
+</HighlightItem>
+<HighlightItem>
+<HighlightList>
+<Title>ATA 22 - Autoflight</Title>
+<HighlightItem>
+<Title>Autopilot Backdrive Actuator Systems</Title>
+<Para>
+<iLink fileRef="2-22-11-02.xml" linkRef="1284932.2-22-11-02">2.22-11-02.1	New proviso C. was added for further clarification.</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Mode Control Panel Windows</Title>
+<Para>
+<iLink fileRef="2-22-11-04.xml" linkRef="1284955.2-22-11-04">2.22-11-04.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-22-11-04.xml" linkRef="1284955.2-22-11-04">2.22-11-04.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-22-11-04.xml" linkRef="1284955.2-22-11-04">2.22-11-04.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-22-11-04.xml" linkRef="1284955.2-22-11-04">2.22-11-04.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-22-11-04.xml" linkRef="1284955.2-22-11-04">2.22-11-04.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-22-11-04.xml" linkRef="1284955.2-22-11-04">2.22-11-04.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Mode Control Panel Selectors</Title>
+<Para>
+<iLink fileRef="2-22-11-05.xml" linkRef="1282466.2-22-11-05">2.22-11-05.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-22-11-05.xml" linkRef="1282466.2-22-11-05">2.22-11-05.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-22-11-05.xml" linkRef="1282466.2-22-11-05">2.22-11-05.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-22-11-05.xml" linkRef="1282466.2-22-11-05">2.22-11-05.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-22-11-05.xml" linkRef="1282466.2-22-11-05">2.22-11-05.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-22-11-05.xml" linkRef="1282466.2-22-11-05">2.22-11-05.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-22-11-05.xml" linkRef="1282466.2-22-11-05">2.22-11-05.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-22-11-05.xml" linkRef="1282466.2-22-11-05">2.22-11-05.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-22-11-05.xml" linkRef="1282466.2-22-11-05">2.22-11-05.2	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-22-11-05.xml" linkRef="1282466.2-22-11-05">2.22-11-05.2	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Mode Control Panel Switches</Title>
+<Para>
+<iLink fileRef="2-22-11-06.xml" linkRef="1282466.2-22-11-06">2.22-11-06.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-22-11-06.xml" linkRef="1282466.2-22-11-06">2.22-11-06.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+</HighlightList>
+</HighlightItem>
+<HighlightItem>
+<HighlightList>
+<Title>ATA 23 - Communications</Title>
+<HighlightItem>
+<Title>Tuning and Control Panels (TCP)</Title>
+<Para>
+<iLink fileRef="2-23-24-01.xml" linkRef="1282466.2-23-24-01">2.23-24-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-23-24-01.xml" linkRef="1282466.2-23-24-01">2.23-24-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-23-24-01.xml" linkRef="1282466.2-23-24-01">2.23-24-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-23-24-01.xml" linkRef="1282466.2-23-24-01">2.23-24-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Communication Management System (Datalink)</Title>
+<Para>
+<iLink fileRef="2-23-27-01.xml" linkRef="1282466.2-23-27-01">2.23-27-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-23-27-01.xml" linkRef="1282466.2-23-27-01">2.23-27-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-23-27-01.xml" linkRef="1282466.2-23-27-01">2.23-27-01.2	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-23-27-01.xml" linkRef="1282466.2-23-27-01">2.23-27-01.2	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Service Interphone System</Title>
+<Para>
+<iLink fileRef="2-23-41-01.xml" linkRef="1282466.2-23-41-01">2.23-41-01.2	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-23-41-01.xml" linkRef="1282466.2-23-41-01">2.23-41-01.2	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Audio Control Panels (ACP)</Title>
+<Para>
+<iLink fileRef="2-23-51-01_FAA.xml" linkRef="1282466.2-23-51-01_FAA">2.23-51-01.2	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-23-51-01_FAA.xml" linkRef="1282466.2-23-51-01_FAA">2.23-51-01.2	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-23-51-01_FAA.xml" linkRef="1282466.2-23-51-01_FAA">2.23-51-01.2	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-23-51-01_FAA.xml" linkRef="1282466.2-23-51-01_FAA">2.23-51-01.2	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-23-51-01_FAA.xml" linkRef="1282466.2-23-51-01_FAA">2.23-51-01.2	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-23-51-01_FAA.xml" linkRef="1282466.2-23-51-01_FAA">2.23-51-01.2	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-23-51-01_FAA.xml" linkRef="1282466.2-23-51-01_FAA">2.23-51-01.2	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-23-51-01_FAA.xml" linkRef="1282466.2-23-51-01_FAA">2.23-51-01.2	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-23-51-01_FAA.xml" linkRef="1282466.2-23-51-01_FAA">2.23-51-01.3	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-23-51-01_FAA.xml" linkRef="1282466.2-23-51-01_FAA">2.23-51-01.3	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-23-51-01_FAA.xml" linkRef="1282466.2-23-51-01_FAA">2.23-51-01.3	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-23-51-01_FAA.xml" linkRef="1282466.2-23-51-01_FAA">2.23-51-01.3	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Flight Deck Hand Microphones</Title>
+<Para>
+<iLink fileRef="2-23-51-02.xml" linkRef="1282466.2-23-51-02">2.23-51-02.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-23-51-02.xml" linkRef="1282466.2-23-51-02">2.23-51-02.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-23-51-02.xml" linkRef="1282466.2-23-51-02">2.23-51-02.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-23-51-02.xml" linkRef="1282466.2-23-51-02">2.23-51-02.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Flight Deck Headsets/Headphones</Title>
+<Para>
+<iLink fileRef="2-23-51-03_FAA.xml" linkRef="1282466.2-23-51-03_FAA">2.23-51-03.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-23-51-03_FAA.xml" linkRef="1282466.2-23-51-03_FAA">2.23-51-03.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-23-51-03_FAA.xml" linkRef="1282466.2-23-51-03_FAA">2.23-51-03.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-23-51-03_FAA.xml" linkRef="1282466.2-23-51-03_FAA">2.23-51-03.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Microphone (MIC)/Interphone Switches</Title>
+<Para>
+<iLink fileRef="2-23-51-04_FAA.xml" linkRef="1290702.2-23-51-04_FAA">2.23-51-04.4	Correct item number</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-23-51-04_FAA.xml" linkRef="1290702.2-23-51-04_FAA">2.23-51-04.4	Add additional dispatch item notes (note 1 and note 2) due to provisos (b. and c.) requiring them to be considered inoperative</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-23-51-04_FAA.xml" linkRef="1290702.2-23-51-04_FAA">2.23-51-04.4	Add additional dispatch item notes (note 1 and note 2) due to provisos (b. and c.) requiring them to be considered inoperative</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-23-51-04_FAA.xml" linkRef="1290702.2-23-51-04_FAA">2.23-51-04.4	Update (M) procedure</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Flight Deck Speaker Systems</Title>
+<Para>
+<iLink fileRef="2-23-51-05.xml" linkRef="1282466.2-23-51-05">2.23-51-05.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-23-51-05.xml" linkRef="1282466.2-23-51-05">2.23-51-05.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Flight Deck Analog Audio Communication</Title>
+<Para>
+<iLink fileRef="2-23-51-07.xml" linkRef="1282466.2-23-51-07">2.23-51-07.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-23-51-07.xml" linkRef="1282466.2-23-51-07">2.23-51-07.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Pilots’ Overhead Panel Control/Communication Channels</Title>
+<Para>
+<iLink fileRef="2-23-93-01.xml" linkRef="1282466.2-23-93-01">2.23-93-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-23-93-01.xml" linkRef="1282466.2-23-93-01">2.23-93-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+</HighlightList>
+</HighlightItem>
+<HighlightItem>
+<HighlightList>
+<Title>ATA 24 - Electrical Power</Title>
+<HighlightItem>
+<Title>Variable Frequency Starter Generator (VFSG) DRIVE DISC Switch DRIVE Lights</Title>
+<Para>
+<iLink fileRef="2-24-11-01.xml" linkRef="1282466.2-24-11-01">2.24-11-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-24-11-01.xml" linkRef="1282466.2-24-11-01">2.24-11-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Common Motor Start Controller (CMSC)</Title>
+<Para>
+<iLink fileRef="2-24-15-01_FAA.xml" linkRef="1303683.2-24-15-01_FAA">2.24-15-01.2	MISC SYSTEM CTRLS page does not provide the necessary data to confirm the ram air fan is operating.</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Variable Frequency Starter Generator (VFSG) Electronic Chip Detector Systems</Title>
+<Para>
+<iLink fileRef="2-24-21-01.xml" linkRef="1282466.2-24-21-01">2.24-21-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-24-21-01.xml" linkRef="1282466.2-24-21-01">2.24-21-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Variable Frequency Starter Generator (VFSG) Systems</Title>
+<Para>
+<iLink fileRef="2-24-22-01.xml" linkRef="1385126.2-24-22-01">2.24-22-01.1	Added note to specify switch must remain ON for further clarification.</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-24-22-01.xml" linkRef="1385126.2-24-22-01">2.24-22-01.2	Added additional note to provide clarity to flight crews on when the MEL verification can occur, but also provides a step for the flight crew to perform the required verification, if desired.</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-24-22-01.xml" linkRef="1385126.2-24-22-01">2.24-22-01.2	MISC SYSTEM CTRLS page does not provide the necessary data to confirm the ram air fan is operating.</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-24-22-01.xml" linkRef="1385126.2-24-22-01">2.24-22-01.2	Added note for further clarification.</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-24-22-01.xml" linkRef="1385126.2-24-22-01">2.24-22-01.4	MISC SYSTEM CTRLS page does not provide the necessary data to confirm the ram air fan is operating.</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-24-22-01.xml" linkRef="1385126.2-24-22-01">2.24-22-01.4	Added note for further clarification.</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-24-22-01.xml" linkRef="1385126.2-24-22-01">2.24-22-01.5	Added maintenance note to provide further dispatch instruction/clarification.</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-24-22-01.xml" linkRef="1385126.2-24-22-01">2.24-22-01.5	Added note # reference only.  No content change.</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-24-22-01.xml" linkRef="1385126.2-24-22-01">2.24-22-01.5	Added note to provide further dispatch instruction/clarification.</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-24-22-01.xml" linkRef="1385126.2-24-22-01">2.24-22-01.5	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-24-22-01.xml" linkRef="1385126.2-24-22-01">2.24-22-01.5	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-24-22-01.xml" linkRef="1385126.2-24-22-01">2.24-22-01.6	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-24-22-01.xml" linkRef="1385126.2-24-22-01">2.24-22-01.6	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>APU Starter Generator (ASG) Systems</Title>
+<Para>
+<iLink fileRef="2-24-22-02.xml" linkRef="1367294.2-24-22-02">2.24-22-02.2	Added (O) note for further clarification.</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-24-22-02.xml" linkRef="1367294.2-24-22-02">2.24-22-02.2	Added further (O) procedure to provide guidance on how to minimize PECS heating.</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-24-22-02.xml" linkRef="1367294.2-24-22-02">2.24-22-02.2	Added further (O) procedure to provide guidance on how to minimize PECS heating.</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-24-22-02.xml" linkRef="1367294.2-24-22-02">2.24-22-02.3	Added (O) note to provide further dispatch clarification.</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-24-22-02.xml" linkRef="1367294.2-24-22-02">2.24-22-02.3	Added (O) note for further clarification.</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-24-22-02.xml" linkRef="1367294.2-24-22-02">2.24-22-02.4	Added further (O) procedure to provide guidance on how to minimize PECS heating.</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-24-22-02.xml" linkRef="1367294.2-24-22-02">2.24-22-02.4	Added additional (O) guidance to monitor PECS temperature.</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-24-22-02.xml" linkRef="1367294.2-24-22-02">2.24-22-02.4	Added (O) note to provide further dispatch clarification.</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-24-22-02.xml" linkRef="1367294.2-24-22-02">2.24-22-02.4	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-24-22-02.xml" linkRef="1367294.2-24-22-02">2.24-22-02.4	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-24-22-02.xml" linkRef="1367294.2-24-22-02">2.24-22-02.5	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-24-22-02.xml" linkRef="1367294.2-24-22-02">2.24-22-02.5	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>IFE/PASS SEATS Switch Lights</Title>
+<Para>
+<iLink fileRef="2-24-28-03.xml" linkRef="1282466.2-24-28-03">2.24-28-03.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-24-28-03.xml" linkRef="1282466.2-24-28-03">2.24-28-03.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-24-28-03.xml" linkRef="1282466.2-24-28-03">2.24-28-03.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-24-28-03.xml" linkRef="1282466.2-24-28-03">2.24-28-03.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>CABIN/UTILITY Switch Lights</Title>
+<Para>
+<iLink fileRef="2-24-28-04.xml" linkRef="1282466.2-24-28-04">2.24-28-04.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-24-28-04.xml" linkRef="1282466.2-24-28-04">2.24-28-04.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-24-28-04.xml" linkRef="1282466.2-24-28-04">2.24-28-04.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-24-28-04.xml" linkRef="1282466.2-24-28-04">2.24-28-04.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>APU Start Power Unit (SPU)</Title>
+<Para>
+<iLink fileRef="2-24-31-02.xml" linkRef="1344196.2-24-31-02">2.24-31-02.1	Update proviso f</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Main BATTERY Switch Lights</Title>
+<Para>
+<iLink fileRef="2-24-31-04.xml" linkRef="1282466.2-24-31-04">2.24-31-04.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-24-31-04.xml" linkRef="1282466.2-24-31-04">2.24-31-04.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-24-31-04.xml" linkRef="1282466.2-24-31-04">2.24-31-04.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-24-31-04.xml" linkRef="1282466.2-24-31-04">2.24-31-04.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>External Power Systems</Title>
+<Para>
+<iLink fileRef="2-24-41-01.xml" linkRef="1282466.2-24-41-01">2.24-41-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-24-41-01.xml" linkRef="1282466.2-24-41-01">2.24-41-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+</HighlightList>
+</HighlightItem>
+<HighlightItem>
+<HighlightList>
+<Title>ATA 25 - Equipment/Furnishings</Title>
+<HighlightItem>
+<Title>Exterior Lavatory Ashtrays</Title>
+<Para>
+<iLink fileRef="2-25-41-01_FAA.xml" linkRef="1282466.2-25-41-01_FAA">2.25-41-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-25-41-01_FAA.xml" linkRef="1282466.2-25-41-01_FAA">2.25-41-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>FASTEN SEAT BELT WHILE SEATED Signs or Placards</Title>
+<Para>
+<iLink fileRef="2-25-63-02.xml" linkRef="1282466.2-25-63-02">2.25-63-02.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-25-63-02.xml" linkRef="1282466.2-25-63-02">2.25-63-02.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+</HighlightList>
+</HighlightItem>
+<HighlightItem>
+<HighlightList>
+<Title>ATA 26 - Fire Protection</Title>
+<HighlightItem>
+<Title>Engine Fire Detector Elements</Title>
+<Para>
+<iLink fileRef="2-26-11-01.xml" linkRef="1282466.2-26-11-01">2.26-11-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-26-11-01.xml" linkRef="1282466.2-26-11-01">2.26-11-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Lavatory Smoke Detection Systems</Title>
+<Para>
+<iLink fileRef="2-26-13-01_FAA.xml" linkRef="1286114.2-26-13-01_FAA">2.26-13-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-26-13-01_FAA.xml" linkRef="1286114.2-26-13-01_FAA">2.26-13-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Overhead Flight Crew Rest (OFCR) Smoke Detection Systems</Title>
+<Para>
+<iLink fileRef="2-26-14-02.xml" linkRef="1282466.2-26-14-02">2.26-14-02.2	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-26-14-02.xml" linkRef="1282466.2-26-14-02">2.26-14-02.2	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>APU Fire Detection System</Title>
+<Para>
+<iLink fileRef="2-26-15-01.xml" linkRef="1282466.2-26-15-01">2.26-15-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-26-15-01.xml" linkRef="1282466.2-26-15-01">2.26-15-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-26-15-01.xml" linkRef="1282466.2-26-15-01">2.26-15-01.2	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-26-15-01.xml" linkRef="1282466.2-26-15-01">2.26-15-01.2	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Duct Leak Overheat Detection Systems</Title>
+<Para>
+<iLink fileRef="2-26-18-01_FAA.xml" linkRef="1282466.2-26-18-01_FAA">2.26-18-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-26-18-01_FAA.xml" linkRef="1282466.2-26-18-01_FAA">2.26-18-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-26-18-01_FAA.xml" linkRef="1282466.2-26-18-01_FAA">2.26-18-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-26-18-01_FAA.xml" linkRef="1282466.2-26-18-01_FAA">2.26-18-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Fire BTL DISCH Lights (Engine, APU, Cargo)</Title>
+<Para>
+<iLink fileRef="2-26-21-01.xml" linkRef="1282466.2-26-21-01">2.26-21-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-26-21-01.xml" linkRef="1282466.2-26-21-01">2.26-21-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>APU Fire Extinguishing System</Title>
+<Para>
+<iLink fileRef="2-26-22-01.xml" linkRef="1282466.2-26-22-01">2.26-22-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-26-22-01.xml" linkRef="1282466.2-26-22-01">2.26-22-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+</HighlightList>
+</HighlightItem>
+<HighlightItem>
+<HighlightList>
+<Title>ATA 27 - Flight Controls</Title>
+<HighlightItem>
+<Title>Flight Controls Synoptic Display</Title>
+<Para>
+<iLink fileRef="2-27-00-01.xml" linkRef="1282466.2-27-00-01">2.27-00-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-27-00-01.xml" linkRef="1282466.2-27-00-01">2.27-00-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Bank Angle Protection</Title>
+<Para>
+<iLink fileRef="2-27-02-01.xml" linkRef="1282466.2-27-02-01">2.27-02-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-27-02-01.xml" linkRef="1282466.2-27-02-01">2.27-02-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Flight Control Modules (FCM)</Title>
+<Para>
+<iLink fileRef="2-27-02-02.xml" linkRef="1282466.2-27-02-02">2.27-02-02.5	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-27-02-02.xml" linkRef="1282466.2-27-02-02">2.27-02-02.5	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>PFCS Interface</Title>
+<Para>
+<iLink fileRef="2-27-02-03.xml" linkRef="1282466.2-27-02-03">2.27-02-03.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-27-02-03.xml" linkRef="1282466.2-27-02-03">2.27-02-03.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-27-02-03.xml" linkRef="1282466.2-27-02-03">2.27-02-03.1	Added note to provide additional dispatch info.</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Actuator Delta Pressure</Title>
+<Para>
+<iLink fileRef="2-27-02-04_FAA.xml" linkRef="1282466.2-27-02-04_FAA">2.27-02-04.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-27-02-04_FAA.xml" linkRef="1282466.2-27-02-04_FAA">2.27-02-04.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Flight Control Surfaces Lockout Function</Title>
+<Para>
+<iLink fileRef="2-27-02-05.xml" linkRef="1282466.2-27-02-05">2.27-02-05.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-27-02-05.xml" linkRef="1282466.2-27-02-05">2.27-02-05.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-27-02-05.xml" linkRef="1282466.2-27-02-05">2.27-02-05.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-27-02-05.xml" linkRef="1282466.2-27-02-05">2.27-02-05.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-27-02-05.xml" linkRef="1282466.2-27-02-05">2.27-02-05.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-27-02-05.xml" linkRef="1282466.2-27-02-05">2.27-02-05.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-27-02-05.xml" linkRef="1282466.2-27-02-05">2.27-02-05.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-27-02-05.xml" linkRef="1282466.2-27-02-05">2.27-02-05.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-27-02-05.xml" linkRef="1282466.2-27-02-05">2.27-02-05.2	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-27-02-05.xml" linkRef="1282466.2-27-02-05">2.27-02-05.2	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-27-02-05.xml" linkRef="1282466.2-27-02-05">2.27-02-05.2	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-27-02-05.xml" linkRef="1282466.2-27-02-05">2.27-02-05.2	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Direct Mode Rate Sensors</Title>
+<Para>
+<iLink fileRef="2-27-02-06.xml" linkRef="1282466.2-27-02-06">2.27-02-06.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-27-02-06.xml" linkRef="1282466.2-27-02-06">2.27-02-06.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Modal Suppression Accelerometers (MSA)</Title>
+<Para>
+<iLink fileRef="2-27-02-07.xml" linkRef="1282466.2-27-02-07">2.27-02-07.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-27-02-07.xml" linkRef="1282466.2-27-02-07">2.27-02-07.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-27-02-07.xml" linkRef="1282466.2-27-02-07">2.27-02-07.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-27-02-07.xml" linkRef="1282466.2-27-02-07">2.27-02-07.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Control Wheel Position Transducers</Title>
+<Para>
+<iLink fileRef="2-27-11-01.xml" linkRef="1282466.2-27-11-01">2.27-11-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-27-11-01.xml" linkRef="1282466.2-27-11-01">2.27-11-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Alternate Control Wheel Position Transducers</Title>
+<Para>
+<iLink fileRef="2-27-11-02.xml" linkRef="1282466.2-27-11-02">2.27-11-02.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-27-11-02.xml" linkRef="1282466.2-27-11-02">2.27-11-02.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Rudder Pedal Position Transducers</Title>
+<Para>
+<iLink fileRef="2-27-21-02.xml" linkRef="1282466.2-27-21-02">2.27-21-02.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-27-21-02.xml" linkRef="1282466.2-27-21-02">2.27-21-02.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Empennage Door Actuation System (EDAS)</Title>
+<Para>
+<iLink fileRef="2-27-24-01.xml" linkRef="1317766.2-27-24-01">2.27-24-01.1	Added note for further clarification.</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Control Column Position Transducers</Title>
+<Para>
+<iLink fileRef="2-27-31-01.xml" linkRef="1282466.2-27-31-01">2.27-31-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-27-31-01.xml" linkRef="1282466.2-27-31-01">2.27-31-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Stick Shaker Systems</Title>
+<Para>
+<iLink fileRef="2-27-32-01.xml" linkRef="1282466.2-27-32-01">2.27-32-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-27-32-01.xml" linkRef="1282466.2-27-32-01">2.27-32-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Control Wheel Pitch Trim Switches</Title>
+<Para>
+<iLink fileRef="2-27-41-01.xml" linkRef="1282466.2-27-41-01">2.27-41-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-27-41-01.xml" linkRef="1282466.2-27-41-01">2.27-41-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Alternate Pitch Trim Switch</Title>
+<Para>
+<iLink fileRef="2-27-41-02.xml" linkRef="1282466.2-27-41-02">2.27-41-02.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-27-41-02.xml" linkRef="1282466.2-27-41-02">2.27-41-02.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Stabilizer Load Transducers</Title>
+<Para>
+<iLink fileRef="2-27-48-02.xml" linkRef="1282466.2-27-48-02">2.27-48-02.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-27-48-02.xml" linkRef="1282466.2-27-48-02">2.27-48-02.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Trailing Edge Variable Camber (Cruise Flaps) Function</Title>
+<Para>
+<iLink fileRef="2-27-51-02.xml" linkRef="1339589.2-27-51-02">2.27-51-02.2	Added new -10 limit</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-27-51-02.xml" linkRef="1339589.2-27-51-02">2.27-51-02.2	Revised (O) to cover all the performance penalties included in -02A</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-27-51-02.xml" linkRef="1339589.2-27-51-02">2.27-51-02.3	Revised step so that it can be used by -02A and -02B dispatch option.</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-27-51-02.xml" linkRef="1339589.2-27-51-02">2.27-51-02.5	Revised (O) to cover all the performance penalties included in -02A</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Flap Variable Camber Trim Unit (VCTU) Power Control</Title>
+<Para>
+<iLink fileRef="2-27-51-07.xml" linkRef="1282466.2-27-51-07">2.27-51-07.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-27-51-07.xml" linkRef="1282466.2-27-51-07">2.27-51-07.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Alternate Flap/Slat Control</Title>
+<Para>
+<iLink fileRef="2-27-51-08.xml" linkRef="1282466.2-27-51-08">2.27-51-08.2	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-27-51-08.xml" linkRef="1282466.2-27-51-08">2.27-51-08.2	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Spoiler Actuator Systems</Title>
+<Para>
+<iLink fileRef="2-27-61-02.xml" linkRef="1384311.2-27-61-02">2.27-61-02.2	Added the new step E to provide additional procedure on how to examine the actuator or a shearout.</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-27-61-02.xml" linkRef="1384311.2-27-61-02">2.27-61-02.2	Added the new step E to provide additional procedure on how to examine the actuator or a shearout.</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-27-61-02.xml" linkRef="1384311.2-27-61-02">2.27-61-02.2	Added the new step E to provide additional procedure on how to examine the actuator or a shearout.</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-27-61-02.xml" linkRef="1384311.2-27-61-02">2.27-61-02.2	Added the new step E to provide additional procedure on how to examine the actuator or a shearout.</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-27-61-02.xml" linkRef="1384311.2-27-61-02">2.27-61-02.2	Added the new step E to provide additional procedure on how to examine the actuator or a shearout.</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-27-61-02.xml" linkRef="1384311.2-27-61-02">2.27-61-02.2	Added the new step E to provide additional procedure on how to examine the actuator or a shearout.</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-27-61-02.xml" linkRef="1384311.2-27-61-02">2.27-61-02.2	Added the new step E to provide additional procedure on how to examine the actuator or a shearout.</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-27-61-02.xml" linkRef="1384311.2-27-61-02">2.27-61-02.2	Added the new step E to provide additional procedure on how to examine the actuator or a shearout.</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-27-61-02.xml" linkRef="1384311.2-27-61-02">2.27-61-02.2	Added the new step E to provide additional procedure on how to examine the actuator or a shearout.</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Slat Position Sensors</Title>
+<Para>
+<iLink fileRef="2-27-88-01.xml" linkRef="1282466.2-27-88-01">2.27-88-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-27-88-01.xml" linkRef="1282466.2-27-88-01">2.27-88-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+</HighlightList>
+</HighlightItem>
+<HighlightItem>
+<HighlightList>
+<Title>ATA 28 - Fuel</Title>
+<HighlightItem>
+<Title>Refuel Adapters</Title>
+<Para>
+<iLink fileRef="2-28-21-02.xml" linkRef="1290610.2-28-21-02">2.28-21-02.1	Added the missing AMM DDG reference.</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Main Tank Fuel Pumps</Title>
+<Para>
+<iLink fileRef="2-28-22-01.xml" linkRef="1282466.2-28-22-01">2.28-22-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-28-22-01.xml" linkRef="1282466.2-28-22-01">2.28-22-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-28-22-01.xml" linkRef="1282466.2-28-22-01">2.28-22-01.2	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-28-22-01.xml" linkRef="1282466.2-28-22-01">2.28-22-01.2	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Center Tank Fuel Override/Jettison Pump Systems</Title>
+<Para>
+<iLink fileRef="2-28-22-02_FAA.xml" linkRef="1309149.2-28-22-02_FAA">2.28-22-02.4	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-28-22-02_FAA.xml" linkRef="1309149.2-28-22-02_FAA">2.28-22-02.4	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-28-22-02_FAA.xml" linkRef="1309149.2-28-22-02_FAA">2.28-22-02.4	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-28-22-02_FAA.xml" linkRef="1309149.2-28-22-02_FAA">2.28-22-02.4	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Crossfeed Valve</Title>
+<Para>
+<iLink fileRef="2-28-22-03.xml" linkRef="1282466.2-28-22-03">2.28-22-03.2	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-28-22-03.xml" linkRef="1282466.2-28-22-03">2.28-22-03.2	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-28-22-03.xml" linkRef="1282466.2-28-22-03">2.28-22-03.2	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-28-22-03.xml" linkRef="1282466.2-28-22-03">2.28-22-03.2	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Fuel Balance Switch</Title>
+<Para>
+<iLink fileRef="2-28-22-06.xml" linkRef="1282466.2-28-22-06">2.28-22-06.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-28-22-06.xml" linkRef="1282466.2-28-22-06">2.28-22-06.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-28-22-06.xml" linkRef="1282466.2-28-22-06">2.28-22-06.2	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-28-22-06.xml" linkRef="1282466.2-28-22-06">2.28-22-06.2	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Fuel Jettison System</Title>
+<Para>
+<iLink fileRef="2-28-31-01.xml" linkRef="1282466.2-28-31-01">2.28-31-01.2	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-28-31-01.xml" linkRef="1282466.2-28-31-01">2.28-31-01.2	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-28-31-01.xml" linkRef="1282466.2-28-31-01">2.28-31-01.2	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-28-31-01.xml" linkRef="1282466.2-28-31-01">2.28-31-01.2	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Fuel Jettison Nozzle Valves</Title>
+<Para>
+<iLink fileRef="2-28-31-03.xml" linkRef="1282466.2-28-31-03">2.28-31-03.2	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-28-31-03.xml" linkRef="1282466.2-28-31-03">2.28-31-03.2	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-28-31-03.xml" linkRef="1282466.2-28-31-03">2.28-31-03.3	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-28-31-03.xml" linkRef="1282466.2-28-31-03">2.28-31-03.3	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Fuel Synoptic Display</Title>
+<Para>
+<iLink fileRef="2-28-40-01.xml" linkRef="1282466.2-28-40-01">2.28-40-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-28-40-01.xml" linkRef="1282466.2-28-40-01">2.28-40-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Fuel Quantity Indication Systems</Title>
+<Para>
+<iLink fileRef="2-28-41-02.xml" linkRef="1279418.2-28-41-02">2.28-41-02.1	Add NOTE to highlight the case of both channels inop</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Fuel Quantity Sensor Systems</Title>
+<Para>
+<iLink fileRef="2-28-41-03.xml" linkRef="1282466.2-28-41-03">2.28-41-03.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-28-41-03.xml" linkRef="1282466.2-28-41-03">2.28-41-03.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Fuel Temperature Indicating Systems</Title>
+<Para>
+<iLink fileRef="2-28-43-01.xml" linkRef="1282466.2-28-43-01">2.28-43-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-28-43-01.xml" linkRef="1282466.2-28-43-01">2.28-43-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+</HighlightList>
+</HighlightItem>
+<HighlightItem>
+<HighlightList>
+<Title>ATA 29 - Hydraulic Power</Title>
+<HighlightItem>
+<Title>Center System Electric Motor-Driven Pumps (EMP)</Title>
+<Para>
+<iLink fileRef="2-29-11-02.xml" linkRef="1330622.2-29-11-02">2.29-11-02.2	Made previous step a numerical step 1 only.  No content change.</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-29-11-02.xml" linkRef="1330622.2-29-11-02">2.29-11-02.2	Added a new step 2 to provide guidance on how to set the switch.</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Hydraulic Reservoir Pressure Indication Systems</Title>
+<Para>
+<iLink fileRef="2-29-18-02.xml" linkRef="1282466.2-29-18-02">2.29-18-02.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-29-18-02.xml" linkRef="1282466.2-29-18-02">2.29-18-02.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Hydraulic Reservoir Temperature Indication Systems</Title>
+<Para>
+<iLink fileRef="2-29-18-04.xml" linkRef="1282466.2-29-18-04">2.29-18-04.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-29-18-04.xml" linkRef="1282466.2-29-18-04">2.29-18-04.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Ram Air Turbine (RAT) Position Indication System</Title>
+<Para>
+<iLink fileRef="2-29-21-02.xml" linkRef="1282466.2-29-21-02">2.29-21-02.2	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-29-21-02.xml" linkRef="1282466.2-29-21-02">2.29-21-02.2	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-29-21-02.xml" linkRef="1282466.2-29-21-02">2.29-21-02.2	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-29-21-02.xml" linkRef="1282466.2-29-21-02">2.29-21-02.2	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Ram Air Turbine (RAT) Heaters</Title>
+<Para>
+<iLink fileRef="2-29-21-03.xml" linkRef="1282466.2-29-21-03">2.29-21-03.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-29-21-03.xml" linkRef="1282466.2-29-21-03">2.29-21-03.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Hydraulic Pump Lights</Title>
+<Para>
+<iLink fileRef="2-29-30-01.xml" linkRef="1282543.2-29-30-01">2.29-30-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-29-30-01.xml" linkRef="1282543.2-29-30-01">2.29-30-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-29-30-01.xml" linkRef="1282543.2-29-30-01">2.29-30-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-29-30-01.xml" linkRef="1282543.2-29-30-01">2.29-30-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Hydraulic Synoptic Display</Title>
+<Para>
+<iLink fileRef="2-29-30-02.xml" linkRef="1282466.2-29-30-02">2.29-30-02.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-29-30-02.xml" linkRef="1282466.2-29-30-02">2.29-30-02.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Hydraulic Pump Pressure Indication Systems</Title>
+<Para>
+<iLink fileRef="2-29-31-02.xml" linkRef="1287605.2-29-31-02">2.29-31-02.2	Revised (M) step 7 to provide further clarification on how the system operates.</iLink>
+</Para>
+</HighlightItem>
+</HighlightList>
+</HighlightItem>
+<HighlightItem>
+<HighlightList>
+<Title>ATA 30 - Ice and Rain Protection</Title>
+<HighlightItem>
+<Title>Wing Ice Protection System (WIPS)</Title>
+<Para>
+<iLink fileRef="2-30-11-01_FAA.xml" linkRef="1282466.2-30-11-01_FAA">2.30-11-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-30-11-01_FAA.xml" linkRef="1282466.2-30-11-01_FAA">2.30-11-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-30-11-01_FAA.xml" linkRef="1282466.2-30-11-01_FAA">2.30-11-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-30-11-01_FAA.xml" linkRef="1282466.2-30-11-01_FAA">2.30-11-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-30-11-01_FAA.xml" linkRef="1282466.2-30-11-01_FAA">2.30-11-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-30-11-01_FAA.xml" linkRef="1282466.2-30-11-01_FAA">2.30-11-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Wing Anti-Ice (WAI) Indications</Title>
+<Para>
+<iLink fileRef="2-30-11-02.xml" linkRef="1282507.2-30-11-02">2.30-11-02.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-30-11-02.xml" linkRef="1282507.2-30-11-02">2.30-11-02.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Engine Anti-Ice (EAI) Systems</Title>
+<Para>
+<iLink fileRef="2-30-21-01_FAA.xml" linkRef="1364901.2-30-21-01_FAA">2.30-21-01.3	Deleted Note</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-30-21-01_FAA.xml" linkRef="1364901.2-30-21-01_FAA">2.30-21-01.3	Updated (O) procedure and performance penalties to only require the associated EAI selector to ON and performance penalty with additional procedural restriction to mitigate potential EGT exceedance events.</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-30-21-01_FAA.xml" linkRef="1364901.2-30-21-01_FAA">2.30-21-01.4	Updated (O) procedure and performance penalties to only require the associated EAI selector to ON and performance penalty with additional procedural restriction to mitigate potential EGT exceedance events.</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-30-21-01_FAA.xml" linkRef="1364901.2-30-21-01_FAA">2.30-21-01.4	Added additional switch position for further clarity.</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-30-21-01_FAA.xml" linkRef="1364901.2-30-21-01_FAA">2.30-21-01.4	Added extra info for further clarification.</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-30-21-01_FAA.xml" linkRef="1364901.2-30-21-01_FAA">2.30-21-01.4	Updated (O) pro-cedure and per-formance penal-ties to only require the associated EAI selector to ON and perfor-mance penalty with additional procedural restriction to miti-gate potential EGT exceedance events.</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-30-21-01_FAA.xml" linkRef="1364901.2-30-21-01_FAA">2.30-21-01.5	Updated (O) pro-cedure and per-formance penal-ties to only require the associated EAI selector to ON and perfor-mance penalty with additional procedural restriction to miti-gate potential EGT exceedance events.</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-30-21-01_FAA.xml" linkRef="1364901.2-30-21-01_FAA">2.30-21-01.5	Added extra info for futher clarification.</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Engine Anti-Ice (EAI) Indications</Title>
+<Para>
+<iLink fileRef="2-30-21-02.xml" linkRef="1282466.2-30-21-02">2.30-21-02.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-30-21-02.xml" linkRef="1282466.2-30-21-02">2.30-21-02.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Flight Deck Forward Window Primary Heat Channels</Title>
+<Para>
+<iLink fileRef="2-30-41-01_FAA.xml" linkRef="1282466.2-30-41-01_FAA">2.30-41-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-30-41-01_FAA.xml" linkRef="1282466.2-30-41-01_FAA">2.30-41-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Flight Deck Side Window Heat Channels</Title>
+<Para>
+<iLink fileRef="2-30-41-02.xml" linkRef="1282466.2-30-41-02">2.30-41-02.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-30-41-02.xml" linkRef="1282466.2-30-41-02">2.30-41-02.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Flight Deck Forward Window Backup Heat Channels</Title>
+<Para>
+<iLink fileRef="2-30-41-03.xml" linkRef="1282466.2-30-41-03">2.30-41-03.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-30-41-03.xml" linkRef="1282466.2-30-41-03">2.30-41-03.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Window Heat Switch Lights</Title>
+<Para>
+<iLink fileRef="2-30-41-04.xml" linkRef="1282466.2-30-41-04">2.30-41-04.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-30-41-04.xml" linkRef="1282466.2-30-41-04">2.30-41-04.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-30-41-04.xml" linkRef="1282466.2-30-41-04">2.30-41-04.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-30-41-04.xml" linkRef="1282466.2-30-41-04">2.30-41-04.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Window Heat Software</Title>
+<Para>
+<iLink fileRef="2-30-41-05.xml" linkRef="1282466.2-30-41-05">2.30-41-05.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-30-41-05.xml" linkRef="1282466.2-30-41-05">2.30-41-05.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Windshield Wiper System</Title>
+<Para>
+<iLink fileRef="2-30-42-01.xml" linkRef="1282466.2-30-42-01">2.30-42-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-30-42-01.xml" linkRef="1282466.2-30-42-01">2.30-42-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-30-42-01.xml" linkRef="1282466.2-30-42-01">2.30-42-01.2	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-30-42-01.xml" linkRef="1282466.2-30-42-01">2.30-42-01.2	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Windshield Washer System</Title>
+<Para>
+<iLink fileRef="2-30-44-01.xml" linkRef="1282466.2-30-44-01">2.30-44-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-30-44-01.xml" linkRef="1282466.2-30-44-01">2.30-44-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Ice Detectors</Title>
+<Para>
+<iLink fileRef="2-30-81-01_FAA.xml" linkRef="1282466.2-30-81-01_FAA">2.30-81-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-30-81-01_FAA.xml" linkRef="1282466.2-30-81-01_FAA">2.30-81-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+</HighlightList>
+</HighlightItem>
+<HighlightItem>
+<HighlightList>
+<Title>ATA 31 - Indicating/Recording Systems</Title>
+<HighlightItem>
+<Title>Digital Voice-Data Recorder Systems</Title>
+<Para>
+<iLink fileRef="2-31-31-01_FAA.xml" linkRef="1282466.2-31-31-01_FAA">2.31-31-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-31-31-01_FAA.xml" linkRef="1282466.2-31-31-01_FAA">2.31-31-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-31-31-01_FAA.xml" linkRef="1282466.2-31-31-01_FAA">2.31-31-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-31-31-01_FAA.xml" linkRef="1282466.2-31-31-01_FAA">2.31-31-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-31-31-01_FAA.xml" linkRef="1282466.2-31-31-01_FAA">2.31-31-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-31-31-01_FAA.xml" linkRef="1282466.2-31-31-01_FAA">2.31-31-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-31-31-01_FAA.xml" linkRef="1282466.2-31-31-01_FAA">2.31-31-01.2	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-31-31-01_FAA.xml" linkRef="1282466.2-31-31-01_FAA">2.31-31-01.2	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-31-31-01_FAA.xml" linkRef="1282466.2-31-31-01_FAA">2.31-31-01.2	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-31-31-01_FAA.xml" linkRef="1282466.2-31-31-01_FAA">2.31-31-01.2	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-31-31-01_FAA.xml" linkRef="1282466.2-31-31-01_FAA">2.31-31-01.2	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-31-31-01_FAA.xml" linkRef="1282466.2-31-31-01_FAA">2.31-31-01.2	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-31-31-01_FAA.xml" linkRef="1282466.2-31-31-01_FAA">2.31-31-01.3	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-31-31-01_FAA.xml" linkRef="1282466.2-31-31-01_FAA">2.31-31-01.3	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Flight Deck Printer</Title>
+<Para>
+<iLink fileRef="2-31-33-01.xml" linkRef="1282466.2-31-33-01">2.31-33-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-31-33-01.xml" linkRef="1282466.2-31-33-01">2.31-33-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Master WARNING Lights</Title>
+<Para>
+<iLink fileRef="2-31-51-01.xml" linkRef="1282466.2-31-51-01">2.31-51-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-31-51-01.xml" linkRef="1282466.2-31-51-01">2.31-51-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Master CAUTION Lights</Title>
+<Para>
+<iLink fileRef="2-31-51-02.xml" linkRef="1282466.2-31-51-02">2.31-51-02.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-31-51-02.xml" linkRef="1282466.2-31-51-02">2.31-51-02.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Display Units (DU)</Title>
+<Para>
+<iLink fileRef="2-31-61-01.xml" linkRef="1291878.2-31-61-01">2.31-61-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-31-61-01.xml" linkRef="1291878.2-31-61-01">2.31-61-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-31-61-01.xml" linkRef="1291878.2-31-61-01">2.31-61-01.3	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-31-61-01.xml" linkRef="1291878.2-31-61-01">2.31-61-01.3	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Touchpad Cursor Control Devices (CCD)</Title>
+<Para>
+<iLink fileRef="2-31-61-03.xml" linkRef="1291918.2-31-61-03">2.31-61-03.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-31-61-03.xml" linkRef="1291918.2-31-61-03">2.31-61-03.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-31-61-03.xml" linkRef="1291918.2-31-61-03">2.31-61-03.2	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-31-61-03.xml" linkRef="1291918.2-31-61-03">2.31-61-03.2	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Multifunction Keypads (MFKs)</Title>
+<Para>
+<iLink fileRef="2-31-61-04_FAA.xml" linkRef="1291918.2-31-61-04_FAA">2.31-61-04.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-31-61-04_FAA.xml" linkRef="1291918.2-31-61-04_FAA">2.31-61-04.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-31-61-04_FAA.xml" linkRef="1291918.2-31-61-04_FAA">2.31-61-04.2	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-31-61-04_FAA.xml" linkRef="1291918.2-31-61-04_FAA">2.31-61-04.2	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-31-61-04_FAA.xml" linkRef="1291918.2-31-61-04_FAA">2.31-61-04.2	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-31-61-04_FAA.xml" linkRef="1291918.2-31-61-04_FAA">2.31-61-04.2	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-31-61-04_FAA.xml" linkRef="1291918.2-31-61-04_FAA">2.31-61-04.2	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-31-61-04_FAA.xml" linkRef="1291918.2-31-61-04_FAA">2.31-61-04.2	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>EFIS/DSP Panels</Title>
+<Para>
+<iLink fileRef="2-31-61-05.xml" linkRef="1291918.2-31-61-05">2.31-61-05.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-31-61-05.xml" linkRef="1291918.2-31-61-05">2.31-61-05.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-31-61-05.xml" linkRef="1291918.2-31-61-05">2.31-61-05.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-31-61-05.xml" linkRef="1291918.2-31-61-05">2.31-61-05.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Clock Switches</Title>
+<Para>
+<iLink fileRef="2-31-61-08.xml" linkRef="1291918.2-31-61-08">2.31-61-08.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-31-61-08.xml" linkRef="1291918.2-31-61-08">2.31-61-08.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Heading Reference (HDG REF) Switch</Title>
+<Para>
+<iLink fileRef="2-31-61-09.xml" linkRef="1291918.2-31-61-09">2.31-61-09.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-31-61-09.xml" linkRef="1291918.2-31-61-09">2.31-61-09.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-31-61-09.xml" linkRef="1291918.2-31-61-09">2.31-61-09.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-31-61-09.xml" linkRef="1291918.2-31-61-09">2.31-61-09.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-31-61-09.xml" linkRef="1291918.2-31-61-09">2.31-61-09.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-31-61-09.xml" linkRef="1291918.2-31-61-09">2.31-61-09.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Remote Light Sensor (RLS) System</Title>
+<Para>
+<iLink fileRef="2-31-61-10.xml" linkRef="1291918.2-31-61-10">2.31-61-10.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-31-61-10.xml" linkRef="1291918.2-31-61-10">2.31-61-10.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>EICAS Status Messages</Title>
+<Para>
+<iLink fileRef="2-31-61-12.xml" linkRef="1291918.2-31-61-12">2.31-61-12.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-31-61-12.xml" linkRef="1291918.2-31-61-12">2.31-61-12.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Airport Map Function</Title>
+<Para>
+<iLink fileRef="2-31-61-13.xml" linkRef="1281703.2-31-61-13">2.31-61-13.1	Updated proviso to remove "out of currency" reference as it is not authorized MEL relief per 14 CFR.</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-31-61-13.xml" linkRef="1281703.2-31-61-13">2.31-61-13.1	Updated proviso to remove "out of currency" reference as it is not authorized MEL relief per 14 CFR.</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Head-Up Display (HUD) Systems</Title>
+<Para>
+<iLink fileRef="2-31-61-14.xml" linkRef="1291918.2-31-61-14">2.31-61-14.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-31-61-14.xml" linkRef="1291918.2-31-61-14">2.31-61-14.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-31-61-14.xml" linkRef="1291918.2-31-61-14">2.31-61-14.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-31-61-14.xml" linkRef="1291918.2-31-61-14">2.31-61-14.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Display Panel Interface</Title>
+<Para>
+<iLink fileRef="2-31-61-15.xml" linkRef="1291918.2-31-61-15">2.31-61-15.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-31-61-15.xml" linkRef="1291918.2-31-61-15">2.31-61-15.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Displays Airplane Sequence Number Monitor</Title>
+<Para>
+<iLink fileRef="2-31-61-16.xml" linkRef="1282709.2-31-61-16">2.31-61-16.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-31-61-16.xml" linkRef="1282709.2-31-61-16">2.31-61-16.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Clock ELAPSED TIME Displays</Title>
+<Para>
+<iLink fileRef="2-31-61-17.xml" linkRef="1277528.2-31-61-17">2.31-61-17.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-31-61-17.xml" linkRef="1277528.2-31-61-17">2.31-61-17.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+</HighlightList>
+</HighlightItem>
+<HighlightItem>
+<HighlightList>
+<Title>ATA 32 - Landing Gear</Title>
+<HighlightItem>
+<Title>Proximity Sensing System</Title>
+<Para>
+<iLink fileRef="2-32-08-01.xml" linkRef="1284202.2-32-08-01">2.32-08-01.2	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-32-08-01.xml" linkRef="1284202.2-32-08-01">2.32-08-01.2	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-32-08-01.xml" linkRef="1284202.2-32-08-01">2.32-08-01.2	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-32-08-01.xml" linkRef="1284202.2-32-08-01">2.32-08-01.2	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Landing Gear Control Relays</Title>
+<Para>
+<iLink fileRef="2-32-31-02.xml" linkRef="1308633.2-32-31-02">2.32-31-02.1	Added the missing word "door" to title to align with the AMM.</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-32-31-02.xml" linkRef="1308633.2-32-31-02">2.32-31-02.2	Added the missing word "door" to title to align with the AMM.</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-32-31-02.xml" linkRef="1308633.2-32-31-02">2.32-31-02.3	Added the missing word "door" to title to align with the AMM.</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-32-31-02.xml" linkRef="1308633.2-32-31-02">2.32-31-02.4	Added the missing word "door" to title to align with the AMM.</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-32-31-02.xml" linkRef="1308633.2-32-31-02">2.32-31-02.5	Added the missing word "door" to title to align with the AMM.</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-32-31-02.xml" linkRef="1308633.2-32-31-02">2.32-31-02.6	Added the missing word "door" to title to align with the AMM.</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-32-31-02.xml" linkRef="1308633.2-32-31-02">2.32-31-02.7	Added the missing word "door" to title to align with the AMM.</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-32-31-02.xml" linkRef="1308633.2-32-31-02">2.32-31-02.8	Added the missing word "door" to title to align with the AMM.</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-32-31-02.xml" linkRef="1308633.2-32-31-02">2.32-31-02.8	Added the missing word "door" to title to align with the AMM.</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Landing Gear Control Solenoids</Title>
+<Para>
+<iLink fileRef="2-32-31-03.xml" linkRef="1310409.2-32-31-03">2.32-31-03.2	Revised procedure to not focus on whether the ground test passes or fails, but instead to observe the valve command on the maintenance page.</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-32-31-03.xml" linkRef="1310409.2-32-31-03">2.32-31-03.2	Revised procedure to not focus on whether the ground test passes or fails, but instead to observe the valve command on the maintenance page.</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-32-31-03.xml" linkRef="1310409.2-32-31-03">2.32-31-03.3	Added the missing word "door" to title to align with the AMM.</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-32-31-03.xml" linkRef="1310409.2-32-31-03">2.32-31-03.3	Added the missing word "door" to title to align with the AMM.</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-32-31-03.xml" linkRef="1310409.2-32-31-03">2.32-31-03.4	Added the missing word "door" to title to align with the AMM.</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-32-31-03.xml" linkRef="1310409.2-32-31-03">2.32-31-03.5	Added the missing word "door" to title to align with the AMM.</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-32-31-03.xml" linkRef="1310409.2-32-31-03">2.32-31-03.6	Revised procedure to not focus on whether the ground test passes or fails, but instead to observe the valve command on the maintenance page.</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-32-31-03.xml" linkRef="1310409.2-32-31-03">2.32-31-03.6	Revised procedure to not focus on whether the ground test passes or fails, but instead to observe the valve command on the maintenance page.</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-32-31-03.xml" linkRef="1310409.2-32-31-03">2.32-31-03.7	Added the missing word "door" to title to align with the AMM.</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-32-31-03.xml" linkRef="1310409.2-32-31-03">2.32-31-03.7	Added the missing word "door" to title to align with the AMM.</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-32-31-03.xml" linkRef="1310409.2-32-31-03">2.32-31-03.8	Added the missing word "door" to title to align with the AMM.</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Landing Gear Control Lever Switches</Title>
+<Para>
+<iLink fileRef="2-32-31-05.xml" linkRef="1279110.2-32-31-05">2.32-31-05.1	Added the missing word "door" to title to align with the AMM.</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Landing Gear Door Safety Valve Indication Systems</Title>
+<Para>
+<iLink fileRef="2-32-31-06.xml" linkRef="1281399.2-32-31-06">2.32-31-06.1	Added the missing word "door" to title to align with the AMM.</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Landing Gear Bypass/Auto-off Valve System</Title>
+<Para>
+<iLink fileRef="2-32-31-07.xml" linkRef="1312179.2-32-31-07">2.32-31-07.2	Added the missing word "door" to title to align with the AMM.</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-32-31-07.xml" linkRef="1312179.2-32-31-07">2.32-31-07.4	Added the missing word "door" to title to align with the AMM.</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Nose Wheel Steering</Title>
+<Para>
+<iLink fileRef="2-32-51-01.xml" linkRef="1285536.2-32-51-01">2.32-51-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-32-51-01.xml" linkRef="1285536.2-32-51-01">2.32-51-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Nose Wheel Tillers</Title>
+<Para>
+<iLink fileRef="2-32-51-02.xml" linkRef="1282582.2-32-51-02">2.32-51-02.2	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-32-51-02.xml" linkRef="1282582.2-32-51-02">2.32-51-02.2	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Nose Wheel Steering Rudder Pedal Disconnect Switches</Title>
+<Para>
+<iLink fileRef="2-32-51-03.xml" linkRef="1282617.2-32-51-03">2.32-51-03.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-32-51-03.xml" linkRef="1282617.2-32-51-03">2.32-51-03.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-32-51-03.xml" linkRef="1282617.2-32-51-03">2.32-51-03.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-32-51-03.xml" linkRef="1282617.2-32-51-03">2.32-51-03.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Tail Strike Detector Channels</Title>
+<Para>
+<iLink fileRef="2-32-71-01.xml" linkRef="1285537.2-32-71-01">2.32-71-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-32-71-01.xml" linkRef="1285537.2-32-71-01">2.32-71-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+</HighlightList>
+</HighlightItem>
+<HighlightItem>
+<HighlightList>
+<Title>ATA 33 - Lights</Title>
+<HighlightItem>
+<Title>Flight Compartment Illumination System</Title>
+<Para>
+<iLink fileRef="2-33-11-01.xml" linkRef="1282612.2-33-11-01">2.33-11-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-33-11-01.xml" linkRef="1282612.2-33-11-01">2.33-11-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-33-11-01.xml" linkRef="1282612.2-33-11-01">2.33-11-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-33-11-01.xml" linkRef="1282612.2-33-11-01">2.33-11-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Master Brightness Control System</Title>
+<Para>
+<iLink fileRef="2-33-13-01.xml" linkRef="1282580.2-33-13-01">2.33-13-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-33-13-01.xml" linkRef="1282580.2-33-13-01">2.33-13-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Master Auto and Test System</Title>
+<Para>
+<iLink fileRef="2-33-16-01.xml" linkRef="1282580.2-33-16-01">2.33-16-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-33-16-01.xml" linkRef="1282580.2-33-16-01">2.33-16-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Passenger Compartment Illumination System</Title>
+<Para>
+<iLink fileRef="2-33-21-01.xml" linkRef="1282580.2-33-21-01">2.33-21-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-33-21-01.xml" linkRef="1282580.2-33-21-01">2.33-21-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Passenger Information Signs</Title>
+<Para>
+<iLink fileRef="2-33-24-01_FAA.xml" linkRef="1285536.2-33-24-01_FAA">2.33-24-01.2	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-33-24-01_FAA.xml" linkRef="1285536.2-33-24-01_FAA">2.33-24-01.2	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Main Wheel Well and Nose Wheel Well Service Area Lights</Title>
+<Para>
+<iLink fileRef="2-33-31-01.xml" linkRef="1282612.2-33-31-01">2.33-31-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-33-31-01.xml" linkRef="1282612.2-33-31-01">2.33-31-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-33-31-01.xml" linkRef="1282612.2-33-31-01">2.33-31-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-33-31-01.xml" linkRef="1282612.2-33-31-01">2.33-31-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Interior Cargo Lights</Title>
+<Para>
+<iLink fileRef="2-33-37-01.xml" linkRef="1282580.2-33-37-01">2.33-37-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-33-37-01.xml" linkRef="1282580.2-33-37-01">2.33-37-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Exterior Cargo Lights</Title>
+<Para>
+<iLink fileRef="2-33-37-02.xml" linkRef="1282580.2-33-37-02">2.33-37-02.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-33-37-02.xml" linkRef="1282580.2-33-37-02">2.33-37-02.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Wing Illumination Lights</Title>
+<Para>
+<iLink fileRef="2-33-41-01.xml" linkRef="1282580.2-33-41-01">2.33-41-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-33-41-01.xml" linkRef="1282580.2-33-41-01">2.33-41-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Runway Turnoff Lights</Title>
+<Para>
+<iLink fileRef="2-33-42-02.xml" linkRef="1282580.2-33-42-02">2.33-42-02.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-33-42-02.xml" linkRef="1282580.2-33-42-02">2.33-42-02.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Position Lights</Title>
+<Para>
+<iLink fileRef="2-33-43-01_FAA.xml" linkRef="1282829.2-33-43-01_FAA">2.33-43-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-33-43-01_FAA.xml" linkRef="1282829.2-33-43-01_FAA">2.33-43-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-33-43-01_FAA.xml" linkRef="1282829.2-33-43-01_FAA">2.33-43-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-33-43-01_FAA.xml" linkRef="1282829.2-33-43-01_FAA">2.33-43-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-33-43-01_FAA.xml" linkRef="1282829.2-33-43-01_FAA">2.33-43-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-33-43-01_FAA.xml" linkRef="1282829.2-33-43-01_FAA">2.33-43-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Anti-Collision Lights</Title>
+<Para>
+<iLink fileRef="2-33-44-01_FAA.xml" linkRef="1282580.2-33-44-01_FAA">2.33-44-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-33-44-01_FAA.xml" linkRef="1282580.2-33-44-01_FAA">2.33-44-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-33-44-01_FAA.xml" linkRef="1282580.2-33-44-01_FAA">2.33-44-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-33-44-01_FAA.xml" linkRef="1282580.2-33-44-01_FAA">2.33-44-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-33-44-01_FAA.xml" linkRef="1282580.2-33-44-01_FAA">2.33-44-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-33-44-01_FAA.xml" linkRef="1282580.2-33-44-01_FAA">2.33-44-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-33-44-01_FAA.xml" linkRef="1282580.2-33-44-01_FAA">2.33-44-01.2	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-33-44-01_FAA.xml" linkRef="1282580.2-33-44-01_FAA">2.33-44-01.2	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-33-44-01_FAA.xml" linkRef="1282580.2-33-44-01_FAA">2.33-44-01.2	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-33-44-01_FAA.xml" linkRef="1282580.2-33-44-01_FAA">2.33-44-01.2	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Logo Lights</Title>
+<Para>
+<iLink fileRef="2-33-45-01.xml" linkRef="1282657.2-33-45-01">2.33-45-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-33-45-01.xml" linkRef="1282657.2-33-45-01">2.33-45-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-33-45-01.xml" linkRef="1282657.2-33-45-01">2.33-45-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-33-45-01.xml" linkRef="1282657.2-33-45-01">2.33-45-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Exterior Passenger Door Viewing Lights</Title>
+<Para>
+<iLink fileRef="2-33-51-01_FAA.xml" linkRef="1284782.2-33-51-01_FAA">2.33-51-01.1	Update NI &amp; NR</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-33-51-01_FAA.xml" linkRef="1284782.2-33-51-01_FAA">2.33-51-01.1	Update NI &amp; NR</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-33-51-01_FAA.xml" linkRef="1284782.2-33-51-01_FAA">2.33-51-01.2	Update NI &amp; NR</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Floor Proximity Lighting Systems</Title>
+<Para>
+<iLink fileRef="2-33-51-02_FAA.xml" linkRef="1295570.2-33-51-02_FAA">2.33-51-02.3	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-33-51-02_FAA.xml" linkRef="1295570.2-33-51-02_FAA">2.33-51-02.3	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-33-51-02_FAA.xml" linkRef="1295570.2-33-51-02_FAA">2.33-51-02.3	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-33-51-02_FAA.xml" linkRef="1295570.2-33-51-02_FAA">2.33-51-02.3	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-33-51-02_FAA.xml" linkRef="1295570.2-33-51-02_FAA">2.33-51-02.3	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-33-51-02_FAA.xml" linkRef="1295570.2-33-51-02_FAA">2.33-51-02.3	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+</HighlightList>
+</HighlightItem>
+<HighlightItem>
+<HighlightList>
+<Title>ATA 34 - Navigation</Title>
+<HighlightItem>
+<Title>Angle of Attack (AOA) Sensors</Title>
+<Para>
+<iLink fileRef="2-34-12-03.xml" linkRef="1307416.2-34-12-03">2.34-12-03.1	Item removed from MEL due to an unacceptable level of safety.</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-34-12-03.xml" linkRef="1307416.2-34-12-03">2.34-12-03.1	Deleted item</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-34-12-03.xml" linkRef="1307416.2-34-12-03">2.34-12-03.1	Added new (M) indicator to provide procedures on how to verify AOA heaters and resolvers.</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-34-12-03.xml" linkRef="1307416.2-34-12-03">2.34-12-03.1	Revised provisos to verify AOA heaters and resolvers.</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-34-12-03.xml" linkRef="1307416.2-34-12-03">2.34-12-03.1	Add new provisos to verify AOA heaters.</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-34-12-03.xml" linkRef="1307416.2-34-12-03">2.34-12-03.1	Added new (M) section to verify AOA heater system.</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-34-12-03.xml" linkRef="1307416.2-34-12-03">2.34-12-03.1	Item removed from MEL due to an unacceptable level of safety.</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-34-12-03.xml" linkRef="1307416.2-34-12-03">2.34-12-03.1	deleted item</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-34-12-03.xml" linkRef="1307416.2-34-12-03">2.34-12-03.2	Added item</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Non-Stabilized Magnetic Compass (Standby)</Title>
+<Para>
+<iLink fileRef="2-34-23-01.xml" linkRef="1282580.2-34-23-01">2.34-23-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-34-23-01.xml" linkRef="1282580.2-34-23-01">2.34-23-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Integrated Standby Flight Display (ISFD)</Title>
+<Para>
+<iLink fileRef="2-34-24-01.xml" linkRef="1347589.2-34-24-01">2.34-24-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-34-24-01.xml" linkRef="1347589.2-34-24-01">2.34-24-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-34-24-01.xml" linkRef="1347589.2-34-24-01">2.34-24-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-34-24-01.xml" linkRef="1347589.2-34-24-01">2.34-24-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-34-24-01.xml" linkRef="1347589.2-34-24-01">2.34-24-01.2	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-34-24-01.xml" linkRef="1347589.2-34-24-01">2.34-24-01.2	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-34-24-01.xml" linkRef="1347589.2-34-24-01">2.34-24-01.2	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-34-24-01.xml" linkRef="1347589.2-34-24-01">2.34-24-01.2	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Traffic Collision and Avoidance System (TCAS)</Title>
+<Para>
+<iLink fileRef="2-34-42-02_FAA.xml" linkRef="1282580.2-34-42-02_FAA">2.34-42-02.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-34-42-02_FAA.xml" linkRef="1282580.2-34-42-02_FAA">2.34-42-02.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>ATC Transponder/Automatic Altitude Reporting Systems</Title>
+<Para>
+<iLink fileRef="2-34-42-03_FAA.xml" linkRef="1282580.2-34-42-03_FAA">2.34-42-03.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-34-42-03_FAA.xml" linkRef="1282580.2-34-42-03_FAA">2.34-42-03.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-34-42-03_FAA.xml" linkRef="1282580.2-34-42-03_FAA">2.34-42-03.1	Added new note to provide dispatch guidance that TCAS system will also be inoperative.</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Ground Proximity Warning System (GPWS)</Title>
+<Para>
+<iLink fileRef="2-34-42-05_FAA.xml" linkRef="1282580.2-34-42-05_FAA">2.34-42-05.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-34-42-05_FAA.xml" linkRef="1282580.2-34-42-05_FAA">2.34-42-05.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-34-42-05_FAA.xml" linkRef="1282580.2-34-42-05_FAA">2.34-42-05.3	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-34-42-05_FAA.xml" linkRef="1282580.2-34-42-05_FAA">2.34-42-05.3	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-34-42-05_FAA.xml" linkRef="1282580.2-34-42-05_FAA">2.34-42-05.4	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-34-42-05_FAA.xml" linkRef="1282580.2-34-42-05_FAA">2.34-42-05.4	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+</HighlightList>
+</HighlightItem>
+<HighlightItem>
+<HighlightList>
+<Title>ATA 35 - Oxygen</Title>
+<HighlightItem>
+<Title>Passenger Oxygen System</Title>
+<Para>
+<iLink fileRef="2-35-21-01_FAA.xml" linkRef="1282580.2-35-21-01_FAA">2.35-21-01.3	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-35-21-01_FAA.xml" linkRef="1282580.2-35-21-01_FAA">2.35-21-01.3	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Passenger Oxygen ON Light</Title>
+<Para>
+<iLink fileRef="2-35-21-04.xml" linkRef="1282580.2-35-21-04">2.35-21-04.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-35-21-04.xml" linkRef="1282580.2-35-21-04">2.35-21-04.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+</HighlightList>
+</HighlightItem>
+<HighlightItem>
+<HighlightList>
+<Title>ATA 38 - Water/Waste</Title>
+<HighlightItem>
+<Title>Potable Water Systems</Title>
+<Para>
+<iLink fileRef="2-38-10-01.xml" linkRef="1349377.2-38-10-01">2.38-10-01.1	Added (O) note to provide additional dispatch guidance.</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-38-10-01.xml" linkRef="1349377.2-38-10-01">2.38-10-01.2	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-38-10-01.xml" linkRef="1349377.2-38-10-01">2.38-10-01.2	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+</HighlightList>
+</HighlightItem>
+<HighlightItem>
+<HighlightList>
+<Title>ATA 42 - Integrated Modular Avionics</Title>
+<HighlightItem>
+<Title>Remote Data Concentrators (RDCs)</Title>
+<Para>
+<iLink fileRef="2-42-21-02.xml" linkRef="1348571.2-42-21-02">2.42-21-02.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-42-21-02.xml" linkRef="1348571.2-42-21-02">2.42-21-02.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-42-21-02.xml" linkRef="1348571.2-42-21-02">2.42-21-02.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-42-21-02.xml" linkRef="1348571.2-42-21-02">2.42-21-02.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-42-21-02.xml" linkRef="1348571.2-42-21-02">2.42-21-02.2	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-42-21-02.xml" linkRef="1348571.2-42-21-02">2.42-21-02.2	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-42-21-02.xml" linkRef="1348571.2-42-21-02">2.42-21-02.3	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-42-21-02.xml" linkRef="1348571.2-42-21-02">2.42-21-02.3	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+</HighlightList>
+</HighlightItem>
+<HighlightItem>
+<HighlightList>
+<Title>ATA 44 - Cabin Systems</Title>
+<HighlightItem>
+<Title>Cabin Interphone Alerting Systems</Title>
+<Para>
+<iLink fileRef="2-44-14-02_FAA.xml" linkRef="1282580.2-44-14-02_FAA">2.44-14-02.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-44-14-02_FAA.xml" linkRef="1282580.2-44-14-02_FAA">2.44-14-02.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-44-14-02_FAA.xml" linkRef="1282580.2-44-14-02_FAA">2.44-14-02.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-44-14-02_FAA.xml" linkRef="1282580.2-44-14-02_FAA">2.44-14-02.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+</HighlightList>
+</HighlightItem>
+<HighlightItem>
+<HighlightList>
+<Title>ATA 47 - Nitrogen Generation System</Title>
+<HighlightItem>
+<Title>Nitrogen Generation System (NGS)</Title>
+<Para>
+<iLink fileRef="2-47-11-01_FAA.xml" linkRef="1282580.2-47-11-01_FAA">2.47-11-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-47-11-01_FAA.xml" linkRef="1282580.2-47-11-01_FAA">2.47-11-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+</HighlightList>
+</HighlightItem>
+<HighlightItem>
+<HighlightList>
+<Title>ATA 49 - Airborne Auxiliary Power</Title>
+<HighlightItem>
+<Title>APU Controller</Title>
+<Para>
+<iLink fileRef="2-49-61-01.xml" linkRef="1282580.2-49-61-01">2.49-61-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-49-61-01.xml" linkRef="1282580.2-49-61-01">2.49-61-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>APU FAULT Light</Title>
+<Para>
+<iLink fileRef="2-49-70-01.xml" linkRef="1282580.2-49-70-01">2.49-70-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-49-70-01.xml" linkRef="1282580.2-49-70-01">2.49-70-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>APU EGT Indication</Title>
+<Para>
+<iLink fileRef="2-49-71-01.xml" linkRef="1282580.2-49-71-01">2.49-71-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-49-71-01.xml" linkRef="1282580.2-49-71-01">2.49-71-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>APU RPM Indication</Title>
+<Para>
+<iLink fileRef="2-49-73-01.xml" linkRef="1282580.2-49-73-01">2.49-73-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-49-73-01.xml" linkRef="1282580.2-49-73-01">2.49-73-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>APU Oil Pressure Indication</Title>
+<Para>
+<iLink fileRef="2-49-94-02.xml" linkRef="1282580.2-49-94-02">2.49-94-02.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-49-94-02.xml" linkRef="1282580.2-49-94-02">2.49-94-02.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+</HighlightList>
+</HighlightItem>
+<HighlightItem>
+<HighlightList>
+<Title>ATA 52 - Doors</Title>
+<HighlightItem>
+<Title>Doors Synoptic Display</Title>
+<Para>
+<iLink fileRef="2-52-00-01.xml" linkRef="1282580.2-52-00-01">2.52-00-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-52-00-01.xml" linkRef="1282580.2-52-00-01">2.52-00-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Passenger Entry Doors/Slides</Title>
+<Para>
+<iLink fileRef="2-52-11-01_FAA.xml" linkRef="1215417.2-52-11-01_FAA">2.52-11-01.2	Update block seat</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-52-11-01_FAA.xml" linkRef="1215417.2-52-11-01_FAA">2.52-11-01.2	Added additional wording to allow for dispatch flexibility. Revised block seat for inop passenger entry doors/slides</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-52-11-01_FAA.xml" linkRef="1215417.2-52-11-01_FAA">2.52-11-01.2	Update block seat</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-52-11-01_FAA.xml" linkRef="1215417.2-52-11-01_FAA">2.52-11-01.2	Update block seat</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-52-11-01_FAA.xml" linkRef="1215417.2-52-11-01_FAA">2.52-11-01.2	Update block seat</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-52-11-01_FAA.xml" linkRef="1215417.2-52-11-01_FAA">2.52-11-01.2	Update block seat</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-52-11-01_FAA.xml" linkRef="1215417.2-52-11-01_FAA">2.52-11-01.2	Update block seat</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-52-11-01_FAA.xml" linkRef="1215417.2-52-11-01_FAA">2.52-11-01.2	Update block seat</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-52-11-01_FAA.xml" linkRef="1215417.2-52-11-01_FAA">2.52-11-01.2	Update block seat</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-52-11-01_FAA.xml" linkRef="1215417.2-52-11-01_FAA">2.52-11-01.2	Add a recommendation for 17 additional seats.</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-52-11-01_FAA.xml" linkRef="1215417.2-52-11-01_FAA">2.52-11-01.2	Add a recommendation for 17 additional seats.</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-52-11-01_FAA.xml" linkRef="1215417.2-52-11-01_FAA">2.52-11-01.2	Add a recommendation for 17 additional seats.</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-52-11-01_FAA.xml" linkRef="1215417.2-52-11-01_FAA">2.52-11-01.2	Update block seat</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-52-11-01_FAA.xml" linkRef="1215417.2-52-11-01_FAA">2.52-11-01.2	Added additional wording to allow for dispatch flexibility.</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-52-11-01_FAA.xml" linkRef="1215417.2-52-11-01_FAA">2.52-11-01.6	Added additional wording to allow for dispatch flexibility</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-52-11-01_FAA.xml" linkRef="1215417.2-52-11-01_FAA">2.52-11-01.6	Added additional wording to allow for dispatch flexibility</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-52-11-01_FAA.xml" linkRef="1215417.2-52-11-01_FAA">2.52-11-01.6	Added additional wording to allow for dispatch flexibility.</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>EPAS Power Channels</Title>
+<Para>
+<iLink fileRef="2-52-11-06.xml" linkRef="1282580.2-52-11-06">2.52-11-06.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-52-11-06.xml" linkRef="1282580.2-52-11-06">2.52-11-06.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>EPAS Disarmed Sensors</Title>
+<Para>
+<iLink fileRef="2-52-11-07_FAA.xml" linkRef="1282580.2-52-11-07_FAA">2.52-11-07.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-52-11-07_FAA.xml" linkRef="1282580.2-52-11-07_FAA">2.52-11-07.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-52-11-07_FAA.xml" linkRef="1282580.2-52-11-07_FAA">2.52-11-07.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-52-11-07_FAA.xml" linkRef="1282580.2-52-11-07_FAA">2.52-11-07.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Passenger Door Automatic Mode Indicators (Including Door 1L Attendant Switch Panel Indicator)</Title>
+<Para>
+<iLink fileRef="2-52-11-08.xml" linkRef="1282580.2-52-11-08">2.52-11-08.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-52-11-08.xml" linkRef="1282580.2-52-11-08">2.52-11-08.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Flight Deck Door Automatic Locking System</Title>
+<Para>
+<iLink fileRef="2-52-51-01_FAA.xml" linkRef="1282580.2-52-51-01_FAA">2.52-51-01.8	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-52-51-01_FAA.xml" linkRef="1282580.2-52-51-01_FAA">2.52-51-01.8	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Flight Deck Door Dead Bolt</Title>
+<Para>
+<iLink fileRef="2-52-51-02_FAA.xml" linkRef="1282580.2-52-51-02_FAA">2.52-51-02.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-52-51-02_FAA.xml" linkRef="1282580.2-52-51-02_FAA">2.52-51-02.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Flight Deck Door Decompression Panel Latch</Title>
+<Para>
+<iLink fileRef="2-52-51-03_FAA.xml" linkRef="1282580.2-52-51-03_FAA">2.52-51-03.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-52-51-03_FAA.xml" linkRef="1282580.2-52-51-03_FAA">2.52-51-03.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Door Indication Systems</Title>
+<Para>
+<iLink fileRef="2-52-71-01.xml" linkRef="1282580.2-52-71-01">2.52-71-01.3	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-52-71-01.xml" linkRef="1282580.2-52-71-01">2.52-71-01.3	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+</HighlightList>
+</HighlightItem>
+<HighlightItem>
+<HighlightList>
+<Title>ATA 73 - Engine Fuel and Control</Title>
+<HighlightItem>
+<Title>Engine Main Fuel Pump Strainer Sensors (GE)</Title>
+<Para>
+<iLink fileRef="2-73-11-01.xml" linkRef="1282580.2-73-11-01">2.73-11-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-73-11-01.xml" linkRef="1282580.2-73-11-01">2.73-11-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Engine Fuel/Oil Heat Exchanger (FOHE) Sensors</Title>
+<Para>
+<iLink fileRef="2-73-11-02.xml" linkRef="1282580.2-73-11-02">2.73-11-02.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-73-11-02.xml" linkRef="1282580.2-73-11-02">2.73-11-02.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Electronic Engine Controls (EEC) Normal Mode</Title>
+<Para>
+<iLink fileRef="2-73-21-01.xml" linkRef="1288266.2-73-21-01">2.73-21-01.1	Deleted NOTE</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-73-21-01.xml" linkRef="1288266.2-73-21-01">2.73-21-01.1	Updated NOTE</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Engine Fuel Shutoff Valve Indication Systems (GE)</Title>
+<Para>
+<iLink fileRef="2-73-31-01_FAA.xml" linkRef="1187874.2-73-31-01_FAA">2.73-31-01.1	Add note to emphasize that cannot be simultaneously applied MEL 28-41-01 with MEL 73-31-01</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Engine Fuel Filter Bypass Warning Systems</Title>
+<Para>
+<iLink fileRef="2-73-34-01.xml" linkRef="1282580.2-73-34-01">2.73-34-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-73-34-01.xml" linkRef="1282580.2-73-34-01">2.73-34-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+</HighlightList>
+</HighlightItem>
+<HighlightItem>
+<HighlightList>
+<Title>ATA 74 - Ignition</Title>
+<HighlightItem>
+<Title>Ignition Systems</Title>
+<Para>
+<iLink fileRef="2-74-00-01.xml" linkRef="1282580.2-74-00-01">2.74-00-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-74-00-01.xml" linkRef="1282580.2-74-00-01">2.74-00-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+</HighlightList>
+</HighlightItem>
+<HighlightItem>
+<HighlightList>
+<Title>ATA 75 - Bleed Air</Title>
+<HighlightItem>
+<Title>Turbine Case Cooling Air Flow Systems (GE)</Title>
+<Para>
+<iLink fileRef="2-75-24-01.xml" linkRef="1288310.2-75-24-01">2.75-24-01.1	Delete Note</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-75-24-01.xml" linkRef="1288310.2-75-24-01">2.75-24-01.1	Updated performance penalty with additional procedural restriction to mitigate potential EGT exceedance events</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-75-24-01.xml" linkRef="1288310.2-75-24-01">2.75-24-01.3	Updated performance penalty with additional procedural restriction to mitigate potential EGT exceedance events</iLink>
+</Para>
+</HighlightItem>
+</HighlightList>
+</HighlightItem>
+<HighlightItem>
+<HighlightList>
+<Title>ATA 77 - Engine Indicating</Title>
+<HighlightItem>
+<Title>Engine Vibration Monitoring Functions</Title>
+<Para>
+<iLink fileRef="2-77-31-01.xml" linkRef="1282580.2-77-31-01">2.77-31-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-77-31-01.xml" linkRef="1282580.2-77-31-01">2.77-31-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+</HighlightList>
+</HighlightItem>
+<HighlightItem>
+<HighlightList>
+<Title>ATA 78 - Engine Exhaust</Title>
+<HighlightItem>
+<Title>Reverse Thrust Lever Interlocks</Title>
+<Para>
+<iLink fileRef="2-78-34-01.xml" linkRef="1282580.2-78-34-01">2.78-34-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-78-34-01.xml" linkRef="1282580.2-78-34-01">2.78-34-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Thrust Reverser Locking Actuator Proximity Sensors</Title>
+<Para>
+<iLink fileRef="2-78-36-01.xml" linkRef="1285106.2-78-36-01">2.78-36-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-78-36-01.xml" linkRef="1285106.2-78-36-01">2.78-36-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-78-36-01.xml" linkRef="1285106.2-78-36-01">2.78-36-01.1	Add (*) asterisk symbol</iLink>
+</Para>
+<Para>
+<iLink fileRef="2-78-36-01.xml" linkRef="1285106.2-78-36-01">2.78-36-01.1	Add (*) asterisk symbolMEL</iLink>
+</Para>
+</HighlightItem>
+</HighlightList>
+</HighlightItem>
+</HighlightList>
+<HighlightList>
+<Title>Section 4 - Miscellaneous</Title>
+<HighlightItem>
+<HighlightList>
+<Title>ATA 00 - General</Title>
+<HighlightItem>
+<Title>PBN Equipment Requirements</Title>
+<Para>
+<iLink fileRef="SUP-ELL-01.xml" linkRef="1353460.SUP-ELL-01">4.25-65-50.1	Added a new MEL item</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Demo Kit (Demo Life vest, Demo Safety Belt, Demo Oxygen Mask)</Title>
+<Para>
+<iLink fileRef="SUP-ELL-02.xml" linkRef="1353510.SUP-ELL-02">4.25-65-51.1	Added a new MEL item</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Universal Precaution Kit (UPK)</Title>
+<Para>
+<iLink fileRef="SUP-ELL-02.xml" linkRef="1353784.SUP-ELL-02">4.25-65-51.1	re-number</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Extension Safety Belt</Title>
+<Para>
+<iLink fileRef="SUP-ELL-03.xml" linkRef="1355319.SUP-ELL-03">4.25-65-52.1	re-number</iLink>
+</Para>
+<Para>
+<iLink fileRef="SUP-ELL-03.xml" linkRef="1355319.SUP-ELL-03">4.25-65-52.1	re-number</iLink>
+</Para>
+<Para>
+<iLink fileRef="SUP-ELL-03.xml" linkRef="1355319.SUP-ELL-03">4.25-65-52.1	re-number</iLink>
+</Para>
+<Para>
+<iLink fileRef="SUP-ELL-03.xml" linkRef="1355319.SUP-ELL-03">4.25-65-53.1	Added a new MEL item</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Escape Reel</Title>
+<Para>
+<iLink fileRef="SUP-ELL-05.xml" linkRef="1353546.SUP-ELL-05">4.25-65-04.1	Added a new MEL item</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Fire Fighting Gloves</Title>
+<Para>
+<iLink fileRef="SUP-ELL-06.xml" linkRef="1353574.SUP-ELL-06">4.25-65-55.1	Added a new MEL item</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>PBE Container</Title>
+<Para>
+<iLink fileRef="SUP-ELL-07.xml" linkRef="1355669.SUP-ELL-07">4.25-65-56.1	re-number</iLink>
+</Para>
+<Para>
+<iLink fileRef="SUP-ELL-07.xml" linkRef="1355669.SUP-ELL-07">4.25-65-56.1	re-number</iLink>
+</Para>
+<Para>
+<iLink fileRef="SUP-ELL-07.xml" linkRef="1355669.SUP-ELL-07">4.25-65-56.1	re-number</iLink>
+</Para>
+<Para>
+<iLink fileRef="SUP-ELL-07.xml" linkRef="1355669.SUP-ELL-07">4.25-65-56.1	re-number</iLink>
+</Para>
+<Para>
+<iLink fileRef="SUP-ELL-07.xml" linkRef="1355669.SUP-ELL-07">4.25-65-57.1	Added a new MEL item</iLink>
+</Para>
+</HighlightItem>
+</HighlightList>
+</HighlightItem>
+</HighlightList>
+</RevisionRecord>
+</FrontMatter>

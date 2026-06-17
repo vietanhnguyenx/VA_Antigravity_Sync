@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM">]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.2-38-10-01.1954.2-38-10-01" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="38" superSectionNumber="2" sectionName="MEL" chapterName="Water / Waste" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2025-09-30" rev:revStatus="U" rev:revNumber="10" />
+</PUMetaData>
+<MELItem itemNbr="38-10-01" id="X-BOEING:FTID:81205.787.DDG.CU.MEL.2-38-10-01.1.2-38-10-01">
+<Title>Potable Water Systems</Title>
+<DispatchCondition dispCondOptions="A" repairInterval="C" nbrInstalled="-" nbrRequired="-" maintIndicator="(M)">
+<Title>Individual Components Deactivated/Isolated</Title>
+<DispatchConditionRemarks>
+<Para>Individual components may be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Associated components are deactivated or isolated.</Para>
+</ListItem>
+<ListItem>
+<Para>Associated system components are verified not to have leaks.</Para>
+</ListItem>
+</List>
+<Note>
+<Para>Any portion of system which operates normally may be used.</Para>
+</Note>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Deactivate or isolate inoperative components and verify associated system components do not have leaks (AMM DDG 38-10-01).</Para>
+<Note>
+<Para>Due to the wide variety of galley, lavatory and drinking fountain installations and various component failure possibilities, operators must develop procedures tailored to their specific installations. </Para>
+</Note>
+</MaintenanceProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+<DispatchCondition dispCondOptions="B" repairInterval="C" nbrInstalled="1" nbrRequired="0" maintIndicator="(M)">
+<Title>
+<?FTID-xref 1349377.2-38-10-01?>System Drained And Not Serviced</Title>
+<DispatchConditionRemarks>
+<Para>May be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>System is drained.</Para>
+</ListItem>
+<ListItem>
+<Para>Procedures are established to ensure that system is not serviced.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Drain potable water system and establish procedures to ensure potable water system is not serviced (AMM DDG 38-10-01).</Para>
+</MaintenanceProcedure>
+<OperationNote rev:revStatus="R" rev:revHighlight="Added (O) note to provide additional dispatch guidance.">
+<?FTID-rev start?>
+<Para>If the potable water system is drained and not service, the airplane weight and balance should be adjusted accordingly. Contact dispatcher for flight planning update.</Para>
+<?FTID-rev end?>
+</OperationNote>
+</DispatchProcedure>
+</DispatchCondition>
+<MELSubItem itemNbr="38-10-01-01">
+<Title>Potable Water Indication System (*)</Title>
+<DispatchCondition repairInterval="D" nbrInstalled="1" nbrRequired="0">
+<DispatchConditionRemarks>
+<Para>May be inoperative.</Para>
+</DispatchConditionRemarks>
+</DispatchCondition>
+</MELSubItem>
+</MELItem>
+</DispatchItems>

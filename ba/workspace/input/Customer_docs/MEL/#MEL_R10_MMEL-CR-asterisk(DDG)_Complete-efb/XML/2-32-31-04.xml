@@ -1,0 +1,262 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM">]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.2-32-31-04.2470.2-32-31-04" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="32" superSectionNumber="2" sectionName="MEL" chapterName="Landing Gear" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2021-02-24" rev:revStatus="U" rev:revNumber="10" />
+</PUMetaData>
+<MELItem itemNbr="32-31-04" id="X-BOEING:FTID:81205.787.DDG.CU.MEL.2-32-31-04.1.2-32-31-04">
+<Title>Landing Gear Control Sensors</Title>
+<MELSubItem itemNbr="32-31-04-01">
+<Title>Main Landing Gear Control Sensors</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="16" nbrRequired="15" maintIndicator="(M)">
+<DispatchConditionRemarks>
+<Para>One may be inoperative deactivated.</Para>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Deactivate the inoperative main landing gear control sensor  (AMM DDG 32-31-04).</Para>
+<List listType="1.">
+<ListItem>
+<Para>For an inoperative MAIN GEAR DR OPEN SENSOR indicated by the MLG DOOR OPEN SNSR L or MLG DOOR OPEN SNSR R status message:</Para>
+<List listType="A.">
+<ListItem>
+<Para>Install landing gear downlock pins.</Para>
+</ListItem>
+<ListItem>
+<Para>Confirm the landing gear doors are closed and door safety valves are in STOW.</Para>
+</ListItem>
+<ListItem>
+<Para>Identify the inoperative control sensor on LANDING GEAR CONTROL maintenance page 1.  The inoperative MAIN GEAR DR OPEN SENSOR L or R will show NEAR in the status field or have a blank status field</Para>
+</ListItem>
+<ListItem>
+<Para>Open and deactivate the landing gear doors.</Para>
+</ListItem>
+<ListItem>
+<Para>Gain access to the inoperative control sensor.</Para>
+</ListItem>
+<ListItem>
+<Para>Disconnect, cap and stow the electrical connector for the inoperative sensor.</Para>
+</ListItem>
+<ListItem>
+<Para>On LANDING GEAR CONTROL maintenance page 1, confirm the remaining MAIN GEAR DR OPEN SENSOR for the associated gear shows NEAR in the status field.</Para>
+</ListItem>
+<ListItem>
+<Para>Pressurize the center hydraulic system.</Para>
+</ListItem>
+<ListItem>
+<Para>Close the landing gear doors.</Para>
+</ListItem>
+<ListItem>
+<Para>On LANDING GEAR CONTROL maintenance page 1, confirm the remaining MAIN GEAR DR OPEN SENSOR for the associated gear shows FAR in the status field.</Para>
+</ListItem>
+<ListItem>
+<Para>Remove landing gear downlock pins.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>For an inoperative MAIN GEAR DOWN SENSOR indicated by the MLG DOWN SNSR L or MLG DOWN SNSR R status message:</Para>
+<List listType="A.">
+<ListItem>
+<Para>Install landing gear downlock pins.</Para>
+</ListItem>
+<ListItem>
+<Para>Identify the inoperative control sensor on LANDING GEAR CONTROL maintenance page 1.  The inoperative MAIN GEAR DOWN SENSOR L or R will show FAR in the status field or have a blank status field.</Para>
+</ListItem>
+<ListItem>
+<Para>Gain access to the inoperative control sensor.</Para>
+</ListItem>
+<ListItem>
+<Para>Disconnect, cap and stow the electrical connector for the inoperative sensor.</Para>
+</ListItem>
+<ListItem>
+<Para>On LANDING GEAR CONTROL maintenance page 1, confirm the remaining MAIN GEAR DOWN SENSOR for the associated gear shows NEAR in the status field.</Para>
+</ListItem>
+<ListItem>
+<Para>Remove landing gear downlock pins.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>For an inoperative sensor MAIN GEAR TRK STOWED SENSOR indicated by the MLG TRUCK STOW SNSR L or MLG TRUCK STOW SNSR R status message:</Para>
+<List listType="A.">
+<ListItem>
+<Para>Install landing gear downlock pins.</Para>
+</ListItem>
+<ListItem>
+<Para>Identify the inoperative control sensor on LANDING GEAR CONTROL maintenance page 1.  The inoperative MAIN GEAR TRK STOWED SENSOR L or R will show NEAR in the status field or have a blank status field.</Para>
+</ListItem>
+<ListItem>
+<Para>Gain access to the inoperative control sensor.</Para>
+</ListItem>
+<ListItem>
+<Para>Disconnect, cap and stow the electrical connector for the inoperative sensor.</Para>
+</ListItem>
+<ListItem>
+<Para>On LANDING GEAR CONTROL maintenance page 1, confirm the remaining MAIN GEAR TRK STOWED SENSOR for the associated gear shows FAR in the status field.</Para>
+</ListItem>
+<ListItem>
+<Para>Remove landing gear downlock pins.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>For an inoperative MAIN GEAR UP SENSOR indicated by the MLG UP SNSR L or MLG UP SNSR R status message:</Para>
+<List listType="A.">
+<ListItem>
+<Para>Install landing gear downlock pins.</Para>
+</ListItem>
+<ListItem>
+<Para>Open and deactivate the landing gear doors.</Para>
+</ListItem>
+<ListItem>
+<Para>Identify the inoperative control sensor on LANDING GEAR CONTROL maintenance page 1.  The inoperative MAIN GEAR UP SENSOR L or R will show NEAR in the status field or have a blank status field.</Para>
+</ListItem>
+<ListItem>
+<Para>Gain access to the inoperative control sensor.</Para>
+</ListItem>
+<ListItem>
+<Para>Disconnect, cap and stow the electrical connector for the inoperative sensor.</Para>
+</ListItem>
+<ListItem>
+<Para>On LANDING GEAR CONTROL maintenance page 1, confirm the remaining MAIN GEAR UP SENSOR for the associated gear shows FAR in the status field.</Para>
+</ListItem>
+<ListItem>
+<Para>Pressurize the center hydraulic system.</Para>
+</ListItem>
+<ListItem>
+<Para>Close the landing gear doors.</Para>
+</ListItem>
+<ListItem>
+<Para>Remove landing gear downlock pins.</Para>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="32-31-04-02">
+<Title>Nose Landing Gear Control Sensors</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="6" nbrRequired="5" maintIndicator="(M)">
+<DispatchConditionRemarks>
+<Para>One may be inoperative deactivated.</Para>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Deactivate the inoperative nose landing gear control sensor (AMM DDG 32-31-04).</Para>
+<List listType="1.">
+<ListItem>
+<Para>For an inoperative NOSE GEAR DR OPEN SENSOR indicated by the NLG DOOR OPEN SNSR status message:</Para>
+<List listType="A.">
+<ListItem>
+<Para>Install landing gear downlock pins.</Para>
+</ListItem>
+<ListItem>
+<Para>Confirm the landing gear doors are closed and door safety valves are in STOW.</Para>
+</ListItem>
+<ListItem>
+<Para>Identify the inoperative control sensor on LANDING GEAR CONTROL maintenance page 1.  The inoperative NOSE GEAR DR OPEN SENSOR will show NEAR in the status field or have a blank status field.</Para>
+</ListItem>
+<ListItem>
+<Para>Open and deactivate the landing gear doors.</Para>
+</ListItem>
+<ListItem>
+<Para>Gain access to the inoperative control sensor.</Para>
+</ListItem>
+<ListItem>
+<Para>Disconnect, cap and stow the electrical connector for the inoperative sensor.</Para>
+</ListItem>
+<ListItem>
+<Para>On LANDING GEAR CONTROL maintenance page 1, confirm the remaining NOSE GEAR DR OPEN SENSOR shows NEAR in the status field.</Para>
+</ListItem>
+<ListItem>
+<Para>Pressurize the center hydraulic system.</Para>
+</ListItem>
+<ListItem>
+<Para>Close the landing gear doors.</Para>
+</ListItem>
+<ListItem>
+<Para>On LANDING GEAR CONTROL maintenance page 1, confirm the remaining NOSE GEAR DR OPEN SENSOR shows FAR in the status field.</Para>
+</ListItem>
+<ListItem>
+<Para>Remove landing gear downlock pins.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>For an inoperative NOSE GEAR DOWN SENSOR indicated by the NLG DOWN SNSR status message:</Para>
+<List listType="A.">
+<ListItem>
+<Para>Install landing gear downlock pins.</Para>
+</ListItem>
+<ListItem>
+<Para>Open and deactivate the landing gear doors.</Para>
+</ListItem>
+<ListItem>
+<Para>Identify the inoperative control sensor on LANDING GEAR CONTROL maintenance page 1.  An inoperative NOSE GEAR DOWN SENSOR will show FAR in the status field or have a blank status field.</Para>
+</ListItem>
+<ListItem>
+<Para>Gain access to the inoperative control sensor.</Para>
+</ListItem>
+<ListItem>
+<Para>Disconnect, cap and stow the electrical connector for the inoperative sensor.</Para>
+</ListItem>
+<ListItem>
+<Para>On LANDING GEAR CONTROL maintenance page 1, confirm the remaining NOSE GEAR DOWN SENSOR shows NEAR in the status field.</Para>
+</ListItem>
+<ListItem>
+<Para>Pressurize the center hydraulic system.</Para>
+</ListItem>
+<ListItem>
+<Para>Close the landing gear doors.</Para>
+</ListItem>
+<ListItem>
+<Para>Remove landing gear downlock pins.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>For an inoperative NOSE GEAR UP SENSOR indicated by the NLG UP SNSR status message:</Para>
+<List listType="A.">
+<ListItem>
+<Para>Install landing gear downlock pins.</Para>
+</ListItem>
+<ListItem>
+<Para>Open and deactivate the landing gear doors.</Para>
+</ListItem>
+<ListItem>
+<Para>Identify the inoperative control sensor on LANDING GEAR CONTROL maintenance page 1.  The inoperative NOSE GEAR UP SENSOR will show NEAR in the status field or have a blank status field.</Para>
+</ListItem>
+<ListItem>
+<Para>Gain access to the faulted control sensor.</Para>
+</ListItem>
+<ListItem>
+<Para>Disconnect, cap and stow the electrical connector for the inoperative sensor.</Para>
+</ListItem>
+<ListItem>
+<Para>On LANDING GEAR CONTROL maintenance page 1, confirm the remaining NOSE GEAR UP SENSOR shows FAR in the status field.</Para>
+</ListItem>
+<ListItem>
+<Para>Pressurize the center hydraulic system.</Para>
+</ListItem>
+<ListItem>
+<Para>Close the landing gear doors.</Para>
+</ListItem>
+<ListItem>
+<Para>Remove landing gear downlock pins.</Para>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+</MELItem>
+</DispatchItems>

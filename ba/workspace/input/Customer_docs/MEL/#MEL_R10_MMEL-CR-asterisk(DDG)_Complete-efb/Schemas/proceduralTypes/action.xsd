@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://www.boeing.com/FTID-ML"
+    xmlns:rev="http://www.boeing.com/FTID-ML/Revision"
+    targetNamespace="http://www.boeing.com/FTID-ML" 
+    elementFormDefault="qualified" 
+    attributeFormDefault="unqualified"
+    version="FTID 2.6">
+
+<!-- 	
+=================================================================
+
+
+Copyright Information:
+      Boeing Proprietary and Confidential - 
+      All Rights Reserved since 2006.
+
+      This schema file is part of the Boeing Flight Technical 
+      Integrated Data (FTID) Specification based on XML.
+      All rights are reserved under Boeing Flight Operations 
+      digital data entitlements, products or services.
+
+     
+Contact Information:   	
+        The Boeing Company
+        Flight Operations Support
+        P.O. Box 3707	MS 20-89
+        Seattle, WA 98124-2207
+        USA
+        email:  flighttraining@Boeing.com
+        Phone:  (206) 662-4000
+        Fax:    (206) 662-4743
+		
+===================================================================
+-->
+
+
+<xs:include schemaLocation="../attributeTypes/generalAttrs.xsd"/>
+<xs:include schemaLocation="../basicDataTypes/basicDataInclude.xsd"/>
+<xs:include schemaLocation="../metadataTypes/effect.xsd"/>
+<xs:import namespace="http://www.boeing.com/FTID-ML/Revision" schemaLocation="../metadataTypes/revision.xsd"/>
+<xs:include schemaLocation="step.xsd"/>
+<xs:include schemaLocation="opnote.xsd"/>
+<xs:include schemaLocation="procMisc.xsd"/>
+<xs:include schemaLocation="procItems.xsd"/>
+
+
+<!--=====================================================-->
+<!-- Action element definition -->
+<!--=====================================================-->
+<xs:complexType name="ActionType">
+    <xs:annotation>
+        <xs:documentation>A set of actions performed by pilot and co-pilot.  Some Actions require memorization as set by the recall attribute.</xs:documentation>
+    </xs:annotation>
+
+    <xs:sequence>
+        <xs:element name="Effectivities" type="EffectivitiesType" minOccurs="0"/>
+        <xs:element name="Challenge" type="ChallengeType"/>
+        <xs:element name="Response" type="ResponseType" maxOccurs="5"/>
+        <xs:element name="ExtendedStep" type="ExtendedStepType" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:group ref="CCWGroupType"/>
+            <xs:element name="Opnote" type="OpnoteType"/>
+        </xs:choice>
+        <xs:element name="ProcActionsGrp" type="ProcActionsGrpType" minOccurs="0" maxOccurs="unbounded"/> 
+    </xs:sequence>
+
+    <xs:attribute name="crm" type="crmType"/>
+    <xs:attribute name="confirm" type="YNType" default="N"/>
+    <xs:attribute name="recall" type="YNType" default="N"/>
+    <xs:attributeGroup ref="globalAttrGrp"/>
+</xs:complexType>
+
+<!--=====================================================-->
+<!-- Challenge element definition -->
+<!--=====================================================-->
+<xs:complexType name="ChallengeType" mixed="true">
+    <xs:annotation>
+        <xs:documentation>First of two pilot actions in the Action element. Specify an equipment location or a general command to be followed by a Response.</xs:documentation>
+    </xs:annotation>
+
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Emphasis" type="EmphasisType"/>
+        <xs:element name="TechMessage" type="TechMessageType"/>
+    </xs:choice>
+
+    <xs:attributeGroup ref="globalAttrGrp"/>
+</xs:complexType>
+
+
+<!--=====================================================-->
+<!-- Response element definition -->
+<!--=====================================================-->
+<xs:complexType name="ResponseType" mixed="true">
+    <xs:annotation>
+        <xs:documentation>Pilot's performance on an action to respond to a Challenge.</xs:documentation>
+    </xs:annotation>
+
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Emphasis" type="EmphasisType"/>
+        <xs:element name="TechMessage" type="TechMessageType"/>
+    </xs:choice>
+
+    <xs:attribute name="crm" type="crmType"/>
+    <xs:attributeGroup ref="globalAttrGrp"/>
+</xs:complexType>
+
+
+<!--=====================================================-->
+<!-- Command element definition -->
+<!--=====================================================-->
+<xs:complexType name="CommandType">
+    <xs:annotation>
+        <xs:documentation>Descriptive command to be performed by the pilot</xs:documentation>
+    </xs:annotation>
+
+    <xs:sequence>
+        <xs:element name="Effectivities" type="EffectivitiesType" minOccurs="0"/>
+        <xs:choice>
+            <xs:sequence>
+                <xs:element name="Step" type="StepType" maxOccurs="unbounded"/>
+                <xs:element name="ExtendedStep" type="ExtendedStepType" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+            <xs:element name="table" type="tableType"/>
+        </xs:choice>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:group ref="CCWGroupType"/>
+            <xs:element name="Opnote" type="OpnoteType"/>
+        </xs:choice>
+        <xs:element name="ProcActionsGrp" type="ProcActionsGrpType" minOccurs="0" maxOccurs="unbounded"/> 
+    </xs:sequence>
+
+    <xs:attribute name="crm" type="crmType"/>
+    <xs:attribute name="recall" type="YNType" default="N"/>
+    <xs:attributeGroup ref="globalAttrGrp"/>
+</xs:complexType>
+
+
+
+</xs:schema>

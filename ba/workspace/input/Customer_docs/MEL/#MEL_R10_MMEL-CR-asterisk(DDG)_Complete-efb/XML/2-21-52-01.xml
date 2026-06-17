@@ -1,0 +1,1746 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM">]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.2-21-52-01.998550.2-21-52-01" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="21" superSectionNumber="2" sectionName="MEL" chapterName="Air Conditioning" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2025-09-30" rev:revStatus="R" rev:revNumber="10" />
+</PUMetaData>
+<MELItem itemNbr="21-52-01" id="X-BOEING:FTID:81205.787.DDG.CU.MEL.2-21-52-01.1.2-21-52-01">
+<Title>Air Conditioning Packs</Title>
+<MELSubItem itemNbr="21-52-01-01">
+<Title>Airplanes Without OFCR and OFAR Installed</Title>
+<MELSubItem itemNbr="21-52-01-01-01">
+<Title>
+<?FTID-xref 1446790.2-21-52-01?>787-9 (VN-865, VN-A866, VN-A869)</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="2" nbrRequired="1" maintIndicator="(M)" opsIndicator="(O)">
+<DispatchConditionRemarks>
+<Para>One may be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Verify cabin air compressors associated with operating pack operate normally before each departure.</Para>
+</ListItem>
+<ListItem>
+<Para>VFSGs associated with operating CACs operate normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Integrated cooling recirculation air system operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Center hydraulic electric motor-driven pumps operate normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Alternate ventilation system operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Opposite trim air system operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>EDTO  is not conducted.</Para>
+</ListItem>
+<ListItem>
+<Para>Appropriate performance adjustments are applied.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Note>
+<Para>For a cabin air compressor to be operating normally, the following items must operate normally.</Para>
+</Note>
+<table frame="all">
+<tgroup cols="2" colsep="1">
+<colspec colname="1" colwidth="28%" />
+<colspec colname="2" colwidth="72%" />
+<thead>
+<row rowsep="1">
+<entry colname="1">
+<Para>
+<Emphasis txtStyle="bold">MEL Item</Emphasis>
+</Para>
+</entry>
+<entry colname="2">
+<Para>
+<Emphasis txtStyle="bold">Associated Status Message</Emphasis>
+</Para>
+</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">21-51-01</Para>
+</entry>
+<entry colname="2">
+<Para align="center">CABIN AIR CPRSR L1, L2, R1 or R2</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">21-51-03</Para>
+</entry>
+<entry colname="2">
+<Para align="center">CPRSR INLET PRESS SNSR L1, L2, R1 or R2</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">21-51-04</Para>
+</entry>
+<entry colname="2">
+<Para align="center">CPRSR VARIABLE DIFFUSER  L1, L2, R1 or R2</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">21-51-05</Para>
+</entry>
+<entry colname="2">
+<Para align="center">CPRSR ADD HEAT VLV  L1, L2, R1 or R2</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">21-51-06</Para>
+</entry>
+<entry colname="2">
+<Para align="center">CPRSR OUTLET PRESS  SNSR L1, L2, R1 or R2</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">21-51-07</Para>
+</entry>
+<entry colname="2">
+<Para align="center">CPRSR OUTLET TEMP SNSR  L1, L2, R1 or
+R2</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">24-22-01</Para>
+</entry>
+<entry colname="2">
+<Para align="center">ELEC GEN SYS L1, L2, R1 or R2</Para>
+<Para align="center">ELEC GEN DEBRIS L1, L2, R1 or R2</Para>
+</entry>
+</row>
+<row rowsep="0">
+<entry colname="1">
+<Para align="center">24-15-01-01</Para>
+</entry>
+<entry colname="2">
+<Para align="center">ELEC MC CAC L1/START L1</Para>
+<Para align="center">ELEC MC CAC L2/START R1</Para>
+<Para align="center">ELEC MC CAC R1/START L2</Para>
+<Para align="center">ELEC MC CAC R2/START R2</Para>
+</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+<Note>
+<Para>For the alternate ventilation system to be operating normally, the following items must operate normally.</Para>
+</Note>
+<table frame="all">
+<tgroup cols="2" colsep="1">
+<colspec colname="1" colwidth="28%" />
+<colspec colname="2" colwidth="72%" />
+<thead>
+<row rowsep="1">
+<entry colname="1">
+<Para>
+<Emphasis txtStyle="bold">MEL Item</Emphasis>
+</Para>
+</entry>
+<entry colname="2">
+<Para>
+<Emphasis txtStyle="bold">Associated Status Message</Emphasis>
+</Para>
+</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">21-27-02</Para>
+</entry>
+<entry colname="2">
+<Para align="center">EQUIP VENT FAN FWD</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">21-27-22</Para>
+</entry>
+<entry colname="2">
+<Para align="center">EQUIP EXHAUST FAN AFT</Para>
+</entry>
+</row>
+<row rowsep="0">
+<entry colname="1">
+<Para align="center">21-27-24</Para>
+</entry>
+<entry colname="2">
+<Para align="center">EQUIP OVBD VALVE AFT</Para>
+</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+<table frame="all">
+<tgroup cols="2" colsep="0">
+<colspec colname="1" colwidth="28%" />
+<colspec colname="2" colwidth="72%" />
+<thead>
+<row rowsep="0">
+<entry colname="1">
+<Para>
+<Emphasis txtStyle="bold">MEL Item</Emphasis>
+</Para>
+</entry>
+<entry colname="2">
+<Para>
+<Emphasis txtStyle="bold">Associated Advisory Message</Emphasis>
+</Para>
+</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep="0">
+<entry colname="1">
+<Para align="center">21-31-03</Para>
+</entry>
+<entry colname="2">
+<Para align="center">OUTFLOW VALVE AFT</Para>
+</entry>
+</row>
+<row rowsep="0">
+<entry colname="1">
+<Para align="center">21-31-03</Para>
+</entry>
+<entry colname="2">
+<Para align="center">OUTFLOW VALVE FWD</Para>
+</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+<Note>
+<Para>For a trim air system to be operating normally, certain items must operate normally.  See MEL item 21-51-01 for a list of those items.</Para>
+</Note>
+<Note>
+<Para>A VFSG system is considered to be operating normally if its associated status message (ELEC GEN SYS L1, L2, R1 or R2) is not displayed.  </Para>
+</Note>
+<Para>Verify both CAC’s associated with the operative pack are operating normally before each departure, and for associated PCU inoperative, lock cabin air compressor deflector door in the extended position, lock ram air inlet door in 70% HEAT position and lock ram air exit doors in 90% HEAT position (AMM DDG 21-52-01).</Para>
+<List listType="1.">
+<ListItem>
+<Para>Verify both CAC’s associated with the operative pack are operating normally before each departure.</Para>
+<List listType="A.">
+<ListItem>
+<Para>Power the airplane using the APU.</Para>
+</ListItem>
+<ListItem>
+<Para>Set the operative pack ON.</Para>
+</ListItem>
+<ListItem>
+<Para>On AIR CONDITIONING maintenance page 1, confirm status that both CABIN AIR COMP indicate ON for the operating pack. </Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Determine whether associated PCU is inoperative.</Para>
+<List listType="A.">
+<ListItem>
+<Para>On page 2 of the AIR CONDITIONING EICAS maintenance page, confirm that PCU CHANNEL STATUS for one of the associated channels is not blank.  Blank CHANNEL STATUS for both channels indicates the PCU is inoperative.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>For associated PCU operative:</Para>
+<List listType="A.">
+<ListItem>
+<Para>Set associated air conditioning pack OFF.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>For left PCU inoperative:</Para>
+<List listType="A.">
+<ListItem>
+<Para>Set left air conditioning pack OFF.</Para>
+</ListItem>
+<ListItem>
+<Para>Set the GND TEST selector to ENABLE no less than 30-seconds prior to opening the Pack Control Unit circuit breakers.</Para>
+</ListItem>
+<ListItem>
+<Para>Open the following circuit breakers and lock with a DO NOT CLOSE tag.</Para>
+<List listType="1)">
+<ListItem>
+<Para>PACK CTRL UNIT-	CHAN L1</Para>
+</ListItem>
+<ListItem>
+<Para>PACK CTRL UNIT-	CHAN L2</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Gain access to the left CAC deflector door assembly.</Para>
+</ListItem>
+<ListItem>
+<Para>Disconnect, cap and stow deflector door actuator electrical connector.</Para>
+</ListItem>
+<ListItem>
+<Para>Remove inlet door actuator from CAC inlet housing.  </Para>
+</ListItem>
+<ListItem>
+<Para>Remove fixed link from stowed position on actuator and reinstall on opposite side of actuator with long end towards deflector door.</Para>
+</ListItem>
+<ListItem>
+<Para>Reinstall actuator in its normal position with the fixed link attached to the  open deflector door.</Para>
+</ListItem>
+<ListItem>
+<Para>Confirm deflector door is in the fully extended position.</Para>
+</ListItem>
+<ListItem>
+<Para>Lock left ram air inlet door in the 70% HEAT position.</Para>
+<List listType="1)">
+<ListItem>
+<Para>Gain access to the ram air inlet door actuator.</Para>
+</ListItem>
+<ListItem>
+<Para>Disconnect, cap and stow the electrical connector from the actuator.</Para>
+</ListItem>
+<ListItem>
+<Para>Disconnect the actuator from the ram air inlet door.</Para>
+</ListItem>
+<ListItem>
+<Para>Remove inner cylinder anti-rotation device set screw.</Para>
+</ListItem>
+<ListItem>
+<Para>Move anti-rotation arm until end is flush with the housing. </Para>
+</ListItem>
+<ListItem>
+<Para>Turn inner cylinder manually until distance measured between the bolt centers on each end is 14.68 inches.</Para>
+</ListItem>
+<ListItem>
+<Para>Reinstall anti-rotation device set screw.</Para>
+</ListItem>
+<ListItem>
+<Para>Manually move the crank arm to align with the actuator.</Para>
+</ListItem>
+<ListItem>
+<Para>Reconnect actuator to the crank arm.</Para>
+</ListItem>
+<ListItem>
+<Para>Close the ram air inlet actuator access door.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Lock left ram air outlet door in the 90% HEAT position.</Para>
+<List listType="1)">
+<ListItem>
+<Para>Gain access to the ram air outlet door actuator.</Para>
+</ListItem>
+<ListItem>
+<Para>Disconnect, cap and stow the electrical connector from the actuator.</Para>
+</ListItem>
+<ListItem>
+<Para>Disconnect the actuator from the ram air outlet door.</Para>
+</ListItem>
+<ListItem>
+<Para>Remove inner cylinder anti-rotation device set screw.</Para>
+</ListItem>
+<ListItem>
+<Para>Move anti-rotation arm until end is flush with the housing. </Para>
+</ListItem>
+<ListItem>
+<Para>Turn inner cylinder manually until distance measured between the bolt centers on each end is 15.46 inches.</Para>
+</ListItem>
+<ListItem>
+<Para>Reinstall anti-rotation device set screw.</Para>
+</ListItem>
+<ListItem>
+<Para>Manually move the crank arm to align with the actuator.</Para>
+</ListItem>
+<ListItem>
+<Para>Reconnect actuator to the crank arm.</Para>
+</ListItem>
+<ListItem>
+<Para>Close the ram air outlet actuator access door.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Close the following circuit breakers:</Para>
+<List listType="1)">
+<ListItem>
+<Para>PACK CTRL UNIT-	CHAN L1</Para>
+</ListItem>
+<ListItem>
+<Para>PACK CTRL UNIT-	CHAN L2</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Return the GND TEST selector to NORM.</Para>
+</ListItem>
+<ListItem>
+<Para>Set left air conditioning pack OFF.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>For right PCU inoperative:</Para>
+<List listType="A.">
+<ListItem>
+<Para>Set right air conditioning pack OFF.</Para>
+</ListItem>
+<ListItem>
+<Para>Set the GND TEST selector to ENABLE no less than 30-seconds prior to opening the Pack Control Unit circuit breakers.</Para>
+</ListItem>
+<ListItem>
+<Para>Open the following circuit breakers and lock with a DO NOT CLOSE tag.</Para>
+<List listType="1)">
+<ListItem>
+<Para>PACK CTRL UNIT-	CHAN R1</Para>
+</ListItem>
+<ListItem>
+<Para>PACK CTRL UNIT-	CHAN R2</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Gain access to the right CAC deflector door assembly.</Para>
+</ListItem>
+<ListItem>
+<Para>Disconnect, cap and stow deflector door actuator electrical connector.</Para>
+</ListItem>
+<ListItem>
+<Para>Remove inlet door actuator from CAC inlet housing.  </Para>
+</ListItem>
+<ListItem>
+<Para>Remove fixed link from stowed position on actuator and reinstall on opposite side of actuator with long end towards deflector door.</Para>
+</ListItem>
+<ListItem>
+<Para>Reinstall actuator in its normal position with the fixed link attached to the  open deflector door. </Para>
+</ListItem>
+<ListItem>
+<Para>Confirm deflector door is in the fully extended position.</Para>
+</ListItem>
+<ListItem>
+<Para>Lock right ram air inlet door in the 70% HEAT position.</Para>
+<List listType="1)">
+<ListItem>
+<Para>Gain access to the ram air inlet door actuator.</Para>
+</ListItem>
+<ListItem>
+<Para>Disconnect, cap and stow the electrical connector from the actuator.</Para>
+</ListItem>
+<ListItem>
+<Para>Disconnect the actuator from the ram air inlet door.</Para>
+</ListItem>
+<ListItem>
+<Para>Remove inner cylinder anti-rotation device set screw.</Para>
+</ListItem>
+<ListItem>
+<Para>Move anti-rotation arm until end is flush with the housing. </Para>
+</ListItem>
+<ListItem>
+<Para>Turn inner cylinder manually until distance measured between the bolt centers on each end is 14.68 inches.</Para>
+</ListItem>
+<ListItem>
+<Para>Reinstall anti-rotation device set screw.</Para>
+</ListItem>
+<ListItem>
+<Para>Manually move the crank arm to align with the actuator.</Para>
+</ListItem>
+<ListItem>
+<Para>Reconnect actuator to the crank arm.</Para>
+</ListItem>
+<ListItem>
+<Para>Close the ram air inlet actuator access door.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Lock right ram air outlet door in the 90% HEAT position.</Para>
+<List listType="1)">
+<ListItem>
+<Para>Gain access to the ram air outlet door actuator.</Para>
+</ListItem>
+<ListItem>
+<Para>Disconnect, cap and stow the electrical connector from the actuator.</Para>
+</ListItem>
+<ListItem>
+<Para>Disconnect the actuator from the ram air outlet door.</Para>
+</ListItem>
+<ListItem>
+<Para>Remove inner cylinder anti-rotation device set screw.</Para>
+</ListItem>
+<ListItem>
+<Para>Move anti-rotation arm until end is flush with the housing. </Para>
+</ListItem>
+<ListItem>
+<Para>Turn inner cylinder manually until distance measured between the bolt centers on each end is 15.46 inches.</Para>
+</ListItem>
+<ListItem>
+<Para>Reinstall anti-rotation device set screw.</Para>
+</ListItem>
+<ListItem>
+<Para>Manually move the crank arm to align with the actuator.</Para>
+</ListItem>
+<ListItem>
+<Para>Reconnect actuator to the crank arm.</Para>
+</ListItem>
+<ListItem>
+<Para>Close the ram air outlet actuator access door.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Close the following circuit breakers:</Para>
+<List listType="1)">
+<ListItem>
+<Para>PACK CTRL UNIT-	CHAN R1</Para>
+</ListItem>
+<ListItem>
+<Para>PACK CTRL UNIT-	CHAN R2</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Return the GND TEST selector to NORM.</Para>
+</ListItem>
+<ListItem>
+<Para>Set right air conditioning pack OFF.</Para>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+<OperationProcedure>
+<Note>
+<Para>On takeoff, the PACK ALTITUDE LIMIT caution message may appear anytime after liftoff until 1,000 feet above airport elevation. The message may be displayed for up to 2 minutes. On landing, this message may appear at altitudes less than 1000 feet above airport elevation until touchdown. </Para>
+</Note>
+<List listType="1.">
+<ListItem>
+<Para>For associated PCU inoperative, reduce enroute climb limit weight by 800 lb (363 kg).</Para>
+<Note>
+<Para>The enroute climb weight penalties are based on single engine operating speeds that approximate maximum lift-to-drag ratio speed. To account for the difference in level off altitude when operating at other speeds, multiply the enroute climb weight penalty listed above by the appropriate factor listed on page 3.00-01-00.2 in the ENROUTE DIVERSION SPEED EFFECTS paragraph.</Para>
+</Note>
+</ListItem>
+<ListItem>
+<Para>Set associated air conditioning pack OFF.</Para>
+</ListItem>
+<ListItem>
+<Para>Flight remains within 60 minutes of landing at a suitable airport.</Para>
+</ListItem>
+<ListItem>
+<Effectivities>
+<Effectivity>For FCAC installed:</Effectivity>
+</Effectivities>
+<Para>FCAC performance may be degraded.  Temperature sensitive cargo should not be carried in the forward cargo compartment.</Para>
+</ListItem>
+<ListItem>
+<Para>If cabin temperatures become warmer than desired, consider one or more of the following temporary actions:</Para>
+<List listType="A.">
+<ListItem>
+<Para>Select IFE system modes designed to reduce cabin heat loads.</Para>
+<Note>
+<Para>Availability of modes dependent on IFE system installed and airline modifiable options.</Para>
+</Note>
+</ListItem>
+<ListItem>
+<Para>Set IFE off using the IFE Power switch on the Video Control Station.</Para>
+</ListItem>
+<ListItem>
+<Para>Select HEAT REDUCTION mode using the Cabin Attendant Panel TEMPERATURE menu (adjusts cabin lighting and window shading).</Para>
+</ListItem>
+<ListItem>
+<Para>If on ground, set FCAC OFF.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>If cabin or flight deck temperatures become too cool, climbing to a higher altitude will increase the heating capability of the air conditioning system.</Para>
+</ListItem>
+<ListItem>
+<Para>In the cruise mode, the cabin altitude is normally at or below 6,000 feet.  During some degraded operations, the cabin altitude may increase to 8,000 feet.  This can occur if the air conditioning system is not achieving cabin temperature and ventilation rate targets, and would be more likely with an inoperative pack or CAC.</Para>
+</ListItem>
+<ListItem>
+<?FTID-rev deleted highlight="Deleted step 8 as full fleet has been incorporated with CNAA61225"?>
+</ListItem>
+</List>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="21-52-01-01-02">
+<Title>787-10 (VN-A872, VN-A873, VN-A874, VN-A877, VN-A878, VN-A879)</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="2" nbrRequired="1" maintIndicator="(M)" opsIndicator="(O)">
+<DispatchConditionRemarks>
+<Para>One may be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Verify cabin air compressors associated with operating pack operate normally before each departure.</Para>
+</ListItem>
+<ListItem>
+<Para>VFSGs associated with operating CACs operate normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Integrated cooling recirculation air system operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Center hydraulic electric motor-driven pumps operate normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Alternate ventilation system operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Opposite trim air system operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>EDTO  is not conducted.</Para>
+</ListItem>
+<ListItem>
+<Para>Appropriate performance adjustments are applied.</Para>
+</ListItem>
+<ListItem>
+<Para>Both lower recirculation fans operate normally.</Para>
+</ListItem>
+<ListItem>
+<Effectivities>
+<Effectivity>For FCAC installed:</Effectivity>
+</Effectivities>
+<Para>Forward cargo air conditioning system remains Off.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Note>
+<Para>For a cabin air compressor to be operating normally, the following items must operate normally.</Para>
+</Note>
+<table frame="all">
+<tgroup cols="2" colsep="1">
+<colspec colname="1" colwidth="28%" />
+<colspec colname="2" colwidth="72%" />
+<thead>
+<row rowsep="1">
+<entry colname="1">
+<Para>
+<Emphasis txtStyle="bold">MEL Item</Emphasis>
+</Para>
+</entry>
+<entry colname="2">
+<Para>
+<Emphasis txtStyle="bold">Associated Status Message</Emphasis>
+</Para>
+</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">21-51-01</Para>
+</entry>
+<entry colname="2">
+<Para align="center">CABIN AIR CPRSR L1, L2, R1 or R2</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">21-51-03</Para>
+</entry>
+<entry colname="2">
+<Para align="center">CPRSR INLET PRESS SNSR L1, L2, R1 or R2</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">21-51-04</Para>
+</entry>
+<entry colname="2">
+<Para align="center">CPRSR VARIABLE DIFFUSER  L1, L2, R1 or R2</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">21-51-05</Para>
+</entry>
+<entry colname="2">
+<Para align="center">CPRSR ADD HEAT VLV  L1, L2, R1 or R2</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">21-51-06</Para>
+</entry>
+<entry colname="2">
+<Para align="center">CPRSR OUTLET PRESS  SNSR L1, L2, R1 or R2</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">21-51-07</Para>
+</entry>
+<entry colname="2">
+<Para align="center">CPRSR OUTLET TEMP SNSR  L1, L2, R1 or
+R2</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">24-22-01</Para>
+</entry>
+<entry colname="2">
+<Para align="center">ELEC GEN SYS L1, L2, R1 or R2</Para>
+<Para align="center">ELEC GEN DEBRIS L1, L2, R1 or R2</Para>
+</entry>
+</row>
+<row rowsep="0">
+<entry colname="1">
+<Para align="center">24-15-01-01</Para>
+</entry>
+<entry colname="2">
+<Para align="center">ELEC MC CAC L1/START L1</Para>
+<Para align="center">ELEC MC CAC L2/START R1</Para>
+<Para align="center">ELEC MC CAC R1/START L2</Para>
+<Para align="center">ELEC MC CAC R2/START R2</Para>
+</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+<Note>
+<Para>For the alternate ventilation system to be operating normally, the following items must operate normally.</Para>
+</Note>
+<table frame="all">
+<tgroup cols="2" colsep="1">
+<colspec colname="1" colwidth="28%" />
+<colspec colname="2" colwidth="72%" />
+<thead>
+<row rowsep="1">
+<entry colname="1">
+<Para>
+<Emphasis txtStyle="bold">MEL Item</Emphasis>
+</Para>
+</entry>
+<entry colname="2">
+<Para>
+<Emphasis txtStyle="bold">Associated Status Message</Emphasis>
+</Para>
+</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">21-27-02</Para>
+</entry>
+<entry colname="2">
+<Para align="center">EQUIP VENT FAN FWD</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">21-27-22</Para>
+</entry>
+<entry colname="2">
+<Para align="center">EQUIP EXHAUST FAN AFT</Para>
+</entry>
+</row>
+<row rowsep="0">
+<entry colname="1">
+<Para align="center">21-27-24</Para>
+</entry>
+<entry colname="2">
+<Para align="center">EQUIP OVBD VALVE AFT</Para>
+</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+<table frame="all">
+<tgroup cols="2" colsep="0">
+<colspec colname="1" colwidth="28%" />
+<colspec colname="2" colwidth="72%" />
+<thead>
+<row rowsep="0">
+<entry colname="1">
+<Para>
+<Emphasis txtStyle="bold">MEL Item</Emphasis>
+</Para>
+</entry>
+<entry colname="2">
+<Para>
+<Emphasis txtStyle="bold">Associated Advisory Message</Emphasis>
+</Para>
+</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep="0">
+<entry colname="1">
+<Para align="center">21-31-03</Para>
+</entry>
+<entry colname="2">
+<Para align="center">OUTFLOW VALVE AFT</Para>
+</entry>
+</row>
+<row rowsep="0">
+<entry colname="1">
+<Para align="center">21-31-03</Para>
+</entry>
+<entry colname="2">
+<Para align="center">OUTFLOW VALVE FWD</Para>
+</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+<Note>
+<Para>For a trim air system to be operating normally, certain items must operate normally.  See MEL item 21-51-01 for a list of those items.</Para>
+</Note>
+<Note>
+<Para>A VFSG system is considered to be operating normally if its associated status message (ELEC GEN SYS L1, L2, R1 or R2) is not displayed.  </Para>
+</Note>
+<Para>Verify both CAC’s associated with the operative pack are operating normally before each departure, and for associated PCU inoperative, lock cabin air compressor deflector door in the extended position, lock ram air inlet door in 70% HEAT position and lock ram air exit doors in 90% HEAT position (AMM DDG 21-52-01).</Para>
+<List listType="1.">
+<ListItem>
+<Para>Verify both CAC’s associated with the operative pack are operating normally before each departure.</Para>
+<List listType="A.">
+<ListItem>
+<Para>Power the airplane using the APU.</Para>
+</ListItem>
+<ListItem>
+<Para>Set the operative pack ON.</Para>
+</ListItem>
+<ListItem>
+<Para>On AIR CONDITIONING maintenance page 1, confirm status that both CABIN AIR COMP indicate ON for the operating pack. </Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Determine whether associated PCU is inoperative.</Para>
+<List listType="A.">
+<ListItem>
+<Para>On page 2 of the AIR CONDITIONING EICAS maintenance page, confirm that PCU CHANNEL STATUS for one of the associated channels is not blank.  Blank CHANNEL STATUS for both channels indicates the PCU is inoperative.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>For associated PCU operative:</Para>
+<List listType="A.">
+<ListItem>
+<Para>Set associated air conditioning pack OFF.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>For left PCU inoperative:</Para>
+<List listType="A.">
+<ListItem>
+<Para>Set left air conditioning pack OFF.</Para>
+</ListItem>
+<ListItem>
+<Para>Set the GND TEST selector to ENABLE no less than 30-seconds prior to opening the Pack Control Unit circuit breakers.</Para>
+</ListItem>
+<ListItem>
+<Para>Open the following circuit breakers and lock with a DO NOT CLOSE tag.</Para>
+<List listType="1)">
+<ListItem>
+<Para>PACK CTRL UNIT-	CHAN L1</Para>
+</ListItem>
+<ListItem>
+<Para>PACK CTRL UNIT-	CHAN L2</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Gain access to the left CAC deflector door assembly.</Para>
+</ListItem>
+<ListItem>
+<Para>Disconnect, cap and stow deflector door actuator electrical connector.</Para>
+</ListItem>
+<ListItem>
+<Para>Remove inlet door actuator from CAC inlet housing.  </Para>
+</ListItem>
+<ListItem>
+<Para>Remove fixed link from stowed position on actuator and reinstall on opposite side of actuator with long end towards deflector door.</Para>
+</ListItem>
+<ListItem>
+<Para>Reinstall actuator in its normal position with the fixed link attached to the  open deflector door.</Para>
+</ListItem>
+<ListItem>
+<Para>Confirm deflector door is in the fully extended position.</Para>
+</ListItem>
+<ListItem>
+<Para>Lock left ram air inlet door in the 70% HEAT position.</Para>
+<List listType="1)">
+<ListItem>
+<Para>Gain access to the ram air inlet door actuator.</Para>
+</ListItem>
+<ListItem>
+<Para>Disconnect, cap and stow the electrical connector from the actuator.</Para>
+</ListItem>
+<ListItem>
+<Para>Disconnect the actuator from the ram air inlet door.</Para>
+</ListItem>
+<ListItem>
+<Para>Remove inner cylinder anti-rotation device set screw.</Para>
+</ListItem>
+<ListItem>
+<Para>Move anti-rotation arm until end is flush with the housing. </Para>
+</ListItem>
+<ListItem>
+<Para>Turn inner cylinder manually until distance measured between the bolt centers on each end is 14.68 inches.</Para>
+</ListItem>
+<ListItem>
+<Para>Reinstall anti-rotation device set screw.</Para>
+</ListItem>
+<ListItem>
+<Para>Manually move the crank arm to align with the actuator.</Para>
+</ListItem>
+<ListItem>
+<Para>Reconnect actuator to the crank arm.</Para>
+</ListItem>
+<ListItem>
+<Para>Close the ram air inlet actuator access door.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Lock left ram air outlet door in the 90% HEAT position.</Para>
+<List listType="1)">
+<ListItem>
+<Para>Gain access to the ram air outlet door actuator.</Para>
+</ListItem>
+<ListItem>
+<Para>Disconnect, cap and stow the electrical connector from the actuator.</Para>
+</ListItem>
+<ListItem>
+<Para>Disconnect the actuator from the ram air outlet door.</Para>
+</ListItem>
+<ListItem>
+<Para>Remove inner cylinder anti-rotation device set screw.</Para>
+</ListItem>
+<ListItem>
+<Para>Move anti-rotation arm until end is flush with the housing. </Para>
+</ListItem>
+<ListItem>
+<Para>Turn inner cylinder manually until distance measured between the bolt centers on each end is 15.46 inches.</Para>
+</ListItem>
+<ListItem>
+<Para>Reinstall anti-rotation device set screw.</Para>
+</ListItem>
+<ListItem>
+<Para>Manually move the crank arm to align with the actuator.</Para>
+</ListItem>
+<ListItem>
+<Para>Reconnect actuator to the crank arm.</Para>
+</ListItem>
+<ListItem>
+<Para>Close the ram air outlet actuator access door.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Close the following circuit breakers:</Para>
+<List listType="1)">
+<ListItem>
+<Para>PACK CTRL UNIT-	CHAN L1</Para>
+</ListItem>
+<ListItem>
+<Para>PACK CTRL UNIT-	CHAN L2</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Return the GND TEST selector to NORM.</Para>
+</ListItem>
+<ListItem>
+<Para>Set left air conditioning pack OFF.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>For right PCU inoperative:</Para>
+<List listType="A.">
+<ListItem>
+<Para>Set right air conditioning pack OFF.</Para>
+</ListItem>
+<ListItem>
+<Para>Set the GND TEST selector to ENABLE no less than 30-seconds prior to opening the Pack Control Unit circuit breakers.</Para>
+</ListItem>
+<ListItem>
+<Para>Open the following circuit breakers and lock with a DO NOT CLOSE tag.</Para>
+<List listType="1)">
+<ListItem>
+<Para>PACK CTRL UNIT-	CHAN R1</Para>
+</ListItem>
+<ListItem>
+<Para>PACK CTRL UNIT-	CHAN R2</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Gain access to the right CAC deflector door assembly.</Para>
+</ListItem>
+<ListItem>
+<Para>Disconnect, cap and stow deflector door actuator electrical connector.</Para>
+</ListItem>
+<ListItem>
+<Para>Remove inlet door actuator from CAC inlet housing.  </Para>
+</ListItem>
+<ListItem>
+<Para>Remove fixed link from stowed position on actuator and reinstall on opposite side of actuator with long end towards deflector door.</Para>
+</ListItem>
+<ListItem>
+<Para>Reinstall actuator in its normal position with the fixed link attached to the  open deflector door. </Para>
+</ListItem>
+<ListItem>
+<Para>Confirm deflector door is in the fully extended position.</Para>
+</ListItem>
+<ListItem>
+<Para>Lock right ram air inlet door in the 70% HEAT position.</Para>
+<List listType="1)">
+<ListItem>
+<Para>Gain access to the ram air inlet door actuator.</Para>
+</ListItem>
+<ListItem>
+<Para>Disconnect, cap and stow the electrical connector from the actuator.</Para>
+</ListItem>
+<ListItem>
+<Para>Disconnect the actuator from the ram air inlet door.</Para>
+</ListItem>
+<ListItem>
+<Para>Remove inner cylinder anti-rotation device set screw.</Para>
+</ListItem>
+<ListItem>
+<Para>Move anti-rotation arm until end is flush with the housing. </Para>
+</ListItem>
+<ListItem>
+<Para>Turn inner cylinder manually until distance measured between the bolt centers on each end is 14.68 inches.</Para>
+</ListItem>
+<ListItem>
+<Para>Reinstall anti-rotation device set screw.</Para>
+</ListItem>
+<ListItem>
+<Para>Manually move the crank arm to align with the actuator.</Para>
+</ListItem>
+<ListItem>
+<Para>Reconnect actuator to the crank arm.</Para>
+</ListItem>
+<ListItem>
+<Para>Close the ram air inlet actuator access door.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Lock right ram air outlet door in the 90% HEAT position.</Para>
+<List listType="1)">
+<ListItem>
+<Para>Gain access to the ram air outlet door actuator.</Para>
+</ListItem>
+<ListItem>
+<Para>Disconnect, cap and stow the electrical connector from the actuator.</Para>
+</ListItem>
+<ListItem>
+<Para>Disconnect the actuator from the ram air outlet door.</Para>
+</ListItem>
+<ListItem>
+<Para>Remove inner cylinder anti-rotation device set screw.</Para>
+</ListItem>
+<ListItem>
+<Para>Move anti-rotation arm until end is flush with the housing. </Para>
+</ListItem>
+<ListItem>
+<Para>Turn inner cylinder manually until distance measured between the bolt centers on each end is 15.46 inches.</Para>
+</ListItem>
+<ListItem>
+<Para>Reinstall anti-rotation device set screw.</Para>
+</ListItem>
+<ListItem>
+<Para>Manually move the crank arm to align with the actuator.</Para>
+</ListItem>
+<ListItem>
+<Para>Reconnect actuator to the crank arm.</Para>
+</ListItem>
+<ListItem>
+<Para>Close the ram air outlet actuator access door.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Close the following circuit breakers:</Para>
+<List listType="1)">
+<ListItem>
+<Para>PACK CTRL UNIT-	CHAN R1</Para>
+</ListItem>
+<ListItem>
+<Para>PACK CTRL UNIT-	CHAN R2</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Return the GND TEST selector to NORM.</Para>
+</ListItem>
+<ListItem>
+<Para>Set right air conditioning pack OFF.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>For PCU operative on inoperative pack, set associated air conditioning pack OFF.</Para>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+<OperationProcedure>
+<Note>
+<Para>On takeoff, the PACK ALTITUDE LIMIT caution message may appear anytime after liftoff until 1,000 feet above airport elevation. The message may be displayed for up to 2 minutes. On landing, this message may appear at altitudes less than 1000 feet above airport elevation until touchdown. </Para>
+</Note>
+<List listType="1.">
+<ListItem>
+<Para>For associated PCU inoperative, reduce enroute climb limit weight by 800 lb (363 kg).</Para>
+<Note>
+<Para>The enroute climb weight penalties are based on single engine operating speeds that approximate maximum lift-to-drag ratio speed. To account for the difference in level off altitude when operating at other speeds, multiply the enroute climb weight penalty listed above by the appropriate factor listed on page 3.00-01-00.2 in the ENROUTE DIVERSION SPEED EFFECTS paragraph.</Para>
+</Note>
+</ListItem>
+<ListItem>
+<Para>Set associated air conditioning pack OFF.</Para>
+</ListItem>
+<ListItem>
+<Para>Flight remains within 60 minutes of landing at a suitable airport.</Para>
+</ListItem>
+<ListItem>
+<Effectivities>
+<Effectivity>For FCAC installed:</Effectivity>
+</Effectivities>
+<Para>Forward cargo air conditioning system remains Off.  Temperature sensitive cargo should not be carried in the forward cargo compartment.</Para>
+</ListItem>
+<ListItem>
+<Para>If cabin temperatures become warmer than desired, consider one or more of the following temporary actions:</Para>
+<List listType="A.">
+<ListItem>
+<Para>Select IFE system modes designed to reduce cabin heat loads.</Para>
+<Note>
+<Para>Availability of modes dependent on IFE system installed and airline modifiable options.</Para>
+</Note>
+</ListItem>
+<ListItem>
+<Para>Set IFE off using the IFE Power switch on the Video Control Station.</Para>
+</ListItem>
+<ListItem>
+<Para>Select HEAT REDUCTION mode using the Cabin Attendant Panel TEMPERATURE menu (adjusts cabin lighting and window shading).</Para>
+</ListItem>
+<ListItem>
+<Para>If on ground, set FCAC OFF.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>If cabin or flight deck temperatures become too cool, climbing to a higher altitude will increase the heating capability of the air conditioning system.</Para>
+</ListItem>
+<ListItem>
+<Para>In the cruise mode, the cabin altitude is normally at or below 6,000 feet.  During some degraded operations, the cabin altitude may increase to 8,000 feet.  This can occur if the air conditioning system is not achieving cabin temperature and ventilation rate targets, and would be more likely with an inoperative pack or CAC.</Para>
+</ListItem>
+</List>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+</MELSubItem>
+<MELSubItem itemNbr="21-52-01-02">
+<Title>Airplanes With OFCR or OFAR Installed</Title>
+<MELSubItem itemNbr="21-52-01-02-01">
+<Title>
+<?FTID-xref 1446833.2-21-52-01?>787-9 (VN-A861, VN-A862, VN-A863, VN-A864, VN-A867, VN-A868, VN-A870, VN-A871)</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="2" nbrRequired="1" maintIndicator="(M)" opsIndicator="(O)">
+<DispatchConditionRemarks>
+<Para>One may be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Verify cabin air compressors associated with operating pack operate normally before each departure.</Para>
+</ListItem>
+<ListItem>
+<Para>VFSGs associated with operating CACs operate normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Integrated cooling recirculation air system operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Center hydraulic electric motor-driven pumps operate normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Alternate ventilation system operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Opposite trim air system operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>For OFCR or OFAR occupied, airplane remains at or below FL 350.</Para>
+</ListItem>
+<ListItem>
+<Para>EDTO  is not conducted.</Para>
+</ListItem>
+<ListItem>
+<Para>Appropriate performance adjustments are applied.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Note>
+<Para>For a cabin air compressor to be operating normally, the following items must operate normally.</Para>
+</Note>
+<table frame="all">
+<tgroup cols="2" colsep="1">
+<colspec colname="1" colwidth="28%" />
+<colspec colname="2" colwidth="72%" />
+<thead>
+<row rowsep="1">
+<entry colname="1">
+<Para>
+<Emphasis txtStyle="bold">MEL Item</Emphasis>
+</Para>
+</entry>
+<entry colname="2">
+<Para>
+<Emphasis txtStyle="bold">Associated Status Message</Emphasis>
+</Para>
+</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">21-51-01</Para>
+</entry>
+<entry colname="2">
+<Para align="center">CABIN AIR CPRSR L1, L2, R1 or R2</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">21-51-03</Para>
+</entry>
+<entry colname="2">
+<Para align="center">CPRSR INLET PRESS SNSR L1, L2, R1 or R2</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">21-51-04</Para>
+</entry>
+<entry colname="2">
+<Para align="center">CPRSR VARIABLE DIFFUSER  L1, L2, R1 or R2</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">21-51-05</Para>
+</entry>
+<entry colname="2">
+<Para align="center">CPRSR ADD HEAT VLV  L1, L2, R1 or R2</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">21-51-06</Para>
+</entry>
+<entry colname="2">
+<Para align="center">CPRSR OUTLET PRESS  SNSR L1, L2, R1 or R2</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">21-51-07</Para>
+</entry>
+<entry colname="2">
+<Para align="center">CPRSR OUTLET TEMP SNSR  L1, L2, R1 or
+R2</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">24-22-01</Para>
+</entry>
+<entry colname="2">
+<Para align="center">ELEC GEN SYS L1, L2, R1 or R2</Para>
+<Para align="center">ELEC GEN DEBRIS L1, L2, R1 or R2</Para>
+</entry>
+</row>
+<row rowsep="0">
+<entry colname="1">
+<Para align="center">24-15-01-01</Para>
+</entry>
+<entry colname="2">
+<Para align="center">ELEC MC CAC L1/START L1</Para>
+<Para align="center">ELEC MC CAC L2/START R1</Para>
+<Para align="center">ELEC MC CAC R1/START L2</Para>
+<Para align="center">ELEC MC CAC R2/START R2</Para>
+</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+<Note>
+<Para>For the alternate ventilation system to be operating normally, the following items must operate normally.</Para>
+</Note>
+<table frame="all">
+<tgroup cols="2" colsep="1">
+<colspec colname="1" colwidth="28%" />
+<colspec colname="2" colwidth="72%" />
+<thead>
+<row rowsep="1">
+<entry colname="1">
+<Para>
+<Emphasis txtStyle="bold">MEL Item</Emphasis>
+</Para>
+</entry>
+<entry colname="2">
+<Para>
+<Emphasis txtStyle="bold">Associated Status Message</Emphasis>
+</Para>
+</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">21-27-02</Para>
+</entry>
+<entry colname="2">
+<Para align="center">EQUIP VENT FAN FWD</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">21-27-22</Para>
+</entry>
+<entry colname="2">
+<Para align="center">EQUIP EXHAUST FAN AFT</Para>
+</entry>
+</row>
+<row rowsep="0">
+<entry colname="1">
+<Para align="center">21-27-24</Para>
+</entry>
+<entry colname="2">
+<Para align="center">EQUIP OVBD VALVE AFT</Para>
+</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+<table frame="all">
+<tgroup cols="2" colsep="0">
+<colspec colname="1" colwidth="28%" />
+<colspec colname="2" colwidth="72%" />
+<thead>
+<row rowsep="0">
+<entry colname="1">
+<Para>
+<Emphasis txtStyle="bold">MEL Item</Emphasis>
+</Para>
+</entry>
+<entry colname="2">
+<Para>
+<Emphasis txtStyle="bold">Associated Advisory Message</Emphasis>
+</Para>
+</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep="0">
+<entry colname="1">
+<Para align="center">21-31-03</Para>
+</entry>
+<entry colname="2">
+<Para align="center">OUTFLOW VALVE AFT</Para>
+</entry>
+</row>
+<row rowsep="0">
+<entry colname="1">
+<Para align="center">21-31-03</Para>
+</entry>
+<entry colname="2">
+<Para align="center">OUTFLOW VALVE FWD</Para>
+</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+<Note>
+<Para>For a trim air system to be operating normally, certain items must operate normally.  See MEL item 21-51-01 for a list of those items.</Para>
+</Note>
+<Note>
+<Para>A VFSG system is considered to be operating normally if its associated status message (ELEC GEN SYS L1, L2, R1 or R2) is not displayed.  </Para>
+</Note>
+<Para>Verify both CAC’s associated with the operative pack are operating normally before each departure, and for associated PCU inoperative, lock cabin air compressor deflector door in the extended position, lock ram air inlet door in 70% HEAT position and lock ram air exit doors in 90% HEAT position (AMM DDG 21-52-01).</Para>
+<List listType="1.">
+<ListItem>
+<Para>Verify both CAC’s associated with the operative pack are operating normally before each departure.</Para>
+<List listType="A.">
+<ListItem>
+<Para>Power the airplane using the APU.</Para>
+</ListItem>
+<ListItem>
+<Para>Set the operative pack ON.</Para>
+</ListItem>
+<ListItem>
+<Para>On AIR CONDITIONING maintenance page 1, confirm status that both CABIN AIR COMP indicate ON for the operating pack. </Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Determine whether associated PCU is inoperative.</Para>
+<List listType="A.">
+<ListItem>
+<Para>On page 2 of the AIR CONDITIONING EICAS maintenance page, confirm that PCU CHANNEL STATUS for one of the associated channels is not blank.  Blank CHANNEL STATUS for both channels indicates the PCU is inoperative.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>For associated PCU operative:</Para>
+<List listType="A.">
+<ListItem>
+<Para>Set associated air conditioning pack OFF.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>For left PCU inoperative:</Para>
+<List listType="A.">
+<ListItem>
+<Para>Set left air conditioning pack OFF.</Para>
+</ListItem>
+<ListItem>
+<Para>Set the GND TEST selector to ENABLE no less than 30-seconds prior to opening the Pack Control Unit circuit breakers.</Para>
+</ListItem>
+<ListItem>
+<Para>Open the following circuit breakers and lock with a DO NOT CLOSE tag.</Para>
+<List listType="1)">
+<ListItem>
+<Para>PACK CTRL UNIT-	CHAN L1</Para>
+</ListItem>
+<ListItem>
+<Para>PACK CTRL UNIT-	CHAN L2</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Gain access to the left CAC deflector door assembly.</Para>
+</ListItem>
+<ListItem>
+<Para>Disconnect, cap and stow deflector door actuator electrical connector.</Para>
+</ListItem>
+<ListItem>
+<Para>Remove inlet door actuator from CAC inlet housing.  </Para>
+</ListItem>
+<ListItem>
+<Para>Remove fixed link from stowed position on actuator and reinstall on opposite side of actuator with long end towards deflector door.</Para>
+</ListItem>
+<ListItem>
+<Para>Reinstall actuator in its normal position with the fixed link attached to the  open deflector door.</Para>
+</ListItem>
+<ListItem>
+<Para>Confirm deflector door is in the fully extended position.</Para>
+</ListItem>
+<ListItem>
+<Para>Lock left ram air inlet door in the 70% HEAT position.</Para>
+<List listType="1)">
+<ListItem>
+<Para>Gain access to the ram air inlet door actuator.</Para>
+</ListItem>
+<ListItem>
+<Para>Disconnect, cap and stow the electrical connector from the actuator.</Para>
+</ListItem>
+<ListItem>
+<Para>Disconnect the actuator from the ram air inlet door.</Para>
+</ListItem>
+<ListItem>
+<Para>Remove inner cylinder anti-rotation device set screw.</Para>
+</ListItem>
+<ListItem>
+<Para>Move anti-rotation arm until end is flush with the housing. </Para>
+</ListItem>
+<ListItem>
+<Para>Turn inner cylinder manually until distance measured between the bolt centers on each end is 14.68 inches.</Para>
+</ListItem>
+<ListItem>
+<Para>Reinstall anti-rotation device set screw.</Para>
+</ListItem>
+<ListItem>
+<Para>Manually move the crank arm to align with the actuator.</Para>
+</ListItem>
+<ListItem>
+<Para>Reconnect actuator to the crank arm.</Para>
+</ListItem>
+<ListItem>
+<Para>Close the ram air inlet actuator access door.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Lock left ram air outlet door in the 90% HEAT position.</Para>
+<List listType="1)">
+<ListItem>
+<Para>Gain access to the ram air outlet door actuator.</Para>
+</ListItem>
+<ListItem>
+<Para>Disconnect, cap and stow the electrical connector from the actuator.</Para>
+</ListItem>
+<ListItem>
+<Para>Disconnect the actuator from the ram air outlet door.</Para>
+</ListItem>
+<ListItem>
+<Para>Remove inner cylinder anti-rotation device set screw.</Para>
+</ListItem>
+<ListItem>
+<Para>Move anti-rotation arm until end is flush with the housing. </Para>
+</ListItem>
+<ListItem>
+<Para>Turn inner cylinder manually until distance measured between the bolt centers on each end is 15.46 inches.</Para>
+</ListItem>
+<ListItem>
+<Para>Reinstall anti-rotation device set screw.</Para>
+</ListItem>
+<ListItem>
+<Para>Manually move the crank arm to align with the actuator.</Para>
+</ListItem>
+<ListItem>
+<Para>Reconnect actuator to the crank arm.</Para>
+</ListItem>
+<ListItem>
+<Para>Close the ram air outlet actuator access door.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Close the following circuit breakers:</Para>
+<List listType="1)">
+<ListItem>
+<Para>PACK CTRL UNIT-	CHAN L1</Para>
+</ListItem>
+<ListItem>
+<Para>PACK CTRL UNIT-	CHAN L2</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Return the GND TEST selector to NORM.</Para>
+</ListItem>
+<ListItem>
+<Para>Set left air conditioning pack OFF.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>For right PCU inoperative:</Para>
+<List listType="A.">
+<ListItem>
+<Para>Set right air conditioning pack OFF.</Para>
+</ListItem>
+<ListItem>
+<Para>Set the GND TEST selector to ENABLE no less than 30-seconds prior to opening the Pack Control Unit circuit breakers.</Para>
+</ListItem>
+<ListItem>
+<Para>Open the following circuit breakers and lock with a DO NOT CLOSE tag.</Para>
+<List listType="1)">
+<ListItem>
+<Para>PACK CTRL UNIT-	CHAN R1</Para>
+</ListItem>
+<ListItem>
+<Para>PACK CTRL UNIT-	CHAN R2</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Gain access to the right CAC deflector door assembly.</Para>
+</ListItem>
+<ListItem>
+<Para>Disconnect, cap and stow deflector door actuator electrical connector.</Para>
+</ListItem>
+<ListItem>
+<Para>Remove inlet door actuator from CAC inlet housing.  </Para>
+</ListItem>
+<ListItem>
+<Para>Remove fixed link from stowed position on actuator and reinstall on opposite side of actuator with long end towards deflector door.</Para>
+</ListItem>
+<ListItem>
+<Para>Reinstall actuator in its normal position with the fixed link attached to the  open deflector door. </Para>
+</ListItem>
+<ListItem>
+<Para>Confirm deflector door is in the fully extended position.</Para>
+</ListItem>
+<ListItem>
+<Para>Lock right ram air inlet door in the 70% HEAT position.</Para>
+<List listType="1)">
+<ListItem>
+<Para>Gain access to the ram air inlet door actuator.</Para>
+</ListItem>
+<ListItem>
+<Para>Disconnect, cap and stow the electrical connector from the actuator.</Para>
+</ListItem>
+<ListItem>
+<Para>Disconnect the actuator from the ram air inlet door.</Para>
+</ListItem>
+<ListItem>
+<Para>Remove inner cylinder anti-rotation device set screw.</Para>
+</ListItem>
+<ListItem>
+<Para>Move anti-rotation arm until end is flush with the housing. </Para>
+</ListItem>
+<ListItem>
+<Para>Turn inner cylinder manually until distance measured between the bolt centers on each end is 14.68 inches.</Para>
+</ListItem>
+<ListItem>
+<Para>Reinstall anti-rotation device set screw.</Para>
+</ListItem>
+<ListItem>
+<Para>Manually move the crank arm to align with the actuator.</Para>
+</ListItem>
+<ListItem>
+<Para>Reconnect actuator to the crank arm.</Para>
+</ListItem>
+<ListItem>
+<Para>Close the ram air inlet actuator access door.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Lock right ram air outlet door in the 90% HEAT position.</Para>
+<List listType="1)">
+<ListItem>
+<Para>Gain access to the ram air outlet door actuator.</Para>
+</ListItem>
+<ListItem>
+<Para>Disconnect, cap and stow the electrical connector from the actuator.</Para>
+</ListItem>
+<ListItem>
+<Para>Disconnect the actuator from the ram air outlet door.</Para>
+</ListItem>
+<ListItem>
+<Para>Remove inner cylinder anti-rotation device set screw.</Para>
+</ListItem>
+<ListItem>
+<Para>Move anti-rotation arm until end is flush with the housing. </Para>
+</ListItem>
+<ListItem>
+<Para>Turn inner cylinder manually until distance measured between the bolt centers on each end is 15.46 inches.</Para>
+</ListItem>
+<ListItem>
+<Para>Reinstall anti-rotation device set screw.</Para>
+</ListItem>
+<ListItem>
+<Para>Manually move the crank arm to align with the actuator.</Para>
+</ListItem>
+<ListItem>
+<Para>Reconnect actuator to the crank arm.</Para>
+</ListItem>
+<ListItem>
+<Para>Close the ram air outlet actuator access door.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Close the following circuit breakers:</Para>
+<List listType="1)">
+<ListItem>
+<Para>PACK CTRL UNIT-	CHAN R1</Para>
+</ListItem>
+<ListItem>
+<Para>PACK CTRL UNIT-	CHAN R2</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Return the GND TEST selector to NORM.</Para>
+</ListItem>
+<ListItem>
+<Para>Set right air conditioning pack OFF.</Para>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+<OperationProcedure>
+<Note>
+<Para>On takeoff, the PACK ALTITUDE LIMIT caution message may appear anytime after liftoff until 1,000 feet above airport elevation. The message may be displayed for up to 2 minutes. On landing, this message may appear at altitudes less than 1000 feet above airport elevation until touchdown. </Para>
+</Note>
+<List listType="1.">
+<ListItem>
+<Para>For OFCR or OFAR occupied, airplane must remain at or below FL 350.</Para>
+</ListItem>
+<ListItem>
+<Para>For associated PCU inoperative, reduce enroute climb limit weight by 800 lb (363 kg).</Para>
+<Note>
+<Para>The enroute climb weight penalties are based on single engine operating speeds that approximate maximum lift-to-drag ratio speed. To account for the difference in level off altitude when operating at other speeds, multiply the enroute climb weight penalty listed above by the appropriate factor listed on page 3.00-01-00.2 in the ENROUTE DIVERSION SPEED EFFECTS paragraph.</Para>
+</Note>
+</ListItem>
+<ListItem>
+<Para>Set associated air conditioning pack OFF.</Para>
+</ListItem>
+<ListItem>
+<Para>Flight remains within 60 minutes of landing at a suitable airport.</Para>
+</ListItem>
+<ListItem>
+<Effectivities>
+<Effectivity>For FCAC installed:</Effectivity>
+</Effectivities>
+<Para>FCAC performance may be degraded.  Temperature sensitive cargo should not be carried in the forward cargo compartment.</Para>
+</ListItem>
+<ListItem>
+<Para>If cabin temperatures become warmer than desired, consider one or more of the following temporary actions:</Para>
+<List listType="A.">
+<ListItem>
+<Para>Select IFE system modes designed to reduce cabin heat loads.</Para>
+<Note>
+<Para>Availability of modes dependent on IFE system installed and airline modifiable options.</Para>
+</Note>
+</ListItem>
+<ListItem>
+<Para>Set IFE off using the IFE Power switch on the Video Control Station.</Para>
+</ListItem>
+<ListItem>
+<Para>Select HEAT REDUCTION mode using the Cabin Attendant Panel TEMPERATURE menu (adjusts cabin lighting and window shading).</Para>
+</ListItem>
+<ListItem>
+<Effectivities>
+<Effectivity>For FCAC installed:</Effectivity>
+</Effectivities>
+<Para>If on ground, set FCAC OFF.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>If cabin or flight deck temperatures become too cool, climbing to a higher altitude will increase the heating capability of the air conditioning system.</Para>
+</ListItem>
+<ListItem>
+<Para>In the cruise mode, the cabin altitude is normally at or below 6,000 feet.  During some degraded operations, the cabin altitude may increase to 8,000 feet.  This can occur if the air conditioning system is not achieving cabin temperature and ventilation rate targets, and would be more likely with an inoperative pack or CAC.</Para>
+</ListItem>
+<ListItem>
+<?FTID-rev deleted highlight="Delete step 9 as CN AA61225 has been corporated for all fleet"?>
+</ListItem>
+</List>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+</MELSubItem>
+<MELSubItem itemNbr="21-52-01-03">
+<Title>PACK Switch OFF Lights (*)</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="2" nbrRequired="0" />
+</MELSubItem>
+<MELSubItem itemNbr="21-52-01-04">
+<Title>PACK Switch AUTO Lights (*)</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="2" nbrRequired="0" />
+</MELSubItem>
+</MELItem>
+</DispatchItems>

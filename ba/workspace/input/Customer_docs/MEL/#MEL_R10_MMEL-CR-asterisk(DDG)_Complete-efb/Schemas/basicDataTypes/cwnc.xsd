@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://www.boeing.com/FTID-ML"
+    xmlns:rev="http://www.boeing.com/FTID-ML/Revision"
+    targetNamespace="http://www.boeing.com/FTID-ML" 
+    elementFormDefault="qualified" 
+    attributeFormDefault="unqualified"
+    version="FTID 2.6">
+
+<!-- 	
+=================================================================
+
+
+Copyright Information:
+      Boeing Proprietary and Confidential - 
+      All Rights Reserved since 2006.
+
+      This schema file is part of the Boeing Flight Technical 
+      Integrated Data (FTID) Specification based on XML.
+      All rights are reserved under Boeing Flight Operations 
+      digital data entitlements, products or services.
+
+     
+Contact Information:   	
+        The Boeing Company
+        Flight Operations Support
+        P.O. Box 3707	MS 20-89
+        Seattle, WA 98124-2207
+        USA
+        email:  flighttraining@Boeing.com
+        Phone:  (206) 662-4000
+        Fax:    (206) 662-4743
+
+		
+===================================================================
+-->
+
+
+
+
+<xs:include schemaLocation="../attributeTypes/generalAttrs.xsd"/>
+<xs:include schemaLocation="../metadataTypes/effect.xsd"/>
+<xs:import namespace="http://www.boeing.com/FTID-ML/Revision" schemaLocation="../metadataTypes/revision.xsd"/>
+<xs:include schemaLocation="groups.xsd"/>
+
+
+<!--=====================================================-->
+<!--  Caution element definition -->
+<!--=====================================================-->
+<xs:complexType name="CautionType">
+    <xs:annotation>
+        <xs:documentation>General caution information</xs:documentation>
+    </xs:annotation>
+
+    <xs:sequence>
+        <xs:element name="Effectivities" type="EffectivitiesType" minOccurs="0"/>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:group ref="ShortTextGroupType"/>
+        </xs:choice>
+    </xs:sequence>
+
+    <xs:attributeGroup ref="globalAttrGrp"/>
+</xs:complexType>
+
+
+<!--=====================================================-->
+<!--  Warning element definition -->
+<!--=====================================================-->
+<xs:complexType name="WarningType">
+    <xs:annotation>
+        <xs:documentation>General warning information</xs:documentation>
+    </xs:annotation>
+
+    <xs:sequence>
+        <xs:element name="Effectivities" type="EffectivitiesType" minOccurs="0"/>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:group ref="ShortTextGroupType"/>
+        </xs:choice>
+    </xs:sequence>
+
+    <xs:attributeGroup ref="globalAttrGrp"/>
+</xs:complexType>
+
+
+<!--=====================================================-->
+<!--  Note element definition -->
+<!--=====================================================-->
+<xs:complexType name="NoteType">
+    <xs:annotation>
+        <xs:documentation>General note information</xs:documentation>
+    </xs:annotation>
+
+    <xs:sequence>
+        <xs:element name="Effectivities" type="EffectivitiesType" minOccurs="0"/>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:group ref="ShortTextGroupType"/>
+            <xs:element name="table" type="tableType"/>
+        </xs:choice>
+    </xs:sequence>
+
+    <xs:attributeGroup ref="globalAttrGrp"/>
+</xs:complexType>
+
+
+<!--=====================================================-->
+<!--  Comment element definition -->
+<!--=====================================================-->
+<xs:complexType name="CommentType">
+    <xs:annotation>
+        <xs:documentation>General comment used in the procedure</xs:documentation>
+    </xs:annotation>
+
+    <xs:sequence>
+        <xs:element name="Effectivities" type="EffectivitiesType" minOccurs="0"/>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:group ref="ShortTextGroupType"/>
+        </xs:choice>
+    </xs:sequence>
+
+    <xs:attributeGroup ref="globalAttrGrp"/>
+</xs:complexType>
+
+
+</xs:schema>

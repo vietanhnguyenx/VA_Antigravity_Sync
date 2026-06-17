@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM">]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.2-50-21-01.2417.2-50-21-01_FAA" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="50" superSectionNumber="2" sectionName="MEL" chapterName="Cargo &amp; Accessory Compartments" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2024-06-19" rev:revStatus="U" rev:revNumber="10" />
+</PUMetaData>
+<MELItem itemNbr="50-21-01" id="X-BOEING:FTID:81205.787.DDG.CU.MEL.2-50-21-01.1.2-50-21-01_FAA">
+<Title>Cargo Restraint Systems</Title>
+<DispatchCondition dispCondOptions="A" repairInterval="A" nbrInstalled="-" nbrRequired="-" maintIndicator="(M)">
+<Title>Cargo Compartment Used</Title>
+<DispatchConditionRemarks>
+<Para>May be inoperative or missing provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Approved cargo-loading limits are observed. The only source documents are:</Para>
+<List listType="none">
+<ListItem>
+<Para>Type Certificate (TC).</Para>
+</ListItem>
+</List>
+<List listType="none">
+<ListItem>
+<Para>Supplemental Type Certificate (STC).</Para>
+</ListItem>
+</List>
+<List listType="none">
+<ListItem>
+<Para>Airplane Flight Manual (AFM).</Para>
+</ListItem>
+</List>
+<List listType="none">
+<ListItem>
+<Para>Airplane Flight Manual Supplement (AFMS).</Para>
+</ListItem>
+</List>
+<List listType="none">
+<ListItem>
+<Para>TC/STC Weight and Balance Manual (WBM).</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Repairs are made within 120 consecutive calendar-days.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Refer to the Weight and Balance Control and Loading Manual for cargo loading limits.   </Para>
+<Note>
+<Para>The cargo handling system side guide rails, L/R BL 3, 21 and 39 roller trays and doorway trays, and BL 0 ball mats must be installed to stabilize the cargo floor beams and frames inflight.</Para>
+</Note>
+<Note>
+<Para>The barrier net separating the aft and bulk cargo compartments is considered a cargo restraint component.</Para>
+</Note>
+<Note>
+<Para>The door protector net in the bulk cargo compartment must be installed to keep shifted cargo from interfering with the operation of the sidewall decompression vent and with the operation of the cargo door.</Para>
+</Note>
+<Note>
+<Para>Inform Operator (MOC, OCC) for Cargo loading.</Para>
+</Note>
+</MaintenanceProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+<DispatchCondition dispCondOptions="B" repairInterval="C" nbrInstalled="-" nbrRequired="-">
+<Title>Cargo Compartment Remains Empty</Title>
+<DispatchConditionRemarks>
+<Para>May be inoperative or missing provided: </Para>
+<List listType="a.">
+<ListItem>
+<Para>Cargo compartment remains empty.</Para>
+</ListItem>
+<ListItem>
+<Para>Repairs are made within 120 consecutive calendar-days.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+</DispatchCondition>
+<DispatchCondition dispCondOptions="C" repairInterval="A" nbrInstalled="-" nbrRequired="-">
+<Title>Individual Cargo Areas</Title>
+<DispatchConditionRemarks>
+<Para>Individual cargo areas may be inoperative provided:.</Para>
+<List listType="a.">
+<ListItem>
+<Para>Aircraft is operated in accordance with Original Equipment Manufacturer (OEM) W&amp;B source document.</Para>
+</ListItem>
+<ListItem>
+<Para>Repairs are made within 120 consecutive calendar-days.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+</DispatchCondition>
+</MELItem>
+</DispatchItems>

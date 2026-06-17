@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://www.boeing.com/FTID-ML"
+    xmlns:rev="http://www.boeing.com/FTID-ML/Revision"
+    targetNamespace="http://www.boeing.com/FTID-ML" 
+    elementFormDefault="qualified" 
+    attributeFormDefault="unqualified"
+    version="FTID 2.7">
+
+<!-- 	
+=================================================================
+
+
+Copyright Information:
+      Boeing Proprietary and Confidential - 
+      All Rights Reserved since 2006.
+
+      This schema file is part of the Boeing Flight Technical 
+      Integrated Data (FTID) Specification based on XML.
+      All rights are reserved under Boeing Flight Operations 
+      digital data entitlements, products or services.
+
+     
+Contact Information:   	
+        The Boeing Company
+        Flight Operations Support
+        P.O. Box 3707	MS 20-89
+        Seattle, WA 98124-2207
+        USA
+        email:  flighttraining@Boeing.com
+        Phone:  (206) 662-4000
+        Fax:    (206) 662-4743
+
+		
+===================================================================
+-->
+
+<xs:include schemaLocation="../attributeTypes/generalAttrs.xsd"/>
+<xs:include schemaLocation="../basicDataTypes/basicDataInclude.xsd"/>
+<xs:include schemaLocation="../metadataTypes/effect.xsd"/>
+<xs:import namespace="http://www.boeing.com/FTID-ML/Revision" schemaLocation="../metadataTypes/revision.xsd"/>
+<xs:include schemaLocation="../metadataTypes/publishMD.xsd" />
+<xs:include schemaLocation="../commonUnits/BulletinRecord.xsd" />
+<xs:include schemaLocation="../commonUnits/EffectCrossRefs.xsd" />
+<xs:include schemaLocation="../commonUnits/Glossary.xsd" />
+<xs:include schemaLocation="../commonUnits/Introduction.xsd" />
+<xs:include schemaLocation="../commonUnits/RevisionNotice.xsd" />
+<xs:include schemaLocation="../commonUnits/RevisionRecord.xsd" />
+<xs:include schemaLocation="../commonUnits/ServiceBulletinRecord.xsd" />
+<xs:include schemaLocation="../commonUnits/TitlePage.xsd" />
+
+
+<!--=====================================================-->
+<!--  FrontMatter (Publish-Unit) element declaration -->
+<!--=====================================================-->
+<xs:element name="FrontMatter" type="FrontMatterType"/>
+
+
+<!--=====================================================-->
+<!-- FrontMatter element definition -->
+<!--=====================================================-->
+<xs:complexType name="FrontMatterType">
+    <xs:annotation>
+        <xs:documentation>Publish-Unit for all front/back or miscelleous info or data units</xs:documentation>
+    </xs:annotation>
+
+    <xs:sequence>
+        <xs:element name="PUMetaData" type="PUMetaDataType"/>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element ref="iLink" />
+            <xs:element ref="BulletinRecord" />
+            <xs:element ref="EffectCrossRefs" />
+            <xs:element ref="Glossary" />
+            <xs:element ref="Introduction" />
+            <xs:element ref="RevisionNotice" />
+            <xs:element ref="RevisionRecord" />
+            <xs:element ref="ServiceBulletinRecord" />
+            <xs:element ref="TitlePage" />
+        </xs:choice>
+    </xs:sequence>
+
+    <xs:attribute name="id" type="UIDType" use="required"/>
+</xs:complexType>
+
+
+</xs:schema>

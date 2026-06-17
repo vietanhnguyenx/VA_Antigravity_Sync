@@ -1,0 +1,752 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM">]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.2-30-21-01.194342.2-30-21-01_FAA" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="30" superSectionNumber="2" sectionName="MEL" chapterName="Ice Rain Protection" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2025-09-30" rev:revStatus="R" rev:revNumber="10" />
+</PUMetaData>
+<MELItem itemNbr="30-21-01" id="X-BOEING:FTID:81205.787.DDG.CU.MEL.2-30-21-01.1.2-30-21-01_FAA">
+<Title>Engine Anti-Ice (EAI) Systems</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="2" nbrRequired="1" maintIndicator="(M)">
+<DispatchConditionRemarks>
+<Para>One may be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Associated PRSOV is locked closed.</Para>
+</ListItem>
+<ListItem>
+<Para>Associated engine ignition systems operate normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Associated engine anti-ice control switch remains OFF.</Para>
+</ListItem>
+<ListItem>
+<Para>Airplane is not operated in known or forecast icing conditions.</Para>
+</ListItem>
+<ListItem>
+<Para>EDTO beyond 120 minutes is not conducted.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Lock inoperative PRSOV in the closed position (AMM DDG 30-21-01).</Para>
+<List listType="1.">
+<ListItem>
+<Para>Deactivate the leading edge slats in the retracted position.</Para>
+</ListItem>
+<ListItem>
+<Para>For GE and CN-AA29810 not installed, and PRSOV failed open, inspect engine cowling for damage.</Para>
+</ListItem>
+<ListItem>
+<Para>Deactivate the associated thrust reverser for ground maintenance.</Para>
+</ListItem>
+<ListItem>
+<Para>Set associated anti-ice panel (P5) engine anti-ice selector OFF.</Para>
+</ListItem>
+<ListItem>
+<Para>For left engine, using a flight deck multi-function display only, open the following circuit breakers and lock with a DO NOT CLOSE tag.</Para>
+<List listType="A.">
+<ListItem>
+<Para>MEDC CHAN A 	L ENGINE</Para>
+</ListItem>
+<ListItem>
+<Para>MEDC CHAN B	 L ENGINE</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>For right engine, using a flight deck multi-function display only, open the following circuit breakers and lock with a DO NOT CLOSE tag.</Para>
+<List listType="A.">
+<ListItem>
+<Para>MEDC CHAN A	 R ENGINE</Para>
+</ListItem>
+<ListItem>
+<Para>MEDC CHAN B 	R ENGINE</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Gain access to PRSOV.</Para>
+</ListItem>
+<ListItem>
+<Para>Lock PRSOV in closed position.</Para>
+<Note>
+<Para>For GE, locking the PRSOV closed will cause the ENG BAI VALVE CLOSED L/R status message to appear following the first landing.</Para>
+</Note>
+</ListItem>
+<ListItem>
+<Para>Disconnect, cap and stow the electrical connector from the associated EAI valve controller.</Para>
+<Note>
+<Para>Disconnecting the electrical connector will cause the status message EAI PRSOV CONTROLLER L/R to appear.</Para>
+</Note>
+</ListItem>
+<ListItem>
+<Para>For left engine, close the following circuit breakers.</Para>
+<List listType="A.">
+<ListItem>
+<Para>MEDC CHAN A 	L ENGINE</Para>
+<Note>
+<Para>If left engine MEDC channel A is also inoperative, do not close circuit breaker MEDC CHAN A L ENGINE.  Lock circuit breaker MEDC CHAN A L ENGINE with an INOP tag.</Para>
+</Note>
+</ListItem>
+<ListItem>
+<Para>MEDC CHAN B	 L ENGINE</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>For right  engine, close the following circuit breakers.</Para>
+<List listType="A.">
+<ListItem>
+<Para>MEDC CHAN A	 R ENGINE</Para>
+<Note>
+<Para>If right engine MEDC channel A is also inoperative, do not close circuit breaker MEDC CHAN A R ENGINE.  Lock circuit breaker MEDC CHAN A R ENGINE with an INOP tag.</Para>
+</Note>
+</ListItem>
+<ListItem>
+<Para>MEDC CHAN B 	R ENGINE</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Activate the associated thrust reverser after ground maintenance.</Para>
+</ListItem>
+<ListItem>
+<Para>Activate the leading edge slats.</Para>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+<OperationNote>
+<Para>Set associated ANTI-ICE Panel (P5) Engine Anti-ice selector OFF.</Para>
+</OperationNote>
+</DispatchProcedure>
+</DispatchCondition>
+<MELSubItem itemNbr="30-21-01-01">
+<Title>Engine Anti-Ice Pressure Regulating and Shutoff Valves (PRSOV)</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="2" nbrRequired="1" maintIndicator="(M)">
+<DispatchConditionRemarks>
+<Para>One may be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Associated PRSOV is locked closed.</Para>
+</ListItem>
+<ListItem>
+<Para>Associated engine ignition systems operate normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Associated engine anti-ice control switch remains OFF.</Para>
+</ListItem>
+<ListItem>
+<Para>Airplane is not operated in known or forecast icing conditions.</Para>
+</ListItem>
+<ListItem>
+<Para>EDTO beyond 120 minutes is not conducted</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Use MEL item 30-21-01 (M) procedure.</Para>
+</MaintenanceProcedure>
+<OperationNote>
+<Para>Set associated ANTI-ICE Panel (P5) Engine Anti-ice selector OFF.</Para>
+</OperationNote>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="30-21-01-02">
+<Title>
+<?FTID-xref 1364901.2-30-21-01_FAA?>Engine Anti-Ice Pressure Regulating and Shutoff Valves (PRSOV) (GE CN-AA29810 Incorporated)</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="2" nbrRequired="1" maintIndicator="(M)" opsIndicator="(O)">
+<DispatchConditionRemarks>
+<Para>One may be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Inoperative valve is locked in mid position.</Para>
+</ListItem>
+<ListItem>
+<Para>Associated PRV operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Operations are limited to OAT 38 degrees C or below.</Para>
+</ListItem>
+<ListItem>
+<Para>Appropriate performance adjustments are applied.</Para>
+</ListItem>
+</List>
+<Para>(CN-AA29810 Incorporated: VN-A861, VN-A862, VN-A863, VN-A864, VN-865, VN-A866, VN-A867, VN-A868, VN-869, VN-A870, VN-A871, VN-A872, VN-A873, VN-A874, VN-A877, VN-A878, VN-A879) </Para>
+<?FTID-rev deleted highlight="Deleted Note"?>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Note>
+<Para>Do not perform a static ground maintenance run at takeoff thrust. Static ground operations at takeoff thrust may overheat the components in the fan compartment of the engine.</Para>
+</Note>
+<Note>
+<Para>Perform a General Visual Inspection (GVI) of the engine inlet cavity for heat damage and applicable corrective actions at the completion of the dispatch interval period in accordance with Boeing Requirements Bulletin B787-81205-SB540023-00 RB Issue 001 and Collins Service Bulletin 787-G71-013 Rev 00 or later approved revisions. </Para>
+</Note>
+<Para>Deactivate associated EAI PRSOV in the mid position (AMM DDG 30-21-01).</Para>
+<List listType="1.">
+<ListItem>
+<Para>Deactivate the leading edge slats in the retracted position.</Para>
+</ListItem>
+<ListItem>
+<Para>Deactivate the associated thrust reverser for ground maintenance.</Para>
+</ListItem>
+<ListItem>
+<Para>For left engine, using a flight deck multi-function display only, open the following circuit breakers and lock with a DO NOT CLOSE tag.</Para>
+<List listType="A.">
+<ListItem>
+<Para>MEDC CHAN A 	L ENGINE</Para>
+</ListItem>
+<ListItem>
+<Para>MEDC CHAN B	 L ENGINE</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>For right engine, using a flight deck multi-function display only, open the following circuit breakers and lock with a DO NOT CLOSE tag.</Para>
+<List listType="A.">
+<ListItem>
+<Para>MEDC CHAN A	 R ENGINE</Para>
+</ListItem>
+<ListItem>
+<Para>MEDC CHAN B 	R ENGINE</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Gain access to PRSOV.</Para>
+</ListItem>
+<ListItem>
+<Para>Lock PRSOV in the mid position.</Para>
+</ListItem>
+<ListItem>
+<Para>Disconnect, cap and stow the electrical connector from the associated EAI valve controller.</Para>
+<Note>
+<Para>Disconnecting the electrical connector will cause the status message EAI PRSOV CONTROLLER L/R to appear.</Para>
+</Note>
+</ListItem>
+<ListItem>
+<Para>For left engine, close the following circuit breakers.</Para>
+<List listType="A.">
+<List listType="none">
+<ListItem rev:revStatus="R">
+<?FTID-rev start?>The EAI PRSOV CONTROLLER L/R status message may be  <?FTID-rev end?></ListItem>
+<ListItem rev:revStatus="R">
+<?FTID-rev start?>displayed <?FTID-rev end?></ListItem>
+</List>
+<ListItem>
+<Para>MEDC CHAN A 	L ENGINE</Para>
+<Note>
+<Para>If left engine MEDC channel A is also inoperative, do not close circuit breaker MEDC CHAN A L ENGINE.  Lock circuit breaker MEDC CHAN A L ENGINE with an INOP tag.</Para>
+</Note>
+</ListItem>
+<ListItem>
+<Para>MEDC CHAN B	 L ENGINE</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>For right engine, close the following circuit breakers.</Para>
+<Note rev:revStatus="R" rev:revHighlight="Updated (O) procedure and performance penalties to only require the associated EAI selector to ON and performance penalty with additional procedural restriction to mitigate potential EGT exceedance events.">
+<?FTID-rev start?>
+<Para>The EAI PRSOV CONTROLLER L/R status message
+may be displayed</Para>
+<?FTID-rev end?>
+</Note>
+<List listType="A.">
+<ListItem>
+<Para>MEDC CHAN A	 R ENGINE</Para>
+<Note>
+<Para>If right engine MEDC channel A is also inoperative, do not close circuit breaker MEDC CHAN A R ENGINE.  Lock circuit breaker MEDC CHAN A R ENGINE with an INOP tag.</Para>
+</Note>
+</ListItem>
+<ListItem>
+<Para>MEDC CHAN B 	R ENGINE</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Activate the associated thrust reverser after ground maintenance.</Para>
+</ListItem>
+<ListItem>
+<Para>Activate the leading edge slats.</Para>
+</ListItem>
+<ListItem>
+<Effectivities>
+<Effectivity>For GE engines:</Effectivity>
+</Effectivities>
+<Para>Use the CMCF special function Left Engine Anti-Ice Valve or Right Engine Anti-Ice Valve as appropriate to set the EEC for the PRSOV locked in the mid position.</Para>
+<Note>
+<Para>EICAS status message ENG EEC C1 will be displayed.  The airplane must also be dispatched using MEL item 73-21-03.</Para>
+</Note>
+</ListItem>
+<ListItem>
+<Para>The associated ENG CORE ANTI-ICE advisor message may be displayed during ground operations.</Para>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+<OperationProcedure>
+<Note>
+<Para>Do not perform a static ground maintenance run at takeoff thrust. Static ground operations at takeoff thrust may overheat the components in the fan compartment of the engine.</Para>
+</Note>
+<List listType="1.">
+<ListItem>
+<Para rev:revStatus="R" rev:revHighlight="Added additional switch position for further clarity.">Set the associated ANTI-ICE Panel (P5) Engine Anti-ice selector to ON and the opposite Engine Anti-ice selector to AUTO, <?FTID-rev start?>OFF <?FTID-rev end?>or ON as required.</Para>
+<Note rev:revStatus="R" rev:revHighlight="Added extra info for further clarification.">
+<?FTID-rev start?>
+<Para>When an EAI selector is set to ON and the temperature is greater than 10 degrees C, the ANTI-ICE ON advisory message will be displayed.  Do not accomplish the ANTI-ICE ON Non-Normal Checklist.</Para>
+<?FTID-rev end?>
+</Note>
+</ListItem>
+<ListItem>
+<Para>Operations are limited to OAT 38 degrees C or below.</Para>
+</ListItem>
+<ListItem>
+<Para>Base performance limited weights on EAI ON.</Para>
+</ListItem>
+<ListItem rev:revStatus="R" rev:revHighlight="Updated (O) pro-cedure and per-formance penal-ties to only require the associated EAI selector to ON and perfor-mance penalty with additional procedural restriction to miti-gate potential EGT exceedance events.">
+<?FTID-rev start?>
+<Effectivities>
+<Effectivity>For GE:</Effectivity>
+</Effectivities>
+<Para>Reduce performance limited weights as follows:</Para>
+<table frame="all">
+<Effectivities>
+<Effectivity>For 787-9:</Effectivity>
+</Effectivities>
+<tgroup cols="3" colsep="1">
+<colspec colname="1" colwidth="31%" />
+<colspec colname="2" colwidth="31%" />
+<colspec colname="3" colwidth="38%" />
+<thead>
+<row rowsep="1">
+<entry colname="1">
+<Para>
+<Emphasis txtStyle="bold">Takeoff</Emphasis>
+</Para>
+</entry>
+<entry colname="2">
+<Para>
+<Emphasis txtStyle="bold">Approach &amp; Landing Climb</Emphasis>
+</Para>
+</entry>
+<entry colname="3">
+<Para>
+<Emphasis txtStyle="bold">Enroute 
+Climb</Emphasis>
+</Para>
+</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep="0">
+<entry colname="1">
+<Para />
+</entry>
+<entry colname="2">
+<Para />
+</entry>
+<entry colname="3">
+<Para />
+</entry>
+</row>
+</tbody>
+</tgroup>
+<tgroup cols="3" colsep="1">
+<tbody>
+<row rowsep="0">
+<entry colname="1">
+<Para align="center">12,400 lb (5,625 kg)</Para>
+</entry>
+<entry colname="2">
+<Para align="center">4,400 lb (1,996 kg)</Para>
+</entry>
+<entry colname="3">
+<Para align="center">6,900 lb (3,130 kg)</Para>
+</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+<table frame="all">
+<Effectivities>
+<Effectivity>For 787-10:</Effectivity>
+</Effectivities>
+<tgroup cols="3" colsep="1">
+<colspec colname="1" colwidth="31%" />
+<colspec colname="2" colwidth="31%" />
+<colspec colname="3" colwidth="38%" />
+<thead>
+<row rowsep="1">
+<entry colname="1">
+<Para>
+<Emphasis txtStyle="bold">Takeoff</Emphasis>
+</Para>
+</entry>
+<entry colname="2">
+<Para>
+<Emphasis txtStyle="bold">Approach &amp; Landing Climb</Emphasis>
+</Para>
+</entry>
+<entry colname="3">
+<Para>
+<Emphasis txtStyle="bold">Enroute 
+Climb</Emphasis>
+</Para>
+</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep="0">
+<entry colname="1">
+<Para />
+</entry>
+<entry colname="2">
+<Para />
+</entry>
+<entry colname="3">
+<Para />
+</entry>
+</row>
+</tbody>
+</tgroup>
+<tgroup cols="3" colsep="1">
+<tbody>
+<row rowsep="0">
+<entry colname="1">
+<Para align="center">13,000 lb (5,897 kg)</Para>
+</entry>
+<entry colname="2">
+<Para align="center">4,600 lb (2,087 kg)</Para>
+</entry>
+<entry colname="3">
+<Para align="center">6,800 lb (3,084 kg)</Para>
+</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+<Note>
+<Para>The enroute climb weight penalties are based on single engine operating speeds that approximate maximum lift-to-drag ratio speed.  To account for the difference in level-off altitude when operating at other speeds, multiply the enroute climb weight penalty listed above by the appropriate factor listed on page 3.00-01-00.2
+in the ENROUTE DIVERSION SPEED EFFECTS paragraph.</Para>
+</Note>
+<?FTID-rev end?>
+</ListItem>
+<ListItem rev:revStatus="R" rev:revHighlight="Updated (O) pro-cedure and per-formance penal-ties to only require the associated EAI selector to ON and perfor-mance penalty with additional procedural restriction to miti-gate potential EGT exceedance events.">
+<?FTID-rev start?>
+<Effectivities>
+<Effectivity>For GE:</Effectivity>
+</Effectivities>
+<Para>Increase flight planning fuel by either using a fuel flow correction factor of 2.6% or increase flight planning fuel by 3.3%.</Para>
+<?FTID-rev end?>
+</ListItem>
+<ListItem>
+<Para>Opposite engine will operate at a higher idle setting than the associated engine.</Para>
+</ListItem>
+<ListItem>
+<Para>For GE engines, during ground operations in icing conditions when OAT is 3°C (37.4°F) or below:</Para>
+<List listType="A.">
+<ListItem>
+<Para>The engine must be run up to a minimum of 40% N1 for at least 5 seconds at intervals no greater than 30 minutes. If high engine vibration indications occur, a run-up to 50% N1 may be done.</Para>
+</ListItem>
+<ListItem>
+<Para>If takeoff is not completed within 30 minutes total taxi time, manually de-ice the engines before takeoff.</Para>
+</ListItem>
+<ListItem>
+<Para>A run-up must be performed within 5 minutes of takeoff or in conjunction with takeoff.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Effectivities>
+<Effectivity>For GE:</Effectivity>
+</Effectivities>
+<Para>The associated ENG CORE ANTI-ICE advisory message may be displayed on descent or during ground operations.</Para>
+</ListItem>
+<ListItem>
+<Effectivities>
+<Effectivity>For GE:</Effectivity>
+</Effectivities>
+<Para>The associated ENG BAI VALVE CLOSED and ENG BAI VALVE OPEN status messages may be displayed on descent or during ground operations.</Para>
+</ListItem>
+<ListItem>
+<Para rev:revStatus="R" rev:revHighlight="Added extra info for futher&#xD;&#xA;clarification.">The ANTI-ICE ENG advisory message may be displayed on descent or during ground operations prior to takeoff, flight crew should accomplish the associated non-normal checklist.  If ANTI-ICE ENG clears <?FTID-rev start?>when thrust is increased, takeoff is allowe<?FTID-rev end?>d.</Para>
+</ListItem>
+</List>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="30-21-01-03">
+<Title>Engine Anti-Ice Pressure Regulating Valves (PRV)</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="2" nbrRequired="1" maintIndicator="(M)">
+<DispatchConditionRemarks>
+<Para>One may be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Associated PRSOV is locked closed.</Para>
+</ListItem>
+<ListItem>
+<Para>Associated engine ignition systems operate normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Associated engine anti-ice control switch remains OFF.</Para>
+</ListItem>
+<ListItem>
+<Para>Airplane is not operated in known or forecast icing conditions.</Para>
+</ListItem>
+<ListItem>
+<Para>EDTO beyond 120 minutes is not conducted.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>EDTO beyond 120 minutes is not conducted.</Para>
+</MaintenanceProcedure>
+<OperationNote>
+<Para>Set associated ANTI-ICE Panel (P5) Engine Anti-ice selector OFF.</Para>
+</OperationNote>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="30-21-01-04">
+<Title>Engine Anti-Ice Pressure Regulating Valves (PRV) (GE CN-AA29810 Incorporated)</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="2" nbrRequired="1" maintIndicator="(M)" opsIndicator="(O)">
+<DispatchConditionRemarks>
+<Para>One may be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Inoperative valve is locked in mid position.</Para>
+</ListItem>
+<ListItem>
+<Para>Associated PRSOV operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Associated main engine data concentrator (MEDC) channel A operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Associated EAI PRSOV controller operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>At least one associated pressure sensor operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Operations are limited to OAT 38 degrees C or below.</Para>
+</ListItem>
+</List>
+<Para>(CN-AA29810 Incorporated: VN-A861, VN-A862, VN-A863, VN-A864, VN-865, VN-A866, VN-A867, VN-A868, VN-869, VN-A870, VN-A871, VN-A872, VN-A873, VN-A874, VN-A877, VN-A878, VN-A879)</Para>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Lock inoperative PRV in the mid position (AMM DDG 30-21-01).</Para>
+<List listType="1.">
+<ListItem>
+<Para>For left engine, using a flight deck multi-function display only, open the following circuit breakers and lock with a DO NOT CLOSE tag.</Para>
+<List listType="A.">
+<ListItem>
+<Para>MEDC CHAN A 	L ENGINE</Para>
+</ListItem>
+<ListItem>
+<Para>MEDC CHAN B	 L ENGINE</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>For right engine, using a flight deck multi-function display only, open the following circuit breakers and lock with a DO NOT CLOSE tag.</Para>
+<List listType="A.">
+<ListItem>
+<Para>MEDC CHAN A	 R ENGINE</Para>
+</ListItem>
+<ListItem>
+<Para>MEDC CHAN B 	R ENGINE</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Gain access to PRV.</Para>
+</ListItem>
+<ListItem>
+<Para>Lock PRV in the mid position.</Para>
+</ListItem>
+<ListItem>
+<Para>For left engine, close the following circuit breakers.</Para>
+<List listType="A.">
+<ListItem>
+<Para>MEDC CHAN A 	L ENGINE</Para>
+</ListItem>
+<ListItem>
+<Para>MEDC CHAN B	 L ENGINE</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>For right engine, close the following circuit breakers.</Para>
+<List listType="A.">
+<ListItem>
+<Para>MEDC CHAN A	 R ENGINE</Para>
+</ListItem>
+<ListItem>
+<Para>MEDC CHAN B 	R ENGINE</Para>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+<OperationProcedure>
+<List listType="1.">
+<ListItem>
+<Para>Operations are limited to OAT 38 degrees C or below.</Para>
+</ListItem>
+</List>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="30-21-01-05">
+<Title>Engine Anti-Ice Pressure Regulating Valves (PRV) (GE)</Title>
+<DispatchCondition repairInterval="A" nbrInstalled="2" nbrRequired="1" maintIndicator="(M)" opsIndicator="(O)">
+<DispatchConditionRemarks>
+<Para>One may be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Inoperative valve is locked in mid position.</Para>
+</ListItem>
+<ListItem>
+<Para>Associated PRSOV operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Associated main engine data concentrator (MEDC) channel A operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Associated EAI PRSOV controller operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>At least one associated pressure sensor operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Operations are limited to OAT 38 degrees C or below.</Para>
+</ListItem>
+<ListItem>
+<Para>Repairs are made within 10 flights.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<List listType="1.">
+<ListItem>
+<Para>Use MEL item 30-21-01-04 (M) procedure.</Para>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+<OperationProcedure>
+<List listType="1.">
+<ListItem>
+<Para>Operations are limited to OAT 38 degrees C or below.</Para>
+</ListItem>
+</List>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="30-21-01-06">
+<Title>Pressure Sensors</Title>
+<DispatchCondition repairInterval="A" nbrInstalled="4" nbrRequired="2" maintIndicator="(M)">
+<DispatchConditionRemarks>
+<Para>May be inoperative on one engine for one flight to the Mainbase provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Associated PRSOV is locked closed.</Para>
+</ListItem>
+<ListItem>
+<Para>Associated engine ignition systems operate normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Associated engine anti-ice control switch remains OFF.</Para>
+</ListItem>
+<ListItem>
+<Para>Airplane is not operated in known or forecast icing conditions.</Para>
+</ListItem>
+<ListItem>
+<Para>Flight remains within 120 minutes of landing at a suitable airport.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<List listType="1.">
+<ListItem>
+<Para>Use MEL item 30-21-01 (M) procedure.</Para>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+<MELSubItem itemNbr="30-21-01-06-01">
+<Title>Pressure Sensor Number 1</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="2" nbrRequired="0">
+<DispatchConditionRemarks>
+<Para>May be inoperative provided associated pressure sensor number 2 operates normally.</Para>
+</DispatchConditionRemarks>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="30-21-01-06-02">
+<Title>Pressure Sensor Number 2</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="2" nbrRequired="0">
+<DispatchConditionRemarks>
+<Para>May be inoperative provided associated pressure sensor number 1 operates normally.</Para>
+</DispatchConditionRemarks>
+</DispatchCondition>
+</MELSubItem>
+</MELSubItem>
+<MELSubItem itemNbr="30-21-01-07">
+<Title>Pressure Sensors GE (CN-AA29810 Incorporated)</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="4" nbrRequired="2" maintIndicator="(M)" opsIndicator="(O)">
+<DispatchConditionRemarks>
+<Para>May be inoperative on one engine provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Associated PRSOV is locked in mid position.</Para>
+</ListItem>
+<ListItem>
+<Para>Associated PRV operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Operations are limited to OAT 38 degrees C or below.</Para>
+</ListItem>
+<ListItem>
+<Para>Appropriate performance adjustments are applied.</Para>
+</ListItem>
+</List>
+<Note>
+<Para>Use Boeing Onboard Performance Tool (OPT) to determine take-off weight and/or landing weight as it affects aircraft performance.</Para>
+</Note>
+<Para>(CN-AA29810 Incorporated: VN-A861, VN-A862, VN-A863, VN-A864, VN-865, VN-A866, VN-A867, VN-A868, VN-869, VN-A870, VN-A871, VN-A872, VN-A873, VN-A874, VN-A877, VN-A878, VN-A879) </Para>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<List listType="1.">
+<ListItem>
+<Para>Use MEL item 30-21-01-02 (M) procedure.</Para>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+<OperationProcedure>
+<List listType="1.">
+<ListItem>
+<Para>Use MEL item 30-21-01-02 (O) procedure.</Para>
+</ListItem>
+</List>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+</MELItem>
+</DispatchItems>

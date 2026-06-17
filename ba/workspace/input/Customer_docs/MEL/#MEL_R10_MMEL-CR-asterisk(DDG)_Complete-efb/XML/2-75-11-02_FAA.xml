@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM">]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.2-75-11-02.194342.2-75-11-02_FAA" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="75" superSectionNumber="2" sectionName="MEL" chapterName="Bleed Air" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2021-02-24" rev:revStatus="U" rev:revNumber="10" />
+</PUMetaData>
+<MELItem itemNbr="75-11-02" id="X-BOEING:FTID:81205.787.DDG.CU.MEL.2-75-11-02.1.2-75-11-02_FAA">
+<Title>Booster Anti-Ice (BAI) Valves (GE)</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="2" nbrRequired="1" maintIndicator="(M)">
+<DispatchConditionRemarks>
+<Para>One may be inoperative for one flight to the mainbase provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>The aircraft is not allowed to dispatch from the Mainbase</Para>
+</ListItem>
+<ListItem>
+<Para>The flight time does not exceed 1.5 hours</Para>
+</ListItem>
+<ListItem>
+<Para>Inoperative valve is locked closed.</Para>
+</ListItem>
+<ListItem>
+<Para>Associated engine ignition systems operate normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Airplane is not operated in known or forecast icing conditions.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Lock the inoperative BAI valve in the closed position and if required, do a detailed inspection of the BAI system (AMM DDG 75-11-02).</Para>
+<List listType="1.">
+<ListItem>
+<Para>Retract and deactivate the leading edge slats.</Para>
+</ListItem>
+<ListItem>
+<Para>Deactivate the associated engine thrust reverser for ground maintenance.</Para>
+</ListItem>
+<ListItem>
+<Para>Gain access to the BAI valve.</Para>
+</ListItem>
+<ListItem>
+<Para>Lock the BAI valve in the closed position.</Para>
+</ListItem>
+<ListItem>
+<Para>For ENG BAI VALVE OPEN L or R status message displayed, perform the BAI System Detailed Inspection.</Para>
+</ListItem>
+<ListItem>
+<Para>Activate the associated engine thrust reverser after ground maintenance.</Para>
+</ListItem>
+<ListItem>
+<Para>Activate the leading edge slats.</Para>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELItem>
+</DispatchItems>

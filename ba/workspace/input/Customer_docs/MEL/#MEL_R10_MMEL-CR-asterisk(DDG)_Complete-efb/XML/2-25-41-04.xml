@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM">]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.2-25-41-04.1419.2-25-41-04" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="25" superSectionNumber="2" sectionName="" chapterName="Equipment/Furnishings" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2024-06-19" rev:revStatus="U" rev:revNumber="10" />
+</PUMetaData>
+<MELItem itemNbr="25-41-04" id="X-BOEING:FTID:81205.787.DDG.CU.MEL.2-25-41-04.1.2-25-41-04">
+<Title>Lavatory Electronic Control Unit (ECU)</Title>
+<DispatchCondition dispCondOptions="A" repairInterval="C" nbrInstalled="10" nbrRequired="-" maintIndicator="(M)">
+<Title>Applicable to: VN-A861, VN-A862, VN-A863, VN-A864, VN-A867, VN-A868, VN-A870, VN-A871, VN-A872, VN-A873, VN-A874, VN-A877, VN-A878, VN-A879</Title>
+<DispatchConditionRemarks>
+<Para>May be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Associated component is deactivated.</Para>
+</ListItem>
+<ListItem>
+<Para>Associated lavatory door is locked closed and placarded, "INOPERATIVE - DO NOT ENTER".</Para>
+</ListItem>
+</List>
+<Note>
+<Para>These provisions are not intended to prohibit lavatory use or inspections by crew members.</Para>
+</Note>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Deactivate the inoperative component and lock associated lavatory door (AMM DDG 25-41-04).</Para>
+<List listType="1.">
+<ListItem>
+<Para>Deactivate or isolate inoperative lavatory ECU.</Para>
+</ListItem>
+<ListItem>
+<Para>Close, lock and placard the associated lavatory door.</Para>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+<OperationNote>
+<Para>Lavatory door should remain locked closed, except for use or inspection by crew members.</Para>
+</OperationNote>
+</DispatchProcedure>
+</DispatchCondition>
+<DispatchCondition dispCondOptions="B" repairInterval="C" nbrInstalled="9" nbrRequired="-" maintIndicator="(M)">
+<Title>Applicable to: VN-A865, VN-A866, VN-A869</Title>
+<DispatchConditionRemarks>
+<Para>May be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Associated component is deactivated.</Para>
+</ListItem>
+<ListItem>
+<Para>Associated lavatory door is locked closed and placarded, "INOPERATIVE - DO NOT ENTER".</Para>
+</ListItem>
+</List>
+<Note>
+<Para>These provisions are not intended to prohibit lavatory use or inspections by crew members.</Para>
+</Note>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Deactivate the inoperative component and lock associated lavatory door (AMM DDG 25-41-04).</Para>
+<List listType="1.">
+<ListItem>
+<Para>Deactivate or isolate inoperative lavatory ECU.</Para>
+</ListItem>
+<ListItem>
+<Para>Close, lock and placard the associated lavatory door.</Para>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+<OperationNote>
+<Para>Lavatory door should remain locked closed, except for use or inspection by crew members.</Para>
+</OperationNote>
+</DispatchProcedure>
+</DispatchCondition>
+</MELItem>
+</DispatchItems>

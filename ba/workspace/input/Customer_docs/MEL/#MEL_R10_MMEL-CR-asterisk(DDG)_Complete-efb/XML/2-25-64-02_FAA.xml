@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM">]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.2-25-64-02.861.2-25-64-02_FAA" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="25" superSectionNumber="2" sectionName="MEL" chapterName="Equipment Furnishings" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2025-09-30" rev:revStatus="R" rev:revNumber="10" />
+</PUMetaData>
+<MELItem itemNbr="25-64-02" id="X-BOEING:FTID:81205.787.DDG.CU.MEL.2-25-64-02.1.2-25-64-02_FAA">
+<Title>Portable Flashlights/Flashlight Holders</Title>
+<DispatchCondition dispCondOptions="A" repairInterval="C" nbrInstalled="20" nbrRequired="10">
+<Title>Applicable to: VN-A861, VN-A862, VN-A863, VN-A864, VN-A867, VN-A868, VN-A870, VN-A871.</Title>
+<DispatchConditionRemarks>
+<Para>May be inoperative or removed provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Crewmember assigned to the affected position has an equivalent operative flashlight readily available.</Para>
+</ListItem>
+<ListItem>
+<Para>Inoperative flashlight remains in a certified location or is removed from the aircraft.</Para>
+</ListItem>
+<ListItem>
+<Para>Location placarding is removed or obscured.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+</DispatchCondition>
+<DispatchCondition dispCondOptions="B" repairInterval="C" nbrInstalled="16" nbrRequired="10">
+<Title>Applicable to: VN-A865, VN-A866, VN-A869</Title>
+<DispatchConditionRemarks>
+<Para>May be inoperative or removed provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Crewmember assigned to the affected position has an equivalent operative flashlight readily available.</Para>
+</ListItem>
+<ListItem>
+<Para>Inoperative flashlight remains in a certified location or is removed from the aircraft.</Para>
+</ListItem>
+<ListItem>
+<Para>Location placarding is removed or obscured.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+</DispatchCondition>
+<DispatchCondition dispCondOptions="C" repairInterval="C" nbrInstalled="17" nbrRequired="10">
+<Title>Applicable to 787-10: VN-A872, VN-A873, VN-A874, VN-A877, VN-A878, VN-A879</Title>
+<DispatchConditionRemarks>
+<Para>May be inoperative or removed provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Crewmember assigned to the affected position has an equivalent operative flashlight readily available.</Para>
+</ListItem>
+<ListItem>
+<Para>Inoperative flashlight remains in a certified location or is removed from the aircraft.</Para>
+</ListItem>
+<ListItem>
+<Para>Location placarding is removed or obscured.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<OperationProcedure>
+<List listType="1.">
+<ListItem>
+<Para>No passengers may be carried.</Para>
+</ListItem>
+<ListItem>
+<Para>A maximum of 19 persons authorized by 14 CFR 121.583 may be carried.</Para>
+</ListItem>
+<ListItem>
+<Para>Establish alternate procedures for use when flashlight holder assemblies (including flashlight) are not available.</Para>
+</ListItem>
+</List>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+<MELSubItem itemNbr="25-64-02-01">
+<Title>Tamper Seals or Tags</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="-" nbrRequired="-" opsIndicator="(O)">
+<DispatchConditionRemarks>
+<Para>May be inoperative, damaged, or missing provided proper installation and operation is verified at each preflight.</Para>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<OperationProcedure>
+<Para>Verify the associated portable flashlights and flashlight holders are properly installed and operate correctly before each flight.</Para>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+</MELItem>
+</DispatchItems>

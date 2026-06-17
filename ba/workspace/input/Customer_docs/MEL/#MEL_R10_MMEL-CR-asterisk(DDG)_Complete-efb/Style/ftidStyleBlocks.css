@@ -1,0 +1,337 @@
+body {
+	text-align: left;
+	margin: 1em;
+	font-family: Arial;
+	position: relative;
+	background-color: Black;
+	color: White;
+	z-index: 0;
+}
+
+body.EFB {
+	font-size: 120%;
+}
+
+div.Address {
+	text-align: center;
+}
+div.Address p {
+	margin-bottom: 0em;
+}
+
+div.CalloutNumber {
+	margin-bottom: -0.5em;
+	background-color: #0300D3;
+	color: white;
+	width: 2.75em;
+	font-weight: bold;
+	text-align: center;
+	clear: left;
+	float: left;
+}
+
+.EFB .Comment p {
+	margin-bottom: 1em;
+}
+
+div.Last {
+	margin-bottom: 1em;
+}
+
+div.WithEffectivities {
+	margin-top: 1em;
+}
+
+div.Condition {
+	clear: both;
+}
+div.Condition p.NavigationStep {
+	font-weight: bold;
+	margin-bottom: 1.25em;
+}
+div.Condition div.ProcActionsGrp {
+	margin-left: 2em;
+}
+
+div.ConsiderationItems {
+	text-align: center;
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+	font-weight: bold;
+	border-bottom: solid thin;
+	text-align: center;
+}
+div.CopyrightInfo {
+	font-size: small;
+	text-align: justify;
+}
+
+div.DeferItems {
+	margin-right: 2em;
+}
+div.DeferItems p.Effectivity {
+	padding-left: 0em;
+}
+p.DeferItems {
+	clear: both;
+	float: left;
+	text-align: center;
+	font-weight: bold;
+	width: 100%;
+	margin: 0;
+}
+
+div.Disclaimer {
+	border: solid 1px;
+	padding: 1em 1em 0em 1em;
+}
+div.Disclaimer p {
+	margin-top: 0em;
+}
+
+div.End {
+	clear: both;
+	text-align: center;
+	font-size: small;
+	word-spacing: 1em;
+	padding-bottom: 1.5em;
+}
+
+div.ExcludeItems {
+	clear: both;
+	margin-bottom: 1.5em;
+}
+
+div.NonNormal {
+	padding: .5em;
+	border: solid medium;
+	width: 60%;
+	position: relative;
+	left: 20%;
+}
+
+div.RevisionRecord table p {
+	margin: 1em;
+}
+
+
+div.Destin {
+	font-weight: bold;
+	border-top: solid 2px;
+	padding-top: .25em;
+	padding-bottom: .5em;
+	clear: both;
+}
+
+div.TmpRev-phase {
+	padding: 0.25em;
+	margin-top: 0.5em;
+	border: solid thin #ffa000;
+	color: #ffa000;
+}
+
+div.TitlePage {
+	text-align: left;
+	text-indent: 0;
+	margin: 4pt 5pt 0 5pt;
+	font-weight: normal;
+	font-style: normal;
+	text-decoration: none;
+	vertical-align: baseline;
+	text-transform: none;
+	font-family: Arial;
+}
+div.TitlePage_ManualInfo {
+	font-weight: bold;
+	font-size: x-large;
+	text-align: center;
+	position: relative;
+	border: solid 1px;
+	margin-top: auto;
+	margin-bottom: 1em;
+	padding: 1em;
+}
+
+div.NonNormalTitle {
+	width: 100%;
+	position:relative;
+	margin-bottom: 1em;
+}
+div.NonNormalTitle h3 {
+	font-weight: bold;
+	font-size: 125%;
+	border: solid medium;
+	text-align: center;
+	width: 70%;
+	background-color: Black;
+	margin: 0em;
+	position: relative;
+	left: 10%;
+	padding: .5em 2em .5em 2em;
+}
+div.NonNormalTitle hr {
+	z-index: -1;
+	position: relative;
+	top: 2em;
+}
+div.NonNormalTitle span {
+	font-style: italic;
+}
+div.NonNormalTitle span.RevUnMarked /* javascript class */ {
+	font-style: normal;
+}
+div.NonNormalTitle span.cocUnMarked /* javascript class */ {
+	font-style: normal;
+}
+
+/*  H2  */
+h2, h3 {
+	margin: .25em 0em 1em 0em;
+}
+.ProcActionsGrpContent h2, .ProcActionsGrpContent h3 {
+	display: inline;
+	clear: both;
+}
+h2 {
+	font-size: 1.5em;
+}
+h3 {
+	font-size: 1.25em;
+}
+
+/*  P  */
+p {
+	margin-bottom: 1em;
+}
+p.BasisPara {
+	font-weight: bold;
+	margin-bottom: 0em;
+}
+p.CalloutTitle {
+	font-weight: bold;
+	font-size: large;
+}
+p.ConsiderationItems {
+	width: 100%;
+	margin: .5em 0em .5em 0em;
+	font-weight: bold;
+	border-bottom: solid 1px;
+	text-align: center;
+}
+p.CopyrightInfo {
+	font-size: small;
+	text-align: justify;
+}
+
+p.Advisory {
+	font-weight: bold;
+	text-align: center;
+	margin-bottom: 0em;
+}
+p.InvertedTitle {
+	text-align: center;
+	font-weight: bold;
+	font-size: large;
+	color: Black;
+	background-color: White;
+	padding: .125em;
+	margin: .125em 25%;
+}
+p.optionalConfigIndicator {
+	font-size: smaller;
+	margin: -.1em 0em -.65em 0em;
+}
+p.EICASMsg {
+	margin: 1em;
+}
+p.SuppItemTitle {
+	font-size: larger;
+	font-weight: bold;
+}
+p.NavigationStep {
+	padding: 0em 1em 0 0em;
+	font-weight: bold;
+	clear: both;
+	margin-top: 0em;
+}
+
+/*  SPAN  */
+span.CalloutNumber {
+	padding: 0em 1em 0em 1em;
+	background-color: Blue;
+	color: White;
+	margin-right: 1em;
+	border-radius:15px;
+	-moz-border-radius: 15px;
+}
+span.exclamation {
+	font-weight: bold;
+	margin-bottom: -.1em; /* margin-bottom is required to allow proper wrapping of parent text */
+}
+span.precaution, span.exclamation {
+	background-color: #fff2ca;
+	color: black;
+	padding: 0em .25em 0em .25em;
+	clear: both;
+}
+span.precaution {
+}
+span.shade {
+	background-color: #778899; /* lightslategray */
+	width: 100%;
+}
+span.EFBLink, span.EFBLinkOver {
+	color: White;
+	background-color: Gray;
+	border: solid thin;
+}
+span.EFBLinkClick {
+	background-color: #006600; /*required to be 006600 by EFB human factors*/
+}
+span.hit {
+	background-color: #FFFF00;
+	color: black;
+}
+
+img.commentIcon {
+	display: inline;
+	height: 1em;
+	margin-bottom: 0em;
+	padding-right: .5em;
+	vertical-align: bottom;
+	cursor: pointer;
+}
+
+div.Light {
+	width: 7em;
+	text-align: center;
+	margin-bottom: 1em;
+	float: left;
+}
+div.Light .header {
+	border: dashed 2px gray;
+	padding: .25em;
+}
+div.Light .message {
+	border: solid 2px gray;
+	padding: .5em;
+	min-height: 2.5em;
+	height: auto !important;
+	height: 2.5em;
+}
+
+div.ProcActionsGrp { clear: both; }
+div.ProcActionsGrp div.ProcActionsGrp { margin-left: 1.5em; }
+div.ProcActionsGrpNumber { float: left; clear: both; padding-right: .75em; text-align: right; }
+div.ProcActionsGrpContent { width: 93%; float: left; }
+
+table.ProcActionsGrp {
+	margin:0; table-layout:fixed}
+	
+	table.ProcActionsGrp table.ProcActionsGrp {margin-left:1.5em; table-layout:fixed}
+	
+table.ProcActionsGrp td.number { 
+	width:1.75em; 
+	text-align:right; 
+	padding: 0 .75em 0 0 }
+	

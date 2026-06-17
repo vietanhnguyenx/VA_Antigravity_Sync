@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://www.boeing.com/FTID-ML"
+    xmlns:rev="http://www.boeing.com/FTID-ML/Revision"
+    targetNamespace="http://www.boeing.com/FTID-ML" 
+    elementFormDefault="qualified" 
+    attributeFormDefault="unqualified"
+    version="FTID 2.6">
+
+<!-- 	
+=================================================================
+
+
+Copyright Information:
+      Boeing Proprietary and Confidential - 
+      All Rights Reserved since 2006.
+
+      This schema file is part of the Boeing Flight Technical 
+      Integrated Data (FTID) Specification based on XML.
+      All rights are reserved under Boeing Flight Operations 
+      digital data entitlements, products or services.
+
+     
+Contact Information:   	
+        The Boeing Company
+        Flight Operations Support
+        P.O. Box 3707	MS 20-89
+        Seattle, WA 98124-2207
+        USA
+        email:  flighttraining@Boeing.com
+        Phone:  (206) 662-4000
+        Fax:    (206) 662-4743
+
+		
+===================================================================
+-->
+
+<xs:include schemaLocation="../attributeTypes/generalAttrs.xsd"/>
+<xs:include schemaLocation="../basicDataTypes/basicDataInclude.xsd"/>
+<xs:include schemaLocation="../metadataTypes/effect.xsd"/>
+<xs:import namespace="http://www.boeing.com/FTID-ML/Revision" schemaLocation="../metadataTypes/revision.xsd"/>
+
+
+<!--=====================================================-->
+<!--  TitlePage element declaration -->
+<!--=====================================================-->
+<xs:element name="TitlePage" type="TitlePageType"/>
+
+
+<!--=====================================================-->
+<!--  TitlePage element definition -->
+<!--=====================================================-->
+<xs:complexType name="TitlePageType">
+    <xs:annotation>
+        <xs:documentation>Special Content-Unit for the Title Page</xs:documentation>
+    </xs:annotation>
+
+    <xs:sequence>
+        <xs:element name="ModelGraphic" type="ModelGraphicType" minOccurs="0"/>
+        <xs:element name="ManualInfo" type="ManualInfoType"/>
+        <xs:element name="Approvals" type="ApprovalsType" minOccurs="0"/>
+        <xs:element name="ExportControlInfo" type="ExportControlInfoType" minOccurs="0"/>
+        <xs:element name="CopyrightInfo" type="CopyrightInfoType" minOccurs="0"/>
+    </xs:sequence>
+
+    <xs:attribute name="id" type="UIDType" use="required"/>
+    <xs:attributeGroup ref="globalAttrGrp"/>
+</xs:complexType>
+
+
+<!--=====================================================-->
+<!--  ModelGraphic element definition -->
+<!--=====================================================-->
+<xs:complexType name="ModelGraphicType">
+    <xs:annotation>
+        <xs:documentation>A special graphic depicts the model of the aircraft</xs:documentation>
+    </xs:annotation>
+
+    <xs:sequence>
+        <xs:element name="Illustration" type="IllustrationType"/>
+    </xs:sequence>
+
+</xs:complexType>
+
+<!--=====================================================-->
+<!--  ManualInfo element definition -->
+<!--=====================================================-->
+<xs:complexType name="ManualInfoType">
+    <xs:annotation>
+        <xs:documentation>Information about a traditional manual (document)</xs:documentation>
+    </xs:annotation>
+
+	<xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:group ref="ShortTextGroupType"/>
+		<xs:group ref="CWNGroupType"/>
+    </xs:choice>
+	
+    <xs:attribute name="model" type="modelType" use="required"/>
+    <xs:attribute name="manualName" type="manualNameType" use="required"/>
+    <xs:attribute name="customer" type="customerNameType" use="required"/>
+    <xs:attribute name="docNumber" type="manualNumberType" use="required"/>
+    <xs:attribute name="issueDate" type="genericStrType" use="required"/>
+    <xs:attribute name="revNumber" type="genericStrType" use="required"/>
+    <xs:attribute name="revDate" type="genericStrType" use="required"/>
+    <xs:attribute name="bulletinPackageRevNumber" type="genericStrType" use="optional"/>
+    <xs:attribute name="bulletinPackageRevDate" type="genericStrType" use="optional"/>
+</xs:complexType>
+
+
+<!--=====================================================-->
+<!--  Approval element definition -->
+<!--=====================================================-->
+<xs:complexType name="ApprovalsType">
+    <xs:annotation>
+        <xs:documentation>List of people who approves the document</xs:documentation>
+    </xs:annotation>
+
+    <xs:sequence>
+        <xs:element name="ApprovalPersonnel" type="ApprovalPersonnelType" maxOccurs="unbounded"/>
+    </xs:sequence>
+
+    <xs:attributeGroup ref="globalAttrGrp"/>
+</xs:complexType>
+
+
+<!--=====================================================-->
+<!--  ExportControlInfo element definition -->
+<!--=====================================================-->
+<xs:complexType name="ExportControlInfoType">
+    <xs:annotation>
+        <xs:documentation>Legal information on Export Control</xs:documentation>
+    </xs:annotation>
+
+    <xs:sequence>
+        <xs:element name="ExpCtrlCategory" type="ExpCtrlCategoryType"/>
+        <xs:element name="ExpCtrlStatement" type="ExpCtrlStatementType"/>
+    </xs:sequence>
+
+    <xs:attributeGroup ref="globalAttrGrp"/>
+</xs:complexType>
+
+
+<!--=====================================================-->
+<!--  ExportControlCategory element definition -->
+<!--=====================================================-->
+<xs:complexType name="ExpCtrlCategoryType">
+    <xs:annotation>
+        <xs:documentation>Export Control Category</xs:documentation>
+    </xs:annotation>
+
+    <xs:sequence>
+        <xs:element name="Para" type="ParaType"/>
+		<xs:sequence>
+			<xs:element name="ECCNExpCtrlDate" type="xs:date" minOccurs="0"/>
+			<xs:element name="ECCN" type="SimpleMixedContentType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:sequence>
+			<xs:element name="USMLExpCtrlDate" type="xs:date" minOccurs="0"/>
+			<xs:element name="USML" type="SimpleMixedContentType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+    </xs:sequence>
+
+    <xs:attributeGroup ref="globalAttrGrp"/>
+</xs:complexType>
+
+
+
+<!--=====================================================-->
+<!--  CopyrightInfo element definition -->
+<!--=====================================================-->
+<xs:complexType name="CopyrightInfoType">
+    <xs:annotation>
+        <xs:documentation>copyright information</xs:documentation>
+    </xs:annotation>
+
+    <xs:sequence>
+        <xs:element name="CopyrightHeading" type="SimpleMixedContentType"/>
+        <xs:element name="CopyrightText" type="CopyrightTextType" minOccurs="0"/>
+    </xs:sequence>
+
+    <xs:attribute name="year" type="yearType" use="required"/>
+    <xs:attribute name="companyName" type="genericStrType" use="required"/>
+    <xs:attribute name="ARR" type="genericStrType" default="All Rights Reserved"/>
+    <xs:attributeGroup ref="globalAttrGrp"/>
+</xs:complexType>
+
+
+<!--=====================================================-->
+<!--  ApprovalPersonnel element definition -->
+<!--=====================================================-->
+<xs:complexType name="ApprovalPersonnelType">
+    <xs:annotation>
+        <xs:documentation>Person who makes the approval</xs:documentation>
+    </xs:annotation>
+
+    <xs:sequence>
+        <xs:element name="SignatureLine" type="SimpleMixedContentType"/>
+        <xs:element name="SignatureName" type="SimpleMixedContentType"/>
+        <xs:element name="SignaturePosition" type="SimpleMixedContentType"/>
+    </xs:sequence>
+
+    <xs:attributeGroup ref="globalAttrGrp"/>
+</xs:complexType>
+
+<!--=====================================================-->
+<!--  CopyrightText element definition -->
+<!--=====================================================-->
+<xs:complexType name="CopyrightTextType">
+    <xs:annotation>
+        <xs:documentation>copyright info description</xs:documentation>
+    </xs:annotation>
+
+	<xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:group ref="ShortTextNoteGroupType"/>
+    </xs:choice>
+	
+</xs:complexType>
+
+
+<!--=====================================================-->
+<!--  ExpCtrlStatement element definition -->
+<!--=====================================================-->
+<xs:complexType name="ExpCtrlStatementType">
+    <xs:annotation>
+        <xs:documentation>Export Control info description</xs:documentation>
+    </xs:annotation>
+
+	<xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:group ref="ShortTextNoteGroupType"/>
+    </xs:choice>
+	
+</xs:complexType>
+
+</xs:schema>

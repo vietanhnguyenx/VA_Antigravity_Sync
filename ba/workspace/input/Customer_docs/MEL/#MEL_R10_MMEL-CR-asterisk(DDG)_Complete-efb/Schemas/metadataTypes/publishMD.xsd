@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://www.boeing.com/FTID-ML"
+    xmlns:rev="http://www.boeing.com/FTID-ML/Revision"
+    targetNamespace="http://www.boeing.com/FTID-ML" 
+    elementFormDefault="qualified" 
+    attributeFormDefault="unqualified"
+    version="FTID 2.6">
+
+<!-- 	
+=================================================================
+
+
+Copyright Information:
+      Boeing Proprietary and Confidential - 
+      All Rights Reserved since 2006.
+
+      This schema file is part of the Boeing Flight Technical 
+      Integrated Data (FTID) Specification based on XML.
+      All rights are reserved under Boeing Flight Operations 
+      digital data entitlements, products or services.
+
+     
+Contact Information:   	
+        The Boeing Company
+        Flight Operations Support
+        P.O. Box 3707	MS 20-89
+        Seattle, WA 98124-2207
+        USA
+        email:  flighttraining@Boeing.com
+        Phone:  (206) 662-4000
+        Fax:    (206) 662-4743
+
+		
+===================================================================
+-->
+
+<xs:include schemaLocation="../attributeTypes/generalAttrs.xsd"/>
+<xs:import namespace="http://www.boeing.com/FTID-ML/Revision" schemaLocation="revision.xsd"/>
+<xs:include schemaLocation="effect.xsd"/>
+<xs:include schemaLocation="ataPOF.xsd"/>
+<xs:include schemaLocation="ataSystems.xsd"/>
+<xs:include schemaLocation="../basicDataTypes/groups.xsd"/>
+
+
+<!--=====================================================-->
+<!--  PUMetaData element definition -->
+<!--  
+      Note: If exportControl is 'Y' or Yes, then handling of the
+            information must be complied to the Export Control 
+            Regulation of the U.S. Government.
+-->
+<!--=====================================================-->
+<xs:complexType name="PUMetaDataType">
+    <xs:annotation>
+        <xs:documentation>All applicable metadata for a Publish-Unit XML instance</xs:documentation>
+    </xs:annotation>
+
+    <xs:sequence>
+        <xs:element name="PUInfo" type="PUInfoType"/>
+        <xs:element name="PURevInfo" type="PURevInfoType"/>
+        <xs:element name="PUEffectivity" type="PUEffectivityType" minOccurs="0"/>
+        <xs:element name="RegulatoryInfo" type="RegulatoryInfoType" minOccurs="0"/>
+        <xs:element name="ATASystems" type="ATASystemsType" minOccurs="0"/>
+        <xs:element name="POF" type="POFType" minOccurs="0"/>
+    </xs:sequence>
+
+    <xs:attribute name="publishCycleType" type="publishCycleTypeType" default="Complete"/>
+    <xs:attribute name="publishMethod" type="publishMethodType" default="Internal"/>
+    <xs:attribute name="exportControl" type="YNType" default="N"/>
+</xs:complexType>
+
+
+
+<!--=====================================================-->
+<!--  PUInfo element definition -->
+<!--=====================================================-->
+<xs:complexType name="PUInfoType">
+    <xs:annotation>
+        <xs:documentation>Tranditional metadata for a XML publish unit</xs:documentation>
+    </xs:annotation>
+
+    <xs:attribute name="author" type="authorType" use="optional"/>
+    <xs:attribute name="model" type="modelType" use="required"/>
+    <xs:attribute name="manualCode" type="manualCodeType" use="optional"/>
+    <xs:attribute name="manualName" type="manualNameType" use="optional"/>
+    <xs:attribute name="customerCode" type="customerCodeType" use="optional"/>
+    <xs:attribute name="customerName" type="customerNameType" use="optional"/>
+    <xs:attribute name="superSectionNumber" type="superSectionNumberType" use="optional"/>
+    <xs:attribute name="manualNumber" type="manualNumberType" use="optional"/>
+    <xs:attribute name="chapterNumber" type="chapterNumberType" use="optional"/>
+    <xs:attribute name="chapterName" type="chapterNameType" use="optional"/>
+    <xs:attribute name="sectionNumber" type="sectionNumberType" use="optional"/>
+    <xs:attribute name="sectionName" type="sectionNameType" use="optional"/>
+
+</xs:complexType>
+
+
+<!--=====================================================-->
+<!--  PURevInfo element definition -->
+<!--=====================================================-->
+<xs:complexType name="PURevInfoType">
+    <xs:annotation>
+        <xs:documentation>Revision metadata for a XML publish unit</xs:documentation>
+    </xs:annotation>
+
+    <xs:attributeGroup ref="rev:revAttrGrp"/>
+</xs:complexType>
+
+
+<!--=====================================================-->
+<!--  PUEffectivity element definition -->
+<!--=====================================================-->
+<xs:complexType name="PUEffectivityType">
+    <xs:annotation>
+        <xs:documentation>Effectivity for a XML publish unit</xs:documentation>
+    </xs:annotation>
+
+    <xs:sequence>
+        <xs:element name="Effectivities" type="EffectivitiesType" minOccurs="0"/>
+    </xs:sequence>
+
+    <xs:attribute name="airframe" type="modelType" use="optional"/>
+    <xs:attribute name="engine" type="engineType" use="optional"/>
+    <xs:attribute name="equipment" type="equipmentType" use="optional"/>
+</xs:complexType>
+
+
+<!--=====================================================-->
+<!--  RegulatoryInfo element definition -->
+<!--=====================================================-->
+<xs:complexType name="RegulatoryInfoType">
+    <xs:annotation>
+        <xs:documentation>Main container for Regulatory Info</xs:documentation>
+    </xs:annotation>
+
+    <xs:sequence>
+        <xs:element name="RegulatoryInfoItem" type="RegulatoryInfoItemType" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+
+</xs:complexType>
+
+
+<!--=====================================================-->
+<!--  RegulatoryInfoItem element definition -->
+<!--=====================================================-->
+<xs:complexType name="RegulatoryInfoItemType">
+    <xs:annotation>
+        <xs:documentation>Regulatory info item</xs:documentation>
+    </xs:annotation>
+
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:group ref="ShortTextGroupType"/>
+    </xs:choice>
+
+    <xs:attribute name="agencyName" type="agencyNameType" use="optional"/>
+    <xs:attribute name="certified" type="YNType" default='N'/>
+    <xs:attribute name="displayMethod" type="displayMethodType" default='none'/>
+</xs:complexType>
+
+
+<!--=====================================================-->
+<!--  display Method attribute definition -->
+<!--=====================================================-->
+<xs:simpleType name="displayMethodType">
+    <xs:annotation>
+        <xs:documentation>How the regulatory info is displayed</xs:documentation>
+    </xs:annotation>
+
+    <xs:restriction base="xs:NMTOKEN">
+        <xs:enumeration value="top"/>
+        <xs:enumeration value="bottom"/>
+        <xs:enumeration value="none"/>
+    </xs:restriction>
+</xs:simpleType>
+
+
+<!--=====================================================-->
+<!--  Publish Cycle Type attribute definition -->
+<!--=====================================================-->
+<xs:simpleType name="publishCycleTypeType">
+    <xs:annotation>
+        <xs:documentation>Indicates how the publish-unit is published  in related to a given delivery</xs:documentation>
+    </xs:annotation>
+
+    <xs:restriction base="xs:NMTOKEN">
+        <xs:enumeration value="Complete"/>
+        <xs:enumeration value="Incremental"/>
+        <xs:enumeration value="Temporary"/>
+        <xs:enumeration value="Test"/>
+    </xs:restriction>
+</xs:simpleType>
+
+
+<!--=====================================================-->
+<!--  Publish Method Type attribute definition -->
+<!--=====================================================-->
+<xs:simpleType name="publishMethodType">
+    <xs:annotation>
+        <xs:documentation>Indicates if the data units are inclusive/exclusive in the publish-unit.</xs:documentation>
+    </xs:annotation>
+
+    <xs:restriction base="xs:NMTOKEN">
+        <xs:enumeration value="Internal"/>
+        <xs:enumeration value="External"/>
+        <xs:enumeration value="Mixed"/>
+    </xs:restriction>
+</xs:simpleType>
+
+
+</xs:schema>
+

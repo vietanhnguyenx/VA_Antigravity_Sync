@@ -1,0 +1,1583 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM">]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.2-21-51-01.998550.2-21-51-01" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="21" superSectionNumber="2" sectionName="MEL" chapterName="Air Conditioning" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2025-09-30" rev:revStatus="R" rev:revNumber="10" />
+</PUMetaData>
+<MELItem itemNbr="21-51-01" id="X-BOEING:FTID:81205.787.DDG.CU.MEL.2-21-51-01.1.2-21-51-01">
+<Title>Cabin Air Compressor (CAC) Systems</Title>
+<MELSubItem itemNbr="21-51-01-01">
+<Title>Airplanes Without OFCR and OFAR Installed</Title>
+<MELSubItem itemNbr="21-51-01-01-01">
+<Title>Left CACs</Title>
+<MELSubItem itemNbr="21-51-01-01-01-01">
+<Title>
+<?FTID-xref 1434879.2-21-51-01?>787-9 (VN-A865, VN-A866, VN-A869)</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="2" nbrRequired="1" maintIndicator="(M)">
+<DispatchConditionRemarks>
+<Para>One may be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Inoperative CAC is deactivated.</Para>
+</ListItem>
+<ListItem>
+<Para>Left air conditioning pack operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>VFSG associated with operating left CAC operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Trim air systems operate normally.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Note>
+<Para>For an air conditioning pack to be operating normally, the following items must operate normally.</Para>
+</Note>
+<table frame="all">
+<tgroup cols="2" colsep="1">
+<colspec colname="1" colwidth="28%" />
+<colspec colname="2" colwidth="72%" />
+<thead>
+<row rowsep="1">
+<entry colname="1">
+<Para>
+<Emphasis txtStyle="bold">MEL Item</Emphasis>
+</Para>
+</entry>
+<entry colname="2">
+<Para>
+<Emphasis txtStyle="bold">Associated Status Message</Emphasis>
+</Para>
+</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">21-51-09</Para>
+</entry>
+<entry colname="2">
+<Para align="center">CABIN TEMP CONTROL L or R</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">21-52-01</Para>
+</entry>
+<entry colname="2">
+<Para align="center">PACK L or R</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">21-52-03</Para>
+</entry>
+<entry colname="2">
+<Para align="center">PACK ACM L or R</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">21-52-04</Para>
+</entry>
+<entry colname="2">
+<Para align="center">ACM CPRSR OUTLET SNSR L or R</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">21-52-05</Para>
+</entry>
+<entry colname="2">
+<Para align="center">CONDENSER INLET SENSOR L or R</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">21-52-05</Para>
+</entry>
+<entry colname="2">
+<Para align="center">LOW LIMIT VALVE L or R</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">21-52-07</Para>
+</entry>
+<entry colname="2">
+<Para align="center">PACK OUTLET TEMP SENSORS L or R</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">21-52-08</Para>
+</entry>
+<entry colname="2">
+<Para align="center">ECONOMY COOLING VALVE L or R</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">21-52-09</Para>
+</entry>
+<entry colname="2">
+<Para align="center">ACM BYPASS VALVE L or R</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">21-52-10</Para>
+</entry>
+<entry colname="2">
+<Para align="center">RAM AIR INLET DOOR L or R</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">21-52-11</Para>
+</entry>
+<entry colname="2">
+<Para align="center">RAM AIR EXIT DOOR L or R</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center" rev:revStatus="R" rev:revHighlight="Corrected the associated status message to remove the word &quot;AIR&quot;.">
+<?FTID-rev start?>21-52-12<?FTID-rev end?></Para>
+</entry>
+<entry colname="2">
+<Para align="center">RAM FAN L or R</Para>
+</entry>
+</row>
+<row rowsep="0">
+<entry colname="1">
+<Para align="center">21-52-13</Para>
+</entry>
+<entry colname="2">
+<Para align="center">PACK BAY ODS LOOP L1or L2 or R1 or R2</Para>
+</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+<Note>
+<Para>For the left trim air system to be operating normally, the following items must operate normally.</Para>
+</Note>
+<table frame="all">
+<tgroup cols="2" colsep="1">
+<colspec colname="1" colwidth="28%" />
+<colspec colname="2" colwidth="72%" />
+<thead>
+<row rowsep="1">
+<entry colname="1">
+<Para>
+<Emphasis txtStyle="bold">MEL Item</Emphasis>
+</Para>
+</entry>
+<entry colname="2">
+<Para>
+<Emphasis txtStyle="bold">Associated Status Message</Emphasis>
+</Para>
+</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">21-61-01</Para>
+</entry>
+<entry colname="2">
+<Para align="center">TRIM VALVE FLIGHT DECK L</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">21-61-02</Para>
+</entry>
+<entry colname="2">
+<Para align="center">DUCT SENSORS FLIGHT DECK L</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">21-61-04</Para>
+</entry>
+<entry colname="2">
+<Para align="center">TRIM VALVE ZONE B, D</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">21-61-05</Para>
+</entry>
+<entry colname="2">
+<Para align="center">DUCT SENSOR ZONE B2, D</Para>
+</entry>
+</row>
+<row rowsep="0">
+<entry colname="1">
+<Para align="center">21-62-01</Para>
+</entry>
+<entry colname="2">
+<Para align="center">TRIM AIR PRSOV L</Para>
+</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+<Note>
+<Para>For the right trim air system to be operating normally, the following items must operate normally.</Para>
+</Note>
+<table frame="all">
+<tgroup cols="2" colsep="1">
+<colspec colname="1" colwidth="28%" />
+<colspec colname="2" colwidth="72%" />
+<thead>
+<row rowsep="1">
+<entry colname="1">
+<Para>
+<Emphasis txtStyle="bold">MEL Item</Emphasis>
+</Para>
+</entry>
+<entry colname="2">
+<Para>
+<Emphasis txtStyle="bold">Associated Status Message</Emphasis>
+</Para>
+</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">21-61-01</Para>
+</entry>
+<entry colname="2">
+<Para align="center">TRIM VALVE FLIGHT DECK R</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">21-61-02</Para>
+</entry>
+<entry colname="2">
+<Para align="center">DUCT SENSORS FLIGHT DECK R</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">21-61-04</Para>
+</entry>
+<entry colname="2">
+<Para align="center">TRIM VALVE ZONE A, C</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">21-61-05</Para>
+</entry>
+<entry colname="2">
+<Para align="center">DUCT SENSOR ZONE A2, C</Para>
+</entry>
+</row>
+<row rowsep="0">
+<entry colname="1">
+<Para align="center">21-62-01</Para>
+</entry>
+<entry colname="2">
+<Para align="center">TRIM AIR PRSOV R</Para>
+</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+<Note>
+<Para>CACs and their associated VFSGs are listed below:</Para>
+</Note>
+<table frame="all">
+<tgroup cols="2" colsep="1">
+<colspec colname="1" colwidth="50%" />
+<colspec colname="2" colwidth="50%" />
+<thead>
+<row rowsep="1">
+<entry colname="1">
+<Para>
+<Emphasis txtStyle="bold">Cabin Air Compressor</Emphasis>
+</Para>
+</entry>
+<entry colname="2">
+<Para>
+<Emphasis txtStyle="bold">Associated VFSG</Emphasis>
+</Para>
+</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">CAC L1</Para>
+</entry>
+<entry colname="2">
+<Para align="center">VFSG L1</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">CAC L2</Para>
+</entry>
+<entry colname="2">
+<Para align="center">VFSG L2</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">CAC R1</Para>
+</entry>
+<entry colname="2">
+<Para align="center">VFSG R1</Para>
+</entry>
+</row>
+<row rowsep="0">
+<entry colname="1">
+<Para align="center">CAC R2</Para>
+</entry>
+<entry colname="2">
+<Para align="center">VFSG R2</Para>
+</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+<Note>
+<Para>A VFSG system is considered to be operating normally if its associated status message (ELEC GEN SYS L1, L2, R1 or R2) is not displayed.  </Para>
+</Note>
+<Para>Deactivate the inoperative cabin air compressor and confirm that associated check valve operates normally (AMM DDG 21-51-01).</Para>
+<List listType="1.">
+<ListItem>
+<Para>Set the affected cabin air compressor power switch OFF on the MISC SYSTEM CTRLS (MSC) maintenance page.</Para>
+</ListItem>
+<ListItem>
+<Para>Confirm associated cabin air compressor check valve operates normally:</Para>
+<List listType="A.">
+<ListItem>
+<Para>Set associated air conditioning pack ON for five minutes.</Para>
+<Note>
+<Para>If the RAF is inoperative, the pack will not operate on the ground. The PACK L or PACK MODE L advisory message will be displayed when ram air duct cooling is not available.</Para>
+</Note>
+</ListItem>
+<ListItem>
+<Para>On AIR CONDITIONING maintenance page 1, confirm that COMP OUT temperature of the inoperative CAC is at least 10 degrees C less than the COMP OUT temperature of the associated operating CAC.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>For check valve not operating normally, set associated pack OFF.  The airplane may be dispatched using MEL item 21-52-01.</Para>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+<OperationNote>
+<List listType="1.">
+<ListItem>
+<Para>If cabin temperatures become warmer than desired, consider one or more of the following temporary actions:</Para>
+<List listType="A.">
+<ListItem>
+<Para>Select IFE system modes designed to reduce cabin heat loads.</Para>
+<Note>
+<Para>Availability of modes dependent on IFE system installed and airline modifiable options.</Para>
+</Note>
+</ListItem>
+<ListItem>
+<Para>Set IFE off using the IFE Power switch on the Video Control Station.</Para>
+</ListItem>
+<ListItem>
+<Para>Select HEAT REDUCTION mode using the Cabin Attendant Panel TEMPERATURE menu (adjusts cabin lighting and window shading).</Para>
+</ListItem>
+<ListItem>
+<Effectivities>
+<Effectivity>For FCAC installed:</Effectivity>
+</Effectivities>
+<Para>If on ground, set FCAC OFF.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>If cabin or flight deck temperatures become too cool, climbing to a higher altitude will increase the heating capability of the air conditioning system.</Para>
+</ListItem>
+<ListItem>
+<Para>In the cruise mode, the cabin altitude is normally at or below 6,000 feet.  During some degraded operations, the cabin altitude may increase to 8,000 feet.  This can occur if the air conditioning system is not achieving cabin temperature and ventilation rate targets, and would be more likely with an inoperative pack or CAC.</Para>
+</ListItem>
+<ListItem>
+<Para>For only L1 CAC inoperative, PACK R Advisory message may be displayed for approximately 60 seconds after takeoff and after landing.</Para>
+</ListItem>
+<ListItem>
+<Para>For only R1 CAC inoperative, PACK L Advisory message may be displayed for approximately 60 seconds after takeoff and after landing.</Para>
+</ListItem>
+</List>
+</OperationNote>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="21-51-01-01-01-02">
+<Title>
+<?FTID-xref 1434905.2-21-51-01?>787-10 (VN-A872, VN-A873, VN-A874, VN-A877, VN-A878, VN-A879)</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="2" nbrRequired="1" maintIndicator="(M)">
+<DispatchConditionRemarks>
+<Para>One may be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Inoperative CAC is deactivated.</Para>
+</ListItem>
+<ListItem>
+<Para>Left air conditioning pack operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>VFSG associated with operating left CAC operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Trim air systems operate normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Both lower recirculation fans operate normally.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Note>
+<Para>For an air conditioning pack to be operating normally, the following items must operate normally.</Para>
+</Note>
+<table frame="all">
+<tgroup cols="2" colsep="1">
+<colspec colname="1" colwidth="28%" />
+<colspec colname="2" colwidth="72%" />
+<thead>
+<row rowsep="1">
+<entry colname="1">
+<Para>
+<Emphasis txtStyle="bold">MEL Item</Emphasis>
+</Para>
+</entry>
+<entry colname="2">
+<Para>
+<Emphasis txtStyle="bold">Associated Status Message</Emphasis>
+</Para>
+</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">21-51-09</Para>
+</entry>
+<entry colname="2">
+<Para align="center">CABIN TEMP CONTROL L or R</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">21-52-01</Para>
+</entry>
+<entry colname="2">
+<Para align="center">PACK L or R</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">21-52-03</Para>
+</entry>
+<entry colname="2">
+<Para align="center">PACK ACM L or R</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">21-52-04</Para>
+</entry>
+<entry colname="2">
+<Para align="center">ACM CPRSR OUTLET SNSR L or R</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">21-52-05</Para>
+</entry>
+<entry colname="2">
+<Para align="center">CONDENSER INLET SENSOR L or R</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">21-52-05</Para>
+</entry>
+<entry colname="2">
+<Para align="center">LOW LIMIT VALVE L or R</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">21-52-07</Para>
+</entry>
+<entry colname="2">
+<Para align="center">PACK OUTLET TEMP SENSORS L or R</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">21-52-08</Para>
+</entry>
+<entry colname="2">
+<Para align="center">ECONOMY COOLING VALVE L or R</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">21-52-09</Para>
+</entry>
+<entry colname="2">
+<Para align="center">ACM BYPASS VALVE L or R</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">21-52-10</Para>
+</entry>
+<entry colname="2">
+<Para align="center">RAM AIR INLET DOOR L or R</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">21-52-11</Para>
+</entry>
+<entry colname="2">
+<Para align="center">RAM AIR EXIT DOOR L or R</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center" rev:revStatus="R" rev:revHighlight="Corrected the associated status message to remove the word &quot;AIR&quot;.">
+<?FTID-rev start?>21-52-12<?FTID-rev end?></Para>
+</entry>
+<entry colname="2">
+<Para align="center">RAM FAN L or R</Para>
+</entry>
+</row>
+<row rowsep="0">
+<entry colname="1">
+<Para align="center">21-52-13</Para>
+</entry>
+<entry colname="2">
+<Para align="center">PACK BAY ODS LOOP L1or L2 or R1 or R2</Para>
+</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+<Note>
+<Para>For the left trim air system to be operating normally, the following items must operate normally.</Para>
+</Note>
+<table frame="all">
+<tgroup cols="2" colsep="1">
+<colspec colname="1" colwidth="28%" />
+<colspec colname="2" colwidth="72%" />
+<thead>
+<row rowsep="1">
+<entry colname="1">
+<Para>
+<Emphasis txtStyle="bold">MEL Item</Emphasis>
+</Para>
+</entry>
+<entry colname="2">
+<Para>
+<Emphasis txtStyle="bold">Associated Status Message</Emphasis>
+</Para>
+</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">21-61-01</Para>
+</entry>
+<entry colname="2">
+<Para align="center">TRIM VALVE FLIGHT DECK L</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">21-61-02</Para>
+</entry>
+<entry colname="2">
+<Para align="center">DUCT SENSORS FLIGHT DECK L</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">21-61-04</Para>
+</entry>
+<entry colname="2">
+<Para align="center">TRIM VALVE ZONE B, D</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">21-61-05</Para>
+</entry>
+<entry colname="2">
+<Para align="center">DUCT SENSOR ZONE B2, D</Para>
+</entry>
+</row>
+<row rowsep="0">
+<entry colname="1">
+<Para align="center">21-62-01</Para>
+</entry>
+<entry colname="2">
+<Para align="center">TRIM AIR PRSOV L</Para>
+</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+<Note>
+<Para>For the right trim air system to be operating normally, the following items must operate normally.</Para>
+</Note>
+<table frame="all">
+<tgroup cols="2" colsep="1">
+<colspec colname="1" colwidth="28%" />
+<colspec colname="2" colwidth="72%" />
+<thead>
+<row rowsep="1">
+<entry colname="1">
+<Para>
+<Emphasis txtStyle="bold">MEL Item</Emphasis>
+</Para>
+</entry>
+<entry colname="2">
+<Para>
+<Emphasis txtStyle="bold">Associated Status Message</Emphasis>
+</Para>
+</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">21-61-01</Para>
+</entry>
+<entry colname="2">
+<Para align="center">TRIM VALVE FLIGHT DECK R</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">21-61-02</Para>
+</entry>
+<entry colname="2">
+<Para align="center">DUCT SENSORS FLIGHT DECK R</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">21-61-04</Para>
+</entry>
+<entry colname="2">
+<Para align="center">TRIM VALVE ZONE A, C</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">21-61-05</Para>
+</entry>
+<entry colname="2">
+<Para align="center">DUCT SENSOR ZONE A2, C</Para>
+</entry>
+</row>
+<row rowsep="0">
+<entry colname="1">
+<Para align="center">21-62-01</Para>
+</entry>
+<entry colname="2">
+<Para align="center">TRIM AIR PRSOV R</Para>
+</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+<Note>
+<Para>CACs and their associated VFSGs are listed below:</Para>
+</Note>
+<table frame="all">
+<tgroup cols="2" colsep="1">
+<colspec colname="1" colwidth="50%" />
+<colspec colname="2" colwidth="50%" />
+<thead>
+<row rowsep="1">
+<entry colname="1">
+<Para>
+<Emphasis txtStyle="bold">Cabin Air Compressor</Emphasis>
+</Para>
+</entry>
+<entry colname="2">
+<Para>
+<Emphasis txtStyle="bold">Associated VFSG</Emphasis>
+</Para>
+</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">CAC L1</Para>
+</entry>
+<entry colname="2">
+<Para align="center">VFSG L1</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">CAC L2</Para>
+</entry>
+<entry colname="2">
+<Para align="center">VFSG L2</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">CAC R1</Para>
+</entry>
+<entry colname="2">
+<Para align="center">VFSG R1</Para>
+</entry>
+</row>
+<row rowsep="0">
+<entry colname="1">
+<Para align="center">CAC R2</Para>
+</entry>
+<entry colname="2">
+<Para align="center">VFSG R2</Para>
+</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+<Note>
+<Para>A VFSG system is considered to be operating normally if its associated status message (ELEC GEN SYS L1, L2, R1 or R2) is not displayed.  </Para>
+</Note>
+<Para>Deactivate the inoperative cabin air compressor and confirm that associated check valve operates normally (AMM DDG 21-51-01).</Para>
+<List listType="1.">
+<ListItem>
+<Para>Set the affected cabin air compressor power switch OFF on the MISC SYSTEM CTRLS (MSC) maintenance page.</Para>
+</ListItem>
+<ListItem>
+<Para>Confirm associated cabin air compressor check valve operates normally:</Para>
+<List listType="A.">
+<ListItem>
+<Para>Set associated air conditioning pack ON for five minutes.</Para>
+</ListItem>
+<ListItem>
+<Para>On AIR CONDITIONING maintenance page 1, confirm that COMP OUT temperature of the inoperative CAC is at least 10 degrees C less than the COMP OUT temperature of the associated operating CAC.</Para>
+</ListItem>
+</List>
+<Note>
+<Para>If the RAF is inoperative, the pack will not operate on the ground. The PACK L or PACK MODE L advisory message will be displayed when ram air duct cooling is not available.</Para>
+</Note>
+</ListItem>
+<ListItem>
+<Para>For check valve not operating normally, set associated pack OFF.  The airplane may be dispatched using MEL item 21-52-01.</Para>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+<OperationNote>
+<List listType="1.">
+<ListItem>
+<Para>If cabin temperatures become warmer than desired, consider one or more of the following temporary actions:</Para>
+<List listType="A.">
+<ListItem>
+<Para>Select IFE system modes designed to reduce cabin heat loads.</Para>
+<Note>
+<Para>Availability of modes dependent on IFE system installed and airline modifiable options.</Para>
+</Note>
+</ListItem>
+<ListItem>
+<Para>Set IFE off using the IFE Power switch on the Video Control Station.</Para>
+</ListItem>
+<ListItem>
+<Para>Select HEAT REDUCTION mode using the Cabin Attendant Panel TEMPERATURE menu (adjusts cabin lighting and window shading).</Para>
+</ListItem>
+<ListItem>
+<Effectivities>
+<Effectivity>For FCAC installed:</Effectivity>
+</Effectivities>
+<Para>If on ground, set FCAC OFF.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>If cabin or flight deck temperatures become too cool, climbing to a higher altitude will increase the heating capability of the air conditioning system.</Para>
+</ListItem>
+<ListItem>
+<Para>In the cruise mode, the cabin altitude is normally at or below 6,000 feet.  During some degraded operations, the cabin altitude may increase to 8,000 feet.  This can occur if the air conditioning system is not achieving cabin temperature and ventilation rate targets, and would be more likely with an inoperative pack or CAC.</Para>
+</ListItem>
+<ListItem>
+<Para>For only L1 CAC inoperative, PACK R Advisory message may be displayed for approximately 60 seconds after takeoff and after landing.</Para>
+</ListItem>
+<ListItem>
+<Para>For only R1 CAC inoperative, PACK L Advisory message may be displayed for approximately 60 seconds after takeoff and after landing.</Para>
+</ListItem>
+</List>
+</OperationNote>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="21-51-01-01-01-03">
+<Title>787-9 (VN-A865, VN-A866, VN-A869)</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="2" nbrRequired="0" maintIndicator="(M)">
+<DispatchConditionRemarks>
+<Para>May be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Left CACs are deactivated.</Para>
+</ListItem>
+<ListItem>
+<Para>Left air conditioning pack is considered inoperative.</Para>
+</ListItem>
+<ListItem>
+<Para>Right trim air system operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>VFSGs associated with right CACs operate normally.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<Note>
+<Para>The airplane must also be dispatched using MEL item 21-52-01.</Para>
+</Note>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Use MEL item 21-51-01-01-01-01 (M) procedure.</Para>
+</MaintenanceProcedure>
+<OperationNote>
+<Para>Use MEL item 21-51-01-01-01-01 operations note.</Para>
+</OperationNote>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="21-51-01-01-01-04">
+<Title>787-10 (VN-A872, VN-A873, VN-A874, VN-A877, VN-A878, VN-A879)</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="2" nbrRequired="0" maintIndicator="(M)">
+<DispatchConditionRemarks>
+<Para>May be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Left CACs are deactivated.</Para>
+</ListItem>
+<ListItem>
+<Para>Left air conditioning pack is considered inoperative.</Para>
+</ListItem>
+<ListItem>
+<Para>Right trim air system operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>VFSGs associated with right CACs operate normally.</Para>
+</ListItem>
+<ListItem>
+<Para>With forward cargo air conditioning (FCAC) installed, forward cargo air conditioning remains OFF.</Para>
+</ListItem>
+<ListItem>
+<Para>Both lower recirculation fans operate normally.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<Note>
+<Para>The airplane must also be dispatched using MEL item 21-52-01.</Para>
+</Note>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Use MEL item 21-51-01-01-01-01 (M) procedure.</Para>
+</MaintenanceProcedure>
+<OperationNote>
+<Para>Use MEL item 21-51-01-01-01-01 operations note.</Para>
+</OperationNote>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+</MELSubItem>
+<MELSubItem itemNbr="21-51-01-01-02">
+<Title>Right CACs</Title>
+<MELSubItem itemNbr="21-51-01-01-02-01">
+<Title>787-9 (VN-A865, VN-A866, VN-A869)</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="2" nbrRequired="1" maintIndicator="(M)">
+<DispatchConditionRemarks>
+<Para>One may be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Inoperative CAC is deactivated.</Para>
+</ListItem>
+<ListItem>
+<Para>Right air conditioning pack operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>VFSG associated with operating right CAC operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Trim air systems operate normally.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Use MEL item 21-51-01-01-01-01 (M) procedure.</Para>
+</MaintenanceProcedure>
+<OperationNote>
+<Para>Use MEL item 21-51-01-01-01-01 operations note.</Para>
+</OperationNote>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="21-51-01-01-02-02">
+<Title>787-10</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="2" nbrRequired="1" maintIndicator="(M)">
+<DispatchConditionRemarks>
+<Para>One may be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Inoperative CAC is deactivated.</Para>
+</ListItem>
+<ListItem>
+<Para>Right air conditioning pack operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>VFSG associated with operating right CAC operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Trim air systems operate normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Both lower recirculation fans operate normally.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Use MEL item 21-51-01-01-01-02 (M) procedure.</Para>
+<Note>
+<Para>For R1 CAC inoperative, RAM FAN BACKUP LEFT A status message may be displayed after landing.</Para>
+</Note>
+</MaintenanceProcedure>
+<OperationNote>
+<Para>Use MEL item 21-51-01-01-01-02 operations note.</Para>
+</OperationNote>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="21-51-01-01-02-03">
+<Title>787-9 (VN-A865, VN-A866, VN-A869)</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="2" nbrRequired="0" maintIndicator="(M)">
+<DispatchConditionRemarks>
+<Para>May be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Right CACs are deactivated.</Para>
+</ListItem>
+<ListItem>
+<Para>Right air conditioning pack is considered inoperative.</Para>
+</ListItem>
+<ListItem>
+<Para>Left trim air system operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>VFSGs associated with left CACs operate normally.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<Note>
+<Para>The airplane must also be dispatched using MEL item 21-52-01.</Para>
+</Note>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Use MEL item 21-51-01-01-01-01 (M) procedure.</Para>
+</MaintenanceProcedure>
+<OperationNote>
+<Para>Use MEL item 21-51-01-01-01-01 operations note.</Para>
+</OperationNote>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="21-51-01-01-02-04">
+<Title>787-10 (VN-A872, VN-A873, VN-A874, VN-A877, VN-A878, VN-A879)</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="2" nbrRequired="0" maintIndicator="(M)">
+<DispatchConditionRemarks>
+<Para>May be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Right CACs are deactivated.</Para>
+</ListItem>
+<ListItem>
+<Para>Right air conditioning pack is considered inoperative.</Para>
+</ListItem>
+<ListItem>
+<Para>Left trim air system operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>VFSGs associated with left CACs operate normally.</Para>
+</ListItem>
+<ListItem>
+<Para>With forward cargo air conditioning (FCAC) installed, forward cargo air conditioning remains OFF.</Para>
+</ListItem>
+<ListItem>
+<Para>Both lower recirculation fans operate normally.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<Note>
+<Para>The airplane must also be dispatched using MEL item 21-52-01.</Para>
+</Note>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Use MEL item 21-51-01-01-01-02 (M) procedure.</Para>
+<Note>
+<Para>RAM FAN BACKUP LEFT A status message may be displayed after landing.</Para>
+</Note>
+</MaintenanceProcedure>
+<OperationNote>
+<Para>Use MEL item 21-51-01-01-01-02 operations note.</Para>
+</OperationNote>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+</MELSubItem>
+</MELSubItem>
+<MELSubItem itemNbr="21-51-01-02">
+<Title>Airplanes With OFCR or OFAR Installed</Title>
+<MELSubItem itemNbr="21-51-01-02-01">
+<Title>Left CACs</Title>
+<MELSubItem itemNbr="21-51-01-02-01-01">
+<Title>
+<?FTID-xref 1434950.2-21-51-01?>787-9 (VN-A861, VN-A862, VN-A863, VN-A864, VN-A867, VN-A868, VN-A870, VN-A871)</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="2" nbrRequired="1" maintIndicator="(M)">
+<DispatchConditionRemarks>
+<Para>One may be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Inoperative CAC is deactivated.</Para>
+</ListItem>
+<ListItem>
+<Para>Left air conditioning pack operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>VFSG associated with operating left CAC operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Trim air systems operate normally.</Para>
+</ListItem>
+<ListItem>
+<Para>For OFCR or OFAR occupied and one opposite side Cabin Air Compressor inoperative, airplane remains at or below FL 350.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Note>
+<Para>For an air conditioning pack to be operating normally, the following items must operate normally.</Para>
+</Note>
+<table frame="all">
+<tgroup cols="2" colsep="1">
+<colspec colname="1" colwidth="28%" />
+<colspec colname="2" colwidth="72%" />
+<thead>
+<row rowsep="1">
+<entry colname="1">
+<Para>
+<Emphasis txtStyle="bold">MEL Item</Emphasis>
+</Para>
+</entry>
+<entry colname="2">
+<Para>
+<Emphasis txtStyle="bold">Associated Status Message</Emphasis>
+</Para>
+</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">21-51-09</Para>
+</entry>
+<entry colname="2">
+<Para align="center">CABIN TEMP CONTROL L or R</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">21-52-01</Para>
+</entry>
+<entry colname="2">
+<Para align="center">PACK L or R</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">21-52-03</Para>
+</entry>
+<entry colname="2">
+<Para align="center">PACK ACM L or R</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">21-52-04</Para>
+</entry>
+<entry colname="2">
+<Para align="center">ACM CPRSR OUTLET SNSR L or R</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">21-52-05</Para>
+</entry>
+<entry colname="2">
+<Para align="center">CONDENSER INLET SENSOR L or R</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">21-52-05</Para>
+</entry>
+<entry colname="2">
+<Para align="center">LOW LIMIT VALVE L or R</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">21-52-07</Para>
+</entry>
+<entry colname="2">
+<Para align="center">PACK OUTLET TEMP SENSORS L or R</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">21-52-08</Para>
+</entry>
+<entry colname="2">
+<Para align="center">ECONOMY COOLING VALVE L or R</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">21-52-09</Para>
+</entry>
+<entry colname="2">
+<Para align="center">ACM BYPASS VALVE L or R</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">21-52-10</Para>
+</entry>
+<entry colname="2">
+<Para align="center">RAM AIR INLET DOOR L or R</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">21-52-11</Para>
+</entry>
+<entry colname="2">
+<Para align="center">RAM AIR EXIT DOOR L or R</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center" rev:revStatus="R" rev:revHighlight="Corrected the associated status message to remove the word &quot;AIR&quot;.">
+<?FTID-rev start?>21-52-12<?FTID-rev end?></Para>
+</entry>
+<entry colname="2">
+<Para align="center">RAM FAN L or R</Para>
+</entry>
+</row>
+<row rowsep="0">
+<entry colname="1">
+<Para align="center">21-52-13</Para>
+</entry>
+<entry colname="2">
+<Para align="center">PACK BAY ODS LOOP L1or L2 or R1 or R2</Para>
+</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+<Note>
+<Para>For the left trim air system to be operating normally, the following items must operate normally.</Para>
+</Note>
+<table frame="all">
+<tgroup cols="2" colsep="1">
+<colspec colname="1" colwidth="28%" />
+<colspec colname="2" colwidth="72%" />
+<thead>
+<row rowsep="1">
+<entry colname="1">
+<Para>
+<Emphasis txtStyle="bold">MEL Item</Emphasis>
+</Para>
+</entry>
+<entry colname="2">
+<Para>
+<Emphasis txtStyle="bold">Associated Status Message</Emphasis>
+</Para>
+</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">21-61-01</Para>
+</entry>
+<entry colname="2">
+<Para align="center">TRIM VALVE FLIGHT DECK L</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">21-61-02</Para>
+</entry>
+<entry colname="2">
+<Para align="center">DUCT SENSORS FLIGHT DECK L</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">21-61-04</Para>
+</entry>
+<entry colname="2">
+<Para align="center">TRIM VALVE ZONE B, D</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">21-61-05</Para>
+</entry>
+<entry colname="2">
+<Para align="center">DUCT SENSOR ZONE B2, D</Para>
+</entry>
+</row>
+<row rowsep="0">
+<entry colname="1">
+<Para align="center">21-62-01</Para>
+</entry>
+<entry colname="2">
+<Para align="center">TRIM AIR PRSOV L</Para>
+</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+<Note>
+<Para>For the right trim air system to be operating normally, the following items must operate normally.</Para>
+</Note>
+<table frame="all">
+<tgroup cols="2" colsep="1">
+<colspec colname="1" colwidth="28%" />
+<colspec colname="2" colwidth="72%" />
+<thead>
+<row rowsep="1">
+<entry colname="1">
+<Para>
+<Emphasis txtStyle="bold">MEL Item</Emphasis>
+</Para>
+</entry>
+<entry colname="2">
+<Para>
+<Emphasis txtStyle="bold">Associated Status Message</Emphasis>
+</Para>
+</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">21-61-01</Para>
+</entry>
+<entry colname="2">
+<Para align="center">TRIM VALVE FLIGHT DECK R</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">21-61-02</Para>
+</entry>
+<entry colname="2">
+<Para align="center">DUCT SENSORS FLIGHT DECK R</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">21-61-04</Para>
+</entry>
+<entry colname="2">
+<Para align="center">TRIM VALVE ZONE A, C</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">21-61-05</Para>
+</entry>
+<entry colname="2">
+<Para align="center">DUCT SENSOR ZONE A2, C</Para>
+</entry>
+</row>
+<row rowsep="0">
+<entry colname="1">
+<Para align="center">21-62-01</Para>
+</entry>
+<entry colname="2">
+<Para align="center">TRIM AIR PRSOV R</Para>
+</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+<Note>
+<Para>CACs and their associated VFSGs are listed below:</Para>
+</Note>
+<table frame="all">
+<tgroup cols="2" colsep="1">
+<colspec colname="1" colwidth="50%" />
+<colspec colname="2" colwidth="50%" />
+<thead>
+<row rowsep="1">
+<entry colname="1">
+<Para>
+<Emphasis txtStyle="bold">Cabin Air Compressor</Emphasis>
+</Para>
+</entry>
+<entry colname="2">
+<Para>
+<Emphasis txtStyle="bold">Associated VFSG</Emphasis>
+</Para>
+</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">CAC L1</Para>
+</entry>
+<entry colname="2">
+<Para align="center">VFSG L1</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">CAC L2</Para>
+</entry>
+<entry colname="2">
+<Para align="center">VFSG L2</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">CAC R1</Para>
+</entry>
+<entry colname="2">
+<Para align="center">VFSG R1</Para>
+</entry>
+</row>
+<row rowsep="0">
+<entry colname="1">
+<Para align="center">CAC R2</Para>
+</entry>
+<entry colname="2">
+<Para align="center">VFSG R2</Para>
+</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+<Note>
+<Para>A VFSG system is considered to be operating normally if its associated status message (ELEC GEN SYS L1, L2, R1 or R2) is not displayed.  </Para>
+</Note>
+<Para>Deactivate the inoperative cabin air compressor and confirm that associated check valve operates normally (AMM DDG 21-51-01).</Para>
+<List listType="1.">
+<ListItem>
+<Para>Set the affected cabin air compressor power switch OFF on the MISC SYSTEM CTRLS (MSC) maintenance page.</Para>
+</ListItem>
+<ListItem>
+<Para>Confirm associated cabin air compressor check valve operates normally:</Para>
+<List listType="A.">
+<ListItem>
+<Para>Set associated air conditioning pack ON for five minutes.</Para>
+</ListItem>
+<ListItem>
+<Para>On AIR CONDITIONING maintenance page 1, confirm that COMP OUT temperature of the inoperative CAC is at least 10 degrees C less than the COMP OUT temperature of the associated operating CAC.</Para>
+</ListItem>
+</List>
+<Note>
+<Para>If the RAF is inoperative, the pack will not operate on the ground. The PACK L or PACK MODE L advisory message will be displayed when ram air duct cooling is not available.</Para>
+</Note>
+</ListItem>
+<ListItem>
+<Para>For check valve not operating normally, set associated pack OFF.  The airplane may be dispatched using MEL item 21-52-01.</Para>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+<OperationNote>
+<List listType="1.">
+<ListItem>
+<Para>If cabin temperatures become warmer than desired, consider one or more of the following temporary actions:</Para>
+<List listType="A.">
+<ListItem>
+<Para>Select IFE system modes designed to reduce cabin heat loads.</Para>
+<Note>
+<Para>Availability of modes dependent on IFE system installed and airline modifiable options.</Para>
+</Note>
+</ListItem>
+<ListItem>
+<Para>Set IFE off using the IFE Power switch on the Video Control Station.</Para>
+</ListItem>
+<ListItem>
+<Para>Select HEAT REDUCTION mode using the Cabin Attendant Panel TEMPERATURE menu (adjusts cabin lighting and window shading).</Para>
+</ListItem>
+<ListItem>
+<Effectivities>
+<Effectivity>For FCAC installed:</Effectivity>
+</Effectivities>
+<Para>If on ground, set FCAC OFF.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>If cabin or flight deck temperatures become too cool, climbing to a higher altitude will increase the heating capability of the air conditioning system.</Para>
+</ListItem>
+<ListItem>
+<Para>In the cruise mode, the cabin altitude is normally at or below 6,000 feet.  During some degraded operations, the cabin altitude may increase to 8,000 feet. This can occur if the air conditioning system is not achieving cabin temperature and ventilation rate targets, and would be more likely with an inoperative pack or CAC.</Para>
+</ListItem>
+<ListItem>
+<Para>For only L1 CAC inoperative, PACK R Advisory message may be displayed for approximately 60 seconds after takeoff and after landing.</Para>
+</ListItem>
+<ListItem>
+<Para>For only R1 CAC inoperative, PACK L Advisory message may be displayed for approximately 60 seconds after takeoff and after landing.</Para>
+</ListItem>
+</List>
+</OperationNote>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="21-51-01-02-01-03">
+<Title>787-9 (VN-A861, VN-A862, VN-A863, VN-A864, VN-A867, VN-A868, VN-A870, VN-A871)</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="2" nbrRequired="0" maintIndicator="(M)">
+<DispatchConditionRemarks>
+<Para>May be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Left CACs are deactivated.</Para>
+</ListItem>
+<ListItem>
+<Para>Left air conditioning pack is considered inoperative.</Para>
+</ListItem>
+<ListItem>
+<Para>Right trim air system operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>For OFCR or OFAR occupied, airplane remains at or below FL 350.</Para>
+</ListItem>
+<ListItem>
+<Para>VFSGs associated with right CACs operate normally.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<Note>
+<Para>The airplane must also be dispatched using MEL item 21-52-01.</Para>
+</Note>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Use MEL item 21-51-01-02-01-01 (M) procedure.</Para>
+</MaintenanceProcedure>
+<OperationNote>
+<Para>Use MEL item 21-51-01-02-01-01 operations note.</Para>
+</OperationNote>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+</MELSubItem>
+<MELSubItem itemNbr="21-51-01-02-02">
+<Title>Right CACs</Title>
+<MELSubItem itemNbr="21-51-01-02-02-01">
+<Title>787-9 (VN-A861, VN-A862, VN-A863, VN-A864, VN-A867, VN-A868, VN-A870, VN-A871)</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="2" nbrRequired="1" maintIndicator="(M)">
+<DispatchConditionRemarks>
+<Para>One may be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Inoperative CAC is deactivated.</Para>
+</ListItem>
+<ListItem>
+<Para>Right air conditioning pack operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>VFSG associated with operating right CAC operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Trim air systems operate normally.</Para>
+</ListItem>
+<ListItem>
+<Para>For OFCR or OFAR occupied and one opposite side Cabin Air Compressor inoperative, airplane remains at or below FL 350.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Use MEL item 21-51-01-02-01-01 (M) procedure.</Para>
+</MaintenanceProcedure>
+<OperationNote>
+<Para>Use MEL item 21-51-01-02-01-01 operations note.</Para>
+</OperationNote>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="21-51-01-02-02-03">
+<Title>787-9 (VN-A861, VN-A862, VN-A863, VN-A864, VN-A867, VN-A868, VN-A870, VN-A871)</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="2" nbrRequired="0" maintIndicator="(M)">
+<DispatchConditionRemarks>
+<Para>May be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Right CACs are deactivated.</Para>
+</ListItem>
+<ListItem>
+<Para>Right air conditioning pack is considered inoperative.</Para>
+</ListItem>
+<ListItem>
+<Para>Left trim air system operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>For OFCR or OFAR occupied, airplane remains at or below FL 350.</Para>
+</ListItem>
+<ListItem>
+<Para>VFSGs associated with left CACs operate normally.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<Note>
+<Para>The airplane must also be dispatched using MEL item 21-52-01.</Para>
+</Note>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Use MEL item 21-51-01-02-01-01 (M) procedure.</Para>
+</MaintenanceProcedure>
+<OperationNote>
+<Para>Use MEL item 21-51-01-02-01-01 operations note.</Para>
+</OperationNote>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+</MELSubItem>
+</MELSubItem>
+</MELItem>
+</DispatchItems>

@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Monitoring — DSP</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        :root {
+            /* Dark Theme Tokens from .ai-rules.md */
+            --bg-primary: oklch(14% 0.01 250);
+            --bg-secondary: oklch(18% 0.01 250);
+            --bg-tertiary: oklch(24% 0.02 250);
+            
+            --text-primary: oklch(93% 0.01 250);
+            --text-muted: oklch(70% 0.01 250);
+            
+            --primary: oklch(62% 0.16 250);
+            --primary-hover: oklch(55% 0.16 250);
+            --primary-accent: oklch(25% 0.08 250);
+            
+            --success: oklch(65% 0.15 140);
+            --warning: oklch(75% 0.15 75);
+            --danger: oklch(60% 0.18 25);
+            
+            --border: oklch(24% 0.02 250);
+            
+            --space-xs: 0.25rem;
+            --space-sm: 0.5rem;
+            --space-md: 1rem;
+            --space-lg: 1.5rem;
+            
+            --radius-sm: 6px;
+            --radius-md: 10px;
+            --radius-lg: 16px;
+            --radius-full: 9999px;
+            
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -2px rgba(0, 0, 0, 0.3);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -4px rgba(0, 0, 0, 0.5);
+        }
+        
+        html, body { 
+            height: 100%; 
+            overflow: hidden; 
+            font-family: 'Segoe UI', system-ui, sans-serif; 
+            background: var(--bg-primary); 
+            color: var(--text-primary); 
+            font-size: 13px; 
+        }
+
+        /* ===== LAYOUT ===== */
+        .app { display: flex; height: 100vh; width: 100vw; max-width: 100vw; overflow: hidden; }
+
+        /* ===== SIDEBAR ===== */
+        .sidebar { width: 200px; min-width: 200px; background: var(--bg-secondary); border-right: 1px solid var(--border); display: flex; flex-direction: column; transition: width 0.25s ease, min-width 0.25s ease; overflow: hidden; }
+        .sidebar.collapsed { width: 46px; min-width: 46px; }
+        .sidebar-logo { display: flex; align-items: center; gap: 8px; padding: 10px 12px; border-bottom: 1px solid var(--border); white-space: nowrap; height: 42px; }
+        .sidebar-logo .logo-icon { width: 22px; height: 22px; flex-shrink: 0; background: var(--primary); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; color: #fff; }
+        .sidebar-logo .logo-text { font-size: 12px; font-weight: 700; color: var(--primary); letter-spacing: 0.05em; }
+        .sidebar-toggle { margin-left: auto; cursor: pointer; color: var(--text-muted); flex-shrink: 0; font-size: 14px; background: none; border: none; outline: none; }
+        .sidebar-toggle:hover { color: var(--text-primary); }
+        .sidebar-menu { padding: 8px 0; flex: 1; overflow-y: auto; }
+        .menu-item { display: flex; align-items: center; gap: 12px; padding: 10px 14px; cursor: pointer; color: var(--text-muted); white-space: nowrap; border-left: 2px solid transparent; transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); }
+        .menu-item:hover { background: var(--bg-tertiary); color: var(--text-primary); }
+        .menu-item.active { background: var(--primary-accent); color: var(--primary); border-left-color: var(--primary); }
+        .menu-item .mi-icon { font-size: 14px; flex-shrink: 0; width: 18px; text-align: center; }
+        .menu-item .mi-label { font-size: 12px; font-weight: 500; }
+        .sidebar-section { padding: 8px 14px 4px; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); white-space: nowrap; }
+        .sidebar.collapsed .mi-label, .sidebar.collapsed .logo-text, .sidebar.collapsed .sidebar-section { display: none; }
+        .sidebar.collapsed .sidebar-logo { justify-content: center; }
+        .sidebar.collapsed .sidebar-toggle { margin-left: 0; }
+
+        /* ===== MAIN ===== */
+        .main { flex: 1; min-width: 0; display: flex; flex-direction: column; overflow: hidden; }
+
+        /* ===== TOPBAR ===== */
+        .topbar { display: flex; align-items: center; gap: 12px; padding: 6px 16px; background: var(--bg-secondary); border-bottom: 1px solid var(--border); height: 42px; flex-shrink: 0; }
+        .topbar-title { font-size: 12px; font-weight: 600; color: var(--primary); letter-spacing: 0.04em; }
+        .topbar-date { font-size: 12px; color: var(--text-muted); margin-left: auto; }
+        .topbar-date span { color: var(--text-primary); font-weight: 600; }
+        .topbar-stats { display: flex; gap: 12px; margin-left: 16px; }
+        .stat-badge { display: flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 500; padding: 2px 10px; border-radius: var(--radius-full); }
+        .stat-badge.all { background: var(--primary-accent); color: var(--primary); }
+        .stat-badge.warn { background: oklch(60% 0.18 25 / 0.15); color: var(--danger); }
+        .stat-badge.ok { background: oklch(65% 0.15 140 / 0.15); color: var(--success); }
+
+        /* ===== FILTER BAR ===== */
+        .filter-section { background: var(--bg-primary); border-bottom: 1px solid var(--border); flex-shrink: 0; }
+        .filter-toggle-btn { width: 100%; display: flex; align-items: center; gap: 6px; padding: 8px 16px; cursor: pointer; font-size: 11px; font-weight: 600; color: var(--text-muted); border: none; background: transparent; text-align: left; transition: color 0.2s; }
+        .filter-toggle-btn:hover { color: var(--text-primary); }
+        .filter-toggle-btn .arrow { transition: transform 0.2s; font-size: 9px; }
+        .filter-toggle-btn.open .arrow { transform: rotate(180deg); }
+        .filter-body { display: none; padding: 4px 16px 12px; flex-wrap: wrap; gap: 8px; align-items: center; }
+        .filter-body.open { display: flex; }
+        .filter-body input, .filter-body select { background: var(--bg-secondary); color: var(--text-primary); border: 1px solid var(--border); padding: 4px 10px; border-radius: var(--radius-sm); font-size: 11px; outline: none; height: 28px; transition: border-color 0.2s; }
+        .filter-body input:focus, .filter-body select:focus { border-color: var(--primary); }
+        .filter-body input { width: 150px; }
+        .filter-label { font-size: 11px; color: var(--text-muted); font-weight: 500; }
+        .btn-reset { background: transparent; border: 1px solid var(--border); color: var(--text-muted); padding: 4px 12px; border-radius: var(--radius-sm); font-size: 11px; font-weight: 500; cursor: pointer; height: 28px; transition: all 0.2s; }
+        .btn-reset:hover { border-color: var(--danger); color: var(--danger); }
+
+        /* ===== TABLE ===== */
+        .table-wrap { flex: 1; overflow-y: scroll; overflow-x: hidden; position: relative; }
+        table { width: 100%; border-collapse: collapse; white-space: nowrap; }
+        th { background: var(--bg-secondary); color: var(--text-muted); font-weight: 600; font-size: 10px; padding: 8px 4px; text-align: center; position: sticky; top: 0; z-index: 5; border-bottom: 1px solid var(--border); letter-spacing: 0.02em; user-select: none; cursor: pointer; box-shadow: 0 1px 0 var(--border); }
+        th:first-child { text-align: left; padding-left: 16px; }
+        th:last-child { padding-right: 16px; }
+        th:hover { color: var(--primary); }
+        th.sort-asc::after { content: ' ▲'; font-size: 9px; }
+        th.sort-desc::after { content: ' ▼'; font-size: 9px; }
+        td { padding: 4px 4px; text-align: center; border-bottom: 1px solid var(--border); font-size: 11px; vertical-align: middle; }
+        td:first-child { text-align: left; padding-left: 16px; }
+        td:last-child { padding-right: 16px; }
+        
+        tbody tr { transition: background 0.15s cubic-bezier(0.4, 0, 0.2, 1); cursor: pointer; }
+        tbody tr:hover { background: var(--bg-tertiary); }
+        
+        /* Highlight Warning Rows (Optional: slightly red bg if critical, but let's stick to minimal approach per notes) */
+        /* tbody tr.has-alert { background: linear-gradient(90deg, oklch(60% 0.18 25 / 0.05) 0%, transparent 5%); } */
+
+        /* ===== CELL STYLES ===== */
+        .cell-reg { font-weight: 700; color: var(--primary); }
+        .cell-fltno { font-weight: 600; color: var(--text-primary); }
+        .cell-route { color: var(--text-muted); }
+        .cell-time { font-family: monospace; font-size: 12px; color: var(--text-primary); }
+
+        /* Status badges */
+        .status-badge { display: inline-flex; align-items: center; padding: 2px 8px; border-radius: var(--radius-sm); font-size: 10px; font-weight: 700; letter-spacing: 0.05em; border: 1px solid transparent; }
+        .s-GRD { background: var(--bg-tertiary); color: var(--text-muted); border-color: var(--border); }
+        .s-BRD { background: oklch(62% 0.16 250 / 0.15); color: var(--primary); border-color: var(--primary-accent); }
+        .s-OUT { background: oklch(75% 0.15 75 / 0.15); color: var(--warning); border-color: oklch(75% 0.15 75 / 0.3); }
+        .s-ENR { background: oklch(65% 0.15 140 / 0.15); color: var(--success); border-color: oklch(65% 0.15 140 / 0.3); }
+        .s-IN  { background: oklch(60% 0.18 25 / 0.15); color: var(--danger); border-color: oklch(60% 0.18 25 / 0.3); }
+        .s-ARR { background: var(--bg-primary); color: var(--text-muted); border-color: var(--border); }
+        @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+        .blinking { animation: blink 1s ease-in-out 5; }
+        @keyframes alert-blink { 0%,100%{opacity:1} 50%{opacity:0.4; transform: scale(1.15)} }
+        .icon-blink { animation: alert-blink 1.2s infinite; }
+
+        /* Alerts: Check, Warning, Danger */
+        .alert-cell { display: inline-flex; align-items: center; gap: 4px; font-weight: 600; }
+        .c-ok { color: var(--success); }
+        .c-warn { color: var(--warning); }
+        .c-err { color: var(--danger); }
+        .c-none { color: var(--text-muted); font-weight: 400; }
+
+        .icon-svg { width: 14px; height: 14px; flex-shrink: 0; fill: currentColor; }
+        
+        .clickable-cell:hover { text-decoration: underline; text-decoration-style: dashed; text-underline-offset: 4px; }
+
+        /* ===== TOOLTIP ===== */
+        [data-tip] { position: relative; }
+        [data-tip]::before {
+            content: attr(data-tip);
+            position: absolute;
+            bottom: calc(100% + 6px);
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+            padding: 6px 10px;
+            border-radius: var(--radius-sm);
+            white-space: normal;
+            width: max-content;
+            max-width: 250px;
+            font-size: 11px;
+            font-weight: 400;
+            line-height: 1.5;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 100;
+            box-shadow: var(--shadow-lg);
+            transition: opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            text-align: left;
+        }
+        [data-tip]:hover::before { opacity: 1; }
+
+        /* type chip */
+        .type-chip { display: inline-block; padding: 2px 6px; border-radius: var(--radius-sm); font-size: 10px; font-weight: 700; letter-spacing: 0.06em; background: var(--bg-tertiary); color: var(--text-primary); border: 1px solid var(--border); }
+        .type-VIP { border-color: var(--warning); color: var(--warning); }
+
+        /* Pilot Extra */
+        .pe-pos { color: var(--warning); }
+        .pe-neg { color: var(--danger); }
+        .pe-zero { color: var(--text-muted); font-weight: 400; }
+
+        /* ===== FOOTER STATUS BAR ===== */
+        .statusbar { display: flex; align-items: center; gap: 16px; padding: 4px 16px; background: var(--bg-secondary); border-top: 1px solid var(--border); font-size: 11px; color: var(--text-muted); flex-shrink: 0; height: 28px; }
+        .statusbar .live { display: flex; align-items: center; gap: 6px; font-weight: 500; }
+        .live-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--success); animation: blink 2s infinite; }
+
+        /* ===== DIALOG (MODAL) ===== */
+        dialog {
+            margin: auto;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            box-shadow: var(--shadow-lg);
+            width: 800px;
+            max-width: 90vw;
+            padding: 0;
+            overflow: hidden;
+            opacity: 0;
+            transform: scale(0.95);
+            transition: opacity 0.25s ease, transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), display 0.25s allow-discrete;
+        }
+        
+        dialog::backdrop {
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
+        }
+
+        dialog[open] {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        @starting-style {
+            dialog[open] { opacity: 0; transform: scale(0.95); }
+        }
+
+        .modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--border);
+            background: var(--bg-tertiary);
+        }
+
+        .modal-title { font-size: 16px; font-weight: 600; color: var(--text-primary); }
+        .modal-subtitle { font-size: 13px; color: var(--primary); font-weight: 600; margin-left: 8px; }
+        .btn-close { background: none; border: none; color: var(--text-muted); font-size: 18px; cursor: pointer; transition: color 0.2s; }
+        .btn-close:hover { color: var(--danger); }
+
+        .modal-body { display: flex; height: 500px; }
+        
+        .tab-menu { width: 160px; border-right: 1px solid var(--border); background: var(--bg-primary); }
+        .tab-btn { display: block; width: 100%; text-align: left; background: none; border: none; padding: 12px 16px; color: var(--text-muted); cursor: pointer; font-size: 12px; font-weight: 500; border-left: 2px solid transparent; transition: all 0.2s; }
+        .tab-btn:hover { background: var(--bg-tertiary); color: var(--text-primary); }
+        .tab-btn.active { color: var(--primary); border-left-color: var(--primary); background: var(--primary-accent); font-weight: 600; }
+        
+        .tab-content { flex: 1; padding: 20px; overflow-y: auto; background: var(--bg-secondary); }
+        .tab-pane { display: none; }
+        .tab-pane.active { display: block; animation: fadeIn 0.3s ease; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+
+        .mock-card {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+
+        .mock-card h4 { margin-bottom: 12px; color: var(--text-primary); font-size: 14px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+        .mock-p { color: var(--text-muted); line-height: 1.6; font-size: 12px; margin-bottom: 8px; }
+
+        /* scrollbar */
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg-primary); }
+        ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+    </style>
+</head>
+<body>
+<div class="app">
+
+    <!-- SIDEBAR -->
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-logo">
+            <svg class="vna-lotus" viewBox="0 0 24 24" fill="var(--primary)" width="22" height="22" style="flex-shrink:0"><path d="M12 2c0 0-4 8-4 12 0 2.21 1.79 4 4 4s4-1.79 4-4c0-4-4-12-4-12zm0 18c-2.21 0-4-1.79-4-4 0-1.66 1.34-3 3-3s3 1.34 3 3-1.79 4-4 4zm-7-9c0 0-2 4-2 6 0 1.66 1.34 3 3 3s3-1.34 3-3c0-2-2-6-2-6zm14 0c0 0-2 4-2 6 0 1.66 1.34 3 3 3s3-1.34 3-3 0-6-2-6z"/></svg>
+            <span class="logo-text" style="font-size:14px">VNA DSP</span>
+            <button class="sidebar-toggle" onclick="toggleSidebar()" aria-label="Toggle Sidebar">◀</button>
+        </div>
+        <div class="sidebar-menu">
+            <div class="sidebar-section">Monitoring</div>
+            <div class="menu-item active"><span class="mi-icon">✈</span><span class="mi-label">Flight List</span></div>
+            <div class="menu-item"><span class="mi-icon">📋</span><span class="mi-label">OFP Management</span></div>
+            <div class="menu-item"><span class="mi-icon">⚠️</span><span class="mi-label">Alerts & Rules</span></div>
+            <div class="sidebar-section">Operations</div>
+            <div class="menu-item"><span class="mi-icon">📄</span><span class="mi-label">Common Docs</span></div>
+            <div class="menu-item"><span class="mi-icon">🌤</span><span class="mi-label">Weather & NOTAM</span></div>
+            <div class="menu-item"><span class="mi-icon">🔧</span><span class="mi-label">MEL/CDL</span></div>
+        </div>
+    </nav>
+
+    <!-- MAIN -->
+    <div class="main">
+
+        <!-- TOPBAR -->
+        <div class="topbar">
+            <span class="topbar-title">FLIGHT MONITORING</span>
+            <div class="topbar-stats">
+                <span class="stat-badge all">Total: <b id="cnt-all">25</b></span>
+                <span class="stat-badge warn">Alerts: <b id="cnt-warn">0</b></span>
+                <span class="stat-badge ok">Resolved/OK: <b id="cnt-ok">0</b></span>
+                <button class="btn-reset" style="margin-left: 8px; border-color: var(--primary); color: var(--primary);" onclick="document.getElementById('legend-modal').showModal()">[?] Legend</button>
+            </div>
+            <div class="topbar-date">Operating Date: <span>19/09/2026</span>&nbsp;&nbsp;<span id="clock" style="font-family:monospace;color:var(--primary)"></span></div>
+        </div>
+
+        <!-- FILTER BAR -->
+        <div class="filter-section">
+            <button class="filter-toggle-btn open" id="filter-btn" onclick="toggleFilter()">
+                <span class="arrow">▼</span> Flight Filters
+            </button>
+            <div class="filter-body open" id="filter-body">
+                <input type="text" placeholder="Search FLTNO / REG…" id="f-search" oninput="applyFilter()">
+                <span class="filter-label">DEP:</span>
+                <select id="f-dep" onchange="applyFilter()">
+                    <option value="">All</option><option>SGN</option><option>HAN</option><option>DAD</option><option>UIH</option><option>CXR</option><option>HPH</option>
+                </select>
+                <span class="filter-label">ARR:</span>
+                <select id="f-arr" onchange="applyFilter()">
+                    <option value="">All</option><option>SGN</option><option>HAN</option><option>DAD</option><option>CXR</option><option>ICN</option><option>MEL</option><option>FRA</option>
+                </select>
+                <span class="filter-label">Type:</span>
+                <select id="f-type" onchange="applyFilter()">
+                    <option value="">All</option><option>J</option><option>G</option><option>VIP</option>
+                </select>
+                <span class="filter-label">Status:</span>
+                <select id="f-status" onchange="applyFilter()">
+                    <option value="">All</option><option>GRD</option><option>BRD</option><option>OUT</option><option>ENR</option><option>IN</option><option>ARR</option>
+                </select>
+                <span class="filter-label">Alerts:</span>
+                <select id="f-warn" onchange="applyFilter()">
+                    <option value="">All</option><option value="warn">Has Alerts</option><option value="ok">Normal</option>
+                </select>
+                <button class="btn-reset" onclick="resetFilter()">Clear Filters</button>
+            </div>
+        </div>
+
+        <!-- TABLE -->
+        <div class="table-wrap">
+            <table>
+                <thead>
+                <tr>
+                    <th onclick="sortBy('reg')">REG</th>
+                    <th onclick="sortBy('fltno')">FLTNO</th>
+                    <th onclick="sortBy('dep')">DEP</th>
+                    <th onclick="sortBy('arr')">ARR</th>
+                    <th onclick="sortBy('etd')">ETD (Z)</th>
+                    <th onclick="sortBy('eta')">ETA (Z)</th>
+                    <th onclick="sortBy('type')">Type</th>
+                    <th onclick="sortBy('status')">Status</th>
+                    <th data-tip="OFP and last Revision status">OFP Rev</th>
+                    <th data-tip="Estimated Payload vs CLC">EPLD</th>
+                    <th data-tip="Estimated DOW vs CLC">EST DOW</th>
+                    <th data-tip="OFP Block Fuel status">BLOCK FUEL</th>
+                    <th data-tip="Pilot Extra = Pilot Release − OFP Block Fuel">PILOT EXTRA</th>
+                    <th data-tip="Check NOTAM warnings">NOTAM</th>
+                    <th data-tip="Weather at DEP/ARR">WX</th>
+                    <th data-tip="ZFW = DOW + Payload vs CLC">ZFW-DOW</th>
+                    <th data-tip="MEL/CDL Technical logs">MEL/CDL</th>
+                    <th data-tip="ATC Clearance">ATC</th>
+                    <th data-tip="Estimated TO/LD vs limits">TO/LD</th>
+                    <th data-tip="Missing mandatory documents">Missing Doc</th>
+                    <th data-tip="Crew document download status">Crew ↓</th>
+                    <th data-tip="VIP Status (ATC, OFP)">VIP</th>
+                </tr>
+                </thead>
+                <tbody id="tbody"></tbody>
+            </table>
+        </div>
+
+        <!-- STATUS BAR -->
+        <div class="statusbar">
+            <div class="live"><div class="live-dot"></div>Real-time</div>
+            <span>Showing: <b id="cnt-showing">0</b> / <span id="cnt-total">0</span> flights</span>
+            <span style="margin-left:auto">TOSS POC — Flight Monitoring v2.0 (English/UTC)</span>
+        </div>
+
+    </div>
+</div>
+
+<!-- NATIVE DIALOG MODAL -->
+<dialog id="flight-detail-modal">
+    <div class="modal-header">
+        <div>
+            <span class="modal-title">Flight Details</span>
+            <span class="modal-subtitle" id="modal-flight-id">VN123 - A321</span>
+        </div>
+        <button class="btn-close" onclick="closeModal()" aria-label="Close">✕</button>
+    </div>
+    <div class="modal-body">
+        <div class="tab-menu">
+            <button class="tab-btn" onclick="switchTab('tab-gen')" id="btn-tab-gen">General</button>
+            <button class="tab-btn" onclick="switchTab('tab-ofp')" id="btn-tab-ofp">OFP & Fuel</button>
+            <button class="tab-btn" onclick="switchTab('tab-wx')" id="btn-tab-wx">Weather (WX)</button>
+            <button class="tab-btn" onclick="switchTab('tab-notam')" id="btn-tab-notam">NOTAM</button>
+            <button class="tab-btn" onclick="switchTab('tab-mel')" id="btn-tab-mel">MEL / CDL</button>
+            <button class="tab-btn" onclick="switchTab('tab-crew')" id="btn-tab-crew">Crew</button>
+        </div>
+        <div class="tab-content">
+            <div id="tab-gen" class="tab-pane">
+                <div class="mock-card">
+                    <h4>General Information</h4>
+                    <p class="mock-p">Route: <strong>SGN → HAN</strong></p>
+                    <p class="mock-p">Schedule: <strong>07:05Z - 09:10Z</strong></p>
+                    <p class="mock-p">Status: <strong>ENR</strong> (Airborne)</p>
+                </div>
+            </div>
+            <div id="tab-ofp" class="tab-pane">
+                <div class="mock-card">
+                    <h4>Operational Flight Plan</h4>
+                    <p class="mock-p">Last Revision: <strong>2/0/1 R2</strong></p>
+                    <p class="mock-p">Block Fuel: <strong>6500 kg</strong></p>
+                    <p class="mock-p">Pilot Extra: <strong class="pe-pos">+120 kg</strong> (Reason: Expected holding at ARR)</p>
+                    <button class="btn-reset" style="margin-top:10px">View Full OFP</button>
+                </div>
+            </div>
+            <div id="tab-wx" class="tab-pane">
+                <div class="mock-card" style="border-color: var(--danger)">
+                    <h4 style="color:var(--danger)">Weather Alert</h4>
+                    <p class="mock-p"><strong>DEP (SGN):</strong> METAR SGN 190700Z 27015G25KT 3000 TSRA SCT015CB BKN030 28/25 Q1008 NOSIG=</p>
+                    <p class="mock-p"><strong>ARR (HAN):</strong> TAF HAN 190500Z 1906/2012 15005KT 8000 SCT020=</p>
+                    <p class="mock-p" style="color:var(--danger); font-weight: 600; margin-top:10px">⚠️ Thunderstorm and Heavy Rain at DEP. Visibility 3000m.</p>
+                    <button class="btn-reset" style="margin-top:10px" onclick="resolveAlert(this)">Acknowledge</button>
+                </div>
+            </div>
+            <div id="tab-notam" class="tab-pane">
+                <div class="mock-card">
+                    <h4>NOTAMs</h4>
+                    <p class="mock-p">A1234/26 NOTAMN<br>Q) VVTS/QMRLC/IV/NBO/A/000/999/1049N10639E005<br>A) VVTS B) 2606190000 C) 2606192359<br>E) RWY 25L/07R CLSD DUE TO WIP.</p>
+                </div>
+            </div>
+            <div id="tab-mel" class="tab-pane">
+                <div class="mock-card">
+                    <h4>MEL / CDL</h4>
+                    <p class="mock-p text-muted">No active MEL/CDL items affecting flight operations.</p>
+                </div>
+            </div>
+            <div id="tab-crew" class="tab-pane">
+                <div class="mock-card">
+                    <h4>Crew Details</h4>
+                    <p class="mock-p">PIC: <strong>NGUYEN VAN A</strong> (Downloaded docs: ✅)</p>
+                    <p class="mock-p">FO: <strong>TRAN THI B</strong> (Downloaded docs: ✅)</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</dialog>
+
+<!-- LEGEND MODAL -->
+<dialog id="legend-modal" style="width: 420px;">
+    <div class="modal-header">
+        <span class="modal-title">Color Guide & Legend</span>
+        <button class="btn-close" onclick="document.getElementById('legend-modal').close()" aria-label="Close">✕</button>
+    </div>
+    <div class="modal-body" style="height: auto; padding: 24px; flex-direction: column; gap: 20px;">
+        <div style="display:flex; align-items:flex-start; gap: 16px;">
+            <span class="alert-cell c-err" style="margin-top:2px"><svg class="icon-svg icon-blink" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 13.59L15.59 17 12 13.41 8.41 17 7 15.59 10.59 12 7 8.41 8.41 7 12 10.59 15.59 7 17 8.41 13.41 12 17 15.59z"/></svg></span>
+            <div><strong style="color:var(--danger); font-size:13px">Red Cross (Critical)</strong><br><span class="mock-p">Critical Error, Missing Document, or Hard Limit Exceeded. Requires immediate action.</span></div>
+        </div>
+        <div style="display:flex; align-items:flex-start; gap: 16px;">
+            <span class="alert-cell c-warn" style="margin-top:2px"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg></span>
+            <div><strong style="color:var(--warning); font-size:13px">Yellow Warning (Attention)</strong><br><span class="mock-p">Operational Deviation, Soft Limit, or Attention Needed (e.g. Weather Alert).</span></div>
+        </div>
+        <div style="display:flex; align-items:flex-start; gap: 16px;">
+            <span class="alert-cell c-ok" style="margin-top:2px"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>
+            <div><strong style="color:var(--success); font-size:13px">Green Check (Resolved)</strong><br><span class="mock-p">Explicitly Acknowledged or Manually Checked.</span></div>
+        </div>
+        <div style="display:flex; align-items:flex-start; gap: 16px; padding-left: 4px;">
+            <span style="color:var(--text-muted);font-weight:700;font-size:14px;opacity:0.6; margin-top:2px">-</span>
+            <div style="margin-left: 6px;"><strong style="color:var(--text-muted); font-size:13px">Grey Dash (Normal)</strong><br><span class="mock-p">Normal state. No active issues (Management by Exception).</span></div>
+        </div>
+    </div>
+</dialog>
+
+<script>
+// SVG Icons
+const icons = {
+    check: '<svg class="icon-svg" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>',
+    warn: '<svg class="icon-svg" viewBox="0 0 24 24"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>',
+    cross: '<svg class="icon-svg icon-blink" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 13.59L15.59 17 12 13.41 8.41 17 7 15.59 10.59 12 7 8.41 8.41 7 12 10.59 15.59 7 17 8.41 13.41 12 17 15.59z"/></svg>',
+    none: '<span style="color:var(--text-muted);font-weight:700;font-size:14px;opacity:0.6">-</span>'
+};
+
+const FLIGHTS = [
+  { reg:"A611", fltno:"VN1350", dep:"SGN", arr:"CXR", etd:"00:05", eta:"01:10", type:"J",   status:"ARR", ofpRev:"2/0/1 R2", ofpC:"ok",   epld:"OK",      epldC:"ok",   dow:"OK",      dowC:"ok",   fuel:"OK", fuelC:"ok",  pilotExtra:"+120",  notam:"ok",   wx:"ok",   zfw:"ok",   mel:"ok",  atc:"ok",  told:"ok",  missDocs:[],         crew:"ok",  vip:"" },
+  { reg:"A326", fltno:"VN7626", dep:"UIH", arr:"HAN", etd:"00:20", eta:"02:15", type:"J",   status:"ARR", ofpRev:"1/0/0 R1", ofpC:"ok",   epld:"OK",      epldC:"ok",   dow:"OK",      dowC:"ok",   fuel:"OK", fuelC:"ok",  pilotExtra:"+80",   notam:"ok",   wx:"ok",   zfw:"ok",   mel:"ok",  atc:"ok",  told:"ok",  missDocs:[],         crew:"ok",  vip:"" },
+  { reg:"A335", fltno:"VN148",  dep:"SGN", arr:"DAD", etd:"01:00", eta:"02:05", type:"VIP", status:"ARR", ofpRev:"3/0/1 R2", ofpC:"ok",   epld:"OK",      epldC:"ok",   dow:"OK",      dowC:"ok",   fuel:"OK", fuelC:"ok",  pilotExtra:"+200",  notam:"ok",   wx:"ok",   zfw:"ok",   mel:"ok",  atc:"ok",  told:"ok",  missDocs:[],         crew:"ok",  vip:"VIP" },
+  { reg:"A604", fltno:"VN221",  dep:"HAN", arr:"SGN", etd:"01:30", eta:"03:35", type:"J",   status:"ENR", ofpRev:"2/0/1 R2", ofpC:"ok",   epld:"OK",      epldC:"ok",   dow:"OK",      dowC:"ok",   fuel:"OK", fuelC:"ok",  pilotExtra:"+150",  notam:"ok",   wx:"ok",   zfw:"ok",   mel:"ok",  atc:"ok",  told:"ok",  missDocs:[],         crew:"ok",  vip:"" },
+  { reg:"A324", fltno:"VN1378", dep:"SGN", arr:"HUI", etd:"02:10", eta:"03:15", type:"J",   status:"ENR", ofpRev:"1/0/0 R1", ofpC:"warn", epld:"Dev.",    epldC:"warn", dow:"OK",      dowC:"ok",   fuel:"OK", fuelC:"ok",  pilotExtra:"+60",   notam:"ok",   wx:"warn", zfw:"ok",   mel:"ok",  atc:"ok",  told:"ok",  missDocs:["WX"],     crew:"ok",  vip:"" },
+  { reg:"A336", fltno:"VN1206", dep:"CXR", arr:"HAN", etd:"02:30", eta:"04:35", type:"J",   status:"OUT", ofpRev:"1/0/0 R1", ofpC:"warn", epld:"Limit",   epldC:"warn", dow:"Dev.",    dowC:"warn", fuel:"OK", fuelC:"ok",  pilotExtra:"+40",   notam:"warn", wx:"ok",   zfw:"warn", mel:"warn",atc:"ok",  told:"ok",  missDocs:["NOTAM"],  crew:"ok",  vip:"" },
+  { reg:"A896", fltno:"VN781",  dep:"SGN", arr:"MEL", etd:"02:50", eta:"12:55", type:"G",   status:"OUT", ofpRev:"2/0/1 R2", ofpC:"ok",   epld:"OK",      epldC:"ok",   dow:"OK",      dowC:"ok",   fuel:"OK", fuelC:"ok",  pilotExtra:"+300",  notam:"ok",   wx:"ok",   zfw:"ok",   mel:"ok",  atc:"ok",  told:"ok",  missDocs:[],         crew:"ok",  vip:"" },
+  { reg:"A358", fltno:"VN1548", dep:"HUI", arr:"HAN", etd:"03:05", eta:"04:10", type:"J",   status:"BRD", ofpRev:"1/0/0 R1", ofpC:"err",  epld:"Blank",   epldC:"err",  dow:"Blank",   dowC:"err",  fuel:"—",  fuelC:"err", pilotExtra:"—",     notam:"ok",   wx:"ok",   zfw:"err",  mel:"ok",  atc:"ok",  told:"warn",missDocs:["OFP"],    crew:"err", vip:"" },
+  { reg:"A625", fltno:"VN440",  dep:"CXR", arr:"ICN", etd:"03:20", eta:"08:25", type:"G",   status:"BRD", ofpRev:"2/0/1 R2", ofpC:"ok",   epld:"OK",      epldC:"ok",   dow:"OK",      dowC:"ok",   fuel:"OK", fuelC:"ok",  pilotExtra:"+180",  notam:"ok",   wx:"warn", zfw:"ok",   mel:"ok",  atc:"ok",  told:"ok",  missDocs:["WX"],     crew:"ok",  vip:"" },
+  { reg:"A877", fltno:"VN260",  dep:"SGN", arr:"HAN", etd:"03:45", eta:"05:50", type:"J",   status:"BRD", ofpRev:"2/0/1 R1", ofpC:"warn", epld:"OK",      epldC:"ok",   dow:"OK",      dowC:"ok",   fuel:"OK", fuelC:"ok",  pilotExtra:"+90",   notam:"ok",   wx:"ok",   zfw:"ok",   mel:"ok",  atc:"warn",told:"ok",  missDocs:[],         crew:"ok",  vip:"" },
+  { reg:"A397", fltno:"VN1187", dep:"HPH", arr:"SGN", etd:"04:00", eta:"06:10", type:"J",   status:"GRD", ofpRev:"1/0/0 R1", ofpC:"ok",   epld:"OK",      epldC:"ok",   dow:"OK",      dowC:"ok",   fuel:"OK", fuelC:"ok",  pilotExtra:"+70",   notam:"ok",   wx:"ok",   zfw:"ok",   mel:"ok",  atc:"ok",  told:"ok",  missDocs:[],         crew:"ok",  vip:"" },
+  { reg:"A321", fltno:"VN7341", dep:"CXR", arr:"SGN", etd:"04:15", eta:"05:20", type:"J",   status:"GRD", ofpRev:"No Rel.",  ofpC:"err",  epld:"—",       epldC:"err",  dow:"—",       dowC:"err",  fuel:"—",  fuelC:"err", pilotExtra:"—",     notam:"warn", wx:"warn", zfw:"err",  mel:"ok",  atc:"ok",  told:"err", missDocs:["NOTAM"],  crew:"err", vip:"" },
+  { reg:"A864", fltno:"VN37",   dep:"HAN", arr:"FRA", etd:"04:30", eta:"10:50", type:"G",   status:"GRD", ofpRev:"2/0/1 R2", ofpC:"ok",   epld:"OK",      epldC:"ok",   dow:"OK",      dowC:"ok",   fuel:"OK", fuelC:"ok",  pilotExtra:"—",     notam:"ok",   wx:"ok",   zfw:"ok",   mel:"warn",atc:"ok",  told:"ok",  missDocs:[],         crew:"ok",  vip:"" },
+  { reg:"A611", fltno:"VN1351", dep:"CXR", arr:"SGN", etd:"04:50", eta:"05:55", type:"J",   status:"GRD", ofpRev:"1/0/0 R1", ofpC:"ok",   epld:"OK",      epldC:"ok",   dow:"OK",      dowC:"ok",   fuel:"OK", fuelC:"ok",  pilotExtra:"—",     notam:"ok",   wx:"ok",   zfw:"ok",   mel:"ok",  atc:"ok",  told:"ok",  missDocs:[],         crew:"ok",  vip:"" },
+  { reg:"A615", fltno:"VN1279", dep:"DAD", arr:"SGN", etd:"05:05", eta:"07:10", type:"J",   status:"GRD", ofpRev:"No Rel.",  ofpC:"err",  epld:"—",       epldC:"err",  dow:"—",       dowC:"err",  fuel:"—",  fuelC:"err", pilotExtra:"—",     notam:"ok",   wx:"ok",   zfw:"ok",   mel:"ok",  atc:"ok",  told:"ok",  missDocs:["OFP"],    crew:"err", vip:"" },
+  { reg:"A321", fltno:"VN201",  dep:"HAN", arr:"SGN", etd:"05:15", eta:"07:20", type:"J",   status:"GRD", ofpRev:"1/0/0 R1", ofpC:"ok",   epld:"OK",      epldC:"ok",   dow:"OK",      dowC:"ok",   fuel:"OK", fuelC:"ok",  pilotExtra:"—",     notam:"ok",   wx:"warn", zfw:"ok",   mel:"ok",  atc:"ok",  told:"ok",  missDocs:[],         crew:"ok",  vip:"" },
+  { reg:"A609", fltno:"VN318",  dep:"SGN", arr:"NRT", etd:"05:30", eta:"11:30", type:"G",   status:"GRD", ofpRev:"2/0/1 R1", ofpC:"warn", epld:"OK",      epldC:"ok",   dow:"OK",      dowC:"ok",   fuel:"OK", fuelC:"ok",  pilotExtra:"—",     notam:"ok",   wx:"ok",   zfw:"ok",   mel:"ok",  atc:"ok",  told:"ok",  missDocs:[],         crew:"warn",vip:"" },
+  { reg:"A350", fltno:"VN55",   dep:"HAN", arr:"LHR", etd:"05:45", eta:"18:20", type:"G",   status:"GRD", ofpRev:"2/0/2 R2", ofpC:"ok",   epld:"OK",      epldC:"ok",   dow:"OK",      dowC:"ok",   fuel:"OK", fuelC:"ok",  pilotExtra:"—",     notam:"warn", wx:"ok",   zfw:"ok",   mel:"ok",  atc:"ok",  told:"ok",  missDocs:[],         crew:"ok",  vip:"" },
+  { reg:"A325", fltno:"VN1421", dep:"SGN", arr:"PQC", etd:"06:00", eta:"06:55", type:"J",   status:"GRD", ofpRev:"1/0/0 R1", ofpC:"ok",   epld:"OK",      epldC:"ok",   dow:"OK",      dowC:"ok",   fuel:"OK", fuelC:"ok",  pilotExtra:"—",     notam:"ok",   wx:"ok",   zfw:"ok",   mel:"ok",  atc:"ok",  told:"ok",  missDocs:[],         crew:"ok",  vip:"" },
+  { reg:"A613", fltno:"VN211",  dep:"HAN", arr:"SGN", etd:"06:15", eta:"08:20", type:"VIP", status:"GRD", ofpRev:"No Rel.",  ofpC:"err",  epld:"—",       epldC:"err",  dow:"—",       dowC:"err",  fuel:"—",  fuelC:"err", pilotExtra:"—",     notam:"ok",   wx:"ok",   zfw:"ok",   mel:"ok",  atc:"ok",  told:"ok",  missDocs:["OFP"],    crew:"err", vip:"VIP" },
+  { reg:"A322", fltno:"VN1375", dep:"HUI", arr:"SGN", etd:"06:30", eta:"07:45", type:"J",   status:"GRD", ofpRev:"1/0/0 R1", ofpC:"ok",   epld:"OK",      epldC:"ok",   dow:"OK",      dowC:"ok",   fuel:"OK", fuelC:"ok",  pilotExtra:"—",     notam:"ok",   wx:"ok",   zfw:"ok",   mel:"ok",  atc:"ok",  told:"ok",  missDocs:[],         crew:"ok",  vip:"" },
+  { reg:"A334", fltno:"VN716",  dep:"SGN", arr:"SIN", etd:"06:45", eta:"08:50", type:"G",   status:"GRD", ofpRev:"2/0/1 R1", ofpC:"warn", epld:"Dev.",    epldC:"warn", dow:"OK",      dowC:"ok",   fuel:"OK", fuelC:"ok",  pilotExtra:"—",     notam:"ok",   wx:"ok",   zfw:"ok",   mel:"warn",atc:"ok",  told:"ok",  missDocs:[],         crew:"ok",  vip:"" },
+  { reg:"A601", fltno:"VN235",  dep:"HAN", arr:"SGN", etd:"07:00", eta:"09:05", type:"J",   status:"GRD", ofpRev:"1/0/0 R1", ofpC:"ok",   epld:"OK",      epldC:"ok",   dow:"OK",      dowC:"ok",   fuel:"OK", fuelC:"ok",  pilotExtra:"—",     notam:"ok",   wx:"warn", zfw:"ok",   mel:"ok",  atc:"ok",  told:"ok",  missDocs:[],         crew:"ok",  vip:"" },
+  { reg:"A875", fltno:"VN10",   dep:"SGN", arr:"CDG", etd:"07:20", eta:"20:15", type:"G",   status:"GRD", ofpRev:"2/0/1 R2", ofpC:"ok",   epld:"OK",      epldC:"ok",   dow:"OK",      dowC:"ok",   fuel:"OK", fuelC:"ok",  pilotExtra:"—",     notam:"ok",   wx:"ok",   zfw:"ok",   mel:"ok",  atc:"ok",  told:"warn",missDocs:[],         crew:"ok",  vip:"" },
+  { reg:"A328", fltno:"VN1501", dep:"DAD", arr:"SGN", etd:"07:45", eta:"09:00", type:"J",   status:"GRD", ofpRev:"1/0/0 R1", ofpC:"ok",   epld:"OK",      epldC:"ok",   dow:"OK",      dowC:"ok",   fuel:"OK", fuelC:"ok",  pilotExtra:"—",     notam:"ok",   wx:"ok",   zfw:"ok",   mel:"ok",  atc:"ok",  told:"ok",  missDocs:[],         crew:"ok",  vip:"" },
+  { reg:"A617", fltno:"VN241",  dep:"HAN", arr:"SGN", etd:"08:00", eta:"10:05", type:"J",   status:"GRD", ofpRev:"No Rel.",  ofpC:"err",  epld:"—",       epldC:"err",  dow:"—",       dowC:"err",  fuel:"—",  fuelC:"err", pilotExtra:"—",     notam:"ok",   wx:"ok",   zfw:"err",  mel:"ok",  atc:"ok",  told:"ok",  missDocs:["OFP"],    crew:"ok",  vip:"" },
+  { reg:"A331", fltno:"VN404",  dep:"SGN", arr:"ICN", etd:"08:15", eta:"13:20", type:"G",   status:"GRD", ofpRev:"2/0/1 R2", ofpC:"ok",   epld:"OK",      epldC:"ok",   dow:"OK",      dowC:"ok",   fuel:"OK", fuelC:"ok",  pilotExtra:"—",     notam:"warn", wx:"warn", zfw:"ok",   mel:"ok",  atc:"ok",  told:"ok",  missDocs:[],         crew:"ok",  vip:"" },
+  { reg:"A329", fltno:"VN1305", dep:"DAD", arr:"SGN", etd:"08:30", eta:"09:45", type:"J",   status:"GRD", ofpRev:"1/0/0 R1", ofpC:"ok",   epld:"OK",      epldC:"ok",   dow:"OK",      dowC:"ok",   fuel:"OK", fuelC:"ok",  pilotExtra:"—",     notam:"ok",   wx:"ok",   zfw:"ok",   mel:"ok",  atc:"ok",  told:"ok",  missDocs:[],         crew:"ok",  vip:"" },
+  { reg:"A605", fltno:"VN245",  dep:"HAN", arr:"SGN", etd:"08:45", eta:"10:50", type:"J",   status:"GRD", ofpRev:"1/0/0 R1", ofpC:"ok",   epld:"OK",      epldC:"ok",   dow:"OK",      dowC:"ok",   fuel:"OK", fuelC:"ok",  pilotExtra:"—",     notam:"ok",   wx:"ok",   zfw:"ok",   mel:"ok",  atc:"ok",  told:"ok",  missDocs:[],         crew:"ok",  vip:"" },
+  { reg:"A871", fltno:"VN51",   dep:"SGN", arr:"LHR", etd:"09:00", eta:"22:15", type:"G",   status:"GRD", ofpRev:"2/0/1 R2", ofpC:"ok",   epld:"OK",      epldC:"ok",   dow:"OK",      dowC:"ok",   fuel:"OK", fuelC:"ok",  pilotExtra:"—",     notam:"ok",   wx:"ok",   zfw:"ok",   mel:"warn",atc:"ok",  told:"ok",  missDocs:[],         crew:"ok",  vip:"" },
+  { reg:"A323", fltno:"VN1401", dep:"CXR", arr:"SGN", etd:"09:15", eta:"10:20", type:"J",   status:"GRD", ofpRev:"1/0/0 R1", ofpC:"ok",   epld:"OK",      epldC:"ok",   dow:"OK",      dowC:"ok",   fuel:"OK", fuelC:"ok",  pilotExtra:"—",     notam:"ok",   wx:"ok",   zfw:"ok",   mel:"ok",  atc:"ok",  told:"ok",  missDocs:[],         crew:"ok",  vip:"" },
+  { reg:"A612", fltno:"VN255",  dep:"HAN", arr:"SGN", etd:"09:30", eta:"11:35", type:"J",   status:"GRD", ofpRev:"No Rel.",  ofpC:"err",  epld:"—",       epldC:"err",  dow:"—",       dowC:"err",  fuel:"—",  fuelC:"err", pilotExtra:"—",     notam:"ok",   wx:"ok",   zfw:"err",  mel:"ok",  atc:"ok",  told:"err", missDocs:["OFP"],    crew:"err", vip:"" },
+  { reg:"A339", fltno:"VN1503", dep:"SGN", arr:"DAD", etd:"09:45", eta:"10:50", type:"J",   status:"GRD", ofpRev:"1/0/0 R1", ofpC:"ok",   epld:"OK",      epldC:"ok",   dow:"OK",      dowC:"ok",   fuel:"OK", fuelC:"ok",  pilotExtra:"—",     notam:"ok",   wx:"ok",   zfw:"ok",   mel:"ok",  atc:"ok",  told:"ok",  missDocs:[],         crew:"ok",  vip:"" },
+  { reg:"A621", fltno:"VN261",  dep:"HAN", arr:"SGN", etd:"10:00", eta:"12:05", type:"J",   status:"GRD", ofpRev:"1/0/0 R1", ofpC:"ok",   epld:"OK",      epldC:"ok",   dow:"OK",      dowC:"ok",   fuel:"OK", fuelC:"ok",  pilotExtra:"—",     notam:"ok",   wx:"ok",   zfw:"ok",   mel:"ok",  atc:"ok",  told:"ok",  missDocs:[],         crew:"ok",  vip:"" },
+  { reg:"A879", fltno:"VN31",   dep:"SGN", arr:"FRA", etd:"10:15", eta:"23:30", type:"G",   status:"GRD", ofpRev:"2/0/1 R2", ofpC:"ok",   epld:"OK",      epldC:"ok",   dow:"OK",      dowC:"ok",   fuel:"OK", fuelC:"ok",  pilotExtra:"—",     notam:"ok",   wx:"ok",   zfw:"ok",   mel:"ok",  atc:"ok",  told:"ok",  missDocs:[],         crew:"ok",  vip:"" },
+  { reg:"A327", fltno:"VN1307", dep:"DAD", arr:"SGN", etd:"10:30", eta:"11:45", type:"J",   status:"GRD", ofpRev:"1/0/0 R1", ofpC:"ok",   epld:"OK",      epldC:"ok",   dow:"OK",      dowC:"ok",   fuel:"OK", fuelC:"ok",  pilotExtra:"—",     notam:"ok",   wx:"ok",   zfw:"ok",   mel:"ok",  atc:"ok",  told:"ok",  missDocs:[],         crew:"ok",  vip:"" }
+];
+
+function getAlertHtml(state, val, flightId, tab) {
+    let tip = '';
+    if (state === 'warn') tip = `data-tip="${tab.replace('tab-','').toUpperCase()} Alert: Needs attention"`;
+    if (state === 'err') tip = `data-tip="${tab.replace('tab-','').toUpperCase()} Critical: Action required"`;
+    
+    if (state === 'ok' || val === 'OK') return `<span class="alert-cell c-none">${icons.none}</span>`;
+    if (state === 'warn') return `<span class="alert-cell c-warn clickable-cell" ${tip} onclick="openModal('${flightId}', '${tab}')">${icons.warn}</span>`;
+    if (state === 'err') return `<span class="alert-cell c-err clickable-cell" ${tip} onclick="openModal('${flightId}', '${tab}')">${icons.cross}</span>`;
+    return `<span class="alert-cell c-none">${icons.none}</span>`;
+}
+
+function getPilotExtraHtml(val) {
+    if (!val || val === '—') return `<span class="pe-zero">—</span>`;
+    const n = parseInt(val);
+    if (n > 0) return `<span class="pe-pos">${val}</span>`;
+    if (n < 0) return `<span class="pe-neg">${val}</span>`;
+    return `<span class="pe-zero">0</span>`;
+}
+
+let sortCol = 'etd', sortDir = 1, filtered = [...FLIGHTS];
+
+function render() {
+    const tbody = document.getElementById('tbody');
+    tbody.innerHTML = '';
+    filtered.forEach(f => {
+        const hasAlert = f.ofpC==='err' || f.epldC==='err' || f.missDocs.length || f.crew==='err';
+        const blink = (f.status === 'BRD' || f.status === 'OUT') ? 'blinking' : '';
+        const tr = document.createElement('tr');
+        
+        tr.innerHTML = `
+            <td class="cell-reg" onclick="openModal('${f.fltno}', 'tab-gen')">${f.reg}</td>
+            <td class="cell-fltno">${f.fltno}</td>
+            <td class="cell-route">${f.dep}</td>
+            <td class="cell-route">${f.arr}</td>
+            <td class="cell-time">${f.etd}Z</td>
+            <td class="cell-time">${f.eta}Z</td>
+            <td><span class="type-chip ${f.type==='VIP'?'type-VIP':''}">${f.type}</span></td>
+            <td><span class="status-badge s-${f.status} ${blink}">${f.status}</span></td>
+            <td class="alert-cell c-${f.ofpC} clickable-cell" onclick="openModal('${f.fltno}', 'tab-ofp')">
+                ${f.ofpC==='ok'?icons.check: f.ofpC==='warn'?icons.warn:icons.cross} ${f.ofpRev}
+            </td>
+            <td>${getAlertHtml(f.epldC, f.epld, f.fltno, 'tab-ofp')}</td>
+            <td>${getAlertHtml(f.dowC, f.dow, f.fltno, 'tab-ofp')}</td>
+            <td>${getAlertHtml(f.fuelC, f.fuel, f.fltno, 'tab-ofp')}</td>
+            <td>${getPilotExtraHtml(f.pilotExtra)}</td>
+            <td>${getAlertHtml(f.notam, f.notam, f.fltno, 'tab-notam')}</td>
+            <td>${getAlertHtml(f.wx, f.wx, f.fltno, 'tab-wx')}</td>
+            <td>${getAlertHtml(f.zfw, f.zfw, f.fltno, 'tab-ofp')}</td>
+            <td>${getAlertHtml(f.mel, f.mel, f.fltno, 'tab-mel')}</td>
+            <td>${getAlertHtml(f.atc, f.atc, f.fltno, 'tab-gen')}</td>
+            <td>${getAlertHtml(f.told, f.told, f.fltno, 'tab-gen')}</td>
+            <td class="clickable-cell c-${f.missDocs.length?'err':'ok'}" onclick="openModal('${f.fltno}', 'tab-gen')">
+                ${f.missDocs.length ? icons.cross + ' ' + f.missDocs.join(', ') : icons.check}
+            </td>
+            <td>${getAlertHtml(f.crew, f.crew, f.fltno, 'tab-crew')}</td>
+            <td><span class="type-chip ${f.vip==='VIP'?'type-VIP':''}">${f.vip}</span></td>
+        `;
+        tbody.appendChild(tr);
+    });
+    
+    document.getElementById('cnt-showing').textContent = filtered.length;
+    document.getElementById('cnt-total').textContent = FLIGHTS.length;
+    document.getElementById('cnt-all').textContent = FLIGHTS.length;
+    
+    const warnCount = FLIGHTS.filter(f => f.ofpC!=='ok'||f.epldC!=='ok'||f.missDocs.length||f.notam!=='ok'||f.wx!=='ok'||f.mel!=='ok'||f.crew!=='ok').length;
+    document.getElementById('cnt-warn').textContent = warnCount;
+    document.getElementById('cnt-ok').textContent = FLIGHTS.length - warnCount;
+}
+
+function applyFilter() {
+    const s = document.getElementById('f-search').value.toLowerCase();
+    const dep = document.getElementById('f-dep').value;
+    const arr = document.getElementById('f-arr').value;
+    const type = document.getElementById('f-type').value;
+    const status = document.getElementById('f-status').value;
+    const warn = document.getElementById('f-warn').value;
+    filtered = FLIGHTS.filter(f => {
+        if (s && !f.fltno.toLowerCase().includes(s) && !f.reg.toLowerCase().includes(s)) return false;
+        if (dep && f.dep !== dep) return false;
+        if (arr && f.arr !== arr) return false;
+        if (type && f.type !== type) return false;
+        if (status && f.status !== status) return false;
+        if (warn === 'warn') { const hw = f.ofpC!=='ok'||f.missDocs.length||f.notam!=='ok'||f.wx!=='ok'||f.crew!=='ok'; if (!hw) return false; }
+        if (warn === 'ok') { const hw = f.ofpC!=='ok'||f.missDocs.length||f.notam!=='ok'||f.wx!=='ok'||f.crew!=='ok'; if (hw) return false; }
+        return true;
+    });
+    sortData();
+    render();
+}
+
+function resetFilter() {
+    ['f-search','f-dep','f-arr','f-type','f-status','f-warn'].forEach(id => { document.getElementById(id).value=''; });
+    applyFilter();
+}
+
+function sortData() {
+    filtered.sort((a,b) => {
+        let av = a[sortCol]||'', bv = b[sortCol]||'';
+        if (av < bv) return -1*sortDir;
+        if (av > bv) return 1*sortDir;
+        return 0;
+    });
+}
+
+function sortBy(col) {
+    document.querySelectorAll('th').forEach(t => t.classList.remove('sort-asc','sort-desc'));
+    if (sortCol === col) sortDir *= -1; else { sortCol = col; sortDir = 1; }
+    sortData();
+    render();
+    const idx = ['reg','fltno','dep','arr','etd','eta','type','status'].indexOf(col);
+    if (idx >= 0) document.querySelectorAll('th')[idx].classList.add(sortDir===1?'sort-asc':'sort-desc');
+}
+
+function toggleSidebar() {
+    const s = document.getElementById('sidebar');
+    s.classList.toggle('collapsed');
+    document.querySelector('.sidebar-toggle').textContent = s.classList.contains('collapsed') ? '▶' : '◀';
+}
+
+function toggleFilter() {
+    document.getElementById('filter-body').classList.toggle('open');
+    document.getElementById('filter-btn').classList.toggle('open');
+}
+
+// Dialog Logic
+const modal = document.getElementById('flight-detail-modal');
+function openModal(flightId, tabId) {
+    document.getElementById('modal-flight-id').textContent = flightId;
+    switchTab(tabId);
+    modal.showModal();
+}
+function closeModal() {
+    modal.close();
+}
+function switchTab(tabId) {
+    document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+    document.querySelectorAll('.tab-pane').forEach(pane => pane.classList.remove('active'));
+    document.getElementById('btn-' + tabId).classList.add('active');
+    document.getElementById(tabId).classList.add('active');
+}
+function resolveAlert(btn) {
+    btn.textContent = "Resolved";
+    btn.style.borderColor = "var(--success)";
+    btn.style.color = "var(--success)";
+    setTimeout(closeModal, 600);
+}
+
+// Clock UTC
+function updateClock() { 
+    const now = new Date();
+    document.getElementById('clock').textContent = now.toISOString().substring(11, 19) + 'Z'; 
+}
+setInterval(updateClock, 1000);
+updateClock();
+
+sortData();
+render();
+</script>
+</body>
+</html>

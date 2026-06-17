@@ -1,0 +1,287 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM">]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.2-26-16-01.25280.2-26-16-01" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="26" superSectionNumber="2" sectionName="MEL" chapterName="Fire Protection" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2025-09-30" rev:revStatus="R" rev:revNumber="10" />
+</PUMetaData>
+<MELItem itemNbr="26-16-01" id="X-BOEING:FTID:81205.787.DDG.CU.MEL.2-26-16-01.1.2-26-16-01">
+<Title>Lower Cargo Compartment Smoke Detectors</Title>
+<MELSubItem itemNbr="26-16-01-02">
+<Title>787-9 (VN-A861, VN-A862, VN-A863, VN-A864, VN-A865, VN-A866, VN-A867, VN-A868, VN-A869, VN-A870, VN-A871)</Title>
+<DispatchCondition dispCondOptions="A" repairInterval="C" nbrInstalled="29" nbrRequired="21">
+<Title>Adjacent Detectors Operate Normally</Title>
+<DispatchConditionRemarks>
+<Para>May be inoperative provided adjacent cargo compartment smoke detectors operate normally.</Para>
+</DispatchConditionRemarks>
+<Note>
+<Para>Detectors are interchangeable.</Para>
+</Note>
+<DispatchProcedure>
+<OperationNote>
+<Para>Adjacent smoke detectors in the forward compartment are all detectors immediately next to the inoperative detector fore and/or aft, to the side, or diagonally. Detectors in the aft/bulk compartment are staggered. Adjacent detectors in the aft/bulk compartment are all detectors immediately next to the inoperative detector fore and/or aft, or diagonally fore and/or aft.</Para>
+</OperationNote>
+</DispatchProcedure>
+</DispatchCondition>
+<DispatchCondition dispCondOptions="B" repairInterval="C" nbrInstalled="29" nbrRequired="0" opsIndicator="(O)">
+<Title>Adjacent Detectors Inoperative (Cargo Loading Restrictions)</Title>
+<DispatchConditionRemarks>
+<Para>May be inoperative provided procedures are established and used to verify the associated compartment or zone remains empty or contains only ballast, empty cargo handling equipment (ballast may be loaded in ULDs), or fly away kits.</Para>
+</DispatchConditionRemarks>
+<Note>
+<Para>Detectors are interchangeable.</Para>
+</Note>
+<DispatchProcedure>
+<OperationProcedure>
+<Para>Cargo compartments must remain empty in the zone associated with the inoperative smoke detectors, except for ballast, empty cargo containers (ballast may be loaded in ULDs), fly away kits, pallets, and cargo restraint components.</Para>
+<Para>The zone associated with the inoperative detectors includes the row or rows containing the inoperative detectors to the next row of operating detectors.  The table defines the cargo exclusion zone when inoperative detectors are located in the forward or aft rows of either the forward and aft/bulk compartments.  The table does not contain all of the allowable combinations
+of inoperative detectors.</Para>
+<table frame="all">
+<tgroup cols="3" colsep="1">
+<colspec colname="1" colwidth="31%" />
+<colspec colname="2" colwidth="31%" />
+<colspec colname="3" colwidth="38%" />
+<thead>
+<row rowsep="1">
+<entry colname="1">
+<Para>
+<Emphasis txtStyle="bold">Cargo Compartment</Emphasis>
+</Para>
+</entry>
+<entry colname="2">
+<Para>
+<Emphasis txtStyle="bold">Inoperative Detectors</Emphasis>
+</Para>
+</entry>
+<entry colname="3">
+<Para>
+<Emphasis txtStyle="bold">No Cargo Zone</Emphasis>
+</Para>
+</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep="0">
+<entry colname="1">
+<Para />
+</entry>
+<entry colname="2">
+<Para>
+<Emphasis txtStyle="bold" />
+</Para>
+</entry>
+<entry colname="3">
+<Para />
+</entry>
+</row>
+</tbody>
+</tgroup>
+<tgroup cols="3" colsep="1">
+<tbody>
+<row rowsep="0">
+<entry colname="1">
+<Para align="center">FWD</Para>
+</entry>
+<entry colname="2">
+<Para align="center"> 1L and 1R</Para>
+</entry>
+<entry colname="3">
+<Para align="center">Forward
+of STA 435</Para>
+</entry>
+</row>
+</tbody>
+</tgroup>
+<tgroup cols="3" colsep="1">
+<tbody>
+<row rowsep="0">
+<entry colname="1">
+<Para align="center">FWD</Para>
+</entry>
+<entry colname="2">
+<Para align="center"> 9L and 9R</Para>
+</entry>
+<entry colname="3">
+<Para align="center">Aft
+of STA 735</Para>
+</entry>
+</row>
+</tbody>
+</tgroup>
+<tgroup cols="3" colsep="1">
+<tbody>
+<row rowsep="0">
+<entry colname="1">
+<Para align="center">AFT/BULK</Para>
+</entry>
+<entry colname="2">
+<Para align="center"> 1L and 1R</Para>
+</entry>
+<entry colname="3">
+<Para align="center">Forward of STA 1401 +54</Para>
+</entry>
+</row>
+</tbody>
+</tgroup>
+<tgroup cols="3" colsep="1">
+<tbody>
+<row rowsep="0">
+<entry colname="1">
+<Para align="center">AFT/BULK</Para>
+</entry>
+<entry colname="2">
+<Para align="center"> 5L and 6R</Para>
+</entry>
+<entry colname="3">
+<Para align="center">Aft  of STA 1637</Para>
+</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="26-16-01-03">
+<Title>787-10 (VN-A872, VN-A873, VN-A874, VN-A877, VN-A878, VN-A879)</Title>
+<DispatchCondition dispCondOptions="A" repairInterval="C" nbrInstalled="35" nbrRequired="25">
+<Title>Adjacent Detectors Operate Normally</Title>
+<DispatchConditionRemarks>
+<Para>May be inoperative provided adjacent cargo compartment smoke detectors operate normally.</Para>
+</DispatchConditionRemarks>
+<Note>
+<Para>Detectors are interchangeable.</Para>
+</Note>
+<DispatchProcedure>
+<OperationNote>
+<Para>Adjacent smoke detectors in the forward compartment are all detectors immediately next to the inoperative detector  fore and/or aft, to the side, or diagonally.  Detectors in the aft/bulk compartment are staggered.  Adjacent detectors in the aft/bulk compartment are all detectors immediately next to the inoperative detector fore and/or aft, or diagonally fore and/or
+aft.</Para>
+</OperationNote>
+</DispatchProcedure>
+</DispatchCondition>
+<DispatchCondition dispCondOptions="B" repairInterval="C" nbrInstalled="35" nbrRequired="0" opsIndicator="(O)">
+<Title>Adjacent Detectors Inoperative (Cargo Loading Restrictions)</Title>
+<DispatchConditionRemarks>
+<Para>May be inoperative provided procedures are established and used to verify the associated compartment or zone remains empty or contains only ballast, empty cargo handling equipment (ballast may be loaded in ULDs), or fly away kits.</Para>
+</DispatchConditionRemarks>
+<Note>
+<Para>Detectors are interchangeable.</Para>
+</Note>
+<DispatchProcedure>
+<OperationProcedure>
+<Para>Cargo compartments must remain empty in the zone associated with the inoperative smoke detectors, except for ballast, empty cargo containers (ballast may be loaded in ULDs), fly away kits, pallets, and cargo restraint components.</Para>
+<Para>The zone associated with the inoperative detectors includes the row or rows containing the inoperative detectors to the next row of operating detectors.  The table defines the cargo exclusion zone when inoperative detectors are located in the forward or aft rows of either the forward and aft/bulk compartments.  The table does not contain all of the allowable combinations
+of inoperative detectors.</Para>
+<table frame="all">
+<tgroup cols="3" colsep="1">
+<colspec colname="1" colwidth="31%" />
+<colspec colname="2" colwidth="31%" />
+<colspec colname="3" colwidth="38%" />
+<thead>
+<row rowsep="1">
+<entry colname="1">
+<Para>
+<Emphasis txtStyle="bold">Cargo Compartment</Emphasis>
+</Para>
+</entry>
+<entry colname="2">
+<Para>
+<Emphasis txtStyle="bold">Inoperative Detectors</Emphasis>
+</Para>
+</entry>
+<entry colname="3">
+<Para>
+<Emphasis txtStyle="bold">No Cargo Zone</Emphasis>
+</Para>
+</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep="0">
+<entry colname="1">
+<Para />
+</entry>
+<entry colname="2">
+<Para>
+<Emphasis txtStyle="bold" />
+</Para>
+</entry>
+<entry colname="3">
+<Para />
+</entry>
+</row>
+</tbody>
+</tgroup>
+<tgroup cols="3" colsep="1">
+<tbody>
+<row rowsep="0">
+<entry colname="1">
+<Para align="center">FWD</Para>
+</entry>
+<entry colname="2">
+<Para align="center"> 1L and 1R</Para>
+</entry>
+<entry colname="3">
+<Para align="center">Forward
+of STA 435</Para>
+</entry>
+</row>
+</tbody>
+</tgroup>
+<tgroup cols="3" colsep="1">
+<tbody>
+<row rowsep="0">
+<entry colname="1">
+<Para align="center">FWD</Para>
+</entry>
+<entry colname="2">
+<Para align="center"> 7L and 7R</Para>
+</entry>
+<entry colname="3">
+<Para align="center">Aft
+of STA 735</Para>
+</entry>
+</row>
+</tbody>
+</tgroup>
+<tgroup cols="3" colsep="1">
+<tbody>
+<row rowsep="0">
+<entry colname="1">
+<Para align="center">AFT/BULK</Para>
+</entry>
+<entry colname="2">
+<Para align="center"> 1L and 1R</Para>
+</entry>
+<entry colname="3">
+<Para align="center">Forward of STA 1401 +48</Para>
+</entry>
+</row>
+</tbody>
+</tgroup>
+<tgroup cols="3" colsep="1">
+<tbody>
+<row rowsep="0">
+<entry colname="1">
+<Para align="center">AFT/BULK</Para>
+</entry>
+<entry colname="2">
+<Para align="center"> 4L and 4R</Para>
+</entry>
+<entry colname="3">
+<Para align="center">Aft  of STA 1637</Para>
+</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+</MELItem>
+</DispatchItems>

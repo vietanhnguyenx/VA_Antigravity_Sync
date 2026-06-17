@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM">]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.2-24-31-03.3303.2-24-31-03" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="24" superSectionNumber="2" sectionName="MEL" chapterName="Electrical Power" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2025-09-30" rev:revStatus="R" rev:revNumber="10" />
+</PUMetaData>
+<MELItem itemNbr="24-31-03" id="X-BOEING:FTID:81205.787.DDG.CU.MEL.2-24-31-03.1.2-24-31-03">
+<Title>APU Battery Charger</Title>
+<DispatchCondition dispCondOptions="A" repairInterval="C" nbrInstalled="1" nbrRequired="0" maintIndicator="(M)">
+<Title>APU Available</Title>
+<DispatchConditionRemarks>
+<Para>May be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>APU battery charger is deactivated.</Para>
+</ListItem>
+<ListItem>
+<Para>APU battery voltage is verified to be sufficient for APU start before each departure.</Para>
+</ListItem>
+<ListItem>
+<Para>APU operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>One ASG starter operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Left ASG generator operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Right ASG generator operates normally.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Note>
+<Para>ELEC APU STARTER R status message may be displayed.</Para>
+</Note>
+<Para>Verify APU battery voltage is sufficient for an APU start and deactivate the APU battery charger (AMM DDG 24-31-03).</Para>
+<List listType="1.">
+<ListItem>
+<Para>Open and collar the P400 panel circuit breaker APU BAT CHGR INPUT. </Para>
+</ListItem>
+<ListItem>
+<Para>Before each departure:</Para>
+<List listType="A.">
+<ListItem>
+<Para>Confirm P49 panel circuit breaker APU BAT CHGR OUTPUT is closed.</Para>
+</ListItem>
+<ListItem>
+<Para>Verify APU battery voltage is 31 DC-V or greater on the ELECTRICAL maintenance page 1. </Para>
+</ListItem>
+<ListItem>
+<Para>Open and collar P49 panel circuit breaker APU BAT CHGR OUTPUT. </Para>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+<DispatchCondition dispCondOptions="B" repairInterval="C" nbrInstalled="1" nbrRequired="0" maintIndicator="(M)" opsIndicator="(O)">
+<Title>APU Not Available</Title>
+<DispatchConditionRemarks>
+<Para>May be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>APU battery charger is deactivated.</Para>
+</ListItem>
+<ListItem>
+<Para>APU is not used.</Para>
+</ListItem>
+<ListItem>
+<Para>Left AGCU operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>VFSG systems operate normally.</Para>
+</ListItem>
+<ListItem>
+<Para>EDTO beyond 180 minutes is not conducted.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Note>
+<Para>A VFSG system is considered to be operating normally if its associated status message (ELEC GEN SYS L1, L2, R1 or R2) is not displayed.</Para>
+</Note>
+<Para>Deactivate the APU battery charger (AMM DDG 24-31-03).</Para>
+<List listType="1.">
+<ListItem>
+<Para>Open and collar the P400 panel circuit breaker APU BAT CHGR INPUT. </Para>
+</ListItem>
+<ListItem>
+<Para>Open and collar the P49 panel circuit breaker APU BAT CHGR OUTPUT. </Para>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+<OperationProcedure>
+<List listType="1.">
+<ListItem>
+<Para>EDTO beyond 180 minutes is not conducted.</Para>
+</ListItem>
+<ListItem>
+<Para>Start the first engine using the Ground Power Engine Start Supplementary Procedure.</Para>
+</ListItem>
+</List>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELItem>
+</DispatchItems>

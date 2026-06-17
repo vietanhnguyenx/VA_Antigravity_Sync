@@ -1,0 +1,474 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" targetNamespace="http://www.boeing.com/FTID-ML" elementFormDefault="qualified" attributeFormDefault="unqualified" version="FTID 2.8.1">
+	<!-- 	
+=================================================================
+
+
+Copyright Information:
+      Boeing Proprietary and Confidential - 
+      All Rights Reserved since 2006.
+
+      This schema file is part of the Boeing Flight Technical 
+      Integrated Data (FTID) Specification based on XML.
+      All rights are reserved under Boeing Flight Operations 
+      digital data entitlements, products or services.
+
+ 
+Contact Information:   	
+        The Boeing Company
+        Flight Operations Support
+        P.O. Box 3707	MS 20-89
+        Seattle, WA 98124-2207
+        USA
+        email:  flighttraining@Boeing.com
+        Phone:  (206) 662-4000
+        Fax:    (206) 662-4743
+
+		
+===================================================================
+-->
+	<!--=====================================================-->
+	<!--  Unique ID attribute definition -->
+	<!--  UID is depending on the user or system implementation -->
+	<!--=====================================================-->
+	<xs:simpleType name="UIDType">
+		<xs:annotation>
+			<xs:documentation>Unique ID for a content or publish unit.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<!--  Do not define any pattern restriction.  See comments above -->
+		</xs:restriction>
+	</xs:simpleType>
+	<!--=====================================================-->
+	<!-- checklistIndex attribute definition 
+           checklistIndex: e is for an EICAS message title that 
+                     displays an electronic checklist icon like [];
+                     U is title in the checklist that has no EICAS 
+                     message. It's displayed as an Italic U; 
+                     none - not a checklist title.
+      -->
+	<!--=====================================================-->
+	<xs:simpleType name="checklistIndexType">
+		<xs:annotation>
+			<xs:documentation>Type of check-list, usually in non-normal procedures</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:NMTOKEN">
+			<xs:enumeration value="e"/>
+			<xs:enumeration value="U"/>
+			<xs:enumeration value="none"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!--=====================================================-->
+	<!-- Crew Member attribute definition -->
+	<!--=====================================================-->
+	<xs:simpleType name="crmType">
+		<xs:annotation>
+			<xs:documentation>Crew member who is responsible for an action or command</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<!--=====================================================-->
+	<!-- calloutLabel attribute definition -->
+	<!--=====================================================-->
+	<xs:simpleType name="calloutLabelType">
+		<xs:annotation>
+			<xs:documentation>A graphic callout or reference indicator</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(.){1,10}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!--=====================================================-->
+	<!--  YN attribute definition -->
+	<!--=====================================================-->
+	<xs:simpleType name="YNType">
+		<xs:annotation>
+			<xs:documentation>Boolean attribute</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:NMTOKEN">
+			<xs:enumeration value="N"/>
+			<xs:enumeration value="Y"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!--=====================================================-->
+	<!-- listType attribute definition -->
+	<!--=====================================================-->
+	<xs:simpleType name="listTypeType">
+		<xs:annotation>
+			<xs:documentation>Type of list formatting.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="bullet"/>
+			<xs:enumeration value="dash"/>
+			<xs:enumeration value="1."/>
+			<xs:enumeration value="1)"/>
+			<xs:enumeration value="(1)"/>
+			<xs:enumeration value="A."/>
+			<xs:enumeration value="A)"/>
+			<xs:enumeration value="(A)"/>
+			<xs:enumeration value="a."/>
+			<xs:enumeration value="a)"/>
+			<xs:enumeration value="(a)"/>
+			<xs:enumeration value="none"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!--=====================================================-->
+	<!-- TABLE ATTRIBUTES SECTION -->
+	<!--=====================================================-->
+	<!--=====================================================-->
+	<!-- align attribute definition -->
+	<!--=====================================================-->
+	<xs:simpleType name="alignType">
+		<xs:annotation>
+			<xs:documentation>
+        </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:NMTOKEN">
+			<xs:enumeration value="left"/>
+			<xs:enumeration value="center"/>
+			<xs:enumeration value="right"/>
+			<xs:enumeration value="justify"/>
+			<xs:enumeration value="char"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!--=====================================================-->
+	<!-- tabstyle attribute definition -->
+	<!--=====================================================-->
+	<xs:simpleType name="tabstyleType">
+		<xs:annotation>
+			<xs:documentation>
+        </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<!--=====================================================-->
+	<!-- frame attribute definition -->
+	<!--=====================================================-->
+	<xs:simpleType name="frameType">
+		<xs:annotation>
+			<xs:documentation>
+        </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:NMTOKEN">
+			<xs:enumeration value="top"/>
+			<xs:enumeration value="bottom"/>
+			<xs:enumeration value="topbot"/>
+			<xs:enumeration value="all"/>
+			<xs:enumeration value="sides"/>
+			<xs:enumeration value="none"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!--=====================================================-->
+	<!--  seperator attribute (rowsep, colsep) definition -->
+	<!--=====================================================-->
+	<xs:simpleType name="seperatorType">
+		<xs:annotation>
+			<xs:documentation>
+        </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="1"/>
+			<xs:pattern value="0"/>
+			<xs:pattern value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!--=====================================================-->
+	<!-- orient attribute definition -->
+	<!--=====================================================-->
+	<xs:simpleType name="orientType">
+		<xs:annotation>
+			<xs:documentation>
+        </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:NMTOKEN">
+			<xs:enumeration value="port"/>
+			<xs:enumeration value="land"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!--=====================================================-->
+	<!-- valign attribute definition -->
+	<!--=====================================================-->
+	<xs:simpleType name="valignType">
+		<xs:annotation>
+			<xs:documentation>
+        </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:NMTOKEN">
+			<xs:enumeration value="top"/>
+			<xs:enumeration value="middle"/>
+			<xs:enumeration value="bottom"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!--=====================================================-->
+	<!-- ======== Metadata Attributes Section ============== -->
+	<!--=====================================================-->
+	<!--=====================================================-->
+	<!-- author attribute definition -->
+	<!--=====================================================-->
+	<xs:simpleType name="authorType">
+		<xs:annotation>
+			<xs:documentation>Author of the content or FTID</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(.)*"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!--=====================================================-->
+	<!-- Customer-Originated-Change attribute definition -->
+	<!--=====================================================-->
+	<xs:simpleType name="cocType">
+		<xs:annotation>
+			<xs:documentation>Indicates content is requested or originated from the airline</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(.)*"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!--=====================================================-->
+	<!-- model attribute definition -->
+	<!--=====================================================-->
+	<xs:simpleType name="modelType">
+		<xs:annotation>
+			<xs:documentation>Airplane model number</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(.)*"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!--=====================================================-->
+	<!-- manualCode attribute definition -->
+	<!--=====================================================-->
+	<xs:simpleType name="manualCodeType">
+		<xs:annotation>
+			<xs:documentation>code of a manual</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(.)*"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!--=====================================================-->
+	<!-- manualNameType attribute definition -->
+	<!--=====================================================-->
+	<xs:simpleType name="manualNameType">
+		<xs:annotation>
+			<xs:documentation>Name of a manual</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(.)*"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!--=====================================================-->
+	<!-- manualNumber attribute definition -->
+	<!--=====================================================-->
+	<xs:simpleType name="manualNumberType">
+		<xs:annotation>
+			<xs:documentation>A string designated the manual number like D6 number.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(.)*"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!--=====================================================-->
+	<!-- customer code attribute definition -->
+	<!--=====================================================-->
+	<xs:simpleType name="customerCodeType">
+		<xs:annotation>
+			<xs:documentation>A customer (airline) code</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(.)*"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!--=====================================================-->
+	<!-- customer name attribute definition -->
+	<!--=====================================================-->
+	<xs:simpleType name="customerNameType">
+		<xs:annotation>
+			<xs:documentation>A customer name</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(.)*"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!--=====================================================-->
+	<!-- super-section (above chapter level for MEL)  attribute definition -->
+	<!--=====================================================-->
+	<xs:simpleType name="superSectionNumberType">
+		<xs:annotation>
+			<xs:documentation>Super section for DDG/MEL</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9A-Z]"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!--=====================================================-->
+	<!-- chapterName attribute definition -->
+	<!--=====================================================-->
+	<xs:simpleType name="chapterNameType">
+		<xs:annotation>
+			<xs:documentation>Chapter name or system name</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(.)*"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!--=====================================================-->
+	<!-- chapterNumber attribute definition -->
+	<!--=====================================================-->
+	<xs:simpleType name="chapterNumberType">
+		<xs:annotation>
+			<xs:documentation>Chapter number or system code</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(.)*"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!--=====================================================-->
+	<!-- sectionName attribute definition -->
+	<!--=====================================================-->
+	<xs:simpleType name="sectionNameType">
+		<xs:annotation>
+			<xs:documentation>Section name or sub-system code</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(.)*"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!--=====================================================-->
+	<!-- sectionNumber  attribute definition -->
+	<!--=====================================================-->
+	<xs:simpleType name="sectionNumberType">
+		<xs:annotation>
+			<xs:documentation>Section number or code</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(.)*"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!--=====================================================-->
+	<!--  engine attribute definition -->
+	<!--=====================================================-->
+	<xs:simpleType name="engineType">
+		<xs:annotation>
+			<xs:documentation>Engine type</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(.)*"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!--=====================================================-->
+	<!--  equipment attribute definition -->
+	<!--=====================================================-->
+	<xs:simpleType name="equipmentType">
+		<xs:annotation>
+			<xs:documentation>Equipment information</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(.)*"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!--=====================================================-->
+	<!--  agencyName attribute definition -->
+	<!--=====================================================-->
+	<xs:simpleType name="agencyNameType">
+		<xs:annotation>
+			<xs:documentation>Regulatory agency name</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(.)*"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!--=====================================================-->
+	<!-- genericStr attribute definition -->
+	<!--=====================================================-->
+	<xs:simpleType name="genericStrType">
+		<xs:annotation>
+			<xs:documentation>Generic string type</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<!--=====================================================-->
+	<!-- graphicEntity attribute definition -->
+	<!--=====================================================-->
+	<xs:simpleType name="graphicEntityType">
+		<xs:annotation>
+			<xs:documentation>External graphic reference</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+		<!-- xs:restriction base="xs:ENTITY" IXP has problem with ENTITY type -->
+	</xs:simpleType>
+	<!--=====================================================-->
+	<!--  (sub/super) script attribute -->
+	<!--=====================================================-->
+	<xs:simpleType name="scriptType">
+		<xs:annotation>
+			<xs:documentation>sub or super script</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="subScript"/>
+			<xs:enumeration value="superScript"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!--=====================================================-->
+	<!--  txtEffect attribute -->
+	<!--=====================================================-->
+	<xs:simpleType name="txtEffectType">
+		<xs:annotation>
+			<xs:documentation>text underlined, overlined, etc.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="underline"/>
+			<xs:enumeration value="double underline"/>
+			<xs:enumeration value="overline"/>
+			<xs:enumeration value="strikethrough"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!--=====================================================-->
+	<!--  txtStyle attribute -->
+	<!--=====================================================-->
+	<xs:simpleType name="txtStyleType">
+		<xs:annotation>
+			<xs:documentation>italic, bold, etc.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="italic"/>
+			<xs:enumeration value="bold"/>
+			<xs:enumeration value="italic bold"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!--=====================================================-->
+	<!-- year attribute definition -->
+	<!--=====================================================-->
+	<xs:simpleType name="yearType">
+		<xs:annotation>
+			<xs:documentation>YYYY</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(.)*\d{4}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!--=====================================================-->
+	<!-- largeFont attribute definition -->
+	<!--=====================================================-->
+	<xs:simpleType name="largeFontType">
+		<xs:annotation>
+			<xs:documentation>
+                      Indicates how some NNC titles would be presented:
+						Yes - Use larger font (than standard default) in both TOC and Indexes.
+						No (default) - Use standard font.
+						YesAltTOC - Use larger font in TOC, but do not show in Index.
+						NoAltTOC - Use standard font in TOC, but do not show in Index.
+						YesAltIndex - Use larger font in Index, but do not show in TOC.
+						NoAltIndex - Use standard font in Index, but do not show in TOC.
+                  </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="Yes"/>
+			<xs:enumeration value="No"/>
+			<xs:enumeration value="YesAltTOC"/>
+			<xs:enumeration value="NoAltTOC"/>
+			<xs:enumeration value="YesAltIndex"/>
+			<xs:enumeration value="NoAltIndex"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

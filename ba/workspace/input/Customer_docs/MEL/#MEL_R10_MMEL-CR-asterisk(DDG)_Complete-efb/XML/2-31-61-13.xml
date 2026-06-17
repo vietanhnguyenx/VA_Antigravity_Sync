@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM">]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.2-31-61-13.3002.2-31-61-13" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="31" superSectionNumber="2" sectionName="MEL" chapterName="Indicating / Recording Systems" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2025-09-30" rev:revStatus="R" rev:revNumber="10" />
+</PUMetaData>
+<MELItem itemNbr="31-61-13" id="X-BOEING:FTID:81205.787.DDG.CU.MEL.2-31-61-13.1.2-31-61-13">
+<Title>Airport Map Function</Title>
+<DispatchCondition dispCondOptions="A" repairInterval="C" nbrInstalled="1" nbrRequired="0" opsIndicator="(O)">
+<Title>
+<?FTID-xref 1281703.2-31-61-13?>Alternate Procedures Required</Title>
+<DispatchConditionRemarks>
+<Para rev:revStatus="R" rev:revHighlight="Updated proviso to remove &quot;out of currency&quot; reference as it is not authorized MMEL relief per 14 CFR.">May be inoperative provided alternate pr<?FTID-rev start?>ocedures a<?FTID-rev end?>re established and
+used.</Para>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<OperationProcedure>
+<Note>
+<Para>An amber SURF symbol may be displayed on one or both Navigation Displays (NDs).</Para>
+</Note>
+<Para>Alternate procedures:</Para>
+<Para>Disregard Airport Map Function and utilize current navigation charts on EFB for airport navigation.</Para>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+<DispatchCondition dispCondOptions="B" repairInterval="D" nbrInstalled="1" nbrRequired="0">
+<Title>
+<?FTID-xref 1281769.2-31-61-13?>Procedures Do Not Require Use</Title>
+<DispatchConditionRemarks>
+<Para rev:revStatus="R" rev:revHighlight="Updated proviso to remove &quot;out of currency&quot; reference as it is not authorized MMEL relief per 14 CFR.">May be inoperative provided procedure<?FTID-rev start?>s do<?FTID-rev end?> not require its use.</Para>
+</DispatchConditionRemarks>
+</DispatchCondition>
+</MELItem>
+</DispatchItems>

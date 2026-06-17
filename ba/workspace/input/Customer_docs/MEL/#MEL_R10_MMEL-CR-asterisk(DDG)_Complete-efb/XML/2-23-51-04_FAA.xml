@@ -1,0 +1,306 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM">]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.2-23-51-04.2662.2-23-51-04_FAA" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="23" superSectionNumber="2" sectionName="MEL" chapterName="Communications" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2025-09-30" rev:revStatus="R" rev:revNumber="10" />
+</PUMetaData>
+<MELItem itemNbr="23-51-04" id="X-BOEING:FTID:81205.787.DDG.CU.MEL.2-23-51-04.1.2-23-51-04_FAA">
+<Title>Microphone (MIC)/Interphone Switches</Title>
+<MELSubItem itemNbr="23-51-04-01">
+<Title>Control Wheel MIC/Interphone Switches</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="2" nbrRequired="1" maintIndicator="(M)">
+<DispatchConditionRemarks>
+<Para>One may be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Affected switch is deactivated open.</Para>
+</ListItem>
+<ListItem>
+<Para>Associated audio control panel MIC/interphone switch operates normally</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Deactivate the inoperative control wheel MIC/interphone switch, confirm it is deactivated open and verify the associated pilot’s audio control panel (ACP) MIC/interphone switch operates normally (AMM DDG 23-51-04)</Para>
+<List listType="1.">
+<ListItem>
+<Para>Deactivate the inoperative control wheel MIC/interphone switch.</Para>
+<List listType="A.">
+<ListItem>
+<Para>For captain’s switch inoperative, open circuit breaker FLT INTERPHONE-CAPT and lock with a DO NOT CLOSE tag.</Para>
+</ListItem>
+<ListItem>
+<Para>For first officer’s switch inoperative, open circuit breaker FLT INTERPHONE-FO and lock with a DO NOT CLOSE tag.</Para>
+</ListItem>
+<ListItem>
+<Para>Gain access to the inoperative MIC/interphone switch wiring harness assembly in the control wheel cavity beneath the approach chart plate.</Para>
+</ListItem>
+<ListItem>
+<Para>Extract the three white wires SW3-1-24, SW3-2-24 and SW3-3-24 from the jiffy connectors.</Para>
+</ListItem>
+<ListItem>
+<Para>Cap and stow the wires.</Para>
+</ListItem>
+<ListItem>
+<Para>Reinstall the control wheel cover assembly and approach chart plate.</Para>
+</ListItem>
+<ListItem>
+<Para>For captain’s switch inoperative, close FLT INTERPHONE-CAPT circuit breaker.</Para>
+</ListItem>
+<ListItem>
+<Para>For first officer’s switch inoperative, close FLT INTERPHONE-FO circuit breaker.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Confirm the inoperative control wheel MIC/interphone switch is deactivated open and verify the associated pilot’s ACP MIC/interphone switch operates normally.</Para>
+<List listType="A.">
+<ListItem>
+<Para>Push the FLT transmitter select switch on the captain’s and first officer’s ACPs and ensure the FLT MIC light is illuminated on both panels.</Para>
+</ListItem>
+<ListItem>
+<Para>Ensure the FLT receiver light is illuminated and receiver volume control is properly adjusted on both ACPs.</Para>
+</ListItem>
+<ListItem>
+<Para>Speak into the pilot’s microphone associated with the inoperative switch while simultaneously pushing the deactivated control wheel MIC/interphone switch.  No transmission should be heard on the other pilot’s headset.</Para>
+</ListItem>
+<ListItem>
+<Para>Speak into the pilot’s microphone associated with the inoperative switch while simultaneously pushing the associated pilot’s ACP MIC switch.  The transmission should be clearly heard on the other pilot’s headset.</Para>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="23-51-04-02">
+<Title>Flight Crew Audio Control Panel MIC/Interphone Switches</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="2" nbrRequired="1" maintIndicator="(M)">
+<DispatchConditionRemarks>
+<Para>One may be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Affected switch is verified inoperative open.</Para>
+</ListItem>
+<ListItem>
+<Para>Associated control wheel MIC/interphone switch operates normally.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Confirm the inoperative audio control panel (ACP) MIC/interphone switch is inoperative open and verify the associated pilot’s control wheel MIC/interphone switch operates normally (AMM DDG 23-51-04).</Para>
+<List listType="1.">
+<ListItem>
+<Para>Provide electrical power on the airplane.</Para>
+</ListItem>
+<ListItem>
+<Para>Push the FLT transmitter select switch on the captain’s and first officer’s ACPs and ensure the FLT MIC light is illuminated on both panels.</Para>
+</ListItem>
+<ListItem>
+<Para>Ensure the FLT receiver light is illuminated and receiver volume control is properly adjusted on both ACPs.</Para>
+</ListItem>
+<ListItem>
+<Para>Without pressing MIC on the control wheel, ACP or glareshield, speak into the associated microphone and determine if voice transmission can be heard on the other pilot’s headset.  If no voice transmission is heard, the ACP MIC/interphone switch is in the open position.</Para>
+</ListItem>
+<ListItem>
+<Para>Speak into the  pilot’s microphone associated with the inoperative switch while simultaneously pushing the inoperative ACP MIC/interphone switch.  No transmission should be heard on the other pilot’s headset.</Para>
+</ListItem>
+<ListItem>
+<Para>Speak into the pilot’s microphone associated with the inoperative switch while simultaneously pushing the associated pilot’s control wheel MIC/interphone switch.  The transmission should be clearly heard on the other pilot’s headset.</Para>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="23-51-04-03">
+<Title>Glareshield MIC Switches</Title>
+<DispatchCondition dispCondOptions="A" repairInterval="C" nbrInstalled="2" nbrRequired="0" maintIndicator="(M)">
+<Title>Microphone Switch Deactivated</Title>
+<DispatchConditionRemarks>
+<Para>May be inoperative provided microphone switch is deactivated open.</Para>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Deactivate the inoperative glareshield MIC switch and confirm it is deactivated open (AMM DDG 23-51-04).</Para>
+<List listType="1.">
+<ListItem>
+<Para>Deactivate the inoperative glareshield MIC switch.</Para>
+<List listType="A.">
+<ListItem>
+<Para>Open the following circuit breakers and lock with a DO NOT CLOSE tag:</Para>
+<List listType="1)">
+<ListItem>
+<Para>FLT INTERPHONE-CAPT</Para>
+</ListItem>
+<ListItem>
+<Para>FLT INTERPHONE-FO</Para>
+</ListItem>
+<ListItem>
+<Para>FLT DK LTS-FO INST PNL</Para>
+</ListItem>
+<ListItem>
+<Para>FLT DK LTS-STBY INST PNL</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Remove the three screws which mount the inoperative switch panel (CLOCK/MAP/MIC) in the glareshield panel.</Para>
+</ListItem>
+<ListItem>
+<Para>Pull the inoperative switch panel out of the glareshield panel.</Para>
+</ListItem>
+<ListItem>
+<Para>Push out pins 8 and 9 from the electrical connector.</Para>
+</ListItem>
+<ListItem>
+<Para>Cap and stow the disconnected wires.</Para>
+</ListItem>
+<ListItem>
+<Para>Install the switch panel in the glareshield panel and secure with the three screws.</Para>
+</ListItem>
+<ListItem>
+<Para>Close the following circuit breakers:</Para>
+<List listType="1)">
+<ListItem>
+<Para>FLT INTERPHONE-CAPT</Para>
+</ListItem>
+<ListItem>
+<Para>FLT INTERPHONE-FO</Para>
+</ListItem>
+<ListItem>
+<Para>FLT DK LTS-FO INST PNL</Para>
+</ListItem>
+<ListItem>
+<Para>FLT DK LTS-STBY INST PNL</Para>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Confirm the inoperative glareshield MIC switch is deactivated open.</Para>
+<List listType="A.">
+<ListItem>
+<Para>Provide electrical power on the airplane.</Para>
+</ListItem>
+<ListItem>
+<Para>Push the FLT transmitter select switch on the captain’s and first officer’s ACPs and ensure the FLT MIC light is illuminated on both panels.</Para>
+</ListItem>
+<ListItem>
+<Para>Ensure the FLT receiver light is illuminated and receiver volume control is properly adjusted on both ACPs.</Para>
+</ListItem>
+<ListItem>
+<Para>Speak into the pilot’s microphone associated with the inoperative switch while simultaneously pushing the deactivated glareshield MIC switch.  No transmission should be heard on the other pilot’s headset.</Para>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+<DispatchCondition dispCondOptions="B" repairInterval="C" nbrInstalled="2" nbrRequired="1" maintIndicator="(M)">
+<Title>
+<?FTID-xref 1290719.2-23-51-04_FAA?>CLOCK/MAP/MIC Switch Panel Deactivated</Title>
+<DispatchConditionRemarks>
+<Para>One may be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Associated CLOCK/MAP/MIC switch panel is deactivated.</Para>
+</ListItem>
+<ListItem>
+<Para>Associated CLOCK function is considered inoperative.</Para>
+</ListItem>
+<ListItem>
+<Para>Associated flight compartment illumination system (MAP light) is considered inoperative.</Para>
+</ListItem>
+</List>
+<Note rev:revStatus="R" rev:revHighlight="Add additional dispatch item notes (note 1 and note 2) due to provisos (b. and c.) requiring them to be considered inoperative">
+<?FTID-rev start?>
+<Para>For associated CLOCK function considered inoperative, the airplane must also
+be dispatched using MEL item 31-61-08</Para>
+<?FTID-rev end?>
+</Note>
+<Note rev:revStatus="R" rev:revHighlight="Add additional dispatch item notes (note 1 and note 2) due to provisos (b. and c.) requiring them to be considered inoperative">
+<?FTID-rev start?>
+<Para>For associated flight compartment illumination function (MAP light) considered
+inoperative, the airplane must also be dispatched using MEL item 33-11-01</Para>
+<?FTID-rev end?>
+</Note>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para rev:revStatus="R" rev:revHighlight="Update (M) procedure">
+<?FTID-rev start?>Deactivate the inoperative CLOCK/MAP/MIC glareshield switch panel (AMM DDG 23-51-04).<?FTID-rev end?></Para>
+<List listType="1.">
+<ListItem>
+<Para>Deactivate the inoperative glareshield MIC switch.</Para>
+<List listType="A.">
+<ListItem>
+<Para>Open the following circuit breakers and lock with a DO NOT CLOSE tag:</Para>
+<List listType="1)">
+<ListItem>
+<Para>FLT INTERPHONE-CAPT</Para>
+</ListItem>
+<ListItem>
+<Para>FLT INTERPHONE-FO</Para>
+</ListItem>
+<ListItem>
+<Para>FLT DK LTS-FO INST PNL</Para>
+</ListItem>
+<ListItem>
+<Para>FLT DK LTS-STBY INST PNL</Para>
+</ListItem>
+<ListItem>
+<Para>FLT DK LTS-MAP</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Remove the three screws which mount the inoperative switch panel (CLOCK/MAP/MIC) in the glareshield panel.</Para>
+</ListItem>
+<ListItem>
+<Para>Pull the inoperative switch panel out of the glareshield panel.</Para>
+</ListItem>
+<ListItem>
+<Para>Disconnect, cap and stow electrical connector.</Para>
+</ListItem>
+<ListItem>
+<Para>Install the switch panel in the glareshield panel and secure with the three screws.</Para>
+</ListItem>
+<ListItem>
+<Para>Close the following circuit breakers:</Para>
+<List listType="1)">
+<ListItem>
+<Para>FLT INTERPHONE-CAPT</Para>
+</ListItem>
+<ListItem>
+<Para>FLT INTERPHONE-FO</Para>
+</ListItem>
+<ListItem>
+<Para>FLT DK LTS-FO INST PNL</Para>
+</ListItem>
+<ListItem>
+<Para>FLT DK LTS-STBY INST PNL</Para>
+</ListItem>
+<ListItem>
+<Para>FLT DK LTS-MAP</Para>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+</MELItem>
+</DispatchItems>

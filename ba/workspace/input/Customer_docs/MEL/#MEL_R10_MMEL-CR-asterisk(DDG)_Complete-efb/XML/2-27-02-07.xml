@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM">]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.2-27-02-07.2585.2-27-02-07" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="27" superSectionNumber="2" sectionName="MEL" chapterName="Flight Controls" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2024-06-19" rev:revStatus="U" rev:revNumber="10" />
+</PUMetaData>
+<MELItem itemNbr="27-02-07" id="X-BOEING:FTID:81205.787.DDG.CU.MEL.2-27-02-07.1.2-27-02-07">
+<Title>Modal Suppression Accelerometers (MSA)</Title>
+<MELSubItem itemNbr="27-02-07-01">
+<Title>Aft MSA (787-9: VN-A861, VN-A862, VN-A863, VN-A864, VN-A865, VN-A866, VN-A867, VN-A868, VN-A869, VN-A870, VN-A871) (*)</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="2" nbrRequired="0" />
+</MELSubItem>
+<MELSubItem itemNbr="27-02-07-02">
+<Title>Forward MSA (787-9: VN-A861, VN-A862, VN-A863, VN-A864, VN-A865, VN-A866, VN-A867, VN-A868, VN-A869, VN-A870, VN-A871) (*)</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="2" nbrRequired="0">
+<DispatchConditionRemarks>
+<Para>May be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Appropriate weight limits are observed.</Para>
+</ListItem>
+<ListItem>
+<Para>Appropriate performance adjustments are applied.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<OperationProcedure>
+<Para>Maximum Takeoff Weight is 335,000 lb (151,953 kg).</Para>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="27-02-07-03">
+<Title>Aft and Forward MSA (787-10:VN-A872, VN-A873, VN-A874, VN-A877, VN-A878, VN-A879)</Title>
+<DispatchCondition repairInterval="A" nbrInstalled="4" nbrRequired="0">
+<DispatchConditionRemarks>
+<Para>May be inoperative provided repairs are made within three flight days. </Para>
+</DispatchConditionRemarks>
+</DispatchCondition>
+</MELSubItem>
+</MELItem>
+</DispatchItems>

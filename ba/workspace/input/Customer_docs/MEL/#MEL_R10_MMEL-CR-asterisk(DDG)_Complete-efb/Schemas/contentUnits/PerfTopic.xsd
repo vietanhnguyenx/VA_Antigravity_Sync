@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://www.boeing.com/FTID-ML"
+    xmlns:rev="http://www.boeing.com/FTID-ML/Revision"
+    targetNamespace="http://www.boeing.com/FTID-ML" 
+    elementFormDefault="qualified" 
+    attributeFormDefault="unqualified"
+    version="FTID 2.7">
+
+<!-- 	
+=================================================================
+
+
+Copyright Information:
+      Boeing Proprietary and Confidential - 
+      All Rights Reserved since 2006.
+
+      This schema file is part of the Boeing Flight Technical 
+      Integrated Data (FTID) Specification based on XML.
+      All rights are reserved under Boeing Flight Operations 
+      digital data entitlements, products or services.
+
+     
+Contact Information:   	
+        The Boeing Company
+        Flight Operations Support
+        P.O. Box 3707	MS 20-89
+        Seattle, WA 98124-2207
+        USA
+        email:  flighttraining@Boeing.com
+        Phone:  (206) 662-4000
+        Fax:    (206) 662-4743
+
+		
+===================================================================
+-->
+
+
+<xs:include schemaLocation="../attributeTypes/generalAttrs.xsd"/>
+<xs:include schemaLocation="../basicDataTypes/basicDataInclude.xsd"/>
+<xs:include schemaLocation="../metadataTypes/ataSystems.xsd" />
+<xs:include schemaLocation="../metadataTypes/ataPOF.xsd" />
+<xs:include schemaLocation="../metadataTypes/effect.xsd"/>
+<xs:import namespace="http://www.boeing.com/FTID-ML/Revision" schemaLocation="../metadataTypes/revision.xsd"/>
+
+
+
+<!--=====================================================-->
+<!--  Root element declaration -->
+<!--=====================================================-->
+<xs:element name="PerfTopic" type="PerfTopicType"/>
+
+
+<!--=====================================================-->
+<!-- Performance Topic element definition -->
+<!--=====================================================-->
+<xs:complexType name="PerfTopicType">
+    <xs:annotation>
+        <xs:documentation>Content-Unit for Performance Dispatch or Inflight content types</xs:documentation>
+    </xs:annotation>
+
+    <xs:sequence>
+        <xs:element name="Effectivities" type="EffectivitiesType" minOccurs="0"/>
+        <xs:element name="PerfTopicHeading" type="PerfTopicHeadingType"/>
+        <xs:element name="ATASystems" type="ATASystemsType" minOccurs="0"/>
+        <xs:element name="POF" type="POFType"  minOccurs="0"/>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="PerfSubTopic" type="PerfSubTopicType"/>
+            <xs:element name="PerfNote" type="PerfNoteType"/>
+        </xs:choice>  
+    </xs:sequence>
+
+    <xs:attribute name="id" type="UIDType" use="required"/>
+    <xs:attributeGroup ref="globalAttrGrp"/>
+</xs:complexType>
+
+
+<!--=====================================================-->
+<!-- PerfTopicHeading element definition -->
+<!--=====================================================-->
+<xs:complexType name="PerfTopicHeadingType">
+    <xs:annotation>
+        <xs:documentation>Special heading for the performance topic</xs:documentation>
+    </xs:annotation>
+
+    <xs:choice maxOccurs="unbounded">
+        <xs:element name="Title" type="TitleType"/>
+        <xs:element name="ADVISORY" type="ADVISORYType"/>
+        <xs:element name="ALL-ENGINES" type="ALL-ENGINESType"/>
+        <xs:element name="ALT-EEC-MODE" type="ALT-EEC-MODEType"/>
+        <xs:element name="ALT-MODE-EEC" type="ALT-MODE-EECType"/>
+        <xs:element name="ALT-THRUST-SETTING" type="ALT-THRUST-SETTINGType"/>
+        <xs:element name="ENGINE-INOP" type="ENGINE-INOPType"/>
+        <xs:element name="ENGINE-INOP1" type="ENGINE-INOP1Type"/>
+        <xs:element name="ENGINE-INOP2" type="ENGINE-INOP2Type"/>
+        <xs:element name="GEARDOWN" type="GEARDOWNType"/>
+        <xs:element name="General" type="GeneralType"/>
+        <xs:element name="GO-AROUND-THRUST" type="GO-AROUND-THRUSTType"/>
+        <xs:element name="MAX-CONT-THRUST" type="MAX-CONT-THRUSTType"/>
+        <xs:element name="PMC-OFF" type="PMC-OFFType"/>
+        <xs:element name="SPARE-ENGINE-CARRIAGE" type="SPARE-ENGINE-CARRIAGEType"/>
+    </xs:choice>
+
+    <xs:attributeGroup ref="globalAttrGrp"/>
+</xs:complexType>
+
+
+<!--=====================================================-->
+<!-- Special Perf-Topic-Heading elements (empty) -->
+<!--=====================================================-->
+<xs:complexType name="ADVISORYType"/>
+<xs:complexType name="ALL-ENGINESType"/>
+<xs:complexType name="ALT-EEC-MODEType"/>
+<xs:complexType name="ALT-MODE-EECType"/>
+<xs:complexType name="ALT-THRUST-SETTINGType"/>
+<xs:complexType name="ENGINE-INOPType"/>
+<xs:complexType name="ENGINE-INOP1Type"/>
+<xs:complexType name="ENGINE-INOP2Type"/>
+<xs:complexType name="GEARDOWNType"/>
+<xs:complexType name="GeneralType"/>
+<xs:complexType name="GO-AROUND-THRUSTType"/>
+<xs:complexType name="MAX-CONT-THRUSTType"/>
+<xs:complexType name="PMC-OFFType"/>
+<xs:complexType name="SPARE-ENGINE-CARRIAGEType"/>
+
+
+
+<!--=====================================================-->
+<!-- PerfSubTopic element definition -->
+<!--=====================================================-->
+<xs:complexType name="PerfSubTopicType">
+    <xs:annotation>
+        <xs:documentation>Sub-Topic of a Performance Dispatch or Inflight Topic</xs:documentation>
+    </xs:annotation>
+
+    <xs:sequence>
+        <xs:element name="Effectivities" type="EffectivitiesType" minOccurs="0"/>
+        <xs:element name="PerfTitleGrp" type="PerfTitleGrpType"/>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:group ref="TextCWNGroupType"/>
+            <xs:element name="PerfSubTopicItem" type="PerfSubTopicItemType"/>
+            <xs:element name="PerfNote" type="PerfNoteType"/>
+        </xs:choice>
+    </xs:sequence>
+
+    <xs:attribute name="id" type="UIDType" use="required"/>
+    <xs:attributeGroup ref="globalAttrGrp"/>
+</xs:complexType>
+
+
+<!--=====================================================-->
+<!-- PerfSubTopicItem element definition -->
+<!--=====================================================-->
+<xs:complexType name="PerfSubTopicItemType">
+    <xs:annotation>
+        <xs:documentation>An item within a Performance-SubTopic</xs:documentation>
+    </xs:annotation>
+
+    <xs:sequence>
+        <xs:element name="Effectivities" type="EffectivitiesType" minOccurs="0"/>
+        <xs:element name="PerfTitleGrp" type="PerfTitleGrpType" minOccurs="0"/>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:group ref="TextCWNGroupType"/>
+            <xs:element name="PerfSubTopicSubItem" type="PerfSubTopicSubItemType"/>
+            <xs:element name="PerfNote" type="PerfNoteType"/>
+        </xs:choice>
+    </xs:sequence>
+
+    <xs:attributeGroup ref="globalAttrGrp"/>
+</xs:complexType>
+
+
+<!--=====================================================-->
+<!-- PerfSubTopicSubItem element definition -->
+<!--=====================================================-->
+<xs:complexType name="PerfSubTopicSubItemType">
+    <xs:annotation>
+        <xs:documentation>An SubItem within a Performance-SubTopic</xs:documentation>
+    </xs:annotation>
+
+    <xs:sequence>
+        <xs:element name="Effectivities" type="EffectivitiesType" minOccurs="0"/>
+        <xs:element name="PerfTitleGrp" type="PerfTitleGrpType" minOccurs="0"/>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:group ref="TextCWNGroupType"/>
+            <xs:element name="PerfNote" type="PerfNoteType"/>
+        </xs:choice>
+    </xs:sequence>
+
+    <xs:attributeGroup ref="globalAttrGrp"/>
+</xs:complexType>
+
+
+<!--=====================================================-->
+<!-- PerfTitleGrp element definition -->
+<!--=====================================================-->
+<xs:complexType name="PerfTitleGrpType">
+    <xs:annotation>
+        <xs:documentation>Container for a performance title and its related conditional info</xs:documentation>
+    </xs:annotation>
+
+    <xs:sequence>
+        <xs:element name="Title" type="TitleType" minOccurs="0" maxOccurs="2"/>
+        <xs:element name="Basis" type="BasisType" minOccurs="0"/>
+    </xs:sequence>
+
+    <xs:attributeGroup ref="globalAttrGrp"/>
+</xs:complexType>
+
+
+<!--=====================================================-->
+<!-- Basis element definition -->
+<!--=====================================================-->
+<xs:complexType name="BasisType">
+    <xs:annotation>
+        <xs:documentation>Special conditions for a performance title</xs:documentation>
+    </xs:annotation>
+
+    <xs:sequence>
+        <xs:element name="Effectivities" type="EffectivitiesType" minOccurs="0"/>
+        <xs:choice maxOccurs="unbounded">
+            <xs:group ref="ShortTextGroupType"/>
+        </xs:choice>
+    </xs:sequence>
+
+
+    <xs:attributeGroup ref="globalAttrGrp"/>
+</xs:complexType>
+
+
+<!--=====================================================-->
+<!-- PerfNote element definition -->
+<!--=====================================================-->
+<xs:complexType name="PerfNoteType">
+    <xs:annotation>
+        <xs:documentation>General comments at the end of each Performance level</xs:documentation>
+    </xs:annotation>
+
+    <xs:choice maxOccurs="unbounded">
+        <xs:group ref="ShortTextGroupType"/>
+    </xs:choice>
+
+    <xs:attributeGroup ref="globalAttrGrp"/>
+</xs:complexType>
+
+
+
+</xs:schema>

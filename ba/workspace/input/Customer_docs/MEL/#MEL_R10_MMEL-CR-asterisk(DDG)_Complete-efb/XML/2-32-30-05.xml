@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM">]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.2-32-30-05.967.2-32-30-05" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="32" superSectionNumber="2" sectionName="" chapterName="" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2019-09-25" rev:revStatus="U" rev:revNumber="10" />
+</PUMetaData>
+<MELItem itemNbr="32-30-05" id="X-BOEING:FTID:81205.787.DDG.CU.MEL.2-32-30-05.1.2-32-30-05">
+<Title>Semi Lever Gear Hydraulic Pressure Sensors (787-10: VN-A872, VN-A873, VN-A874, VN-A875, VN-A876, VN-A877, VN-A878, VN-A879)</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="2" nbrRequired="0" maintIndicator="(M)">
+<DispatchConditionRemarks>
+<Para>May be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Inoperative sensor is deactivated.</Para>
+</ListItem>
+<ListItem>
+<Para>Associated semi lever gear telescoping piston is verified to be operating normally once each flight day.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<Note>
+<Para>The auto speedbrake system will be inoperative. The airplane must also be dispatched using MEL item 27-61-03.</Para>
+</Note>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Deactivate the inoperative hydraulic pressure sensor, and once each flight day verify the associated semi lever gear telescoping piston is operating normally (AMM DDG 32-30-05).</Para>
+<List listType="1.">
+<ListItem>
+<Para>Deactivate the inoperative hydraulic pressure sensor.</Para>
+<List listType="A.">
+<ListItem>
+<Para>For inoperative left semi lever gear hydraulic pressure sensor, using a flight deck multi-function display only, open circuit breaker MLG L STRUT-HYD SNSR and lock with an INOP tag.</Para>
+</ListItem>
+<ListItem>
+<Para>For inoperative right semi lever gear hydraulic pressure sensor, using a flight deck multi-function display only, open circuit breaker MLG R STRUT-HYD SNSR and lock with an INOP tag.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Verify the associated semi lever gear telescoping piston moves between the extended (pressure off) and retracted (pressure on) positions.</Para>
+<List listType="A.">
+<ListItem>
+<Para>Confirm the landing gear control lever is in the DOWN position.</Para>
+</ListItem>
+<ListItem>
+<Para>Install landing gear downlock pins.</Para>
+</ListItem>
+<ListItem>
+<Para>Confirm all landing gear doors are open and all three landing gear door safety valve handles are in the SAFE position.  If necessary, open the landing gear doors using the P56 switches.</Para>
+</ListItem>
+<ListItem>
+<Para>Pressurize the center hydraulic system.</Para>
+</ListItem>
+<ListItem>
+<Para>Set the ground test switch to the ENABLE position.</Para>
+</ListItem>
+<ListItem>
+<Para>Set the landing gear lever to the UP position and after 5-seconds set the landing gear lever to the DOWN position.</Para>
+</ListItem>
+<ListItem>
+<Para>Use CMCF to start the Special Function LGAC SLG ISOLATION VALVE TEST.</Para>
+<Note>
+<Para>The telescoping pistons on both left and right semi lever gear will retract.  Retraction may require approximately 17-seconds.  </Para>
+</Note>
+<Note>
+<Para>Do not stop the CMCF test or navigate away from the CMCF test page so that the ground test remains running.</Para>
+</Note>
+</ListItem>
+<ListItem>
+<Para>Use CMCF to stop the Special Function LGAC SLG ISOLATION VALVE TEST.</Para>
+<Note>
+<Para>The telescoping pistons on both left and right semi lever gear will extend.  Extension may require approximately 2-seconds.</Para>
+</Note>
+</ListItem>
+<ListItem>
+<Para>Return the ground test switch to NORM.</Para>
+</ListItem>
+<ListItem>
+<Para>Remove pressure from the center hydraulic system.</Para>
+</ListItem>
+<ListItem>
+<Para>Remove landing gear downlock pins.</Para>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELItem>
+</DispatchItems>

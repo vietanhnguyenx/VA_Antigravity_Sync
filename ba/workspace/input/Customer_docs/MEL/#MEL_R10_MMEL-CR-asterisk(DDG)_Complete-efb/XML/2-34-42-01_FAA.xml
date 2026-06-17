@@ -1,0 +1,215 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM">]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.2-34-42-01.6596.2-34-42-01_FAA" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="34" superSectionNumber="2" sectionName="MEL" chapterName="Navigation" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2021-02-24" rev:revStatus="U" rev:revNumber="10" />
+</PUMetaData>
+<MELItem itemNbr="34-42-01" id="X-BOEING:FTID:81205.787.DDG.CU.MEL.2-34-42-01.1.2-34-42-01_FAA">
+<Title>Weather Radar System</Title>
+<DispatchCondition dispCondOptions="A" repairInterval="D" nbrInstalled="2" nbrRequired="1">
+<Title>One Inoperative</Title>
+<DispatchConditionRemarks>
+<Para>One may be inoperative.</Para>
+<Note>
+<Para>The WINDSHEAR PREDICTIVE L(R) status message will be displayed after turning inoperative weather radar OFF. The airplane must also be dispatched using MEL 34-42-01-01A.</Para>
+</Note>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<OperationNote>
+<Para>Set the inoperative weather radar OFF using the Tuning and Control Panel (TCP) SYS POWER page.</Para>
+</OperationNote>
+</DispatchProcedure>
+</DispatchCondition>
+<DispatchCondition dispCondOptions="B" repairInterval="C" nbrInstalled="2" nbrRequired="0" opsIndicator="(O)">
+<Title>Both Inop &amp; Reactive Windshear Operative</Title>
+<DispatchConditionRemarks>
+<Para>May be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>At least one weather radar must be operative for EDTO operations.</Para>
+</ListItem>
+<ListItem>
+<Para>Reactive windshear alert (GPWS mode 7) operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Weather must be suitable for flight without weather radar.</Para>
+</ListItem>
+<ListItem>
+<Para>Alternate procedures are established and used.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<OperationProcedure>
+<Para>Alternate procedures:</Para>
+<List listType="1.">
+<ListItem>
+<Para>The aircraft must not depart if the weather radar is unserviceable and weather forecasts indicate the probability of thunderstorms or cloud formations associated with severe turbulence anywhere along the route to be flown, including the route to a planned alternate.</Para>
+</ListItem>
+<ListItem>
+<Para>If during the flight the weather radar system becomes unserviceable, the flight may continue provided that penetration of any cloud formation likely to be associated with severe turbulence is avoided.</Para>
+</ListItem>
+<ListItem>
+<Para>Review FCOM supplementary procedure for windshear.</Para>
+</ListItem>
+<ListItem>
+<Para>If both weather radar systems are inoperative, EDTO operations are restricted to 120 minutes.</Para>
+</ListItem>
+</List>
+<Note>
+<Para>The WINDSHEAR SYS advisory message will be displayed.</Para>
+</Note>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+<DispatchCondition dispCondOptions="C" repairInterval="B" nbrInstalled="2" nbrRequired="0" opsIndicator="(O)">
+<Title>Both Inop &amp; Reactive Windshear Inop</Title>
+<DispatchConditionRemarks>
+<Para>May be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>At least one weather radar must be operative for EDTO operations beyond 120 minutes.</Para>
+</ListItem>
+<ListItem>
+<Para>Weather must be suitable for flight without weather radar.</Para>
+</ListItem>
+<ListItem>
+<Para>Alternate procedures are established and used.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<OperationProcedure>
+<Para>Alternate procedures:</Para>
+<List listType="1.">
+<ListItem>
+<Para>The aircraft must not depart if the weather radar is unserviceable and weather forecasts indicate the probability of thunderstorms or cloud formations associated with severe turbulence anywhere along the route to be flown, including the route to a planned alternate.</Para>
+</ListItem>
+<ListItem>
+<Para>If during the flight the weather radar system becomes unserviceable, the flight may continue provided that penetration of any cloud formation likely to be associated with severe turbulence is avoided.</Para>
+</ListItem>
+<ListItem>
+<Para>Review FCOM supplementary procedure for windshear and QRH Manoeuvres Windshear guidance.</Para>
+</ListItem>
+<ListItem>
+<Para>PM must maintain a heightened awareness of the flight path and performance of the aircraft during takeoff, approach and landing and alert the PF if flight parameters are out of normal tolerance.</Para>
+</ListItem>
+<ListItem>
+<Para>Be especially alert for and announce:</Para>
+<List listType="A.">
+<ListItem>
+<Para>Excessive terrain closure rate.</Para>
+</ListItem>
+<ListItem>
+<Para>Excessive descent rate.</Para>
+</ListItem>
+<ListItem>
+<Para>Altitude loss after takeoff or go-around.</Para>
+</ListItem>
+<ListItem>
+<Para>Unsafe terrain clearance.</Para>
+</ListItem>
+<ListItem>
+<Para>Deviation from glideslope.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>If both weather radar systems are inoperative, EDTO operations are restricted to 120 minutes.</Para>
+</ListItem>
+</List>
+<Note>
+<Para>The WINDSHEAR SYS advisory message will be displayed.</Para>
+</Note>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+<MELSubItem itemNbr="34-42-01-01">
+<Title>Predictive Windshear Alert Mode</Title>
+<DispatchCondition dispCondOptions="A" repairInterval="D" nbrInstalled="2" nbrRequired="1">
+<Title>One Inoperative</Title>
+<DispatchConditionRemarks>
+<Para>One may be inoperative.</Para>
+</DispatchConditionRemarks>
+</DispatchCondition>
+<DispatchCondition dispCondOptions="B" repairInterval="C" nbrInstalled="2" nbrRequired="0" opsIndicator="(O)">
+<Title>Both Inop &amp; Reactive Windshear Operative</Title>
+<DispatchConditionRemarks>
+<Para>May be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Reactive windshear alert (GPWS mode 7) operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Operations procedure is used.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<OperationProcedure>
+<Para>Review FCOM supplementary procedure for windshear.</Para>
+<Note>
+<Para>The WINDSHEAR SYS advisory message will be displayed.</Para>
+</Note>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+<DispatchCondition dispCondOptions="C" repairInterval="B" nbrInstalled="2" nbrRequired="0" opsIndicator="(O)">
+<Title>Both Inop &amp; Reactive Windshear Inop</Title>
+<DispatchConditionRemarks>
+<Para>May be inoperative provided alternate procedures are established and used.</Para>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<OperationProcedure>
+<Para>Alternate procedures:</Para>
+<List listType="1.">
+<ListItem>
+<Para>Review FCOM supplementary procedure for windshear and QRH Manoeuvres Windshear guidance.</Para>
+</ListItem>
+<ListItem>
+<Para>PM must maintain a heightened awareness of the flight path and performance of the aircraft during takeoff, approach and landing and alert the PF if flight parameters are out of normal tolerance.</Para>
+</ListItem>
+<ListItem>
+<Para>Be especially alert for and announce:</Para>
+<List listType="A.">
+<ListItem>
+<Para>Excessive terrain closure rate.</Para>
+</ListItem>
+<ListItem>
+<Para>Excessive descent rate.</Para>
+</ListItem>
+<ListItem>
+<Para>Altitude loss after takeoff or go-around.</Para>
+</ListItem>
+<ListItem>
+<Para>Unsafe terrain clearance.</Para>
+</ListItem>
+<ListItem>
+<Para>Deviation from glideslope.</Para>
+</ListItem>
+</List>
+</ListItem>
+</List>
+<Note>
+<Para>The WINDSHEAR SYS advisory message will be displayed.</Para>
+</Note>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="34-42-01-02">
+<Title>Auto Tilt Function</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="1" nbrRequired="0">
+<DispatchProcedure>
+<OperationNote>
+<Para>Manual TILT adjustments may be necessary to optimize weather display.</Para>
+</OperationNote>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+</MELItem>
+</DispatchItems>

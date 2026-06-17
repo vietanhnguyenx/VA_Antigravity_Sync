@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM">]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.2-31-61-02.8418.2-31-61-02" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="31" superSectionNumber="2" sectionName="MEL" chapterName="Indicating / Recording Systems" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2019-09-25" rev:revStatus="U" rev:revNumber="10" />
+</PUMetaData>
+<MELItem itemNbr="31-61-02" id="X-BOEING:FTID:81205.787.DDG.CU.MEL.2-31-61-02.1.2-31-61-02">
+<Title>Graphics Generator Systems</Title>
+<MELSubItem itemNbr="31-61-02-01">
+<Title>Graphics Generator Modules (GGMs)</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="4" nbrRequired="3">
+<DispatchProcedure>
+<OperationNote>
+<List listType="1.">
+<ListItem>
+<Para>Only one head-up display (HUD) will function.  The HUD SNGL OPERATION advisory message will be displayed. </Para>
+</ListItem>
+<ListItem>
+<Para>Failure of a display unit may restore dual HUD capability.</Para>
+</ListItem>
+<ListItem>
+<Para>When single HUD combiner is moved to the down position, momentary blanking may occur on some or all head down displays.</Para>
+</ListItem>
+</List>
+</OperationNote>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="31-61-02-02">
+<Title>Display Unit Interface</Title>
+<DispatchCondition repairInterval="B" nbrInstalled="1" nbrRequired="0" maintIndicator="(M)">
+<DispatchConditionRemarks>
+<Para>May be dispatched with DISPLAY UNIT INTERFACE faults provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Right PFD/MFD selector is verified to operate normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Graphics generator modules operate normally.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Verify the right PFD/MFD selector operates normally (AMM DDG 31-61-02). </Para>
+<List listType="1.">
+<ListItem>
+<Para>Confirm that all positions of the right PFD/MFD selector operate normally. </Para>
+<List listType="A.">
+<ListItem>
+<Para>Confirm that the NORM position operates normally:</Para>
+<List listType="1)">
+<ListItem>
+<Para>Set right PFD/MFD selector to NORM.</Para>
+</ListItem>
+<ListItem>
+<Para>Confirm the right outboard display unit displays the PFD and the inboard display unit displays the MFD/EICAS or MFD/MFD format.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Confirm that the INBD position operates normally:</Para>
+<List listType="1)">
+<ListItem>
+<Para>Set right PFD/MFD selector to INBD.</Para>
+</ListItem>
+<ListItem>
+<Para>Confirm the right inboard display unit displays the PFD/EICAS or PFD/MFD format and the outboard display unit blanks.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Confirm that the OUTBD position operates normally:</Para>
+<List listType="1)">
+<ListItem>
+<Para>Set right PFD/MFD selector to OUTBD.</Para>
+</ListItem>
+<ListItem>
+<Para>Confirm the right outboard display unit displays the PFD/EICAS or PFD/MFD format and the inboard display unit blanks.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Return right PFD/MFD selector to NORM.</Para>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+<OperationNote>
+<Para>Display system has lost redundancy but will operate normally.</Para>
+</OperationNote>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+</MELItem>
+</DispatchItems>

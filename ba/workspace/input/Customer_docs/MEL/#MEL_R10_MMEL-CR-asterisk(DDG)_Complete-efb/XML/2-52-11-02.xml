@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM">]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.2-52-11-02.1936.2-52-11-02" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="52" superSectionNumber="2" sectionName="MEL" chapterName="Doors" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2025-09-30" rev:revStatus="R" rev:revNumber="10" />
+</PUMetaData>
+<MELItem itemNbr="52-11-02" id="X-BOEING:FTID:81205.787.DDG.CU.MEL.2-52-11-02.1.2-52-11-02">
+<Title>Passenger Entry Doors Pressure Stop Assemblies</Title>
+<MELSubItem itemNbr="52-11-02-01">
+<Title>Door Stops 1, 2, 5, and 6</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="64" nbrRequired="60" maintIndicator="(M)" opsIndicator="(O)">
+<DispatchConditionRemarks>
+<Para>One pressure stop per door may be inoperative or missing provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>There are no visible defects on remaining stops for the associated door.</Para>
+</ListItem>
+<ListItem>
+<Para>Flight is conducted unpressurized.</Para>
+</ListItem>
+<ListItem>
+<Para>Procedures are established and used to verify cargo compartments remain empty or contain only ballast, empty cargo handling equipment (ballast may be loaded in ULDs), or fly away kits.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Inspect remaining pressure stops for the associated door and establish airplane in unpressurized flight configuration (AMM DDG 52-11-02).</Para>
+<List listType="1.">
+<ListItem>
+<Para>Visually inspect remaining pressure stops for the associated door and fuselage to ensure there are no other defects.</Para>
+<Note>
+<Para>Door stops are numbered 1 to 6 from bottom to top on both forward and aft edges of door.</Para>
+</Note>
+</ListItem>
+<ListItem>
+<Para>Establish airplane in unpressurized flight configuration.</Para>
+<List listType="A.">
+<ListItem>
+<Effectivities>
+<Effectivity>For 787 -9/-10 (VN-A861, VN-A862, VN-A863, VN-A864, VN-865, VN-A866, VN-A867, VN-A868, VN-A869, VN-A870, VN-A871, VN-A872, VN-A873, VN-A874, VN-A877, VN-A878, VN-A879)</Effectivity>
+</Effectivities>
+<Para>Open the Outflow valves.</Para>
+<List listType="1)">
+<ListItem>
+<Para>Set the  Pressurization Panel (P5) FWD OUTFLOW VALVE and AFT OUTFLOW VALVE switches to MAN.</Para>
+</ListItem>
+<ListItem>
+<Para>Hold both manual switches CLOSE until the EICAS outflow valve position indicator reads CL and confirm the forward and aft outflow valve doors are closed.</Para>
+</ListItem>
+<ListItem>
+<Para>Hold both manual switches OPEN until the EICAS outflow valve position indicator is in the 1-o’clock position and confirm the forward and aft outflow valve doors are full open.</Para>
+</ListItem>
+<ListItem>
+<Para>Leave the Pressurization Panel (P5) FWD OUTFLOW VALVE and AFT OUTFLOW VALVE switches in MAN.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Deactivate the forward and aft lower cargo compartment smoke detection system.</Para>
+<List listType="1)">
+<ListItem>
+<Para>For forward lower cargo compartment smoke detection system, using a flight deck multi-function display only, open the following circuit breakers and lock with an INOP tag.</Para>
+<List listType="a.">
+<ListItem>
+<Para>SMOKE DETECTOR-	FWD CARGO 1A</Para>
+</ListItem>
+<ListItem>
+<Para>SMOKE DETECTOR-	FWD CARGO 1B</Para>
+</ListItem>
+<ListItem>
+<Para>SMOKE DETECTOR-	FWD CARGO 2A</Para>
+</ListItem>
+<ListItem>
+<Para>SMOKE DETECTOR-	FWD CARGO 2B</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>For aft lower cargo compartment smoke detection system, using a flight deck multi-function display only, open the following circuit breakers and lock with an INOP tag.</Para>
+<List listType="a.">
+<ListItem>
+<Para>SMOKE DETECTOR-	AFT CARGO 1A</Para>
+</ListItem>
+<ListItem>
+<Para>SMOKE DETECTOR-	AFT CARGO 1B</Para>
+</ListItem>
+<ListItem>
+<Para>SMOKE DETECTOR-	AFT CARGO 2A</Para>
+</ListItem>
+<ListItem>
+<Para>SMOKE DETECTOR-	AFT CARGO 2B</Para>
+</ListItem>
+</List>
+</ListItem>
+</List>
+<Note>
+<Para>The DET FIRE CARGO FWD  and DET FIRE CARGO AFT advisory messages and status messages for all cargo fire detectors will be displayed.</Para>
+</Note>
+</ListItem>
+<ListItem>
+<Effectivities>
+<Effectivity>For OFCR or OFAR installed (Applicable to: VN-A861, VN-A862, VN-A863, VN-A864, VN-A867, VN-A868, VN-A870, VN-A871):</Effectivity>
+</Effectivities>
+<Para>Deactivate the crew/attendant rest(s) closed.</Para>
+<List listType="1)">
+<ListItem>
+<Para>Remove all baggage and personal items from the associated crew/attendant rest.</Para>
+<Note>
+<Para>Blankets, pillows and other items normally used in the crew rest may remain.</Para>
+</Note>
+</ListItem>
+<ListItem>
+<Para>Close the associated crew/attendant rest entrance door.</Para>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+<OperationProcedure>
+<Para>Use MEL item 21-31-01B (O) procedure.</Para>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="52-11-02-02">
+<Title>Door Stops 3 and 4</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="32" nbrRequired="30" maintIndicator="(M)" opsIndicator="(O)">
+<DispatchConditionRemarks>
+<Para>One pressure stop per door may be inoperative or missing provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>There are no visible defects on remaining stops for the associated door.</Para>
+</ListItem>
+<ListItem>
+<Para>All automatic cabin pressure control channels operate normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Airplane pressure altitude does not exceed 12,000 feet.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Visually inspect remaining pressure stops for the associated door and fuselage to ensure there are no other defects (AMM DDG 52-11-02).</Para>
+<Note>
+<Para>Door stops are numbered 1 to 6 from bottom to top on both forward and aft edges of door.</Para>
+</Note>
+</MaintenanceProcedure>
+<OperationProcedure>
+<Para>Airplane pressure altitude is limited to 12,000 feet.</Para>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+</MELItem>
+</DispatchItems>

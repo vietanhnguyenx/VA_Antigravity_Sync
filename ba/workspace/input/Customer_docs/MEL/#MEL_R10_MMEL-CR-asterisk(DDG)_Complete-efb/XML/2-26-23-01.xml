@@ -1,0 +1,307 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM">]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.2-26-23-01.9384.2-26-23-01" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="26" superSectionNumber="2" sectionName="MEL" chapterName="Fire Protection" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2021-02-24" rev:revStatus="U" rev:revNumber="10" />
+</PUMetaData>
+<MELItem itemNbr="26-23-01" id="X-BOEING:FTID:81205.787.DDG.CU.MEL.2-26-23-01.1.2-26-23-01">
+<Title>Lower Cargo Compartment Fire Extinguishing Bottles</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="-" nbrRequired="0" opsIndicator="(O)">
+<DispatchConditionRemarks>
+<Para>May be inoperative provided procedures are established and used to verify cargo compartments remain empty or contain only ballast, empty cargo handling equipment (ballast may be loaded in ULDs), or fly away kits.</Para>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<OperationProcedure>
+<Para>The lower cargo compartments must remain empty, except for ballast, empty cargo containers (ballast may be loaded in ULDs), fly away kits, pallets, and cargo restraint components.</Para>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+<MELSubItem itemNbr="26-23-01-01">
+<Title>Bottles 2A, 2B and 2C</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="3" nbrRequired="1" maintIndicator="(M)" opsIndicator="(O)">
+<DispatchConditionRemarks>
+<Para>May be inoperative provided: </Para>
+<List listType="a.">
+<ListItem>
+<Para>Bottle is deactivated.</Para>
+</ListItem>
+<ListItem>
+<Para>Airplane is operated pressurized.</Para>
+</ListItem>
+<ListItem>
+<Para>Total fire extinguisher bottle capability is greater than or equal to maximum  time to land at a suitable airport.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Deactivate the inoperative fire extinguishing bottle (AMM DDG 26-23-01).</Para>
+<List listType="1.">
+<ListItem>
+<Para>Open following circuit breakers and lock with a DO NOT CLOSE tag:</Para>
+<List listType="A.">
+<ListItem>
+<Para>SMCU-CHAN 1A</Para>
+</ListItem>
+<ListItem>
+<Para>SMCU-CHAN 2A</Para>
+</ListItem>
+<ListItem>
+<Para>SMOKE DETECTOR-	FWD CARGO 2B</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Gain access to the inoperative bottle.</Para>
+</ListItem>
+<ListItem>
+<Para>Disconnect, cap and stow the electrical connector from the squib for the associated bottle.</Para>
+</ListItem>
+<ListItem>
+<Para>Put the protective cap, attached to the bottle, on the squib.</Para>
+</ListItem>
+<ListItem>
+<Para>Remove the discharge line from the fire bottle discharge outlet.</Para>
+</ListItem>
+<ListItem>
+<Para>Cap the discharge head of the bottle with a non-recoil cap (Kidde part number 844497).</Para>
+</ListItem>
+<ListItem>
+<Para>Install a pressure holding plug (BACP20AU10D) in the discharge tube.</Para>
+</ListItem>
+<ListItem>
+<Para>Close the following circuit breakers:</Para>
+<List listType="A.">
+<ListItem>
+<Para>SMCU-CHAN 1A</Para>
+</ListItem>
+<ListItem>
+<Para>SMCU-CHAN 2A</Para>
+</ListItem>
+<ListItem>
+<Para>SMOKE DETECTOR-	FWD CARGO 2B</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Confirm fire bottle status message is displayed only for the deactivated bottle.</Para>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+<OperationProcedure>
+<Para>Maximum time to land at suitable airport must be less than or equal to the sum of the suppression time capability  for all operating low rate discharge fire extinguisher bottles.  Add the suppression times for all operative bottles to obtain the maximum suppression time.  The required additional 15 minutes to account for holding at the landing airport is not included
+in the maximum time to land at a suitable airport since it is provided by the high rate discharge bottles.  The low rate discharge bottles do not begin to discharge until 15 minutes after the cargo fire suppression system is activated and the high rate bottles discharge.</Para>
+<Note>
+<Para>EDTO operations may not be possible, depending on the suppression time available.</Para>
+</Note>
+<table frame="all">
+<Title>Suppression Time per Fire Extinguisher Bottle</Title>
+<tgroup cols="2" colsep="1">
+<colspec colname="1" colwidth="45%" />
+<colspec colname="2" colwidth="55%" />
+<thead>
+<row rowsep="1">
+<entry colname="1">
+<Para>
+<Emphasis txtStyle="bold">Fire Extinguisher Bottle</Emphasis>
+</Para>
+</entry>
+<entry colname="2">
+<Para>
+<Emphasis txtStyle="bold">Suppression Time Capability
+per Bottle (Minutes)</Emphasis>
+</Para>
+</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">2A</Para>
+</entry>
+<entry colname="2">
+<Para align="center">60</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">2B</Para>
+</entry>
+<entry colname="2">
+<Para align="center">60</Para>
+</entry>
+</row>
+<row rowsep="0">
+<entry colname="1">
+<Para align="center">2C</Para>
+</entry>
+<entry colname="2">
+<Para align="center">60</Para>
+</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="26-23-01-02">
+<Title>Bottles 2D</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="1" nbrRequired="0" maintIndicator="(M)" opsIndicator="(O)">
+<DispatchConditionRemarks>
+<Para>May be inoperative provided: </Para>
+<List listType="a.">
+<ListItem>
+<Para>Bottle is deactivated.</Para>
+</ListItem>
+<ListItem>
+<Para>Airplane is operated pressurized.</Para>
+</ListItem>
+<ListItem>
+<Para>Total fire extinguisher bottle capability is greater than or equal to maximum  time to land at a suitable airport.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Deactivate the inoperative fire extinguishing bottle (AMM DDG 26-23-01).</Para>
+<List listType="1.">
+<ListItem>
+<Para>Open following circuit breakers and lock with a DO NOT CLOSE tag:</Para>
+<List listType="A.">
+<ListItem>
+<Para>SMCU-CHAN 1A</Para>
+</ListItem>
+<ListItem>
+<Para>SMCU-CHAN 2A</Para>
+</ListItem>
+<ListItem>
+<Para>SMOKE DETECTOR-	FWD CARGO 2B</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Gain access to  the inoperative bottle.</Para>
+</ListItem>
+<ListItem>
+<Para>Disconnect, cap and stow the electrical connector from the squib for the associated bottle.</Para>
+</ListItem>
+<ListItem>
+<Para>Put the protective cap, attached to the bottle, on the squib.</Para>
+</ListItem>
+<ListItem>
+<Para>Remove the discharge line from the fire bottle discharge outlet.</Para>
+</ListItem>
+<ListItem>
+<Para>Cap the discharge head of the bottle with an non-recoil cap (Kidde part number 844497).</Para>
+</ListItem>
+<ListItem>
+<Para>Install a pressure holding plug (BACP20AU10D) in the discharge tube.</Para>
+</ListItem>
+<ListItem>
+<Para>Close the following circuit breakers:</Para>
+<List listType="A.">
+<ListItem>
+<Para>SMCU-CHAN 1A</Para>
+</ListItem>
+<ListItem>
+<Para>SMCU-CHAN 2A</Para>
+</ListItem>
+<ListItem>
+<Para>SMOKE DETECTOR-	FWD CARGO 2B</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Confirm fire bottle status message is displayed only for the deactivated bottle.</Para>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+<OperationProcedure>
+<Para>Maximum time to land at suitable airport must be less than or equal to the sum of the suppression time capability  for all operating low rate discharge fire extinguisher bottles.  Add the suppression times for all operative bottles to obtain the maximum suppression time.  The required additional 15 minutes to account for holding at the landing airport is not included
+in the maximum time to land at a suitable airport since it is provided by the high rate discharge bottles.  The low rate discharge bottles do not begin to discharge until 15 minutes after the cargo fire suppression system is activated and the high rate bottles discharge.</Para>
+<Note>
+<Para>EDTO operations may not be possible, depending on the suppression time available.</Para>
+</Note>
+<table frame="all">
+<Title>Suppression Time per Fire Extinguisher Bottle</Title>
+<tgroup cols="2" colsep="1">
+<colspec colname="1" colwidth="45%" />
+<colspec colname="2" colwidth="55%" />
+<thead>
+<row rowsep="1">
+<entry colname="1">
+<Para>
+<Emphasis txtStyle="bold">Fire Extinguisher Bottle</Emphasis>
+</Para>
+</entry>
+<entry colname="2">
+<Para>
+<Emphasis txtStyle="bold">Suppression Time Capability
+per Bottle (Minutes)</Emphasis>
+</Para>
+</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep="0">
+<entry colname="1">
+<Para align="center">2D</Para>
+</entry>
+<entry colname="2">
+<Para align="center">47</Para>
+</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="26-23-01-03">
+<Title>Bottle Pressure Monitors</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="7" nbrRequired="0" maintIndicator="(M)">
+<DispatchConditionRemarks>
+<Para>May be inoperative provided associated bottle is verified to be fully charged.</Para>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Note>
+<Para>The associated bottle status message will be displayed for a bottle when the bottle pressure is low or for an internal failure of the pressure monitor device when the bottle pressure is normal.</Para>
+</Note>
+<Para>Verify the associated bottle is full (AMM DDG 26-23-01).</Para>
+<List listType="1.">
+<ListItem>
+<Para>Remove, weigh and reinstall the associated bottle.</Para>
+<List listType="A.">
+<ListItem>
+<Para>Remove the associated bottle from the airplane.</Para>
+</ListItem>
+<ListItem>
+<Para>Weigh the bottle.  The bottle must weigh the same as the weight on the data plate +/- 0.3 lb.</Para>
+<Note>
+<Para>The measured weight of the bottle includes the charged bottle, the inspection tag on the bottle, the swivel assemblies and the two faraday caps that are connected to the pressure switch and the squib with a lanyard. If the squib cartridges are not installed on the fire extinguisher bottle, do not install them. Weigh the squib cartridges as loose parts and include the
+weight of the squib cartridges in the measured weight. If the squib cartridges are installed, weigh the bottle with the cartridges installed.</Para>
+</Note>
+</ListItem>
+<ListItem>
+<Para>Reinstall the bottle in the airplane.  It is not necessary to perform the bottle pressure monitor operational test associated with this procedure.  </Para>
+</ListItem>
+<ListItem>
+<Para>Confirm bottle pressure status message is displayed only for the bottle with the inoperative pressure transducer.</Para>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+</MELItem>
+</DispatchItems>

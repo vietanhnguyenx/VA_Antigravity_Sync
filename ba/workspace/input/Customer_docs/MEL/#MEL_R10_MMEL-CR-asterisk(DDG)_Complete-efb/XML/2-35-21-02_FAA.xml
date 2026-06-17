@@ -1,0 +1,198 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM">]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.2-35-21-02.1051.2-35-21-02_FAA" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="35" superSectionNumber="2" sectionName="MEL" chapterName="Oxygen" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2021-02-24" rev:revStatus="U" rev:revNumber="10" />
+</PUMetaData>
+<MELItem itemNbr="35-21-02" id="X-BOEING:FTID:81205.787.DDG.CU.MEL.2-35-21-02.1.2-35-21-02_FAA">
+<Title>Passenger Oxygen Controllers</Title>
+<DispatchCondition dispCondOptions="A" repairInterval="B" nbrInstalled="-" nbrRequired="0" maintIndicator="(M)">
+<Title>No Altitude Restrictions</Title>
+<DispatchConditionRemarks>
+<Para>May be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Associated passenger seats are blocked and placarded to prevent occupancy.</Para>
+</ListItem>
+<ListItem>
+<Para>Associated flight attendant seat is considered inoperative.</Para>
+</ListItem>
+<ListItem>
+<Para>Associated lavatory door is locked closed and placarded INOPERATIVE - DO NOT ENTER.</Para>
+</ListItem>
+<ListItem>
+<Para>Associated galley area curtain nearest operative oxygen controllers is secured open or removed.</Para>
+</ListItem>
+</List>
+<Note>
+<Para>These provisions are not intended to prohibit lavatory inspections by crew members.</Para>
+</Note>
+</DispatchConditionRemarks>
+<Note>
+<Para>For inoperative flight attendant seat oxygen controllers, the airplane must also be dispatched using MEL item 25-25-01.</Para>
+</Note>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>For inoperative cabin, lavatory and galley oxygen controllers, configure the airplane as required (AMM DDG 35-21-02).</Para>
+<List listType="1.">
+<ListItem>
+<Para>For inoperative cabin oxygen controllers, block and placard associated seats.</Para>
+</ListItem>
+<ListItem>
+<Para>For inoperative lavatory oxygen controllers, close, lock and placard associated lavatory to prevent occupancy.</Para>
+</ListItem>
+<ListItem>
+<Para>For inoperative galley oxygen controllers, secure open or remove associated galley area curtain nearest operative oxygen controllers.</Para>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+<DispatchCondition dispCondOptions="B" repairInterval="B" nbrInstalled="-" nbrRequired="0" opsIndicator="(O)">
+<Title>Altitude Restrictions</Title>
+<DispatchConditionRemarks>
+<Para>May be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Appropriate portable oxygen supplies are available.</Para>
+</ListItem>
+<ListItem>
+<Para>Both air conditioning packs operate normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Pressurization system operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Appropriate altitude adjustments are applied.</Para>
+</ListItem>
+<ListItem>
+<Para>Passengers are appropriately briefed in accordance with OM Part A Chapter 8.8.2.2 Supplemental Oxygen for Sustenance.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceNote>
+<List listType="1.">
+<ListItem>
+<Para>For an air conditioning pack to be operating normally, certain items associated with that system must operate normally.  See MEL item 21-51-01 for a list of those items.</Para>
+</ListItem>
+<ListItem>
+<Para>For the pressurization system to be operating normally, the following items associated with the pressurization system must be operating normally:</Para>
+<table frame="all">
+<tgroup cols="2" colsep="1">
+<colspec colname="1" colwidth="29%" />
+<colspec colname="2" colwidth="71%" />
+<thead>
+<row rowsep="1">
+<entry colname="1">
+<Para>
+<Emphasis txtStyle="bold">MEL Item</Emphasis>
+</Para>
+</entry>
+<entry colname="2">
+<Para>
+<Emphasis txtStyle="bold">Associated Status Message</Emphasis>
+</Para>
+</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">21-31-01</Para>
+</entry>
+<entry colname="2">
+<Para align="center">CPCS CONTROLS</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">21-31-02</Para>
+</entry>
+<entry colname="2">
+<Para align="center">None</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">21-31-04</Para>
+</entry>
+<entry colname="2">
+<Para align="center">CPCS REMOTE SENSOR FWD 
+CPCS REMOTE SENSOR AFT</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">21-31-05</Para>
+</entry>
+<entry colname="2">
+<Para align="center">None</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">21-31-06</Para>
+</entry>
+<entry colname="2">
+<Para align="center">None</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">21-31-07</Para>
+</entry>
+<entry colname="2">
+<Para align="center">None</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">21-31-08</Para>
+</entry>
+<entry colname="2">
+<Para align="center">None</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">21-32-01</Para>
+</entry>
+<entry colname="2">
+<Para align="center">None</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">MEL Item</Para>
+</entry>
+<entry colname="2">
+<Para align="center">Associated Advisory Message</Para>
+</entry>
+</row>
+<row rowsep="0">
+<entry colname="1">
+<Para align="center">21-31-03</Para>
+</entry>
+<entry colname="2">
+<Para align="center">OUTFLOW VALVE FWD 
+OUTFLOW VALVE AFT</Para>
+</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+</ListItem>
+</List>
+</MaintenanceNote>
+<OperationProcedure>
+<Para>Use MEL item 35-21-01 (O) procedure.</Para>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELItem>
+</DispatchItems>

@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM">]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.2-25-11-02.1997.2-25-11-02_FAA" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="25" superSectionNumber="2" sectionName="MEL" chapterName="Equipment Furnishings" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2019-09-25" rev:revStatus="U" rev:revNumber="10" />
+</PUMetaData>
+<MELItem itemNbr="25-11-02" id="X-BOEING:FTID:81205.787.DDG.CU.MEL.2-25-11-02.1.2-25-11-02_FAA">
+<Title>Observer Seats</Title>
+<MELSubItem itemNbr="25-11-02-01">
+<Title>First Observer Seat (Including Associated Equipment)</Title>
+<DispatchCondition dispCondOptions="A" repairInterval="A" nbrInstalled="1" nbrRequired="0">
+<Title>Passenger Seat Available</Title>
+<DispatchConditionRemarks>
+<Para>May be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>A passenger seat in the passenger cabin is made available to an CAAV inspector for the performance of official duties.</Para>
+</ListItem>
+<ListItem>
+<Para>Repairs are made within two flight days. </Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+</DispatchCondition>
+<DispatchCondition dispCondOptions="B" repairInterval="A" nbrInstalled="1" nbrRequired="0">
+<Title>Second Observer’s Seat Available</Title>
+<DispatchConditionRemarks>
+<Para>May be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Second observer seat is available, and acceptable to an CAAV inspector for the performance of official duties.</Para>
+</ListItem>
+<ListItem>
+<Para>Repairs are made within two flight days. </Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+</DispatchCondition>
+<DispatchCondition dispCondOptions="C" repairInterval="A" nbrInstalled="1" nbrRequired="0">
+<Title>Seat Is Acceptable To Inspector</Title>
+<DispatchConditionRemarks>
+<Para>May be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>First observer seat is acceptable to the CAAV inspector for the performance of official duties.</Para>
+</ListItem>
+<ListItem>
+<Para>Required minimum safety equipment (safety belt, oxygen and life vest) is available.</Para>
+</ListItem>
+<ListItem>
+<Para>Repairs are made within two flight days. </Para>
+</ListItem>
+</List>
+<Note>
+<Para>These provisos are intended to provide for occupancy of the above seat by an CAAV inspector when the minimum safety equipment (safety belt,  oxygen and life vest) is functional and the inspector determines the conditions to be acceptable.</Para>
+</Note>
+<Note>
+<Para>The Pilot-in-Command will determine if the minimum safety equipment is functional for the other persons authorized to occupy an observer seat.</Para>
+</Note>
+</DispatchConditionRemarks>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="25-11-02-02">
+<Title>Second Observer Seat (Including Associated Equipment)</Title>
+<DispatchCondition repairInterval="D" nbrInstalled="1" nbrRequired="0">
+<DispatchConditionRemarks>
+<Para>May be inoperative provided that 01 passenger seat is blocked for fourth flight crew on his (her) duty.</Para>
+<Note>
+<Para>The Pilot-in-Command will determine if the minimum safety equipment is functional for the other persons authorized to occupy an observer seat.</Para>
+</Note>
+</DispatchConditionRemarks>
+</DispatchCondition>
+</MELSubItem>
+</MELItem>
+</DispatchItems>

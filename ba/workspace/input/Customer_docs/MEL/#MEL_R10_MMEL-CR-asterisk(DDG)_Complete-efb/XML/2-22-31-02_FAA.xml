@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM">]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.2-22-31-02.3745.2-22-31-02_FAA" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="22" superSectionNumber="2" sectionName="MEL" chapterName="Auto Flight" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2025-09-30" rev:revStatus="R" rev:revNumber="10" />
+</PUMetaData>
+<MELItem itemNbr="22-31-02" id="X-BOEING:FTID:81205.787.DDG.CU.MEL.2-22-31-02.1.2-22-31-02_FAA">
+<Title>Autothrottle Servo Motors</Title>
+<DispatchCondition dispCondOptions="A" repairInterval="C" nbrInstalled="2" nbrRequired="1" maintIndicator="(M)" opsIndicator="(O)">
+<Title>One Inoperative</Title>
+<DispatchConditionRemarks>
+<Para>One may be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Associated servo motor is deactivated.</Para>
+</ListItem>
+<ListItem>
+<Para>EEC normal mode operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Both thrust levers are manually set for takeoff and go-around thrust.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Deactivate the inoperative autothrottle servo motor (AMM DDG 22-31-02).</Para>
+<List listType="1.">
+<ListItem>
+<Para>For L autothrottle servo motor, using a flight deck multi-function display only, open circuit breaker A/T SERVO-L and lock with an INOP tag.</Para>
+</ListItem>
+<ListItem>
+<Para>For R autothrottle servo motor, using a flight deck multi-function display only, open circuit breaker A/T SERVO-R and lock with an INOP tag.</Para>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+<OperationProcedure>
+<Note>
+<Para>The AUTOTHROTTLE L or R advisory message will be displayed.</Para>
+</Note>
+<Note>
+<Para>The autothrottle cannot be engaged on the ground.</Para>
+</Note>
+<Note>
+<Para>The TPR/N1trim function of the EEC will operate normally, provided both autothrottle arm switches are positioned to A/T ARM.</Para>
+</Note>
+<Note>
+<Para>For both autothrottle arm switches positioned to A/T ARM, the AUTOTHROTTLE DISC caution will be annunciated if the flight crew selects FLCH, VNAV, or TO/GA.  Pressing the autothrottle disconnect switch will clear the caution.</Para>
+</Note>
+<List listType="1.">
+<ListItem>
+<Para>For takeoff:</Para>
+<List listType="A.">
+<ListItem>
+<Para>Set both autothrottle switches to A/T ARM.</Para>
+</ListItem>
+<ListItem>
+<Para>Set both thrust levers manually.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>After takeoff, if desired set the deactivated autothrottle servo motor A/T ARM switch OFF to restore functionality of the operative autothrottle servo motor.</Para>
+</ListItem>
+<ListItem>
+<Para>For go-around, set both thrust levers manually.</Para>
+</ListItem>
+</List>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+<DispatchCondition dispCondOptions="B" repairInterval="C" nbrInstalled="2" nbrRequired="0" maintIndicator="(M)" opsIndicator="(O)">
+<Title>Both Inoperative</Title>
+<DispatchConditionRemarks>
+<Para>May be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Both servo motors are deactivated.</Para>
+</ListItem>
+<ListItem>
+<Para>EEC normal mode operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Approach minimums do not require use of the autothrottles.</Para>
+</ListItem>
+<ListItem>
+<Para>EDTO beyond 180 minutes is not conducted.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Deactivate the inoperative autothrottle servo motors (AMM DDG 22-31-02).</Para>
+<List listType="1.">
+<ListItem>
+<Para>Using a flight deck multi-function display only, open circuit breaker A/T SERVO-L and lock with an INOP tag.</Para>
+</ListItem>
+<ListItem>
+<Para>Using a flight deck multi-function display only, open circuit breaker A/T SERVO-R and lock with an INOP tag.</Para>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+<OperationProcedure>
+<Note>
+<Para>The AUTOTHROTTLE L and R advisory message will be displayed.</Para>
+</Note>
+<Note>
+<Para>The TPR/N1trim function of the EEC will operate normally, provided both autothrottle arm switches are positioned to A/T ARM.</Para>
+</Note>
+<Note>
+<Para>For both autothrottle arm switches positioned to A/T ARM, the AUTOTHROTTLE DISC caution will be annunciated if the flight crew selects FLCH, VNAV, or TO/GA.  Pressing the autothrottle disconnect switch will clear the caution.</Para>
+</Note>
+<List listType="1.">
+<ListItem>
+<Para>EDTO beyond 180 minutes is not conducted</Para>
+</ListItem>
+<ListItem>
+<Para>For takeoff, set both autothrottle switches to A/T ARM.</Para>
+</ListItem>
+</List>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELItem>
+</DispatchItems>

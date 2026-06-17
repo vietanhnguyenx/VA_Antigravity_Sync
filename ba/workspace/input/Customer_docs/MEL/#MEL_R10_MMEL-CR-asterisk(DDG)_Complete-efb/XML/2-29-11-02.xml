@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM">]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.2-29-11-02.4437.2-29-11-02" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="29" superSectionNumber="2" sectionName="MEL" chapterName="Hydraulic Power" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2025-09-30" rev:revStatus="R" rev:revNumber="10" />
+</PUMetaData>
+<MELItem itemNbr="29-11-02" id="X-BOEING:FTID:81205.787.DDG.CU.MEL.2-29-11-02.1.2-29-11-02">
+<Title>
+<?FTID-xref 1330622.2-29-11-02?>Center System Electric Motor-Driven Pumps (EMP)</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="2" nbrRequired="1" maintIndicator="(M)" opsIndicator="(O)">
+<DispatchConditionRemarks>
+<Para>One may be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Inoperative EMP is deactivated.</Para>
+</ListItem>
+<ListItem>
+<Para>Slat secondary mode is verified to operate normally once each flight day.</Para>
+</ListItem>
+<ListItem>
+<Para>Flap secondary mode is verified to operate normally once each flight day.</Para>
+</ListItem>
+<ListItem>
+<Para>Main landing gear priority valve is verified to operate normally once each flight day.</Para>
+</ListItem>
+<ListItem>
+<Para>Appropriate performance adjustments are applied.</Para>
+</ListItem>
+</List>
+<Note>
+<Para>Use Boeing Onboard Performance Tool (OPT) to determine take-off weight and/or landing weight as it affects aircraft performance.</Para>
+</Note>
+</DispatchConditionRemarks>
+<Note>
+<Para>A deactivated center system hydraulic pump will cause the associated center system common motor start controller to be inoperative.  The airplane must also be dispatched using MEL item 24-15-01-02.</Para>
+</Note>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Deactivate the inoperative center hydraulic system electric motor-driven pump. Verify that slat secondary mode, flap secondary mode and main landing gear priority valve operate normally once each flight day. (AMM DDG 29-11-02).</Para>
+<List listType="1.">
+<ListItem>
+<Para>Set affected center hydraulic system pump switch OFF.</Para>
+</ListItem>
+<ListItem>
+<Para>Deactivate the inoperative center hydraulic system electric motor-driven pump:</Para>
+<List listType="A.">
+<ListItem>
+<Para>For HYD EMP C1 inoperative:</Para>
+<List listType="1)">
+<ListItem>
+<Para>Using a flight deck multi-function display only, open the following circuit breakers and lock with an INOP tag:</Para>
+<List listType="a.">
+<ListItem>
+<Para>HYD EMP-C1 CHAN 1</Para>
+</ListItem>
+<ListItem>
+<Para>HYD EMP-C1 CHAN 2</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Open and collar P49 panel HYD EMP-C1 BAT circuit breaker.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>For HYD EMP C2 inoperative:</Para>
+<List listType="1)">
+<ListItem>
+<Para>Using a flight deck multi-function display only, open the following circuit breakers and lock with an INOP tag:</Para>
+<List listType="a.">
+<ListItem>
+<Para>HYD EMP-C2 CHAN 1</Para>
+</ListItem>
+<ListItem>
+<Para>HYD EMP-C2 CHAN 2</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Open and collar P49 panel HYD EMP-C2 BAT circuit breaker.</Para>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Verify slat secondary mode operates normally once each flight day using the DDG Maintenance procedure in item 27-51-03.</Para>
+</ListItem>
+<ListItem>
+<Para>Verify flap secondary mode operates normally once each flight day, by confirming that the following EICAS messages are not displayed: CRUISE FLAPS SYS Advisory, CRUISE FLAPS FAULT Status, CRUISE FLAPS DISAGREE Status, CRUISE FLAPS DISABLED Status and FLAPS SECONDARY FAIL Status.</Para>
+<List listType="A.">
+<ListItem>
+<Para>If the trailing edge variable camber (cruise flaps) function is operating normally, then no further test of the flap secondary mode is required.</Para>
+</ListItem>
+<ListItem>
+<Para>If the trailing edge variable camber (cruise flaps) function is inoperative, verify flap secondary mode operates normally once each flight day using the DDG Maintenance procedure in item 27-51-02-01A (step 1).</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Verify main landing gear priority valve operates normally once each flight day.</Para>
+<List listType="A.">
+<ListItem>
+<Para>With engines not operating, pressurize the center hydraulic system using the operational center system pump.</Para>
+</ListItem>
+<ListItem>
+<Para>Verify that the main landing gear pressure shown on the landing gear maintenance page is more than 4500 psi.</Para>
+</ListItem>
+<ListItem>
+<Para>Turn off the operating center system pump.</Para>
+</ListItem>
+<ListItem>
+<Para>Wait at least 10 seconds.</Para>
+</ListItem>
+<ListItem>
+<Para>Verify that the main landing gear pressure shown on the landing gear maintenance page is more than 2000 psi.</Para>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+<OperationProcedure>
+<Note>
+<Para>With a center hydraulic system electric motor-driven pump inoperative, slower retraction time for the landing gear may result in the GEAR DISAGREE caution message and GEAR DOOR advisory message being momentarily displayed until landing gear is fully retracted.</Para>
+</Note>
+<List listType="1.">
+<ListItem>
+<Para rev:revStatus="R" rev:revHighlight="Made previous step a numerical step 1 only.  No content change.">
+<?FTID-rev start?>T<?FTID-rev end?>akeoff performance is available using Boeing Performance Software with Takeoff
+Hydraulic Pump menu set to "Center System Pump Inoperative".  No penalty is required for enroute or landing performance.</Para>
+</ListItem>
+<ListItem>
+<Para rev:revStatus="R" rev:revHighlight="Added a new step 2 to provide guidance on how to set the switch.">
+<?FTID-rev start?>Set affected center hydraulic system pump switch OFF.<?FTID-rev end?></Para>
+</ListItem>
+</List>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELItem>
+</DispatchItems>

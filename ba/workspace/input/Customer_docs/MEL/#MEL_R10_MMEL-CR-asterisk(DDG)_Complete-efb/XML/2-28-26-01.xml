@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM">]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.2-28-26-01.1099.2-28-26-01" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="28" superSectionNumber="2" sectionName="MEL" chapterName="Fuel" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2025-09-30" rev:revStatus="R" rev:revNumber="10" />
+</PUMetaData>
+<MELItem itemNbr="28-26-01" id="X-BOEING:FTID:81205.787.DDG.CU.MEL.2-28-26-01.1.2-28-26-01">
+<Title>Defuel/Isolation Valves</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="2" nbrRequired="0" maintIndicator="(M)" opsIndicator="(O)">
+<DispatchConditionRemarks>
+<Para>May be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Inoperative valve is locked closed.</Para>
+</ListItem>
+<ListItem>
+<Para>Crossfeed valve is verified to operate normally before each departure.</Para>
+</ListItem>
+<ListItem>
+<Para>Alternate procedures are used for fuel balancing.</Para>
+</ListItem>
+<ListItem>
+<Para>Appropriate performance adjustments are applied..</Para>
+</ListItem>
+</List>
+<Note>
+<Para>Use Boeing Onboard Performance Tool (OPT) to determine take-off weight and/or landing weight as it affects aircraft performance.</Para>
+</Note>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Note>
+<Para>After this task is complete, the airplane can only be refueled in the manual fueling operation mode from the refuel control panel (RCP)</Para>
+</Note>
+<Para>Lock the inoperative defuel/isolation valve closed and verify the crossfeed valve operates normally (AMM DDG 28-26-01).</Para>
+<List listType="1.">
+<ListItem>
+<Para>Lock the inoperative defuel/isolation valve closed.</Para>
+<List listType="A.">
+<ListItem>
+<Para>For left defuel/isolation valve inoperative, using a flight deck multi-function display only, open the following circuit breakers and lock with an INOP tag:</Para>
+<List listType="1)">
+<ListItem>
+<Para>DEFUEL VLV CLOSE-L</Para>
+</ListItem>
+<ListItem>
+<Para>DEFUEL VLV OPEN-L</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>For right defuel/isolation valve inoperative, using a flight deck multi-function display only, open the following circuit breakers and lock with an INOP tag:</Para>
+<List listType="1)">
+<ListItem>
+<Para>DEFUEL VLV CLOSE-R</Para>
+</ListItem>
+<ListItem>
+<Para>DEFUEL VLV OPEN-R</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Open and deactivate the landing gear doors.</Para>
+</ListItem>
+<ListItem>
+<Para>Gain access to the defuel/isolation valves in the main gear wheel well.</Para>
+</ListItem>
+<ListItem>
+<Para>Disconnect, cap and stow the inoperative defuel/isolation valve electrical connector.</Para>
+</ListItem>
+<ListItem>
+<Para>Lock the inoperative defuel/isolation valve closed.</Para>
+</ListItem>
+<ListItem>
+<Para>Close the landing gear doors.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Verify crossfeed valve operates normally. (Required by AD 2019-19-10) </Para>
+<List listType="A.">
+<ListItem>
+<Para>Gain access to the crossfeed valve in the main gear wheel well.</Para>
+</ListItem>
+<ListItem>
+<Para>Set Fuel Control Panel (P5) CROSSFEED switch to ON and visually confirm the valve drive moves from the closed (C) position to the open (O) position.</Para>
+</ListItem>
+<ListItem>
+<Para>Set Fuel Control Panel (P5) CROSSFEED switch to OFF and visually confirm the valve drive moves from the open (O) position to closed (C) position.</Para>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+<OperationProcedure>
+<Note>
+<Para>For one or both defuel/isolation valves inoperative, the fuel balance system will be inoperative.</Para>
+</Note>
+<Note>
+<Para>The associated main tank fuel jettison will be inoperative.  The Fuel Synoptic will incorrectly indicate jettison flow from the associated main tank during fuel jettison.</Para>
+</Note>
+<List listType="1.">
+<ListItem>
+<Para>For both valves inoperative, limit the takeoff weight to the maximum climb limited landing weight at the departure airport, plus center tank fuel, plus 2600 lb (1179 kg).</Para>
+</ListItem>
+<ListItem>
+<Para>Prior to each flight, verify crossfeed valve operates normally.  (Required by AD 2019-19-10)</Para>
+<List listType="A.">
+<ListItem>
+<Para>Set Fuel Control Panel (P5) CROSSFEED switch to ON and after 15 seconds, confirm FUEL CROSSFEED advisory message does not display.</Para>
+</ListItem>
+<ListItem>
+<Para>Set Fuel Control Panel (P5) CROSSFEED switch to OFF and after 15 seconds, confirm FUEL CROSSFEED advisory message does not display.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>For fuel balancing, do the FUEL BALANCE SYS Non-Normal Checklist. (Required by AD 2019-19-10)</Para>
+</ListItem>
+</List>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELItem>
+</DispatchItems>

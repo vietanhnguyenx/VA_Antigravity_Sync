@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM">]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.2-27-51-03.2264.2-27-51-03" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="27" superSectionNumber="2" sectionName="MEL" chapterName="Flight Controls" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2025-09-30" rev:revStatus="R" rev:revNumber="10" />
+</PUMetaData>
+<MELItem itemNbr="27-51-03" id="X-BOEING:FTID:81205.787.DDG.CU.MEL.2-27-51-03.1.2-27-51-03">
+<Title>Flap Secondary Mode</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="1" nbrRequired="0" maintIndicator="(M)">
+<DispatchConditionRemarks>
+<Para>May be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Center hydraulic system electric motor-driven pumps operate normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Slat secondary mode is verified to operate normally once each flight day.</Para>
+</ListItem>
+<ListItem>
+<Para>Trailing edge variable camber (cruise flaps) function is considered inoperative.</Para>
+</ListItem>
+<ListItem>
+<Para>Main landing gear priority valve is verified to operate normally once each flight day.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<Note>
+<Para>The airplane must also be dispatched using the appropriate sub-item of MEL 27-51-02.</Para>
+</Note>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Verify slat secondary mode and main landing gear priority valve operate normally once each flight day (AMM DDG 27-51-03). </Para>
+<List listType="1.">
+<ListItem>
+<Para>Do the ground test of the slat secondary mode.</Para>
+<List listType="A.">
+<ListItem>
+<Para>Confirm flaps are UP.</Para>
+</ListItem>
+<ListItem>
+<Para>Conduct the ground system test Slats (Electric).</Para>
+</ListItem>
+<ListItem>
+<Para>On the expanded flap and slat position indications, confirm leading edge extension to the mid position, then retraction to UP.</Para>
+</ListItem>
+<ListItem>
+<Para>After completion of the test, confirm the SLATS SECONDARY FAIL status message is not displayed.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Verify main landing gear priority valve operates normally once each flight day.</Para>
+<List listType="A.">
+<ListItem>
+<Para>With engines not operating, pressurize the center hydraulic system.</Para>
+</ListItem>
+<ListItem>
+<Para>Verify that the main landing gear pressure shown on the landing gear maintenance page is more than 4500 psi.</Para>
+</ListItem>
+<ListItem>
+<Para>Depressurize center hydraulic system.</Para>
+</ListItem>
+<ListItem>
+<Para>Wait at least 10 seconds.</Para>
+</ListItem>
+<ListItem>
+<Para>Verify that the main landing gear pressure shown on the landing gear maintenance page is more than 2000 psi.</Para>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELItem>
+</DispatchItems>

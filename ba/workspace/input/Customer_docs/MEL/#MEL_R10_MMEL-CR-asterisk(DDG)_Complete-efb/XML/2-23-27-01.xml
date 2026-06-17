@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM">]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.2-23-27-01.3861.2-23-27-01" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="23" superSectionNumber="2" sectionName="MEL" chapterName="Communications" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2025-09-30" rev:revStatus="R" rev:revNumber="10" />
+</PUMetaData>
+<MELItem itemNbr="23-27-01" id="X-BOEING:FTID:81205.787.DDG.CU.MEL.2-23-27-01.1.2-23-27-01">
+<Title>Communication Management System (Datalink)</Title>
+<DispatchCondition dispCondOptions="A" repairInterval="C" nbrInstalled="2" nbrRequired="1">
+<Title>One Inoperative (*)</Title>
+<DispatchConditionRemarks>
+<Para>One may be inoperative.</Para>
+</DispatchConditionRemarks>
+</DispatchCondition>
+<DispatchCondition dispCondOptions="B" repairInterval="C" nbrInstalled="2" nbrRequired="0" opsIndicator="(O)">
+<Title>Both Inoperative, Alternate Procedures Used</Title>
+<DispatchConditionRemarks>
+<Para>May be inoperative provided:   </Para>
+<List listType="a.">
+<ListItem>
+<Para>Operations procedure is used.</Para>
+</ListItem>
+<ListItem>
+<Para>EDTO beyond 180 minutes is not conducted.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<OperationProcedure>
+<Para>FLIGHT PREPARATION/LIMITATIONS 
+ATC datalink communications (ADS-C, CPDLC, DCL, OCL and D-ATIS) are not available. Associated ATC datalink Required Communication/Surveillance Performance (RCP/Initial Continental Performance for CPDLC and RSP for ADS-C) capabilities are lost. 
+As an alternate procedure, ATC may permit the use of voice communication on alternate route that does not require FANS A aircraft capability. 
+ATC permits the use of voice communication for operations that require FANS B aircraft capability. 
+DURING COCKPIT PREPARATION
+Check that the datalink capability mentioned on the ATC Flight Plan is in line with the aircraft actual capability</Para>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+<DispatchCondition dispCondOptions="C" repairInterval="D" nbrInstalled="2" nbrRequired="0">
+<Title>Both Inoperative, Procedures Do Not Require Its Use</Title>
+<DispatchConditionRemarks>
+<Para>May be inoperative provided procedures do not require its use.</Para>
+</DispatchConditionRemarks>
+</DispatchCondition>
+<MELSubItem itemNbr="23-27-01-01">
+<Title>ACPT/CANC/RJCT Switch Lights (*)</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="6" nbrRequired="0">
+<DispatchConditionRemarks>
+<Para>One or more may be inoperative.</Para>
+</DispatchConditionRemarks>
+</DispatchCondition>
+</MELSubItem>
+</MELItem>
+</DispatchItems>

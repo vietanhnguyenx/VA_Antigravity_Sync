@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM">]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.2-73-21-05.4032.2-73-21-05" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="73" superSectionNumber="2" sectionName="MEL" chapterName="Engine Fuel Control" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2021-02-24" rev:revStatus="U" rev:revNumber="10" />
+</PUMetaData>
+<MELItem itemNbr="73-21-05" id="X-BOEING:FTID:81205.787.DDG.CU.MEL.2-73-21-05.1.2-73-21-05">
+<Title>Engine Fuel Shutoff Valve Indication Systems (GE)</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="2" nbrRequired="1" maintIndicator="(M)">
+<DispatchConditionRemarks>
+<Para>One may be inoperative provided the associated engine fuel shutoff valve is verified to operate normally once each flight day.</Para>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Verify that the associated engine fuel shutoff valve is operating normally once each flight day (AMM DDG 73-21-05).</Para>
+<List listType="1.">
+<ListItem>
+<Para>Start the associated engine and allow engine to stabilize at ground idle.</Para>
+</ListItem>
+<ListItem>
+<Para>Open the associated engine fuel spar valve circuit breaker and lock with DO NOT CLOSE tag.</Para>
+<List listType="A.">
+<ListItem>
+<Para>For the left engine, circuit breaker SPAR VLV/EEC RESET CHB CTRL-L ENGINE.</Para>
+</ListItem>
+<ListItem>
+<Para>For the right engine, circuit breaker SPAR VLV/EEC RESET CHB CTRL-R ENGINE.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>After minimum engine operating time, position the associated engine FUEL CONTROL switch to CUTOFF.</Para>
+</ListItem>
+<ListItem>
+<Para>For engine shutdown within 10 seconds, the fuel shutoff valve is operating normally.</Para>
+<List listType="A.">
+<ListItem>
+<Para>Confirm the associated FUEL SPAR VALVE L or R status message is displayed.</Para>
+</ListItem>
+<ListItem>
+<Para>After engine has stopped rotating, close the associated engine fuel spar valve circuit breaker.</Para>
+</ListItem>
+<ListItem>
+<Para>Erase the latched FUEL SPAR VALVE L or R status message.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>For engine not shutdown before 10 seconds, the fuel shutoff valve is not operating normally.</Para>
+<List listType="A.">
+<ListItem>
+<Para>Monitor EGT and be prepared to motor the engine.</Para>
+</ListItem>
+<ListItem>
+<Para>Close the associated engine fuel spar valve circuit breaker.</Para>
+</ListItem>
+<ListItem>
+<Para>The engine may continue to operate for one minute.</Para>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+<OperationNote>
+<Para>The ENG FUEL VALVE L or R advisory message will be displayed.</Para>
+</OperationNote>
+</DispatchProcedure>
+</DispatchCondition>
+</MELItem>
+</DispatchItems>

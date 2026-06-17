@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://www.boeing.com/FTID-ML"
+    xmlns:rev="http://www.boeing.com/FTID-ML/Revision"
+    targetNamespace="http://www.boeing.com/FTID-ML" 
+    elementFormDefault="qualified" 
+    attributeFormDefault="unqualified"
+    version="FTID 2.6">
+
+<!-- 	
+=================================================================
+
+
+Copyright Information:
+      Boeing Proprietary and Confidential - 
+      All Rights Reserved since 2006.
+
+      This schema file is part of the Boeing Flight Technical 
+      Integrated Data (FTID) Specification based on XML.
+      All rights are reserved under Boeing Flight Operations 
+      digital data entitlements, products or services.
+
+     
+Contact Information:   	
+        The Boeing Company
+        Flight Operations Support
+        P.O. Box 3707	MS 20-89
+        Seattle, WA 98124-2207
+        USA
+        email:  flighttraining@Boeing.com
+        Phone:  (206) 662-4000
+        Fax:    (206) 662-4743
+		
+===================================================================
+-->
+
+<xs:include schemaLocation="../attributeTypes/generalAttrs.xsd"/>
+<xs:include schemaLocation="../basicDataTypes/basicDataInclude.xsd"/>
+<xs:include schemaLocation="../metadataTypes/effect.xsd"/>
+<xs:import namespace="http://www.boeing.com/FTID-ML/Revision" schemaLocation="../metadataTypes/revision.xsd"/>
+
+
+
+<!--=====================================================-->
+<!-- Opnote element definition -->
+<!--=====================================================-->
+<xs:complexType name="OpnoteType">
+    <xs:annotation>
+        <xs:documentation>Special note-list structure used in the non-normal checklist.</xs:documentation>
+    </xs:annotation>
+
+    <xs:sequence>
+        <xs:element name="Effectivities" type="EffectivitiesType" minOccurs="0"/>
+        <xs:element name="Para" type="ParaType" minOccurs="0"/>
+        <xs:element name="List" type="ListType" minOccurs="0"/>
+        <xs:element name="OpnoteList" type="OpnoteListType" minOccurs="0"/>
+        <xs:element name="Comment" type="CommentType" minOccurs="0"/>       
+    </xs:sequence>
+
+    <xs:attributeGroup ref="globalAttrGrp"/>
+</xs:complexType>
+
+
+
+<!--=====================================================-->
+<!-- OpnoteList element definition -->
+<!--=====================================================-->
+<xs:complexType name="OpnoteListType">
+    <xs:annotation>
+        <xs:documentation>Start of an Opnote List</xs:documentation>
+    </xs:annotation>
+
+    <xs:sequence>
+        <xs:element name="OpnoteListHeadingLeft" type="OpnoteListHeadingLeftType" />
+        <xs:element name="OpnoteListHeadingRight" type="OpnoteListHeadingRightType" />
+        <xs:sequence maxOccurs="unbounded">
+            <xs:element name="OpnoteListBodyLeft" type="OpnoteListBodyLeftType" /> 
+            <xs:element name="OpnoteListBodyRight" type="OpnoteListBodyRightType" />      
+        </xs:sequence>
+    </xs:sequence>
+
+    <xs:attribute name="recall" type="YNType" default="N"/>
+    <xs:attributeGroup ref="globalAttrGrp"/>
+</xs:complexType>
+
+
+<!--=====================================================-->
+<!-- OpnoteListHeadingLeft element definition -->
+<!--=====================================================-->
+<xs:complexType name="OpnoteListHeadingLeftType" mixed="true">
+    <xs:annotation>
+        <xs:documentation>OpnoteList Left Heading</xs:documentation>
+    </xs:annotation>
+
+    <xs:attributeGroup ref="globalAttrGrp"/>
+</xs:complexType>
+
+
+<!--=====================================================-->
+<!-- OpnoteListHeadingRight element definition -->
+<!--=====================================================-->
+<xs:complexType name="OpnoteListHeadingRightType" mixed="true">
+    <xs:annotation>
+        <xs:documentation>OpnoteList Right Heading</xs:documentation>
+    </xs:annotation>
+
+    <xs:attributeGroup ref="globalAttrGrp"/>
+</xs:complexType>
+
+
+<!--=====================================================-->
+<!-- OpnoteListBodyLeft element definition -->
+<!--=====================================================-->
+<xs:complexType name="OpnoteListBodyLeftType" mixed="true">
+    <xs:annotation>
+        <xs:documentation>OpnoteList left body item</xs:documentation>
+    </xs:annotation>
+
+    <xs:attributeGroup ref="globalAttrGrp"/>
+</xs:complexType>
+
+
+<!--=====================================================-->
+<!-- OpnoteListBodyRight element definition -->
+<!--=====================================================-->
+<xs:complexType name="OpnoteListBodyRightType" mixed="true">
+    <xs:annotation>
+        <xs:documentation>OpnoteList right body item</xs:documentation>
+    </xs:annotation>
+
+    <xs:attributeGroup ref="globalAttrGrp"/>
+</xs:complexType>
+
+
+
+
+
+</xs:schema>

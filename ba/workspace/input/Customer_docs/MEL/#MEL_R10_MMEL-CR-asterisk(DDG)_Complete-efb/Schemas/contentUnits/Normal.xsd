@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://www.boeing.com/FTID-ML"
+    xmlns:rev="http://www.boeing.com/FTID-ML/Revision"
+    targetNamespace="http://www.boeing.com/FTID-ML" 
+    elementFormDefault="qualified" 
+    attributeFormDefault="unqualified"
+    version="FTID 2.8">
+
+<!-- 	
+=================================================================
+
+
+Copyright Information:
+      Boeing Proprietary and Confidential - 
+      All Rights Reserved since 2006.
+
+      This schema file is part of the Boeing Flight Technical 
+      Integrated Data (FTID) Specification based on XML.
+      All rights are reserved under Boeing Flight Operations 
+      digital data entitlements, products or services.
+
+     
+Contact Information:   	
+        The Boeing Company
+        Flight Operations Support
+        P.O. Box 3707	MS 20-89
+        Seattle, WA 98124-2207
+        USA
+        email:  flighttraining@Boeing.com
+        Phone:  (206) 662-4000
+        Fax:    (206) 662-4743
+
+		
+===================================================================
+-->
+
+
+<xs:include schemaLocation="../attributeTypes/generalAttrs.xsd"/>
+<xs:include schemaLocation="../basicDataTypes/basicDataInclude.xsd"/>
+<xs:import namespace="http://www.boeing.com/FTID-ML/Revision" schemaLocation="../metadataTypes/revision.xsd"/>
+<xs:include schemaLocation="../metadataTypes/effect.xsd"/>
+<xs:include schemaLocation="../metadataTypes/ataPOF.xsd"/>
+<xs:include schemaLocation="../proceduralTypes/proceduralInclude.xsd"/>
+
+
+<!--=====================================================-->
+<!--  Root element declaration -->
+<!--=====================================================-->
+<xs:element name="Normal" type="NormalType"/>
+
+
+<!--=====================================================-->
+<!--  Normal element type definition -->
+<!--=====================================================-->
+<xs:complexType name="NormalType">
+    <xs:annotation>
+        <xs:documentation>Content-Unit for a Normal precedural content type       </xs:documentation>
+    </xs:annotation>
+
+    <xs:sequence>
+        <xs:element name="Effectivities" type="EffectivitiesType" minOccurs="0"/>
+        <xs:element name="Title" type="TitleType"/>
+        <xs:element name="AdditionalTitles" type="AdditionalTitlesType" minOccurs="0"/>
+        <xs:element name="POF" type="POFType"  minOccurs="0"/>
+        <xs:element name="Intro" type="IntroType" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="PilotDualActionList" type="PilotDualActionListType"/>
+            <xs:element name="ProcActionsGrp" type="ProcActionsGrpType"/> 
+            <xs:element name="ProcItem" type="ProcItemType"/>
+        </xs:choice>
+    </xs:sequence>
+
+    <xs:attribute name="id" type="UIDType" use="required"/>
+    <xs:attributeGroup ref="globalAttrGrp"/>
+</xs:complexType>
+
+
+
+</xs:schema>

@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://www.boeing.com/FTID-ML"
+    xmlns:rev="http://www.boeing.com/FTID-ML/Revision"
+    targetNamespace="http://www.boeing.com/FTID-ML" 
+    elementFormDefault="qualified" 
+    attributeFormDefault="unqualified"
+    version="FTID 2.6">
+
+<!-- 	
+=================================================================
+
+
+Copyright Information:
+      Boeing Proprietary and Confidential - 
+      All Rights Reserved since 2006.
+
+      This schema file is part of the Boeing Flight Technical 
+      Integrated Data (FTID) Specification based on XML.
+      All rights are reserved under Boeing Flight Operations 
+      digital data entitlements, products or services.
+
+     
+Contact Information:   	
+        The Boeing Company
+        Flight Operations Support
+        P.O. Box 3707	MS 20-89
+        Seattle, WA 98124-2207
+        USA
+        email:  flighttraining@Boeing.com
+        Phone:  (206) 662-4000
+        Fax:    (206) 662-4743
+		
+===================================================================
+-->
+
+<xs:include schemaLocation="../attributeTypes/generalAttrs.xsd"/>
+<xs:include schemaLocation="../basicDataTypes/basicDataInclude.xsd"/>
+<xs:include schemaLocation="../metadataTypes/effect.xsd"/>
+<xs:import namespace="http://www.boeing.com/FTID-ML/Revision" schemaLocation="../metadataTypes/revision.xsd"/>
+<xs:include schemaLocation="../metadataTypes/ataSystems.xsd" />
+<xs:include schemaLocation="../metadataTypes/ataPOF.xsd" />
+<xs:include schemaLocation="../contentUnits/Normal.xsd" />
+<xs:include schemaLocation="../contentUnits/NonNormal.xsd" />
+<xs:include schemaLocation="../contentUnits/Supplementary.xsd" />
+<xs:include schemaLocation="../contentUnits/SDSubject.xsd" />
+<xs:include schemaLocation="../contentUnits/PerfTopic.xsd" />
+<xs:include schemaLocation="../contentUnits/CDLItem.xsd" />
+<xs:include schemaLocation="../contentUnits/MELItem.xsd" />
+
+
+<!--=====================================================-->
+<!--  Bulletin element declaration -->
+<!--=====================================================-->
+<xs:element name="Bulletin" type="BulletinType"/>
+
+
+<!--=====================================================-->
+<!-- Bulletin element definition -->
+<!--=====================================================-->
+<xs:complexType name="BulletinType">
+    <xs:annotation>
+        <xs:documentation>Publish-Unit for a complete bulletin</xs:documentation>
+    </xs:annotation>
+
+    <xs:sequence>
+        <xs:element name="BulletinMetaData" type="BulletinMetaDataType"/>
+        <xs:element name="BulletinSubject" type="SimpleMixedContentType"/>
+        <xs:element name="BulletinReason" type="BulletinReasonType"/>
+        <xs:element name="Disclaimer" type="DisclaimerType" minOccurs="0"/>
+        <xs:element name="EffectiveStatement" type="SimpleMixedContentType" minOccurs="0"/>
+        <xs:element name="BulletinBody" type="BulletinBodyType" minOccurs="0"/>
+    </xs:sequence>
+
+    <xs:attribute name="id" type="UIDType" use="required"/>
+</xs:complexType>
+
+
+<!--=====================================================-->
+<!-- BulletinMetaData element definition -->
+<!--=====================================================-->
+<xs:complexType name="BulletinMetaDataType">
+    <xs:annotation>
+        <xs:documentation>Metadata about the bulletin</xs:documentation>
+    </xs:annotation>
+
+    <xs:sequence>
+        <xs:element name="CustomerName" type="SimpleMixedContentType"/>
+        <xs:element name="BulletinNumber" type="SimpleMixedContentType"/>
+        <xs:element name="BulletinDate" type="SimpleMixedContentType"/>
+        <xs:element name="BulletinRevInfo" type="BulletinRevInfoType" minOccurs="0"/>
+        <xs:element name="BulletinEffectivityInfo" type="BulletinEffectivityType" minOccurs="0"/>
+    </xs:sequence>
+
+    <xs:attribute name="author" type="authorType" use="optional"/>
+    <xs:attribute name="model" type="modelType" use="required"/>
+    <xs:attribute name="manualName" type="manualNameType" use="required"/>
+</xs:complexType>
+
+
+<!--=====================================================-->
+<!-- Disclaimer element definition -->
+<!--=====================================================-->
+<xs:complexType name="DisclaimerType">
+    <xs:annotation>
+        <xs:documentation>Disclaimer information</xs:documentation>
+    </xs:annotation>
+
+    <xs:sequence>
+        <xs:element name="Para" type="ParaType" maxOccurs="unbounded"/>
+    </xs:sequence>
+
+</xs:complexType>
+
+
+
+<!--=====================================================-->
+<!-- BulletinBody element definition -->
+<!--=====================================================-->
+<xs:complexType name="BulletinBodyType">
+    <xs:annotation>
+        <xs:documentation>Bulletin technical content</xs:documentation>
+    </xs:annotation>
+
+    <xs:sequence>
+        <xs:element name="BackgroundInfo" type="BackgroundInfoType"/>
+        <xs:element name="BulletinInstructions" type="BulletinInstructionsType" minOccurs="0"/>
+        <xs:element name="EffectiveManualInfo" type="EffectiveManualInfoType" minOccurs="0"/>
+        <xs:element name="AdministrativeInfo" type="AdministrativeInfoType" minOccurs="0"/>
+        <xs:element name="AttachmentInfo" type="AttachmentInfoType" minOccurs="0"/>
+    </xs:sequence>
+
+</xs:complexType>
+
+
+<!--=====================================================-->
+<!-- BackgroundInfo element definition -->
+<!--=====================================================-->
+<xs:complexType name="BackgroundInfoType">
+    <xs:annotation>
+        <xs:documentation>Background info for the bulletin</xs:documentation>
+    </xs:annotation>
+
+    <xs:sequence>
+        <xs:element name="BulInfoItem" type="BulInfoItemType" maxOccurs="unbounded"/>
+    </xs:sequence>
+</xs:complexType>
+
+
+<!--=====================================================-->
+<!-- BulletinInstructions element definition -->
+<!--=====================================================-->
+<xs:complexType name="BulletinInstructionsType">
+    <xs:annotation>
+        <xs:documentation>Instructions regarding the bulletin</xs:documentation>
+    </xs:annotation>
+
+    <xs:choice maxOccurs="unbounded">
+        <xs:element name="BulInfoItem" type="BulInfoItemType"/>
+        <xs:element name="ProcActionsGrp" type="ProcActionsGrpType"/>
+    </xs:choice>
+
+</xs:complexType>
+
+<!--=====================================================-->
+<!-- BulletinReason element definition -->
+<!--=====================================================-->
+<xs:complexType name="BulletinReasonType">
+    <xs:annotation>
+        <xs:documentation>Reasons for having the bulletin</xs:documentation>
+    </xs:annotation>
+	
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:group ref="ShortTextNoteGroupType"/>
+    </xs:choice>
+</xs:complexType>
+
+
+<!--=====================================================-->
+<!--  BulletinRevInfo element definition -->
+<!--=====================================================-->
+<xs:complexType name="BulletinRevInfoType">
+    <xs:annotation>
+        <xs:documentation>Revision metadata for a Bulletin</xs:documentation>
+    </xs:annotation>
+	
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:group ref="ShortTextNoteGroupType"/>
+    </xs:choice>
+	
+    <xs:attributeGroup ref="rev:revAttrGrp"/>
+</xs:complexType>
+
+	  
+<!--=====================================================-->
+<!-- BulletinEffectivity element definition -->
+<!--=====================================================-->
+<xs:complexType name="BulletinEffectivityType">
+    <xs:annotation>
+        <xs:documentation>Effectivity info for the bulletin</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+        <xs:element name="DocumentEffectivity" type="SimpleMixedContentType" minOccurs="0"/>
+        <xs:element name="Effectivities" type="EffectivitiesType" minOccurs="0"/>
+    </xs:sequence>
+	
+</xs:complexType>
+
+
+<!--=====================================================-->
+<!-- EffectiveManualInfo element definition -->
+<!--=====================================================-->
+<xs:complexType name="EffectiveManualInfoType">
+    <xs:annotation>
+        <xs:documentation>Further info on the effective manual</xs:documentation>
+    </xs:annotation>
+
+    <xs:sequence>
+        <xs:element name="BulInfoItem" type="BulInfoItemType" maxOccurs="unbounded"/>
+    </xs:sequence>
+</xs:complexType>
+
+
+<!--=====================================================-->
+<!-- AdministrativeInfo element definition -->
+<!--=====================================================-->
+<xs:complexType name="AdministrativeInfoType">
+    <xs:annotation>
+        <xs:documentation>Administrative Info for the bulletin</xs:documentation>
+    </xs:annotation>
+
+    <xs:sequence>
+        <xs:element name="BulInfoItem" type="BulInfoItemType" maxOccurs="unbounded"/>
+        <xs:element name="Address" type="AddressType" minOccurs="0"/>
+        <xs:element name="CS3Number" type="SimpleMixedContentType" minOccurs="0"/>
+    </xs:sequence>
+</xs:complexType>
+
+
+
+<!--=====================================================-->
+<!-- BulInfoItem element definition -->
+<!--=====================================================-->
+<xs:complexType name="BulInfoItemType">
+    <xs:annotation>
+        <xs:documentation>Grouping for Bulletin information</xs:documentation>
+    </xs:annotation>
+
+    <xs:sequence>
+        <xs:element name="Title" type="TitleType" minOccurs="0"/>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:group ref="TextCWNGroupType"/>
+            <xs:element name="ProcActionsGrp" type="ProcActionsGrpType"/>
+            <xs:element name="BulInfoItem" type="BulInfoItemType"/>
+        </xs:choice>
+    </xs:sequence>
+</xs:complexType>
+
+ <!--=====================================================-->
+ <!-- AttachmentInfo element definition -->
+ <!--=====================================================-->
+ <xs:complexType name="AttachmentInfoType">
+     <xs:annotation>
+         <xs:documentation>Supplementary info to the Bulletin</xs:documentation>
+     </xs:annotation>
+	 
+     <xs:choice minOccurs="0" maxOccurs="unbounded">
+         <xs:group ref="TextCWNGroupType"/>
+         <xs:element ref="Normal"/>
+         <xs:element ref="NonNormal"/>
+         <xs:element ref="Supplementary"/>
+         <xs:element ref="SDSubject"/>
+         <xs:element ref="PerfTopic"/>
+         <xs:element ref="MELItem"/>
+         <xs:element ref="CDLItem"/>
+     </xs:choice>
+	 
+</xs:complexType>
+
+</xs:schema>

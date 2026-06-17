@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM">]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.2-31-61-06.5651.2-31-61-06" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="31" superSectionNumber="2" sectionName="MEL" chapterName="Indicating / Recording Systems" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2019-09-25" rev:revStatus="U" rev:revNumber="10" />
+</PUMetaData>
+<MELItem itemNbr="31-61-06" id="X-BOEING:FTID:81205.787.DDG.CU.MEL.2-31-61-06.1.2-31-61-06">
+<Title>PFD/MFD Selector Switches</Title>
+<MELSubItem itemNbr="31-61-06-01">
+<Title>OUTBD Position</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="2" nbrRequired="1" maintIndicator="(M)">
+<DispatchConditionRemarks>
+<Para>One may be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Opposite switch is verified to operate normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Associated selector switch remains in NORM position.</Para>
+</ListItem>
+<ListItem>
+<Para>Display units operate normally.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Verify that all positions of the opposite PFD/MFD selector operate normally (AMM DDG 31-61-06). </Para>
+<List listType="1.">
+<ListItem>
+<Para>Confirm that the NORM position operates normally:</Para>
+<List listType="A.">
+<ListItem>
+<Para>Set the opposite PFD/MFD selector to NORM.</Para>
+</ListItem>
+<ListItem>
+<Para>Confirm the associated outboard display unit displays the PFD and the inboard display unit displays the MFD/MFD or MFD/EICAS format.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Confirm that the INBD position operates normally:</Para>
+<List listType="A.">
+<ListItem>
+<Para>Set the opposite PFD/MFD selector to INBD.</Para>
+</ListItem>
+<ListItem>
+<Para>Confirm the associated inboard display unit displays the PFD/MFD or PFD/EICAS format and the outboard display unit blanks.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Confirm that the OUTBD position operates normally:</Para>
+<List listType="A.">
+<ListItem>
+<Para>Set opposite PFD/MFD selector to OUTBD.</Para>
+</ListItem>
+<ListItem>
+<Para>Confirm the associated outboard display unit displays the PFD/MFD or PFD/EICAS format and the inboard display blanks.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Set opposite PFD/MFD selector to NORM.</Para>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="31-61-06-02">
+<Title>INBD Position</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="2" nbrRequired="1" maintIndicator="(M)">
+<DispatchConditionRemarks>
+<Para>One may be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Opposite switch is verified to operate normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Associated selector switch remains in NORM position.</Para>
+</ListItem>
+<ListItem>
+<Para>Display units operate normally.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Verify that all positions of the opposite PFD/MFD selector operate normally (AMM DDG 31-61-06). </Para>
+<List listType="1.">
+<ListItem>
+<Para>Confirm that the NORM position operates normally:</Para>
+<List listType="A.">
+<ListItem>
+<Para>Set the opposite PFD/MFD selector to NORM.</Para>
+</ListItem>
+<ListItem>
+<Para>Confirm the associated outboard display unit displays the PFD and the inboard display unit displays the MFD/MFD or MFD/EICAS format.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Confirm that the INBD position operates normally:</Para>
+<List listType="A.">
+<ListItem>
+<Para>Set the opposite PFD/MFD selector to INBD.</Para>
+</ListItem>
+<ListItem>
+<Para>Confirm the associated inboard display unit displays the PFD/MFD or PFD/EICAS format and the outboard display unit blanks.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Confirm that the OUTBD position operates normally:</Para>
+<List listType="A.">
+<ListItem>
+<Para>Set opposite PFD/MFD selector to OUTBD.</Para>
+</ListItem>
+<ListItem>
+<Para>Confirm the associated outboard display unit displays the PFD/MFD or PFD/EICAS format and the inboard display blanks.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Set opposite PFD/MFD selector to NORM.</Para>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="31-61-06-03">
+<Title>Left NORM Position</Title>
+<DispatchCondition dispCondOptions="A" repairInterval="B" nbrInstalled="1" nbrRequired="0">
+<Title>Switch in OUTBD</Title>
+<DispatchConditionRemarks>
+<Para>May be inoperative with associated selector switch in OUTBD position provided left inboard display unit is considered inoperative.</Para>
+</DispatchConditionRemarks>
+<Note>
+<Para>The airplane must also be dispatched using MEL item 31-61-01-02.</Para>
+</Note>
+</DispatchCondition>
+<DispatchCondition dispCondOptions="B" repairInterval="B" nbrInstalled="1" nbrRequired="0">
+<Title>Switch in INBD</Title>
+<DispatchConditionRemarks>
+<Para>May be inoperative with associated selector switch in INBD position provided left outboard display unit is considered inoperative.</Para>
+</DispatchConditionRemarks>
+<Note>
+<Para>The airplane must also be dispatched using MEL item 31-61-01-03.</Para>
+</Note>
+</DispatchCondition>
+</MELSubItem>
+</MELItem>
+</DispatchItems>

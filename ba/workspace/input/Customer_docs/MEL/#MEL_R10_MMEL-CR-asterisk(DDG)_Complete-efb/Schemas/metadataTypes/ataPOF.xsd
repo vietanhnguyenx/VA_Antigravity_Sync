@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://www.boeing.com/FTID-ML"
+    targetNamespace="http://www.boeing.com/FTID-ML" 
+    elementFormDefault="qualified"
+    attributeFormDefault="unqualified"
+    version="FTID 2.6">
+
+<!-- 	
+=================================================================
+
+
+Copyright Information:
+      Boeing Proprietary and Confidential - 
+      All Rights Reserved since 2006.
+
+      This schema file is part of the Boeing Flight Technical 
+      Integrated Data (FTID) Specification based on XML.
+      All rights are reserved under Boeing Flight Operations 
+      digital data entitlements, products or services.
+
+     
+Contact Information:   	
+        The Boeing Company
+        Flight Operations Support
+        P.O. Box 3707	MS 20-89
+        Seattle, WA 98124-2207
+        USA
+        email:  flighttraining@Boeing.com
+        Phone:  (206) 662-4000
+        Fax:    (206) 662-4743
+
+		
+===================================================================
+-->
+
+
+<!--=====================================================-->
+<!-- Phases Of Flight element definition -->
+<!--=====================================================-->
+<xs:complexType name="POFType">
+    <xs:annotation>
+        <xs:documentation>Phases of Flight Definition Structure</xs:documentation>
+    </xs:annotation>
+
+    <xs:choice>
+        <xs:element name="POFAll" type="POFAllType" />
+        <xs:element name="POFNone" type="POFNoneType" />
+        <xs:element name="POFList" type="POFListType" maxOccurs="17"/>
+    </xs:choice>
+</xs:complexType>
+
+<!--=====================================================-->
+<!-- POFAll element definition -->
+<!--=====================================================-->
+<xs:complexType name="POFAllType">
+    <xs:annotation>
+        <xs:documentation>All phases applied</xs:documentation>
+    </xs:annotation>
+
+    <xs:attribute name="code" type="xs:string" fixed="ALL"/>
+    <xs:attribute name="desc" type="xs:string" fixed="All Phases"/>
+</xs:complexType>
+
+<!--=====================================================-->
+<!-- POFNone element definition -->
+<!--=====================================================-->
+<xs:complexType name="POFNoneType">
+    <xs:annotation>
+        <xs:documentation>No phases applied</xs:documentation>
+    </xs:annotation>
+
+    <xs:attribute name="code" type="xs:string" fixed="NIL"/>
+    <xs:attribute name="desc" type="xs:string" fixed="Not Applicable"/>
+</xs:complexType>
+
+
+<!--=====================================================-->
+<!-- POFList element definition -->
+<!--=====================================================-->
+<xs:complexType name="POFListType">
+    <xs:annotation>
+        <xs:documentation>List of applicable phases</xs:documentation>
+    </xs:annotation>
+
+    <xs:choice>
+        <xs:element name="FlightPlanning" type="FLPType"/>
+        <xs:element name="PreFlight" type="PRFType"/>
+        <xs:element name="EngineStart-Depart" type="ESDType"/>
+        <xs:element name="TaxiOut" type="TXOType"/>
+        <xs:element name="TakeOff" type="TOFType"/>
+        <xs:element name="RejectTakeOff" type="RTOType"/>
+        <xs:element name="InitialClimb" type="ICLType"/>
+        <xs:element name="EnRouteClimb" type="ECLType"/>
+        <xs:element name="Cruise" type="CRZType"/>
+        <xs:element name="Descent" type="DSTType"/>
+        <xs:element name="Approach" type="APRType"/>
+        <xs:element name="GoAround" type="GOAType"/>
+        <xs:element name="Landing" type="LNDType"/>
+        <xs:element name="TaxiIn" type="TXIType"/>
+        <xs:element name="Arrival" type="AESType"/>
+        <xs:element name="PostFlight" type="PSFType"/>
+        <xs:element name="FlightClose" type="FLCType"/>
+        <xs:element name="GroundServicing" type="GRSType"/>
+    </xs:choice>
+</xs:complexType>
+
+
+<!--=====================================================-->
+<!-- FLP element definition -->
+<!--=====================================================-->
+<xs:complexType name="FLPType">
+    <xs:annotation>
+        <xs:documentation>
+        </xs:documentation>
+    </xs:annotation>
+
+    <xs:attribute name="code" type="xs:string" fixed="FLP"/>
+    <xs:attribute name="desc" type="xs:string" fixed="Flight Planning"/>
+</xs:complexType>
+
+<!--=====================================================-->
+<!-- PRF element definition -->
+<!--=====================================================-->
+<xs:complexType name="PRFType">
+    <xs:annotation>
+        <xs:documentation>
+        </xs:documentation>
+    </xs:annotation>
+
+    <xs:attribute name="code" type="xs:string" fixed="PRF"/>
+    <xs:attribute name="desc" type="xs:string" fixed="Pre-flight"/>
+</xs:complexType>
+
+<!--=====================================================-->
+<!-- ESD element definition -->
+<!--=====================================================-->
+<xs:complexType name="ESDType">
+    <xs:annotation>
+        <xs:documentation>
+        </xs:documentation>
+    </xs:annotation>
+
+    <xs:attribute name="code" type="xs:string" fixed="ESD"/>
+    <xs:attribute name="desc" type="xs:string" fixed="Engine Start / Depart"/>
+</xs:complexType>
+
+<!--=====================================================-->
+<!-- TXO element definition -->
+<!--=====================================================-->
+<xs:complexType name="TXOType">
+    <xs:annotation>
+        <xs:documentation>
+        </xs:documentation>
+    </xs:annotation>
+
+    <xs:attribute name="code" type="xs:string" fixed="TXO"/>
+    <xs:attribute name="desc" type="xs:string" fixed="Taxi-out"/>
+</xs:complexType>
+
+<!--=====================================================-->
+<!-- TOF element definition -->
+<!--=====================================================-->
+<xs:complexType name="TOFType">
+    <xs:annotation>
+        <xs:documentation>
+        </xs:documentation>
+    </xs:annotation>
+
+    <xs:attribute name="code" type="xs:string" fixed="TOF"/>
+    <xs:attribute name="desc" type="xs:string" fixed="Take-off"/>
+</xs:complexType>
+
+<!--=====================================================-->
+<!-- RTO element definition -->
+<!--=====================================================-->
+<xs:complexType name="RTOType">
+    <xs:annotation>
+        <xs:documentation>
+        </xs:documentation>
+    </xs:annotation>
+
+    <xs:attribute name="code" type="xs:string" fixed="RTO"/>
+    <xs:attribute name="desc" type="xs:string" fixed="Rejected Take-off"/>
+</xs:complexType>
+
+<!--=====================================================-->
+<!-- ICL element definition -->
+<!--=====================================================-->
+<xs:complexType name="ICLType">
+    <xs:annotation>
+        <xs:documentation>
+        </xs:documentation>
+    </xs:annotation>
+
+    <xs:attribute name="code" type="xs:string" fixed="ICL"/>
+    <xs:attribute name="desc" type="xs:string" fixed="Initial Climb"/>
+</xs:complexType>
+
+<!--=====================================================-->
+<!-- ECL element definition -->
+<!--=====================================================-->
+<xs:complexType name="ECLType">
+    <xs:annotation>
+        <xs:documentation>
+        </xs:documentation>
+    </xs:annotation>
+
+    <xs:attribute name="code" type="xs:string" fixed="ECL"/>
+    <xs:attribute name="desc" type="xs:string" fixed="En Route Climb"/>
+</xs:complexType>
+
+<!--=====================================================-->
+<!-- CRZ element definition -->
+<!--=====================================================-->
+<xs:complexType name="CRZType">
+    <xs:annotation>
+        <xs:documentation>
+        </xs:documentation>
+    </xs:annotation>
+
+    <xs:attribute name="code" type="xs:string" fixed="CRZ"/>
+    <xs:attribute name="desc" type="xs:string" fixed="Cruise"/>
+</xs:complexType>
+
+<!--=====================================================-->
+<!-- DST element definition -->
+<!--=====================================================-->
+<xs:complexType name="DSTType">
+    <xs:annotation>
+        <xs:documentation>
+        </xs:documentation>
+    </xs:annotation>
+
+    <xs:attribute name="code" type="xs:string" fixed="DST"/>
+    <xs:attribute name="desc" type="xs:string" fixed="Descent"/>
+</xs:complexType>
+
+<!--=====================================================-->
+<!-- APR element definition -->
+<!--=====================================================-->
+<xs:complexType name="APRType">
+    <xs:annotation>
+        <xs:documentation>
+        </xs:documentation>
+    </xs:annotation>
+
+    <xs:attribute name="code" type="xs:string" fixed="APR"/>
+    <xs:attribute name="desc" type="xs:string" fixed="Approach"/>
+</xs:complexType>
+
+<!--=====================================================-->
+<!-- GOA element definition -->
+<!--=====================================================-->
+<xs:complexType name="GOAType">
+    <xs:annotation>
+        <xs:documentation>
+        </xs:documentation>
+    </xs:annotation>
+
+    <xs:attribute name="code" type="xs:string" fixed="GOA"/>
+    <xs:attribute name="desc" type="xs:string" fixed="Go-around"/>
+</xs:complexType>
+
+<!--=====================================================-->
+<!-- LND element definition -->
+<!--=====================================================-->
+<xs:complexType name="LNDType">
+    <xs:annotation>
+        <xs:documentation>
+        </xs:documentation>
+    </xs:annotation>
+
+    <xs:attribute name="code" type="xs:string" fixed="LND"/>
+    <xs:attribute name="desc" type="xs:string" fixed="Landing"/>
+</xs:complexType>
+
+<!--=====================================================-->
+<!-- TXI element definition -->
+<!--=====================================================-->
+<xs:complexType name="TXIType">
+    <xs:annotation>
+        <xs:documentation>
+        </xs:documentation>
+    </xs:annotation>
+
+    <xs:attribute name="code" type="xs:string" fixed="TXI"/>
+    <xs:attribute name="desc" type="xs:string" fixed="Taxi-in"/>
+</xs:complexType>
+
+<!--=====================================================-->
+<!-- AES element definition -->
+<!--=====================================================-->
+<xs:complexType name="AESType">
+    <xs:annotation>
+        <xs:documentation>
+        </xs:documentation>
+    </xs:annotation>
+
+    <xs:attribute name="code" type="xs:string" fixed="AES"/>
+    <xs:attribute name="desc" type="xs:string" fixed="Arrival / Engine Shutdown"/>
+</xs:complexType>
+
+<!--=====================================================-->
+<!-- PSF element definition -->
+<!--=====================================================-->
+<xs:complexType name="PSFType">
+    <xs:annotation>
+        <xs:documentation>
+        </xs:documentation>
+    </xs:annotation>
+
+    <xs:attribute name="code" type="xs:string" fixed="PSF"/>
+    <xs:attribute name="desc" type="xs:string" fixed="Post-flight"/>
+</xs:complexType>
+
+<!--=====================================================-->
+<!-- FLC element definition -->
+<!--=====================================================-->
+<xs:complexType name="FLCType">
+    <xs:annotation>
+        <xs:documentation>
+        </xs:documentation>
+    </xs:annotation>
+
+    <xs:attribute name="code" type="xs:string" fixed="FLC"/>
+    <xs:attribute name="desc" type="xs:string" fixed="Flight Close"/>
+</xs:complexType>
+
+<!--=====================================================-->
+<!-- GRS element definition -->
+<!--=====================================================-->
+<xs:complexType name="GRSType">
+    <xs:annotation>
+        <xs:documentation>
+        </xs:documentation>
+    </xs:annotation>
+
+    <xs:attribute name="code" type="xs:string" fixed="GRS"/>
+    <xs:attribute name="desc" type="xs:string" fixed="Ground Servicing"/>
+</xs:complexType>
+
+
+
+</xs:schema>
+

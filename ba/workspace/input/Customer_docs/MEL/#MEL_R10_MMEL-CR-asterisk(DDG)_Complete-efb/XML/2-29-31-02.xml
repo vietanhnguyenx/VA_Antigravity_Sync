@@ -1,0 +1,167 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM">]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.2-29-31-02.10511.2-29-31-02" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="29" superSectionNumber="2" sectionName="MEL" chapterName="Hydraulic Power" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2025-09-30" rev:revStatus="R" rev:revNumber="10" />
+</PUMetaData>
+<MELItem itemNbr="29-31-02" id="X-BOEING:FTID:81205.787.DDG.CU.MEL.2-29-31-02.1.2-29-31-02">
+<Title>
+<?FTID-xref 1287605.2-29-31-02?>Hydraulic Pump Pressure Indication Systems</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="6" nbrRequired="3" maintIndicator="(M)">
+<DispatchConditionRemarks>
+<Para>One in each system may be inoperative provided: </Para>
+<List listType="a.">
+<ListItem>
+<Para>Inoperative pump pressure transducer is deactivated.</Para>
+</ListItem>
+<ListItem>
+<Para>Associated pump is verified to operate normally before each departure.</Para>
+</ListItem>
+<ListItem>
+<Para>Associated pump temperature indications operate normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Associated hydraulic system pressure transducer operates normally.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Note>
+<Para>Hydraulic system pressure transducers and hydraulic pump pressure transducers are interchangeable.</Para>
+</Note>
+<Para>Deactivate the inoperative pump pressure transducer, and verify the hydraulic pump associated with the inoperative pump pressure indication is operating normally (AMM DDG 29-31-02).</Para>
+<List listType="1.">
+<ListItem>
+<Para>For the left EDP inoperative hydraulic pump pressure transducer:</Para>
+<List listType="A.">
+<ListItem>
+<Para>Using a flight deck multi-function display only, open circuit breaker HYD PRESS SNSR-CHAN1 and lock with a DO NOT CLOSE tag.</Para>
+</ListItem>
+<ListItem>
+<Para>Gain access to the inoperative hydraulic pump pressure transducer.</Para>
+</ListItem>
+<ListItem>
+<Para>Disconnect, cap and stow the associated transducer electrical connector.</Para>
+</ListItem>
+<ListItem>
+<Para>Close circuit breaker HYD PRESS SNSR-CHAN1.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>For the left EMP inoperative hydraulic pump pressure transducer:</Para>
+<List listType="A.">
+<ListItem>
+<Para>Using a flight deck multi-function display only, open circuit breaker MEDC CHAN B L ENGINE and lock with a DO NOT CLOSE tag.</Para>
+</ListItem>
+<ListItem>
+<Para>Gain access to the inoperative hydraulic pump pressure transducer.</Para>
+</ListItem>
+<ListItem>
+<Para>Disconnect, cap and stow the associated transducer electrical connector.</Para>
+</ListItem>
+<ListItem>
+<Para>Close circuit breaker MEDC CHAN B L ENGINE.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>For the right EDP inoperative hydraulic pump pressure transducer:</Para>
+<List listType="A.">
+<ListItem>
+<Para>Using a flight deck multi-function display only, open circuit breaker HYD PRESS SNSR-CHAN2 and lock with a DO NOT CLOSE tag.</Para>
+</ListItem>
+<ListItem>
+<Para>Gain access to the inoperative hydraulic pump pressure transducer.</Para>
+</ListItem>
+<ListItem>
+<Para>Disconnect, cap and stow the associated transducer electrical connector.</Para>
+</ListItem>
+<ListItem>
+<Para>Close circuit breaker HYD PRESS SNSR-CHAN2.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>For the right EMP inoperative hydraulic pump pressure transducer:</Para>
+<List listType="A.">
+<ListItem>
+<Para>Using a flight deck multi-function display only, open circuit breaker MEDC CHAN B R ENGINE and lock with a DO NOT CLOSE tag.</Para>
+</ListItem>
+<ListItem>
+<Para>Gain access to the inoperative hydraulic pump pressure transducer.</Para>
+</ListItem>
+<ListItem>
+<Para>Disconnect, cap and stow the associated transducer electrical connector.</Para>
+</ListItem>
+<ListItem>
+<Para>Close circuit breaker MEDC CHAN B R ENGINE.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>For the center C1 inoperative hydraulic pump pressure transducer:</Para>
+<List listType="A.">
+<ListItem>
+<Para>Using a flight deck multi-function display only, open circuit breaker HYD PRESS SNSR-CHAN3 and lock with a DO NOT CLOSE tag.</Para>
+</ListItem>
+<ListItem>
+<Para>Gain access to the inoperative hydraulic pump pressure transducer.</Para>
+</ListItem>
+<ListItem>
+<Para>Disconnect, cap and stow the associated transducer electrical connector.</Para>
+</ListItem>
+<ListItem>
+<Para>Close circuit breaker HYD PRESS SNSR-CHAN3.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>For the center C2 inoperative hydraulic pump pressure transducer:</Para>
+<List listType="A.">
+<ListItem>
+<Para>Using a flight deck multi-function display only, open circuit breaker HYD PRESS SNSR-CHAN2 and lock with a DO NOT CLOSE tag.</Para>
+</ListItem>
+<ListItem>
+<Para>Gain access to the inoperative hydraulic pump pressure transducer.</Para>
+</ListItem>
+<ListItem>
+<Para>Disconnect, cap and stow the associated transducer electrical connector.</Para>
+</ListItem>
+<ListItem>
+<Para>Close circuit breaker HYD PRESS SNSR-CHAN2.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para rev:revStatus="R" rev:revHighlight="Revised (M) step 7 to provide further clarification on how the system operates.">
+<?FTID-rev start?>Ensure there is sufficient ground power for operation of the EMP (Electric Motor Pump).<?FTID-rev end?></Para>
+</ListItem>
+<ListItem>
+<Para>If the inoperative pressure indication system is for an engine-driven pump, do one of the following:</Para>
+<List listType="A.">
+<ListItem>
+<Para>Dry motor the engine.</Para>
+</ListItem>
+<ListItem>
+<Para>Start the engine.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Set the associated hydraulic pump switch to ON for at least 60 seconds.</Para>
+</ListItem>
+<ListItem>
+<Para>For the hydraulic system associated with the inoperative pump pressure indication, verify the system pressure indication on the HYDRAULIC maintenance page 1 of 2 is greater than 4700 psi (3000 psi if dry motoring the engine for an engine-driven pump).</Para>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELItem>
+</DispatchItems>

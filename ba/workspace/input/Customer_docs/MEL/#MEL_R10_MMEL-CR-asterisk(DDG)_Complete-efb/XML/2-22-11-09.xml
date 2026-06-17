@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM">]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.2-22-11-09.1120.2-22-11-09" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="22" superSectionNumber="2" sectionName="MEL" chapterName="Auto Flight" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2019-09-25" rev:revStatus="U" rev:revNumber="10" />
+</PUMetaData>
+<MELItem itemNbr="22-11-09" id="X-BOEING:FTID:81205.787.DDG.CU.MEL.2-22-11-09.1.2-22-11-09">
+<Title>Takeoff/Go-Around (TO/GA) Switches</Title>
+<DispatchCondition dispCondOptions="A" repairInterval="C" nbrInstalled="2" nbrRequired="1">
+<Title>One Inoperative</Title>
+<DispatchConditionRemarks>
+<Para>One may be inoperative provided approach minimums do not require its use.</Para>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<OperationNote>
+<List listType="1.">
+<ListItem>
+<Para>CAT III and/or Autoland Operations are not to be conducted.</Para>
+</ListItem>
+<ListItem>
+<Para>The NO LAND 3 or NO AUTOLAND advisory message may be displayed.</Para>
+</ListItem>
+</List>
+</OperationNote>
+</DispatchProcedure>
+</DispatchCondition>
+<DispatchCondition dispCondOptions="B" repairInterval="C" nbrInstalled="2" nbrRequired="0">
+<Title>Both Inoperative</Title>
+<DispatchConditionRemarks>
+<Para>May be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>EEC normal mode operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Both thrust levers are operated manually for takeoff and go-around.</Para>
+</ListItem>
+<ListItem>
+<Para>Autopilot and flight director are not used below 500 feet AGL or MDA, whichever is higher.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<OperationNote>
+<List listType="1.">
+<ListItem>
+<Para>The NO LAND 3 or NO AUTOLAND advisory message may be displayed.</Para>
+</ListItem>
+<ListItem>
+<Para>Flight director go-around and windshear guidance are not available with both TO/GA switches inoperative.</Para>
+</ListItem>
+<ListItem>
+<Para>For flight management inertial only navigation mode (GPS not available), RWY/POS position update will not occur at the start of takeoff roll.  DME/DME or VOR/DME updating will begin when airspeed exceeds 100 kts.</Para>
+</ListItem>
+<ListItem>
+<Para>RNP AR approaches are not permitted.</Para>
+</ListItem>
+<ListItem>
+<Para>RNP APCH minima must be not less than 500 feet AGL.</Para>
+</ListItem>
+<ListItem>
+<Para>Autopilot and flight director are not to be used below 500 feet AGL or MDA, whichever is higher.</Para>
+</ListItem>
+<ListItem>
+<Para>Maximum landing capability is CAT I.</Para>
+</ListItem>
+</List>
+</OperationNote>
+</DispatchProcedure>
+</DispatchCondition>
+</MELItem>
+</DispatchItems>

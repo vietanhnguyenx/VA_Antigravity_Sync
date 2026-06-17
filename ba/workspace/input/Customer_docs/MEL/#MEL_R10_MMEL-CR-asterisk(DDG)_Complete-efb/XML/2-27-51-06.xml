@@ -1,0 +1,188 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM">]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.2-27-51-06.2356.2-27-51-06" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="27" superSectionNumber="2" sectionName="MEL" chapterName="Flight Controls" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2025-09-30" rev:revStatus="R" rev:revNumber="10" />
+</PUMetaData>
+<MELItem itemNbr="27-51-06" id="X-BOEING:FTID:81205.787.DDG.CU.MEL.2-27-51-06.1.2-27-51-06">
+<Title>Flap/Slat Hydraulic Control Module (HCM) Power Control</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="2" nbrRequired="1" maintIndicator="(M)">
+<DispatchConditionRemarks>
+<Para>One may be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>The associated hydraulic control module channel is deactivated.</Para>
+</ListItem>
+<ListItem>
+<Para>Slat secondary mode is verified to operate normally once each flight day.</Para>
+</ListItem>
+<ListItem>
+<Para>Flap secondary mode is verified to operate normally once each flight day.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<Note>
+<Para>The airplane must also be dispatched using MEL item 27-51-05.</Para>
+</Note>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Deactivate associated HCM channel, verify operation of slat secondary mode once each flight day, and verify flap secondary mode operates normally once each flight day (AMM DDG 27-51-06).</Para>
+<List listType="1.">
+<ListItem>
+<Para>Deactivate associated HCM channel.</Para>
+<List listType="A.">
+<ListItem>
+<Para>Confirm flaps are UP.</Para>
+</ListItem>
+<ListItem>
+<Para>Remove power to C1 and R Flight Control Electronics (FCE) by opening circuit breakers FCE CABINET-	C1 BACKUP and FCE CABINET-	R BACKUP and locking with a DO NOT CLOSE tag.</Para>
+</ListItem>
+<ListItem>
+<Para>Install landing gear downlock pins.</Para>
+</ListItem>
+<ListItem>
+<Para>Gain access to flap/slat HCM in the right main landing gear wheel well.</Para>
+</ListItem>
+<ListItem>
+<Para>Disconnect, cap and stow associated HCM A or B electrical connector.</Para>
+<Note>
+<Para>The FLAP/SLAT SOLENOID COIL status message will be displayed. The airplane must also be dispatched using MEL item 27-51-05</Para>
+</Note>
+</ListItem>
+<ListItem>
+<Para>Close circuit breakers FCE CABINET-	C1 BACKUP and FCE CABINET-	R BACKUP.</Para>
+</ListItem>
+<ListItem>
+<Para>Verify remaining HCM channel operates normally.  </Para>
+<List listType="1)">
+<ListItem>
+<Para>For all three hydraulic systems available, turn hydraulics on.</Para>
+</ListItem>
+<ListItem>
+<Para>For only one or two of the hydraulic systems available at once:</Para>
+<List listType="a.">
+<ListItem>
+<Para>With hydraulics off, move the speedbrake lever UP.</Para>
+</ListItem>
+<ListItem>
+<Para>Pressurize and depressurize hydraulic systems in this sequence: left, right.</Para>
+</ListItem>
+<ListItem>
+<Para>Pressurize the center hydraulic system.</Para>
+</ListItem>
+<ListItem>
+<Para>Confirm that all spoilers are extended.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Using the flap lever, select flaps 5.</Para>
+</ListItem>
+<ListItem>
+<Para>On the EICAS flap display, confirm the indication reaches the 5 position and that the 5 indication turns green.</Para>
+</ListItem>
+<ListItem>
+<Para>Using the flap lever, select flaps UP.</Para>
+</ListItem>
+<ListItem>
+<Para>On the EICAS flap display, confirm the indication reaches the UP position and that the UP indication turns green.</Para>
+</ListItem>
+<ListItem>
+<Para>Confirm the status message for the remaining HCM channel is not displayed.</Para>
+</ListItem>
+<ListItem>
+<Para>Confirm the FLAP/SLAT SOLENOID COIL status message is displayed.</Para>
+</ListItem>
+<ListItem>
+<Para>Depressurize the center hydraulic system.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Remove landing gear downlock pins.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Do the ground test of the slat secondary mode.</Para>
+<List listType="A.">
+<ListItem>
+<Para>Confirm flaps are UP.</Para>
+</ListItem>
+<ListItem>
+<Para>Conduct the ground system test Slats (Electric).</Para>
+</ListItem>
+<ListItem>
+<Para>On the expanded flap and slat position indications, confirm leading edge extension to the mid position, then retraction to UP.</Para>
+</ListItem>
+<ListItem>
+<Para>After completion of the test, confirm the SLATS SECONDARY FAIL status message is not displayed.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>For trailing edge variable camber (cruise flaps) function operating normally, confirm status message FLAPS SECONDARY FAIL is not displayed.</Para>
+</ListItem>
+<ListItem>
+<Para>For trailing edge variable camber (cruise flaps) function inoperative or disabled:</Para>
+<List listType="A.">
+<ListItem>
+<Para>Do the ground test of the flap secondary mode.</Para>
+<List listType="1)">
+<ListItem>
+<Para>Confirm flaps are UP.</Para>
+</ListItem>
+<ListItem>
+<Para>For all three hydraulic systems available, turn hydraulics on.</Para>
+</ListItem>
+<ListItem>
+<Para>For only one or two of the hydraulic systems available at once:</Para>
+<List listType="a.">
+<ListItem>
+<Para>With hydraulics off, move the speedbrake lever UP.</Para>
+</ListItem>
+<ListItem>
+<Para>Pressurize and depressurize hydraulic systems in this sequence: left, right, center.</Para>
+</ListItem>
+<ListItem>
+<Para>Confirm that all spoilers are extended.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Conduct the ground system test Flaps (Electric).</Para>
+<Note>
+<Para>If hydraulic systems are pressurized, spoilers, ailerons, and flaperons will move during test.</Para>
+</Note>
+</ListItem>
+<ListItem>
+<Para>After completion of the test, confirm the FLAPS SECONDARY FAIL status message is not displayed.</Para>
+</ListItem>
+<ListItem>
+<Para>Retract spoilers if extended:</Para>
+<List listType="a.">
+<ListItem>
+<Para>With hydraulics off, move the speedbrake lever DN.</Para>
+</ListItem>
+<ListItem>
+<Para>Pressurize and depressurize hydraulic systems in this sequence: left, right, center.</Para>
+</ListItem>
+<ListItem>
+<Para>Confirm that all spoilers are retracted.</Para>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELItem>
+</DispatchItems>

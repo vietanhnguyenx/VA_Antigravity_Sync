@@ -1,0 +1,383 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM">]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.2-21-53-01.998550.2-21-53-01_FAA" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="21" superSectionNumber="2" sectionName="MEL" chapterName="Air Conditioning" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2025-09-30" rev:revStatus="R" rev:revNumber="10" />
+</PUMetaData>
+<MELItem itemNbr="21-53-01" id="X-BOEING:FTID:81205.787.DDG.CU.MEL.2-21-53-01.1.2-21-53-01_FAA">
+<Title>Integrated Cooling System (ICS)</Title>
+<MELSubItem itemNbr="21-53-01-01">
+<Title>
+<?FTID-xref 1332521.2-21-53-01_FAA?>Recirculation Cooling Air System</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="1" nbrRequired="0">
+<DispatchProcedure>
+<OperationNote>
+<Note>
+<Para>Galley chiller capability may be degraded.  Check chiller status on Cabin Attendant Panel or local galley panels.</Para>
+</Note>
+<List listType="1.">
+<ListItem>
+<Para>If cabin temperatures become warmer than desired, consider one or more of the following temporary actions:</Para>
+<List listType="A.">
+<ListItem>
+<Para>Select IFE system modes designed to reduce cabin heat loads.</Para>
+<Note>
+<Para>Availability of modes dependent on IFE system installed and airline modifiable options.</Para>
+</Note>
+</ListItem>
+<ListItem>
+<Para>Set IFE off using the IFE Power switch on the Video Control Station.</Para>
+</ListItem>
+<ListItem>
+<Para>Select HEAT REDUCTION mode using the Cabin Attendant Panel TEMPERATURE menu (adjusts cabin lighting and window shading).</Para>
+</ListItem>
+<ListItem rev:revStatus="R" rev:revHighlight="Update (O) note to provide additional guidance to address warm temperature in cabin">
+<Para>Set Upper Recirc Fans OFF on the P5 overhead panel</Para>
+<?FTID-rev start?>
+<?FTID-rev end?>
+</ListItem>
+<ListItem rev:revStatus="R" rev:revHighlight="Update (O) note to provide additional guidance to address warm temperature in cabin">
+<?FTID-rev start?>
+<Note>
+<Para>The RECIRC FAN UPR OFF advisory message will be displayed</Para>
+</Note>
+<?FTID-rev end?>
+</ListItem>
+<ListItem rev:revStatus="R" rev:revHighlight="Update (O) note to provide additional guidance to address warm temperature in cabin">
+<?FTID-rev start?>
+<Para>If the cabin temperatures become warmer after the TRIM AIR is selected OFF, TRIM AIR can be selected to ON</Para>
+<?FTID-rev end?>
+</ListItem>
+<ListItem>
+<Effectivities>
+<Effectivity>For FCAC installed:</Effectivity>
+</Effectivities>
+<Para>If on ground, set FCAC OFF.</Para>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</OperationNote>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="21-53-01-02">
+<Title>Individual Components</Title>
+<DispatchCondition dispCondOptions="A" repairInterval="C" nbrInstalled="4" nbrRequired="0" maintIndicator="(M)">
+<Title>
+<?FTID-xref 1332608.2-21-53-01_FAA?>System Deactivated</Title>
+<DispatchConditionRemarks>
+<Para>Integrated cooling system may be inoperative deactivated.</Para>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Note>
+<Para>INTEGRATED CLG SYSTEM status message may be displayed.</Para>
+</Note>
+<Note>
+<Para>INTEGRATED CLG RECIRC AIR status message will be displayed.</Para>
+</Note>
+<Para>Deactivate Integrated cooling system (AMM DDG 21-53-01).</Para>
+<List listType="1.">
+<ListItem>
+<Para>Locate leaked fluid.</Para>
+</ListItem>
+<ListItem>
+<Para>Clean leaked fluid from components.</Para>
+</ListItem>
+<ListItem>
+<Para>Deactivate ICS.</Para>
+<List listType="A.">
+<ListItem>
+<Para>Using a flight deck multi-function display only, open the following circuit breakers and lock with an INOP tag: </Para>
+<List listType="1)">
+<ListItem>
+<Para>ICS COMPRESSOR-	SCU 1</Para>
+</ListItem>
+<ListItem>
+<Para>ICS COMPRESSOR-	SCU 2</Para>
+</ListItem>
+<ListItem>
+<Para>ICS COMPRESSOR-	SCU 3 </Para>
+</ListItem>
+<ListItem>
+<Para>ICS COMPRESSOR-	SCU 4 </Para>
+</ListItem>
+<ListItem>
+<Para>ICS PUMP-1</Para>
+</ListItem>
+<ListItem>
+<Para>ICS PUMP-2</Para>
+</ListItem>
+<ListItem>
+<Para>MC 1-ICS 	COMPRESSOR</Para>
+</ListItem>
+<ListItem>
+<Para>MC 1-ICS PUMP</Para>
+</ListItem>
+<ListItem>
+<Para>MC 2-ICS 	COMPRESSOR</Para>
+</ListItem>
+<ListItem>
+<Para>MC 2-ICS PUMP</Para>
+</ListItem>
+<ListItem>
+<Para>MC 3-ICS 	COMPRESSOR </Para>
+</ListItem>
+<ListItem>
+<Para>MC 4-ICS 	COMPRESSOR </Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Gain access to the following ICS components:</Para>
+<List listType="1)">
+<ListItem>
+<Para>ICS PUMP-1</Para>
+</ListItem>
+<ListItem>
+<Para>ICS PUMP-2</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Disconnect, cap and stow the electrical connectors to the following ICS components:</Para>
+<List listType="1)">
+<ListItem>
+<Para>ICS PUMP-1 (connectors J1 and J2)</Para>
+</ListItem>
+<ListItem>
+<Para>ICS PUMP-2 (connectors J1 and J2)</Para>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Replace recirculation filters if exposed to fluid spray.</Para>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+<OperationNote>
+<Note>
+<Para>When dispatching with the Integrated Cooling System deactivated, galley chiller capability will be lost</Para>
+</Note>
+<List listType="1.">
+<ListItem>
+<Para>If cabin temperatures become warmer than desired, consider one or more of the following temporary actions:</Para>
+<List listType="A.">
+<ListItem>
+<Para>Select IFE system modes designed to reduce cabin heat loads.</Para>
+<Note>
+<Para>Availability of modes dependent on IFE system installed and airline modifiable options.</Para>
+</Note>
+</ListItem>
+<ListItem>
+<Para>Set IFE off using the IFE Power switch on the Video Control Station.</Para>
+</ListItem>
+<ListItem>
+<Para>Select HEAT REDUCTION mode using the Cabin Attendant Panel TEMPERATURE menu (adjusts cabin lighting and window shading).</Para>
+</ListItem>
+<ListItem rev:revStatus="R" rev:revHighlight="Update (O) note to provide additional guidance to address warm temperature in cabin">
+<Para>Set Upper Recirc Fans OFF on the P5 overhead panel</Para>
+<?FTID-rev start?>
+<?FTID-rev end?>
+</ListItem>
+<ListItem rev:revStatus="R" rev:revHighlight="Update (O) note to provide additional guidance to address warm temperature in cabin">
+<?FTID-rev start?>
+<Note>
+<Para>The RECIRC FAN UPR OFF advisory message will be displayed</Para>
+</Note>
+<?FTID-rev end?>
+</ListItem>
+<ListItem rev:revStatus="R" rev:revHighlight="Update (O) note to provide additional guidance to address warm temperature in cabin">
+<?FTID-rev start?>
+<Para>If the cabin temperatures become warmer after the TRIM AIR is selected OFF, TRIM AIR can be selected to ON</Para>
+<?FTID-rev end?>
+</ListItem>
+<ListItem>
+<Effectivities>
+<Effectivity rev:revStatus="R" rev:revHighlight="Update (O) note to provide additional guidance to address warm temperature in cabin">
+<?FTID-rev start?>For FCAC installed:<?FTID-rev end?></Effectivity>
+</Effectivities>
+<Para>If on ground, set FCAC OFF.</Para>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</OperationNote>
+</DispatchProcedure>
+</DispatchCondition>
+<DispatchCondition dispCondOptions="B" repairInterval="C" nbrInstalled="-" nbrRequired="0" maintIndicator="(M)">
+<Title>Individual Components Isolated</Title>
+<DispatchConditionRemarks>
+<Para>Individual components may be inoperative provided leaking components are isolated.</Para>
+<Note>
+<Para>Any portion of system that operates normally may be used.</Para>
+</Note>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Note>
+<Para>The following procedure is only used for ICS components that are leaking fluid. For components that are not leaking, ICS will usually operate normally with no action required. However, inoperative components can be shut off by opening the associated circuit breaker. </Para>
+</Note>
+<Para>Deactivate leaking supplemental cooling unit (SCU) or galley cooling unit (GCU) as required (AMM DDG 21-53-01).</Para>
+<List listType="1.">
+<ListItem>
+<Para>Deactivate leaking SCU.  An inoperative unit may be removed provided dispatch tool K21018 is installed.  SCUs are interchangeable.</Para>
+<List listType="A.">
+<ListItem>
+<Para>For SCU 1, using a flight deck multi-function display only, open ICS COMPRESSOR-SCU 1 circuit breaker and lock with an INOP tag.</Para>
+</ListItem>
+<ListItem>
+<Para>For SCU 2, using a flight deck multi-function display only, open ICS COMPRESSOR-SCU 2 circuit breaker and lock with an INOP tag.</Para>
+</ListItem>
+<ListItem>
+<Para>For SCU 3, using a flight deck multi-function display only, open ICS COMPRESSOR-SCU 3 circuit breaker and lock with an INOP tag.</Para>
+</ListItem>
+<ListItem>
+<Para>For SCU 4, using a flight deck multi-function display only, open ICS COMPRESSOR-SCU 4 circuit breaker and lock with an INOP tag.</Para>
+</ListItem>
+<ListItem>
+<Para>Install dispatch tool K21018.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Deactivate leaking GCU. An inoperative galley cooling unit may be removed.</Para>
+<List listType="A.">
+<ListItem>
+<Para>For the GCU on galley 1A, using a flight deck multi-function display only, open the following circuit breakers and lock with an INOP tag:</Para>
+<List listType="1)">
+<ListItem>
+<Para>GALLEY CLG UNIT AC-DOOR 1 AFT</Para>
+</ListItem>
+<ListItem>
+<Para>GALLEY CLG UNIT DC-DOOR 1 AFT</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>For the GCU on galley 1F, using a flight deck multi-function display only, open the following circuit breakers and lock with an INOP tag:</Para>
+<List listType="1)">
+<ListItem>
+<Para>GALLEY CLG UNIT AC-DOOR 1 FWD</Para>
+</ListItem>
+<ListItem>
+<Para>GALLEY CLG UNIT DC-DOOR 1 FWD</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>For the GCU on galley 2A, using a flight deck multi-function display only, open the following circuit breakers and lock with an INOP tag:</Para>
+<List listType="1)">
+<ListItem>
+<Para>GALLEY CLG UNIT AC-DOOR 2 AFT</Para>
+</ListItem>
+<ListItem>
+<Para>GALLEY CLG UNIT DC-DOOR 2 AFT</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>For the GCU on galley 2F, using a flight deck multi-function display only, open the following circuit breakers and lock with an INOP tag:</Para>
+<List listType="1)">
+<ListItem>
+<Para>GALLEY CLG UNIT	 AC-DOOR 2 FWD</Para>
+</ListItem>
+<ListItem>
+<Para>GALLEY CLG UNIT	 DC-DOOR 2 FWD</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>For the GCU on galley 2M, using a flight deck multi-function display only, open the following circuit breakers and lock with an INOP tag:</Para>
+<List listType="1)">
+<ListItem>
+<Para>GALLEY CLG UNIT AC-DOOR 2MID</Para>
+</ListItem>
+<ListItem>
+<Para>GALLEY CLG UNIT	 DC-DOOR 2MID</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>For the GCU on galley 3A, using a flight deck multi-function display only, open the following circuit breakers and lock with an INOP tag:</Para>
+<List listType="1)">
+<ListItem>
+<Para>GALLEY CLG UNIT AC-DOOR 3 AFT</Para>
+</ListItem>
+<ListItem>
+<Para>GALLEY CLG UNIT	 DC-DOOR 3 AFT</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>For the GCU on galley 3F, using a flight deck multi-function display only, open the following circuit breakers and lock with an INOP tag:</Para>
+<List listType="1)">
+<ListItem>
+<Para>GALLEY CLG UNIT AC-DOOR 3 FWD</Para>
+</ListItem>
+<ListItem>
+<Para>GALLEY CLG UNIT	 DC-DOOR 3 FWD</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>For the GCU on galley 4C, using a flight deck multi-function display only, open the following circuit breakers and lock with an INOP tag:</Para>
+<List listType="1)">
+<ListItem>
+<Para>GALLEY CLG UNIT AC-DOOR 4 CENTER</Para>
+</ListItem>
+<ListItem>
+<Para>GALLEY CLG UNIT	 DC-DOOR 4 CENTER</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>For the GCU on galley 4L, using a flight deck multi-function display only, open the following circuit breakers and lock with an INOP tag:</Para>
+<List listType="1)">
+<ListItem>
+<Para>GALLEY CLG UNIT AC-DOOR 4L</Para>
+</ListItem>
+<ListItem>
+<Para>GALLEY CLG UNIT DC-DOOR 4L</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>For the GCU on galley 4R, using a flight deck multi-function display only, open the following circuit breakers and lock with an INOP tag:</Para>
+<List listType="1)">
+<ListItem>
+<Para>GALLEY CLG UNIT AC-DOOR 4R</Para>
+</ListItem>
+<ListItem>
+<Para>GALLEY CLG UNIT DC-DOOR 4R</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Disconnect supply and return hoses from the leaking GCU.</Para>
+</ListItem>
+<ListItem>
+<Para>Install hose plug assemblies (K21018-6) in GCU supply and return quick disconnects.</Para>
+</ListItem>
+<ListItem>
+<Para>Stow disconnected supply and return hoses.</Para>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+<OperationNote>
+<Para>Use MEL item 21-53-01-01 operations note.</Para>
+</OperationNote>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+</MELItem>
+</DispatchItems>

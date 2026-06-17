@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM">]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.2-49-41-01.6648.2-49-41-01" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="49" superSectionNumber="2" sectionName="MEL" chapterName="Airborne Auxiliary Power" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2021-02-24" rev:revStatus="U" rev:revNumber="10" />
+</PUMetaData>
+<MELItem itemNbr="49-41-01" id="X-BOEING:FTID:81205.787.DDG.CU.MEL.2-49-41-01.1.2-49-41-01">
+<Title>APU Starting System</Title>
+<DispatchCondition dispCondOptions="A" repairInterval="C" nbrInstalled="1" nbrRequired="0" opsIndicator="(O)">
+<Title>APU Required For Flight</Title>
+<DispatchConditionRemarks>
+<Para>May be dispatched with APU START SYS faults provided APU is started before departure and operated continuously throughout the flight.</Para>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<OperationProcedure>
+<List listType="1.">
+<ListItem>
+<Para>Increase flight planning fuel by either using an airplane drag correction factor of 1.0% or increase the flight planning fuel by 1.2% with APU running and also increase planning fuel by 250 lb (114 kg) per hour of APU usage inflight and 480 lb (218 kg) per hour of APU usage on the ground.</Para>
+</ListItem>
+<ListItem>
+<Para>Start the APU before departure and operate the APU continuously throughout the flight.</Para>
+</ListItem>
+</List>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+<DispatchCondition dispCondOptions="B" repairInterval="C" nbrInstalled="1" nbrRequired="0">
+<Title>APU Not Required For Flight</Title>
+<DispatchConditionRemarks>
+<Para>May be dispatched with APU START SYS faults provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Left AGCU operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>VFSG systems operate normally.</Para>
+</ListItem>
+<ListItem>
+<Para>EDTO beyond 180 minutes is not conducted.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceNote>
+<Para>A VFSG system is considered to be operating normally if its associated status message (ELEC GEN SYS L1, L2, R1 or R2) is not displayed.</Para>
+</MaintenanceNote>
+<OperationNote>
+<Para>For APU not available for engine start, start the first engine using the Ground Power Engine Start Supplementary Procedure.</Para>
+</OperationNote>
+</DispatchProcedure>
+</DispatchCondition>
+</MELItem>
+</DispatchItems>

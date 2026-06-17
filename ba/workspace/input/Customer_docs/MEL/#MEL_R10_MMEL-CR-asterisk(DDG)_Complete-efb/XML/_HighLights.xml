@@ -1,0 +1,994 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Highlights>
+<HighlightList>
+<Title>Preface</Title>
+<HighlightItem>
+<HighlightList>
+<Title>Chapter  - Revision Record</Title>
+<HighlightItem>
+<Title>Revision Transmittal Letter</Title>
+<Para>
+<iLink linkRef="URN:X-BOEING:FTID:81205.787.DDG.CU.FMR.P-00-01-00.105460.P-00-01-00_FAA" fileRef="P-00-01-00_FAA.xml">Update revision record</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<HighlightList>
+<Title>Temporary Revision</Title>
+<HighlightItem>
+<Para>Update Tempo rev definition</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>Update Tempo rev definition</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>Update Tempo rev definition</Para>
+</HighlightItem>
+</HighlightList>
+</HighlightItem>
+<HighlightItem>
+<Para>
+<iLink linkRef="URN:X-BOEING:FTID:81205.787.DDG.CU.FMR.P-00-01-00.105460.P-00-01-00_FAA" fileRef="P-00-01-00_FAA.xml">Update contactor</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>
+<iLink linkRef="URN:X-BOEING:FTID:81205.787.DDG.CU.FMR.P-00-01-00.105460.P-00-01-00_FAA" fileRef="P-00-01-00_FAA.xml">Update contactor</iLink>
+</Para>
+</HighlightItem>
+</HighlightList>
+</HighlightItem>
+</HighlightList>
+<HighlightList>
+<Title>Section 0 - General</Title>
+<HighlightItem>
+<HighlightList>
+<Title>Chapter  - Introduction</Title>
+<HighlightItem>
+<Title>Foreword</Title>
+<Para>
+<iLink linkRef="URN:X-BOEING:FTID:81205.787.DDG.CU.INT.0-00-01-00.128638.0-00-01-00_FAA" fileRef="0-00-01-00_FAA.xml">Update revision record</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<HighlightList>
+<Title>Document Content and Organization</Title>
+<HighlightItem>
+<Para>Update numbering rule</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>Update numbering rule</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>Update numbering rule</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>Update numbering rule</Para>
+</HighlightItem>
+</HighlightList>
+</HighlightItem>
+</HighlightList>
+</HighlightItem>
+</HighlightList>
+<HighlightList>
+<Title>Section 1 - EICAS Messages</Title>
+<HighlightItem>
+<HighlightList>
+<Title>Chapter  - Messages</Title>
+<HighlightItem>
+<Para>
+<iLink linkRef="URN:X-BOEING:FTID:81205.787.DDG.CU.ERL.1-00-02-00.3043718.1-00-02-00_FAA" fileRef="1-00-02-00_FAA.xml">Only sub-item -01A remains a valid dispatch configuration.</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>
+<iLink linkRef="URN:X-BOEING:FTID:81205.787.DDG.CU.ERL.1-00-02-00.3061215.1-00-02-00_FAA" fileRef="1-00-02-00_FAA.xml">Added new status message to cross reference table.</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>
+<iLink linkRef="URN:X-BOEING:FTID:81205.787.DDG.CU.ERL.1-00-02-00.3061215.1-00-02-00_FAA" fileRef="1-00-02-00_FAA.xml">Deleted MMEL item reference to "None" as it was deleted from from the last revision.</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>
+<iLink linkRef="URN:X-BOEING:FTID:81205.787.DDG.CU.ERL.1-00-02-00.3061215.1-00-02-00_FAA" fileRef="1-00-02-00_FAA.xml">Deleted MMEL item reference to "None" as it was deleted from from the last revision.</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>
+<iLink linkRef="URN:X-BOEING:FTID:81205.787.DDG.CU.ERL.1-00-02-00.3076328.1-00-02-00_FAA" fileRef="1-00-02-00_FAA.xml">Item was recommended to be removed in R19 MMEL.</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>
+<iLink linkRef="URN:X-BOEING:FTID:81205.787.DDG.CU.ERL.1-00-02-00.3076328.1-00-02-00_FAA" fileRef="1-00-02-00_FAA.xml">Item was recommended to be removed in R19 MMEL.</iLink>
+</Para>
+</HighlightItem>
+</HighlightList>
+</HighlightItem>
+</HighlightList>
+<HighlightList>
+<Title>Section 2 - MEL</Title>
+<HighlightItem>
+<HighlightList>
+<Title>Chapter  - Introduction</Title>
+<HighlightItem>
+<HighlightList>
+<Title>MEL Definitions</Title>
+<HighlightItem>
+<Para>Add Essential Placards/ Markings definition</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>Add FLIGHT DEFERAL  definition</Para>
+</HighlightItem>
+</HighlightList>
+</HighlightItem>
+</HighlightList>
+<HighlightList>
+<Title>Chapter 11</Title>
+<HighlightItem>
+<Title>Essential Placards / Markings</Title>
+<Para>
+<iLink linkRef="URN:X-BOEING:FTID:81205.787.DDG.CU.MEL.2-11-01-50.1.2-11-01-50" fileRef="2-11-01-50.xml">Create NEW item PLACARD</iLink>
+</Para>
+</HighlightItem>
+</HighlightList>
+<HighlightList>
+<Title>Chapter 21 - Air Conditioning</Title>
+<HighlightItem>
+<Title>Upper Recirculation Fan</Title>
+<Para>
+<iLink linkRef="URN:X-BOEING:FTID:81205.787.DDG.CU.MEL.2-21-25-01.1.2-21-25-01" fileRef="2-21-25-01.xml">Correct circuit breaker name</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Forward EE Cooling Exhaust Overboard Vent Valve</Title>
+<Para>
+<iLink linkRef="URN:X-BOEING:FTID:81205.787.DDG.CU.MEL.2-21-27-04.1.2-21-27-04" fileRef="2-21-27-04.xml">Corrected the name of the valve for consistency.</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<HighlightList>
+<Title>
+<iLink linkRef="URN:.2-21-31-01" fileRef="2-21-31-01.xml">Unpressurized Flight</iLink>
+</Title>
+<HighlightItem>
+<Para>Added a new step 4 for flight without passenger above 14,000 feet.</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>Added a new guidance to step 4 for flight without passenger above 14,000 feet.</Para>
+</HighlightItem>
+</HighlightList>
+</HighlightItem>
+<HighlightItem>
+<HighlightList>
+<Title>
+<iLink linkRef="URN:X-BOEING:FTID:81205.787.DDG.CU.MEL.2-21-45-03.1.2-21-45-03" fileRef="2-21-45-03.xml">Galley Area Duct Heaters</iLink>
+</Title>
+<HighlightItem>
+<Para>Added missing circuit breaker reference for accuracy.</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>Added missing circuit breaker reference for accuracy.</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>Added missing circuit breaker reference for accuracy.</Para>
+</HighlightItem>
+</HighlightList>
+</HighlightItem>
+<HighlightItem>
+<Title>787-9 (VN-A865, VN-A866, VN-A869)</Title>
+<Para>
+<iLink linkRef="URN:X-BOEING:FTID:81205.787.DDG.CU.MEL.2-21-51-01.1.2-21-51-01" fileRef="2-21-51-01.xml">Corrected the associated status message to remove the word "AIR".</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>787-10 (VN-A872, VN-A873, VN-A874, VN-A877, VN-A878, VN-A879)</Title>
+<Para>
+<iLink linkRef="URN:X-BOEING:FTID:81205.787.DDG.CU.MEL.2-21-51-01.1.2-21-51-01" fileRef="2-21-51-01.xml">Corrected the associated status message to remove the word "AIR".</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>787-9 (VN-A861, VN-A862, VN-A863, VN-A864, VN-A867, VN-A868, VN-A870, VN-A871)</Title>
+<Para>
+<iLink linkRef="URN:X-BOEING:FTID:81205.787.DDG.CU.MEL.2-21-51-01.1.2-21-51-01" fileRef="2-21-51-01.xml">Corrected the associated status message to remove the word "AIR".</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<HighlightList>
+<Title>
+<iLink linkRef="URN:.2-21-53-01_FAA" fileRef="2-21-53-01_FAA.xml">Recirculation Cooling Air System</iLink>
+</Title>
+<HighlightItem>
+<Para>Update (O) note to provide additional guidance to address warm temperature in cabin</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>Update (O) note to provide additional guidance to address warm temperature in cabin</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>Update (O) note to provide additional guidance to address warm temperature in cabin</Para>
+</HighlightItem>
+</HighlightList>
+</HighlightItem>
+<HighlightItem>
+<HighlightList>
+<Title>
+<iLink linkRef="URN:.2-21-53-01_FAA" fileRef="2-21-53-01_FAA.xml">System Deactivated</iLink>
+</Title>
+<HighlightItem>
+<Para>Update (O) note to provide additional guidance to address warm temperature in cabin</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>Update (O) note to provide additional guidance to address warm temperature in cabin</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>Update (O) note to provide additional guidance to address warm temperature in cabin</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>Update (O) note to provide additional guidance to address warm temperature in cabin</Para>
+</HighlightItem>
+</HighlightList>
+</HighlightItem>
+<HighlightItem>
+<HighlightList>
+<Title>Forward Cargo Air Conditioning (FCAC) Compressor Systems (787-9: VN-A861, VN-A862, VN-A863, VN-A864, VN-A865, VN-A866, VN-A867, VN-A868, VN-A869, VN-A870, VN-A871) (*)</Title>
+<HighlightItem>
+<Para>Added new proviso to ensure CRUMC 2 opearating normally in order for the compressor system to work.</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>Added additional info providing a description on how the Cargo Refrigeration Unite Motor Control (CRUMC) functions within the FCAC compressor system</Para>
+</HighlightItem>
+</HighlightList>
+</HighlightItem>
+<HighlightItem>
+<Title>Zonal Dryer Systems</Title>
+<Para>
+<iLink linkRef="URN:X-BOEING:FTID:81205.787.DDG.CU.MEL.2-21-72-01.1.2-21-72-01" fileRef="2-21-72-01.xml">Updated dispatch interval to provide better dispatch flexibility</iLink>
+</Para>
+</HighlightItem>
+</HighlightList>
+<HighlightList>
+<Title>Chapter 22 - Auto Flight</Title>
+<HighlightItem>
+<Title>One Inoperative</Title>
+<Para>
+<iLink linkRef="URN:X-BOEING:FTID:81205.787.DDG.CU.MEL.2-22-11-02.1.2-22-11-02" fileRef="2-22-11-02.xml">New proviso C. was added for further clarification.</iLink>
+</Para>
+</HighlightItem>
+</HighlightList>
+<HighlightList>
+<Title>Chapter 23 - Communications</Title>
+<HighlightItem>
+<HighlightList>
+<Title>
+<iLink linkRef="URN:.2-23-51-04_FAA" fileRef="2-23-51-04_FAA.xml">CLOCK/MAP/MIC Switch Panel Deactivated</iLink>
+</Title>
+<HighlightItem>
+<Para>Add additional dispatch item notes (note 1 and note 2) due to provisos (b. and c.) requiring them to be considered inoperative</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>Add additional dispatch item notes (note 1 and note 2) due to provisos (b. and c.) requiring them to be considered inoperative</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>Update (M) procedure</Para>
+</HighlightItem>
+</HighlightList>
+</HighlightItem>
+</HighlightList>
+<HighlightList>
+<Title>Chapter 24 - Electrical Power</Title>
+<HighlightItem>
+<HighlightList>
+<Title>
+<iLink linkRef="URN:.2-24-15-01_FAA" fileRef="2-24-15-01_FAA.xml">Main Engine Start/Cabin Air Compressor</iLink>
+</Title>
+<HighlightItem>
+<Para>MISC SYSTEM CTRLS page does not provide the necessary data to confirm the ram air fan is operating.</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>EMPTY</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>EMPTY</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>EMPTY</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>EMPTY</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>EMPTY</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>EMPTY</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>EMPTY</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>EMPTY</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>EMPTY</Para>
+</HighlightItem>
+</HighlightList>
+</HighlightItem>
+<HighlightItem>
+<HighlightList>
+<Title>
+<iLink linkRef="URN:.2-24-22-01" fileRef="2-24-22-01.xml">VFSG Connected</iLink>
+</Title>
+<HighlightItem>
+<Para>Added note to specify switch must remain ON for further clarification.</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>Added additional note to provide clarity to flight crews on when the MMEL verification can occur, but also provides a step for the flight crew to perform the required verification, if desired.</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>MISC SYSTEM CTRLS page does not provide the necessary data to confirm the ram air fan is operating.</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>EMPTY</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>EMPTY</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>EMPTY</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>EMPTY</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>EMPTY</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>EMPTY</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>EMPTY</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>EMPTY</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>EMPTY</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>Added note for further clarification.</Para>
+</HighlightItem>
+</HighlightList>
+</HighlightItem>
+<HighlightItem>
+<HighlightList>
+<Title>
+<iLink linkRef="URN:.2-24-22-01" fileRef="2-24-22-01.xml">VFSG Disconnected</iLink>
+</Title>
+<HighlightItem>
+<Para>MISC SYSTEM CTRLS page does not provide the necessary data to confirm the ram air fan is operating.</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>EMPTY</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>EMPTY</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>EMPTY</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>EMPTY</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>EMPTY</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>EMPTY</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>EMPTY</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>EMPTY</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>EMPTY</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>Added note for further clarification.</Para>
+</HighlightItem>
+</HighlightList>
+</HighlightItem>
+<HighlightItem>
+<HighlightList>
+<Title>
+<iLink linkRef="URN:.2-24-22-01" fileRef="2-24-22-01.xml">GE</iLink>
+</Title>
+<HighlightItem>
+<Para>Added maintenance note to provide further dispatch instruction/clarification.</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>Added note # reference only.  No content change.</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>Added note to provide further dispatch instruction/clarification.</Para>
+</HighlightItem>
+</HighlightList>
+</HighlightItem>
+<HighlightItem>
+<HighlightList>
+<Title>
+<iLink linkRef="URN:.2-24-22-02" fileRef="2-24-22-02.xml">Left ASG Generator</iLink>
+</Title>
+<HighlightItem>
+<Para>Added (O) note for further clarification.</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>Added further (O) procedure to provide guidance on how to minimize PECS heating.</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>EMPTY</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>EMPTY</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>EMPTY</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>EMPTY</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>EMPTY</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>EMPTY</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>Added further (O) procedure to provide guidance on how to minimize PECS heating.</Para>
+</HighlightItem>
+</HighlightList>
+</HighlightItem>
+<HighlightItem>
+<Title>Left ASG Starter</Title>
+<Para>
+<iLink linkRef="URN:X-BOEING:FTID:81205.787.DDG.CU.MEL.2-24-22-02.1.2-24-22-02" fileRef="2-24-22-02.xml">Added (O) note to provide further dispatch clarification.</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<HighlightList>
+<Title>
+<iLink linkRef="URN:.2-24-22-02" fileRef="2-24-22-02.xml">Right ASG Generator</iLink>
+</Title>
+<HighlightItem>
+<Para>Added (O) note for further clarification.</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>Added further (O) procedure to provide guidance on how to minimize PECS heating.</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>EMPTY</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>EMPTY</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>EMPTY</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>EMPTY</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>EMPTY</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>EMPTY</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>Added additional (O) guidance to monitor PECS temperature.</Para>
+</HighlightItem>
+</HighlightList>
+</HighlightItem>
+<HighlightItem>
+<Title>Right ASG Starter</Title>
+<Para>
+<iLink linkRef="URN:X-BOEING:FTID:81205.787.DDG.CU.MEL.2-24-22-02.1.2-24-22-02" fileRef="2-24-22-02.xml">Added (O) note to provide further dispatch clarification.</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>APU Available</Title>
+<Para>
+<iLink linkRef="URN:X-BOEING:FTID:81205.787.DDG.CU.MEL.2-24-31-02.1.2-24-31-02" fileRef="2-24-31-02.xml">Update proviso f</iLink>
+</Para>
+</HighlightItem>
+</HighlightList>
+<HighlightList>
+<Title>Chapter 27 - Flight Controls</Title>
+<HighlightItem>
+<Title>PFCS Interface (*)</Title>
+<Para>
+<iLink linkRef="URN:X-BOEING:FTID:81205.787.DDG.CU.MEL.2-27-02-03.1.2-27-02-03" fileRef="2-27-02-03.xml">Added note to provide additional dispatch info.</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Empennage Door Actuation System (EDAS)</Title>
+<Para>
+<iLink linkRef="URN:X-BOEING:FTID:81205.787.DDG.CU.MEL.2-27-24-01.1.2-27-24-01" fileRef="2-27-24-01.xml">Added note for further clarification.</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Flap Secondary Mode Operates Normally</Title>
+<Para>
+<iLink linkRef="URN:X-BOEING:FTID:81205.787.DDG.CU.MEL.2-27-51-02.1.2-27-51-02" fileRef="2-27-51-02.xml">Added new -10 limit</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Flap Secondary Mode Inoperative</Title>
+<Para>
+<iLink linkRef="URN:X-BOEING:FTID:81205.787.DDG.CU.MEL.2-27-51-02.1.2-27-51-02" fileRef="2-27-51-02.xml">Revised (O) to cover all the performance penalties included in -02A</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Flap Secondary Mode Operates Normally</Title>
+<Para>
+<iLink linkRef="URN:X-BOEING:FTID:81205.787.DDG.CU.MEL.2-27-51-02.1.2-27-51-02" fileRef="2-27-51-02.xml">Revised step so that it can be used by -02A and -02B dispatch option.</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Flap Secondary Mode Inoperative</Title>
+<Para>
+<iLink linkRef="URN:X-BOEING:FTID:81205.787.DDG.CU.MEL.2-27-51-02.1.2-27-51-02" fileRef="2-27-51-02.xml">Revised (O) to cover all the performance penalties included in -02A</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<HighlightList>
+<Title>
+<iLink linkRef="URN:.2-27-61-02" fileRef="2-27-61-02.xml">Electro-Mechanical (EMA) Spoilers (4, 5, 10, 11)</iLink>
+</Title>
+<HighlightItem>
+<Para>Added the new step E to provide additional procedure on how to examine the actuator or a shearout.</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>Added the new step E to provide additional procedure on how to examine the actuator or a shearout.</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>Added the new step E to provide additional procedure on how to examine the actuator or a shearout.</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>Added the new step E to provide additional procedure on how to examine the actuator or a shearout.</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>Added the new step E to provide additional procedure on how to examine the actuator or a shearout.</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>Added the new step E to provide additional procedure on how to examine the actuator or a shearout.</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>Added the new step E to provide additional procedure on how to examine the actuator or a shearout.</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>Added the new step E to provide additional procedure on how to examine the actuator or a shearout.</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>Added the new step E to provide additional procedure on how to examine the actuator or a shearout.</Para>
+</HighlightItem>
+</HighlightList>
+</HighlightItem>
+</HighlightList>
+<HighlightList>
+<Title>Chapter 28 - Fuel</Title>
+<HighlightItem>
+<Title>Refuel Adapters</Title>
+<Para>
+<iLink linkRef="URN:X-BOEING:FTID:81205.787.DDG.CU.MEL.2-28-21-02.1.2-28-21-02" fileRef="2-28-21-02.xml">Added the missing AMM DDG reference.</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Fuel Quantity Data Concentrator (FQDC) Channels</Title>
+<Para>
+<iLink linkRef="URN:X-BOEING:FTID:81205.787.DDG.CU.MEL.2-28-41-02.1.2-28-41-02" fileRef="2-28-41-02.xml">Add NOTE to highlight the case of both channels inop</iLink>
+</Para>
+</HighlightItem>
+</HighlightList>
+<HighlightList>
+<Title>Chapter 29 - Hydraulic Power</Title>
+<HighlightItem>
+<HighlightList>
+<Title>
+<iLink linkRef="URN:X-BOEING:FTID:81205.787.DDG.CU.MEL.2-29-11-02.1.2-29-11-02" fileRef="2-29-11-02.xml">Center System Electric Motor-Driven Pumps (EMP)</iLink>
+</Title>
+<HighlightItem>
+<Para>Made previous step a numerical step 1 only.  No content change.</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>Added a new step 2 to provide guidance on how to set the switch.</Para>
+</HighlightItem>
+</HighlightList>
+</HighlightItem>
+<HighlightItem>
+<Title>Hydraulic Pump Pressure Indication Systems</Title>
+<Para>
+<iLink linkRef="URN:X-BOEING:FTID:81205.787.DDG.CU.MEL.2-29-31-02.1.2-29-31-02" fileRef="2-29-31-02.xml">Revised (M) step 7 to provide further clarification on how the system operates.</iLink>
+</Para>
+</HighlightItem>
+</HighlightList>
+<HighlightList>
+<Title>Chapter 30 - Ice Rain Protection</Title>
+<HighlightItem>
+<HighlightList>
+<Title>
+<iLink linkRef="URN:.2-30-21-01_FAA" fileRef="2-30-21-01_FAA.xml">Engine Anti-Ice Pressure Regulating and Shutoff Valves (PRSOV) (GE CN-AA29810 Incorporated)</iLink>
+</Title>
+<HighlightItem>
+<Para>Updated (O) procedure and performance penalties to only require the associated EAI selector to ON and performance penalty with additional procedural restriction to mitigate potential EGT exceedance events.</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>Added additional switch position for further clarity.</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>Added extra info for further clarification.</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>Updated (O) pro-cedure and per-formance penal-ties to only require the associated EAI selector to ON and perfor-mance penalty with additional procedural restriction to miti-gate potential EGT exceedance events.</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>Updated (O) pro-cedure and per-formance penal-ties to only require the associated EAI selector to ON and perfor-mance penalty with additional procedural restriction to miti-gate potential EGT exceedance events.</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>Added extra info for futher
+clarification.</Para>
+</HighlightItem>
+</HighlightList>
+</HighlightItem>
+<HighlightItem>
+<HighlightList>
+<Title>
+<iLink linkRef="URN:.2-30-22-01_FAA" fileRef="2-30-22-01_FAA.xml">Associated Pack Operates Normally</iLink>
+</Title>
+<HighlightItem>
+<Para>Back to MMEL interval repair</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>Back to MMEL proviso</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>Back to MMEL proviso</Para>
+</HighlightItem>
+</HighlightList>
+</HighlightItem>
+</HighlightList>
+<HighlightList>
+<Title>Chapter 31 - Indicating / Recording Systems</Title>
+<HighlightItem>
+<Title>Alternate Procedures Required</Title>
+<Para>
+<iLink linkRef="URN:X-BOEING:FTID:81205.787.DDG.CU.MEL.2-31-61-13.1.2-31-61-13" fileRef="2-31-61-13.xml">Updated proviso to remove "out of currency" reference as it is not authorized MMEL relief per 14 CFR.</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Procedures Do Not Require Use</Title>
+<Para>
+<iLink linkRef="URN:X-BOEING:FTID:81205.787.DDG.CU.MEL.2-31-61-13.1.2-31-61-13" fileRef="2-31-61-13.xml">Updated proviso to remove "out of currency" reference as it is not authorized MMEL relief per 14 CFR.</iLink>
+</Para>
+</HighlightItem>
+</HighlightList>
+<HighlightList>
+<Title>Chapter 32 - Landing Gear</Title>
+<HighlightItem>
+<Title>Landing Gear Control Reset Relays</Title>
+<Para>
+<iLink linkRef="URN:X-BOEING:FTID:81205.787.DDG.CU.MEL.2-32-31-02.1.2-32-31-02" fileRef="2-32-31-02.xml">Added the missing word "door" to title to align with the AMM.</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<HighlightList>
+<Title>
+<iLink linkRef="URN:.2-32-31-02" fileRef="2-32-31-02.xml">Main Landing Gear Inhibit Relays</iLink>
+</Title>
+<HighlightItem>
+<Para>Added the missing word "door" to title to align with the AMM.</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>Added the missing word "door" to title to align with the AMM.</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>Added the missing word "door" to title to align with the AMM.</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>Added the missing word "door" to title to align with the AMM.</Para>
+</HighlightItem>
+</HighlightList>
+</HighlightItem>
+<HighlightItem>
+<HighlightList>
+<Title>
+<iLink linkRef="URN:.2-32-31-02" fileRef="2-32-31-02.xml">Nose Landing Gear Inhibit Relays</iLink>
+</Title>
+<HighlightItem>
+<Para>Added the missing word "door" to title to align with the AMM.</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>Added the missing word "door" to title to align with the AMM.</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>Added the missing word "door" to title to align with the AMM.</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>Added the missing word "door" to title to align with the AMM.</Para>
+</HighlightItem>
+</HighlightList>
+</HighlightItem>
+<HighlightItem>
+<HighlightList>
+<Title>
+<iLink linkRef="URN:.2-32-31-03" fileRef="2-32-31-03.xml">Main Landing Gear Control Solenoids</iLink>
+</Title>
+<HighlightItem>
+<Para>Revised procedure to not focus on whether the ground test passes or fails, but instead to observe the valve command on the maintenance page.</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>Revised procedure to not focus on whether the ground test passes or fails, but instead to observe the valve command on the maintenance page.</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>EMPTY</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>EMPTY</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>EMPTY</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>EMPTY</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>Added the missing word "door" to title to align with the AMM.</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>Added the missing word "door" to title to align with the AMM.</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>Added the missing word "door" to title to align with the AMM.</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>Added the missing word "door" to title to align with the AMM.</Para>
+</HighlightItem>
+</HighlightList>
+</HighlightItem>
+<HighlightItem>
+<HighlightList>
+<Title>
+<iLink linkRef="URN:.2-32-31-03" fileRef="2-32-31-03.xml">Nose Landing Gear Control Solenoids</iLink>
+</Title>
+<HighlightItem>
+<Para>Revised procedure to not focus on whether the ground test passes or fails, but instead to observe the valve command on the maintenance page.</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>Revised procedure to not focus on whether the ground test passes or fails, but instead to observe the valve command on the maintenance page.</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>Added the missing word "door" to title to align with the AMM.</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>Added the missing word "door" to title to align with the AMM.</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>Added the missing word "door" to title to align with the AMM.</Para>
+</HighlightItem>
+</HighlightList>
+</HighlightItem>
+<HighlightItem>
+<Title>Landing Gear Control Lever Switches</Title>
+<Para>
+<iLink linkRef="URN:X-BOEING:FTID:81205.787.DDG.CU.MEL.2-32-31-05.1.2-32-31-05" fileRef="2-32-31-05.xml">Added the missing word "door" to title to align with the AMM.</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Landing Gear Door Safety Valve Indication Systems</Title>
+<Para>
+<iLink linkRef="URN:X-BOEING:FTID:81205.787.DDG.CU.MEL.2-32-31-06.1.2-32-31-06" fileRef="2-32-31-06.xml">Added the missing word "door" to title to align with the AMM.</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<HighlightList>
+<Title>
+<iLink linkRef="URN:.2-32-31-07" fileRef="2-32-31-07.xml">Pressure Transducer</iLink>
+</Title>
+<HighlightItem>
+<Para>Added the missing word "door" to title to align with the AMM.</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>Added the missing word "door" to title to align with the AMM.</Para>
+</HighlightItem>
+</HighlightList>
+</HighlightItem>
+</HighlightList>
+<HighlightList>
+<Title>Chapter 33 - Lights</Title>
+<HighlightItem>
+<Title>Main-Aisle Overhead Emergency Lights</Title>
+<Para>
+<iLink linkRef="URN:X-BOEING:FTID:81205.787.DDG.CU.MEL.2-33-51-01.1.2-33-51-01_FAA" fileRef="2-33-51-01_FAA.xml">Update NI &amp; NR</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Cross-Aisle Overhead Emergency Lights (Applicable to 787-10: VN-A872, VN-A873, VN-A874, VN-A877, VN-A878, VN-A879)</Title>
+<Para>
+<iLink linkRef="URN:X-BOEING:FTID:81205.787.DDG.CU.MEL.2-33-51-01.1.2-33-51-01_FAA" fileRef="2-33-51-01_FAA.xml">Update
+NI &amp; NR</iLink>
+</Para>
+</HighlightItem>
+</HighlightList>
+<HighlightList>
+<Title>Chapter 34 - Navigation</Title>
+<HighlightItem>
+<HighlightList>
+<Title>
+<iLink linkRef="URN:.2-34-12-03" fileRef="2-34-12-03.xml">One Resolver For Each Sensor Operates Normally</iLink>
+</Title>
+<HighlightItem>
+<Para>Added
+new (M) indicator to provide procedures on how to verify AOA heaters and resolvers.</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>Revised provisos to verify AOA heaters and resolvers.</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>Add new provisos to verify AOA heaters.</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>EMPTY</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>EMPTY</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>Added new (M) section to verify AOA heater system.</Para>
+</HighlightItem>
+</HighlightList>
+</HighlightItem>
+<HighlightItem>
+<Title>One Resolver Inoperative</Title>
+<Para>
+<iLink linkRef="URN:X-BOEING:FTID:81205.787.DDG.CU.MEL.2-34-12-03.1.2-34-12-03" fileRef="2-34-12-03.xml">Added item</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Both Inoperative</Title>
+<Para>
+<iLink linkRef="URN:X-BOEING:FTID:81205.787.DDG.CU.MEL.2-34-42-03.1.2-34-42-03_FAA" fileRef="2-34-42-03_FAA.xml">Added new note to provide dispatch guidance that TCAS system will also be inoperative.</iLink>
+</Para>
+</HighlightItem>
+</HighlightList>
+<HighlightList>
+<Title>Chapter 38 - Water / Waste</Title>
+<HighlightItem>
+<Title>System Drained And Not Serviced</Title>
+<Para>
+<iLink linkRef="URN:X-BOEING:FTID:81205.787.DDG.CU.MEL.2-38-10-01.1.2-38-10-01" fileRef="2-38-10-01.xml">Added (O) note to provide additional dispatch guidance.</iLink>
+</Para>
+</HighlightItem>
+</HighlightList>
+<HighlightList>
+<Title>Chapter 52 - Doors</Title>
+<HighlightItem>
+<HighlightList>
+<Title>
+<iLink linkRef="URN:.2-52-11-01_FAA" fileRef="2-52-11-01_FAA.xml">Passengers Carried</iLink>
+</Title>
+<HighlightItem>
+<Para>Update block seat</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>Added additional wording to allow for dispatch flexibility. Revised block seat for inop passenger entry doors/slides</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>Update block seat</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>Update block seat</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>Update block seat</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>Update block seat</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>Update block seat</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>Update block seat</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>Update
+block seat</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>Add a recommendation for 17 additional seats.</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>Add a recommendation for 17 additional seats.</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>Add a recommendation for 17 additional seats.</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>Update block seat</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>Added additional wording to allow for dispatch flexibility.</Para>
+</HighlightItem>
+</HighlightList>
+</HighlightItem>
+<HighlightItem>
+<HighlightList>
+<Title>
+<iLink linkRef="URN:.2-52-11-01_FAA" fileRef="2-52-11-01_FAA.xml">No Passengers Carried</iLink>
+</Title>
+<HighlightItem>
+<Para>Added additional wording to allow for dispatch flexibility</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>Added additional wording to allow for dispatch flexibility</Para>
+</HighlightItem>
+<HighlightItem>
+<Para>Added additional wording to allow for dispatch flexibility.</Para>
+</HighlightItem>
+</HighlightList>
+</HighlightItem>
+</HighlightList>
+<HighlightList>
+<Title>Chapter 73 - Engine Fuel Control</Title>
+<HighlightItem>
+<Title>GE</Title>
+<Para>
+<iLink linkRef="URN:X-BOEING:FTID:81205.787.DDG.CU.MEL.2-73-21-01.1.2-73-21-01" fileRef="2-73-21-01.xml">Updated NOTE</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Fuel Flow Indications</Title>
+<Para>
+<iLink linkRef="URN:X-BOEING:FTID:81205.787.DDG.CU.MEL.2-73-31-01.1.2-73-31-01_FAA" fileRef="2-73-31-01_FAA.xml">Add note to emphasize that cannot be simultaneously applied MEL 28-41-01 with MEL 73-31-01</iLink>
+</Para>
+</HighlightItem>
+</HighlightList>
+<HighlightList>
+<Title>Chapter 75 - Bleed Air</Title>
+<HighlightItem>
+<Title>HPTACC Valves</Title>
+<Para>
+<iLink linkRef="URN:X-BOEING:FTID:81205.787.DDG.CU.MEL.2-75-24-01.1.2-75-24-01" fileRef="2-75-24-01.xml">Updated performance penalty with additional procedural restriction to mitigate potential EGT exceedance events</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>LPTACC Valves</Title>
+<Para>
+<iLink linkRef="URN:X-BOEING:FTID:81205.787.DDG.CU.MEL.2-75-24-01.1.2-75-24-01" fileRef="2-75-24-01.xml">Updated performance penalty with additional procedural restriction to mitigate potential EGT exceedance events</iLink>
+</Para>
+</HighlightItem>
+</HighlightList>
+</HighlightItem>
+</HighlightList>
+<HighlightList>
+<Title>Section 4 - Miscellaneous</Title>
+<HighlightItem>
+<HighlightList>
+<Title>Chapter EEL - General</Title>
+<HighlightItem>
+<Title>Extension Safety Belt</Title>
+<Para>
+<iLink linkRef="URN:X-BOEING:FTID:81205.787.DDG.CU.MEL.4-25-65-52.1.25-65-52" fileRef="25-65-52.xml">re-number</iLink>
+</Para>
+</HighlightItem>
+<HighlightItem>
+<Title>Fire Contaiment kit</Title>
+<Para>
+<iLink linkRef="URN:X-BOEING:FTID:81205.787.DDG.CU.MEL.4-25-65-58.1.25-65-58" fileRef="25-65-58.xml">Added a new MEL item</iLink>
+</Para>
+</HighlightItem>
+</HighlightList>
+</HighlightItem>
+</HighlightList>
+</Highlights>

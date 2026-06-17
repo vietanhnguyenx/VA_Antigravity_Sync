@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM">]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.2-21-72-01.1427.2-21-72-01" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="21" superSectionNumber="2" sectionName="MEL" chapterName="Air Conditioning" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2025-09-30" rev:revStatus="R" rev:revNumber="10" />
+</PUMetaData>
+<MELItem itemNbr="21-72-01" id="X-BOEING:FTID:81205.787.DDG.CU.MEL.2-21-72-01.1.2-21-72-01">
+<Title>
+<?FTID-xref 1282446.2-21-72-01?>Zonal Dryer Systems</Title>
+<DispatchCondition repairInterval="D" nbrInstalled="2" nbrRequired="0" maintIndicator="(M)" rev:revStatus="R" rev:revHighlight="Updated dispatch interval to provide better dispatch flexibility">
+<?FTID-rev start?>
+<?FTID-rev end?>
+<DispatchConditionRemarks>
+<Para>May be inoperative deactivated.</Para>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Deactivate the inoperative zonal dryer system (AMM DDG 21-72-01).</Para>
+<List listType="1.">
+<ListItem>
+<Para>For forward zonal dryer, using a flight deck multi-function display only, open the DEHUMIDIFIER AC-	FWD circuit breaker and lock with an INOP tag.</Para>
+</ListItem>
+<ListItem>
+<Para>For aft zonal dryer, using a flight deck multi-function display only, open the DEHUMIDIFIER AC-	AFT circuit breaker and lock with an INOP tag.</Para>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELItem>
+</DispatchItems>

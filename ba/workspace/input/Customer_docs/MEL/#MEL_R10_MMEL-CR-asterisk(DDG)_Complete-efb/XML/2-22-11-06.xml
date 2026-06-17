@@ -1,0 +1,323 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM">]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.2-22-11-06.998550.2-22-11-06" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="22" superSectionNumber="2" sectionName="MEL" chapterName="Auto Flight" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2021-02-24" rev:revStatus="U" rev:revNumber="10" />
+</PUMetaData>
+<MELItem itemNbr="22-11-06" id="X-BOEING:FTID:81205.787.DDG.CU.MEL.2-22-11-06.1.2-22-11-06">
+<Title>Mode Control Panel Switches</Title>
+<MELSubItem itemNbr="22-11-06-01">
+<Title>A/P Engage Switches</Title>
+<DispatchCondition dispCondOptions="A" repairInterval="C" nbrInstalled="2" nbrRequired="1">
+<Title>Autopilot Used (*)</Title>
+<DispatchConditionRemarks>
+<Para>One may be inoperative.</Para>
+</DispatchConditionRemarks>
+</DispatchCondition>
+<DispatchCondition dispCondOptions="B" repairInterval="B" nbrInstalled="2" nbrRequired="0">
+<Title>Autopilot Not Used</Title>
+<DispatchConditionRemarks>
+<Para>May be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Approach minimums do not require use of the autopilots.</Para>
+</ListItem>
+<ListItem>
+<Para>Number of flight segments and segment duration is acceptable to flight crew.</Para>
+</ListItem>
+<ListItem>
+<Para>Enroute operations do not require use of the autopilots.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="22-11-06-02">
+<Title>Autothrottle Arm Switches (A/T ARM L, R)</Title>
+<DispatchCondition dispCondOptions="A" repairInterval="C" nbrInstalled="2" nbrRequired="1" maintIndicator="(M)" opsIndicator="(O)">
+<Title>Autothrottle Operating</Title>
+<DispatchConditionRemarks>
+<Para>One may be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Associated servo motor is deactivated.</Para>
+</ListItem>
+<ListItem>
+<Para>EEC normal mode operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Both thrust levers are manually set for takeoff and go-around thrust.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Deactivate the associated autothrottle servo motor (AMM DDG 22-11-06).</Para>
+<List listType="1.">
+<ListItem>
+<Para>For L autothrottle servo motor, using a flight deck multi-function display only, open circuit breaker A/T SERVO-L and lock with an INOP tag.</Para>
+</ListItem>
+<ListItem>
+<Para>For R autothrottle servo motor, using a flight deck multi-function display only, open circuit breaker A/T SERVO-R and lock with an INOP tag.</Para>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+<OperationProcedure>
+<List listType="1.">
+<ListItem>
+<Para>The AUTOTHROTTLE L or R advisory message will be displayed.</Para>
+</ListItem>
+<ListItem>
+<Para>The autothrottle cannot be engaged on the ground.</Para>
+</ListItem>
+<ListItem>
+<Para>Set both thrust levers manually for takeoff and go-around.</Para>
+</ListItem>
+<ListItem>
+<Para>For an inoperative switch failed to the armed state, the TPR/N1 trim function will operate normally, provided the operative autothrottle arm switch is positioned to A/T ARM.</Para>
+<Note>
+<Para>The AUTOTHROTTLE DISC caution message will be annunciated if the flight crew selects FLCH, VNAV, or TO/GA.  Pressing the autothrottle disconnect switch will clear the caution.</Para>
+</Note>
+</ListItem>
+<ListItem>
+<Para>For an inoperative switch failed to the off state, autothrottle functionality is available in flight for the operative autothrottle.</Para>
+</ListItem>
+</List>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+<DispatchCondition dispCondOptions="B" repairInterval="C" nbrInstalled="2" nbrRequired="0">
+<Title>Autothrottle Inoperative</Title>
+<DispatchConditionRemarks>
+<Para>May be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>EEC normal mode operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Approach minimums do not require autothrottle use.</Para>
+</ListItem>
+<ListItem>
+<Para>EDTO beyond 180 minutes is not conducted.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<OperationNote>
+<List listType="1.">
+<ListItem>
+<Para>Maximum landing capability is CAT IIIA.</Para>
+</ListItem>
+<ListItem>
+<Para>Autothrottle is inoperative.</Para>
+</ListItem>
+</List>
+</OperationNote>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="22-11-06-03">
+<Title>A/T Engage Switch</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="1" nbrRequired="0">
+<DispatchConditionRemarks>
+<Para>May be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>EEC normal mode operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Approach minimums do not require autothrottle use.</Para>
+</ListItem>
+<ListItem>
+<Para>EDTO beyond 180 minutes is not conducted.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<OperationNote>
+<List listType="1.">
+<ListItem>
+<Para>Maximum landing capability is CAT IIIA.</Para>
+</ListItem>
+<ListItem>
+<Para>Autothrottle is inoperative.</Para>
+</ListItem>
+</List>
+</OperationNote>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="22-11-06-04">
+<Title>F/D Switches</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="2" nbrRequired="1">
+<DispatchConditionRemarks>
+<Para>May be inoperative provided procedures do not require flight director use.</Para>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<OperationNote />
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="22-11-06-05">
+<Title>IAS - MACH Reference Switch</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="1" nbrRequired="0">
+<DispatchConditionRemarks>
+<Para>May be inoperative provided IAS is displayed in associated window.</Para>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceNote>
+<Para>For MACH displayed in the associated MCP window, the default IAS display can be restored by cycling power to the mode control panel.</Para>
+<List listType="1.">
+<ListItem>
+<Para>Open the following circuit breakers: </Para>
+<List listType="A.">
+<ListItem>
+<Para>MODE CTRL PNL-L</Para>
+</ListItem>
+<ListItem>
+<Para>MODE CTRL PNL-R</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Close the following circuit breakers: </Para>
+<List listType="A.">
+<ListItem>
+<Para>MODE CTRL PNL-L</Para>
+</ListItem>
+<ListItem>
+<Para>MODE CTRL PNL-R</Para>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</MaintenanceNote>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="22-11-06-06">
+<Title>HDG - TRK Reference Switch</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="1" nbrRequired="0">
+<DispatchConditionRemarks>
+<Para>May be inoperative provided HDG is displayed in associated window.</Para>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceNote>
+<Para>For TRK displayed in the associated MCP window, the default HDG display can be restored by cycling power to the mode control panel.</Para>
+<List listType="1.">
+<ListItem>
+<Para>Open the following circuit breakers: </Para>
+<List listType="A.">
+<ListItem>
+<Para>MODE CTRL PNL-L</Para>
+</ListItem>
+<ListItem>
+<Para>MODE CTRL PNL-R</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Close the following circuit breakers: </Para>
+<List listType="A.">
+<ListItem>
+<Para>MODE CTRL PNL-L</Para>
+</ListItem>
+<ListItem>
+<Para>MODE CTRL PNL-R</Para>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</MaintenanceNote>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="22-11-06-07">
+<Title>V/S - FPA Reference Switch</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="1" nbrRequired="0">
+<DispatchProcedure>
+<MaintenanceNote>
+<Para>For FPA displayed in the associated MCP window, the default V/S display can be restored by cycling power to the mode control panel.</Para>
+<List listType="1.">
+<ListItem>
+<Para>Open the following circuit breakers: </Para>
+<List listType="A.">
+<ListItem>
+<Para>MODE CTRL PNL-L</Para>
+</ListItem>
+<ListItem>
+<Para>MODE CTRL PNL-R</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Close the following circuit breakers: </Para>
+<List listType="A.">
+<ListItem>
+<Para>MODE CTRL PNL-L</Para>
+</ListItem>
+<ListItem>
+<Para>MODE CTRL PNL-R</Para>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</MaintenanceNote>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="22-11-06-08">
+<Title>APP Switch</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="1" nbrRequired="0">
+<DispatchConditionRemarks>
+<Para>May be inoperative provided approach minimums do not require use of autopilot or flight director.</Para>
+</DispatchConditionRemarks>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="22-11-06-09">
+<Title>CLB CON, LNAV, VNAV, FLCH, VS/FPA, Heading/Track HOLD, Altitude HOLD, and LOC/FAC Switches</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="8" nbrRequired="0">
+<DispatchConditionRemarks>
+<Para>May be inoperative provided enroute operations do not require their use.</Para>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<OperationNote>
+<Para>For enroute operations such as RVSM, any one of the following autopilot pitch modes will provide acceptable altitude hold capability: Altitude Hold (ALT), Vertical Speed (V/S) or Flight Path Angle (FPA) with 000 selected, Vertical Navigation (VNAV) with FMC flight plan, or VNAV with FMC flight plan combined with altitude intervention.</Para>
+</OperationNote>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="22-11-06-10">
+<Title>Arm/Engage Lights</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="11" nbrRequired="0">
+<DispatchConditionRemarks>
+<Para>May be inoperative provided the associated mode indications on both PFDs operate normally.</Para>
+</DispatchConditionRemarks>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="22-11-06-11">
+<Title>Uplink (UL) XFR Switches</Title>
+<DispatchCondition dispCondOptions="A" repairInterval="C" nbrInstalled="3" nbrRequired="0" opsIndicator="(O)">
+<Title>Alternate Procedures Used</Title>
+<DispatchConditionRemarks>
+<Para>May be inoperative provided Operations procedure is used.</Para>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<OperationProcedure>
+<Para>Manual selection of values is required for MCP window associated with inoperative uplink XFR switch.</Para>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+<DispatchCondition dispCondOptions="B" repairInterval="D" nbrInstalled="3" nbrRequired="0">
+<Title>Procedures Do Not Require Use</Title>
+<DispatchConditionRemarks>
+<Para>May be inoperative provided procedures do not require their use.</Para>
+</DispatchConditionRemarks>
+</DispatchCondition>
+</MELSubItem>
+</MELItem>
+</DispatchItems>
