@@ -18,19 +18,21 @@
 
 ## Ma trận đối chiếu nhanh — Dispatcher / OCC
 
-| Chủ đề | 01-nguon | 02-khao-sat | 03-yckt | 04-quy-trinh |
-|---|---|---|---|---|
-| OFP / Release | TOSS-v0.1 §4 · Function-list §DSP | 11/06 sáng | sheet-04 · sheet-05 | SOP §3.1 |
-| NOTAM / Thời tiết | TOSS-v0.1 §4 | 11/06 sáng | sheet-05 | SOP §3.1 |
-| Giám sát chuyến bay | TOSS-v0.1 §5 | 11/06 chiều · 12/06 sáng | sheet-05 | SOP §3.2 |
-| MEL / CDL | TOSS-v0.1 §4 | 11/06 sáng | sheet-04 | — |
-| NOTOC / Cargo | TOSS-v0.1 §6 · VNA-KTKTB-Buoi2 | (Webex NOTOC) | sheet-06 | — |
-| Cost Index / Nhiên liệu | TOSS-v0.1 §4 | 11/06 sáng | sheet-05 | — |
-| Tích hợp hệ thống | Aircraft_FIMS · Aircraft_Netline | 08/06 | sheet-06 | — |
-| Phân quyền / Menu | Function-list | 09/06 | sheet-07 | — |
-| Lập phương án đường bay | TOSS-v0.1 §4 · VNA-KTKTB-Buoi3 | — | sheet-05 | — |
-| MEL authoring (kỹ thuật) | VNA-KTKTB-Buoi2 | — | — | — |
-| W&B (cân bằng trọng tải) | VNA-KTKTB-Buoi2 | — | — | — |
+> **Chú thích trạng thái:** ✅ Đủ tầng (≥3/4) · ⏳ Còn thiếu tầng · ❌ Chưa có nguồn · 🔴 Điểm cần chốt còn mở (xem OID)
+
+| Chủ đề | 01-nguon | 02-khao-sat | 03-yckt | 04-quy-trinh | Trạng thái |
+|---|---|---|---|---|---|
+| OFP / Release | TOSS-v0.1 §4 · Function-list §DSP | 11/06 sáng · 15/06 | sheet-04 · sheet-05 | SOP §3.1 | ✅ Đủ 4 tầng |
+| NOTAM / Thời tiết | TOSS-v0.1 §4 | 11/06 sáng | sheet-05 | SOP §3.1 | ✅ Đủ 4 tầng |
+| Giám sát chuyến bay | TOSS-v0.1 §5 | 11/06 chiều · 12/06 sáng | sheet-05 | SOP §3.2 | ✅ Đủ 4 tầng |
+| MEL / CDL | TOSS-v0.1 §4 | 11/06 sáng | sheet-04 | — | ⏳ Thiếu 04-quy-trinh |
+| NOTOC / Cargo | TOSS-v0.1 §6 · VNA-KTKTB-Buoi2 | ktktb (Webex) | sheet-06 | — | ⏳ Thiếu 04 · 🔴 2-NOTOC/chuyến chưa chốt (OID KS-47) |
+| Cost Index / Nhiên liệu | TOSS-v0.1 §4 | 11/06 sáng | sheet-05 | — | ⏳ Thiếu 04-quy-trinh |
+| Tích hợp hệ thống | Aircraft_FIMS · Aircraft_Netline | 08/06 | sheet-06 | — | ⏳ Thiếu 04-quy-trinh |
+| Phân quyền / Menu | Function-list | 09/06 | sheet-07 | — | ⏳ Thiếu 04-quy-trinh |
+| Lập phương án đường bay | TOSS-v0.1 §4 · VNA-KTKTB-Buoi3 | ktktb (Buổi 3) | sheet-05 | — | ⏳ Thiếu 04 · chưa phân tích sâu LIDO |
+| MEL authoring (kỹ thuật) | VNA-KTKTB-Buoi2 | ktktb (Buổi 2) | — | — | ⏳ Thiếu 03-yckt + 04 |
+| W&B (cân bằng trọng tải) | VNA-KTKTB-Buoi2 | ktktb (Buổi 2) | — | — | ⏳ Thiếu 03-yckt + 04 |
 
 ---
 

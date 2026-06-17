@@ -1,4 +1,4 @@
----
+﻿---
 project: "TOSS — Hệ thống Điều hành Khai thác Hãng Hàng không"
 author: "BA Lead"
 version: "0.4"
@@ -208,7 +208,7 @@ document_id: "WF-TOSS-001"
 ## 10. Liên kết tài liệu
 
 - Khảo sát: `bao-cao-khao-sat/BAO-CAO-KHAO-SAT-08062026-v0.2.md`, `…-09062026-v0.2.md`, `…-11062026-buoi-sang-v0.1.md` (11/06 đã gộp Phần 1+2), `…-12062026-buoi-sang-v0.1.md` (Monitoring & Flight Detail).
-- BRD (bản hiện hành): `brd/BRD-TOSS-001-khung-v0.6.md` (khung, §1–§6 + §7.6 + §8–§10; 176 BR tổng) + 5 file PH riêng: `BRD-TOSS-PH1-thong-tin-dieu-hanh-v0.1.md` (50 BR), `BRD-TOSS-PH2-tai-lieu-chuyen-bay-v0.1.md` (31), `BRD-TOSS-PH3-bao-cao-toi-uu-v0.1.md` (34), `BRD-TOSS-PH4-quan-ly-danh-muc-v0.1.md` (32), `BRD-TOSS-PH5-quan-tri-he-thong-v0.1.md` (29) · Phân rã FUNC: `srs/03-dac-ta-chuc-nang/PHAN-RA-BRD-PH1-…-v0.5.md` (176 FUNC, FUNC-101…276) và `PHAN-RA-BRD-PH{2..5}-*-v0.3.md`.
+- BRD (bản hiện hành): `brd/BRD-TOSS-001-khung-v0.7.md` (khung, §1–§6 + §7.6 + §8–§10; 176 BR tổng) + 5 file PH riêng: `BRD-TOSS-PH1-thong-tin-dieu-hanh-v0.2.md` (50 BR), `BRD-TOSS-PH2-tai-lieu-chuyen-bay-v0.1.md` (31), `BRD-TOSS-PH3-bao-cao-toi-uu-v0.1.md` (34), `BRD-TOSS-PH4-quan-ly-danh-muc-v0.1.md` (32), `BRD-TOSS-PH5-quan-tri-he-thong-v0.1.md` (29) · Phân rã FUNC: `srs/03-dac-ta-chuc-nang/PHAN-RA-BRD-PH1-…-v0.5.md` (176 FUNC, FUNC-101…276) và `PHAN-RA-BRD-PH{2..5}-*-v0.3.md`.
 - Phân công Role: `PHAN-CONG-ROLE-BA-v0.1.md` (§3/§6 cập nhật theo tài liệu này).
 - Lộ trình BA: `BA-ROADMAP-v0.1.md` · Chất lượng: `QUALITY-GATE-v0.1.md`, `REVIEW-APPROVAL-FLOW-v0.1.md`, `CHANGE-CONTROL-SOP-v0.1.md`.
 - Workflow P4: `.claude/knowledge/ba-workflow-patterns.md §P4`.

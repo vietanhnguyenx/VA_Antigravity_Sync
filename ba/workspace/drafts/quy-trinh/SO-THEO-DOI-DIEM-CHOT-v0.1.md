@@ -1,8 +1,8 @@
----
+﻿---
 project: "TOSS — Hệ thống Điều hành Khai thác Hãng Hàng không"
 author: "BA Lead"
-version: "0.11"
-date: "2026-06-16"
+version: "0.14"
+date: "2026-06-17"
 status: "Draft"
 document_type: "Sổ theo dõi Điểm cần chốt & Câu hỏi mở (Open Items & Decisions Register)"
 document_id: "OID-TOSS-001"
@@ -29,7 +29,8 @@ document_id: "OID-TOSS-001"
 | DEC-03 | Bổ sung **danh sách member** team BA (hoặc cấp `gh`/token để đọc collaborator repo private) | WF-TOSS-001 §8 | Nội bộ BA Lead | 🔴 Mở | |
 | DEC-04 | **Gán tên người** vào ma trận Lai (chủ trì/hỗ trợ/chuyên gia) + chọn kịch bản đội hình | WF-TOSS-001 §5, §8 | Nội bộ BA Lead | 🔴 Mở | |
 | DEC-05 | Duyệt **ánh xạ 7 phân hệ cũ → 5 phân hệ mới**, cập nhật `PHAN-CONG-ROLE-BA §3` | WF-TOSS-001 §2 | Nội bộ BA Lead | 🔴 Mở | |
-| DEC-06 | Bổ sung **chỉ tiêu định lượng** cho mục tiêu (OBJ-001/002/008/009) + ma trận RACI | BRD §4, §6.1 | Nội bộ + stakeholder | 🔴 Mở | |
+| DEC-06 | Bổ sung **chỉ tiêu định lượng + Time-bound** cho mục tiêu OBJ-001 (phủ Movement), OBJ-002 (chính xác Movement), OBJ-008 (Single Source of Truth danh mục), OBJ-009 (thời gian kiểm tra đầu ca) — cần workshop SME VNA để chốt baseline→target→tháng đạt; + ma trận RACI | BRD §4, §6.1 / VALIDATION-BRD-v0.10 §B | Workshop SME VNA | 🔴 Mở (chặn freeze BRD PH1/PH3/PH5 theo VALIDATION-BRD-v0.10 §G.1 G2) | |
+| G2-FREEZE | **Freeze BRD PH1/PH3/PH5 bị chặn** chờ workshop SME VNA chốt OID DEC-06 + KS-48 (định lượng 7 OBJ). Sau workshop: cập nhật §4 BRD khung → bump v0.12. Phán quyết: PH2 + PH4 đã sẵn sàng SRS, không chờ G2. | VALIDATION-BRD-v0.10 §G.1 G2 | Workshop SME VNA | 🔴 Mở (chặn) | Lên lịch workshop với VNA trong tuần tới |
 
 ## B. Thuật ngữ & hệ thống cần SME xác nhận (SME)
 
@@ -40,8 +41,8 @@ document_id: "OID-TOSS-001"
 | SME-03 | **VNCM/VNCS** — tên cơ quan cung cấp NOTAM nội địa | BRD §9.3; KS 11/06 §II.6 | Dispatcher / SME NOTAM | 🔴 Mở | |
 | SME-04 | **"Vy Vy"** — tên nguồn METAR nội địa | BRD §9.3; KS 11/06 §II.7 | Dispatcher / SME khí tượng | 🔴 Mở | |
 | SME-05 | **UA PASMOS** — hệ thống thời tiết được nhắc đến | BRD §9.3; KS 11/06 §II.7 | Dispatcher / SME khí tượng | 🔴 Mở | |
-| SME-06 | **Sunweather** — tên đầy đủ + vai trò (được đánh giá "rủi ro") | BRD §9.3; KS 11/06 §II.7 | Dispatcher / SME khí tượng | 🔴 Mở | |
-| SME-07 | **"Phi Công 11"** — tên hệ thống tham khảo, không official | BRD §9.3; KS 11/06 §II.7 | Dispatcher / SME khí tượng | 🔴 Mở | |
+| SME-06 | **Sunweather** — tên đầy đủ + vai trò (được đánh giá "rủi ro / không ổn định") | BRD §9.3; BRD Khung §9.3; KS 11/06 §II.7 | Dispatcher / SME khí tượng | 🔴 Mở | |
+| SME-07 | **"Phi Công 11"** — tên hệ thống tham khảo, không official | BRD §9.3; BRD Khung §9.3; KS 11/06 §II.7 | Dispatcher / SME khí tượng | 🔴 Mở | |
 | SME-08 | **Mốc upload OFP** 90/130/180/200 phút + phân loại chuyến tương ứng | BRD §9.3; KS 11/06 §II.1 | Dispatcher (phần 2) | 🔴 Mở | |
 | SME-09 | **Tên hệ thống nguồn** nhận biết yếu nhân/chuyên cơ trong BCAO (ứng viên ASR: ANABS/ANABIOS) | BRD §9.3; KS 09/06 §II.7, §IV.3 | SME trực ban trưởng | 🔴 Mở | |
 | SME-10 | **Damp Lease** — tên tiếng Việt chính thức + có cần báo cáo riêng phần nhiên liệu VNA tự cấp | BRD §9.3; KS 09/06 §II.5, §IV | SME khai thác/tài chính | 🔴 Mở | |
@@ -76,6 +77,9 @@ document_id: "OID-TOSS-001"
 | SME-39 | **Vasco** (tên đầy đủ) + ý nghĩa **"HT 30-31"** trong câu chuyện hợp nhất khai thác | KS 09/06 §IV.8 (cuối Part 2 nhiễu) | SME điều phái/lãnh đạo | 🔴 Mở | |
 | SME-40 | Chuẩn hóa thuật ngữ **take-off weight** (ASR ghi "loft power") và **trọng lượng ướt** (ASR ghi "phi vết") — cách tính chính xác | KS 11/06 P2 §IV.9 | SME tải/cân bằng | 🔴 Mở | |
 | SME-41 | **"Quả đấy dầu"** và **"anh Ngọt"** — danh mục/nguồn bảng dầu Lido (ASR có thể đọc lệch) | KS 11/06 P2 §IV.11 | Dispatcher / SME bảng dầu | 🔴 Mở | |
+| SME-42 | **Sunweather** — tên đầy đủ và vai trò (được đánh giá "rủi ro/không ổn định") | BRD Khung §9.3; KS 11/06 §II.7 | Dispatcher / SME khí tượng | 🟢 Đã gộp | **17/06: Đã gộp vào SME-06 (trùng nội dung — cùng là Sunweather). Nguồn BRD Khung §9.3 đã bổ sung vào dòng nguồn của SME-06.** |
+| SME-43 | **"Phi Công 11"** — tên hệ thống tham khảo, không official | BRD Khung §9.3; KS 11/06 §II.7 | Dispatcher / SME khí tượng | 🟢 Đã gộp | **17/06: Đã gộp vào SME-07 (trùng hoàn toàn — cùng là "Phi Công 11"). Nguồn BRD Khung §9.3 đã bổ sung vào dòng nguồn của SME-07.** |
+| SME-44 | **Định dạng thứ ba MEL Airbus** (ngoài FrameMaker+IXP và FODM 10.8) — cần SME KTKTB xác nhận tên hệ thống/công cụ và lý do chọn | PH4 BR-425 | SME KTKTB / SME tài liệu kỹ thuật | 🔴 Mở | |
 
 ## C. Vấn đề nghiệp vụ cần làm rõ qua khảo sát (KS)
 
@@ -128,7 +132,7 @@ document_id: "OID-TOSS-001"
 | KS-45 | **Môi trường kiểm thử** — đi thẳng vào tài nguyên thật hay phải có môi trường riêng tách bạch | KS 08/06 §IV.6 | Workshop hạ tầng/CĐS-CN | 🔴 Mở | |
 | KS-46 | **BackPACK + pgepoid** — có hỗ trợ RPA/tự đọc dữ liệu được không (đang nhập tay) | KS 08/06 §IV.8 | SME kỹ thuật + Hãng sản xuất tàu bay | 🔴 Mở | |
 | KS-47 | **Cụm dữ liệu phục vụ FMS thay thế** — sẵn có chưa và lấy qua phương thức gì (dự kiến thứ Tư mới có thông tin) | KS 08/06 §IV.10 | Workshop tích hợp FMS | 🔴 Mở | |
-| KS-48 | **Bốn nhóm KPI gồm hai OTP và hai OSP** — định nghĩa + công thức chi tiết + tiêu chí mục tiêu 80% áp dụng nhóm nào | KS 09/06 §IV.4 | SME điều phái/lãnh đạo | 🔴 Mở | |
+| KS-48 | **Bốn nhóm KPI gồm hai OTP và hai OSP** — định nghĩa + công thức chi tiết + tiêu chí mục tiêu 80% áp dụng nhóm nào + ngưỡng cảnh báo cụ thể (OBJ-003) | KS 09/06 §IV.4 / VALIDATION-BRD-v0.10 §B | Workshop SME VNA | 🔴 Mở (chặn freeze BRD PH1/PH3/PH5 theo VALIDATION-BRD-v0.10 §G.1 G2) | |
 | KS-49 | **Cấu hình thời gian lưu trữ theo từng loại tài liệu** trong server lưu trữ tập trung (ngoài mức 3 ngày đã chốt cho tài liệu MO Plus) | KS 09/06 §IV.6 | SME tài liệu + hạ tầng | 🔴 Mở | |
 | KS-50 | **Luồng tích chọn thủ công** cho trợ lý trực ban trưởng khi nguồn ANABS không trả mác phân loại chuyến đặc biệt | KS 09/06 §IV.7 | SME trực ban trưởng | 🔴 Mở | |
 | KS-51 | **Định dạng dữ liệu nhập tay** cho yếu nhân/VIP (Chủ tịch nước, Chủ tịch Quốc hội, Thủ tướng, Tổng Bí thư…) + cấu trúc dữ liệu lưu | KS 09/06 §IV.9 | SME trực ban trưởng + master data | 🔴 Mở | |
@@ -179,12 +183,12 @@ document_id: "OID-TOSS-001"
 
 | Nhóm | Tổng | 🔴 Mở | 🟡 Đang xử lý | 🟢 Đã chốt |
 |---|---|---|---|---|
-| A. Quyết định BA Lead (QĐ) | 6 | 6 | 0 | 0 |
-| B. Thuật ngữ/hệ thống (SME) | 41 | 39 | 1 | 1 |
+| A. Quyết định BA Lead (QĐ) | 7 | 7 | 0 | 0 |
+| B. Thuật ngữ/hệ thống (SME) | 44 | 40 | 1 | 3 (gồm 2 "Đã gộp" + 1 "Đã chốt") |
 | C. Nghiệp vụ-khảo sát (KS) | 54 | 52 | 2 | 0 |
 | D. Tham số/dữ liệu (DL) | 5 | 5 | 0 | 0 |
 | E. Hành chính/hạ tầng (HC) | 3 | 1 | 2 | 0 |
-| **Tổng** | **109** | **103** | **5** | **1** |
+| **Tổng** | **113** | **105** | **5** | **3** |
 
 > Cập nhật sau khi regenerate 5 báo cáo khảo sát (rà 2026-06-16): +4 SME (SME-38…41: pgepoid, Vasco+HT 30-31, take-off/wet weight, "quả đấy dầu"/"anh Ngọt") và +11 KS (KS-44…54: SITA điện văn bổ sung, môi trường kiểm thử, BackPACK RPA, FMS thay thế, 4 KPI OTP/OSP, retention theo loại tài liệu, luồng thủ công ANABS, định dạng dữ liệu VIP, multi-session, lịch sử OFP sát giờ, cảnh báo tab Flight Release "bên ngoài"). SME-09 cập nhật chú thích ASR "ANABS/ANABIOS". Không có điểm nào được đóng trong đợt này (§IV chỉ liệt kê câu hỏi, không kèm kết quả). Tổng 109 điểm (103 Mở / 5 Đang xử lý / 1 Đã chốt).
 
@@ -205,7 +209,7 @@ document_id: "OID-TOSS-001"
 
 ## H. Liên kết tài liệu nguồn
 
-- BRD §9 (rủi ro/giả định/cờ) — bản hiện hành: `ba/workspace/drafts/brd/BRD-TOSS-001-khung-v0.6.md` (khung, 176 BR; v0.1…v0.5 là lịch sử; §7 tách 5 file BRD-TOSS-PHn-v0.1)
+- BRD §9 (rủi ro/giả định/cờ) — bản hiện hành: `ba/workspace/drafts/brd/BRD-TOSS-001-khung-v0.7.md` (khung, 176 BR; v0.1…v0.5 là lịch sử; §7 tách 5 file BRD-TOSS-PHn-v0.1)
 - Phân rã FUNC (ô "chưa có nguồn"): `ba/workspace/drafts/srs/03-dac-ta-chuc-nang/PHAN-RA-BRD-PH1-…-v0.5.md` (FUNC-101…276) và `PHAN-RA-BRD-PH{2..5}-*-v0.3.md`
 - Báo cáo khảo sát §IV: `…/BAO-CAO-KHAO-SAT-08062026-v0.2.md`, `…-09062026-v0.2.md`, `…-11062026-buoi-sang-v0.1.md` (11/06 gộp Phần 1+2; tham chiếu "KS 11/06 P2 §II.x" tương ứng chủ đề §II.8–15 của báo cáo gộp), `…-12062026-buoi-sang-v0.1.md` (Monitoring & Flight Detail)
 - Phương án workflow §9: `ba/workspace/drafts/quy-trinh/PHAN-TACH-PHAM-VI-WORKFLOW-v0.4.md`
@@ -213,6 +217,12 @@ document_id: "OID-TOSS-001"
 - Glossary: `ba/workspace/input/domain-knowledge/toss-glossary-v0.1.md`
 
 ---
+
+*OID-TOSS-001 v0.14 — 2026-06-17. Ghi nhận điểm treo **G2** từ VALIDATION-BRD-v0.10 (CONDITIONAL PASS): (a) cập nhật **DEC-06** — bổ sung chỉ tiêu Time-bound cho OBJ-001/002/008/009 (workshop SME VNA), trạng thái → "🔴 Mở (chặn freeze BRD PH1/PH3/PH5)"; (b) cập nhật **KS-48** — bổ sung "+ ngưỡng cảnh báo cụ thể (OBJ-003)", trạng thái → "🔴 Mở (chặn freeze BRD PH1/PH3/PH5)"; (c) **G2-FREEZE mới** trong nhóm A — entry tổng hợp điểm treo freeze BRD PH1/PH3/PH5 chờ workshop SME VNA chốt DEC-06+KS-48; sau workshop bump khung v0.12; PH2+PH4 không chờ. Tổng 113 điểm (105 Mở / 5 Đang xử lý / 3 Đã chốt).*
+
+*OID-TOSS-001 v0.13 — 2026-06-17. Quyết định C6 — chuẩn hóa trùng lặp SME-42/43 và bổ sung SME-44: (a) SME-42 (Sunweather) đã gộp vào **SME-06** (trùng nội dung — cùng là Sunweather "rủi ro/không ổn định"); nguồn `BRD Khung §9.3` được merge vào dòng nguồn SME-06; SME-42 đổi trạng thái 🟢 Đã gộp + ghi chú. (b) SME-43 ("Phi Công 11") đã gộp vào **SME-07** (trùng hoàn toàn); nguồn `BRD Khung §9.3` được merge vào dòng nguồn SME-07; SME-43 đổi trạng thái 🟢 Đã gộp + ghi chú. (c) **SME-44 mới** — Định dạng thứ ba MEL Airbus (ngoài FrameMaker+IXP và FODM 10.8) — cần SME KTKTB xác nhận tên hệ thống/công cụ và lý do chọn (nguồn PH4 BR-425). Lưu ý: SME-04 ("Vy Vy" — METAR nội địa) KHÔNG trùng SME-42/Sunweather (khác hệ thống) nên không gộp về SME-04 như đề xuất ban đầu. Tổng 112 điểm (104 Mở / 5 Đang xử lý / 3 Đã chốt — gồm 2 "Đã gộp" + 1 "Đã chốt" trước đó).*
+
+*OID-TOSS-001 v0.12 — 2026-06-17. M3 hợp nhất quản lý cờ `[cần xác nhận]`: chuyển toàn bộ cờ inline trong 5 BRD phân hệ + §9.3 BRD khung về OID (sổ cái duy nhất). Mỗi cờ inline được thay bằng chú thích `*(xem OID: <mã>)*`; §9.3 khung gọn còn 1 dòng tham chiếu. Bổ sung 2 SME mới (SME-42 Sunweather, SME-43 "Phi Công 11"). Tổng 111 điểm (105 Mở / 5 Đang xử lý / 1 Đã chốt).*
 
 *OID-TOSS-001 v0.11 — 2026-06-16. Rà sau khi regenerate 5 báo cáo khảo sát (08/06, 09/06, 11/06 sáng, 11/06 chiều, 12/06 sáng) theo SKILL survey-report Option B: +4 SME (SME-38 pgepoid; SME-39 Vasco + HT 30-31; SME-40 chuẩn hóa take-off weight/"loft power" & trọng lượng ướt/"phi vết"; SME-41 "quả đấy dầu" + "anh Ngọt"), +11 KS (KS-44 SITA điện văn bổ sung; KS-45 môi trường kiểm thử; KS-46 BackPACK + pgepoid RPA; KS-47 cụm dữ liệu FMS thay thế; KS-48 định nghĩa/công thức 4 KPI OTP/OSP + tiêu chí 80%; KS-49 retention theo loại tài liệu; KS-50 luồng tích chọn thủ công khi ANABS thiếu mác; KS-51 định dạng dữ liệu nhập tay VIP; KS-52 multi-session tham chiếu; KS-53 lịch sử làm lại OFP sát giờ; KS-54 cảnh báo tab Flight Release "bên ngoài"). Cập nhật SME-09 ghi chú ứng viên ASR "ANABS/ANABIOS". Không đóng điểm nào — §IV của 5 báo cáo chỉ liệt kê câu hỏi chưa có kết quả. Tổng 109 điểm (103 Mở / 5 Đang xử lý / 1 Đã chốt).*
 *OID-TOSS-001 v0.10 — 2026-06-16. Rà sau buổi 15/06 (Màn hình Flight Dispatch & quy trình OFP Release): +5 KS (KS-39…43: phạm vi A-CDM đợt đầu, nguồn dự phòng parking stand "VR", cột PIC confirm ngưỡng nhắc, attribution bàn giao ca, nghĩa viết tắt OAP/OSP/OMP/AOS). 15/06 trả lời một phần: KS-21 (auto-tăng version sau Un-Release) → 🟡; DL-01 (ngưỡng release/cảnh báo màu OFP: quốc nội 210/75/60′, quốc tế 270/90/75′ trước ETD). Tổng 94 điểm (88 Mở / 5 Đang xử lý / 1 Đã chốt).*

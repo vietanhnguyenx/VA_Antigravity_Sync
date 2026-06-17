@@ -1,43 +1,78 @@
 # INDEX — Quy trình & quản trị BA (ba/workspace/drafts/quy-trinh)
 
 > Đọc index này trước rồi mở đúng file cần (rule: đọc chọn lọc, không nạp cả thư mục).
+>
+> **Phân loại:** 🟢 Vận hành thường xuyên · 🔵 Tham chiếu khi cần · 📋 Tra cứu / điền liệu
 
-## Tổng hợp & lộ trình
-| File | Dòng | Nội dung |
-|---|---|---|
-| `QUY-TRINH-BA-TONG-HOP-v0.1.md` | 220 | Bộ quy trình BA — tài liệu tổng hợp |
-| `BA-ROADMAP-v0.1.md` | 139 | Lộ trình công việc BA |
+---
 
-## Phân công & phạm vi
-| File | Dòng | Nội dung |
-|---|---|---|
-| `PHAN-CONG-ROLE-BA-v0.1.md` | 226 | Phân công role & mức dùng skill |
-| `PHAN-TACH-PHAM-VI-WORKFLOW-v0.4.md` | 221 | Phân tách phạm vi & workflow theo role (mới nhất) |
-| `PHAN-TACH-PHAM-VI-WORKFLOW-v0.1.md` | 218 | (bản cũ v0.1 — cân nhắc xóa, giữ v0.4) |
+## Vận hành hàng ngày 🟢
 
-## SOP & cổng chất lượng
-| File | Dòng | Nội dung |
+| File | Dòng | Mô tả |
 |---|---|---|
-| `SOP-LUONG-TAI-LIEU-v0.1.md` | 135 | SOP luồng tài liệu BA |
-| `SOP-BAO-CAO-KHAO-SAT-v0.1.md` | 77 | SOP lập báo cáo khảo sát (Discovery) |
-| `SOP-THAM-CHIEU-DOMAIN-KNOWLEDGE-v0.1.md` | — | SOP tra cứu domain-knowledge khi phân tích (vừa làm vừa tham chiếu, tài liệu sống) |
-| `SOP-GHI-CHEP-DU-AN-v0.1.md` | 171 | SOP phương pháp ghi chép: chuẩn Markdown phân lớp dùng chung agent+người; chọn Cornell ghi meeting trước khi tổng hợp báo cáo; quy ước Mermaid luồng nghiệp vụ |
-| `CHANGE-CONTROL-SOP-v0.1.md` | 138 | SOP kiểm soát thay đổi yêu cầu |
-| `REVIEW-APPROVAL-FLOW-v0.1.md` | 92 | Quy trình review & approval |
-| `QUALITY-GATE-v0.1.md` | 104 | Cổng kiểm tra chất lượng tài liệu |
-| `DEFINITION-OF-DONE-v0.1.md` | 124 | Definition of Done |
+| `SO-THEO-DOI-DIEM-CHOT-v0.1.md` | 203 | Sổ theo dõi điểm cần chốt & câu hỏi mở (OID) — cập nhật sau mỗi buổi họp |
+| `SOP-BAO-CAO-KHAO-SAT-v0.1.md` | 77 | SOP lập báo cáo khảo sát Discovery — trỏ từ skill `survey-report` |
+| `SOP-GHI-CHEP-DU-AN-v0.1.md` | 171 | SOP ghi chép: Markdown phân lớp, Cornell ghi meeting, Mermaid luồng nghiệp vụ |
+| `SOP-THAM-CHIEU-DOMAIN-KNOWLEDGE-v0.1.md` | 54 | Vòng lặp tra KB đúng điểm, không đọc nền; cập nhật dần khi có mẹo mới |
 
-## Vận hành & onboarding
-| File | Dòng | Nội dung |
-|---|---|---|
-| `MEETING-CADENCE-v0.1.md` | 131 | Nhịp họp team BA |
-| `ONBOARDING-GUIDE-v0.1.md` | 133 | Hướng dẫn onboarding thành viên mới |
-| `BA-SESSION-LOG-TEMPLATE-v0.1.md` | 155 | Template nhật ký phiên làm việc BA |
+## Phân công & phạm vi 🟢
 
-## Theo dõi & stakeholder
-| File | Dòng | Nội dung |
+| File | Dòng | Mô tả |
 |---|---|---|
-| `SO-THEO-DOI-DIEM-CHOT-v0.1.md` | 203 | Sổ theo dõi điểm cần chốt & câu hỏi mở (OID) |
-| `STAKEHOLDER-REGISTER-v0.2.md` | 131 | Stakeholder register (mới nhất) |
-| `STAKEHOLDER-REGISTER-v0.1.md` | 107 | (bản cũ v0.1 — cân nhắc xóa, giữ v0.2) |
-| `TONG-KET-TONG-HOP-BIEN-BAN-HOP-v0.1.md` | 74 | Tổng kết năng lực tổng hợp biên bản họp (ASR) |
+| `PHAN-CONG-ROLE-BA-v0.1.md` | 226 | Ma trận role × skill × phân hệ × quyền workspace — CLAUDE.md §0.4 trỏ tới |
+| `PHAN-TACH-PHAM-VI-WORKFLOW-v0.4.md` | 221 | Phân tách phạm vi & workflow theo role (bản hiện hành) |
+| `PIPELINE-AGENT-v0.1.md` | — | 12 agent theo thứ tự bàn giao: BA (1–5) + DEV (6–12); checkpoint review; quy tắc kích hoạt |
+
+## Tiến độ dự án 📋
+
+| File | Nội dung |
+|---|---|
+| [tien_do/INDEX.md](tien_do/INDEX.md) | Danh sách bản đánh giá tiến độ theo version |
+| [tien_do/DANH-GIA-TIEN-DO-v0.1-2026-06-17.md](tien_do/DANH-GIA-TIEN-DO-v0.1-2026-06-17.md) | v0.1 — đánh giá lần đầu 17/06: Phase 1 70% · Phase 2 55% · Phase 3 25% |
+
+## Theo dõi & stakeholder 📋
+
+| File | Dòng | Mô tả |
+|---|---|---|
+| `STAKEHOLDER-REGISTER-v0.2.md` | 131 | Danh sách stakeholder: vai trò, kỳ vọng, RACI, kênh liên lạc |
+| `BA-ROADMAP-v0.1.md` | 139 | Lộ trình BA 5 phase — baseline tiến độ |
+
+## Template & log 📋
+
+| File | Dòng | Mô tả |
+|---|---|---|
+| `BA-SESSION-LOG-TEMPLATE-v0.1.md` | 155 | Template nhật ký phiên BA (tự sinh bởi agent sau mỗi phiên) |
+| `BA-VERSION-LOG.md` | — | Nhật ký version tập trung — mọi lịch sử thay đổi tài liệu ghi ở đây, không nhúng vào file nội dung |
+
+## Quản trị & cổng chất lượng 🔵
+
+> Tra cứu khi cần — không dùng hàng ngày; giá trị governance còn nguyên.
+
+| File | Dòng | Dùng khi |
+|---|---|---|
+| `SOP-LUONG-TAI-LIEU-v0.1.md` | 135 | Không chắc bước tiếp theo trong vòng đời tài liệu |
+| `CHANGE-CONTROL-SOP-v0.1.md` | 138 | Có Change Request từ stakeholder sau khi tài liệu đã Approved |
+| `QUALITY-GATE-v0.1.md` | 104 | Trước khi promote Draft → `ba/sync/` |
+| `DEFINITION-OF-DONE-v0.1.md` | 124 | Tự kiểm trước khi gửi peer review |
+| `REVIEW-APPROVAL-FLOW-v0.1.md` | 92 | Cần biết ai approve loại tài liệu nào |
+| `MEETING-CADENCE-v0.1.md` | 131 | Lập kế hoạch lịch họp định kỳ |
+| `ONBOARDING-GUIDE-v0.1.md` | 133 | Khi có thành viên mới gia nhập team BA |
+
+---
+
+## Thứ tự đọc cho thành viên mới
+
+```
+1. CLAUDE.md + HUMAN.md              → Nắm toàn bộ framework & quy tắc dự án
+2. BA-ROADMAP-v0.1.md                → Biết đang ở phase nào, làm gì tiếp
+3. PHAN-CONG-ROLE-BA-v0.1.md         → Biết vai trò và quyền hạn của mình
+4. ONBOARDING-GUIDE-v0.1.md          → Hướng dẫn từng bước thiết lập môi trường
+5. SOP-LUONG-TAI-LIEU-v0.1.md        → Quy trình vòng đời tài liệu hàng ngày
+6. DEFINITION-OF-DONE-v0.1.md        → Tiêu chí hoàn thành từng loại artifact
+7. STAKEHOLDER-REGISTER-v0.2.md      → Biết ai là ai, liên lạc thế nào
+8. toss-glossary-v0.1.md             → Tra thuật ngữ khi gặp khái niệm lạ
+```
+
+---
+
+_Cập nhật: 2026-06-17 · Xóa 4 file lỗi thời (PHAN-TACH-PHAM-VI-WORKFLOW-v0.1, STAKEHOLDER-REGISTER-v0.1, TONG-KET-TONG-HOP-BIEN-BAN-HOP-v0.1, QUY-TRINH-BA-TONG-HOP-v0.1); thêm thư mục tien_do/_
