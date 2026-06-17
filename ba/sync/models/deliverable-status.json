@@ -2,7 +2,7 @@
   "_meta": {
     "project": "TOSS — Hệ thống Điều hành Khai thác Hãng Hàng không",
     "document_type": "Bộ theo dõi trạng thái deliverable (pass/fail) — máy đọc",
-    "version": "0.1",
+    "version": "0.2",
     "date": "2026-06-17",
     "status": "Draft",
     "maintainer": "project-coordinator (PC) — duy trì bằng cách quét, không bịa",
@@ -22,5 +22,110 @@
       "source": "(nguồn: <file>:<dòng/§>) — nơi PC đọc ra trạng thái này"
     }
   },
-  "deliverables": []
+  "deliverables": [
+    {
+      "id": "BRD-TOSS-001",
+      "title": "BRD khung tổng — TOSS",
+      "type": "BRD",
+      "subsystem": null,
+      "path": "ba/workspace/drafts/brd/BRD-TOSS-001-khung-v0.12.md",
+      "frontmatter_status": "Draft",
+      "quality_gate": "na",
+      "evaluator": "na",
+      "passes": false,
+      "blockers": [
+        "Đang ở workspace/drafts, chưa promote vào sync/requirements/brd/",
+        "Chưa qua ba-reviewer + requirement-validator",
+        "v0.12 vừa bổ sung cột 'To-Be model' §8 — chưa review"
+      ],
+      "last_updated": "2026-06-17",
+      "source": "(nguồn: ba/workspace/drafts/brd/BRD-TOSS-001-khung-v0.12.md:4-6)"
+    },
+    {
+      "id": "TOBE-PH1",
+      "title": "To-Be Process Model — PH1 OCC/Dispatch",
+      "type": "ProcessModel",
+      "subsystem": "PH1",
+      "path": "ba/sync/models/TOBE-PH1-OCC-DISPATCH-v0.1.md",
+      "frontmatter_status": "Draft",
+      "quality_gate": "na",
+      "evaluator": "na",
+      "passes": false,
+      "blockers": [
+        "Status=Draft — chưa qua ba-reviewer + requirement-validator",
+        "Chưa workshop xác nhận với SME VNA (M7/OCC)"
+      ],
+      "last_updated": "2026-06-17",
+      "source": "(nguồn: ba/sync/models/TOBE-PH1-OCC-DISPATCH-v0.1.md:4-6)"
+    },
+    {
+      "id": "TOBE-PH2",
+      "title": "To-Be Process Model — PH2 Tài liệu chuyến bay (8 sơ đồ BP-006/007/008/011/012/013/014/015)",
+      "type": "ProcessModel",
+      "subsystem": "PH2",
+      "path": "ba/sync/models/TOBE-PH2-tai-lieu-chuyen-bay-v0.1.md",
+      "frontmatter_status": "Draft",
+      "quality_gate": "na",
+      "evaluator": "na",
+      "passes": false,
+      "blockers": [
+        "Status=Draft — vừa tạo ngày 2026-06-17, chưa qua ba-reviewer + requirement-validator",
+        "Chưa workshop xác nhận với SME VNA (M8 — Tài liệu chuyến bay)",
+        "OID upload OFP còn mở (nguồn: tien_do/DANH-GIA-TIEN-DO-v0.1-2026-06-17.md §2)"
+      ],
+      "last_updated": "2026-06-17",
+      "source": "(nguồn: ba/sync/models/TOBE-PH2-tai-lieu-chuyen-bay-v0.1.md:4-6)"
+    },
+    {
+      "id": "TOBE-PH3",
+      "title": "To-Be Process Model — PH3 Báo cáo & Tối ưu (BCAO/OTP-OSP/Nhiên liệu, 3 sơ đồ + 16 FUNC chờ)",
+      "type": "ProcessModel",
+      "subsystem": "PH3",
+      "path": "ba/sync/models/TOBE-PH3-bao-cao-toi-uu-v0.1.md",
+      "frontmatter_status": "Draft",
+      "quality_gate": "na",
+      "evaluator": "na",
+      "passes": false,
+      "blockers": [
+        "Status=Draft — vừa tạo ngày 2026-06-17, chưa qua ba-reviewer + requirement-validator",
+        "Còn 16 FUNC chờ làm rõ — chưa workshop với SME VNA (M10 — Báo cáo & KPI)"
+      ],
+      "last_updated": "2026-06-17",
+      "source": "(nguồn: ba/sync/models/TOBE-PH3-bao-cao-toi-uu-v0.1.md:4-6)"
+    },
+    {
+      "id": "TOBE-PH4",
+      "title": "To-Be Process Model — PH4 Quản lý danh mục (8 sơ đồ — Aircraft Master/Airport/Route/BP-005/PF/Versioning)",
+      "type": "ProcessModel",
+      "subsystem": "PH4",
+      "path": "ba/sync/models/TOBE-PH4-quan-ly-danh-muc-v0.1.md",
+      "frontmatter_status": "Draft",
+      "quality_gate": "na",
+      "evaluator": "na",
+      "passes": false,
+      "blockers": [
+        "Status=Draft — vừa tạo ngày 2026-06-17, chưa qua ba-reviewer + requirement-validator",
+        "Chưa workshop xác nhận với SME VNA (M2/M3/M4/M5 — Master Data nhóm Batch 2)"
+      ],
+      "last_updated": "2026-06-17",
+      "source": "(nguồn: ba/sync/models/TOBE-PH4-quan-ly-danh-muc-v0.1.md:4-6)"
+    },
+    {
+      "id": "TOBE-PH5",
+      "title": "To-Be Process Model — PH5 Quản trị hệ thống (IAM/RBAC + Movement + Bản đồ tích hợp + 9 nhóm chờ workshop)",
+      "type": "ProcessModel",
+      "subsystem": "PH5",
+      "path": "ba/sync/models/TOBE-PH5-quan-tri-he-thong-v0.1.md",
+      "frontmatter_status": "Draft",
+      "quality_gate": "na",
+      "evaluator": "na",
+      "passes": false,
+      "blockers": [
+        "Status=Draft — vừa tạo ngày 2026-06-17, chưa qua ba-reviewer + requirement-validator",
+        "9 nhóm chờ workshop (M1 — Kiến trúc tích hợp mới sơ bộ, nguồn: tien_do §2)"
+      ],
+      "last_updated": "2026-06-17",
+      "source": "(nguồn: ba/sync/models/TOBE-PH5-quan-tri-he-thong-v0.1.md:4-6)"
+    }
+  ]
 }
