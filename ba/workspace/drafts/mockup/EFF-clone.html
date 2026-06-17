@@ -142,6 +142,7 @@
   /* views */
   .content{display:block;}
   .view{width:100%;}
+  .hidden{display:none !important;}
   .view.hidden{display:none;}
   .effrow{display:flex;gap:24px;align-items:flex-start;}
 
@@ -204,6 +205,24 @@
   .wform-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:14px;}
   .wta{width:100%;min-height:64px;border:1px solid var(--g300);border-radius:8px;padding:10px 12px;font-size:14px;font-family:inherit;color:var(--g700);resize:vertical;}
   .req{color:#B42318;}
+
+  /* convertible % <-> L inputs */
+  .conv{display:flex;align-items:center;gap:10px;}
+  .conv .box{flex:1;display:flex;align-items:center;border:1px solid var(--g300);border-radius:8px;height:42px;padding:0 12px;}
+  .conv .box input{border:none;outline:none;width:100%;font-size:14px;font-family:inherit;color:var(--g900);background:transparent;}
+  .conv .box .u{color:var(--g400);font-size:12.5px;font-weight:600;margin-left:6px;}
+  .conv .eq{color:var(--g400);font-size:18px;}
+  .tankNote{font-size:12.5px;color:var(--teal-l);background:#EFF8FF;border-radius:6px;padding:6px 10px;display:inline-block;margin-bottom:14px;}
+
+  /* modal (water gauge photo) */
+  .modal{display:none;position:fixed;inset:0;background:rgba(16,24,40,.55);z-index:100;align-items:center;justify-content:center;}
+  .modal.open{display:flex;}
+  .modal-card{background:#fff;border-radius:14px;width:520px;max-width:92vw;overflow:hidden;box-shadow:0 24px 64px rgba(0,0,0,.3);}
+  .modal-head{display:flex;align-items:center;padding:16px 20px;border-bottom:1px solid var(--g200);}
+  .modal-head .mt{font-size:16px;font-weight:700;color:var(--g900);}
+  .modal-head .mx{margin-left:auto;cursor:pointer;color:var(--g500);font-size:24px;}
+  .modal-body{padding:20px;}
+  .gauge-meta{margin-top:14px;font-size:12.5px;color:var(--g500);text-align:center;}
 </style>
 </head>
 <body>
@@ -432,7 +451,7 @@
               <tr>
                 <td>Tổ bay submit (App MO Plus)</td>
                 <td>85% (850 L)</td><td>40% (400 L)</td><td>450 L (45%)</td>
-                <td><span class="link">Xem ảnh đồng hồ</span></td>
+                <td><span class="link" onclick="openGauge()"><span class="icon" style="font-size:15px;vertical-align:-2px;">photo_camera</span> Xem ảnh đồng hồ</span></td>
               </tr>
               <tr class="row-danger">
                 <td>Nhập tay / Điều chỉnh (Admin)</td>
@@ -445,14 +464,23 @@
 
         <div class="wsec">
           <div class="wt"><span class="icon" style="color:var(--teal-l)">edit_note</span>Nhập tay / Điều chỉnh dữ liệu nước (Admin)</div>
+          <div class="tankNote">Dung tích bồn áp dụng: <b>1000 L</b> (B787 — chuyến VN7128). Gõ % hoặc Lít, ô còn lại tự quy đổi.</div>
           <div class="wform-grid">
             <div class="frm-row">
-              <label>Chỉ số % nước đầu chuyến</label>
-              <div class="ctl">85 <span class="unit">→ 850 L (tự quy đổi)</span></div>
+              <label>Chỉ số nước đầu chuyến</label>
+              <div class="conv">
+                <div class="box"><input id="dep-pct" type="number" min="0" max="100" value="85" oninput="convPct('dep')"><span class="u">%</span></div>
+                <span class="eq">=</span>
+                <div class="box"><input id="dep-l" type="number" min="0" value="850" oninput="convL('dep')"><span class="u">L</span></div>
+              </div>
             </div>
             <div class="frm-row">
-              <label>Chỉ số % nước cuối chuyến</label>
-              <div class="ctl">40 <span class="unit">→ 400 L (tự quy đổi)</span></div>
+              <label>Chỉ số nước cuối chuyến</label>
+              <div class="conv">
+                <div class="box"><input id="arr-pct" type="number" min="0" max="100" value="40" oninput="convPct('arr')"><span class="u">%</span></div>
+                <span class="eq">=</span>
+                <div class="box"><input id="arr-l" type="number" min="0" value="400" oninput="convL('arr')"><span class="u">L</span></div>
+              </div>
             </div>
           </div>
           <div class="frm-row">
@@ -728,6 +756,42 @@
   </div><!-- /content -->
 </div><!-- /window -->
 
+<!-- ===== Modal: ảnh đồng hồ nước (mẫu) ===== -->
+<div class="modal" id="gauge-modal" onclick="if(event.target===this)closeGauge()">
+  <div class="modal-card">
+    <div class="modal-head">
+      <span class="mt">Ảnh đồng hồ nước — Tổ bay chụp</span>
+      <span class="icon mx" onclick="closeGauge()">close</span>
+    </div>
+    <div class="modal-body">
+      <svg viewBox="0 0 360 280" width="100%" xmlns="http://www.w3.org/2000/svg">
+        <rect x="0" y="0" width="360" height="280" rx="12" fill="#1b1d22"/>
+        <rect x="12" y="12" width="336" height="256" rx="10" fill="#2a2d34" stroke="#3a3e47"/>
+        <text x="180" y="42" text-anchor="middle" fill="#cfd3da" font-size="13" font-family="monospace" letter-spacing="2">POTABLE WATER QTY</text>
+        <circle cx="180" cy="178" r="112" fill="#0f1115" stroke="#545862" stroke-width="3"/>
+        <!-- semicircle scale E(left)..F(right) over the top -->
+        <path d="M 80 178 A 100 100 0 0 1 280 178" fill="none" stroke="#5a5f69" stroke-width="3"/>
+        <!-- ticks at 0/25/50/75/100 % -->
+        <g stroke="#9aa0aa" stroke-width="2">
+          <line x1="80"  y1="178" x2="96"  y2="178"/>
+          <line x1="109" y1="107" x2="121" y2="117"/>
+          <line x1="180" y1="78"  x2="180" y2="94"/>
+          <line x1="251" y1="107" x2="239" y2="117"/>
+          <line x1="280" y1="178" x2="264" y2="178"/>
+        </g>
+        <text x="74"  y="196" text-anchor="middle" fill="#e7e9ee" font-size="13" font-family="monospace">E</text>
+        <text x="180" y="74"  text-anchor="middle" fill="#e7e9ee" font-size="12" font-family="monospace">1/2</text>
+        <text x="286" y="196" text-anchor="middle" fill="#e7e9ee" font-size="13" font-family="monospace">F</text>
+        <!-- needle: 40% over semicircle (E=180deg -> F=0deg). angle = 180 - 40*1.8 = 108deg -->
+        <line x1="180" y1="178" x2="152" y2="93" stroke="#ff5e5d" stroke-width="4" stroke-linecap="round"/>
+        <circle cx="180" cy="178" r="9" fill="#d0d3da"/>
+        <text x="180" y="232" text-anchor="middle" fill="#ffd166" font-size="24" font-family="monospace" font-weight="bold">40 %</text>
+      </svg>
+      <div class="gauge-meta">VN7128 · B787 · Nước cuối chuyến · chụp 28/08/2024 03:10 UTC &nbsp;·&nbsp; <i>(ảnh minh hoạ — vẽ mẫu)</i></div>
+    </div>
+  </div>
+</div>
+
 <script>
   function closeAllDD(){ document.querySelectorAll('.dd-menu').forEach(function(m){m.classList.remove('open');}); }
   function toggleDD(id, ev){ ev.stopPropagation(); var m=document.getElementById(id); var wasOpen=m.classList.contains('open'); closeAllDD(); if(!wasOpen){ m.classList.add('open'); } }
@@ -750,10 +814,31 @@
     document.getElementById('pane-water').classList.toggle('hidden', pane!=='water');
   }
 
+  // gauge photo modal
+  function openGauge(){ document.getElementById('gauge-modal').classList.add('open'); }
+  function closeGauge(){ document.getElementById('gauge-modal').classList.remove('open'); }
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape'){ closeGauge(); } });
+
+  // % <-> Liters conversion (tank capacity = 1000 L for B787 / VN7128)
+  var TANK_L = 1000;
+  function convPct(p){
+    var pct=parseFloat(document.getElementById(p+'-pct').value);
+    var lEl=document.getElementById(p+'-l');
+    if(isNaN(pct)){ lEl.value=''; return; }
+    lEl.value=Math.round(pct/100*TANK_L);
+  }
+  function convL(p){
+    var l=parseFloat(document.getElementById(p+'-l').value);
+    var pEl=document.getElementById(p+'-pct');
+    if(isNaN(l)){ pEl.value=''; return; }
+    pEl.value=Math.round(l/TANK_L*1000)/10;
+  }
+
   // deep-link support for review/screenshot: #view-yc34, #water
   (function(){
     var h=location.hash.replace('#','');
     if(h==='water'){ selectRTab(document.getElementById('rtab-water'),'water'); }
+    else if(h==='gauge'){ selectRTab(document.getElementById('rtab-water'),'water'); openGauge(); }
     else if(h && document.getElementById(h)){ showView(h); }
   })();
 </script>
