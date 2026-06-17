@@ -10,6 +10,15 @@
             "command": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File \"$CLAUDE_PROJECT_DIR\\.claude\\sync\\check-vietnamese.ps1\""
           }
         ]
+      },
+      {
+        "matcher": "Bash|PowerShell|Read|Glob|Grep",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File \"$CLAUDE_PROJECT_DIR\\.claude\\sync\\guard-safety.ps1\""
+          }
+        ]
       }
     ],
     "PostToolUse": [
@@ -19,6 +28,10 @@
           {
             "type": "command",
             "command": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File \"$CLAUDE_PROJECT_DIR\\.claude\\sync\\format-markdown.ps1\""
+          },
+          {
+            "type": "command",
+            "command": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File \"$CLAUDE_PROJECT_DIR\\.claude\\sync\\quality-gate.ps1\""
           }
         ]
       }

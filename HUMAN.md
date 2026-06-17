@@ -91,6 +91,17 @@ Thư mục dự án này có tính **di động** — có thể được nén (z
 
 ---
 
+## 0.5 Định hướng đầu phiên & Kỷ luật "đã xong" (BẮT BUỘC)
+
+Mở rộng ràng buộc của §0, đúc kết từ nghiên cứu harness ([`.claude/knowledge/agent-harness-engineering.md`](.claude/knowledge/agent-harness-engineering.md), N4).
+
+1. **Định hướng trước khi làm việc lớn.** Đầu phiên không tầm thường, lấy "bối cảnh" trước thay vì dựng lại trạng thái: đọc bản đánh giá tiến độ mới nhất + [`ba/sync/models/deliverable-status.json`](ba/sync/models/deliverable-status.json), hoặc gọi `project-coordinator` ở **"Chế độ B — định hướng nhanh"**. Rồi chọn việc *ưu tiên cao nhất chưa xong*.
+2. **Không tuyên bố hoàn thành sớm.** Deliverable **chưa xong** chỉ vì file đã tồn tại. `status: Approved` chỉ đặt **sau khi** evaluator (`requirement-validator` + `ba-reviewer`) đạt VÀ Quality Gate sạch. Không tự nâng lên Approved; không đặt `passes:true` chỉ vì file đã có.
+3. **Tracker pass/fail là suy ra, không bịa** (§0). `project-coordinator` duy trì `deliverable-status.json` bằng cách quét frontmatter/INDEX thực tế — không bịa mục hay trạng thái.
+4. **Rà lại harness mỗi đời model** (stress-test giả định): khi nâng model nền, theo SOP trong `agent-harness-engineering.md` §D — gỡ phần không còn cần, từng cái một, ghi vào [`SYNC-LOG.md`](.claude/sync/SYNC-LOG.md).
+
+---
+
 ## 1. Tổng quan Dự án
 
 | Trường | Giá trị |
@@ -148,8 +159,13 @@ TOSS/
 ├── ba/                             # PHÂN TÍCH NGHIỆP VỤ
 │   ├── workspace/                  # Vùng làm việc cá nhân (mỗi member trên máy riêng)
 │   │   ├── input/                  # Tài liệu nguồn chỉ-đọc
-│   │   │   ├── meeting-notes/      # Biên bản họp, ghi chú phỏng vấn stakeholder
-│   │   │   ├── domain-knowledge/   # Kiến thức miền hàng không: ICAO, CAAV, FTL, OCC…
+│   │   │   ├── Customer_docs/      # Tài liệu do VNA cung cấp (DOCX/XLSX/PDF) — agent tự rã → 01-nguon
+│   │   │   │   ├── Aircraft/       #   Dữ liệu tàu bay (FIMS, Netline, ACARS)
+│   │   │   │   ├── Form/           #   Biểu mẫu vận hành (BCAO, Diversion Report…)
+│   │   │   │   ├── Procedure/      #   SOP nghiệp vụ (Flight Dispatcher, KTKTB…)
+│   │   │   │   ├── meeting-notes/  #   Transcript phỏng vấn + biên bản họp
+│   │   │   │   └── INDEX.md        #   Index tra nhanh + trạng thái xử lý
+│   │   │   ├── domain-knowledge/   # Kiến thức miền: ICAO, CAAV, FTL, glossary — NGƯỜI+AGENT song song
 │   │   │   └── [file nguồn]        # BBKS, BBLV, đề xuất kỹ thuật, VNA_TOSS…
 │   │   └── drafts/                 # Nháp đang xây dựng (cá nhân, chưa thống nhất)
 │   │       ├── phan-tich/          # Phân tích nghiệp vụ: As-Is/To-Be, gap analysis, đối chiếu
@@ -248,11 +264,18 @@ document_type: "<BRD | SRS | FRD | URD | User Story | ...>"
 ---
 ```
 
+**Tracker máy đọc = JSON/TSV (không phải Markdown).** Những file agent *chỉnh sửa có cấu trúc* (tracker trạng thái, RTM) để ở JSON/TSV — model ít ghi đè sai JSON hơn Markdown (N4). Bản canonical máy đọc: [`ba/sync/models/deliverable-status.json`](ba/sync/models/deliverable-status.json) (tracker pass/fail, do `project-coordinator` duy trì) và [`ba/sync/models/RTM-template-v0.1.json`](ba/sync/models/RTM-template-v0.1.json) (RTM). Bản `.md` đi kèm là **view cho người đọc**, đồng bộ từ JSON; tài liệu văn xuôi vẫn dùng Markdown.
+
 **Chuẩn xuất Word giao người (BẮT BUỘC):** Markdown chỉ là kênh nội bộ giữa các agent; bản Word/PDF giao cho con người phải **tự mô tả đầy đủ và trình bày đẹp, dễ nhìn**. **Toàn bộ quy trình đã đóng gói thành skill `export-word`** — `.claude/skills/export-word/` (chạy `scripts/export-word.ps1` kèm manifest; `build-reference-template.ps1` dựng lại mẫu). Ưu tiên dùng skill.
 
-> **QUY TẮC VERSION (BẮT BUỘC):** Tên file ra **luôn** kèm version + ngày: `<Base>-v<Version>-<YYYY-MM-DD>.docx`. **Không ghi đè file đã chốt** — nội dung chốt thì **tăng version** (file mới; giữ file cũ làm lịch sử). Script từ chối ghi đè trừ khi `-Force` (chỉ cho bản nháp cùng version trong ngày).
+> **QUY TẮC VERSION (BẮT BUỘC — áp dụng cho MỌI tài liệu, không chỉ file xuất):**
+> 1. **File chỉ chứa nội dung hiện tại.** Không nhúng CHANGELOG, bảng lịch sử hay ghi chú "v0.x thêm Y" bên trong file tài liệu. Người đọc chỉ thấy trạng thái đúng hiện tại.
+> 2. **Lịch sử version → `BA-VERSION-LOG.md`.** Mọi thay đổi được ghi vào `ba/workspace/drafts/quy-trinh/BA-VERSION-LOG.md` (1 dòng mỗi lần bump version). Agent PHẢI bổ sung vào log này khi tạo version mới.
+> 3. **Bump version = file mới + xóa file cũ.** Khi nội dung đã được xác nhận và thay đổi đáng kể, tạo `<Tên>-v<X.Y>.md` (mới), xóa file cũ, cập nhật INDEX liên quan, bổ sung 1 dòng vào `BA-VERSION-LOG.md`. Git giữ toàn bộ lịch sử nội dung cũ.
+> 4. **Tên file xuất luôn kèm version + ngày:** `<Base>-v<Version>-<YYYY-MM-DD>.docx`. Không ghi đè file đã chốt — script từ chối ghi đè trừ khi dùng `-Force` (chỉ cho bản nháp cùng version trong ngày).
 
 Khi xuất (pandoc):
+
 1. **Không chứa liên kết tệp nội bộ.** Gỡ: (a) đích link không phải `http(s)`/`mailto` (giữ nhãn); (b) token đường dẫn/đuôi `.md`/`.html`; (c) **stem tên file còn sót** khi nhãn link chính là tên file (vd `3.1-phan-he-quan-ly-kho`, `wf-tram-mobile-tablet`) — regex chỉ gỡ slug **dẫn đầu bằng số mục hoặc `wf-`** nên KHÔNG đụng thuật ngữ Anh có gạch nối (`end-to-end`, `low-fidelity`) hay mã (`MO-2026-012`). Giữ tài liệu nguồn thật `.xlsx`/`.docx`. Tham chiếu chéo thành chữ mô tả mục ("xem 4.6").
 2. **Áp dụng mẫu Word** `.claude/templates/word-reference.docx` qua `--reference-doc`. **Chuẩn trình bày bám theo biểu mẫu chính thức của Viettel `QT02.BM.04_Thiet ke chi tiet.docx`** (đã phân tích từ template thật):
    - **Font đồng bộ:** thân bài **Times New Roman 12pt** (đúng chuẩn QT02); tiêu đề Times New Roman **đậm**, cỡ ~14/13/12pt (H1/H2/H3).
@@ -264,11 +287,31 @@ Khi xuất (pandoc):
 4. **Hậu xử lý mỗi file docx xuất ra** (pandoc bỏ ảnh logo của header): chèn lại `word/media/logo.png` + `word/_rels/header1.xml.rels` + `Default png` vào `[Content_Types].xml` bằng `ZipArchive` chế độ 'Update'. File `.md` nguồn **giữ nguyên link** (cho agent); style/letterhead chỉ áp **khi xuất**.
 5. **QC file đã xuất** (đọc `word/document.xml`/`styles.xml`/`theme1.xml`): tiêu chí PASS — `.md`=0, `](`=0, slug-stem=0, không lọt khóa YAML, không mojibake; entry dùng `/`; có `word/media/logo.png` + `header1.xml` + `footer1.xml` + field TOC; đủ các mục; XML well-formed; **FONT đồng bộ — mọi `w:ascii`/theme đều Times New Roman (theme latin = TNR, `Aptos`/`Calibri` = 0); chỉ cho phép `Consolas` và chỉ ở code/verbatim**. Lỗi thì sửa và xuất lại.
 
-**Theo dõi tài liệu đầu vào (BẮT BUỘC khi nhận file mới):** Khi agent nhận/phát hiện file mới trong `ba/workspace/input/Customer_docs/` hoặc `meeting-notes/` (không tính bulk ACARS/PEP5.16):
+**Xử lý tài liệu đầu vào — hai quy tắc theo loại thư mục (BẮT BUỘC):**
 
-1. Cập nhật `ba/workspace/drafts/phan-tich/TIMELINE-INPUT-DOCS.md` (mục A + mục B, bump version + ghi changelog).
-2. Chạy `.claude/sync/check-input-timeline.ps1` (Scan/Check/Both) để xác nhận không bỏ sót.
-3. Nếu phát hiện entry TIMELINE không có file → thông báo BA Lead, **KHÔNG tự xóa** (theo §D2 của TIMELINE-INPUT-DOCS.md).
+### Customer\_docs → Agent tự đọc và rã MD
+
+Khi người dùng thêm hoặc cập nhật file Office/PDF vào `ba/workspace/input/Customer_docs/` (DOCX, XLSX, PPTX, PDF), agent tự động thực hiện:
+
+**Loại trừ:** bulk binary (`ACARS/in-*.zip`), phần mềm (`PEP5.16/`), file đã có `.extracted.md` không thay đổi.
+
+1. **Trích xuất nội dung** → `ba/workspace/drafts/phan-tich/01-nguon/<tên-file>.extracted.md`
+   - DOCX/PPTX: `python -m markitdown <file>` (nếu lỗi encoding → dùng thư viện `python-docx`)
+   - XLSX: `python -m markitdown <file>` (nếu là Google Sheet live → `gsheet-to-md.py`)
+   - PDF: `pdftotext -layout <file>` rồi ghi ra `.extracted.md`
+2. **Cập nhật `01-nguon/INDEX.md`** — thêm dòng mới (tên file + số đoạn/dòng + mô tả ngắn).
+3. **Cập nhật `Customer_docs/INDEX.md`** — điền cột "Extracted" + cột "Trạng thái".
+4. **Cập nhật TIMELINE-INPUT-DOCS.md** (mục A + B, bump version) rồi chạy `.claude/sync/check-input-timeline.ps1`.
+5. Nếu phát hiện entry TIMELINE không có file tương ứng → thông báo BA Lead, **KHÔNG tự xóa** (theo §D2 của TIMELINE-INPUT-DOCS.md).
+
+### domain-knowledge → Người và Agent cập nhật song song
+
+`ba/workspace/input/domain-knowledge/` chứa tài liệu tham khảo miền (ICAO, IATA, CAAV, FTL, glossary TOSS…).
+
+- **Người dùng:** thêm PDF/XLSX/DOCX tham khảo mới bất cứ lúc nào; không cần thông báo trước cho agent.
+- **Agent:** cập nhật và bổ sung `toss-glossary-v0.1.md` và các file phân tích miền khi phát hiện thuật ngữ/khái niệm mới qua phỏng vấn hoặc tài liệu; KHÔNG tự xóa file do người thêm.
+- **Khi xung đột** (cùng sửa một thuật ngữ/entry): BA Lead quyết định bản nào giữ.
+- Agent **không** tự extract toàn bộ PDF domain-knowledge thành `.extracted.md` trừ khi được yêu cầu cụ thể — những file này thường lớn và chỉ dùng chọn lọc (Grep/Read đúng mục cần).
 
 ---
 
@@ -282,7 +325,10 @@ Khi chỉnh sửa file được theo dõi, hook tự động (`sync-check.ps1`) 
 
 ---
 
-*HUMAN.md phiên bản 2.4 — 2026-06-16. File gốc: [CLAUDE.md](CLAUDE.md).*
+*HUMAN.md phiên bản 2.7 — 2026-06-17. File gốc: [CLAUDE.md](CLAUDE.md).*
+*v2.7: §0.5 Định hướng đầu phiên & Kỷ luật "đã xong" (định hướng trước khi làm, không tuyên bố hoàn thành sớm, tracker pass/fail suy-ra-không-bịa, SOP rà harness mỗi đời model); §6 — tracker máy đọc (deliverable-status.json, RTM JSON) dùng JSON/TSV. Nguồn: agent-harness-engineering.md (N1–N4).*
+*v2.6: §6 — Quy tắc Version mở rộng toàn bộ tài liệu: file chỉ chứa nội dung hiện tại, không nhúng CHANGELOG; lịch sử ghi vào `BA-VERSION-LOG.md`; bump version = file mới + xóa file cũ.*
+*v2.5: §4 + §6 — phân tách "Xử lý tài liệu đầu vào" thành 2 quy tắc: (1) Customer_docs → agent tự extract DOCX/XLSX/PDF → 01-nguon + cập nhật INDEX + TIMELINE; (2) domain-knowledge → người dùng + agent cập nhật song song, không có chủ sở hữu duy nhất. Cập nhật cây §4 để hiện rõ Customer_docs/ và domain-knowledge/.*
 *v2.4: §6 — thêm quy tắc Theo dõi tài liệu đầu vào: agent cập nhật TIMELINE-INPUT-DOCS.md mỗi khi nhận file mới; script `.claude/sync/check-input-timeline.ps1` (Scan/Check/Both) chỉ báo cáo, không tự sửa; xóa entry thiếu file là quyết định BA Lead.*
 *v2.3: bổ sung subagent **project-coordinator (PC)** — Điều phối & nhắc nhở công việc dự án còn tồn đọng (tổng hợp OID/lộ trình/TASK/action item/cờ cần xác nhận thành báo cáo nhắc việc có ưu tiên; chỉ tổng hợp nguồn đã ghi, không tự quyết — §0/§0.3). Định nghĩa: `.claude/agents/project-coordinator.md` (+ bản VI `.claude/human/agents/`). Đăng ký ở CLAUDE.md §5.*
 *v2.2: thêm §0.4 Thiết lập Danh tính & Vai trò ở Phiên Đầu tiên — quy tắc bàn giao thư mục di động: trên máy mới (agent chưa có bộ nhớ về người dùng) phải hỏi họ tên/vai trò/phân hệ, đối chiếu PHAN-CONG-ROLE-BA, lưu bộ nhớ, và khóa các hành động gắn thẩm quyền cho tới khi xác nhận.*
