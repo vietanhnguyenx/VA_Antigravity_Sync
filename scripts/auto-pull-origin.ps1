@@ -66,7 +66,17 @@ try {
     }
 
     # merge-base de xac dinh quan he giua local va origin/main
-    $base = (& $git merge-base main origin/main).Trim()
+    $baseRaw = & $git merge-base main origin/main 2>$null
+    $base = if ($baseRaw) { $baseRaw.Trim() } else { "" }
+
+    if ([string]::IsNullOrEmpty($base)) {
+        # Khong co to tien chung -> hai lich su KHONG LIEN QUAN (unrelated histories).
+        # Fast-forward la bat kha thi. Theo chien luoc no-clobber: BO QUA + ghi log.
+        Write-PullLog "LICH SU KHONG LIEN QUAN (unrelated histories) giua local va origin/main." "WARNING"
+        Write-PullLog "Fast-forward bat kha thi. Theo che do an toan no-clobber: BO QUA, khong ghi de." "WARNING"
+        Write-PullLog "De lay ban cua Gioan can dung che do mirror (reset --hard) hoac clone moi - quyet dinh boi nguoi dung." "WARNING"
+        return
+    }
 
     if ($base -eq $remote) {
         # origin la to tien cua local -> local DANG VUOT TRUOC origin. Khong can pull.

@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mobile Operation — EFF (clone)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<style>
+  :root{
+    --teal-l:#0E6F88; --teal-d:#005E76;
+    --gold:#F4A823; --gold-lotus:#DBA410;
+    --g50:#F9FAFB; --g100:#F2F4F7; --g200:#E4E7EC; --g300:#D0D5DD;
+    --g400:#98A2B3; --g500:#667085; --g600:#475467; --g700:#344054; --g900:#101828;
+    --blue-sel:#E8F1FC; --link:#1570EF;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:#c9ced6;font-family:'Inter',-apple-system,'Segoe UI',Arial,sans-serif;
+       display:flex;justify-content:center;padding:0;}
+  .icon{font-family:'Material Symbols Outlined';font-weight:400;font-style:normal;
+        line-height:1;letter-spacing:normal;text-transform:none;white-space:nowrap;
+        direction:ltr;-webkit-font-feature-settings:'liga';font-feature-settings:'liga';
+        -webkit-font-smoothing:antialiased;user-select:none;}
+  .window{width:1920px;background:#fff;overflow:hidden;}
+
+  /* ===== Browser chrome ===== */
+  .tabbar{height:42px;background:#DEE1E6;display:flex;align-items:center;padding:0 10px;position:relative;}
+  .traffic{display:flex;gap:8px;margin:0 14px 0 16px;}
+  .dot{width:12px;height:12px;border-radius:50%;}
+  .d-red{background:#FF5E5D;} .d-yel{background:#FFBC4F;} .d-grn{background:#22CB58;}
+  .tab{height:34px;min-width:240px;background:#fff;border-radius:8px 8px 0 0;align-self:flex-end;
+       display:flex;align-items:center;gap:8px;padding:0 12px;font-size:13px;color:#3c4043;font-weight:500;}
+  .tab .fav{width:16px;height:16px;}
+  .tab .x{margin-left:auto;color:#5f6368;font-size:18px;}
+  .newtab{color:#5f6368;font-size:22px;margin-left:8px;}
+  .toolbar{height:44px;background:#fff;display:flex;align-items:center;gap:6px;padding:0 14px;border-bottom:1px solid #E4E7EC;}
+  .tb-ico{color:#5f6368;font-size:22px;width:34px;height:34px;display:flex;align-items:center;justify-content:center;border-radius:50%;cursor:pointer;}
+  .tb-ico:hover{background:#f1f3f4;}
+  .urlbar{flex:1;height:30px;background:#f1f3f4;border-radius:999px;display:flex;align-items:center;gap:8px;padding:0 14px;margin:0 8px;color:#5f6368;font-size:13.5px;}
+  .urlbar .lock{font-size:16px;}
+  .tb-right{display:flex;align-items:center;gap:6px;}
+  .avatar-sm{width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,#7b8794,#cbd2d9);}
+
+  /* ===== App header ===== */
+  .appbar{height:104px;background:linear-gradient(95deg,#005E76 0%,#0E7089 45%,#1E94AE 100%);
+          display:flex;align-items:center;padding:0 30px;color:#fff;}
+  .brand{display:flex;align-items:center;gap:14px;}
+  .brand .lotus{width:46px;height:28px;}
+  .brand .word{height:11px;}
+  .brand .sep{width:1px;height:42px;background:rgba(255,255,255,.45);margin:0 6px;}
+  .brand .eff{font-size:34px;font-weight:700;letter-spacing:.5px;}
+  .nav{margin-left:auto;display:flex;align-items:center;gap:6px;}
+  .navitem{display:flex;align-items:center;gap:8px;padding:11px 22px;border-radius:999px;font-size:15px;font-weight:500;color:#fff;cursor:pointer;white-space:nowrap;}
+  .navitem .icon{font-size:22px;}
+  .navitem.active{background:rgba(255,255,255,.18);}
+  .navitem:not(.active):hover{background:rgba(255,255,255,.10);}
+  .nav .vsep{width:1px;height:34px;background:rgba(255,255,255,.45);margin:0 10px;}
+  .bell{position:relative;width:34px;height:34px;display:flex;align-items:center;justify-content:center;cursor:pointer;}
+  .bell .icon{font-size:26px;}
+  .badge{position:absolute;top:-2px;right:-2px;min-width:16px;height:16px;background:#F04438;border-radius:999px;color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;padding:0 4px;border:1.5px solid #0E7089;}
+  .avatar{width:42px;height:42px;border-radius:50%;margin-left:14px;background:
+          radial-gradient(circle at 50% 32%, #f1c9a5 0 34%, transparent 35%),
+          linear-gradient(135deg,#9aa6b2,#d7dde3);border:2px solid rgba(255,255,255,.6);overflow:hidden;}
+
+  /* ===== Body / panels ===== */
+  .content{display:flex;gap:24px;padding:24px 30px 28px;background:var(--g100);align-items:flex-start;}
+  .panel{background:#fff;border-radius:12px;box-shadow:0 1px 3px rgba(16,24,40,.06);padding:22px 22px 16px;}
+  .left{flex:1 1 50%;}
+  .right{flex:1 1 50%;min-height:880px;}
+  .ptitle{font-size:23px;font-weight:700;color:var(--g900);margin:0 0 18px;}
+
+  /* outlined fields */
+  .filters{display:flex;flex-direction:column;gap:16px;margin-bottom:18px;}
+  .frow{display:flex;gap:14px;align-items:center;}
+  .field{position:relative;height:44px;border:1px solid var(--g300);border-radius:8px;background:#fff;display:flex;align-items:center;padding:0 12px;gap:8px;color:var(--g700);font-size:14px;}
+  .field > .lbl{position:absolute;top:-8px;left:10px;background:#fff;padding:0 5px;font-size:12px;color:var(--g500);font-weight:500;}
+  .field .icon{font-size:19px;color:var(--g500);}
+  .field .arrow{margin-left:auto;font-size:20px;color:var(--g500);}
+  .field .val{color:var(--g700);}
+  .field.ph .val{color:var(--g400);}
+  .btn-search{height:44px;padding:0 26px;background:var(--gold);color:#fff;border:none;border-radius:8px;font-size:15px;font-weight:600;cursor:pointer;}
+  .btn-reset{color:#0E7089;font-size:15px;font-weight:600;text-decoration:underline;cursor:pointer;padding:0 6px;}
+
+  /* table */
+  table{width:100%;border-collapse:collapse;}
+  .ftable th{background:var(--g50);color:var(--g600);font-size:12.5px;font-weight:600;text-align:left;padding:11px 10px;border-top:1px solid var(--g200);border-bottom:1px solid var(--g200);white-space:nowrap;}
+  .ftable td{padding:13px 10px;font-size:13.5px;color:var(--g700);border-bottom:1px solid var(--g200);white-space:nowrap;}
+  .ftable tbody tr:nth-child(even){background:var(--g50);}
+  .ftable tbody tr.sel{background:var(--blue-sel);}
+  .ftable tbody tr.sel td{color:var(--g900);}
+
+  .pager{display:flex;align-items:center;gap:14px;padding:16px 4px 4px;font-size:13.5px;color:var(--g600);}
+  .pager .rec{font-weight:500;}
+  .perpage{margin-left:6px;display:flex;align-items:center;gap:8px;border:1px solid var(--g300);border-radius:8px;height:36px;padding:0 10px;color:var(--g700);}
+  .pages{margin-left:auto;display:flex;align-items:center;gap:4px;}
+  .pages .pg{min-width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--g600);font-weight:500;}
+  .pages .pg.nav .icon{font-size:20px;}
+  .pages .pg.act{background:var(--gold);color:#fff;}
+  .pages .pg:not(.act):hover{background:var(--g100);}
+
+  /* right panel tabs */
+  .rtabs{display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--g200);margin:-4px -4px 0;padding-bottom:0;}
+  .rtab{display:flex;align-items:center;gap:8px;padding:10px 14px 14px;font-size:14.5px;color:var(--g600);font-weight:500;cursor:pointer;white-space:nowrap;border-bottom:2px solid transparent;margin-bottom:-1px;}
+  .rtab .icon{font-size:19px;}
+  .rtab.active{color:var(--g900);font-weight:600;border-bottom-color:var(--gold);}
+  .rtab.active .icon{color:var(--gold);}
+  .rtabnav{margin-left:auto;display:flex;gap:2px;}
+  .rtabnav .icon{font-size:22px;color:var(--g400);cursor:pointer;}
+
+  .rhead{display:flex;align-items:center;margin:18px 0 14px;gap:12px;}
+  .rhead .t{font-size:16px;font-weight:600;color:var(--g700);}
+  .rhead .t b{color:var(--link);font-weight:600;}
+  .rhead .acts{margin-left:auto;display:flex;gap:12px;}
+  .obtn{height:42px;padding:0 18px;border:1px solid var(--g300);border-radius:8px;background:#fff;color:var(--g700);font-size:14px;font-weight:500;display:flex;align-items:center;gap:8px;cursor:pointer;}
+  .obtn .icon{font-size:19px;color:var(--g500);}
+
+  .dtable{border:1px solid var(--g200);border-radius:10px;overflow:hidden;}
+  .dtable th{background:var(--g50);color:var(--g600);font-size:12.5px;font-weight:600;text-align:left;padding:13px 14px;border-bottom:1px solid var(--g200);}
+  .dtable td{padding:14px;font-size:13.5px;color:var(--g700);border-bottom:1px solid var(--g200);vertical-align:top;}
+  .dtable tr:last-child td{border-bottom:none;}
+  .sub small{display:block;color:var(--g400);font-size:11.5px;margin-top:2px;}
+  .act-ico{display:flex;gap:14px;color:var(--g500);}
+  .act-ico .icon{font-size:20px;cursor:pointer;}
+
+  /* ===== Water module additions ===== */
+  /* nav dropdowns */
+  .nav-dd{position:relative;}
+  .navitem.clickable{cursor:pointer;}
+  .dd-menu{display:none;position:absolute;top:calc(100% + 8px);right:0;min-width:320px;background:#fff;
+           border:1px solid var(--g200);border-radius:12px;box-shadow:0 12px 32px rgba(16,24,40,.18);
+           padding:8px;z-index:50;}
+  .dd-menu.open{display:block;}
+  .dd-menu .ddlabel{font-size:11.5px;font-weight:700;color:var(--g400);text-transform:uppercase;letter-spacing:.5px;padding:8px 12px 6px;}
+  .dd-menu a{display:flex;align-items:center;gap:12px;padding:11px 12px;border-radius:8px;color:var(--g700);
+             font-size:14px;font-weight:500;text-decoration:none;cursor:pointer;white-space:nowrap;}
+  .dd-menu a:hover{background:var(--g50);}
+  .dd-menu a .icon{font-size:20px;color:var(--teal-l);}
+  .dd-sep{height:1px;background:var(--g200);margin:6px 4px;}
+
+  /* views */
+  .content{display:block;}
+  .view{width:100%;}
+  .hidden{display:none !important;}
+  .view.hidden{display:none;}
+  .effrow{display:flex;gap:24px;align-items:flex-start;}
+
+  /* full-page report/config screen header */
+  .screen{padding:24px;}
+  .scr-head{display:flex;align-items:flex-start;margin-bottom:18px;}
+  .scr-head .crumb{font-size:12.5px;color:var(--g500);margin-bottom:4px;}
+  .scr-head h2{font-size:22px;font-weight:700;color:var(--g900);margin:0;}
+  .scr-head .yc{font-size:13px;font-weight:600;color:var(--teal-l);margin-left:8px;}
+  .scr-head .acts{margin-left:auto;display:flex;gap:12px;}
+  .btn-excel{height:42px;padding:0 18px;background:#067647;color:#fff;border:none;border-radius:8px;font-size:14px;font-weight:600;display:flex;align-items:center;gap:8px;cursor:pointer;}
+  .btn-excel .icon{font-size:19px;}
+  .btn-add{height:42px;padding:0 18px;background:var(--teal-l);color:#fff;border:none;border-radius:8px;font-size:14px;font-weight:600;display:flex;align-items:center;gap:8px;cursor:pointer;}
+  .btn-add .icon{font-size:19px;}
+
+  .filterbar{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-bottom:20px;}
+  .filterbar .field{min-width:170px;flex:0 0 auto;}
+
+  /* generic data table reused on screens */
+  .gtable{width:100%;border-collapse:collapse;border:1px solid var(--g200);border-radius:10px;overflow:hidden;}
+  .gtable th{background:var(--g50);color:var(--g600);font-size:12.5px;font-weight:600;text-align:left;padding:12px 14px;border-bottom:1px solid var(--g200);white-space:nowrap;}
+  .gtable td{padding:13px 14px;font-size:13.5px;color:var(--g700);border-bottom:1px solid var(--g200);white-space:nowrap;}
+  .gtable tbody tr:nth-child(even){background:var(--g50);}
+  .gtable tr:last-child td{border-bottom:none;}
+  .cell-warn{color:#B42318;font-weight:600;}
+  .cell-ok{color:#067647;font-weight:600;}
+  .row-danger td{background:#FEF3F2 !important;}
+  .tag{display:inline-block;padding:2px 10px;border-radius:999px;font-size:11.5px;font-weight:600;}
+  .tag-green{background:#ECFDF3;color:#067647;} .tag-gray{background:#F2F4F7;color:#475467;}
+  .tag-red{background:#FEF3F2;color:#B42318;} .tag-amber{background:#FFFAEB;color:#B54708;}
+  .link{color:var(--link);text-decoration:underline;cursor:pointer;font-size:13px;}
+
+  /* line chart card */
+  .chartcard{border:1px solid var(--g200);border-radius:10px;padding:18px 20px;margin-bottom:20px;}
+  .chartcard .ct{font-size:14px;font-weight:600;color:var(--g700);margin-bottom:6px;}
+
+  /* config forms (YC27/28) */
+  .formcard{border:1px solid var(--g200);border-radius:10px;padding:20px;margin-bottom:18px;max-width:760px;}
+  .formcard h3{font-size:15px;font-weight:600;color:var(--g900);margin:0 0 14px;}
+  .frm-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .frm-row{display:flex;flex-direction:column;gap:6px;}
+  .frm-row label{font-size:13px;color:var(--g600);font-weight:500;}
+  .frm-row .ctl{height:42px;border:1px solid var(--g300);border-radius:8px;padding:0 12px;display:flex;align-items:center;color:var(--g700);font-size:14px;}
+  .frm-row .ctl .unit{margin-left:auto;color:var(--g400);font-size:12.5px;}
+  .save-row{margin-top:6px;}
+  .btn-save{height:42px;padding:0 28px;background:var(--teal-l);color:#fff;border:none;border-radius:8px;font-size:15px;font-weight:600;cursor:pointer;}
+  .hint{font-size:12.5px;color:var(--g500);margin-top:8px;}
+
+  /* Water tab pane (YC33) */
+  .wsec{border:1px solid var(--g200);border-radius:10px;padding:18px 20px;margin-bottom:16px;}
+  .wsec .wt{font-size:14px;font-weight:700;color:var(--g900);margin:0 0 14px;display:flex;align-items:center;gap:8px;}
+  .reco-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+  .reco{background:var(--g50);border-radius:8px;padding:12px 14px;}
+  .reco .k{font-size:12px;color:var(--g500);}
+  .reco .v{font-size:16px;font-weight:700;color:var(--g900);margin-top:4px;}
+  .reco.hl{background:#EFF8FF;}
+  .reco.hl .v{color:#0E7089;}
+  .formula{font-size:11.5px;color:#1e3a8a;background:#eff6ff;border-left:4px solid #3b82f6;padding:10px 14px;border-radius:4px;font-family:ui-monospace,Consolas,monospace;margin-top:14px;}
+  .wstatus{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--g600);margin-bottom:16px;}
+  .wform-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:14px;}
+  .wta{width:100%;min-height:64px;border:1px solid var(--g300);border-radius:8px;padding:10px 12px;font-size:14px;font-family:inherit;color:var(--g700);resize:vertical;}
+  .req{color:#B42318;}
+
+  /* convertible % <-> L inputs */
+  .conv{display:flex;align-items:center;gap:10px;}
+  .conv .box{flex:1;display:flex;align-items:center;border:1px solid var(--g300);border-radius:8px;height:42px;padding:0 12px;}
+  .conv .box input{border:none;outline:none;width:100%;font-size:14px;font-family:inherit;color:var(--g900);background:transparent;}
+  .conv .box .u{color:var(--g400);font-size:12.5px;font-weight:600;margin-left:6px;}
+  .conv .eq{color:var(--g400);font-size:18px;}
+  .tankNote{font-size:12.5px;color:var(--teal-l);background:#EFF8FF;border-radius:6px;padding:6px 10px;display:inline-block;margin-bottom:14px;}
+
+  /* modal (water gauge photo) */
+  .modal{display:none;position:fixed;inset:0;background:rgba(16,24,40,.55);z-index:100;align-items:center;justify-content:center;}
+  .modal.open{display:flex;}
+  .modal-card{background:#fff;border-radius:14px;width:520px;max-width:92vw;overflow:hidden;box-shadow:0 24px 64px rgba(0,0,0,.3);}
+  .modal-head{display:flex;align-items:center;padding:16px 20px;border-bottom:1px solid var(--g200);}
+  .modal-head .mt{font-size:16px;font-weight:700;color:var(--g900);}
+  .modal-head .mx{margin-left:auto;cursor:pointer;color:var(--g500);font-size:24px;}
+  .modal-body{padding:20px;}
+  .gauge-meta{margin-top:14px;font-size:12.5px;color:var(--g500);text-align:center;}
+</style>
+</head>
+<body>
+<div class="window">
+
+  <!-- ===== Browser chrome ===== -->
+  <div class="tabbar">
+    <div class="traffic"><span class="dot d-red"></span><span class="dot d-yel"></span><span class="dot d-grn"></span></div>
+    <div class="tab">
+      <svg class="fav" viewBox="0 0 46 28" xmlns="http://www.w3.org/2000/svg"><path d="M22.7386 24.5451C22.3457 24.7682 19.5031 27.1527 13.8577 27.1527C9.09946 27.1527 4.01458 24.7376 2.42115 24.7857C1.86058 24.7639 1.41035 24.8776 1.05724 25.0307C0.39073 25.3064 -0.258121 24.9039 0.103823 24.2257C1.35739 21.8806 3.4805 20.4367 5.49326 19.833C6.9631 19.3954 8.30053 19.2467 8.99794 20.0123C10.5296 21.6924 13.2927 23.7707 15.9764 24.0419C16.1927 24.0638 17.1682 24.1469 17.1814 23.8713C17.1902 23.705 16.8592 23.5957 16.5237 23.5694C13.7827 23.3725 8.83462 20.463 6.12004 14.8277C5.10042 12.7144 4.29266 10.6625 2.51384 9.76991C2.121 9.58177 2.10776 8.85986 2.93758 8.66735C3.51581 8.53172 7.16173 8.1817 11.3373 10.3606C13.253 11.3625 13.5222 12.255 13.5311 13.0382C13.5134 18.9448 16.5281 21.2899 17.6934 21.9812C18.3423 22.3662 18.9514 22.5281 19.0132 22.3268C19.0662 22.1562 18.894 22.0425 18.7439 21.9549C15.1289 19.7805 14.1755 16.4334 14.149 13.0295C14.1225 9.66053 15.3805 6.74662 16.2721 4.35336C16.4045 4.01647 16.8239 2.59014 16.4663 1.27319C16.1971 0.288766 16.4178 0.00437534 16.9386 0.00437534C17.508 0.00437534 18.2716 0.923175 18.5277 1.23819C18.7351 1.47446 19.3972 2.2795 20.4036 4.24836C22.3943 8.15107 22.4119 12.2288 22.4119 12.7276C22.4119 15.5277 21.6836 15.8515 20.4963 16.4334C19.3089 17.0153 18.7484 17.7635 18.7439 18.6298C18.7439 19.5223 19.3707 20.4499 20.4963 20.778C21.3702 21.0318 21.9264 20.9355 21.8778 20.7124C21.8425 20.533 21.4541 20.4892 21.3438 20.4586C20.1564 20.1392 19.3663 19.5354 19.3663 18.6298C19.3663 17.501 20.7744 16.6697 22.7474 16.6697C24.7204 16.6697 26.1329 17.4966 26.1329 18.6298C26.1329 19.5354 25.3428 20.1392 24.1554 20.4586C24.0451 20.4892 23.6567 20.533 23.6214 20.7124C23.5772 20.9399 24.129 21.0318 25.0029 20.778C26.1285 20.4542 26.7553 19.5223 26.7509 18.6298C26.7509 17.7635 26.1859 17.0109 24.9985 16.429C23.8112 15.8471 23.0829 15.5233 23.0829 12.7232C23.0829 12.2244 23.1005 8.1467 25.0868 4.24398C26.0932 2.27512 26.7597 1.47008 26.9627 1.23382C27.2187 0.9188 27.9823 0 28.5562 0C29.0814 0 29.2977 0.284391 29.0285 1.26882C28.6709 2.58577 29.0902 4.01209 29.2227 4.34899C30.1143 6.73787 31.3767 9.65178 31.3502 13.0251C31.3237 16.4334 30.3659 19.7805 26.7553 21.9549C26.6052 22.0425 26.4331 22.1606 26.486 22.3268C26.5478 22.5281 27.1569 22.3662 27.8058 21.9812C28.9711 21.2855 31.9858 18.9448 31.9681 13.0382C31.977 12.255 32.2418 11.3581 34.1575 10.3606C38.3331 8.1817 41.9834 8.53172 42.5572 8.66735C43.3826 8.86423 43.3694 9.58177 42.981 9.76991C41.2021 10.6625 40.3944 12.7144 39.3748 14.8277C36.6558 20.463 31.7121 23.3725 28.9711 23.5694C28.6312 23.5913 28.3002 23.7007 28.3134 23.8713C28.3266 24.1426 29.3021 24.0638 29.5184 24.0419C32.2021 23.7707 34.9652 21.6924 36.4969 20.008C37.1898 19.2423 38.5317 19.3911 40.0015 19.8286C42.0099 20.428 44.1374 21.8718 45.3866 24.2213C45.7485 24.8995 45.0996 25.302 44.4331 25.0264C44.08 24.8732 43.6298 24.7595 43.0692 24.7814C41.4758 24.7332 36.3953 27.1527 31.6327 27.1484C25.9828 27.1484 23.1491 24.7595 22.7518 24.5407L22.7386 24.5451Z" fill="#DBA410"/></svg>
+      <span>Mobile Operation</span>
+      <span class="icon x">close</span>
+    </div>
+    <span class="icon newtab">add</span>
+  </div>
+
+  <div class="toolbar">
+    <span class="icon tb-ico">arrow_back</span>
+    <span class="icon tb-ico">arrow_forward</span>
+    <span class="icon tb-ico">refresh</span>
+    <span class="icon tb-ico">home</span>
+    <div class="urlbar"><span class="icon lock">lock</span><span>vna.com/sampleaddress</span></div>
+    <div class="tb-right">
+      <span class="icon tb-ico">extension</span>
+      <span class="icon tb-ico">dock_to_right</span>
+      <span class="icon tb-ico">star</span>
+      <span class="avatar-sm"></span>
+    </div>
+  </div>
+
+  <!-- ===== App header ===== -->
+  <div class="appbar">
+    <div class="brand">
+      <svg class="lotus" viewBox="0 0 46 28" xmlns="http://www.w3.org/2000/svg"><path d="M22.7386 24.5451C22.3457 24.7682 19.5031 27.1527 13.8577 27.1527C9.09946 27.1527 4.01458 24.7376 2.42115 24.7857C1.86058 24.7639 1.41035 24.8776 1.05724 25.0307C0.39073 25.3064 -0.258121 24.9039 0.103823 24.2257C1.35739 21.8806 3.4805 20.4367 5.49326 19.833C6.9631 19.3954 8.30053 19.2467 8.99794 20.0123C10.5296 21.6924 13.2927 23.7707 15.9764 24.0419C16.1927 24.0638 17.1682 24.1469 17.1814 23.8713C17.1902 23.705 16.8592 23.5957 16.5237 23.5694C13.7827 23.3725 8.83462 20.463 6.12004 14.8277C5.10042 12.7144 4.29266 10.6625 2.51384 9.76991C2.121 9.58177 2.10776 8.85986 2.93758 8.66735C3.51581 8.53172 7.16173 8.1817 11.3373 10.3606C13.253 11.3625 13.5222 12.255 13.5311 13.0382C13.5134 18.9448 16.5281 21.2899 17.6934 21.9812C18.3423 22.3662 18.9514 22.5281 19.0132 22.3268C19.0662 22.1562 18.894 22.0425 18.7439 21.9549C15.1289 19.7805 14.1755 16.4334 14.149 13.0295C14.1225 9.66053 15.3805 6.74662 16.2721 4.35336C16.4045 4.01647 16.8239 2.59014 16.4663 1.27319C16.1971 0.288766 16.4178 0.00437534 16.9386 0.00437534C17.508 0.00437534 18.2716 0.923175 18.5277 1.23819C18.7351 1.47446 19.3972 2.2795 20.4036 4.24836C22.3943 8.15107 22.4119 12.2288 22.4119 12.7276C22.4119 15.5277 21.6836 15.8515 20.4963 16.4334C19.3089 17.0153 18.7484 17.7635 18.7439 18.6298C18.7439 19.5223 19.3707 20.4499 20.4963 20.778C21.3702 21.0318 21.9264 20.9355 21.8778 20.7124C21.8425 20.533 21.4541 20.4892 21.3438 20.4586C20.1564 20.1392 19.3663 19.5354 19.3663 18.6298C19.3663 17.501 20.7744 16.6697 22.7474 16.6697C24.7204 16.6697 26.1329 17.4966 26.1329 18.6298C26.1329 19.5354 25.3428 20.1392 24.1554 20.4586C24.0451 20.4892 23.6567 20.533 23.6214 20.7124C23.5772 20.9399 24.129 21.0318 25.0029 20.778C26.1285 20.4542 26.7553 19.5223 26.7509 18.6298C26.7509 17.7635 26.1859 17.0109 24.9985 16.429C23.8112 15.8471 23.0829 15.5233 23.0829 12.7232C23.0829 12.2244 23.1005 8.1467 25.0868 4.24398C26.0932 2.27512 26.7597 1.47008 26.9627 1.23382C27.2187 0.9188 27.9823 0 28.5562 0C29.0814 0 29.2977 0.284391 29.0285 1.26882C28.6709 2.58577 29.0902 4.01209 29.2227 4.34899C30.1143 6.73787 31.3767 9.65178 31.3502 13.0251C31.3237 16.4334 30.3659 19.7805 26.7553 21.9549C26.6052 22.0425 26.4331 22.1606 26.486 22.3268C26.5478 22.5281 27.1569 22.3662 27.8058 21.9812C28.9711 21.2855 31.9858 18.9448 31.9681 13.0382C31.977 12.255 32.2418 11.3581 34.1575 10.3606C38.3331 8.1817 41.9834 8.53172 42.5572 8.66735C43.3826 8.86423 43.3694 9.58177 42.981 9.76991C41.2021 10.6625 40.3944 12.7144 39.3748 14.8277C36.6558 20.463 31.7121 23.3725 28.9711 23.5694C28.6312 23.5913 28.3002 23.7007 28.3134 23.8713C28.3266 24.1426 29.3021 24.0638 29.5184 24.0419C32.2021 23.7707 34.9652 21.6924 36.4969 20.008C37.1898 19.2423 38.5317 19.3911 40.0015 19.8286C42.0099 20.428 44.1374 21.8718 45.3866 24.2213C45.7485 24.8995 45.0996 25.302 44.4331 25.0264C44.08 24.8732 43.6298 24.7595 43.0692 24.7814C41.4758 24.7332 36.3953 27.1527 31.6327 27.1484C25.9828 27.1484 23.1491 24.7595 22.7518 24.5407L22.7386 24.5451Z" fill="#DBA410"/></svg>
+      <svg class="word" viewBox="0 0 96 11" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M65.3204 4.21849C65.3204 3.69872 65.8829 3.41993 66.5026 3.41993C67.5561 3.41993 67.4393 4.25393 68.1925 4.25393C68.5358 4.25393 68.7431 4.06019 68.7431 3.72707C68.7431 3.15295 67.9733 2.77021 66.7743 2.73241C65.6255 2.69697 65.0296 2.89779 64.6173 3.05609C64.1549 3.23564 63.9523 3.49553 63.9523 3.9019V9.5509C63.9523 9.84859 64.0976 9.84859 64.6387 9.84859C65.1798 9.84859 65.3228 9.84859 65.3228 9.5509V4.21849H65.3204ZM30.6879 5.2226C30.6903 3.07735 28.8049 2.7395 27.4392 2.7395C26.3356 2.7395 25.3465 3.01592 24.8793 3.21911C24.4193 3.41993 24.3811 3.67273 24.3811 4.08855V9.55563C24.3835 9.85332 24.5313 9.85332 25.0676 9.85332C25.6039 9.85332 25.7517 9.85332 25.7517 9.55563V4.50909C25.7493 4.06256 25.909 3.44828 27.4702 3.44828C28.9456 3.44828 29.3174 4.31299 29.3174 5.2226V9.55563C29.3174 9.85332 29.4676 9.85332 30.0015 9.85332C30.5354 9.85332 30.6879 9.85332 30.6879 9.55563V5.2226ZM61.2708 9.54618C61.2708 9.84387 61.4186 9.84387 61.9525 9.84387C62.4864 9.84387 62.6389 9.84387 62.6389 9.54618L62.6437 3.11042C62.6485 2.6379 61.993 2.75603 61.6569 2.97339C61.2803 3.21674 61.2708 3.33724 61.2708 3.80739V9.54854V9.54618ZM54.0249 5.7471C54.2275 5.23441 55.5265 1.86533 55.5957 1.67396C55.6147 1.61962 55.6719 1.61962 55.6934 1.67396C55.7863 1.91022 57.0997 5.22024 57.2927 5.73292C57.3356 5.84397 57.3523 5.93611 57.2021 5.93611H54.1346C53.9463 5.93611 53.9915 5.8227 54.0249 5.74237V5.7471ZM57.8052 6.98983C58.2723 8.08608 58.9135 9.61469 58.9135 9.61469C58.9945 9.80843 58.9207 9.85804 59.7311 9.85804C60.5891 9.85804 60.6416 9.82969 60.4723 9.45167C60.427 9.35008 57.0234 1.24396 56.8327 0.802154C56.6444 0.357984 56.561 0.32727 55.8531 0.32727C55.1523 0.32727 55.0594 0.346171 54.8663 0.802154C54.6685 1.26759 51.2529 9.40914 51.21 9.51074C51.0646 9.85804 51.1933 9.85804 51.7749 9.85804C52.3183 9.85804 52.3827 9.8415 52.4852 9.61233L53.5387 6.99928C53.6006 6.84099 53.6221 6.7772 53.808 6.7772C54.5302 6.7772 56.5848 6.7772 57.5311 6.77483C57.7122 6.77483 57.7313 6.82681 57.8028 6.99219L57.8052 6.98983ZM62.7486 0.811605C62.6723 0.457213 62.2743 0.242216 61.8166 0.339083C61.359 0.433587 61.0849 0.790342 61.1612 1.14237C61.2374 1.49676 61.6355 1.71176 62.0931 1.61489C62.5507 1.52039 62.8249 1.16363 62.7486 0.811605ZM69.1888 9.55326C69.1888 9.85095 69.3366 9.85095 69.8705 9.85095C70.4044 9.85095 70.557 9.85095 70.557 9.55326L70.5617 0.32727C70.5665 -0.145252 69.9087 -0.0271211 69.575 0.190239C69.2008 0.433588 69.1865 0.55408 69.1865 1.02188V9.55326H69.1888ZM73.565 0.813968C73.4887 0.459577 73.0907 0.244579 72.633 0.341446C72.1754 0.43595 71.9013 0.792705 71.9776 1.1471C72.0538 1.50149 72.4519 1.71649 72.9095 1.61962C73.3671 1.52511 73.6412 1.16836 73.565 0.813968ZM72.0848 9.54854C72.0848 9.84623 72.2326 9.84623 72.7665 9.84623C73.3004 9.84623 73.4506 9.84623 73.4506 9.54854L73.4553 3.11042C73.4601 2.6379 72.8046 2.75603 72.4686 2.97339C72.0943 3.21674 72.08 3.33724 72.08 3.80739V9.54854H72.0848ZM81.2518 5.22732C81.2566 3.08207 79.3712 2.74422 78.0031 2.74422C76.8995 2.74422 75.908 3.02065 75.4432 3.22383C74.9832 3.42465 74.945 3.67745 74.945 4.09563V9.56271C74.9474 9.8604 75.0976 9.8604 75.6315 9.8604C76.1654 9.8604 76.3156 9.8604 76.3156 9.56271V4.51618C76.3156 4.06964 76.4729 3.45537 78.0341 3.45537C79.5095 3.45537 79.8789 4.32244 79.8789 5.22969V9.56271C79.8813 9.8604 80.0291 9.8604 80.563 9.8604C81.0969 9.8604 81.2494 9.8604 81.2494 9.56271V5.22969L81.2518 5.22732ZM95.6792 7.95378C95.6244 5.57699 91.1505 6.01407 91.1505 4.35788C91.1505 3.71053 91.8227 3.41048 92.5497 3.41048C93.5984 3.41048 93.944 3.75778 94.1633 4.26338C94.2658 4.49964 94.4732 4.71464 94.8712 4.71464C95.1739 4.71464 95.4266 4.52563 95.4266 4.17596C95.4266 3.65146 94.6901 2.72532 92.676 2.71114C91.0075 2.69933 89.8801 3.33015 89.8778 4.63667C89.8778 7.08197 94.3564 6.55984 94.3469 8.25619C94.3445 8.95552 93.6866 9.28156 92.7284 9.29101C91.775 9.30046 91.265 8.91772 90.9885 8.25383C90.855 7.98449 90.6762 7.74114 90.2615 7.74823C89.8873 7.75532 89.6656 7.99158 89.6656 8.35542C89.6656 8.85393 90.5404 10.0116 92.6665 10.0116C94.4088 10.0116 95.7078 9.317 95.6768 7.95378H95.6792ZM9.55567 9.54854C9.55567 9.84623 9.70344 9.84623 10.2374 9.84623C10.7713 9.84623 10.9238 9.84623 10.9238 9.54854L10.9286 3.11042C10.9333 2.6379 10.2779 2.75603 9.94179 2.97339C9.56758 3.21674 9.55567 3.33724 9.55567 3.80739V9.54854ZM34.8948 10.0116C36.0365 10.0187 36.6157 9.81788 37.2998 9.50601C37.8146 9.26503 37.8146 8.99569 37.8146 8.68382V4.80442C37.8146 3.32542 36.5752 2.71114 35.1546 2.71587C32.8355 2.72059 31.913 3.70816 31.8773 4.34607C31.8582 4.68629 32.0632 4.93436 32.4636 4.94381C32.8521 4.95326 33.0857 4.6981 33.1763 4.48783C33.4623 3.8263 33.9509 3.41757 34.9639 3.41757C35.7577 3.41757 36.4656 3.77668 36.4632 4.71228V5.12337C36.4632 5.24859 36.4632 5.27694 36.3512 5.28875C34.2632 5.61952 31.5507 6.2716 31.5507 8.17114C31.5507 9.35244 32.9809 10.0069 34.8972 10.0092L34.8948 10.0116ZM36.4608 8.36487C36.4608 9.0831 35.5193 9.27211 34.8233 9.27211C33.5934 9.27211 32.9832 8.74998 32.9832 8.06482C32.9832 6.81264 34.6136 6.36138 36.3154 6.00699C36.406 5.98808 36.4608 5.97863 36.4608 6.10622V8.36487ZM11.0358 0.813968C10.9596 0.459577 10.5615 0.244579 10.1039 0.341446C9.64624 0.43595 9.37214 0.792705 9.44841 1.1471C9.52468 1.50149 9.92273 1.71649 10.3804 1.61962C10.838 1.52511 11.1121 1.16836 11.0358 0.813968ZM47.9732 9.56035C47.9732 9.85804 48.1209 9.85568 48.6572 9.85568C49.1935 9.85568 49.3413 9.85568 49.3413 9.56035V4.95799C49.3413 3.12933 47.6085 2.74895 46.5836 2.74895C45.3847 2.74895 44.703 3.08916 44.2358 3.59949C43.7377 3.06317 43.0727 2.74895 41.9071 2.74895C41.1039 2.74895 40.3221 2.94032 39.6189 3.24746C39.1136 3.46954 39.1136 3.76487 39.1136 4.05311V9.55799C39.1136 9.85568 39.2638 9.85568 39.7977 9.85568C40.3316 9.85568 40.4818 9.85568 40.4818 9.55799V4.42876C40.4818 3.66328 41.1015 3.45537 41.9143 3.453C42.9249 3.453 43.5446 3.92316 43.5446 5.10447V9.55563C43.5446 9.85332 43.6924 9.85332 44.2287 9.85332C44.765 9.85332 44.9103 9.85332 44.9103 9.55563V5.01705C44.9103 4.1169 45.3847 3.44828 46.4739 3.44828C47.5632 3.44828 47.9827 4.13107 47.9827 5.03831L47.9755 9.55563L47.9732 9.56035ZM13.5528 5.21315C13.6744 4.36733 14.3251 3.42938 15.6146 3.41993C16.6943 3.41048 17.6406 4.06019 17.6906 5.01705C17.7049 5.29112 17.631 5.32655 17.3021 5.32655H13.6601C13.56 5.32655 13.5457 5.28166 13.5552 5.21551L13.5528 5.21315ZM19.0516 7.7624C19.0516 7.63955 18.9563 7.51906 18.7846 7.51906C18.6273 7.51906 18.5463 7.5734 18.4533 7.73642C18.091 8.34597 17.202 9.05948 16.0198 9.07129C14.4204 9.08547 13.498 7.94669 13.5385 6.18891C13.5385 6.12984 13.5624 6.07786 13.6553 6.0755C13.7459 6.07314 16.158 6.07078 18.5868 6.0755C19.0516 6.0755 19.0611 5.77072 19.0611 5.51792C19.0611 4.06019 17.6906 2.71587 15.729 2.71587C13.7673 2.71587 12.1251 3.81685 12.1251 6.35193C12.1251 9.05003 14.1582 10.0069 15.8934 10.0069C17.9885 10.0069 19.0564 8.40031 19.0564 7.7624H19.0516ZM83.5805 5.21315C83.7021 4.36733 84.3551 3.42938 85.6423 3.41993C86.722 3.41048 87.6682 4.06019 87.7183 5.01705C87.7326 5.29112 87.6587 5.32655 87.3298 5.32655H83.6878C83.5877 5.32655 83.5733 5.28166 83.5829 5.21551L83.5805 5.21315ZM89.0769 7.7624C89.0769 7.63955 88.9816 7.51906 88.8099 7.51906C88.6526 7.51906 88.574 7.5734 88.4786 7.73642C88.1163 8.34597 87.2273 9.05948 86.0427 9.07129C84.4433 9.08547 83.5209 7.94669 83.5638 6.18891C83.5638 6.12984 83.59 6.07786 83.6806 6.0755C83.7736 6.07314 86.1833 6.07078 88.6121 6.0755C89.0769 6.0755 89.084 5.77072 89.084 5.51792C89.084 4.06019 87.7135 2.71587 85.7519 2.71587C83.7903 2.71587 82.148 3.81685 82.148 6.35193C82.148 9.05003 84.1811 10.0069 85.9163 10.0069C88.0115 10.0069 89.0793 8.40031 89.0793 7.7624H89.0769ZM3.65646 9.38079C3.84476 9.82496 3.88767 9.85804 4.60034 9.85804C5.31301 9.85804 5.30109 9.82969 5.50131 9.37607C5.70152 8.92245 8.3067 2.42763 8.99792 0.728914C9.15285 0.350896 9.08611 0.320182 8.47117 0.320182C7.93249 0.320182 7.88482 0.350896 7.78233 0.580069C7.78233 0.580069 4.86252 7.98213 4.80055 8.15224C4.78387 8.20185 4.7219 8.20421 4.69568 8.14515C4.60272 7.93488 1.63763 0.558806 1.63763 0.558806C1.56612 0.369797 1.54706 0.301281 0.746194 0.301281C-0.126172 0.301281 -0.0689685 0.383973 0.105028 0.809243C0.147931 0.910835 3.46817 8.93426 3.65646 9.37843V9.38079ZM20.3744 2.834C20.0551 2.83873 19.6189 2.834 19.6189 2.834C19.402 2.834 19.402 2.95213 19.402 3.19312C19.402 3.4341 19.402 3.54278 19.6189 3.54278H20.3768C20.5318 3.54278 20.5389 3.55932 20.5365 3.71998C20.5318 4.05783 20.5365 8.14987 20.5365 8.14987C20.5365 9.76354 21.4065 9.95491 22.267 9.96908C23.1179 9.9809 23.6756 9.73282 23.6661 9.43277C23.6613 9.2603 23.5445 9.18233 23.3467 9.2036C23.2084 9.22014 23.1107 9.26266 22.9224 9.26266C22.4719 9.26266 21.9047 9.14217 21.9047 8.16169V3.73415C21.9047 3.56405 21.9047 3.54278 22.0763 3.54278H23.3085C23.5254 3.54278 23.5326 3.42229 23.5326 3.19312C23.5326 2.96394 23.5254 2.83164 23.3085 2.83164H22.0691C21.9023 2.83164 21.9047 2.8151 21.9047 2.67334V1.1849C21.9047 0.946274 21.7211 0.86122 21.5733 0.873033C21.4661 0.882484 21.3374 0.950999 21.0347 1.1471C20.639 1.40462 20.5341 1.56764 20.5341 2.0378V2.66153C20.5341 2.83164 20.527 2.82927 20.3744 2.83164V2.834Z" fill="white"/></svg>
+      <span class="sep"></span>
+      <span class="eff">EFF</span>
+    </div>
+
+    <div class="nav">
+      <div class="navitem active clickable" id="nav-flightdocs" onclick="showView('view-eff')"><span class="icon">description</span><span>Flight documents</span></div>
+
+      <div class="nav-dd">
+        <div class="navitem clickable" onclick="toggleDD('dd-report',event)"><span class="icon">monitoring</span><span>Report</span><span class="icon" style="font-size:20px;">expand_more</span></div>
+        <div class="dd-menu" id="dd-report">
+          <div class="ddlabel">Báo cáo nước sạch</div>
+          <a onclick="showView('view-yc34')"><span class="icon">trending_up</span>Suất tiêu thụ lịch sử (YC34)</a>
+          <a onclick="showView('view-yc35')"><span class="icon">compare_arrows</span>Nước đầu/cuối chuyến (YC35)</a>
+          <a onclick="showView('view-yc36')"><span class="icon">water_drop</span>Chuyến nạp thừa (YC36)</a>
+          <a onclick="showView('view-yc37')"><span class="icon">warning</span>Chuyến dùng cạn (YC37)</a>
+          <a onclick="showView('view-yc38')"><span class="icon">priority_high</span>Chuyến vượt tính toán (YC38)</a>
+          <div class="dd-sep"></div>
+          <a onclick="showView('view-yc34')"><span class="icon">download</span>Xuất Excel (YC39)</a>
+        </div>
+      </div>
+
+      <div class="nav-dd">
+        <div class="navitem clickable" onclick="toggleDD('dd-admin',event)"><span class="icon">work</span><span>Admin</span><span class="icon" style="font-size:20px;">expand_more</span></div>
+        <div class="dd-menu" id="dd-admin">
+          <div class="ddlabel">Water Service Config</div>
+          <a onclick="showView('view-yc25')"><span class="icon">propane_tank</span>Dung tích bồn nước (YC25)</a>
+          <a onclick="showView('view-yc26')"><span class="icon">speed</span>Định mức mặc định (YC26)</a>
+          <a onclick="showView('view-yc27')"><span class="icon">tune</span>Tham số đệm Buffer (YC27)</a>
+          <a onclick="showView('view-yc28')"><span class="icon">notification_important</span>Ngưỡng ngoại lệ (YC28)</a>
+        </div>
+      </div>
+
+      <div class="navitem"><span class="icon">tab</span><span>Other</span></div>
+      <span class="vsep"></span>
+      <div class="bell"><span class="icon">notifications</span><span class="badge">1</span></div>
+      <div class="avatar"></div>
+    </div>
+  </div>
+
+  <!-- ===== Content ===== -->
+  <div class="content">
+
+   <!-- ============ VIEW: EFF (default) ============ -->
+   <div id="view-eff" class="view">
+    <div class="effrow">
+
+    <!-- ===== LEFT panel ===== -->
+    <div class="panel left">
+      <h2 class="ptitle">List of flights</h2>
+
+      <div class="filters">
+        <div class="frow">
+          <div class="field" style="flex:1.7;">
+            <span class="lbl">FLT DATE</span>
+            <span class="icon">calendar_today</span>
+            <span class="val">05/02/2024</span>
+            <span class="icon" style="font-size:16px;">arrow_forward</span>
+            <span class="val">08/08/2024</span>
+          </div>
+          <div class="field" style="flex:1;"><span class="lbl">FLT NO</span></div>
+          <div class="field ph" style="flex:1.4;"><span class="lbl">Flight release</span><span class="val">Flight release</span><span class="icon arrow">expand_more</span></div>
+        </div>
+        <div class="frow">
+          <div class="field ph" style="flex:1.4;"><span class="lbl">Confirm doc</span><span class="icon arrow">expand_more</span></div>
+          <div class="field" style="flex:1;"><span class="lbl">AC REG</span></div>
+          <div class="field" style="flex:.85;"><span class="lbl">DEP</span></div>
+          <div class="field" style="flex:.85;"><span class="lbl">ARR</span></div>
+          <button class="btn-search">Search</button>
+          <span class="btn-reset">Reset</span>
+        </div>
+      </div>
+
+      <table class="ftable">
+        <thead><tr>
+          <th>TYPE</th><th>AC REG</th><th>FLT NO</th><th>FLT DATE</th><th>DEP</th><th>ARR</th><th>ETD (UTC)</th><th>ETA (UTC)</th>
+        </tr></thead>
+        <tbody>
+          <tr class="sel"><td>32C</td><td>VNA314</td><td>VN7128</td><td>28/08/2024</td><td>SGN</td><td>VKG</td><td>01:00</td><td>01:50</td></tr>
+          <tr><td>32C</td><td>VNA251</td><td>VN7128</td><td>28/08/2024</td><td>SGN</td><td>VKG</td><td>01:00</td><td>01:50</td></tr>
+          <tr><td>32C</td><td>VNA193</td><td>VN7128</td><td>28/08/2024</td><td>SGN</td><td>VKG</td><td>01:00</td><td>01:50</td></tr>
+          <tr><td>32C</td><td>VNA247</td><td>VN7128</td><td>28/08/2024</td><td>SGN</td><td>VKG</td><td>01:00</td><td>01:50</td></tr>
+          <tr><td>32C</td><td>VNA219</td><td>VN7128</td><td>28/08/2024</td><td>SGN</td><td>VKG</td><td>01:00</td><td>01:50</td></tr>
+          <tr><td>32C</td><td>VNA401</td><td>VN7128</td><td>28/08/2024</td><td>SGN</td><td>VKG</td><td>01:00</td><td>01:50</td></tr>
+          <tr><td>32C</td><td>VNA393</td><td>VN7128</td><td>28/08/2024</td><td>SGN</td><td>VKG</td><td>01:00</td><td>01:50</td></tr>
+          <tr><td>32C</td><td>VNA393</td><td>VN7128</td><td>28/08/2024</td><td>SGN</td><td>VKG</td><td>01:00</td><td>01:50</td></tr>
+          <tr><td>32C</td><td>VNA393</td><td>VN7128</td><td>28/08/2024</td><td>SGN</td><td>VKG</td><td>01:00</td><td>01:50</td></tr>
+          <tr><td>32C</td><td>VNA393</td><td>VN7128</td><td>28/08/2024</td><td>SGN</td><td>VKG</td><td>01:00</td><td>01:50</td></tr>
+        </tbody>
+      </table>
+
+      <div class="pager">
+        <span class="rec">Danh sách : 80</span>
+        <span>Hiển thị</span>
+        <span class="perpage">10 bản ghi <span class="icon" style="font-size:18px;">expand_more</span></span>
+        <div class="pages">
+          <span class="pg nav"><span class="icon">keyboard_double_arrow_left</span></span>
+          <span class="pg nav"><span class="icon">chevron_left</span></span>
+          <span class="pg act">1</span>
+          <span class="pg">2</span>
+          <span class="pg">3</span>
+          <span class="pg">4</span>
+          <span class="pg">5</span>
+          <span class="pg nav"><span class="icon">chevron_right</span></span>
+          <span class="pg nav"><span class="icon">keyboard_double_arrow_right</span></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== RIGHT panel ===== -->
+    <div class="panel right">
+      <div class="rtabs">
+        <div class="rtab" onclick="selectRTab(this,'ecfp')"><span class="icon">description</span>All Documents</div>
+        <div class="rtab active" id="rtab-ecfp" onclick="selectRTab(this,'ecfp')"><span class="icon">task_alt</span>E-CFP</div>
+        <div class="rtab" onclick="selectRTab(this,'ecfp')"><span class="icon">draft</span>Flight rellease</div>
+        <div class="rtab" onclick="selectRTab(this,'ecfp')"><span class="icon">fact_check</span>Confirm documents</div>
+        <div class="rtab" onclick="selectRTab(this,'ecfp')"><span class="icon">request_quote</span>Request documents</div>
+        <div class="rtab" id="rtab-water" onclick="selectRTab(this,'water')"><span class="icon">water_drop</span>Nước sạch</div>
+        <div class="rtabnav"><span class="icon">chevron_left</span><span class="icon">chevron_right</span></div>
+      </div>
+
+      <!-- pane: E-CFP (mặc định) -->
+      <div id="pane-ecfp">
+        <div class="rhead">
+          <span class="t">E-CFP list - <b>VN7128 DEP-ARR 28/08/2024 01:00</b></span>
+          <div class="acts">
+            <button class="obtn"><span class="icon">upload</span>Upload E-CFP</button>
+            <button class="obtn"><span class="icon">download</span>Download all E-CFP</button>
+          </div>
+        </div>
+        <div class="dtable">
+          <table>
+            <thead><tr>
+              <th style="width:60px;">NO</th>
+              <th>Submission date time (UTC)</th>
+              <th>User Name</th>
+              <th>Submiter</th>
+              <th style="width:70px;">Rev</th>
+              <th style="width:90px;">Action</th>
+            </tr></thead>
+            <tbody>
+              <tr>
+                <td>01</td><td>12/05/2024 - 10:50</td><td>Hiepdv13</td>
+                <td class="sub">Nguyễn Văn Đức<small>6368</small></td><td>01</td>
+                <td><div class="act-ico"><span class="icon">description</span><span class="icon">download</span></div></td>
+              </tr>
+              <tr>
+                <td>02</td><td>12/05/2024 - 10:50</td><td>Hiepdv13</td>
+                <td class="sub">Nguyễn Văn Đức<small>6368</small></td><td>01</td>
+                <td><div class="act-ico"><span class="icon">description</span><span class="icon">download</span></div></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- pane: Nước sạch (YC33) -->
+      <div id="pane-water" class="hidden">
+        <div class="rhead" style="margin-top:14px;">
+          <span class="t">Nước sạch - <b>VN7128 SGN-VKG 28/08/2024 01:00</b></span>
+        </div>
+
+        <div class="wsec">
+          <div class="wt"><span class="icon" style="color:var(--teal-l)">water_drop</span>Thông số khuyến nghị nạp</div>
+          <div class="reco-grid">
+            <div class="reco"><div class="k">Suất lịch sử áp dụng</div><div class="v">1.5 L/người/giờ</div></div>
+            <div class="reco"><div class="k">Tổng khách (Pax + Crew)</div><div class="v">170 (160 + 10)</div></div>
+            <div class="reco"><div class="k">Giờ bay</div><div class="v">1.75 giờ</div></div>
+            <div class="reco hl"><div class="k">Nước khuyến nghị (kèm buffer)</div><div class="v">510 L</div></div>
+          </div>
+          <div class="formula">Lượng khuyến nghị = f(suất lịch sử, Pax+Crew, giờ bay, buffer) — công thức do engine tính toán (YC18) đảm nhiệm. Giá trị hiển thị là dữ liệu mẫu.</div>
+        </div>
+
+        <div class="wstatus">
+          <span>Trạng thái dữ liệu khách:</span>
+          <span class="tag tag-green">Đã bóc tách từ Loadsheet</span>
+          <span style="color:var(--g400)">/ Nguồn dự phòng: Booking Amadeus</span>
+        </div>
+
+        <div class="wsec">
+          <div class="wt"><span class="icon" style="color:var(--teal-l)">rule</span>So khớp &amp; xác nhận số liệu nước đầu/cuối chuyến (YC33)</div>
+          <table class="gtable">
+            <thead><tr>
+              <th>Nguồn dữ liệu</th><th>Nước đầu chuyến</th><th>Nước cuối chuyến</th><th>Tiêu thụ</th><th>Thời gian / Trạng thái</th>
+            </tr></thead>
+            <tbody>
+              <tr>
+                <td>A‑CAD / Điện nước sạch <span class="tag tag-gray">A350/B787</span></td>
+                <td>85% (850 L)</td><td>42% (420 L)</td><td>430 L (43%)</td>
+                <td>28/08/2024 02:45 UTC · <span class="tag tag-green">Connected</span></td>
+              </tr>
+              <tr>
+                <td>Tổ bay submit (App MO Plus)</td>
+                <td>85% (850 L)</td><td>40% (400 L)</td><td>450 L (45%)</td>
+                <td><span class="link" onclick="openGauge()"><span class="icon" style="font-size:15px;vertical-align:-2px;">photo_camera</span> Xem ảnh đồng hồ</span></td>
+              </tr>
+              <tr class="row-danger">
+                <td>Nhập tay / Điều chỉnh (Admin)</td>
+                <td colspan="3" style="color:var(--g400)">— Nhập ở form bên dưới khi có sai lệch —</td>
+                <td><span class="tag tag-amber">Cần lý do điều chỉnh</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="wsec">
+          <div class="wt"><span class="icon" style="color:var(--teal-l)">edit_note</span>Nhập tay / Điều chỉnh dữ liệu nước (Admin)</div>
+          <div class="tankNote">Dung tích bồn áp dụng: <b>1000 L</b> (B787 — chuyến VN7128). Gõ % hoặc Lít, ô còn lại tự quy đổi.</div>
+          <div class="wform-grid">
+            <div class="frm-row">
+              <label>Chỉ số nước đầu chuyến</label>
+              <div class="conv">
+                <div class="box"><input id="dep-pct" type="number" min="0" max="100" value="85" oninput="convPct('dep')"><span class="u">%</span></div>
+                <span class="eq">=</span>
+                <div class="box"><input id="dep-l" type="number" min="0" value="850" oninput="convL('dep')"><span class="u">L</span></div>
+              </div>
+            </div>
+            <div class="frm-row">
+              <label>Chỉ số nước cuối chuyến</label>
+              <div class="conv">
+                <div class="box"><input id="arr-pct" type="number" min="0" max="100" value="40" oninput="convPct('arr')"><span class="u">%</span></div>
+                <span class="eq">=</span>
+                <div class="box"><input id="arr-l" type="number" min="0" value="400" oninput="convL('arr')"><span class="u">L</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="frm-row">
+            <label>Ghi chú / Lý do điều chỉnh <span class="req">* (bắt buộc khi sửa bản ghi)</span></label>
+            <textarea class="wta" placeholder="Nhập lý do điều chỉnh số liệu..."></textarea>
+          </div>
+          <div class="save-row" style="margin-top:14px;"><button class="btn-save">Lưu</button></div>
+          <div class="hint">Mọi thay đổi được lưu vết (Audit log): giá trị cũ, giá trị mới, người thực hiện, lý do — số liệu nhập tay được ưu tiên hiển thị trên báo cáo.</div>
+        </div>
+      </div>
+
+    </div><!-- /panel right -->
+
+    </div><!-- /effrow -->
+   </div><!-- /view-eff -->
+
+   <!-- ============ VIEW: YC34 — Báo cáo suất tiêu thụ lịch sử ============ -->
+   <div id="view-yc34" class="view hidden">
+    <div class="panel screen">
+      <div class="scr-head">
+        <div><div class="crumb">Report › Báo cáo nước sạch</div>
+          <h2>Báo cáo suất tiêu thụ nước sạch lịch sử<span class="yc">YC34</span></h2></div>
+        <div class="acts"><button class="btn-excel"><span class="icon">download</span>Xuất Excel</button></div>
+      </div>
+      <div class="filterbar">
+        <div class="field"><span class="lbl">Khoảng thời gian</span><span class="icon">calendar_today</span><span class="val">01/05/2024</span><span class="icon" style="font-size:16px;">arrow_forward</span><span class="val">31/08/2024</span></div>
+        <div class="field ph"><span class="lbl">Dòng tàu bay</span><span class="val">Tất cả</span><span class="icon arrow">expand_more</span></div>
+        <div class="field ph"><span class="lbl">Chặng bay</span><span class="val">Tất cả</span><span class="icon arrow">expand_more</span></div>
+        <button class="btn-search">Search</button><span class="btn-reset">Reset</span>
+      </div>
+      <div class="chartcard">
+        <div class="ct">Xu hướng suất tiêu thụ trung bình (L/người/giờ) theo tuần</div>
+        <svg viewBox="0 0 900 240" width="100%" height="240" xmlns="http://www.w3.org/2000/svg">
+          <line x1="50" y1="200" x2="880" y2="200" stroke="#E4E7EC"/>
+          <line x1="50" y1="150" x2="880" y2="150" stroke="#F2F4F7"/>
+          <line x1="50" y1="100" x2="880" y2="100" stroke="#F2F4F7"/>
+          <line x1="50" y1="50"  x2="880" y2="50"  stroke="#F2F4F7"/>
+          <text x="20" y="204" font-size="11" fill="#98A2B3">1.0</text>
+          <text x="20" y="154" font-size="11" fill="#98A2B3">1.3</text>
+          <text x="20" y="104" font-size="11" fill="#98A2B3">1.6</text>
+          <text x="20" y="54"  font-size="11" fill="#98A2B3">1.9</text>
+          <polyline fill="none" stroke="#0E7089" stroke-width="2.5"
+            points="60,150 180,120 300,135 420,95 540,110 660,80 780,100 880,70"/>
+          <g fill="#0E7089">
+            <circle cx="60" cy="150" r="4"/><circle cx="180" cy="120" r="4"/><circle cx="300" cy="135" r="4"/>
+            <circle cx="420" cy="95" r="4"/><circle cx="540" cy="110" r="4"/><circle cx="660" cy="80" r="4"/>
+            <circle cx="780" cy="100" r="4"/><circle cx="880" cy="70" r="4"/>
+          </g>
+          <g font-size="11" fill="#98A2B3" text-anchor="middle">
+            <text x="60" y="222">T18</text><text x="180" y="222">T19</text><text x="300" y="222">T20</text>
+            <text x="420" y="222">T21</text><text x="540" y="222">T22</text><text x="660" y="222">T23</text>
+            <text x="780" y="222">T24</text><text x="880" y="222">T25</text>
+          </g>
+        </svg>
+      </div>
+      <table class="gtable">
+        <thead><tr><th>STT</th><th>Dòng tàu bay</th><th>Chặng bay</th><th>Khung giờ</th><th>Số chuyến</th><th>Suất TB (L/người/giờ)</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>A350</td><td>SGN-HAN</td><td>06:00-12:00</td><td>128</td><td>1.62</td></tr>
+          <tr><td>2</td><td>B787</td><td>SGN-NRT</td><td>00:00-06:00</td><td>96</td><td>1.74</td></tr>
+          <tr><td>3</td><td>A321</td><td>HAN-DAD</td><td>12:00-18:00</td><td>210</td><td>1.41</td></tr>
+          <tr><td>4</td><td>ATR</td><td>SGN-VKG</td><td>06:00-12:00</td><td>64</td><td>1.18</td></tr>
+        </tbody>
+      </table>
+    </div>
+   </div>
+
+   <!-- ============ VIEW: YC35 — Nước đầu/cuối chuyến ============ -->
+   <div id="view-yc35" class="view hidden">
+    <div class="panel screen">
+      <div class="scr-head">
+        <div><div class="crumb">Report › Báo cáo nước sạch</div>
+          <h2>Báo cáo nước đầu/cuối chuyến bay<span class="yc">YC35</span></h2></div>
+        <div class="acts"><button class="btn-excel"><span class="icon">download</span>Xuất Excel</button></div>
+      </div>
+      <div class="filterbar">
+        <div class="field"><span class="lbl">Khoảng thời gian</span><span class="icon">calendar_today</span><span class="val">01/08/2024</span><span class="icon" style="font-size:16px;">arrow_forward</span><span class="val">31/08/2024</span></div>
+        <div class="field ph"><span class="lbl">Dòng tàu bay</span><span class="val">Tất cả</span><span class="icon arrow">expand_more</span></div>
+        <div class="field ph"><span class="lbl">Chặng bay</span><span class="val">Tất cả</span><span class="icon arrow">expand_more</span></div>
+        <button class="btn-search">Search</button><span class="btn-reset">Reset</span>
+      </div>
+      <table class="gtable">
+        <thead><tr><th>Chuyến bay</th><th>Loại tàu</th><th>Pax</th><th>Nước KN (L)</th><th>Đầu chuyến (ACARS)</th><th>Đầu chuyến (Tổ bay)</th><th>Cuối chuyến (Tổ bay)</th><th>Tiêu thụ thực tế</th><th>Suất thực tế</th></tr></thead>
+        <tbody>
+          <tr><td>VN7128</td><td>B787</td><td>170</td><td>510</td><td>850 L</td><td>850 L</td><td>400 L</td><td>450 L</td><td>1.51</td></tr>
+          <tr><td>VN255</td><td>A350</td><td>240</td><td>720</td><td>1180 L</td><td class="cell-warn">1100 L</td><td>520 L</td><td>580 L</td><td>1.45</td></tr>
+          <tr><td>VN1546</td><td>A321</td><td>180</td><td>360</td><td>600 L</td><td>600 L</td><td>240 L</td><td>360 L</td><td>1.38</td></tr>
+        </tbody>
+      </table>
+      <div class="hint">Ô bôi đỏ: chênh lệch giữa ACARS và Tổ bay vượt ngưỡng cấu hình (YC28).</div>
+    </div>
+   </div>
+
+   <!-- ============ VIEW: YC36 — Chuyến nạp thừa ============ -->
+   <div id="view-yc36" class="view hidden">
+    <div class="panel screen">
+      <div class="scr-head">
+        <div><div class="crumb">Report › Báo cáo nước sạch</div>
+          <h2>Báo cáo chuyến bay nạp thừa nước sạch<span class="yc">YC36</span></h2></div>
+        <div class="acts"><button class="btn-excel"><span class="icon">download</span>Xuất Excel</button></div>
+      </div>
+      <div class="filterbar">
+        <div class="field"><span class="lbl">Khoảng thời gian</span><span class="icon">calendar_today</span><span class="val">01/08/2024</span><span class="icon" style="font-size:16px;">arrow_forward</span><span class="val">31/08/2024</span></div>
+        <div class="field ph"><span class="lbl">Tỷ lệ nạp thừa ≥</span><span class="val">20%</span><span class="icon arrow">expand_more</span></div>
+        <button class="btn-search">Search</button><span class="btn-reset">Reset</span>
+      </div>
+      <table class="gtable">
+        <thead><tr><th>Chuyến bay</th><th>Loại tàu</th><th>Nước KN (L)</th><th>Thực nạp (L)</th><th>Nạp thừa (L)</th><th>Tỷ lệ thừa</th></tr></thead>
+        <tbody>
+          <tr><td>VN1162</td><td>A350</td><td>620</td><td>1180</td><td class="cell-warn">560</td><td class="cell-warn">90%</td></tr>
+          <tr><td>VN255</td><td>B787</td><td>720</td><td>1100</td><td class="cell-warn">380</td><td class="cell-warn">53%</td></tr>
+          <tr><td>VN7128</td><td>A321</td><td>360</td><td>500</td><td>140</td><td>39%</td></tr>
+        </tbody>
+      </table>
+      <div class="hint">Sắp xếp giảm dần theo lượng nước thừa thực tế (L).</div>
+    </div>
+   </div>
+
+   <!-- ============ VIEW: YC37 — Chuyến dùng cạn ============ -->
+   <div id="view-yc37" class="view hidden">
+    <div class="panel screen">
+      <div class="scr-head">
+        <div><div class="crumb">Report › Báo cáo nước sạch</div>
+          <h2>Báo cáo chuyến bay dùng cạn nước sạch<span class="yc">YC37</span></h2></div>
+        <div class="acts"><button class="btn-excel"><span class="icon">download</span>Xuất Excel</button></div>
+      </div>
+      <div class="filterbar">
+        <div class="field"><span class="lbl">Khoảng thời gian</span><span class="icon">calendar_today</span><span class="val">01/08/2024</span><span class="icon" style="font-size:16px;">arrow_forward</span><span class="val">31/08/2024</span></div>
+        <div class="field ph"><span class="lbl">Dòng tàu bay</span><span class="val">Tất cả</span><span class="icon arrow">expand_more</span></div>
+        <button class="btn-search">Search</button><span class="btn-reset">Reset</span>
+      </div>
+      <table class="gtable">
+        <thead><tr><th>Chuyến bay</th><th>Loại tàu</th><th>% nước cuối chuyến</th><th>Ngưỡng an toàn</th><th>Trạng thái</th></tr></thead>
+        <tbody>
+          <tr class="row-danger"><td>VN612</td><td>A321</td><td class="cell-warn">8%</td><td>15%</td><td><span class="tag tag-red">Dưới ngưỡng</span></td></tr>
+          <tr class="row-danger"><td>VN1546</td><td>ATR</td><td class="cell-warn">11%</td><td>15%</td><td><span class="tag tag-red">Dưới ngưỡng</span></td></tr>
+          <tr><td>VN7128</td><td>B787</td><td>40%</td><td>15%</td><td><span class="tag tag-green">An toàn</span></td></tr>
+        </tbody>
+      </table>
+      <div class="hint">Tô đỏ các chuyến kết thúc với % nước cuối chuyến dưới ngưỡng an toàn cấu hình (YC28).</div>
+    </div>
+   </div>
+
+   <!-- ============ VIEW: YC38 — Chuyến vượt tính toán ============ -->
+   <div id="view-yc38" class="view hidden">
+    <div class="panel screen">
+      <div class="scr-head">
+        <div><div class="crumb">Report › Báo cáo nước sạch</div>
+          <h2>Báo cáo chuyến bay nạp nước vượt lượng tính toán<span class="yc">YC38</span></h2></div>
+        <div class="acts"><button class="btn-excel"><span class="icon">download</span>Xuất Excel</button></div>
+      </div>
+      <div class="filterbar">
+        <div class="field"><span class="lbl">Khoảng thời gian</span><span class="icon">calendar_today</span><span class="val">01/08/2024</span><span class="icon" style="font-size:16px;">arrow_forward</span><span class="val">31/08/2024</span></div>
+        <div class="field ph"><span class="lbl">Dòng tàu bay</span><span class="val">Tất cả</span><span class="icon arrow">expand_more</span></div>
+        <button class="btn-search">Search</button><span class="btn-reset">Reset</span>
+      </div>
+      <table class="gtable">
+        <thead><tr><th>Chuyến bay</th><th>Loại tàu</th><th>Nước khuyến nghị (L)</th><th>Thực tế nạp (L)</th><th>Chênh lệch (L)</th><th>Lý do giải trình (tổ bay)</th></tr></thead>
+        <tbody>
+          <tr><td>VN1162</td><td>A350</td><td>620</td><td>900</td><td class="cell-warn">+280</td><td>Dự phòng chặng kế tiếp không có dịch vụ nạp</td></tr>
+          <tr><td>VN255</td><td>B787</td><td>720</td><td>950</td><td class="cell-warn">+230</td><td>Khách báo tăng đột biến sau giờ chốt</td></tr>
+          <tr><td>VN612</td><td>A321</td><td>360</td><td>500</td><td>+140</td><td style="color:var(--g400)">(không có)</td></tr>
+        </tbody>
+      </table>
+    </div>
+   </div>
+
+   <!-- ============ VIEW: YC25 — Dung tích bồn nước ============ -->
+   <div id="view-yc25" class="view hidden">
+    <div class="panel screen">
+      <div class="scr-head">
+        <div><div class="crumb">Admin › Water Service Config</div>
+          <h2>Cấu hình dung tích bồn nước sạch<span class="yc">YC25</span></h2></div>
+        <div class="acts"><button class="btn-add"><span class="icon">add</span>Thêm mới</button></div>
+      </div>
+      <table class="gtable">
+        <thead><tr><th>Loại tàu bay</th><th>Hãng sản xuất</th><th>Dung tích Tank (L)</th><th>Trạng thái</th><th>Người cập nhật cuối</th><th>Ngày cập nhật cuối (UTC)</th><th style="width:80px;">Action</th></tr></thead>
+        <tbody>
+          <tr><td>A321</td><td>Airbus</td><td>200</td><td><span class="tag tag-green">Hoạt động</span></td><td>thaobt7</td><td>15/06/2024 03:20</td><td><span class="icon" style="color:var(--g500);cursor:pointer;">edit</span></td></tr>
+          <tr><td>A350</td><td>Airbus</td><td>1000</td><td><span class="tag tag-green">Hoạt động</span></td><td>thaobt7</td><td>15/06/2024 03:21</td><td><span class="icon" style="color:var(--g500);cursor:pointer;">edit</span></td></tr>
+          <tr><td>B787</td><td>Boeing</td><td>1000</td><td><span class="tag tag-green">Hoạt động</span></td><td>thaobt7</td><td>15/06/2024 03:22</td><td><span class="icon" style="color:var(--g500);cursor:pointer;">edit</span></td></tr>
+          <tr><td>ATR72</td><td>ATR</td><td>200</td><td><span class="tag tag-gray">Khóa</span></td><td>thaobt7</td><td>10/06/2024 09:05</td><td><span class="icon" style="color:var(--g500);cursor:pointer;">edit</span></td></tr>
+        </tbody>
+      </table>
+      <div class="hint">Ràng buộc: dung tích là số nguyên dương; loại tàu bay không trùng lặp. Chỉ nhóm quản trị viên được chỉnh sửa.</div>
+    </div>
+   </div>
+
+   <!-- ============ VIEW: YC26 — Định mức mặc định ============ -->
+   <div id="view-yc26" class="view hidden">
+    <div class="panel screen">
+      <div class="scr-head">
+        <div><div class="crumb">Admin › Water Service Config</div>
+          <h2>Cấu hình định mức tiêu thụ nước mặc định<span class="yc">YC26</span></h2></div>
+        <div class="acts"><button class="btn-add"><span class="icon">add</span>Thêm mới</button></div>
+      </div>
+      <div class="filterbar">
+        <div class="field ph"><span class="lbl">Loại tàu bay</span><span class="val">Tất cả</span><span class="icon arrow">expand_more</span></div>
+        <div class="field ph"><span class="lbl">Nhóm chặng</span><span class="val">Tất cả</span><span class="icon arrow">expand_more</span></div>
+        <div class="field ph"><span class="lbl">Khung giờ khai thác</span><span class="val">Tất cả</span><span class="icon arrow">expand_more</span></div>
+        <button class="btn-search">Search</button><span class="btn-reset">Reset</span>
+      </div>
+      <table class="gtable">
+        <thead><tr><th>Loại tàu bay</th><th>Nhóm chặng</th><th>Khung giờ</th><th>Định mức (L/người/giờ)</th><th>Trạng thái</th><th style="width:80px;">Action</th></tr></thead>
+        <tbody>
+          <tr><td>A321</td><td>Nội địa ngắn</td><td>06:00-18:00</td><td>1.4</td><td><span class="tag tag-green">Hoạt động</span></td><td><span class="icon" style="color:var(--g500);cursor:pointer;">edit</span></td></tr>
+          <tr><td>A350</td><td>Quốc tế</td><td>00:00-24:00</td><td>1.6</td><td><span class="tag tag-green">Hoạt động</span></td><td><span class="icon" style="color:var(--g500);cursor:pointer;">edit</span></td></tr>
+          <tr><td>B787</td><td>Quốc tế</td><td>00:00-24:00</td><td>1.7</td><td><span class="tag tag-green">Hoạt động</span></td><td><span class="icon" style="color:var(--g500);cursor:pointer;">edit</span></td></tr>
+          <tr><td>ATR72</td><td>Nội địa ngắn</td><td>06:00-18:00</td><td>1.1</td><td><span class="tag tag-green">Hoạt động</span></td><td><span class="icon" style="color:var(--g500);cursor:pointer;">edit</span></td></tr>
+        </tbody>
+      </table>
+      <div class="hint">Áp dụng khi chặng/tàu bay chưa có dữ liệu lịch sử. Thứ tự ưu tiên fallback do engine tính toán quyết định (đặc tả ở SRS).</div>
+    </div>
+   </div>
+
+   <!-- ============ VIEW: YC27 — Tham số buffer ============ -->
+   <div id="view-yc27" class="view hidden">
+    <div class="panel screen">
+      <div class="scr-head">
+        <div><div class="crumb">Admin › Water Service Config</div>
+          <h2>Cấu hình tham số đệm (Buffer)<span class="yc">YC27</span></h2></div>
+        <div class="acts"><button class="btn-save">Lưu cấu hình</button></div>
+      </div>
+      <div class="formcard">
+        <h3>Giờ taxi theo sân bay (phút)</h3>
+        <div class="frm-grid">
+          <div class="frm-row"><label>SGN — Tân Sơn Nhất</label><div class="ctl">12 <span class="unit">phút</span></div></div>
+          <div class="frm-row"><label>HAN — Nội Bài</label><div class="ctl">15 <span class="unit">phút</span></div></div>
+          <div class="frm-row"><label>DAD — Đà Nẵng</label><div class="ctl">8 <span class="unit">phút</span></div></div>
+          <div class="frm-row"><label>VKG — Rạch Giá</label><div class="ctl">6 <span class="unit">phút</span></div></div>
+        </div>
+      </div>
+      <div class="formcard">
+        <h3>Giờ dự phòng theo chặng (phút) &amp; Mức tối thiểu an toàn theo loại tàu (L)</h3>
+        <div class="frm-grid">
+          <div class="frm-row"><label>Dự phòng chặng nội địa</label><div class="ctl">10 <span class="unit">phút</span></div></div>
+          <div class="frm-row"><label>Dự phòng chặng quốc tế</label><div class="ctl">20 <span class="unit">phút</span></div></div>
+          <div class="frm-row"><label>Mức tối thiểu an toàn — A321</label><div class="ctl">40 <span class="unit">L</span></div></div>
+          <div class="frm-row"><label>Mức tối thiểu an toàn — A350/B787</label><div class="ctl">120 <span class="unit">L</span></div></div>
+        </div>
+      </div>
+      <div class="formcard">
+        <h3>Buffer theo người tương đương</h3>
+        <div class="frm-grid">
+          <div class="frm-row"><label>Số người cộng thêm mặc định</label><div class="ctl">+5 <span class="unit">người</span></div></div>
+        </div>
+        <div class="hint">Các tham số này được áp vào công thức tính lượng nước cần nạp khuyến nghị (engine YC18).</div>
+      </div>
+    </div>
+   </div>
+
+   <!-- ============ VIEW: YC28 — Ngưỡng ngoại lệ ============ -->
+   <div id="view-yc28" class="view hidden">
+    <div class="panel screen">
+      <div class="scr-head">
+        <div><div class="crumb">Admin › Water Service Config</div>
+          <h2>Cấu hình ngưỡng ngoại lệ (Exception Threshold)<span class="yc">YC28</span></h2></div>
+        <div class="acts"><button class="btn-save">Lưu cấu hình</button></div>
+      </div>
+      <div class="formcard">
+        <h3>Ngưỡng gắn cờ cảnh báo trên báo cáo</h3>
+        <div class="frm-grid">
+          <div class="frm-row"><label>Ngưỡng nạp thừa (X%)</label><div class="ctl">20 <span class="unit">%</span></div></div>
+          <div class="frm-row"><label>Ngưỡng dùng cạn (Y%)</label><div class="ctl">15 <span class="unit">%</span></div></div>
+          <div class="frm-row"><label>Ngưỡng chênh lệch Pax booking vs Loadsheet (Z)</label><div class="ctl">50 <span class="unit">L</span></div></div>
+          <div class="frm-row"><label>Ngưỡng chênh lệch ACARS vs Tổ bay</label><div class="ctl">50 <span class="unit">L</span></div></div>
+        </div>
+        <div class="hint">Hệ thống đối chiếu dữ liệu thực tế với các ngưỡng này để tự động gắn cờ (Flag) ngoại lệ và trigger notification.</div>
+      </div>
+    </div>
+   </div>
+
+  </div><!-- /content -->
+</div><!-- /window -->
+
+<!-- ===== Modal: ảnh đồng hồ nước (mẫu) ===== -->
+<div class="modal" id="gauge-modal" onclick="if(event.target===this)closeGauge()">
+  <div class="modal-card">
+    <div class="modal-head">
+      <span class="mt">Ảnh đồng hồ nước — Tổ bay chụp</span>
+      <span class="icon mx" onclick="closeGauge()">close</span>
+    </div>
+    <div class="modal-body">
+      <svg viewBox="0 0 360 280" width="100%" xmlns="http://www.w3.org/2000/svg">
+        <rect x="0" y="0" width="360" height="280" rx="12" fill="#1b1d22"/>
+        <rect x="12" y="12" width="336" height="256" rx="10" fill="#2a2d34" stroke="#3a3e47"/>
+        <text x="180" y="42" text-anchor="middle" fill="#cfd3da" font-size="13" font-family="monospace" letter-spacing="2">POTABLE WATER QTY</text>
+        <circle cx="180" cy="178" r="112" fill="#0f1115" stroke="#545862" stroke-width="3"/>
+        <!-- semicircle scale E(left)..F(right) over the top -->
+        <path d="M 80 178 A 100 100 0 0 1 280 178" fill="none" stroke="#5a5f69" stroke-width="3"/>
+        <!-- ticks at 0/25/50/75/100 % -->
+        <g stroke="#9aa0aa" stroke-width="2">
+          <line x1="80"  y1="178" x2="96"  y2="178"/>
+          <line x1="109" y1="107" x2="121" y2="117"/>
+          <line x1="180" y1="78"  x2="180" y2="94"/>
+          <line x1="251" y1="107" x2="239" y2="117"/>
+          <line x1="280" y1="178" x2="264" y2="178"/>
+        </g>
+        <text x="74"  y="196" text-anchor="middle" fill="#e7e9ee" font-size="13" font-family="monospace">E</text>
+        <text x="180" y="74"  text-anchor="middle" fill="#e7e9ee" font-size="12" font-family="monospace">1/2</text>
+        <text x="286" y="196" text-anchor="middle" fill="#e7e9ee" font-size="13" font-family="monospace">F</text>
+        <!-- needle: 40% over semicircle (E=180deg -> F=0deg). angle = 180 - 40*1.8 = 108deg -->
+        <line x1="180" y1="178" x2="152" y2="93" stroke="#ff5e5d" stroke-width="4" stroke-linecap="round"/>
+        <circle cx="180" cy="178" r="9" fill="#d0d3da"/>
+        <text x="180" y="232" text-anchor="middle" fill="#ffd166" font-size="24" font-family="monospace" font-weight="bold">40 %</text>
+      </svg>
+      <div class="gauge-meta">VN7128 · B787 · Nước cuối chuyến · chụp 28/08/2024 03:10 UTC &nbsp;·&nbsp; <i>(ảnh minh hoạ — vẽ mẫu)</i></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function closeAllDD(){ document.querySelectorAll('.dd-menu').forEach(function(m){m.classList.remove('open');}); }
+  function toggleDD(id, ev){ ev.stopPropagation(); var m=document.getElementById(id); var wasOpen=m.classList.contains('open'); closeAllDD(); if(!wasOpen){ m.classList.add('open'); } }
+  document.addEventListener('click', closeAllDD);
+
+  function showView(id){
+    closeAllDD();
+    document.querySelectorAll('.view').forEach(function(v){ v.classList.add('hidden'); });
+    var el=document.getElementById(id); if(el){ el.classList.remove('hidden'); }
+    // highlight "Flight documents" only on EFF view
+    var fd=document.getElementById('nav-flightdocs');
+    if(id==='view-eff'){ fd.classList.add('active'); } else { fd.classList.remove('active'); }
+    window.scrollTo(0,0);
+  }
+
+  function selectRTab(tabEl, pane){
+    document.querySelectorAll('#view-eff .rtab').forEach(function(t){ t.classList.remove('active'); });
+    tabEl.classList.add('active');
+    document.getElementById('pane-ecfp').classList.toggle('hidden', pane!=='ecfp');
+    document.getElementById('pane-water').classList.toggle('hidden', pane!=='water');
+  }
+
+  // gauge photo modal
+  function openGauge(){ document.getElementById('gauge-modal').classList.add('open'); }
+  function closeGauge(){ document.getElementById('gauge-modal').classList.remove('open'); }
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape'){ closeGauge(); } });
+
+  // % <-> Liters conversion (tank capacity = 1000 L for B787 / VN7128)
+  var TANK_L = 1000;
+  function convPct(p){
+    var pct=parseFloat(document.getElementById(p+'-pct').value);
+    var lEl=document.getElementById(p+'-l');
+    if(isNaN(pct)){ lEl.value=''; return; }
+    lEl.value=Math.round(pct/100*TANK_L);
+  }
+  function convL(p){
+    var l=parseFloat(document.getElementById(p+'-l').value);
+    var pEl=document.getElementById(p+'-pct');
+    if(isNaN(l)){ pEl.value=''; return; }
+    pEl.value=Math.round(l/TANK_L*1000)/10;
+  }
+
+  // deep-link support for review/screenshot: #view-yc34, #water
+  (function(){
+    var h=location.hash.replace('#','');
+    if(h==='water'){ selectRTab(document.getElementById('rtab-water'),'water'); }
+    else if(h==='gauge'){ selectRTab(document.getElementById('rtab-water'),'water'); openGauge(); }
+    else if(h && document.getElementById(h)){ showView(h); }
+  })();
+</script>
+</body>
+</html>
