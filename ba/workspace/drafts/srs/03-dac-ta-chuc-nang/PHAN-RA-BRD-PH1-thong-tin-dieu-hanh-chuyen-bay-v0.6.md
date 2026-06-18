@@ -1,8 +1,8 @@
-﻿---
+---
 project: "TOSS — Hệ thống Điều hành Khai thác Hãng Hàng không"
 author: "BA Lead"
-version: "0.5"
-date: "2026-06-12"
+version: "0.6"
+date: "2026-06-18"
 status: "Draft"
 document_type: "Functional Decomposition"
 document_id: "FUNC-DEC-PH1"
@@ -12,7 +12,7 @@ document_id: "FUNC-DEC-PH1"
 
 > **Nguyên tắc tối thượng (CLAUDE.md §0):** Tài liệu này chỉ **phân rã + lắp ráp trung thực** các yêu cầu nghiệp vụ (BR) đã được ghi nhận trong nguồn. Tuyệt đối không suy diễn, không bịa chức năng, không tự "hoàn thiện" logic mà nguồn chưa nêu. Mỗi yêu cầu chức năng (FUNC — Functional Requirement) được phân rã đều phải truy vết về **BR cha** và **trích nguồn gốc** (file + mục §). Khi nguồn không cung cấp đủ chi tiết, ghi rõ **"(chưa có nguồn — cần SME bổ sung)"** thay vì tự điền.
 >
-> **Phạm vi tài liệu (v0.5):** Phân hệ 1 — Thông tin điều hành chuyến bay (BR-101 … BR-150, theo `BRD-TOSS-PH1-thong-tin-dieu-hanh-v0.2.md`; §7.1 từ `BRD-TOSS-001-khung-v0.7.md`). Phân rã ở mức **chức năng (FUNC)** — cụ thể hơn BR nhưng **chưa** tới mức Trường hợp sử dụng (UC — Use Case), màn hình hoặc trường dữ liệu chi tiết. Các tầng đó sẽ được làm tại SRS/FRD kế tiếp.
+> **Phạm vi tài liệu (v0.6):** Phân hệ 1 — Thông tin điều hành chuyến bay (BR-101 … BR-150, theo `BRD-TOSS-PH1-thong-tin-dieu-hanh-v0.2.md`; §7.1 từ `BRD-TOSS-001-khung-v0.7.md`). Phân rã ở mức **chức năng (FUNC)** — cụ thể hơn BR nhưng **chưa** tới mức Trường hợp sử dụng (UC — Use Case), màn hình hoặc trường dữ liệu chi tiết. Các tầng đó sẽ được làm tại SRS/FRD kế tiếp. **Riêng v0.6** bổ sung §2.51 — đặc tả chi tiết các **cột màn Flight Dispatch (Flight monitoring) đã rõ nguồn**, kèm **Tiêu chí chấp nhận (AC — Acceptance Criteria)** chép trung thực logic màu/ngưỡng từ sheet Function list và báo cáo khảo sát.
 >
 > **Quy ước đánh số:** `FUNC-1xx` cho Phân hệ 1 (1xx — lớp 100).
 >
@@ -22,6 +22,7 @@ document_id: "FUNC-DEC-PH1"
 > - v0.3 (2026-06-12): bổ sung FUNC-215 … FUNC-235 cho các BR mới BR-127 … BR-132 từ bottom-up YCKT V3 + sheet-08 "Cảnh báo & Tham số": cảnh báo đã filed ATC FPL (BR-127), cảnh báo TAT không đủ (BR-128), Airport Constraints / Slot / curfew (BR-129), tự kiểm tra bất thường lịch bay thay công cụ Excel của Tổ Lịch Bay (BR-130), AC APU INOP đến sân không có GPU/ASU/ACU (BR-131), bật/tắt cảnh báo hai cấp (BR-132). Cập nhật tham chiếu BRD sang `BRD-TOSS-001-khung-v0.4.md`. Cập nhật bảng truy vết BR → FUNC và các danh sách FUNC "(chưa có nguồn)" / cờ `[cần xác nhận]`.
 > - v0.4 (2026-06-12): bổ sung cột "Dữ liệu liên quan" cho các FUNC thuộc nhóm màn hình giám sát điều phái — BR-112 (dashboard tài liệu chuyến: FUNC-139…143), BR-113 (hai nhóm màn giám sát: FUNC-144, 145, 146), BR-114 (màn hình tập trung kiểm tra đầu ca: FUNC-148…159), BR-125 (Monitoring overview real-time: FUNC-204…210). Cột mới bám theo nhóm trường FOS Report (sheet-09) và Đề xuất §II.1; các trường/thực thể chưa có nguồn rõ giữ cờ `[cần xác nhận]`. Không thêm/bớt FUNC; bảng truy vết, danh sách "(chưa có nguồn)" và cờ `[cần xác nhận]` giữ nguyên.
 > - v0.5 (2026-06-12): bổ sung FUNC-236 … FUNC-271 cho 18 BR mới BR-133 … BR-150 (Khảo sát 12/06 — thiết kế màn Giám sát chuyến bay & màn chi tiết Flight Detail trên bản mẫu `dsp_monitoring_poc.html`): Flight Detail tab model (BR-133…135), Flight Number 3 cột Netline + leg history (BR-136/137), bộ 4 mã màu thống nhất + tô màu ô + xanh-sau-đỏ + đổi màu tự động (BR-138…140), phân quyền 2 lớp + profile cá nhân + quy ước UI (BR-141…143), logic cột REG/Dispatch Release/Flight Number(D-Z)/ETA-IN (BR-144…147), time window + Flight Watch/"vào gate chậm" (BR-148/149), format lịch sử đổi chung (BR-150). Cập nhật tham chiếu BRD sang `BRD-TOSS-001-khung-v0.5.md`. Cập nhật bảng truy vết BR → FUNC, tổng, và danh sách "(chưa có nguồn)" / cờ `[cần xác nhận]`. Đính chính ASR "off cộng cộng" = Ops++ (FUNC liên quan BR-146).
+> - v0.6 (2026-06-18): bổ sung FUNC-277 … FUNC-294 (§2.51) — phân rã chi tiết **các cột màn Flight Dispatch (Flight monitoring) đã rõ nguồn** từ `wf-monitoring-overview.md` §8 (sheet Function list `[FL-FD]`) + §9 (đối chiếu YCKT TOSS-175…182 + báo cáo KS 11/06, 12/06, 15/06): DSP Release (FUNC-277/278), OFP DSP (FUNC-279/280), Pilot release (FUNC-281/282), Flight Type (FUNC-283/284), BLOCK FUEL (FUNC-285), PILOT EXTRA (FUNC-286/287), NOTAM (FUNC-288/289/290), WX (FUNC-291/292), MEL/CDL (FUNC-293), Missing Document (FUNC-294). Mỗi FUNC kèm **Tiêu chí chấp nhận (AC)** chép trung thực logic màu/ngưỡng. **Các cột còn vướng cờ OID mở** (ATC, TO/LD, Taxi APU — KS-70; EPLD, EST DOW — KS-71; ZFW-DOW; 6 cột TOSS-180 — KS-76; Filter 1–20 — KS-72; tooltip hover — KS-74; Details cột khác — KS-75) **chưa phân rã FUNC** — xem §2.51.0. Cập nhật bảng truy vết BR → FUNC, tổng (176 → 194), danh sách "(chưa có nguồn)" / cờ `[cần xác nhận]`.
 
 ---
 
@@ -29,17 +30,20 @@ document_id: "FUNC-DEC-PH1"
 
 - **Nguồn chính:**
   - `ba/workspace/drafts/brd/BRD-TOSS-PH1-thong-tin-dieu-hanh-v0.2.md` — danh sách BR-101 … BR-150 (§7.1 từ `BRD-TOSS-001-khung-v0.7.md`).
+  - `ba/workspace/drafts/wireframe/PH1/wf-monitoring-overview.md` §8 (đặc tả 26 cột theo sheet Function list `[FL-FD]`) + §9 (đối chiếu/bổ sung từ YCKT TOSS-175…182 + báo cáo KS 11/06, 12/06, 15/06; ánh xạ cột↔FUNC; trạng thái 12 cờ §8 + 7 cờ §9) — **nguồn chính của §2.51 (v0.6)**.
   - `ba/workspace/drafts/phan-tich/bao-cao-khao-sat/BAO-CAO-KHAO-SAT-12062026-buoi-sang-v0.1.md` §II (chủ đề 1–13), §III (24 nội dung thống nhất) — nguồn BR-133 … BR-150.
   - `ba/workspace/drafts/phan-tich/yckt-trien-khai/sheet-08-cảnh-báo-tham-số.md` — sheet "Cảnh báo & Tham số" (BR-127 filed ATC, BR-128 TAT, BR-131 APU INOP, BR-132 bật/tắt cảnh báo hai cấp).
   - `ba/workspace/drafts/phan-tich/yckt-trien-khai/sheet-04-yckt-v3.md` dòng 374 (Airport Constraints — BR-129), dòng 376 (tự kiểm tra bất thường lịch bay — BR-130), dòng 167 (AC APU INOP / TOSS-126/127 — BR-131).
   - `ba/workspace/input/domain-knowledge/vnaocc-proposal-decomposed/02-giai-phap-nghiep-vu/01-phan-he-thong-tin-dieu-hanh-chuyen-bay.md` — bóc tách §II.1 Đề xuất giải pháp kỹ thuật v0.3.
   - `ba/workspace/drafts/phan-tich/bao-cao-khao-sat/BAO-CAO-KHAO-SAT-11062026-buoi-sang-v0.1.md` §II.4–II.7 (kiểm tra đầu ca, OSP, Divert, NOTAM, thời tiết) và §II.8, II.10, II.12, II.13 (lệch tải OFP/CLC, NAIL/CDL, chứng chỉ tổ bay theo sân bay, APU/PAX time — bổ sung v0.2).
   - `ba/workspace/drafts/phan-tich/bao-cao-khao-sat/BAO-CAO-KHAO-SAT-11062026-buoi-chieu-v0.1.md` §II.2 (Flight Type Code, STS/HEAD) và §II.6 (Monitoring real-time qua ACARS) — bổ sung v0.2.
+  - `ba/workspace/drafts/phan-tich/bao-cao-khao-sat/BAO-CAO-KHAO-SAT-15062026-v0.1.md` §II.2 (cửa sổ release Dispatch / Pilot; ngưỡng NOTAM 210/270/75/95; Pilot Release 30′ trước ETD) — **bổ sung v0.6**.
   - `ba/workspace/drafts/phan-tich/bao-cao-khao-sat/BAO-CAO-KHAO-SAT-08062026-v0.2.md` §II.2, II.3, II.6 (hai nhóm giám sát, FMS, khách nối chuyến).
   - `ba/workspace/drafts/phan-tich/bao-cao-khao-sat/BAO-CAO-KHAO-SAT-09062026-v0.2.md` §II.7 (đa Carrier trong BCAO).
 - **Cờ truy vết:**
   - `(chưa có nguồn — cần SME bổ sung)` — nguồn đề cập nguyên tắc nhưng không nêu chi tiết để bóc xuống FUNC; chờ SME bổ sung.
   - `[cần xác nhận]` — nội dung nguồn còn cờ này (vd VMA, VNCM/VNCS); giữ nguyên cờ trong FUNC để truy vết.
+  - `[cần xác nhận — KS-xx]` (v0.6) — phần của cột Flight Dispatch còn vướng đúng cờ OID KS-xx đang mở; FUNC chỉ phân rã phần đã rõ, phần vướng cờ giữ nguyên cờ và không suy diễn.
 - **Mã FUNC** đánh liên tiếp `FUNC-101 → FUNC-1xx`; mỗi FUNC ánh xạ tới đúng một BR cha (cùng FUNC có thể được tham chiếu chéo qua nhiều BR nếu nguồn cùng nêu, nhưng BR cha là BR mà FUNC trực tiếp phân rã từ đó).
 
 ---
@@ -476,6 +480,183 @@ document_id: "FUNC-DEC-PH1"
 
 ---
 
+> **Bổ sung v0.6 — Đặc tả cột màn Flight Dispatch (Flight monitoring).** Nguồn dẫn: `wf-monitoring-overview.md` §8 (sheet Function list `[FL-FD]`) + §9 (đối chiếu YCKT TOSS-175…182 + báo cáo KS). Chỉ phân rã FUNC cho **các cột đã rõ nguồn, KHÔNG vướng cờ OID mở**; các cột còn cờ liệt kê tại §2.51.0 (lý do bỏ qua). Mỗi FUNC kèm **Tiêu chí chấp nhận (AC — Acceptance Criteria)** chép trung thực logic màu/ngưỡng; phần còn cờ giữ nguyên `[cần xác nhận — KS-xx]`, không suy diễn (CLAUDE.md §0).
+
+## 2.51 Đặc tả cột màn Flight Dispatch — các cột đã rõ nguồn (v0.6)
+
+### 2.51.0 Các cột BỎ QUA (còn vướng cờ OID mở — chưa phân rã FUNC)
+
+| Cột | Lý do bỏ qua (cờ OID) | Khi nào phân rã được |
+|---|---|---|
+| ATC (cột 21) | Màu/ngưỡng chưa có nguồn — `[KS-70]`; sheet chỉ ghi "như MO", báo cáo KS chưa nêu ngưỡng. | Sau khi SME chốt quy tắc màu/ngưỡng ATC. |
+| TO/LD — MTOW/MLDW (cột 22) | Màu/ngưỡng chưa có nguồn — `[KS-70]`; sheet có logic EST TO/LD vs MTOW/MLDW nhưng không nêu màu. | Sau khi SME chốt ngưỡng RTOW/màu (gợi ý ma trận System Admin). |
+| Taxi APU (cột 24) | Màu/ngưỡng chưa có nguồn — `[KS-70]`; chỉ ghi "lệch Taxi/APU so với FON". | Sau khi SME chốt Standard Taxi Time + màu. |
+| EPLD (cột 13) | Ngưỡng màu vàng/đỏ cụ thể chưa rõ — `[KS-71]`; chỉ có ma trận loại tàu × giờ bay × trần/sàn (chưa map ra màu). | Sau khi SME chốt "lệch X → vàng; lệch Y → đỏ". |
+| EST DOW (cột 14) | Như EPLD — ngưỡng màu chưa rõ — `[KS-71]`. | Như EPLD. |
+| ZFW-DOW (cột 19) | §9.2 có khung 60′ nội địa / 90′ quốc tế + ma trận System Admin nhưng **màu cụ thể vẫn trống** (cờ §8-4 / KS-71); ranh giới với EPLD/EST DOW chưa chốt. | Sau khi SME chốt màu + ranh giới với EPLD/EST DOW. |
+| 6 cột bổ sung TOSS-180 (cabin defect / PAX nối chuyến / loadfactor thấp / thiếu phép bay / TAT không đủ / thiếu điện văn) | Tách cột riêng hay gộp vào cột hiện có chưa chốt — `[KS-76]` (§9-1). | Sau khi SME quyết tách/gộp + ngưỡng từng trường. |
+| Filter 1–20 (§8.3) | Trường lọc tường minh chưa liệt kê — `[KS-72]` (§8-5). | Sau khi SME xác nhận từng filter. |
+| Tooltip hover 19 cột (§8.7 §8-10) | Nội dung tooltip cụ thể chưa có — `[KS-74]`. | Sau khi SME bổ sung tooltip. |
+| Details (lịch sử) các cột ngoài REG/FLTNO/ETD/Flight Type | Cột nào cần Details riêng chưa chốt — `[KS-75]` (§8-11). | Sau khi SME bổ sung; khung format chung đã có (FUNC-275/276). |
+
+### 2.51.1 Cột DSP Release (checkbox + action release)
+
+| Mã FUNC | Mô tả chức năng (bám nguồn) | BR cha | Nguồn |
+|---|---|---|---|
+| FUNC-277 | Hiển thị cột **DSP Release** dạng ô chọn (checkbox) trên màn Flight Dispatch; ô chỉ **active** khi OFP của chuyến đã tới thời điểm cần release (cửa sổ release Dispatch). | BR-213, BR-224 | `[wf-monitoring §8.2 cột 1]` · `[FL-FD]` · `[15062026 §II.2 #5,#6]` |
+| FUNC-278 | Khi điều phái bấm ô DSP Release đang active → thực hiện **release OFP**; điều kiện active còn ràng buộc **bóc tách OFP để đối chiếu user DSP đang đăng nhập với số license trên DSP license trong thông tin user** (chỉ user có license phù hợp mới release được). | BR-213, BR-224 | `[wf-monitoring §8.2 cột 1]` · `[FL-FD]` |
+
+**FUNC-277 — Tiêu chí chấp nhận (AC):**
+- [ ] **Given** một chuyến chưa tới cửa sổ release Dispatch, **When** màn Flight Dispatch hiển thị, **Then** ô DSP Release của chuyến ở trạng thái **inactive** (không bấm được).
+- [ ] **Given** OFP của chuyến đã tới thời điểm cần release (cửa sổ: sớm nhất 75′ quốc nội / 90′ quốc tế; muộn nhất 60′ quốc nội / 75′ quốc tế trước ETD — `[15062026 §II.2 #5,#6]`), **When** màn hiển thị, **Then** ô DSP Release **active**.
+
+**FUNC-278 — Tiêu chí chấp nhận (AC):**
+- [ ] **Given** ô DSP Release active và user đang đăng nhập **có** số DSP license khớp với license yêu cầu (bóc tách từ OFP), **When** user bấm ô, **Then** hệ thống thực hiện release OFP của chuyến đó.
+- [ ] **Given** ô DSP Release active nhưng user đang đăng nhập **không** có DSP license phù hợp, **When** user bấm ô, **Then** hệ thống **không** cho release (chỉ user có license phù hợp mới release được).
+- [ ] Quy tắc màu riêng cho ô checkbox này: *(sheet không định nghĩa màu cho ô DSP Release — không suy diễn).*
+
+### 2.51.2 Cột OFP DSP (hiển thị + logic màu theo trạng thái revision)
+
+| Mã FUNC | Mô tả chức năng (bám nguồn) | BR cha | Nguồn |
+|---|---|---|---|
+| FUNC-279 | Hiển thị cột **OFP DSP**: OFP number và OFP Revision cuối; định dạng chuỗi `2/0/1 R2` `[cần xác nhận ý nghĩa các số 2/0/1 — KS-69 / §8-1]`. | BR-213, BR-224 | `[wf-monitoring §8.2 cột 11]` · `[FL-FD]` |
+| FUNC-280 | Phân màu cột OFP DSP theo trạng thái revision cuối so với Dispatch Release (3 màu); bổ sung ngưỡng thời gian cùng nhóm với NOTAM (xem AC). | BR-213, BR-224 | `[wf-monitoring §8.2 cột 11]` · `[FL-FD]` · `[15062026 §II.2 #5,#6]` |
+
+**FUNC-279 — Tiêu chí chấp nhận (AC):**
+- [ ] **Given** chuyến có OFP, **When** màn hiển thị, **Then** cột OFP DSP hiển thị OFP number + Revision cuối.
+- [ ] Định dạng chuỗi `2/0/1 R2`: hiển thị đúng theo sheet, **giữ cờ** `[cần xác nhận ý nghĩa 2/0/1 — KS-69]` (chưa diễn giải ý nghĩa 3 số đầu — không suy diễn).
+
+**FUNC-280 — Tiêu chí chấp nhận (AC):**
+- [ ] **Given** Revision cuối đã được Dispatch Release, **Then** ô OFP DSP **Xanh**.
+- [ ] **Given** Revision cuối **chưa** release nhưng có một revision trước đó đã release, **Then** ô OFP DSP **Vàng**.
+- [ ] **Given** Revision cuối chưa release và **trước đó chưa có revision nào** được DSP release, **Then** ô OFP DSP **Đỏ**.
+- [ ] **Given** chuyến **chưa có OFP**, **Then** ô OFP DSP **Không màu**.
+- [ ] Ngưỡng thời gian (cùng nhóm cột NOTAM — `[15062026 §II.2]`): khi đã có OFP mà DSP chưa release → **Vàng** từ 75→60′ quốc nội (90→75′ quốc tế); **Đỏ** từ 60′ quốc nội / 75′ quốc tế trước ETD.
+- [ ] Hover ô hiển thị: `Thời gian upload, Tên DSP, thời gian release` (theo sheet).
+
+### 2.51.3 Cột Pilot release (trạng thái + logic màu)
+
+| Mã FUNC | Mô tả chức năng (bám nguồn) | BR cha | Nguồn |
+|---|---|---|---|
+| FUNC-281 | Hiển thị cột **Pilot release**: chưa confirm → gạch trắng; đã confirm → hiển thị phiên bản OFP (vd `R01`); phân màu theo trạng thái release/Reject (3 màu). | BR-214, BR-225 | `[wf-monitoring §8.2 cột 12]` · `[FL-FD]` |
+| FUNC-282 | Cảnh báo **Vàng** khi 30 phút trước ETD mà Pilot chưa release. | BR-214, BR-225 | `[wf-monitoring §9.2 cột 12]` · `[15062026 §II.2 #7,#8]` |
+
+**FUNC-281 — Tiêu chí chấp nhận (AC):**
+- [ ] **Given** Pilot chưa confirm, **Then** ô Pilot release hiển thị **gạch trắng**.
+- [ ] **Given** Pilot đã confirm, **Then** ô hiển thị phiên bản OFP (vd `R01`).
+- [ ] **Given** Pilot đã release đúng OFP cuối mà DSP đã release, **Then** ô **Xanh**.
+- [ ] **Given** Pilot đã release một OFP **trước** OFP cuối (OFP release), **Then** ô **Vàng**.
+- [ ] **Given** Pilot **Reject**, **Then** ô **Đỏ**.
+- [ ] Hover ô hiển thị: `Thời gian release` (theo sheet).
+
+**FUNC-282 — Tiêu chí chấp nhận (AC):**
+- [ ] **Given** còn 30 phút trước ETD mà Pilot **chưa** release, **Then** sinh cảnh báo **Vàng** tại cột Pilot release (`[15062026 §II.2 #7,#8]`).
+- [ ] *Ghi chú nguồn:* "PIC Confirm" là cột đề xuất bổ sung tách riêng khỏi Pilot release (`[YCKT TOSS-181]`) — **chưa phân rã FUNC riêng** (chờ SME chốt tách cột); Un-Release luôn sinh phiên bản mới và khóa release tạm thời `[ghi nhận nguồn — chưa đủ chi tiết để phân rã]`.
+
+### 2.51.4 Cột Flight Type (chip loại chuyến + lịch sử + logic màu)
+
+| Mã FUNC | Mô tả chức năng (bám nguồn) | BR cha | Nguồn |
+|---|---|---|---|
+| FUNC-283 | Hiển thị cột **Flight Type** dạng chip loại chuyến (J/G/P/A/VIP/Ferry/Thường); cho phép kiểm tra/đổi loại chuyến và **lưu lịch sử thay đổi loại** (VIP ↔ Thường; Thường ↔ Ferry và ngược lại). | BR-126 | `[wf-monitoring §8.2 cột 9]` · `[FL-FD]` |
+| FUNC-284 | Phân màu cột Flight Type theo trạng thái đổi loại + đối chiếu Status head ATC/OFP (xem AC). | BR-126 | `[wf-monitoring §8.2 cột 9]` · `[FL-FD]` · `[11062026-chiều §II.2]` |
+
+**FUNC-283 — Tiêu chí chấp nhận (AC):**
+- [ ] **Given** một chuyến, **Then** cột Flight Type hiển thị chip loại chuyến theo flight type.
+- [ ] **Given** loại chuyến thay đổi (VIP ↔ Thường, hoặc Thường ↔ Ferry), **Then** hệ thống **lưu lịch sử** thay đổi (đổi từ code nào sang code nào + thời điểm).
+- [ ] Hover/Details hiển thị lịch sử đổi code (theo sheet — hàng Hover/Details của cột 9).
+
+**FUNC-284 — Tiêu chí chấp nhận (AC):**
+- [ ] **Given** chuyến đã có ATC và OFP ra nhưng **chưa release**, **Then** ô Flight Type **Vàng**.
+- [ ] **Given** chuyến đổi **Thường ↔ Ferry**, **Then** ô **Đỏ**.
+- [ ] **Given** chuyến đổi **Thường ↔ VIP**, **Then** ô **Đỏ**.
+- [ ] **Given** Status head ATC và OFP đã release **khớp** (áp dụng chuyển Thường → VIP và ngược lại), **Then** ô **Xanh**.
+- [ ] **Given** chuyển Thường ↔ Ferry, **Then** việc xác định dựa vào **số pax trong OFP** (theo sheet).
+
+### 2.51.5 Cột BLOCK FUEL (hiển thị OFP Block Fuel)
+
+| Mã FUNC | Mô tả chức năng (bám nguồn) | BR cha | Nguồn |
+|---|---|---|---|
+| FUNC-285 | Hiển thị cột **BLOCK FUEL** = giá trị OFP Block Fuel của chuyến. | BR-110 | `[wf-monitoring §8.2 cột 15]` · `[FL-FD]` |
+
+**FUNC-285 — Tiêu chí chấp nhận (AC):**
+- [ ] **Given** chuyến có OFP, **Then** cột BLOCK FUEL hiển thị giá trị OFP Block Fuel.
+- [ ] Quy tắc màu riêng cho cột BLOCK FUEL: *(sheet để trống hàng Color — §8-9; không suy diễn).* Cảnh báo "30′ trước ETD pilot chưa release" được thể hiện ở cột PILOT EXTRA (FUNC-287), không tại cột BLOCK FUEL.
+
+### 2.51.6 Cột PILOT EXTRA (delta + cảnh báo)
+
+| Mã FUNC | Mô tả chức năng (bám nguồn) | BR cha | Nguồn |
+|---|---|---|---|
+| FUNC-286 | Hiển thị cột **PILOT EXTRA** = `Pilot Release − OFP Block Fuel` của đúng revision OFP được Pilot release; **bỏ trống** nếu chuyến chưa có Flight Release. | BR-309 | `[wf-monitoring §8.2 cột 16]` · `[FL-FD]` |
+| FUNC-287 | Cảnh báo màu **Đỏ** tại cột PILOT EXTRA khi 30 phút trước EDT/ETD mà Pilot chưa release. | BR-309 | `[wf-monitoring §8.2 cột 16]` · `[wf-monitoring §9.2 cột 16]` · `[POC §7.2]` · `[15062026 §II.2]` |
+
+**FUNC-286 — Tiêu chí chấp nhận (AC):**
+- [ ] **Given** chuyến **chưa** có Flight Release, **Then** cột PILOT EXTRA **bỏ trống**.
+- [ ] **Given** chuyến đã có Pilot Release, **Then** cột hiển thị giá trị `Pilot Release − OFP Block Fuel` của đúng revision OFP được Pilot release (+ thêm / − ít).
+
+**FUNC-287 — Tiêu chí chấp nhận (AC):**
+- [ ] **Given** còn 30 phút trước EDT/ETD mà Pilot **chưa** release, **Then** cột PILOT EXTRA cảnh báo màu **Đỏ** (đồng nhất với cảnh báo Vàng tại Pilot release FUNC-282; màu Đỏ tại cột PILOT EXTRA theo `[wf-monitoring §9.2 cột 16]`).
+
+### 2.51.7 Cột NOTAM (cảnh báo theo ngưỡng thời gian)
+
+| Mã FUNC | Mô tả chức năng (bám nguồn) | BR cha | Nguồn |
+|---|---|---|---|
+| FUNC-288 | Cột **NOTAM** — nhánh **chưa có OFP**: cảnh báo theo ngưỡng thời gian trước giờ tham chiếu (Vàng 210′ nội địa / 270′ quốc tế; Đỏ 75′ nội địa / 95′ quốc tế). | BR-118 | `[wf-monitoring §8.2 cột 17]` · `[FL-FD]` · `[15062026 §II.2]` · `[11062026-sáng §6 #10,#11]` |
+| FUNC-289 | Cột **NOTAM** — nhánh **đã có OFP, DSP chưa release**: hiển thị phiên bản OFP; Vàng từ 75→60′ nội địa (90→75′ quốc tế); Đỏ từ 60′ nội địa / 75′ quốc tế. | BR-118 | `[wf-monitoring §8.2 cột 17]` · `[FL-FD]` · `[15062026 §II.2]` |
+| FUNC-290 | Cột **NOTAM** — nhánh **đã có OFP, DSP đã release**: hiển thị phiên bản OFP; ô **Xanh**. | BR-118 | `[wf-monitoring §8.2 cột 17]` · `[FL-FD]` |
+
+**FUNC-288 — Tiêu chí chấp nhận (AC):** *(nhánh chưa có OFP)*
+- [ ] **Given** chuyến chưa có OFP và **chưa** tới giờ tham chiếu, **Then** ô NOTAM hiển thị `(-)` (không màu).
+- [ ] **Given** chuyến chưa có OFP và **sắp** tới giờ ở mức cảnh báo sớm — còn **210′ quốc nội / 270′ quốc tế** — **Then** ô NOTAM `(!)` **Vàng**.
+- [ ] **Given** chuyến chưa có OFP và **sắp** tới giờ ở mức cảnh báo gấp — còn **75′ quốc nội / 95′ quốc tế** — **Then** ô NOTAM `(!)` **Đỏ**.
+
+**FUNC-289 — Tiêu chí chấp nhận (AC):** *(nhánh đã có OFP, DSP chưa release)*
+- [ ] **Given** chuyến đã có OFP nhưng DSP **chưa** release, **Then** ô NOTAM hiển thị phiên bản OFP.
+- [ ] **Given** còn **75→60′ quốc nội (90→75′ quốc tế)** trước giờ tham chiếu, **Then** ô NOTAM **Vàng**.
+- [ ] **Given** còn **dưới 60′ quốc nội / 75′ quốc tế**, **Then** ô NOTAM **Đỏ**.
+
+**FUNC-290 — Tiêu chí chấp nhận (AC):** *(nhánh đã có OFP, DSP đã release)*
+- [ ] **Given** chuyến đã có OFP và DSP **đã** release, **Then** ô NOTAM hiển thị phiên bản OFP và ô **Xanh**.
+- [ ] *Ghi chú nguồn:* NOTAM phân 3 nhóm (sân bay / vùng trời / đường bay) — tham chiếu FUNC-175; NOTAM cứu hỏa (RFFS) khi phát ra cảnh báo trực tiếp — tham chiếu FUNC-177. Việc các cột MEL/WX/ZFW có dùng đúng cùng ngưỡng nhóm này hay không còn cờ `[cần xác nhận — §8-3]`.
+
+### 2.51.8 Cột WX (cảnh báo thời tiết 3 thông số)
+
+| Mã FUNC | Mô tả chức năng (bám nguồn) | BR cha | Nguồn |
+|---|---|---|---|
+| FUNC-291 | Cột **WX** — cảnh báo thời tiết sân bay (cất/hạ cánh) dựa trên 3 thông số: tầm nhìn (Visibility), trần mây (Cloud Ceiling), mưa giông (TSRA), so với VMA + biên an toàn (margin). | BR-119 | `[wf-monitoring §8.2 cột 18]` · `[wf-monitoring §9.2 cột 18]` · `[11062026-sáng §7 #12,#13]` |
+| FUNC-292 | Cột **WX** — nguồn dữ liệu & chu kỳ: căn cứ bản tin **METAR (30 phút/lần)** + **SPECI** khi có biến động; nguồn nội địa = VATM/VNCM, quốc tế = Lido. | BR-119 | `[wf-monitoring §9.2 cột 18]` · `[11062026-sáng §7]` |
+
+**FUNC-291 — Tiêu chí chấp nhận (AC):**
+- [ ] **Given** bản tin thời tiết của sân bay cất/hạ cánh, **When** một trong 3 thông số (tầm nhìn / trần mây / TSRA) vượt ngưỡng **VMA `[cần xác nhận viết tắt — §8-5]` + biên an toàn**, **Then** cột WX phát cảnh báo (so với VMA + margin để cảnh báo sớm — tham chiếu FUNC-182/183).
+- [ ] Cảnh báo tự **clear** khi bản tin METAR/SPECI mới đưa thời tiết về trong ngưỡng (tham chiếu FUNC-210 — clear theo bản tin mới).
+- [ ] Quy tắc màu vàng/đỏ riêng theo mức vượt: WX **áp cùng ngưỡng nhóm với NOTAM** nhưng việc dùng chung cờ `[cần xác nhận — §8-3]` (chưa diễn giải mức màu riêng — không suy diễn).
+
+**FUNC-292 — Tiêu chí chấp nhận (AC):**
+- [ ] **Given** sân bay nội địa, **Then** ưu tiên nguồn METAR/SPECI từ VATM/VNCM (tham chiếu FUNC-184).
+- [ ] **Given** sân bay quốc tế, **Then** ưu tiên nguồn thời tiết trong Lido (tham chiếu FUNC-185).
+- [ ] Hệ thống cập nhật theo **METAR 30 phút/lần** và **SPECI** khi có biến động.
+
+### 2.51.9 Cột MEL/CDL (cảnh báo tích hợp AMOS)
+
+| Mã FUNC | Mô tả chức năng (bám nguồn) | BR cha | Nguồn |
+|---|---|---|---|
+| FUNC-293 | Cột **MEL/CDL** — cảnh báo lỗi kỹ thuật MEL/CDL tích hợp từ AMOS (Master MEL) ảnh hưởng nhiên liệu / mực bay. | BR-121, BR-407 | `[wf-monitoring §8.2 cột 20]` · `[wf-monitoring §9.2 cột 20]` · `[FL-FD]` |
+
+**FUNC-293 — Tiêu chí chấp nhận (AC):**
+- [ ] **Given** một MEL/CDL từ AMOS (Master MEL) ảnh hưởng nhiên liệu hoặc mực bay của chuyến, **Then** cột MEL/CDL phát cảnh báo (tham chiếu FUNC-193/194 — quy tắc theo khoảng hiệu lực).
+- [ ] *Ghi chú nguồn:* tích hợp AMOS — "Chờ xem xét tích hợp"; cảnh báo gắn AMOS có thể trễ do tích hợp. Quy tắc màu riêng + việc dùng chung ngưỡng OFP với NOTAM còn cờ `[cần xác nhận — §8-3]` (không suy diễn).
+
+### 2.51.10 Cột Missing Document (cảnh báo thiếu tài liệu)
+
+| Mã FUNC | Mô tả chức năng (bám nguồn) | BR cha | Nguồn |
+|---|---|---|---|
+| FUNC-294 | Cột **Missing Document** — cảnh báo chuyến bay thiếu tài liệu (OFP, NOTAM, WX). | BR-112, BR-222 | `[wf-monitoring §8.2 cột 23]` · `[FL-FD]` · `[11062026-chiều §II.1 #1]` · `[YCKT TOSS-175]` |
+
+**FUNC-294 — Tiêu chí chấp nhận (AC):**
+- [ ] **Given** một chuyến thiếu một trong các tài liệu OFP / NOTAM / WX, **Then** cột Missing Document cảnh báo (liệt kê tài liệu còn thiếu).
+- [ ] *Ghi chú nguồn:* ngưỡng thời gian cảnh báo là tham số khai báo (`[YCKT TOSS-175]` "Thời gian cảnh báo chuyến bay thiếu tài liệu" — chưa nêu giá trị); việc **mở rộng nội hàm** sang "thiếu phép bay" / "thiếu điện văn" (TOSS-180) còn cờ `[cần xác nhận — KS-76 / §9-6]` (không suy diễn). Quy tắc màu riêng: sheet để trống hàng Color (§8-9) — không suy diễn.
+
+---
+
 ## 3. Bảng truy vết BR → FUNC
 
 | BR cha | Số FUNC | Danh sách FUNC con |
@@ -489,23 +670,23 @@ document_id: "FUNC-DEC-PH1"
 | BR-107 | 7 | FUNC-115, FUNC-116, FUNC-117, FUNC-118, FUNC-119, FUNC-120, FUNC-121 |
 | BR-108 | 4 | FUNC-122, FUNC-123, FUNC-124, FUNC-125 |
 | BR-109 | 5 | FUNC-126, FUNC-127, FUNC-128, FUNC-129, FUNC-130 |
-| BR-110 | 4 | FUNC-131, FUNC-132, FUNC-133, FUNC-134 |
+| BR-110 | 5 | FUNC-131, FUNC-132, FUNC-133, FUNC-134, FUNC-285 (BLOCK FUEL — v0.6) |
 | BR-111 | 3 | FUNC-135, FUNC-136, FUNC-137 |
-| BR-112 | 6 | FUNC-138, FUNC-139, FUNC-140, FUNC-141, FUNC-142, FUNC-143 |
+| BR-112 | 7 | FUNC-138, FUNC-139, FUNC-140, FUNC-141, FUNC-142, FUNC-143, FUNC-294 (Missing Document — v0.6) |
 | BR-113 | 4 | FUNC-144, FUNC-145, FUNC-146, FUNC-147 |
 | BR-114 | 12 | FUNC-148, FUNC-149, FUNC-150, FUNC-151, FUNC-152, FUNC-153, FUNC-154, FUNC-155, FUNC-156, FUNC-157, FUNC-158, FUNC-159 |
 | BR-115 | 3 | FUNC-160, FUNC-161, FUNC-162 |
 | BR-116 | 7 | FUNC-163, FUNC-164, FUNC-165, FUNC-166, FUNC-167, FUNC-168, FUNC-171 *(FUNC-169/170 đã bỏ — Lotang = NOTAM, gộp BR-118)* |
 | BR-117 | 2 | FUNC-172, FUNC-173 (tham chiếu chéo FUNC-111 từ BR-104) |
-| BR-118 | 6 | FUNC-174, FUNC-175, FUNC-176, FUNC-177, FUNC-178, FUNC-179 |
-| BR-119 | 9 | FUNC-180, FUNC-181, FUNC-182, FUNC-183, FUNC-184, FUNC-185, FUNC-186, FUNC-187, FUNC-188 |
+| BR-118 | 9 | FUNC-174, FUNC-175, FUNC-176, FUNC-177, FUNC-178, FUNC-179, FUNC-288, FUNC-289, FUNC-290 (NOTAM ngưỡng — v0.6) |
+| BR-119 | 11 | FUNC-180, FUNC-181, FUNC-182, FUNC-183, FUNC-184, FUNC-185, FUNC-186, FUNC-187, FUNC-188, FUNC-291, FUNC-292 (WX cột Flight Dispatch — v0.6) |
 | BR-120 | 4 | FUNC-189, FUNC-190, FUNC-191, FUNC-192 |
-| BR-121 | 4 | FUNC-193, FUNC-194, FUNC-195, FUNC-196 |
+| BR-121 | 5 | FUNC-193, FUNC-194, FUNC-195, FUNC-196, FUNC-293 (MEL/CDL cột Flight Dispatch — v0.6; tham chiếu chéo BR-407) |
 | BR-122 | 2 | FUNC-197, FUNC-198 |
 | BR-123 | 2 | FUNC-199, FUNC-200 |
 | BR-124 | 3 | FUNC-201, FUNC-202, FUNC-203 |
 | BR-125 | 7 | FUNC-204, FUNC-205, FUNC-206, FUNC-207, FUNC-208, FUNC-209, FUNC-210 |
-| BR-126 | 4 | FUNC-211, FUNC-212, FUNC-213, FUNC-214 |
+| BR-126 | 6 | FUNC-211, FUNC-212, FUNC-213, FUNC-214, FUNC-283, FUNC-284 (Flight Type cột — v0.6) |
 | BR-127 | 2 | FUNC-215, FUNC-216 |
 | BR-128 | 2 | FUNC-217, FUNC-218 |
 | BR-129 | 3 | FUNC-219, FUNC-220, FUNC-221 |
@@ -530,7 +711,12 @@ document_id: "FUNC-DEC-PH1"
 | BR-148 | 2 | FUNC-271, FUNC-272 |
 | BR-149 | 2 | FUNC-273, FUNC-274 |
 | BR-150 | 2 | FUNC-275, FUNC-276 |
-| **Tổng** | **176** | FUNC-101 … FUNC-276 |
+| BR-213 / BR-224 | 4 | FUNC-277, FUNC-278 (DSP Release), FUNC-279, FUNC-280 (OFP DSP) — v0.6 *(BR cha thuộc Dispatch Release/OFP versioning; BR-213/224 nằm ngoài dải BR-101…150, đề xuất bổ sung vào BRD PH1 — xem §6 ghi chú lắp ráp)* |
+| BR-214 / BR-225 | 2 | FUNC-281, FUNC-282 (Pilot release) — v0.6 *(BR cha thuộc Captain's/Pilot Release; đề xuất bổ sung vào BRD)* |
+| BR-309 | 2 | FUNC-286, FUNC-287 (PILOT EXTRA) — v0.6 *(BR cha Pilot Extra; đề xuất xác nhận thuộc PH1 hay phân hệ khác)* |
+| **Tổng** | **194** | FUNC-101 … FUNC-294 |
+
+> **Ghi chú bảng truy vết v0.6:** 18 FUNC mới (FUNC-277 → FUNC-294) phân bổ vào (a) BR sẵn có trong dải BR-101…150 (BR-110, BR-112, BR-118, BR-119, BR-121, BR-126) và (b) cụm BR Dispatch/Pilot Release ngoài dải (BR-213/224, BR-214/225, BR-309) — các BR (b) hiện được tham chiếu từ wireframe §8.8/§9.3 nhưng **chưa nằm trong BRD PH1 hiện hành**; đề xuất BA Lead bổ sung BR tương ứng vào BRD (xem §6).
 
 ---
 
@@ -594,6 +780,10 @@ document_id: "FUNC-DEC-PH1"
 | FUNC-222 | BR-130 | Thuật ngữ "lệch đầu" — cần SME xác nhận định nghĩa. |
 | FUNC-223 | BR-130 | Thuật ngữ "vặn tàu" — cần SME xác nhận quy tắc xác định. |
 | FUNC-226 | BR-130 | Thuật ngữ "BH mùa" — cần SME xác nhận. |
+| FUNC-279 | BR-213/224 | Ý nghĩa định dạng `2/0/1 R2` của OFP DSP (3 số đầu) — `[KS-69 / §8-1]`. |
+| FUNC-291 | BR-119 | WX dùng chung ngưỡng nhóm với NOTAM hay ngưỡng riêng; mức màu vàng/đỏ cụ thể — `[§8-3]`. Viết tắt "VMA" — `[§8-5]`. |
+| FUNC-293 | BR-121/407 | MEL/CDL dùng chung ngưỡng OFP với NOTAM hay riêng — `[§8-3]`; tích hợp AMOS "chờ xem xét". |
+| FUNC-294 | BR-112/222 | Mở rộng Missing Document sang "thiếu phép bay"/"thiếu điện văn" (TOSS-180) — `[KS-76 / §9-6]`; ngưỡng thời gian cảnh báo (TOSS-175). |
 
 ---
 
@@ -635,3 +825,16 @@ document_id: "FUNC-DEC-PH1"
   - **Time window/Flight Watch (BR-148/149):** time window cấu hình + trôi + sort ETD (FUNC-271/272), giữ chuyến chưa đáp + "vào gate chậm" (FUNC-273/274 — đều là khoảng trống về cơ chế/ngưỡng).
   - **History timeline (BR-150):** format chung kéo dọc (FUNC-275/276).
   - **Tổng v0.5:** 41 FUNC mới (FUNC-236 → FUNC-276), nâng tổng số FUNC của Phân hệ 1 từ 135 lên **176** FUNC.
+- **Bổ sung v0.6 (§2.51 — đặc tả cột màn Flight Dispatch đã rõ nguồn):** 18 FUNC mới (FUNC-277 → FUNC-294), nâng tổng số FUNC của Phân hệ 1 từ 176 lên **194** FUNC. Nguồn chính: `wf-monitoring-overview.md` §8 (`[FL-FD]`) + §9 (đối chiếu YCKT + KS 11/06, 12/06, 15/06).
+  - **DSP Release (FUNC-277/278):** checkbox active theo cửa sổ release + kiểm DSP license của user.
+  - **OFP DSP (FUNC-279/280):** hiển thị OFP number/Rev (định dạng `2/0/1 R2` giữ cờ `[KS-69]`) + logic màu 3 trạng thái (Xanh/Vàng/Đỏ) + Không màu (chưa có OFP) + ngưỡng thời gian nhóm NOTAM.
+  - **Pilot release (FUNC-281/282):** gạch trắng/`R01`/Xanh/Vàng/Đỏ (Reject) + cảnh báo Vàng 30′ trước ETD.
+  - **Flight Type (FUNC-283/284):** chip loại + lưu lịch sử đổi + màu (Đỏ Thường↔Ferry/VIP; Vàng đã ATC/OFP chưa release; Xanh khi Status head khớp).
+  - **BLOCK FUEL (FUNC-285):** hiển thị OFP Block Fuel (màu riêng để trống — §8-9).
+  - **PILOT EXTRA (FUNC-286/287):** delta `Pilot Release − OFP Block Fuel` + Đỏ 30′ trước ETD chưa release.
+  - **NOTAM (FUNC-288/289/290):** 3 nhánh ngưỡng (chưa có OFP: Vàng 210/270′, Đỏ 75/95′; đã có OFP chưa release: Vàng 75→60/90→75′, Đỏ 60/75′; đã release: Xanh).
+  - **WX (FUNC-291/292):** 3 thông số (tầm nhìn/trần mây/TSRA) so VMA + biên an toàn; METAR 30′/lần + SPECI; nguồn nội địa VATM/VNCM, quốc tế Lido. Mức màu riêng giữ cờ `[§8-3]`.
+  - **MEL/CDL (FUNC-293):** cảnh báo MEL/CDL tích hợp AMOS ảnh hưởng nhiên liệu/mực bay.
+  - **Missing Document (FUNC-294):** cảnh báo thiếu OFP/NOTAM/WX (mở rộng phép bay/điện văn giữ cờ `[KS-76]`).
+  - **Đề xuất BR mới (cho BA Lead):** các FUNC OFP/Dispatch/Pilot Release (FUNC-277…282) và PILOT EXTRA (FUNC-286/287) tham chiếu BR-213/224, BR-214/225, BR-309 — **các BR này hiện chưa nằm trong BRD PH1 (BR-101…150)**; đề xuất bổ sung BR tương ứng (Dispatch Release / Captain's & Pilot Release / Pilot Extra) vào BRD PH1 để đóng truy vết hai chiều BR → FUNC.
+  - **Cột bỏ qua (còn cờ OID — xem §2.51.0):** ATC, TO/LD, Taxi APU (KS-70); EPLD, EST DOW, ZFW-DOW (KS-71/§8-4); 6 cột TOSS-180 (KS-76); Filter 1–20 (KS-72); tooltip hover (KS-74); Details cột khác (KS-75) — **chưa phân rã FUNC**, chờ SME chốt ngưỡng/màu/tách-gộp.
