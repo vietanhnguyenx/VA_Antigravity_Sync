@@ -82,6 +82,21 @@ def add_image(doc, path):
     run=p.add_run()
     run.add_picture(path, width=Cm(16.5))
 
+HEADING_NUMID='344'  # same multilevel list the existing chapter-3 headings use
+def set_heading_num(p, ilvl):
+    pPr=p._p.get_or_add_pPr()
+    ex=pPr.find(qn('w:numPr'))
+    if ex is not None: pPr.remove(ex)
+    numPr=OxmlElement('w:numPr')
+    il=OxmlElement('w:ilvl'); il.set(qn('w:val'),str(ilvl)); numPr.append(il)
+    ni=OxmlElement('w:numId'); ni.set(qn('w:val'),HEADING_NUMID); numPr.append(ni)
+    pPr.append(numPr)
+
+def add_h(doc, text, level):
+    p=doc.add_heading(text, level=level)
+    set_heading_num(p, level-1)   # H2->ilvl1, H3->ilvl2 (continues 3.x numbering)
+    return p
+
 # ---------- markdown parse ----------
 with io.open(MD,'r',encoding='utf-8') as f:
     lines=f.read().split('\n')
@@ -159,16 +174,15 @@ while i < len(lines):
 doc=docx.Document(SRC_DOCX)
 
 # lead-in heading for the module (H2, flat like other ch.3 functions)
-h=doc.add_heading('', level=2)
-r=h.add_run('Phân hệ Quản lý nước sạch (Potable Water Service)')
+add_h(doc, 'Phân hệ Quản lý nước sạch (Potable Water Service)', 2)
 
 img_missing=[]
 for op in ops:
     t=op[0]
     if t=='h2':
-        doc.add_heading(op[1], level=2)
+        add_h(doc, op[1], 2)
     elif t=='h3':
-        doc.add_heading(op[1], level=3)
+        add_h(doc, op[1], 3)
     elif t=='para':
         add_para(doc, op[1], italic=op[2])
     elif t=='image':
