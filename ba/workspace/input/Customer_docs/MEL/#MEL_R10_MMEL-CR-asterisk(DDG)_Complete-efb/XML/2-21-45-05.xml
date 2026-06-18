@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM">]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.2-21-45-05.998550.2-21-45-05" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="21" superSectionNumber="2" sectionName="MEL" chapterName="Air Conditioning" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2021-02-24" rev:revStatus="U" rev:revNumber="10" />
+</PUMetaData>
+<MELItem itemNbr="21-45-05" id="X-BOEING:FTID:81205.787.DDG.CU.MEL.2-21-45-05.1.2-21-45-05">
+<Title>Zonal Duct Heaters</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="2" nbrRequired="0" maintIndicator="(M)">
+<DispatchConditionRemarks>
+<Para>May be inoperative deactivated.</Para>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Deactivate inoperative heater (AMM DDG 21-45-05).</Para>
+<List listType="1.">
+<ListItem>
+<Para>For zone A1 heater inoperative:</Para>
+<List listType="A.">
+<ListItem>
+<Para>Using a flight deck multi-function display only, open circuit breaker HEATER-CABIN 	ZONE A and lock with an INOP tag.</Para>
+</ListItem>
+<ListItem>
+<Para>Gain access to zone A1 heater.</Para>
+</ListItem>
+<ListItem>
+<Para>Disconnect, cap and stow electrical connector to zone A1 heater.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>For zone B1 heater inoperative:</Para>
+<List listType="A.">
+<ListItem>
+<Para>Using a flight deck multi-function display only, open the following circuit breakers and lock with an INOP tag:</Para>
+<List listType="1)">
+<ListItem>
+<Para>HEATER-CABIN ZONE B ELEMENT 1</Para>
+</ListItem>
+<ListItem>
+<Para>HEATER-CABIN ZONE B ELEMENT 2</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Gain access to zone B1 heater.</Para>
+</ListItem>
+<ListItem>
+<Para>Disconnect, cap and stow electrical connector to zone B1 heater.</Para>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELItem>
+</DispatchItems>

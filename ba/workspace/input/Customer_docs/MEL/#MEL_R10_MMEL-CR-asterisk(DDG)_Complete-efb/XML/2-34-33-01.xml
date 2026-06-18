@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM">]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.2-34-33-01.2095.2-34-33-01" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="34" superSectionNumber="2" sectionName="MEL" chapterName="Navigation" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2025-09-30" rev:revStatus="R" rev:revNumber="10" />
+</PUMetaData>
+<MELItem itemNbr="34-33-01" id="X-BOEING:FTID:81205.787.DDG.CU.MEL.2-34-33-01.1.2-34-33-01">
+<Title>Radio Altimeter Systems</Title>
+<MELSubItem itemNbr="34-33-01-02">
+<Title>CN AA-29854 (Part A or B) Incorporated</Title>
+<DispatchCondition repairInterval="B" nbrInstalled="2" nbrRequired="1" maintIndicator="(M)" opsIndicator="(O)">
+<DispatchConditionRemarks>
+<Para>One may be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>NO AUTOLAND advisory message is displayed.</Para>
+</ListItem>
+<ListItem>
+<Para>Approach minimums do not require its use.</Para>
+</ListItem>
+<ListItem>
+<Para>Operating procedures do not require its use.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<Note>
+<Para>The NO AUTOLAND advisory message will be displayed. The airplane must also be dispatched using MEL 22-11-07.</Para>
+</Note>
+<Note>
+<Para>If the AUTOFLIGHT FUNCTION status message is also displayed, the airplane must also be dispatched using MEL 22-11-01.</Para>
+</Note>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Note>
+<Para>Dispatch is not allowed if any of the following EICAS messages is also displayed: ANTISKID 1 thru ANTISKID 8;  BRAKE 1 thru BRAKE 8;  BRAKE 1 ACTUATOR thru BRAKE 8 ACTUATOR; SPOILER ACTUATOR; and SPOILERS .</Para>
+</Note>
+<Para>Make sure Radio Altimeter circuit breakers LRRA L PWR (CE3433115) and LRRA R PWR (CE3433213) are closed prior to dispatch. Opening the circuit breaker for a Radio Altimeter does not render it inoperative. Radio Altimeter circuit breakers are commanded to close during takeoff after the airplane speed exceeds 40kts (AMM DDG 34-33-01).</Para>
+</MaintenanceProcedure>
+<OperationProcedure>
+<List listType="1.">
+<ListItem>
+<Para>The SGL SOURCE RAD ALT advisory message may be displayed.</Para>
+</ListItem>
+<ListItem>
+<Para>Autothrottle automatic flare retard will be disabled. Operate thrust levers manually during landing flare.</Para>
+</ListItem>
+<ListItem>
+<Para>If the SGL SOURCE RAD ALT advisory message is displayed, set A/T ARM switches to OFF prior to performing the landing checklist.</Para>
+</ListItem>
+<ListItem>
+<Para>If the selected roll mode does not engage, select an alternate roll mode</Para>
+</ListItem>
+<ListItem>
+<Para>If autopilot does not engage when selected, fly the airplane manually and attempt to re-engage when the RA indicates above 200 feet. </Para>
+</ListItem>
+<ListItem>
+<Para>The autothrottle disconnects at 400 feet and is not able to be re-engaged until the RA indicates above 1,500 feet.  Once above 1,500 feet, the autothrottle can be re-engaged and used normally.</Para>
+</ListItem>
+</List>
+</OperationProcedure>
+<OperationNote>
+<Para>RNP AR APCH operations require two Radio Altimeter.</Para>
+</OperationNote>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+</MELItem>
+</DispatchItems>

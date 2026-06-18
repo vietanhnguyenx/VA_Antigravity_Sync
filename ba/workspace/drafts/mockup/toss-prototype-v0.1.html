@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+<!--
+  PROTOTYPE — TOSS Airline Operations Management System
+  Màn hình: OCC Dashboard · Flight Dispatch · Flight Detail · MEL/CDL Management
+  CLAUDE.md §0: trường/nhãn/trạng thái/nút lấy từ báo cáo khảo sát 08–17/06/2026.
+  SỐ LIỆU = dữ liệu mẫu. BỐ CỤC/MÀU = đề xuất cần BA/UI duyệt.
+  PROTOTYPE — tương tác mô phỏng: luồng nghiệp vụ từ nguồn khảo sát.
+  Trình bày theo Angular Material 3. Mở bằng trình duyệt, không cần internet.
+  Nguồn: BAO-CAO-KHAO-SAT-*-v0.1.md (08–17/06/2026) tại 02-khao-sat/
+-->
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>TOSS — Prototype v0.1</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<style>
+/* ===== M3 Design Tokens (primary = Viettel đỏ #EE0033) ===== */
+:root{
+  --md-primary:#EE0033;--md-on-primary:#fff;--md-primary-container:#ffd9dd;--md-on-primary-container:#410008;
+  --md-secondary:#1565C0;--md-secondary-container:#BBDEFB;
+  --md-surface:#fdfcfc;--md-surface-container:#f3eded;--md-surface-container-high:#ece6e6;
+  --md-on-surface:#1c1b1b;--md-on-surface-variant:#5e5e5e;
+  --md-outline:#7a7979;--md-outline-variant:#cecccc;
+  --md-error:#ba1a1a;--md-error-container:#ffdad6;
+  --md-success:#2E7D32;--md-success-container:#d1e7dd;
+  --md-warn:#E65100;--md-warn-container:#fff3cd;
+  --md-radius:12px;--md-radius-sm:8px;
+  --md-elev1:0 1px 2px rgba(0,0,0,.3),0 1px 3px 1px rgba(0,0,0,.15);
+  --md-elev2:0 1px 2px rgba(0,0,0,.3),0 2px 6px 2px rgba(0,0,0,.15);
+  --dark-bg:#121212;--dark-surface:#1e1e1e;--dark-surface2:#2a2a2a;
+  --dark-on-surface:#e0e0e0;--dark-on-variant:#aaa;--dark-outline:#555;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:Roboto,'Segoe UI',Arial,sans-serif;background:var(--dark-bg);color:var(--dark-on-surface);font-size:14px;min-height:100vh;}
+.ms{font-family:'Material Symbols Outlined';font-size:20px;vertical-align:middle;line-height:1;user-select:none;}
+
+/* ===== Toolbar ===== */
+[data-mat="mat-toolbar"]{
+  background:var(--dark-surface);color:var(--dark-on-surface);
+  display:flex;align-items:center;gap:12px;padding:0 16px;height:56px;
+  position:sticky;top:0;z-index:30;border-bottom:1px solid var(--dark-outline);
+  box-shadow:var(--md-elev1);
+}
+[data-mat="mat-toolbar"] .app-title{font-size:18px;font-weight:700;color:var(--md-primary);}
+[data-mat="mat-toolbar"] .spacer{flex:1;}
+.proto-banner{background:#663c00;color:#ffd591;font-size:11px;padding:3px 10px;border-radius:4px;}
+
+/* ===== Sidenav ===== */
+.shell{display:flex;height:calc(100vh - 56px);}
+[data-mat="mat-sidenav"]{
+  width:56px;background:var(--dark-surface);border-right:1px solid var(--dark-outline);
+  display:flex;flex-direction:column;align-items:center;padding:8px 0;gap:4px;overflow:hidden;
+  transition:width .2s;
+}
+[data-mat="mat-sidenav"]:hover,[data-mat="mat-sidenav"].expanded{width:220px;}
+[data-mat="mat-sidenav"] .nav-item{
+  display:flex;align-items:center;gap:12px;padding:12px;width:100%;
+  color:var(--dark-on-variant);cursor:pointer;border-radius:0 28px 28px 0;
+  text-decoration:none;white-space:nowrap;overflow:hidden;transition:background .15s;
+}
+[data-mat="mat-sidenav"] .nav-item:hover{background:var(--dark-surface2);color:var(--dark-on-surface);}
+[data-mat="mat-sidenav"] .nav-item.active{background:var(--md-primary-container);color:var(--md-on-primary-container);}
+[data-mat="mat-sidenav"] .nav-item .nav-label{font-size:13px;font-weight:500;}
+
+/* ===== Content ===== */
+.content{flex:1;overflow:auto;padding:16px;}
+
+/* ===== Screen panels ===== */
+.screen{display:none;animation:fadein .2s;}
+.screen.active{display:block;}
+@keyframes fadein{from{opacity:0}to{opacity:1}}
+
+/* ===== Banner ===== */
+.banner{background:#663c00;color:#ffd591;border-radius:var(--md-radius-sm);padding:8px 14px;font-size:12px;margin-bottom:14px;display:flex;gap:8px;align-items:center;}
+
+/* ===== mat-card ===== */
+[data-mat^="mat-card"]{
+  background:var(--dark-surface);border:1px solid var(--dark-outline);
+  border-radius:var(--md-radius);padding:16px;margin-bottom:14px;
+}
+[data-mat^="mat-card"] .card-title{font-size:15px;font-weight:500;margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+
+/* ===== Stat chips (KPI row) ===== */
+.kpi-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px;}
+.kpi{background:var(--dark-surface);border:1px solid var(--dark-outline);border-radius:var(--md-radius);padding:12px 18px;flex:1;min-width:120px;}
+.kpi .kpi-val{font-size:26px;font-weight:700;line-height:1.2;}
+.kpi .kpi-lbl{font-size:11px;color:var(--dark-on-variant);margin-top:2px;}
+.kpi.err{border-color:var(--md-error);} .kpi.err .kpi-val{color:#ff6b6b;}
+.kpi.warn{border-color:var(--md-warn);} .kpi.warn .kpi-val{color:#ffb347;}
+.kpi.ok{border-color:var(--md-success);} .kpi.ok .kpi-val{color:#69d58f;}
+
+/* ===== Toolbar row (filter strip) ===== */
+.tool-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:12px;}
+.search-box{display:flex;align-items:center;gap:6px;background:var(--dark-surface2);border:1px solid var(--dark-outline);border-radius:28px;padding:6px 14px;flex:1;max-width:320px;}
+.search-box input{background:transparent;border:none;color:var(--dark-on-surface);font:inherit;outline:none;width:100%;}
+
+/* ===== mat-table ===== */
+[data-mat^="mat-table"]{width:100%;border-collapse:collapse;}
+[data-mat^="mat-table"] th{
+  text-align:left;padding:10px 12px;font-weight:500;font-size:12px;
+  color:var(--dark-on-variant);border-bottom:1px solid var(--dark-outline);
+  background:var(--dark-surface2);position:sticky;top:0;z-index:2;white-space:nowrap;
+}
+[data-mat^="mat-table"] td{padding:9px 12px;border-bottom:1px solid var(--dark-outline);font-size:13px;white-space:nowrap;}
+[data-mat^="mat-table"] tbody tr{cursor:pointer;transition:background .1s;}
+[data-mat^="mat-table"] tbody tr:hover{background:var(--dark-surface2);}
+.table-wrap{border:1px solid var(--dark-outline);border-radius:var(--md-radius);overflow:auto;}
+
+/* ===== Chips / badges ===== */
+[data-mat^="mat-chip"]{display:inline-block;padding:3px 10px;border-radius:6px;font-size:11px;font-weight:500;}
+.chip-red{background:#5c1515;color:#ff9090;border:1px solid #a83232;}
+.chip-yellow{background:#5c4800;color:#ffe090;border:1px solid #a87c00;}
+.chip-green{background:#0f3d20;color:#69d58f;border:1px solid #1b6e36;}
+.chip-blue{background:#0d2f5c;color:#90c4ff;border:1px solid #1a4fa0;}
+.chip-grey{background:var(--dark-surface2);color:var(--dark-on-variant);border:1px solid var(--dark-outline);}
+
+/* ===== Alert dots ===== */
+.alert-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:4px;}
+.alert-red{background:#ff5252;animation:blink 1.2s infinite;}
+.alert-yellow{background:#ffca28;}
+.alert-green{background:#69f0ae;}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+
+/* ===== mat-tab-group ===== */
+[data-mat^="mat-tab-group"] .tabs{display:flex;gap:0;border-bottom:2px solid var(--dark-outline);margin-bottom:14px;overflow-x:auto;}
+[data-mat^="mat-tab-group"] .tab{padding:10px 18px;cursor:pointer;color:var(--dark-on-variant);border-bottom:2px solid transparent;margin-bottom:-2px;white-space:nowrap;font-size:13px;}
+[data-mat^="mat-tab-group"] .tab.active{color:var(--md-primary);border-bottom-color:var(--md-primary);font-weight:500;}
+[data-mat^="mat-tab-group"] .tab-panel{display:none;}
+[data-mat^="mat-tab-group"] .tab-panel.active{display:block;}
+
+/* ===== mat-form-field ===== */
+[data-mat*="mat-form-field"]{margin:8px 0;}
+[data-mat*="mat-form-field"] label{display:block;font-size:11px;color:var(--dark-on-variant);margin-bottom:3px;}
+[data-mat*="mat-form-field"] input,[data-mat*="mat-form-field"] select,[data-mat*="mat-form-field"] textarea{
+  width:100%;padding:9px 12px;
+  border:1px solid var(--dark-outline);border-radius:var(--md-radius-sm);
+  font:inherit;background:var(--dark-surface2);color:var(--dark-on-surface);
+}
+[data-mat*="mat-form-field"] input:focus,[data-mat*="mat-form-field"] select:focus{
+  outline:2px solid var(--md-primary);border-color:var(--md-primary);
+}
+.form-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px 14px;}
+.form-grid .col2{grid-column:span 2;} .form-grid .full{grid-column:1/-1;}
+
+/* ===== Buttons ===== */
+.btn{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:9px 20px;font:inherit;font-weight:500;cursor:pointer;border:none;font-size:13px;}
+.btn-filled{background:var(--md-primary);color:#fff;}
+.btn-filled:hover{opacity:.9;}
+.btn-outlined{background:transparent;color:var(--md-primary);border:1px solid var(--md-primary);}
+.btn-text{background:transparent;color:var(--md-primary);padding:9px 12px;}
+.btn-icon{width:36px;height:36px;border-radius:50%;padding:0;justify-content:center;background:transparent;color:var(--dark-on-variant);cursor:pointer;border:none;}
+.btn-row{display:flex;gap:10px;justify-content:flex-end;margin-top:14px;flex-wrap:wrap;}
+
+/* ===== mat-dialog ===== */
+[data-mat^="mat-dialog"]{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;align-items:center;justify-content:center;z-index:100;}
+[data-mat^="mat-dialog"].open{display:flex;}
+[data-mat^="mat-dialog"] .panel{background:var(--dark-surface);border-radius:28px;padding:24px;min-width:360px;max-width:600px;width:90vw;box-shadow:var(--md-elev2);max-height:90vh;overflow-y:auto;}
+[data-mat^="mat-dialog"] .panel h3{font-size:18px;font-weight:500;margin-bottom:16px;}
+[data-mat^="mat-dialog"] .panel .sub{font-size:12px;color:var(--dark-on-variant);margin-bottom:16px;}
+
+/* ===== Progress / timeline ===== */
+.timeline{display:flex;gap:0;margin:14px 0;flex-wrap:wrap;}
+.t-step{display:flex;flex-direction:column;align-items:center;flex:1;min-width:80px;}
+.t-node{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;border:2px solid var(--dark-outline);background:var(--dark-surface2);color:var(--dark-on-variant);}
+.t-node.done{background:var(--md-success);border-color:var(--md-success);color:#fff;}
+.t-node.current{background:var(--md-primary);border-color:var(--md-primary);color:#fff;}
+.t-node.pending{border-style:dashed;}
+.t-label{font-size:11px;color:var(--dark-on-variant);margin-top:4px;text-align:center;}
+.t-line{height:2px;background:var(--dark-outline);flex:1;margin-top:16px;align-self:flex-start;}
+
+/* ===== MEL item ===== */
+.mel-item{border:1px solid var(--dark-outline);border-radius:var(--md-radius-sm);padding:12px;margin-bottom:8px;background:var(--dark-surface2);}
+.mel-item.critical{border-left:4px solid var(--md-error);}
+.mel-item.warn{border-left:4px solid var(--md-warn);}
+.mel-item-code{font-size:12px;font-weight:700;color:var(--md-primary);font-family:monospace;}
+.mel-item-name{font-size:13px;font-weight:500;margin:2px 0;}
+.mel-meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px;}
+.mel-meta .tag{background:var(--dark-surface);border:1px solid var(--dark-outline);border-radius:4px;padding:2px 8px;font-size:11px;color:var(--dark-on-variant);}
+.mel-meta .tag.impact{color:#ffb347;border-color:#a87c00;background:#5c4800;}
+
+/* ===== METAR display ===== */
+.metar-row{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:12px;}
+.metar-card{background:var(--dark-surface2);border-radius:var(--md-radius-sm);padding:12px 16px;flex:1;min-width:120px;text-align:center;}
+.metar-val{font-size:22px;font-weight:700;}
+.metar-lbl{font-size:11px;color:var(--dark-on-variant);margin-top:2px;}
+.metar-card.alert .metar-val{color:#ff6b6b;}
+.metar-card.warn .metar-val{color:#ffb347;}
+
+/* ===== NOTAM list ===== */
+.notam-item{border-left:3px solid var(--dark-outline);padding:8px 12px;margin-bottom:6px;background:var(--dark-surface2);border-radius:0 var(--md-radius-sm) var(--md-radius-sm) 0;}
+.notam-item.urgent{border-left-color:#ff5252;}
+.notam-code{font-family:monospace;font-size:11px;font-weight:700;color:var(--md-primary);}
+.notam-text{font-size:12px;margin-top:3px;}
+
+/* ===== History list ===== */
+.hist-item{display:flex;gap:10px;padding:8px 0;border-bottom:1px solid var(--dark-outline);}
+.hist-item:last-child{border:none;}
+.hist-time{font-size:11px;color:var(--dark-on-variant);min-width:100px;}
+.hist-desc{font-size:13px;}
+
+/* ===== Tooltip (hover info) ===== */
+.has-tooltip{position:relative;}
+.has-tooltip .tooltip{
+  display:none;position:absolute;bottom:calc(100% + 6px);left:50%;transform:translateX(-50%);
+  background:#333;color:#fff;padding:6px 10px;border-radius:6px;font-size:11px;
+  white-space:nowrap;z-index:50;pointer-events:none;
+}
+.has-tooltip:hover .tooltip{display:block;}
+
+/* ===== Overlay panel (right detail) ===== */
+.detail-overlay{position:fixed;right:0;top:56px;bottom:0;width:460px;background:var(--dark-surface);border-left:1px solid var(--dark-outline);z-index:40;transform:translateX(100%);transition:transform .25s;overflow-y:auto;padding:16px;}
+.detail-overlay.open{transform:translateX(0);}
+.overlay-header{display:flex;align-items:center;gap:10px;margin-bottom:16px;position:sticky;top:0;background:var(--dark-surface);padding-bottom:10px;border-bottom:1px solid var(--dark-outline);}
+.overlay-header h3{font-size:16px;font-weight:500;flex:1;}
+
+/* ===== Legend ===== */
+.legend{margin-top:24px;font-size:12px;}
+.legend table{width:100%;border-collapse:collapse;}
+.legend th,.legend td{border:1px solid var(--dark-outline);padding:6px 10px;text-align:left;}
+.legend th{background:var(--dark-surface2);}
+.src{color:var(--dark-on-variant);font-size:11px;}
+
+@media(max-width:768px){.shell{flex-direction:column;}[data-mat="mat-sidenav"]{width:100%;flex-direction:row;}
+.form-grid{grid-template-columns:1fr;}.kpi-row{flex-direction:column;}}
+</style>
+</head>
+<body>
+
+<!-- ===== Toolbar ===== -->
+<div data-mat="mat-toolbar" data-src="[08062026 §I — giao diện tiếng Anh, UTC]">
+  <span class="ms">flight_takeoff</span>
+  <span class="app-title">TOSS</span>
+  <span style="font-size:12px;color:#aaa">Hệ thống Điều hành Khai thác — OCC</span>
+  <span class="spacer"></span>
+  <span style="font-size:12px;color:#aaa" id="clock-display">09:42 UTC</span>
+  <span class="proto-banner">PROTOTYPE · Dữ liệu mẫu · Bố cục cần BA/UI duyệt</span>
+  <button class="btn-icon"><span class="ms">account_circle</span></button>
+</div>
+
+<!-- ===== Shell ===== -->
+<div class="shell">
+
+<!-- ===== Sidenav ===== -->
+<nav data-mat="mat-sidenav" data-src="[12062026 §5 — phân quyền theo chức năng; 08062026 §III — phân hệ]">
+  <a class="nav-item active" onclick="showScreen('occ')" data-src="[12062026 §8]">
+    <span class="ms">monitor</span><span class="nav-label">OCC Dashboard</span>
+  </a>
+  <a class="nav-item" onclick="showScreen('dispatch')" data-src="[15062026 §II.2]">
+    <span class="ms">flight</span><span class="nav-label">Flight Dispatch</span>
+  </a>
+  <a class="nav-item" onclick="showScreen('detail')" data-src="[12062026 §2]">
+    <span class="ms">article</span><span class="nav-label">Flight Detail</span>
+  </a>
+  <a class="nav-item" onclick="showScreen('mel')" data-src="[17062026 §2]">
+    <span class="ms">build</span><span class="nav-label">MEL/CDL</span>
+  </a>
+  <div style="flex:1"></div>
+  <a class="nav-item" style="margin-top:auto">
+    <span class="ms">settings</span><span class="nav-label">Cài đặt</span>
+  </a>
+</nav>
+
+<!-- ===== Content Area ===== -->
+<div class="content">
+
+<!-- ========================================
+     SCREEN 1: OCC DASHBOARD
+======================================== -->
+<div id="screen-occ" class="screen active">
+  <div class="banner"><span class="ms">info</span>PROTOTYPE — OCC Dashboard · Giám sát chuyến bay · Nguồn: 11–12/06/2026 báo cáo khảo sát</div>
+
+  <!-- KPI Row -->
+  <div class="kpi-row" data-src="[12062026 §8 — phân nhóm GRD/ENR/ARR; 11062026-chiều §II.6]">
+    <div class="kpi"><div class="kpi-val">47</div><div class="kpi-lbl">Tổng chuyến hôm nay</div></div>
+    <div class="kpi"><div class="kpi-val">12</div><div class="kpi-lbl">Đang bay (ENR)</div></div>
+    <div class="kpi warn"><div class="kpi-val">5</div><div class="kpi-lbl">Chưa Dispatch Release</div></div>
+    <div class="kpi err"><div class="kpi-val">3</div><div class="kpi-lbl">Cảnh báo đỏ cần xử lý</div></div>
+    <div class="kpi ok"><div class="kpi-val">82%</div><div class="kpi-lbl">OTP (On-Time Performance)</div></div>
+  </div>
+
+  <!-- Filter row -->
+  <div class="tool-row" data-src="[12062026 §5 — filter theo carrier/khu vực; §8 — time window cấu hình]">
+    <div class="search-box" data-mat="mat-form-field(outline)+matInput">
+      <span class="ms" style="color:#aaa">search</span>
+      <input type="text" placeholder="Tìm số hiệu, tàu, tuyến…" id="occ-search">
+    </div>
+    <select style="padding:8px 12px;background:var(--dark-surface2);border:1px solid var(--dark-outline);color:var(--dark-on-surface);border-radius:28px;font:inherit;" data-mat="mat-select">
+      <option>Tất cả Carrier</option><option>VN (Vietnam Airlines)</option><option>BL (Pacific Airlines)</option>
+    </select>
+    <select style="padding:8px 12px;background:var(--dark-surface2);border:1px solid var(--dark-outline);color:var(--dark-on-surface);border-radius:28px;font:inherit;" data-mat="mat-select">
+      <option>Tất cả trạng thái</option><option>GRD</option><option>BRD</option><option>OUT</option><option>ENR</option><option>IN</option><option>ARR</option>
+    </select>
+    <select style="padding:8px 12px;background:var(--dark-surface2);border:1px solid var(--dark-outline);color:var(--dark-on-surface);border-radius:28px;font:inherit;" data-mat="mat-select" data-src="[12062026 §8 — time window cấu hình]">
+      <option>±4 giờ từ hiện tại</option><option>±2 giờ</option><option>Cả ngày</option>
+    </select>
+    <button class="btn btn-outlined" style="padding:7px 14px;"><span class="ms">refresh</span>Làm mới</button>
+  </div>
+
+  <!-- Flight List Table -->
+  <div class="table-wrap" data-src="[12062026 §2,§5,§6,§8,§9,§11,§13; 11062026-sáng §5; 15062026 §II.2]">
+    <table data-mat="mat-table">
+      <thead>
+        <tr>
+          <th>Cảnh báo</th>
+          <th>Số hiệu <span class="ms" style="font-size:14px;vertical-align:middle">unfold_more</span></th>
+          <th>Tàu bay</th>
+          <th>Tuyến</th>
+          <th>STD (UTC)</th>
+          <th>STA (UTC)</th>
+          <th>Trạng thái</th>
+          <th>Dispatch</th>
+          <th>Pilot Confirm</th>
+          <th>MEL</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="occ-tbody">
+        <!-- Rows injected by JS -->
+      </tbody>
+    </table>
+  </div>
+  <div data-mat="mat-paginator" style="display:flex;justify-content:flex-end;align-items:center;gap:14px;padding:10px;color:var(--dark-on-variant);font-size:12px;">
+    <span>1–10 / 47 chuyến</span>
+    <button class="btn-icon"><span class="ms">chevron_left</span></button>
+    <button class="btn-icon"><span class="ms">chevron_right</span></button>
+  </div>
+
+  <div class="legend">
+    <div style="font-weight:500;margin-bottom:6px;">Component Map</div>
+    <table>
+      <tr><th>Vùng UI</th><th>Angular Material component</th><th>Nguồn</th></tr>
+      <tr><td>Bảng chuyến bay</td><td><code>MatTable + MatSort + MatPaginator</code></td><td class="src">12062026 §2,§8</td></tr>
+      <tr><td>Ô tìm kiếm</td><td><code>MatFormField(outline) + matInput</code></td><td class="src">12062026 §5</td></tr>
+      <tr><td>Bộ lọc dropdown</td><td><code>MatSelect</code></td><td class="src">12062026 §5</td></tr>
+      <tr><td>KPI cards</td><td><code>MatCard</code></td><td class="src">12062026 §8</td></tr>
+      <tr><td>Badge trạng thái</td><td><code>MatChip</code></td><td class="src">12062026 §7</td></tr>
+      <tr><td>Cảnh báo nhấp nháy</td><td><code>custom (CSS animation) [cần xác nhận UI]</code></td><td class="src">11062026-chiều §II.6</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ========================================
+     SCREEN 2: FLIGHT DISPATCH / OFP RELEASE
+======================================== -->
+<div id="screen-dispatch" class="screen">
+  <div class="banner"><span class="ms">info</span>PROTOTYPE — Flight Dispatch · OFP Release · Nguồn: 11/06, 12/06, 15/06/2026</div>
+
+  <!-- Filter bar -->
+  <div class="tool-row" data-src="[15062026 §II.2 — ngưỡng màu theo thời gian]">
+    <div class="search-box" data-mat="mat-form-field(outline)+matInput">
+      <span class="ms" style="color:#aaa">search</span>
+      <input type="text" placeholder="Tìm số hiệu chuyến…">
+    </div>
+    <select style="padding:8px 12px;background:var(--dark-surface2);border:1px solid var(--dark-outline);color:var(--dark-on-surface);border-radius:28px;font:inherit;" data-mat="mat-select">
+      <option>Tất cả trạng thái OFP</option>
+      <option>Chưa có OFP</option>
+      <option>Chưa Dispatch Release</option>
+      <option>Dispatch chờ Pilot</option>
+      <option>Cả hai đã Release</option>
+    </select>
+  </div>
+
+  <!-- Timeline tổng quan luồng -->
+  <div data-mat="mat-card" data-src="[11062026-sáng §1,§2; 11062026-chiều §II.4; 15062026 §II.2]">
+    <div class="card-title"><span class="ms">account_tree</span>Luồng OFP Release — VN 123 · HAN→SGN · STD 10:30 UTC</div>
+    <div class="timeline">
+      <div class="t-step"><div class="t-node done"><span class="ms" style="font-size:14px">check</span></div><div class="t-label">Lido sinh OFP</div></div>
+      <div class="t-line"></div>
+      <div class="t-step"><div class="t-node done"><span class="ms" style="font-size:14px">check</span></div><div class="t-label">Upload MO Plus</div></div>
+      <div class="t-line"></div>
+      <div class="t-step"><div class="t-node current">DR</div><div class="t-label">Dispatch Release</div></div>
+      <div class="t-line"></div>
+      <div class="t-step"><div class="t-node pending">PR</div><div class="t-label">Pilot Release</div></div>
+      <div class="t-line"></div>
+      <div class="t-step"><div class="t-node pending"><span class="ms" style="font-size:14px">flight_takeoff</span></div><div class="t-label">Cất cánh</div></div>
+    </div>
+    <p style="font-size:12px;color:var(--dark-on-variant);margin-top:8px;">
+      <span class="ms" style="font-size:14px">info</span>
+      Nguồn: Lido → adapter → MO Plus (tự động). TOSS gắn trạng thái Dispatch Release. MO Plus chặn Pilot Release cho đến khi Dispatch Release. [11062026-chiều §II.4]
+    </p>
+  </div>
+
+  <!-- Dispatch Release Table -->
+  <div data-mat="mat-card" data-src="[12062026 §2; 15062026 §II.2,§II.3]">
+    <div class="card-title"><span class="ms">assignment</span>Danh sách OFP cần Release hôm nay</div>
+    <div style="display:flex;gap:8px;margin-bottom:10px;font-size:12px;">
+      <span style="display:flex;align-items:center;gap:4px;"><span style="width:12px;height:12px;border-radius:2px;background:#5c4800;display:inline-block"></span>Vàng — tiến gần hạn</span>
+      <span style="display:flex;align-items:center;gap:4px;"><span style="width:12px;height:12px;border-radius:2px;background:#5c1515;display:inline-block"></span>Đỏ — quá hạn / khẩn cấp</span>
+    </div>
+    <div class="table-wrap">
+      <table data-mat="mat-table">
+        <thead>
+          <tr>
+            <th>Số hiệu</th>
+            <th>Tuyến</th>
+            <th>STD (UTC)</th>
+            <th>Thời gian đến hạn</th>
+            <th>OFP Version</th>
+            <th>Block Fuel KH (kg)</th>
+            <th>Block Fuel OFP (kg)</th>
+            <th>Dispatch</th>
+            <th>Pilot</th>
+            <th>Thao tác</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="background:#5c1515">
+            <td><strong>VN 302</strong></td><td>HAN→DAD</td><td>09:15</td>
+            <td><span style="color:#ff6b6b;font-weight:700">-45 phút (quá hạn)</span></td>
+            <td>R2</td><td>4 200</td><td>4 350</td>
+            <td><span data-mat="mat-chip" class="chip-red">Chưa release</span></td>
+            <td><span data-mat="mat-chip" class="chip-grey">—</span></td>
+            <td><button class="btn btn-filled" style="padding:6px 14px;font-size:12px;" onclick="openDispatchDialog('VN 302')"><span class="ms">flight</span>Release ngay</button></td>
+          </tr>
+          <tr style="background:#5c4800">
+            <td><strong>VN 123</strong></td><td>HAN→SGN</td><td>10:30</td>
+            <td><span style="color:#ffb347;font-weight:500">+28 phút còn lại</span></td>
+            <td>R1</td><td>12 800</td><td>12 850</td>
+            <td><span data-mat="mat-chip" class="chip-yellow">Chưa release</span></td>
+            <td><span data-mat="mat-chip" class="chip-grey">—</span></td>
+            <td><button class="btn btn-outlined" style="padding:6px 14px;font-size:12px;" onclick="openDispatchDialog('VN 123')"><span class="ms">flight</span>Release</button></td>
+          </tr>
+          <tr>
+            <td><strong>VN 208</strong></td><td>SGN→HAN</td><td>11:00</td>
+            <td><span style="color:var(--dark-on-variant)">+95 phút còn lại</span></td>
+            <td>R1</td><td>13 200</td><td>13 200</td>
+            <td><span data-mat="mat-chip" class="chip-green">Đã release</span></td>
+            <td><span data-mat="mat-chip" class="chip-yellow">Chờ Pilot</span></td>
+            <td><button class="btn btn-text" style="font-size:12px;" onclick="openUnreleaseDialog('VN 208')"><span class="ms">undo</span>Unrelease</button></td>
+          </tr>
+          <tr>
+            <td><strong>VN 411</strong></td><td>HAN→PQC</td><td>12:45</td>
+            <td><span style="color:var(--dark-on-variant)">+180 phút còn lại</span></td>
+            <td>R1</td><td>8 600</td><td>8 590</td>
+            <td><span data-mat="mat-chip" class="chip-green">Đã release</span></td>
+            <td><span data-mat="mat-chip" class="chip-green">Đã confirm</span></td>
+            <td><span style="font-size:12px;color:var(--dark-on-variant)">Hoàn tất ✓</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Ngưỡng thời gian -->
+  <div data-mat="mat-card" data-src="[15062026 §II.2 — ngưỡng nội địa/quốc tế]">
+    <div class="card-title"><span class="ms">schedule</span>Ngưỡng Release (cấu hình admin)</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+      <div>
+        <div style="font-weight:500;margin-bottom:8px;">Nội địa</div>
+        <div style="font-size:12px;color:var(--dark-on-variant);margin-bottom:4px;">210 phút — lưu ý (trắng → vàng)</div>
+        <div style="font-size:12px;color:var(--dark-on-variant);margin-bottom:4px;">75 phút — sớm nhất được phép release</div>
+        <div style="font-size:12px;color:#ff6b6b;">60 phút — muộn nhất (qua đây → đỏ)</div>
+      </div>
+      <div>
+        <div style="font-weight:500;margin-bottom:8px;">Quốc tế</div>
+        <div style="font-size:12px;color:var(--dark-on-variant);margin-bottom:4px;">270 phút — lưu ý (trắng → vàng)</div>
+        <div style="font-size:12px;color:var(--dark-on-variant);margin-bottom:4px;">90 phút — sớm nhất được phép release</div>
+        <div style="font-size:12px;color:#ff6b6b;">75 phút — muộn nhất (qua đây → đỏ)</div>
+      </div>
+    </div>
+    <p style="font-size:11px;color:var(--dark-on-variant);margin-top:8px;">[15062026 §II.2]</p>
+  </div>
+
+  <div class="legend">
+    <div style="font-weight:500;margin-bottom:6px;">Component Map</div>
+    <table>
+      <tr><th>Vùng UI</th><th>Angular Material component</th><th>Nguồn</th></tr>
+      <tr><td>Bảng danh sách OFP</td><td><code>MatTable + MatSort</code></td><td class="src">15062026 §II.2</td></tr>
+      <tr><td>Nút Release / Unrelease</td><td><code>MatButton (filled / text)</code></td><td class="src">11062026-chiều §II.4</td></tr>
+      <tr><td>Chip trạng thái OFP</td><td><code>MatChip</code></td><td class="src">15062026 §II.2</td></tr>
+      <tr><td>Timeline luồng</td><td><code>MatStepper (horizontal) [custom style]</code></td><td class="src">11062026-sáng §1,§2</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ========================================
+     SCREEN 3: FLIGHT DETAIL
+======================================== -->
+<div id="screen-detail" class="screen">
+  <div class="banner"><span class="ms">info</span>PROTOTYPE — Flight Detail · Chi tiết chuyến bay · Nguồn: 12/06, 11/06/2026</div>
+
+  <!-- Header chuyến bay -->
+  <div data-mat="mat-card" data-src="[12062026 §1 — click chuyến mở Flight Detail]" style="display:flex;align-items:center;gap:18px;flex-wrap:wrap;padding:12px 16px;">
+    <div>
+      <div style="font-size:22px;font-weight:700">VN 208</div>
+      <div style="font-size:12px;color:var(--dark-on-variant)">SGN → HAN · Airbus A321 · VN-A321</div>
+    </div>
+    <div style="display:flex;gap:8px;align-items:center;">
+      <span data-mat="mat-chip" class="chip-blue">ENR — Đang bay</span>
+      <span data-mat="mat-chip" class="chip-green">Dispatch Release ✓</span>
+      <span data-mat="mat-chip" class="chip-green">Pilot Release ✓</span>
+    </div>
+    <div style="flex:1"></div>
+    <div style="text-align:right;font-size:12px;color:var(--dark-on-variant);">
+      <div>STD: 08:00 UTC · STA: 09:45 UTC</div>
+      <div>ETD thực tế: 08:15 UTC (+15 phút)</div>
+    </div>
+  </div>
+
+  <!-- Tab group -->
+  <div data-mat="mat-tab-group" data-src="[12062026 §2 — các tab: Cảnh báo, Flight Release, Tàu bay, Tổ bay]">
+    <div class="tabs">
+      <div class="tab active" onclick="switchDetailTab(this,'dtab-warnings')"><span class="alert-dot alert-red"></span>Cảnh báo (2)</div>
+      <div class="tab" onclick="switchDetailTab(this,'dtab-release')">Flight Release</div>
+      <div class="tab" onclick="switchDetailTab(this,'dtab-aircraft')">Tàu bay / MEL</div>
+      <div class="tab" onclick="switchDetailTab(this,'dtab-weather')">Thời tiết / NOTAM</div>
+      <div class="tab" onclick="switchDetailTab(this,'dtab-crew')">Tổ bay</div>
+      <div class="tab" onclick="switchDetailTab(this,'dtab-load')">Tải trọng</div>
+    </div>
+
+    <!-- Tab: Cảnh báo -->
+    <div id="dtab-warnings" class="tab-panel active" data-src="[12062026 §2 — tab Cảnh báo: trạng thái đã/chưa xử lý, thời gian phát sinh]">
+      <div class="mel-item critical">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+          <span class="alert-dot alert-red"></span>
+          <span style="font-weight:500;font-size:13px;">Cảnh báo MEL — 21-25-01 Bleed Air không hoạt động</span>
+          <span data-mat="mat-chip" class="chip-red" style="margin-left:auto">Chưa xử lý</span>
+        </div>
+        <div style="font-size:12px;color:var(--dark-on-variant);">Phát sinh: 06:30 UTC · MEL active từ AMOS</div>
+        <div class="mel-meta">
+          <span class="tag impact">Fuel +2.5%</span>
+          <span class="tag impact">Payload -800 kg</span>
+          <span class="tag">Altitude cap FL350</span>
+        </div>
+      </div>
+      <div class="mel-item warn">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+          <span class="alert-dot alert-yellow"></span>
+          <span style="font-weight:500;font-size:13px;">OFP đổi tải — Block Fuel +150 kg so với kế hoạch</span>
+          <span data-mat="mat-chip" class="chip-yellow" style="margin-left:auto">Cần theo dõi</span>
+        </div>
+        <div style="font-size:12px;color:var(--dark-on-variant);">Phát sinh: 07:55 UTC</div>
+      </div>
+    </div>
+
+    <!-- Tab: Flight Release -->
+    <div id="dtab-release" class="tab-panel" data-src="[12062026 §2; 11062026-chiều §II.4; 15062026 §II.2,§II.3]">
+      <div data-mat="mat-card">
+        <div class="card-title"><span class="ms">history</span>Lịch sử phiên bản OFP</div>
+        <div class="table-wrap">
+          <table data-mat="mat-table">
+            <thead>
+              <tr><th>Phiên bản</th><th>Thời gian tạo</th><th>Block Fuel KH</th><th>Block Fuel OFP</th><th>Lấy thêm tải</th><th>Dispatch</th><th>Pilot Confirm</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>R2 (hiện tại)</strong></td><td>07:50 UTC</td><td>13 200 kg</td><td>13 350 kg</td><td>Không</td>
+                <td><span data-mat="mat-chip" class="chip-green">✓ Dispatcher A</span></td>
+                <td><span data-mat="mat-chip" class="chip-green">✓ PIC Nguyễn V.A</span></td>
+              </tr>
+              <tr style="opacity:.6">
+                <td>R1 (unrelease)</td><td>06:40 UTC</td><td>13 200 kg</td><td>13 200 kg</td><td>Không</td>
+                <td><span data-mat="mat-chip" class="chip-grey">Đã hủy</span></td>
+                <td><span data-mat="mat-chip" class="chip-grey">—</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="font-size:11px;color:var(--dark-on-variant);margin-top:8px;">[15062026 §II.3 — lịch sử toàn bộ phiên bản; lý do Unrelease R1: MEL phát sinh sau khi đã release]</p>
+      </div>
+    </div>
+
+    <!-- Tab: Tàu bay / MEL -->
+    <div id="dtab-aircraft" class="tab-panel" data-src="[12062026 §2 — tab Tàu bay; 17062026 §2,§3 — MEL active]">
+      <div data-mat="mat-card">
+        <div class="card-title"><span class="ms">airplanemode_active</span>Tàu bay — VN-A321 (Airbus A321)</div>
+        <div class="form-grid" style="grid-template-columns:repeat(4,1fr)">
+          <div><label style="font-size:11px;color:var(--dark-on-variant)">Số đăng ký</label><div style="font-weight:500">VN-A321</div></div>
+          <div><label style="font-size:11px;color:var(--dark-on-variant)">Loại tàu</label><div style="font-weight:500">Airbus A321</div></div>
+          <div><label style="font-size:11px;color:var(--dark-on-variant)">Thay đổi tàu</label><div><span data-mat="mat-chip" class="chip-grey">Không</span></div></div>
+          <div><label style="font-size:11px;color:var(--dark-on-variant)">Chuyến tàu quay đầu</label><div style="font-size:12px">VN 107 · DAD→SGN (07:10)</div></div>
+        </div>
+      </div>
+      <div data-mat="mat-card">
+        <div class="card-title"><span class="ms">build</span>MEL Active (2 item) <span data-mat="mat-chip" class="chip-red" style="margin-left:8px">Ảnh hưởng khai thác</span></div>
+        <div class="mel-item critical">
+          <div class="mel-item-code">21-25-01-01</div>
+          <div class="mel-item-name">Bleed Air — Pack không hoạt động (1/2)</div>
+          <div style="font-size:12px;color:var(--dark-on-variant);margin-top:4px;">Active từ: 2026-06-17 · Thời hạn: 30 ngày</div>
+          <div class="mel-meta">
+            <span class="tag impact">Fuel +2.5%</span>
+            <span class="tag impact">Payload −800 kg</span>
+            <span class="tag">FL cap 350</span>
+            <span class="tag">Autopilot: x2 mode</span>
+          </div>
+        </div>
+        <div class="mel-item warn">
+          <div class="mel-item-code">34-10-02</div>
+          <div class="mel-item-name">ILS Receiver — Channel 2 không hoạt động</div>
+          <div style="font-size:12px;color:var(--dark-on-variant);margin-top:4px;">Active từ: 2026-06-15 · Thời hạn: 30 ngày</div>
+          <div class="mel-meta">
+            <span class="tag">Không ảnh hưởng nhiên liệu</span>
+            <span class="tag impact">Giới hạn sân bay CAT II</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab: Thời tiết / NOTAM -->
+    <div id="dtab-weather" class="tab-panel" data-src="[11062026-sáng §6,§7 — NOTAM, METAR/SPECI, VMA]">
+      <div data-mat="mat-card">
+        <div class="card-title"><span class="ms">thermostat</span>Thời tiết sân bay đến — HAN (VVNB)</div>
+        <div style="font-size:11px;color:var(--dark-on-variant);margin-bottom:10px;">METAR 08:00Z: HAN 170800Z 06008KT 9999 FEW020 29/23 Q1011 NOSIG [dữ liệu mẫu]</div>
+        <div class="metar-row">
+          <div class="metar-card ok">
+            <div class="metar-val">9 999 m</div><div class="metar-lbl">Tầm nhìn (VIS)</div>
+            <div style="font-size:10px;color:var(--dark-on-variant);margin-top:4px;">VMA: 800 m ✓</div>
+          </div>
+          <div class="metar-card">
+            <div class="metar-val">2 000 ft</div><div class="metar-lbl">Trần mây (FEW)</div>
+            <div style="font-size:10px;color:var(--dark-on-variant);margin-top:4px;">VMA: 200 ft ✓</div>
+          </div>
+          <div class="metar-card">
+            <div class="metar-val">Không</div><div class="metar-lbl">TSRA (Dông/Mưa)</div>
+          </div>
+          <div class="metar-card">
+            <div class="metar-val">06008KT</div><div class="metar-lbl">Gió (Dir/Speed)</div>
+          </div>
+        </div>
+        <p style="font-size:11px;color:var(--dark-on-variant);">[11062026-sáng §7 — 3 thông số cảnh báo: tầm nhìn, trần mây, TSRA so với VMA + biên an toàn]</p>
+      </div>
+      <div data-mat="mat-card">
+        <div class="card-title"><span class="ms">announcement</span>NOTAM ảnh hưởng chuyến (3)</div>
+        <div class="notam-item">
+          <div class="notam-code">A2145/26 · VVNB — Sân bay Hà Nội</div>
+          <div class="notam-text">ILS RWY 11L — Navaids đang bảo dưỡng. Effective 0800–1200 UTC 17 JUN 2026.</div>
+        </div>
+        <div class="notam-item">
+          <div class="notam-code">P0312/26 · Vùng trời — HANOI TMA</div>
+          <div class="notam-text">Giới hạn độ cao tạm thời khu A1 ≤FL150. TFR theo NOTAM CAAV.</div>
+        </div>
+        <div class="notam-item urgent">
+          <div class="notam-code">A2150/26 · VVNB — RFFS <span data-mat="mat-chip" class="chip-red">Khẩn</span></div>
+          <div class="notam-text">Xe cứu hỏa số 3 không hoạt động — giảm Category RFFS xuống CAT 5. Cảnh báo trực tiếp.</div>
+        </div>
+        <p style="font-size:11px;color:var(--dark-on-variant);margin-top:8px;">[11062026-sáng §6 — RFFS cảnh báo trực tiếp; phân loại NOTAM sân bay/vùng trời/đường bay]</p>
+      </div>
+    </div>
+
+    <!-- Tab: Tổ bay -->
+    <div id="dtab-crew" class="tab-panel" data-src="[12062026 §2 — lịch sử thay đổi tổ bay đầy đủ]">
+      <div data-mat="mat-card">
+        <div class="card-title"><span class="ms">people</span>Tổ bay hiện tại</div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:14px;">
+          <div><label style="font-size:11px;color:var(--dark-on-variant)">PIC (Cơ trưởng)</label><div style="font-weight:500">Nguyễn Văn An</div><div style="font-size:11px;color:var(--dark-on-variant)">A321 · Rating: A/B</div></div>
+          <div><label style="font-size:11px;color:var(--dark-on-variant)">F/O (Cơ phó)</label><div style="font-weight:500">Trần Thị Bình</div></div>
+          <div><label style="font-size:11px;color:var(--dark-on-variant)">Purser</label><div style="font-weight:500">Lê Văn Cường</div></div>
+        </div>
+        <div class="card-title" style="margin-top:8px;"><span class="ms">history</span>Lịch sử thay đổi</div>
+        <div class="hist-item">
+          <div class="hist-time">05:30 UTC</div>
+          <div class="hist-desc">PIC ban đầu: Phạm Đức Dũng — bị thay bởi sự cố sức khoẻ</div>
+        </div>
+        <div class="hist-item">
+          <div class="hist-time">06:10 UTC</div>
+          <div class="hist-desc">PIC mới gán: Nguyễn Văn An (thay thế)</div>
+        </div>
+        <p style="font-size:11px;color:var(--dark-on-variant);margin-top:8px;">[12062026 §2 — lịch sử đầy đủ: ai được gán, ai đổi, lúc nào — không chỉ trạng thái cuối]</p>
+      </div>
+    </div>
+
+    <!-- Tab: Tải trọng -->
+    <div id="dtab-load" class="tab-panel" data-src="[11062026-sáng §8; 11062026-chiều §II.10 — ZFW, Payload, TOW, delta]">
+      <div data-mat="mat-card">
+        <div class="card-title"><span class="ms">scale</span>Tải trọng chuyến bay</div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:12px;">
+          <div style="background:var(--dark-surface2);border-radius:var(--md-radius-sm);padding:12px;text-align:center;">
+            <div style="font-size:20px;font-weight:700">78 240 kg</div><div style="font-size:11px;color:var(--dark-on-variant)">ZFW (Zero Fuel Weight)</div></div>
+          <div style="background:var(--dark-surface2);border-radius:var(--md-radius-sm);padding:12px;text-align:center;">
+            <div style="font-size:20px;font-weight:700">15 800 kg</div><div style="font-size:11px;color:var(--dark-on-variant)">Payload (HK + HH)</div></div>
+          <div style="background:var(--dark-surface2);border-radius:var(--md-radius-sm);padding:12px;text-align:center;">
+            <div style="font-size:20px;font-weight:700">13 350 kg</div><div style="font-size:11px;color:var(--dark-on-variant)">Block Fuel (OFP)</div></div>
+          <div style="background:var(--dark-surface2);border-radius:var(--md-radius-sm);padding:12px;text-align:center;">
+            <div style="font-size:20px;font-weight:700;color:#69d58f">+150 kg</div><div style="font-size:11px;color:var(--dark-on-variant)">Δ Fuel vs KH</div></div>
+        </div>
+        <div style="background:#0f3d20;border-radius:var(--md-radius-sm);padding:10px 14px;font-size:12px;">
+          <span class="ms" style="font-size:16px;color:#69d58f">check_circle</span>
+          Tải trong ngưỡng bình thường — không phát sinh cảnh báo lệch tải.
+        </div>
+        <p style="font-size:11px;color:var(--dark-on-variant);margin-top:8px;">[11062026-sáng §8 — cảnh báo khi lệch ZFW/payload theo ngưỡng loại tàu × giờ bay; §II.10 — delta = Actual−OFP]</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="legend">
+    <div style="font-weight:500;margin-bottom:6px;">Component Map</div>
+    <table>
+      <tr><th>Vùng UI</th><th>Angular Material component</th><th>Nguồn</th></tr>
+      <tr><td>Tab điều hướng</td><td><code>MatTabGroup + MatTab</code></td><td class="src">12062026 §2</td></tr>
+      <tr><td>Header chuyến bay</td><td><code>MatCard + MatChip</code></td><td class="src">12062026 §1</td></tr>
+      <tr><td>MEL item cards</td><td><code>MatCard (custom left-border)</code></td><td class="src">17062026 §2</td></tr>
+      <tr><td>METAR thẻ số liệu</td><td><code>MatCard (grid)</code></td><td class="src">11062026-sáng §7</td></tr>
+      <tr><td>NOTAM list</td><td><code>MatList + MatListItem</code></td><td class="src">11062026-sáng §6</td></tr>
+      <tr><td>Lịch sử tổ bay</td><td><code>MatTimeline (custom) [cần xác nhận]</code></td><td class="src">12062026 §2</td></tr>
+      <tr><td>Tải trọng grid</td><td><code>MatCard (grid layout)</code></td><td class="src">11062026-sáng §8</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ========================================
+     SCREEN 4: MEL/CDL MANAGEMENT
+======================================== -->
+<div id="screen-mel" class="screen">
+  <div class="banner"><span class="ms">info</span>PROTOTYPE — MEL/CDL Management · Master MEL + Active MEL · Nguồn: 17/06/2026 báo cáo khảo sát</div>
+
+  <!-- Sub-tab: Master MEL / Active MEL / Cập nhật phiên bản -->
+  <div data-mat="mat-tab-group" data-src="[17062026 §1,§2,§3,§4]">
+    <div class="tabs">
+      <div class="tab active" onclick="switchMelTab(this,'mtab-master')">Master MEL</div>
+      <div class="tab" onclick="switchMelTab(this,'mtab-active')">MEL Active toàn đội tàu</div>
+      <div class="tab" onclick="switchMelTab(this,'mtab-update')"><span class="alert-dot alert-yellow"></span>Cập nhật phiên bản mới (3)</div>
+    </div>
+
+    <!-- Tab: Master MEL -->
+    <div id="mtab-master" class="tab-panel active" data-src="[17062026 §2 — cấu trúc 5-6 cấp, ~3000 item/loại tàu]">
+      <div style="display:flex;gap:14px;flex-wrap:wrap;">
+        <!-- Panel trái: cây MEL -->
+        <div data-mat="mat-card" style="width:300px;flex-shrink:0;">
+          <div class="card-title"><span class="ms">account_tree</span>Cây MEL — Airbus A321</div>
+          <div data-mat="mat-form-field(outline)+matInput" style="margin-bottom:10px;">
+            <input type="text" placeholder="Tìm item code, tên thiết bị…" style="width:100%;padding:8px 10px;background:var(--dark-surface2);border:1px solid var(--dark-outline);border-radius:var(--md-radius-sm);color:var(--dark-on-surface);font:inherit;">
+          </div>
+          <!-- Tree nodes -->
+          <div style="font-size:13px;">
+            <div style="padding:6px 0;cursor:pointer;color:var(--dark-on-variant);" onclick="expandMelNode(this)">
+              <span class="ms" style="font-size:16px">chevron_right</span> <strong>21</strong> — Air Conditioning
+              <div style="display:none;padding-left:20px;margin-top:4px;">
+                <div style="padding:5px 0;cursor:pointer;" onclick="expandMelNode(this)">
+                  <span class="ms" style="font-size:16px">chevron_right</span> 21-25 — Pack System
+                  <div style="display:none;padding-left:16px;">
+                    <div style="padding:4px 0;cursor:pointer;border-radius:4px;padding:4px 8px;background:var(--md-primary-container);color:var(--md-on-primary-container);" onclick="showMelItem()">
+                      21-25-01 — Pack 1
+                    </div>
+                    <div style="padding:4px 8px;cursor:pointer;" onclick="showMelItem2()">21-25-02 — Pack 2</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div style="padding:6px 0;cursor:pointer;color:var(--dark-on-variant);">
+              <span class="ms" style="font-size:16px">chevron_right</span> <strong>34</strong> — Navigation
+            </div>
+            <div style="padding:6px 0;cursor:pointer;color:var(--dark-on-variant);">
+              <span class="ms" style="font-size:16px">chevron_right</span> <strong>73</strong> — Engine
+            </div>
+            <div style="padding:4px 8px;color:var(--dark-on-variant);font-size:12px;margin-top:8px;">… ~3 000 item · A321 MEL Rev.35 [dữ liệu mẫu]</div>
+          </div>
+        </div>
+
+        <!-- Panel phải: chi tiết item -->
+        <div style="flex:1;" id="mel-detail-panel">
+          <div data-mat="mat-card" data-src="[17062026 §2 — nội dung gốc + metadata khai thác; §4 — nhập metadata]">
+            <div class="card-title">
+              <span class="ms">article</span>
+              <span class="mel-item-code" style="font-size:15px;">21-25-01</span>
+              Pack 1 — Bleed Air / Air Conditioning
+              <span data-mat="mat-chip" class="chip-red" style="margin-left:auto">Active trên VN-A321</span>
+            </div>
+
+            <!-- Nội dung gốc & metadata theo tab nhỏ -->
+            <div style="display:flex;gap:0;border-bottom:1px solid var(--dark-outline);margin-bottom:12px;">
+              <div class="tab active" style="padding:8px 14px;cursor:pointer;border-bottom:2px solid var(--md-primary);color:var(--md-primary);font-size:13px;" id="mel-tab-orig" onclick="switchMelDetail('orig')">Nội dung gốc (Nhà SX)</div>
+              <div class="tab" style="padding:8px 14px;cursor:pointer;border-bottom:2px solid transparent;color:var(--dark-on-variant);font-size:13px;" id="mel-tab-meta" onclick="switchMelDetail('meta')">Metadata khai thác VNA</div>
+            </div>
+
+            <!-- Nội dung gốc -->
+            <div id="mel-panel-orig">
+              <div style="background:var(--dark-surface2);border-radius:var(--md-radius-sm);padding:14px;font-size:12px;font-family:monospace;color:#ccc;margin-bottom:12px;">
+                <strong style="color:var(--md-primary)">21-25-01 PACK 1 INOPERATIVE</strong><br><br>
+                (O) May be deferred provided:<br>
+                1. Applicable ECON cruise FL is reduced per QRH procedure AIR-PACK-1.<br>
+                2. Payload is limited in accordance with FM supplementary procedure.<br>
+                3. Auto Flight restrictions apply as per FCOM 1.22.30.<br>
+                [Nội dung gốc từ AMM Rev.35 — dữ liệu mẫu]
+              </div>
+              <p style="font-size:11px;color:var(--dark-on-variant);">[17062026 §4 — hệ thống hiển thị nội dung gốc để Nga đọc không cần mở file gốc song song]</p>
+            </div>
+
+            <!-- Metadata VNA (ẩn ban đầu) -->
+            <div id="mel-panel-meta" style="display:none;">
+              <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px 16px;margin-bottom:12px;">
+                <div>
+                  <label style="font-size:11px;color:var(--dark-on-variant)">Trường hợp áp dụng</label>
+                  <select style="width:100%;padding:8px;background:var(--dark-surface2);border:1px solid var(--dark-outline);color:var(--dark-on-surface);border-radius:var(--md-radius-sm);font:inherit;" data-mat="mat-select" data-src="[17062026 §2 — x1/x2/x3]">
+                    <option>x1 — Pack 1 không hoạt động (1 pack còn lại)</option>
+                    <option>x2 — Không áp dụng với loại chuyến X</option>
+                  </select>
+                </div>
+                <div><label style="font-size:11px;color:var(--dark-on-variant)">Thời hạn khắc phục</label>
+                  <input type="text" value="30 ngày" style="width:100%;padding:8px;background:var(--dark-surface2);border:1px solid var(--dark-outline);color:var(--dark-on-surface);border-radius:var(--md-radius-sm);font:inherit;" data-mat="matInput"></div>
+                <div><label style="font-size:11px;color:var(--dark-on-variant)">Fuel Factor (%)</label>
+                  <input type="number" value="2.5" style="width:100%;padding:8px;background:var(--dark-surface2);border:1px solid var(--dark-outline);color:var(--dark-on-surface);border-radius:var(--md-radius-sm);font:inherit;" data-mat="matInput" data-src="[17062026 §2; 08062026 §12]"></div>
+                <div><label style="font-size:11px;color:var(--dark-on-variant)">Payload Reduction (kg)</label>
+                  <input type="number" value="800" style="width:100%;padding:8px;background:var(--dark-surface2);border:1px solid var(--dark-outline);color:var(--dark-on-surface);border-radius:var(--md-radius-sm);font:inherit;" data-mat="matInput"></div>
+                <div><label style="font-size:11px;color:var(--dark-on-variant)">Altitude Cap (FL)</label>
+                  <input type="number" value="350" style="width:100%;padding:8px;background:var(--dark-surface2);border:1px solid var(--dark-outline);color:var(--dark-on-surface);border-radius:var(--md-radius-sm);font:inherit;" data-mat="matInput"></div>
+                <div><label style="font-size:11px;color:var(--dark-on-variant)">Giới hạn Autopilot</label>
+                  <input type="text" value="Dual AP mode chỉ" style="width:100%;padding:8px;background:var(--dark-surface2);border:1px solid var(--dark-outline);color:var(--dark-on-surface);border-radius:var(--md-radius-sm);font:inherit;" data-mat="matInput"></div>
+                <div class="full"><label style="font-size:11px;color:var(--dark-on-variant)">Giới hạn sân bay</label>
+                  <input type="text" value="Không bay sân bay CAT III" style="width:100%;padding:8px;background:var(--dark-surface2);border:1px solid var(--dark-outline);color:var(--dark-on-surface);border-radius:var(--md-radius-sm);font:inherit;" data-mat="matInput"></div>
+                <div class="full"><label style="font-size:11px;color:var(--dark-on-variant)">Ghi chú nghiệp vụ (free text)</label>
+                  <textarea rows="2" style="width:100%;padding:8px;background:var(--dark-surface2);border:1px solid var(--dark-outline);color:var(--dark-on-surface);border-radius:var(--md-radius-sm);font:inherit;" data-mat="matTextarea" data-src="[17062026 §4 — free text metadata]">Kiểm tra lại với AMM Supplement trước khi áp dụng cho A321XLR.</textarea></div>
+              </div>
+              <div class="btn-row">
+                <button class="btn btn-outlined" onclick="alert('Lưu metadata — PROTOTYPE')"><span class="ms">save</span>Lưu</button>
+                <button class="btn btn-filled" onclick="alert('Cập nhật và thông báo Dispatcher — PROTOTYPE')"><span class="ms">notifications</span>Lưu & Thông báo</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab: MEL Active toàn đội tàu -->
+    <div id="mtab-active" class="tab-panel" style="display:none;" data-src="[17062026 §3 — dashboard MEL active toàn đội tàu; BCAO hàng ngày]">
+      <div data-mat="mat-card">
+        <div class="card-title"><span class="ms">warning</span>MEL Active — Toàn đội tàu A321 (Dữ liệu mẫu · Nguồn: AMOS)</div>
+        <div class="table-wrap">
+          <table data-mat="mat-table">
+            <thead>
+              <tr>
+                <th>Tàu bay</th><th>Item MEL</th><th>Tên thiết bị</th>
+                <th>Active từ</th><th>Thời hạn</th>
+                <th>Fuel +%</th><th>Payload −kg</th><th>FL Cap</th>
+                <th>Trạng thái</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>VN-A321</strong></td>
+                <td><span class="mel-item-code">21-25-01</span></td>
+                <td>Pack 1 — Bleed Air</td>
+                <td>17/06</td><td style="color:#ffb347">30 ngày</td>
+                <td><span class="tag impact" style="padding:2px 6px;font-size:11px;">+2.5%</span></td>
+                <td><span class="tag impact" style="padding:2px 6px;font-size:11px;">−800</span></td>
+                <td>FL350</td>
+                <td><span data-mat="mat-chip" class="chip-red">Active</span></td>
+              </tr>
+              <tr>
+                <td><strong>VN-A320</strong></td>
+                <td><span class="mel-item-code">34-10-02</span></td>
+                <td>ILS Receiver Ch.2</td>
+                <td>15/06</td><td style="color:var(--dark-on-variant)">30 ngày</td>
+                <td>—</td><td>—</td><td>—</td>
+                <td><span data-mat="mat-chip" class="chip-yellow">Active</span></td>
+              </tr>
+              <tr>
+                <td><strong>VN-A319</strong></td>
+                <td><span class="mel-item-code">73-12-01</span></td>
+                <td>Engine Oil Temp Sensor</td>
+                <td>10/06</td><td style="color:#ff6b6b">7 ngày còn lại</td>
+                <td><span class="tag impact" style="padding:2px 6px;font-size:11px;">+1.0%</span></td>
+                <td>—</td><td>—</td>
+                <td><span data-mat="mat-chip" class="chip-red">Gần hết hạn</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="font-size:11px;color:var(--dark-on-variant);margin-top:8px;">[17062026 §3 — dashboard toàn đội tàu; phân loại theo mức ảnh hưởng khai thác; AMOS cung cấp dữ liệu active]</p>
+      </div>
+    </div>
+
+    <!-- Tab: Cập nhật phiên bản mới -->
+    <div id="mtab-update" class="tab-panel" style="display:none;" data-src="[17062026 §2 — đánh dấu item thay đổi khi phiên bản MEL mới; Nga rà soát và cập nhật metadata]">
+      <div class="banner" style="background:#5c4800;color:#ffe090;border:1px solid #a87c00;"><span class="ms">new_releases</span>MEL Rev.36 (mới) đã được tải lên. 3 item thay đổi so với Rev.35 — cần rà soát và cập nhật metadata khai thác.</div>
+      <div data-mat="mat-card">
+        <div class="card-title"><span class="ms">compare</span>Item thay đổi — Rev.35 vs Rev.36 (Airbus A321)</div>
+        <div class="table-wrap">
+          <table data-mat="mat-table">
+            <thead>
+              <tr><th>Item</th><th>Tên thiết bị</th><th>Thay đổi nội dung gốc</th><th>Metadata VNA cũ</th><th>Hành động</th></tr>
+            </thead>
+            <tbody>
+              <tr style="background:#5c1515">
+                <td><span class="mel-item-code">21-25-01</span></td>
+                <td>Pack 1 — Bleed Air</td>
+                <td><span data-mat="mat-chip" class="chip-red">Sửa lớn — giới hạn FL mới</span></td>
+                <td>Fuel+2.5%, Payload−800, FL350</td>
+                <td><button class="btn btn-filled" style="padding:6px 12px;font-size:12px;" onclick="showMelUpdateDialog()"><span class="ms">edit</span>Rà soát & Cập nhật</button></td>
+              </tr>
+              <tr style="background:#5c4800">
+                <td><span class="mel-item-code">34-10-02</span></td>
+                <td>ILS Receiver</td>
+                <td><span data-mat="mat-chip" class="chip-yellow">Bổ sung ghi chú sân bay CAT II</span></td>
+                <td>Không ảnh hưởng nhiên liệu</td>
+                <td><button class="btn btn-outlined" style="padding:6px 12px;font-size:12px;" onclick="showMelUpdateDialog()"><span class="ms">edit</span>Rà soát</button></td>
+              </tr>
+              <tr>
+                <td><span class="mel-item-code">29-11-03</span></td>
+                <td>Hydraulic Pump (Green)</td>
+                <td><span data-mat="mat-chip" class="chip-blue">Item mới trong Rev.36</span></td>
+                <td>—</td>
+                <td><button class="btn btn-outlined" style="padding:6px 12px;font-size:12px;" onclick="showMelUpdateDialog()"><span class="ms">add</span>Nhập metadata mới</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="font-size:11px;color:var(--dark-on-variant);margin-top:8px;">[17062026 §2 — TOSS đánh dấu item thay đổi; Nga chỉ cần rà soát metadata phần thay đổi, không làm lại toàn bộ]</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="legend">
+    <div style="font-weight:500;margin-bottom:6px;">Component Map</div>
+    <table>
+      <tr><th>Vùng UI</th><th>Angular Material component</th><th>Nguồn</th></tr>
+      <tr><td>Cây phân cấp MEL</td><td><code>MatTree (flat node) [cần xác nhận]</code></td><td class="src">17062026 §2 — 5-6 cấp</td></tr>
+      <tr><td>Bảng MEL active</td><td><code>MatTable + MatSort</code></td><td class="src">17062026 §3</td></tr>
+      <tr><td>Form metadata</td><td><code>MatFormField + matInput + MatSelect + matTextarea</code></td><td class="src">17062026 §2,§4</td></tr>
+      <tr><td>Bảng so sánh phiên bản</td><td><code>MatTable</code></td><td class="src">17062026 §2</td></tr>
+      <tr><td>Tab Master/Active/Cập nhật</td><td><code>MatTabGroup</code></td><td class="src">17062026 §1,§2,§3</td></tr>
+      <tr><td>Nội dung gốc MEL (code block)</td><td><code>MatCard + <code> / custom</code></td><td class="src">17062026 §4</td></tr>
+    </table>
+  </div>
+</div><!-- /screen-mel -->
+
+</div><!-- /content -->
+</div><!-- /shell -->
+
+<!-- ===== DIALOG: Dispatch Release ===== -->
+<div data-mat="mat-dialog" id="dlg-dispatch" data-src="[15062026 §II.3 — phân quyền; 11062026-chiều §II.4 — luồng release]">
+  <div class="panel">
+    <h3><span class="ms">flight_takeoff</span> Dispatch Release — <span id="dlg-flt-no">VN 123</span></h3>
+    <div class="sub">Xác nhận phát hành OFP. Người thực hiện sẽ được ghi nhận trong hệ thống. [15062026 §II.3]</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;">
+      <div><label style="font-size:11px;color:var(--dark-on-variant)">Số hiệu</label><div style="font-weight:500" id="dlg-flt-no2">VN 123</div></div>
+      <div><label style="font-size:11px;color:var(--dark-on-variant)">OFP Version</label><div>R1</div></div>
+      <div><label style="font-size:11px;color:var(--dark-on-variant)">Block Fuel KH</label><div>12 800 kg</div></div>
+      <div><label style="font-size:11px;color:var(--dark-on-variant)">Block Fuel OFP</label><div>12 850 kg (+50 kg)</div></div>
+      <div><label style="font-size:11px;color:var(--dark-on-variant)">Người Release</label><div>Dispatcher (tài khoản hiện tại)</div></div>
+      <div><label style="font-size:11px;color:var(--dark-on-variant)">Thời gian</label><div id="dlg-time">09:42 UTC</div></div>
+    </div>
+    <div style="background:var(--dark-surface2);border-radius:var(--md-radius-sm);padding:10px;font-size:12px;color:var(--dark-on-variant);margin-bottom:14px;">
+      <span class="ms" style="font-size:16px">info</span>
+      Sau khi Dispatch Release, MO Plus sẽ cho phép Phi công thực hiện Pilot Release. [11062026-chiều §II.4]
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-text" onclick="closeDialog('dlg-dispatch')">Huỷ</button>
+      <button class="btn btn-filled" onclick="confirmRelease()"><span class="ms">check</span>Xác nhận Release</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== DIALOG: Unrelease ===== -->
+<div data-mat="mat-dialog" id="dlg-unrelease" data-src="[11062026-chiều §II.4 — Unrelease tạo revision mới; reset Pilot Release]">
+  <div class="panel">
+    <h3><span class="ms">undo</span> Unrelease OFP — <span id="dlg-unrel-flt">VN 208</span></h3>
+    <div class="sub">Huỷ Dispatch Release hiện tại. TOSS sẽ tạo revision mới (R2). MO Plus sẽ reset Pilot Release của Phi công và gửi thông báo. [11062026-chiều §II.4]</div>
+    <div data-mat="mat-form-field" style="margin-bottom:14px;">
+      <label>Lý do Unrelease</label>
+      <select style="width:100%;padding:9px;background:var(--dark-surface2);border:1px solid var(--dark-outline);color:var(--dark-on-surface);border-radius:var(--md-radius-sm);font:inherit;" data-mat="mat-select">
+        <option>MEL phát sinh — cần tính lại OFP</option>
+        <option>Thay đổi tải trọng</option>
+        <option>Thay đổi tàu bay</option>
+        <option>Lỗi OFP từ Lido</option>
+        <option>Khác (nhập tay)</option>
+      </select>
+    </div>
+    <div style="background:#5c1515;border-radius:var(--md-radius-sm);padding:10px;font-size:12px;color:#ffc0c0;margin-bottom:14px;">
+      <span class="ms" style="font-size:16px">warning</span>
+      Phi công sẽ nhận thông báo trên MO Plus và phải thực hiện Pilot Release lại trên revision mới.
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-text" onclick="closeDialog('dlg-unrelease')">Huỷ</button>
+      <button class="btn btn-filled" style="background:var(--md-error);" onclick="confirmUnrelease()"><span class="ms">undo</span>Xác nhận Unrelease</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== DIALOG: MEL Update ===== -->
+<div data-mat="mat-dialog" id="dlg-mel-update" data-src="[17062026 §2 — Nga rà soát metadata; tần suất 1-2 tháng/lần]">
+  <div class="panel">
+    <h3><span class="ms">compare</span>Rà soát cập nhật MEL — 21-25-01</h3>
+    <div class="sub">Nội dung gốc đã thay đổi ở Rev.36. Rà soát và cập nhật metadata khai thác VNA. [17062026 §2]</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px;font-size:12px;">
+      <div>
+        <div style="font-weight:500;color:var(--dark-on-variant);margin-bottom:6px;">Nội dung gốc Rev.35 (cũ)</div>
+        <div style="background:var(--dark-surface2);padding:10px;border-radius:var(--md-radius-sm);font-family:monospace;font-size:11px;">FL restricted to FL350 per Sup A</div>
+      </div>
+      <div>
+        <div style="font-weight:500;color:#69d58f;margin-bottom:6px;">Nội dung gốc Rev.36 (mới)</div>
+        <div style="background:#0f3d20;padding:10px;border-radius:var(--md-radius-sm);font-family:monospace;font-size:11px;color:#c8ffc8;">FL restricted to FL330 per Sup A Rev.3<br><span style="color:#ffb347">↑ Thay đổi: FL350→FL330</span></div>
+      </div>
+    </div>
+    <div style="font-weight:500;margin-bottom:8px;font-size:13px;">Cập nhật Metadata VNA</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;">
+      <div><label style="font-size:11px;color:var(--dark-on-variant)">Altitude Cap (FL)</label>
+        <input type="number" value="330" style="width:100%;padding:8px;background:var(--dark-surface2);border:2px solid #ffb347;color:#ffb347;border-radius:var(--md-radius-sm);font:inherit;font-weight:700;" data-mat="matInput"></div>
+      <div><label style="font-size:11px;color:var(--dark-on-variant)">Fuel Factor (%) — không đổi</label>
+        <input type="number" value="2.5" style="width:100%;padding:8px;background:var(--dark-surface2);border:1px solid var(--dark-outline);color:var(--dark-on-surface);border-radius:var(--md-radius-sm);font:inherit;" data-mat="matInput"></div>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-text" onclick="closeDialog('dlg-mel-update')">Đóng</button>
+      <button class="btn btn-outlined" onclick="closeDialog('dlg-mel-update')"><span class="ms">save</span>Lưu nháp</button>
+      <button class="btn btn-filled" onclick="confirmMelUpdate()"><span class="ms">check</span>Xác nhận cập nhật</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== JavaScript ===== -->
+<script>
+// ---- Clock ----
+function updateClock(){
+  const now=new Date();
+  const h=String(now.getUTCHours()).padStart(2,'0');
+  const m=String(now.getUTCMinutes()).padStart(2,'0');
+  document.getElementById('clock-display').textContent=h+':'+m+' UTC';
+}
+setInterval(updateClock,30000); updateClock();
+
+// ---- Navigation ----
+function showScreen(name){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('[data-mat="mat-sidenav"] .nav-item').forEach(a=>a.classList.remove('active'));
+  document.getElementById('screen-'+name).classList.add('active');
+  event.currentTarget.classList.add('active');
+}
+
+// ---- OCC Table data ----
+const flights=[
+  {flt:'VN 302',ac:'VN-A320',route:'HAN→DAD',std:'09:15',sta:'10:30',status:'BRD',dispatch:'none',pilot:'none',mel:1,alert:'red'},
+  {flt:'VN 123',ac:'VN-A321',route:'HAN→SGN',std:'10:30',sta:'12:50',status:'GRD',dispatch:'none',pilot:'none',mel:0,alert:'yellow'},
+  {flt:'VN 208',ac:'VN-A321',route:'SGN→HAN',std:'08:00',sta:'09:45',status:'ENR',dispatch:'done',pilot:'done',mel:2,alert:'none'},
+  {flt:'VN 411',ac:'VN-B789',route:'HAN→PQC',std:'12:45',sta:'14:00',status:'GRD',dispatch:'done',pilot:'done',mel:0,alert:'none'},
+  {flt:'VN 850',ac:'VN-A350',route:'HAN→NRT',std:'11:20',sta:'19:30',status:'GRD',dispatch:'wait',pilot:'none',mel:0,alert:'none'},
+  {flt:'VN 002',ac:'VN-A350',route:'SGN→CDG',std:'23:55',sta:'+10:20',status:'GRD',dispatch:'none',pilot:'none',mel:0,alert:'none'},
+];
+const chipMap={
+  done:'<span data-mat="mat-chip" class="chip-green">✓ Released</span>',
+  wait:'<span data-mat="mat-chip" class="chip-yellow">Chờ…</span>',
+  none:'<span data-mat="mat-chip" class="chip-grey">—</span>',
+};
+const statusMap={
+  GRD:'<span data-mat="mat-chip" class="chip-grey">GRD</span>',
+  BRD:'<span data-mat="mat-chip" class="chip-blue">BRD</span>',
+  ENR:'<span data-mat="mat-chip" class="chip-green">ENR</span>',
+  OUT:'<span data-mat="mat-chip" class="chip-yellow">OUT</span>',
+};
+function renderOCC(){
+  const tbody=document.getElementById('occ-tbody');
+  tbody.innerHTML=flights.map(f=>{
+    const alertHtml=f.alert==='red'
+      ?'<span class="alert-dot alert-red"></span>'
+      :f.alert==='yellow'?'<span class="alert-dot alert-yellow"></span>':'';
+    const melHtml=f.mel>0?`<span data-mat="mat-chip" class="chip-${f.mel>1?'red':'yellow'}">${f.mel} item</span>`:'<span style="color:var(--dark-on-variant)">—</span>';
+    return `<tr onclick="openFlightDetail('${f.flt}')">
+      <td>${alertHtml}</td>
+      <td><strong>${f.flt}</strong></td>
+      <td class="has-tooltip">${f.ac}<span class="tooltip">Hover: xem lịch sử đổi tàu [12062026 §9]</span></td>
+      <td>${f.route}</td>
+      <td class="has-tooltip">${f.std}<span class="tooltip">Hover: xem lịch sử đổi giờ [12062026 §13]</span></td>
+      <td>${f.sta}</td>
+      <td>${statusMap[f.status]||f.status}</td>
+      <td>${chipMap[f.dispatch]}</td>
+      <td>${chipMap[f.pilot]||chipMap['none']}</td>
+      <td>${melHtml}</td>
+      <td><button class="btn-icon" title="Mở Flight Detail"><span class="ms">open_in_new</span></button></td>
+    </tr>`;
+  }).join('');
+}
+renderOCC();
+
+function openFlightDetail(flt){
+  showScreenDirect('detail');
+}
+function showScreenDirect(name){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('[data-mat="mat-sidenav"] .nav-item').forEach(a=>a.classList.remove('active'));
+  document.getElementById('screen-'+name).classList.add('active');
+  document.querySelector(`[onclick="showScreen('${name}')"]`).classList.add('active');
+}
+
+// ---- Detail tabs ----
+function switchDetailTab(el,panelId){
+  const group=el.closest('[data-mat^="mat-tab-group"]');
+  group.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  group.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  el.classList.add('active');
+  group.querySelector('#'+panelId).classList.add('active');
+}
+
+// ---- MEL tabs ----
+function switchMelTab(el,panelId){
+  const group=el.closest('[data-mat^="mat-tab-group"]');
+  group.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  group.querySelectorAll('.tab-panel').forEach(p=>{p.style.display='none';});
+  el.classList.add('active');
+  document.getElementById(panelId).style.display='block';
+}
+
+// ---- MEL detail sub-panel ----
+function switchMelDetail(tab){
+  document.getElementById('mel-panel-orig').style.display=tab==='orig'?'block':'none';
+  document.getElementById('mel-panel-meta').style.display=tab==='meta'?'block':'none';
+  document.getElementById('mel-tab-orig').style.cssText=tab==='orig'?'padding:8px 14px;cursor:pointer;border-bottom:2px solid var(--md-primary);color:var(--md-primary);font-size:13px;':'padding:8px 14px;cursor:pointer;border-bottom:2px solid transparent;color:var(--dark-on-variant);font-size:13px;';
+  document.getElementById('mel-tab-meta').style.cssText=tab==='meta'?'padding:8px 14px;cursor:pointer;border-bottom:2px solid var(--md-primary);color:var(--md-primary);font-size:13px;':'padding:8px 14px;cursor:pointer;border-bottom:2px solid transparent;color:var(--dark-on-variant);font-size:13px;';
+}
+
+// ---- MEL tree expand ----
+function expandMelNode(el){
+  const child=el.querySelector('div[style*="display:none"],div[style*="display: none"]');
+  const icon=el.querySelector('.ms');
+  if(child){
+    const hidden=child.style.display==='none'||child.style.display==='';
+    child.style.display=hidden?'block':'none';
+    icon.textContent=hidden?'expand_more':'chevron_right';
+  }
+}
+
+// ---- Show MEL item ----
+function showMelItem(){
+  document.getElementById('mel-detail-panel').style.opacity='1';
+}
+function showMelItem2(){
+  document.getElementById('mel-detail-panel').style.opacity='0.6';
+}
+
+// ---- Dialogs ----
+function openDispatchDialog(flt){
+  document.getElementById('dlg-flt-no').textContent=flt;
+  document.getElementById('dlg-flt-no2').textContent=flt;
+  document.getElementById('dlg-time').textContent=document.getElementById('clock-display').textContent;
+  document.getElementById('dlg-dispatch').classList.add('open');
+}
+function openUnreleaseDialog(flt){
+  document.getElementById('dlg-unrel-flt').textContent=flt;
+  document.getElementById('dlg-unrelease').classList.add('open');
+}
+function showMelUpdateDialog(){
+  document.getElementById('dlg-mel-update').classList.add('open');
+}
+function closeDialog(id){ document.getElementById(id).classList.remove('open'); }
+function confirmRelease(){
+  closeDialog('dlg-dispatch');
+  alert('PROTOTYPE — Dispatch Release thành công.\nTrạng thái OFP: Dispatch Released.\nMO Plus đã cho phép Pilot Release.\n[11062026-chiều §II.4]');
+}
+function confirmUnrelease(){
+  closeDialog('dlg-unrelease');
+  alert('PROTOTYPE — Unrelease thành công.\nRevision R2 được tạo.\nMO Plus đã reset Pilot Release.\nPhi công nhận thông báo trên MO Plus.\n[11062026-chiều §II.4]');
+}
+function confirmMelUpdate(){
+  closeDialog('dlg-mel-update');
+  alert('PROTOTYPE — Metadata MEL 21-25-01 đã cập nhật.\nFL Cap: FL330 (từ FL350).\nDispatcher liên quan sẽ nhận thông báo.\n[17062026 §2]');
+}
+
+// Close dialogs on backdrop click
+document.querySelectorAll('[data-mat^="mat-dialog"]').forEach(d=>{
+  d.addEventListener('click',e=>{if(e.target===d)d.classList.remove('open');});
+});
+</script>
+
+</body>
+</html>

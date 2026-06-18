@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM">]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.2-21-81-01.998550.2-21-81-01" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="21" superSectionNumber="2" sectionName="MEL" chapterName="Air Conditioning" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2019-09-25" rev:revStatus="U" rev:revNumber="10" />
+</PUMetaData>
+<MELItem itemNbr="21-81-01" id="X-BOEING:FTID:81205.787.DDG.CU.MEL.2-21-81-01.1.2-21-81-01">
+<Title>Power Electronics Cooling System (PECS) Aft Section</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="2" nbrRequired="1" maintIndicator="(M)">
+<DispatchConditionRemarks>
+<Para>One may be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Leak is verified to be in aft section of the loop.</Para>
+</ListItem>
+<ListItem>
+<Para>Associated isolation valve is deactivated closed.</Para>
+</ListItem>
+<ListItem>
+<Para>Associated fluid level is verified to be adequate.</Para>
+</ListItem>
+<ListItem>
+<Para>Associated ram air fan operates normally.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<Note>
+<Para>The aft section of the PECS loop is that part of the loop downstream of the isolation valve and associated with the SCUs and the lav/galley ventilation heat exchanger.</Para>
+</Note>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Verify that leak is in aft section of the loop and confirm isolation valve is deactivated closed (AMM DDG 21-81-01).</Para>
+<List listType="1.">
+<ListItem>
+<Para>Verify leak is in aft section of PECS loop.</Para>
+<List listType="A.">
+<ListItem>
+<Para>If the caution message LIQUID COOLING L/R does not appear, the leak has been isolated and is in the aft section of the PECS loop.</Para>
+</ListItem>
+<ListItem>
+<Para>Locate leaked fluid.</Para>
+</ListItem>
+<ListItem>
+<Para>Clean any fluid and fluid residue on any airplane structure, components or fluid lines.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Using a flight deck multi-function display only, open the following circuit breakers and lock with an INOP tag: </Para>
+<List listType="A.">
+<ListItem>
+<Para>For leak in left loop, LIQUID CLG SOV 	VLV-L.</Para>
+</ListItem>
+<ListItem>
+<Para>For leak in right loop, LIQUID CLG SOV 	VLV-R.</Para>
+</ListItem>
+</List>
+<Note>
+<Para>Opening the circuit breaker will cause the associated LIQUID CLG PRESS SNSR L/R to appear. The airplane must also be dispatched using MEL item 21-81-04. </Para>
+</Note>
+<Note>
+<Para>The LIQUID COOLING ISLN VLV L or R status message will be displayed.</Para>
+</Note>
+</ListItem>
+<ListItem>
+<Para>On POWER ELEC COOLING maintenance page 1, confirm associated isolation valve state is ISOLATED.</Para>
+</ListItem>
+<ListItem>
+<Para>If valve state is not ISOLATED, gain access to supply shutoff valve.</Para>
+<List listType="A.">
+<ListItem>
+<Para>Turn the open/close knob until the valve is in the close position.</Para>
+</ListItem>
+<ListItem>
+<Para>Verify associated PECS loop fluid level is adequate, or service as required.</Para>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+<OperationNote>
+<Para>Closing the isolation valve will deactivate the SCUs associated with the affected PECS loop and may degrade GCM and recirculation cooling air performance.</Para>
+</OperationNote>
+</DispatchProcedure>
+</DispatchCondition>
+</MELItem>
+</DispatchItems>

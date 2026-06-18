@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://www.boeing.com/FTID-ML"
+    xmlns:rev="http://www.boeing.com/FTID-ML/Revision"
+    targetNamespace="http://www.boeing.com/FTID-ML" 
+    elementFormDefault="qualified" 
+    attributeFormDefault="unqualified"
+    version="FTID 2.6">
+
+<!-- 	
+=================================================================
+
+
+Copyright Information:
+      Boeing Proprietary and Confidential - 
+      All Rights Reserved since 2006.
+
+      This schema file is part of the Boeing Flight Technical 
+      Integrated Data (FTID) Specification based on XML.
+      All rights are reserved under Boeing Flight Operations 
+      digital data entitlements, products or services.
+
+     
+Contact Information:   	
+        The Boeing Company
+        Flight Operations Support
+        P.O. Box 3707	MS 20-89
+        Seattle, WA 98124-2207
+        USA
+        email:  flighttraining@Boeing.com
+        Phone:  (206) 662-4000
+        Fax:    (206) 662-4743
+		
+===================================================================
+-->
+
+<xs:include schemaLocation="../attributeTypes/generalAttrs.xsd"/>
+<xs:include schemaLocation="../attributeTypes/melAttrs.xsd"/>
+<xs:include schemaLocation="../basicDataTypes/basicDataInclude.xsd"/>
+<xs:include schemaLocation="../metadataTypes/effect.xsd"/>
+<xs:import namespace="http://www.boeing.com/FTID-ML/Revision" schemaLocation="../metadataTypes/revision.xsd"/>
+<xs:include schemaLocation="../metadataTypes/ataPOF.xsd"/>
+
+
+
+
+<!--=====================================================-->
+<!-- DispatchCondition element definition -->
+<!--=====================================================-->
+<xs:complexType name="DispatchConditionType">
+    <xs:annotation>
+        <xs:documentation>Dispatch criteria for an item. Options can be based on factors, such as type of flight (i.e. ETOPS) condition/availability of equipment, etc. Dispatch options are designated with Alpha sequences.
+        </xs:documentation>
+    </xs:annotation>
+
+    <xs:sequence>
+        <xs:element name="Effectivities" type="EffectivitiesType" minOccurs="0"/>
+        <xs:element name="Title" type="TitleType" minOccurs="0"/>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">       
+            <xs:element name="DispatchConditionRemarks" type="DispatchConditionRemarksType"/>
+            <xs:element name="Note" type="NoteType"/>
+            <xs:element name="EICASMessages" type="EICASMessagesType"/>
+            <xs:element name="Placards" type="PlacardsType"/>
+        </xs:choice>
+        <xs:element name="DispatchProcedure" type="DispatchProcedureType" minOccurs="0"/>
+    </xs:sequence>
+
+    <xs:attribute name="dispCondOptions" type="dispCondOptionsType" use="optional"/>
+    <xs:attribute name="repairInterval" type="repairIntervalType" use="optional"/>
+    <xs:attribute name="nbrInstalled" type="nbrType" use="optional"/>
+    <xs:attribute name="nbrRequired" type="nbrType" use="optional"/>
+    <xs:attribute name="maintIndicator" type="maintIndicatorType" use="optional"/>
+    <xs:attribute name="opsIndicator" type="opsIndicatorType" use="optional"/>
+    <xs:attribute name="techIndicator" type="techIndicatorType" use="optional"/>
+    <xs:attribute name="equipOpCapability" type="equipOpCapabilityType" use="optional"/>
+    <xs:attributeGroup ref="globalAttrGrp"/>
+</xs:complexType>
+
+
+
+<!--=====================================================-->
+<!-- DispatchCondition Remarks element definition -->
+<!--=====================================================-->
+<xs:complexType name="DispatchConditionRemarksType">
+    <xs:annotation>
+        <xs:documentation>General remarks for the dispatch condition</xs:documentation>
+    </xs:annotation>
+
+    <xs:sequence>
+        <xs:element name="Effectivities" type="EffectivitiesType" minOccurs="0"/>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:group ref="TextCWNGroupType"/>
+        </xs:choice>
+    </xs:sequence>
+    
+    <xs:attributeGroup ref="globalAttrGrp"/>
+</xs:complexType>
+
+
+
+<!--=====================================================-->
+<!-- DispatchProcedure element definition -->
+<!--=====================================================-->
+<xs:complexType name="DispatchProcedureType">
+    <xs:annotation>
+        <xs:documentation>Wrapper element for different Maintenance or Flight related procedures that are related to the MEL item.
+        </xs:documentation>
+    </xs:annotation>
+
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Note" type="NoteType"/>
+        <xs:element name="MaintenanceProcedure" type="MaintenanceProcType"/>
+        <xs:element name="MaintenanceNote" type="MaintenanceNoteType"/>
+        <xs:element name="MaintProcLink" type="iLinkType"/>
+        <xs:element name="OperationProcedure" type="OperationProcType"/>
+        <xs:element name="OperationNote" type="OperationNoteType"/>
+        <xs:element name="OpsProcLink" type="iLinkType"/>
+    </xs:choice>
+    <xs:attributeGroup ref="globalAttrGrp"/>
+</xs:complexType>
+
+
+<!--=====================================================-->
+<!-- EICASMessages element definition -->
+<!--=====================================================-->
+<xs:complexType name="EICASMessagesType">
+    <xs:annotation>
+        <xs:documentation>Wrapper element to list all EICAS messages that are related to the MEL item.</xs:documentation>
+    </xs:annotation>
+
+    <xs:sequence maxOccurs="unbounded">
+        <xs:element name="Effectivities" type="EffectivitiesType" minOccurs="0"/>
+        <xs:element name="EICASMsg" type="EICASMsgType"/>
+    </xs:sequence>
+
+    <xs:attributeGroup ref="globalAttrGrp"/>
+</xs:complexType>
+
+
+<!--=====================================================-->
+<!-- EICASMsg element definition -->
+<!--=====================================================-->
+<xs:complexType name="EICASMsgType" mixed="true">
+    <xs:annotation>
+        <xs:documentation>Individual EICAS message</xs:documentation>
+    </xs:annotation>
+
+    <xs:attributeGroup ref="globalAttrGrp"/>
+</xs:complexType>
+
+
+<!--=====================================================-->
+<!-- MaintenanceProcedure element definition -->
+<!--=====================================================-->
+<xs:complexType name="MaintenanceProcType">
+    <xs:annotation>
+        <xs:documentation>Maintenance information related to a MEL item primarily for maintenance ground personnel. (denoted as (M) Indicator)</xs:documentation>
+    </xs:annotation>
+
+    <xs:sequence>
+        <xs:element name="Effectivities" type="EffectivitiesType" minOccurs="0"/>
+        <xs:element name="Title" type="TitleType" minOccurs="0"/>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:group ref="TextCWNGroupType"/>
+        </xs:choice>
+    </xs:sequence>
+
+    <xs:attributeGroup ref="globalAttrGrp"/>
+</xs:complexType>
+
+
+<!--=====================================================-->
+<!-- MaintenanceNote element definition -->
+<!--=====================================================-->
+<xs:complexType name="MaintenanceNoteType">
+    <xs:annotation>
+        <xs:documentation>Information that is not associated directly with the MMEL Item. (No Maintenance Indicator)</xs:documentation>
+    </xs:annotation>
+
+    <xs:sequence>
+        <xs:element name="Effectivities" type="EffectivitiesType" minOccurs="0"/>
+        <xs:element name="Title" type="TitleType" minOccurs="0"/>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:group ref="TextCWNGroupType"/>
+        </xs:choice>
+    </xs:sequence>
+
+    <xs:attributeGroup ref="globalAttrGrp"/>
+</xs:complexType>
+
+
+<!--=====================================================-->
+<!-- OperationProcedure element definition -->
+<!--=====================================================-->
+<xs:complexType name="OperationProcType">
+    <xs:annotation>
+        <xs:documentation>Operational information related to the MEL item that is primarily for the flight personnel. (denoted by (O) indicator)
+        </xs:documentation>
+    </xs:annotation>
+
+    <xs:sequence>
+        <xs:element name="Effectivities" type="EffectivitiesType" minOccurs="0"/>
+        <xs:element name="Title" type="TitleType" minOccurs="0"/>        
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:group ref="TextCWNGroupType"/>
+            <xs:element name="PerfPenaltyItem" type="PerfPenaltyItemType"/>
+        </xs:choice>
+    </xs:sequence>
+
+    <xs:attributeGroup ref="globalAttrGrp"/>
+</xs:complexType>
+
+
+<!--=====================================================-->
+<!-- OperationNote element definition -->
+<!--=====================================================-->
+<xs:complexType name="OperationNoteType">
+    <xs:annotation>
+        <xs:documentation>Operational information (not denoted by (O) indicator)</xs:documentation>
+    </xs:annotation>
+
+    <xs:sequence>
+        <xs:element name="Effectivities" type="EffectivitiesType" minOccurs="0"/>
+        <xs:element name="Title" type="TitleType" minOccurs="0"/>      
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:group ref="TextCWNGroupType"/>
+            <xs:element name="PerfPenaltyItem" type="PerfPenaltyItemType"/> 
+        </xs:choice>
+    </xs:sequence>
+
+    <xs:attributeGroup ref="globalAttrGrp"/>
+</xs:complexType>
+
+
+<!--=====================================================-->
+<!-- PerformancePenaltyItem element definition -->
+<!--=====================================================-->
+<xs:complexType name="PerfPenaltyItemType">
+    <xs:annotation>
+        <xs:documentation>Operational performance penalty due to the MEL/CDL item inop</xs:documentation>
+    </xs:annotation>
+
+    <xs:sequence>
+        <xs:element name="Effectivities" type="EffectivitiesType" minOccurs="0"/>
+        <xs:element name="Title" type="TitleType" minOccurs="0"/>
+        <xs:element name="POF" type="POFType" minOccurs="0"/>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:group ref="TextCWNGroupType"/>
+        </xs:choice>
+    </xs:sequence>
+
+    <xs:attributeGroup ref="globalAttrGrp"/>
+</xs:complexType>
+
+
+<!--=====================================================-->
+<!-- Placards element definition -->
+<!--=====================================================-->
+<xs:complexType name="PlacardsType">
+    <xs:annotation>
+        <xs:documentation>Placard information</xs:documentation>
+    </xs:annotation>
+
+    <xs:sequence>
+        <xs:element name="Effectivities" type="EffectivitiesType" minOccurs="0"/>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:group ref="TextCWNGroupType"/>
+        </xs:choice>
+    </xs:sequence>
+
+    <xs:attributeGroup ref="globalAttrGrp"/>
+</xs:complexType>
+
+
+
+</xs:schema>

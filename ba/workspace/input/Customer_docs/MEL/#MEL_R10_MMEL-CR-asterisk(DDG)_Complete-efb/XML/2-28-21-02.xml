@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM">]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.2-28-21-02.1705.2-28-21-02" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="28" superSectionNumber="2" sectionName="MEL" chapterName="Fuel" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2025-09-30" rev:revStatus="R" rev:revNumber="10" />
+</PUMetaData>
+<MELItem itemNbr="28-21-02" id="X-BOEING:FTID:81205.787.DDG.CU.MEL.2-28-21-02.1.2-28-21-02">
+<Title>
+<?FTID-xref 1290610.2-28-21-02?>Refuel Adapters</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="2" nbrRequired="1" maintIndicator="(M)">
+<DispatchConditionRemarks>
+<Para>One may be inoperative provided there are no fuel leaks.</Para>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para rev:revStatus="R" rev:revHighlight="Added the missing AMM DDG reference.">Immediately after refuel operations, inspect the area around the associated refuel adapter and verify fuel leaks are not present (<?FTID-rev start?>AMM DDG <?FTID-rev end?>28-21-02).</Para>
+<Note>
+<Para>Dispatch is not allowed for an inoperative poppet valve. A poppet valve is not operating normally if it leaks immediately after refueling.</Para>
+</Note>
+<Note>
+<Para>This item is applicable to failures of the refuel/defuel handle, break-away flange, a break-away flange that is beyond wear limits, or a refuel adapter that has failed the bonding resistance check.</Para>
+</Note>
+<Note>
+<Para>An inoperative adapter should not be used in refuel or defuel operations.</Para>
+</Note>
+</MaintenanceProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELItem>
+</DispatchItems>

@@ -1,0 +1,710 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM">]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.2-32-31-02.3127.2-32-31-02" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="32" superSectionNumber="2" sectionName="MEL" chapterName="Landing Gear" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2025-09-30" rev:revStatus="R" rev:revNumber="10" />
+</PUMetaData>
+<MELItem itemNbr="32-31-02" id="X-BOEING:FTID:81205.787.DDG.CU.MEL.2-32-31-02.1.2-32-31-02">
+<Title>Landing Gear Control Relays</Title>
+<MELSubItem itemNbr="32-31-02-01">
+<Title>
+<?FTID-xref 1308633.2-32-31-02?>Landing Gear Control Reset Relays</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="2" nbrRequired="1" maintIndicator="(M)">
+<DispatchConditionRemarks>
+<Para>One may be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Inoperative relay is deactivated.</Para>
+</ListItem>
+<ListItem>
+<Para>Opposite system channel is verified to operate normally.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Deactivate the inoperative landing gear control RESET RELAY and verify opposite system channel operates normally (AMM DDG 32-31-02).</Para>
+<List listType="1.">
+<ListItem>
+<Para>Identify the inoperative RESET RELAY on LANDING GEAR CONTROL maintenance page 2.  The inoperative RESET RELAY (SYS 1 or SYS 2)  will have a blank status field.  </Para>
+</ListItem>
+<ListItem>
+<Para>Deactivate control relay.</Para>
+<List listType="A.">
+<ListItem>
+<Para>For an inoperative RESET RELAY on system 1, using a flight deck multi-function display only, open circuit breaker LG SYS-ENABLE 1 and lock with an INOP tag.</Para>
+</ListItem>
+<ListItem>
+<Para>For an inoperative RESET RELAY on system 2, using a flight deck multi-function display only, open circuit breaker LG SYS-ENABLE 2 and lock with an INOP tag.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Verify opposite system channel operates normally.</Para>
+<List listType="A.">
+<ListItem>
+<Para>Install landing gear downlock pins.</Para>
+</ListItem>
+<ListItem>
+<Para>Confirm the landing gear doors are closed and door safety valves are in STOW.</Para>
+</ListItem>
+<ListItem>
+<Para>Pressurize the center hydraulic system.</Para>
+</ListItem>
+<ListItem>
+<Para rev:revStatus="R" rev:revHighlight="Added the missing word &quot;door&quot; to title to align with the AMM.">
+<?FTID-rev start?>Use the Central Maintenance Computing Function (CMCF) to start the SPECIAL FUNCTIONS: 32 Landing Gear Actuation System, Landing Gear Actuation Allow Door
+Normal Close.<?FTID-rev end?></Para>
+</ListItem>
+<ListItem>
+<Para>Set the landing gear control lever UP.</Para>
+</ListItem>
+<ListItem>
+<Para>Confirm the landing gear doors are open. </Para>
+</ListItem>
+<ListItem>
+<Para>Wait at least 10 seconds.</Para>
+</ListItem>
+<ListItem>
+<Para>Set the landing gear control lever DN. </Para>
+</ListItem>
+<ListItem>
+<Para>Confirm the landing gear doors close.</Para>
+</ListItem>
+<ListItem>
+<Para>Confirm the GEAR CONTROL SYS status message is not displayed.</Para>
+</ListItem>
+<ListItem>
+<Para>Press the STOP FUNCTION button on the CMCF SPECIAL FUNCTIONS screen: 32 Landing Gear Actuation System, Landing Gear Actuation Allow Normal Close.</Para>
+</ListItem>
+<ListItem>
+<Para>Depressurize the center hydraulic system.</Para>
+</ListItem>
+<ListItem>
+<Para>Remove landing gear downlock pins.</Para>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="32-31-02-02">
+<Title>
+<?FTID-xref 1308791.2-32-31-02?>Main Landing Gear Inhibit Relays</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="6" nbrRequired="3" maintIndicator="(M)">
+<DispatchConditionRemarks>
+<Para>May be inoperative on one system channel provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Inoperative relay is deactivated.</Para>
+</ListItem>
+<ListItem>
+<Para>Opposite system channel is verified to operate normally.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<Note>
+<Para>The airplane must also be dispatched using MEL item 32-31-03-01.</Para>
+</Note>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Deactivate the inoperative landing gear control relay and verify opposite system channel operates normally (AMM DDG 32-31-02).</Para>
+<List listType="1.">
+<ListItem>
+<Para>Identify the inoperative relay.</Para>
+<List listType="A.">
+<ListItem>
+<Para rev:revStatus="R" rev:revHighlight="Added the missing word &quot;door&quot; to title to align with the AMM.">
+<?FTID-rev start?>Use the Central Maintenance Computing Function (CMCF) to start the SPECIAL FUNCTIONS: 32 Landing Gear Actuation System, Landing
+Gear Actuation Allow Door Normal Close.<?FTID-rev end?></Para>
+</ListItem>
+<ListItem>
+<Para>Identify the inoperative relay on LANDING GEAR CONTROL maintenance page 2.  Inoperative control relays will have a blank status field.   One main landing gear control relay of each type may be inoperative. All inoperative relays must be on the same system.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Deactivate control relay.</Para>
+<List listType="A.">
+<ListItem>
+<Para>For an inoperative BYPASS/DR CLOSE CMD INHIBIT RELAY on system 1, using a flight deck multi-function display only, open the following circuit breakers and lock with INOP tags.</Para>
+<List listType="1)">
+<ListItem>
+<Para>MLG BYPASS VLV-ENABLE 1 </Para>
+<Note>
+<Para>Status message MLG BYPASS SOL will be displayed.</Para>
+</Note>
+</ListItem>
+<ListItem>
+<Para>MLG DOOR CTRL VLV CLOSE-1</Para>
+<Note>
+<Para>Status message MLG DOOR CLOSE SOL will be displayed.</Para>
+</Note>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>For an inoperative NORM DR CLOSE CMD INHIBIT RELAY on system 1, using a flight deck multi-function display only, open the following circuit breakers and lock with INOP tags.</Para>
+<List listType="1)">
+<ListItem>
+<Para>MLG L DR SAFE VLV-NORM CLOSE 1</Para>
+<Note>
+<Para>Status message MLG DOOR NORM CLOSE SOL L will be displayed.</Para>
+</Note>
+</ListItem>
+<ListItem>
+<Para>MLG R DR SAFE VLV-NORM CLOSE 1</Para>
+<Note>
+<Para>Status message MLG DOOR NORM CLOSE SOL R will be displayed.</Para>
+</Note>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>For an inoperative BYPASS/DR CLOSE CMD INHIBIT RELAY on system 2, using a flight deck multi-function display only, open the following circuit breakers and lock with INOP tags.</Para>
+<List listType="1)">
+<ListItem>
+<Para>MLG BYPASS VLV-ENABLE 2 </Para>
+<Note>
+<Para>Status message MLG BYPASS SOL will be displayed.</Para>
+</Note>
+</ListItem>
+<ListItem>
+<Para>MLG DOOR CTRL VLV CLOSE-2</Para>
+<Note>
+<Para>Status message MLG DOOR CLOSE SOL will be displayed.</Para>
+</Note>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>For an inoperative NORM DR CLOSE CMD INHIBIT RELAY on system 2, using a flight deck multi-function display only, open the following circuit breakers and lock with INOP tags.</Para>
+<List listType="1)">
+<ListItem>
+<Para>MLG L DR SAFE VLV-NORM CLOSE 2</Para>
+<Note>
+<Para>Status message MLG DOOR NORM CLOSE SOL L will be displayed.</Para>
+</Note>
+</ListItem>
+<ListItem>
+<Para>MLG R DR SAFE VLV-NORM CLOSE 2</Para>
+<Note>
+<Para>Status message MLG DOOR NORM CLOSE SOL R will be displayed.</Para>
+</Note>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>For an inoperative GEAR CTRL CMD INHIBIT RELAY on system 1, using a flight deck multi-function display only, open the following circuit breakers and lock with INOP tags.</Para>
+<List listType="1)">
+<ListItem>
+<Para>MLG CTRL VLV-DN1</Para>
+<Note>
+<Para>Status message MLG DOWN SOL will be displayed.</Para>
+</Note>
+</ListItem>
+<ListItem>
+<Para>MLG CTRL VLV-UP1 </Para>
+<Note>
+<Para>Status message MLG UP SOL will be displayed.</Para>
+</Note>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>For an inoperative GEAR CTRL CMD INHIBIT RELAY on system 2, using a flight deck multi-function display only, open the following circuit breakers and lock with INOP tags.</Para>
+<List listType="1)">
+<ListItem>
+<Para>MLG CTRL VLV-DN2</Para>
+<Note>
+<Para>Status message MLG DOWN SOL will be displayed.</Para>
+</Note>
+</ListItem>
+<ListItem>
+<Para>MLG CTRL VLV-UP2 </Para>
+<Note>
+<Para>Status message MLG UP SOL will be displayed.</Para>
+</Note>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Verify opposite system channel operates normally.</Para>
+<List listType="A.">
+<ListItem>
+<Para>For an inoperative main landing gear BYPASS/DR CLOSE CMD INHIBIT RELAY:</Para>
+<List listType="1)">
+<ListItem rev:revStatus="R" rev:revHighlight="Added the missing word &quot;door&quot; to title to align with the AMM.">
+<Para>Use the Central Maintenance Computing Function (CMCF) to start the SPECIAL FUNCTIONS: 32 Landing Gear Actuation System, Landing Gear Actuation Allow Door Normal Close.</Para>
+<?FTID-rev start?>
+<?FTID-rev end?>
+</ListItem>
+<ListItem>
+<Para>Install landing gear downlock pins.</Para>
+</ListItem>
+<ListItem>
+<Para>Confirm the landing gear doors are closed and door safety valves are in STOW.</Para>
+</ListItem>
+<ListItem>
+<Para>Pressurize the center hydraulic system.</Para>
+</ListItem>
+<ListItem>
+<Para>On the LNDG GEAR INDN AND STRN maintenance page, confirm that the pressure for MLG SYS is approximately the same pressure as the CENTER SYS.</Para>
+</ListItem>
+<ListItem>
+<Para>Use the ground door release system to open the landing gear doors.</Para>
+</ListItem>
+<ListItem>
+<Para>On the LNDG GEAR INDN AND STRN Maintenance page, confirm that the MLG SYS pressure decreases to less than 500 psi.</Para>
+</ListItem>
+<ListItem>
+<Para>Set the landing gear control lever UP.</Para>
+</ListItem>
+<ListItem>
+<Para>Confirm the landing gear doors are open.</Para>
+</ListItem>
+<ListItem>
+<Para>Wait at least 10 seconds.</Para>
+</ListItem>
+<ListItem>
+<Para>Set the landing gear control lever DN. </Para>
+</ListItem>
+<ListItem>
+<Para>Confirm the landing gear doors close.</Para>
+</ListItem>
+<ListItem>
+<Para>Confirm that GEAR CONTROL SYS status message is not displayed.</Para>
+</ListItem>
+<ListItem>
+<Para>Press the STOP FUNCTION button on the CMCF SPECIAL FUNCTIONS screen: 32 Landing Gear Actuation System, Landing Gear Actuation Allow Normal Close.</Para>
+</ListItem>
+<ListItem>
+<Para>Depressurize the center hydraulic system.</Para>
+</ListItem>
+<ListItem>
+<Para>Remove landing gear downlock pins.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>For an inoperative main landing gear NORM DR CLOSE CMD INHIBIT RELAY:</Para>
+<List listType="1)">
+<ListItem rev:revStatus="R" rev:revHighlight="Added the missing word &quot;door&quot; to title to align with the AMM.">
+<Para>Use the Central Maintenance Computing Function (CMCF) to start the SPECIAL FUNCTIONS: 32 Landing Gear Actuation System, Landing Gear Actuation Allow Door Normal Close.</Para>
+<?FTID-rev start?>
+<?FTID-rev end?>
+</ListItem>
+<ListItem>
+<Para>Install landing gear downlock pins.</Para>
+</ListItem>
+<ListItem>
+<Para>Confirm the landing gear doors are closed and door safety valves are in STOW.</Para>
+</ListItem>
+<ListItem>
+<Para>Pressurize the center hydraulic system.</Para>
+</ListItem>
+<ListItem>
+<Para>Use the ground door release system to open the landing gear doors.</Para>
+</ListItem>
+<ListItem>
+<Para>On the LNDG GEAR CONTROL Maintenance page 2, verify the remaining relay status shows INHIBIT in the status field.</Para>
+</ListItem>
+<ListItem>
+<Para>Set the landing gear control lever UP. </Para>
+</ListItem>
+<ListItem>
+<Para>Confirm the landing gear doors are open.</Para>
+</ListItem>
+<ListItem>
+<Para>Wait at least 10 seconds.</Para>
+</ListItem>
+<ListItem>
+<Para>Set the landing gear control lever DN. </Para>
+</ListItem>
+<ListItem>
+<Para>Confirm the landing gear doors close.</Para>
+</ListItem>
+<ListItem>
+<Para>On the LNDG GEAR CONTROL Maintenance page 2, verify the remaining relay status shows NOT INHIBIT in the status field.</Para>
+</ListItem>
+<ListItem>
+<Para>Confirm that GEAR CONTROL SYS status message is not displayed.</Para>
+</ListItem>
+<ListItem>
+<Para>Press the STOP FUNCTION button on the CMCF SPECIAL FUNCTIONS screen: 32 Landing Gear Actuation System, Landing Gear Actuation Allow Normal Close.</Para>
+</ListItem>
+<ListItem>
+<Para>Depressurize the center hydraulic system.</Para>
+</ListItem>
+<ListItem>
+<Para>Remove landing gear downlock pins.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>For an inoperative main landing gear GEAR CTRL CMD INHIBIT RELAY:</Para>
+<List listType="1)">
+<ListItem rev:revStatus="R" rev:revHighlight="Added the missing word &quot;door&quot; to title to align with the AMM.">
+<Para>Use the Central Maintenance Computing Function (CMCF) to start the SPECIAL FUNCTIONS: 32 Landing Gear Actuation System, Landing Gear Actuation Allow Door Normal Close.</Para>
+<?FTID-rev start?>
+<?FTID-rev end?>
+</ListItem>
+<ListItem>
+<Para>Install landing gear downlock pins.</Para>
+</ListItem>
+<ListItem>
+<Para>Confirm the landing gear doors are closed and door safety valves are in STOW.</Para>
+</ListItem>
+<ListItem>
+<Para>Install four truck stow sensors slugs to NEAR.</Para>
+</ListItem>
+<ListItem>
+<Para>Pressurize the center hydraulic system.</Para>
+</ListItem>
+<ListItem>
+<Para>Set the landing gear control lever UP </Para>
+</ListItem>
+<ListItem>
+<Para>Confirm the landing gear doors are open.</Para>
+</ListItem>
+<ListItem>
+<Para>On the LNDG GEAR CONTROL maintenance page, confirm remaining relay status display INHIBIT DN.</Para>
+</ListItem>
+<ListItem>
+<Para>Wait at least 10 seconds.</Para>
+</ListItem>
+<ListItem>
+<Para>Set the landing gear control lever DN.</Para>
+</ListItem>
+<ListItem>
+<Para>Confirm the landing gear doors close.</Para>
+</ListItem>
+<ListItem>
+<Para>On the LNDG GEAR CONTROL maintenance page, confirm remaining relay status display INHIBIT UP.</Para>
+</ListItem>
+<ListItem>
+<Para>Confirm that GEAR CONTROL SYS status message is not displayed.</Para>
+</ListItem>
+<ListItem>
+<Para>Press the STOP FUNCTION button on the CMCF SPECIAL FUNCTIONS screen: 32 Landing Gear Actuation System, Landing Gear Actuation Allow Normal Close.</Para>
+</ListItem>
+<ListItem>
+<Para>Depressurize the center hydraulic system.</Para>
+</ListItem>
+<ListItem>
+<Para>Remove the four truck stow sensor slugs.</Para>
+</ListItem>
+<ListItem>
+<Para>Remove landing gear downlock pins.</Para>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="32-31-02-03">
+<Title>
+<?FTID-xref 1309501.2-32-31-02?>Nose Landing Gear Inhibit Relays</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="6" nbrRequired="3" maintIndicator="(M)">
+<DispatchConditionRemarks>
+<Para>May be inoperative on one system channel provided: </Para>
+<List listType="a.">
+<ListItem>
+<Para>Inoperative relay is deactivated.</Para>
+</ListItem>
+<ListItem>
+<Para>Opposite system channel is verified to operate normally.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<Note>
+<Para>The airplane must also be dispatched using MEL item 32-31-03-02.</Para>
+</Note>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Deactivate the inoperative landing gear control relay and verify opposite system channel operates normally (AMM DDG 32-31-02).</Para>
+<List listType="1.">
+<ListItem>
+<Para>Identify the inoperative relay.</Para>
+<List listType="A.">
+<ListItem>
+<Para rev:revStatus="R" rev:revHighlight="Added the missing word &quot;door&quot; to title to align with the AMM.">
+<?FTID-rev start?>Use the Central Maintenance Computing Function (CMCF) to start the SPECIAL FUNCTIONS: 32 Landing Gear Actuation System, Landing
+Gear Actuation Allow Door Normal Close.<?FTID-rev end?></Para>
+</ListItem>
+<ListItem>
+<Para>Identify the inoperative relay on LANDING GEAR CONTROL maintenance page 2.  Inoperative control relays will have a blank status field.  One nose landing gear control relay of each type may be inoperative. All inoperative relays must be on the same system.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Deactivate control relay. </Para>
+<List listType="A.">
+<ListItem>
+<Para>For an inoperative BYPASS/DR CLOSE CMD INHIBIT RELAY on system 1, using a flight deck multi-function display only, open the following circuit breakers and lock with INOP tags.</Para>
+<List listType="1)">
+<ListItem>
+<Para>NLG BYPASS VLV-ENABLE 1</Para>
+<Note>
+<Para>Status message NLG BYPASS SOL will be displayed.</Para>
+</Note>
+</ListItem>
+<ListItem>
+<Para>NLG DOOR CTRL VLV CLOSE-1 </Para>
+<Note>
+<Para>Status message NLG DOOR CLOSE SOL will be displayed.</Para>
+</Note>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>For an inoperative NORM DR CLOSE CMD INHIBIT RELAY on system 1, using a flight deck multi-function display only, open circuit breaker NLG DR SAFE VLV NORM CLOSE-1 and lock with INOP tag.</Para>
+<Note>
+<Para>Status message NLG DOOR NORM CLOSE SOL will be displayed.</Para>
+</Note>
+</ListItem>
+<ListItem>
+<Para>For an inoperative BYPASS/DR CLOSE CMD INHIBIT RELAY on system 2, using a flight deck multi-function display only, open the following circuit breakers and lock with INOP tags.</Para>
+<List listType="1)">
+<ListItem>
+<Para>NLG BYPASS VLV-ENABLE 2</Para>
+<Note>
+<Para>Status message NLG BYPASS SOL will be displayed.</Para>
+</Note>
+</ListItem>
+<ListItem>
+<Para>NLG DOOR CTRL VLV CLOSE-2</Para>
+<Note>
+<Para>Status message NLG DOOR CLOSE SOL will be displayed.</Para>
+</Note>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>For an inoperative NORM DR CLOSE CMD INHIBIT RELAY on system 2, using a flight deck multi-function display only, open circuit breaker NLG DR SAFE VLV NORM CLOSE-2 and lock with INOP tag.</Para>
+<Note>
+<Para>Status message NLG DOOR NORM CLOSE SOL will be displayed.</Para>
+</Note>
+</ListItem>
+<ListItem>
+<Para>For an inoperative GEAR CTRL CMD INHIBIT RELAY on system 1, using a flight deck multi-function display only, open the following circuit breakers and lock with INOP tags.</Para>
+<List listType="1)">
+<ListItem>
+<Para>NLG CTRL VLV-DN1</Para>
+<Note>
+<Para>Status message NLG DOWN SOL will be displayed.</Para>
+</Note>
+</ListItem>
+<ListItem>
+<Para>NLG CTRL VLV-UP1 </Para>
+<Note>
+<Para>Status message NLG UP SOL will be displayed.</Para>
+</Note>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>For an inoperative GEAR CTRL CMD INHIBIT RELAY on system 2, using a flight deck multi-function display only, open the following circuit breakers and lock with INOP tags.</Para>
+<List listType="1)">
+<ListItem>
+<Para>NLG CTRL VLV-DN2</Para>
+<Note>
+<Para>Status message NLG DOWN SOL will be displayed.</Para>
+</Note>
+</ListItem>
+<ListItem>
+<Para>NLG CTRL VLV-UP2 </Para>
+<Note>
+<Para>Status message NLG UP SOL will be displayed.</Para>
+</Note>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Verify opposite system channel operates normally.</Para>
+<List listType="A.">
+<ListItem>
+<Para>For an inoperative nose landing gear BYPASS/DR CLOSE CMD INHIBIT RELAY:</Para>
+<List listType="1)">
+<ListItem rev:revStatus="R" rev:revHighlight="Added the missing word &quot;door&quot; to title to align with the AMM.">
+<Para>Use the Central Maintenance Computing Function (CMCF) to start the SPECIAL FUNCTIONS: 32 Landing Gear Actuation System, Landing Gear Actuation Allow Door Normal Close.</Para>
+<?FTID-rev start?>
+<?FTID-rev end?>
+</ListItem>
+<ListItem>
+<Para>Install landing gear downlock pins.</Para>
+</ListItem>
+<ListItem>
+<Para>Confirm the landing gear doors are closed and door safety valves are in STOW.</Para>
+</ListItem>
+<ListItem>
+<Para>Pressurize the center hydraulic system.</Para>
+</ListItem>
+<ListItem>
+<Para>On the LNDG GEAR INDN AND STRN maintenance page, confirm that the pressure for NLG SYS is approximately the same pressure as the CENTER SYS.</Para>
+</ListItem>
+<ListItem>
+<Para>Use the ground door release system to open the landing gear doors.</Para>
+</ListItem>
+<ListItem>
+<Para>On the LNDG GEAR INDN AND STRN maintenance page, confirm that the NLG SYS pressure decreases to less than 500 psi.</Para>
+</ListItem>
+<ListItem>
+<Para>Set the landing gear control lever UP.</Para>
+</ListItem>
+<ListItem>
+<Para>Confirm the landing gear doors are open.</Para>
+</ListItem>
+<ListItem>
+<Para>Wait at least 10 seconds.</Para>
+</ListItem>
+<ListItem>
+<Para>Set the landing gear control lever DN. </Para>
+</ListItem>
+<ListItem>
+<Para>Confirm the landing gear doors close.</Para>
+</ListItem>
+<ListItem>
+<Para>Confirm the GEAR CONTROL SYS status message is not displayed.</Para>
+</ListItem>
+<ListItem>
+<Para>Press the STOP FUNCTION button on the CMCF SPECIAL FUNCTIONS screen: 32 Landing Gear Actuation System, Landing Gear Actuation Allow Normal Close.</Para>
+</ListItem>
+<ListItem>
+<Para>Depressurize the center hydraulic system.</Para>
+</ListItem>
+<ListItem>
+<Para>Remove landing gear downlock pins.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>For an inoperative nose landing gear NORM DR CLOSE CMD INHIBIT RELAY:</Para>
+<List listType="1)">
+<ListItem rev:revStatus="R" rev:revHighlight="Added the missing word &quot;door&quot; to title to align with the AMM.">
+<Para>Use the Central Maintenance Computing Function (CMCF) to start the SPECIAL FUNCTIONS: 32 Landing Gear Actuation System, Landing Gear Actuation Allow Door Normal Close.</Para>
+<?FTID-rev start?>
+<?FTID-rev end?>
+</ListItem>
+<ListItem>
+<Para>Install landing gear downlock pins.</Para>
+</ListItem>
+<ListItem>
+<Para>Confirm the landing gear doors are closed and door safety valves are in STOW.</Para>
+</ListItem>
+<ListItem>
+<Para>Pressurize the center hydraulic system.</Para>
+</ListItem>
+<ListItem>
+<Para>Use the ground door release system to open the landing gear doors.</Para>
+</ListItem>
+<ListItem>
+<Para>On the LNDG GEAR CONTROL Maintenance page 2, verify the remaining relay status shows INHIBIT in the status field.</Para>
+</ListItem>
+<ListItem>
+<Para>Set the landing gear control lever UP.</Para>
+</ListItem>
+<ListItem>
+<Para>Confirm the landing gear doors are open.</Para>
+</ListItem>
+<ListItem>
+<Para>Wait at least 10 seconds.</Para>
+</ListItem>
+<ListItem>
+<Para>Set the landing gear control lever DN.</Para>
+</ListItem>
+<ListItem>
+<Para>Confirm the landing gear doors close.</Para>
+</ListItem>
+<ListItem>
+<Para>On the LNDG GEAR CONTROL Maintenance page 2, verify the remaining relay status shows NOT INHIBIT in the status field.</Para>
+</ListItem>
+<ListItem>
+<Para>Confirm the GEAR CONTROL SYS status message is not displayed.</Para>
+</ListItem>
+<ListItem>
+<Para>Press the STOP FUNCTION button on the CMCF SPECIAL FUNCTIONS screen: 32 Landing Gear Actuation System, Landing Gear Actuation Allow Normal Close.</Para>
+</ListItem>
+<ListItem>
+<Para>Depressurize the center hydraulic system.</Para>
+</ListItem>
+<ListItem>
+<Para>Remove landing gear downlock pins.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>For an inoperative nose landing gear GEAR CTRL CMD INHIBIT RELAY:</Para>
+<List listType="1)">
+<ListItem rev:revStatus="R" rev:revHighlight="Added the missing word &quot;door&quot; to title to align with the AMM.">
+<Para>Use the Central Maintenance Computing Function (CMCF) to start the SPECIAL FUNCTIONS: 32 Landing Gear Actuation System, Landing Gear Actuation Allow Door Normal Close.</Para>
+<?FTID-rev start?>
+<?FTID-rev end?>
+</ListItem>
+<ListItem>
+<Para>Install landing gear downlock pins.</Para>
+</ListItem>
+<ListItem>
+<Para>Confirm the landing gear doors are closed and door safety valves are in STOW.</Para>
+</ListItem>
+<ListItem>
+<Para>Pressurize the center hydraulic system.</Para>
+</ListItem>
+<ListItem>
+<Para>Set the landing gear control lever UP.</Para>
+</ListItem>
+<ListItem>
+<Para>Confirm the landing gear doors are open.</Para>
+</ListItem>
+<ListItem>
+<Para>On the LNDG GEAR CONTROL maintenance page, confirm remaining relays status shows INHIBIT DN.</Para>
+</ListItem>
+<ListItem>
+<Para>Wait at least 10 seconds.</Para>
+</ListItem>
+<ListItem>
+<Para>Set the landing gear control lever DN.</Para>
+</ListItem>
+<ListItem>
+<Para>Confirm the landing gear doors close.</Para>
+</ListItem>
+<ListItem>
+<Para>On the LNDG GEAR CONTROL maintenance page, confirm remaining relays status shows INHIBIT UP.</Para>
+</ListItem>
+<ListItem>
+<Para>Confirm the GEAR CONTROL SYS status message is not displayed.</Para>
+</ListItem>
+<ListItem>
+<Para>Press the STOP FUNCTION button on the CMCF SPECIAL FUNCTIONS screen: 32 Landing Gear Actuation System, Landing Gear Actuation Allow Normal Close.</Para>
+</ListItem>
+<ListItem>
+<Para>Depressurize the center hydraulic system.</Para>
+</ListItem>
+<ListItem>
+<Para>Remove landing gear downlock pins.</Para>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+</MELItem>
+</DispatchItems>

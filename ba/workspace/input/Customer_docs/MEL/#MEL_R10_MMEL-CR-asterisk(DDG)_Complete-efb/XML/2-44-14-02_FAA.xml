@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM">]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.2-44-14-02.1256.2-44-14-02_FAA" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="44" superSectionNumber="2" sectionName="MEL" chapterName="Cabin Systems" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2024-06-19" rev:revStatus="U" rev:revNumber="10" />
+</PUMetaData>
+<MELItem itemNbr="44-14-02" id="X-BOEING:FTID:81205.787.DDG.CU.MEL.2-44-14-02.1.2-44-14-02_FAA">
+<Title>Cabin Interphone Alerting Systems</Title>
+<MELSubItem itemNbr="44-14-02-01">
+<Title>EICAS Communication Alert Message System (*)</Title>
+<DispatchCondition repairInterval="B" nbrInstalled="1" nbrRequired="0">
+<DispatchConditionRemarks>
+<Para>May be inoperative provided: </Para>
+<List listType="a.">
+<ListItem>
+<Para>EICAS communication alert chime operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>When necessary, the evacuation information may be given by the cabin crew through the passenger address, or through the cabin interphone.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="44-14-02-02">
+<Title>EICAS Communication Alert Chime (*)</Title>
+<DispatchCondition repairInterval="B" nbrInstalled="1" nbrRequired="0">
+<DispatchConditionRemarks>
+<Para>May be inoperative provided EICAS communication alert message system operates normally.</Para>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<OperationNote>
+<Para>Prior to flight, the pilot-in-command must brief flight crew members that EICAS Communication Alert Chime is inoperative. During the flight, flight crew must maintain heightened awareness as there will be no EICAS Communication Alert Chime.</Para>
+</OperationNote>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="44-14-02-03">
+<Title>Flight Attendant Call Lights</Title>
+<DispatchCondition repairInterval="B" nbrInstalled="8" nbrRequired="0" opsIndicator="(O)">
+<DispatchConditionRemarks>
+<Para>May be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>PA system operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Alternate procedures for contacting flight attendants are established and used.</Para>
+</ListItem>
+</List>
+<Note>
+<Para>Passenger to attendant call system is considered a Nonessential Equipment and Furnishings (NEF) item.</Para>
+</Note>
+<Note>
+<Para>Any flight attendant call light function that operates normally may be used.</Para>
+</Note>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<OperationProcedure>
+<Para>Alternate procedures:</Para>
+<Para>Prior to flight, the pilot-in-command must brief cabin crew members that Passenger Address system must be used to communicate with cockpit and cabin.</Para>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="44-14-02-04">
+<Title>Cabin Chime</Title>
+<DispatchCondition repairInterval="B" nbrInstalled="1" nbrRequired="0" opsIndicator="(O)">
+<DispatchConditionRemarks>
+<Para>May be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Flight attendant call lights operate normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Alternate procedures for contacting flight attendants are established and used.</Para>
+</ListItem>
+</List>
+<Note>
+<Para>Passenger to attendant call system is considered a Nonessential Equipment and Furnishings (NEF) item.</Para>
+</Note>
+<Note>
+<Para>Any cabin chime system function that operates normally may be used.</Para>
+</Note>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<OperationProcedure>
+<Para>Alternate procedures:</Para>
+<List listType="1.">
+<ListItem>
+<Para>Prior to departure, advise Purser that the PA may be used to initiate contact with crew members as required.</Para>
+</ListItem>
+<ListItem>
+<Para>Standard PAs may be used for non normal situations, or for normal situations use a pre-established phrase such as; "Would XYZ call the flight deck when convenient please?"</Para>
+</ListItem>
+</List>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="44-14-02-05">
+<Title>OFCR/OFAR Call Light/Chime Systems</Title>
+<DispatchCondition repairInterval="B" nbrInstalled="3" nbrRequired="0" opsIndicator="(O)">
+<DispatchConditionRemarks>
+<Para>Applicable to: VN-A861, VN-A862, VN-A863, VN-A864, VN-A867, VN-A868, VN-A870, VN-A871.</Para>
+<Para>May be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Associated OFCR or OFAR cabin interphone handset system operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Alternate procedures for contacting crew/attendant rest occupants are established and used.</Para>
+</ListItem>
+</List>
+<Note>
+<Para>Any alerting system function that operates normally may be used.</Para>
+</Note>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<OperationProcedure>
+<Para>Alternate procedures:</Para>
+<Para>Prior to flight, the pilot-in-command must brief crew members that OFCR/OFAR Call light/Chime Systems are inoperative. Alternate procedure for notifying OFCR or OFAR occupants must be established and used.</Para>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+</MELItem>
+</DispatchItems>

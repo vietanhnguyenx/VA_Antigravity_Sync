@@ -1,0 +1,337 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM">]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.2-28-21-01.1705.2-28-21-01" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="28" superSectionNumber="2" sectionName="MEL" chapterName="Fuel" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2021-02-24" rev:revStatus="U" rev:revNumber="10" />
+</PUMetaData>
+<MELItem itemNbr="28-21-01" id="X-BOEING:FTID:81205.787.DDG.CU.MEL.2-28-21-01.1.2-28-21-01">
+<Title>Pressure Refueling System</Title>
+<MELSubItem itemNbr="28-21-01-01">
+<Title>Main Tank Refuel Valves</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="4" nbrRequired="2" maintIndicator="(M)" opsIndicator="(O)">
+<DispatchConditionRemarks>
+<Para>One valve in each main tank may be inoperative provided: </Para>
+<List listType="a.">
+<ListItem>
+<Para>Inoperative valve is locked closed.</Para>
+</ListItem>
+<ListItem>
+<Para>For inboard refuel valve inoperative, crossfeed valve is verified to operate normally before each departure.</Para>
+</ListItem>
+<ListItem>
+<Para>For inboard refuel valve inoperative, operations procedure is used for fuel balancing.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Lock the inoperative main tank refuel valve closed and verify crossfeed valve operates normally (AMM DDG 28-21-01).</Para>
+<List listType="1.">
+<ListItem>
+<Para>Lock the inoperative refuel valve closed.</Para>
+<List listType="A.">
+<ListItem>
+<Para>For left main tank inboard refuel valve inoperative, using a flight deck multi-function display only, open the following circuit breakers and lock with an INOP tag:</Para>
+<List listType="1)">
+<ListItem>
+<Para>REFUEL VLV CLOSE-LIB</Para>
+</ListItem>
+<ListItem>
+<Para>REFUEL VLV OPEN-LIB</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>For left main tank outboard refuel valve inoperative, using a flight deck multi-function display only, open the following circuit breakers and lock with an INOP tag:</Para>
+<List listType="1)">
+<ListItem>
+<Para>REFUEL VLV CLOSE-LOB</Para>
+</ListItem>
+<ListItem>
+<Para>REFUEL VLV OPEN-LOB</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>For right main tank inboard refuel valve inoperative, using a flight deck multi-function display only, open the following circuit breakers and lock with an INOP tag:</Para>
+<List listType="1)">
+<ListItem>
+<Para>REFUEL VLV CLOSE-RIB</Para>
+</ListItem>
+<ListItem>
+<Para>REFUEL VLV OPEN-RIB</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>For right main tank outboard refuel valve inoperative, using a flight deck multi-function display only, open the following circuit breakers and lock with an INOP tag:</Para>
+<List listType="1)">
+<ListItem>
+<Para>REFUEL VLV CLOSE-ROB</Para>
+</ListItem>
+<ListItem>
+<Para>REFUEL VLV OPEN-ROB</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Gain access to the inoperative refuel valve.</Para>
+</ListItem>
+<ListItem>
+<Para>Disconnect, cap and stow the valve electrical connector.</Para>
+</ListItem>
+<ListItem>
+<Para>Lock the valve closed.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>For inboard refuel valve inoperative, verify crossfeed valve operates normally. (Required by AD 2019-19-10)  </Para>
+<List listType="A.">
+<ListItem>
+<Para>Gain access to the crossfeed valve in the main gear wheel well.</Para>
+</ListItem>
+<ListItem>
+<Para>Set Fuel Control Panel (P5) CROSSFEED switch to ON and visually confirm the valve drive moves from the closed (C) position to the open (O) position.</Para>
+</ListItem>
+<ListItem>
+<Para>Set Fuel Control Panel (P5) CROSSFEED switch to OFF and visually confirm the valve drive moves from the open (O) position to closed (C) position.</Para>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+<OperationProcedure>
+<Note>
+<Para>For outboard refuel valve inoperative, fueling time will significantly increase.</Para>
+</Note>
+<Note>
+<Para>For inboard refuel valve inoperative, the fuel balance system will be inoperative.</Para>
+</Note>
+<Para>(Required AD 2019-19-10)</Para>
+<List listType="1.">
+<ListItem>
+<Para>For inboard refuel valve inoperative, prior to each flight, verify crossfeed valve operates normally.  </Para>
+<List listType="A.">
+<ListItem>
+<Para>Set Fuel Control Panel (P5) CROSSFEED switch to ON and after 15-seconds confirm FUEL CROSSFEED advisory message does not display.</Para>
+</ListItem>
+<ListItem>
+<Para>Set Fuel Control Panel (P5) CROSSFEED switch to OFF and after 15-seconds confirm FUEL CROSSFEED advisory message does not display.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>For fuel balancing with inboard refuel valve inoperative, do the FUEL BALANCE SYS Non-Normal Checklist.</Para>
+</ListItem>
+</List>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="28-21-01-02">
+<Title>Center Tank Refuel Valves</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="2" nbrRequired="0" maintIndicator="(M)">
+<DispatchConditionRemarks>
+<Para>May be inoperative locked closed.</Para>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Lock the inoperative center tank refuel valve closed (AMM DDG 28-21-01).</Para>
+<List listType="1.">
+<ListItem>
+<Para>For center left tank refuel valve inoperative, using a flight deck multi-function display only, open the following circuit breakers and lock with an INOP tag:</Para>
+<List listType="A.">
+<ListItem>
+<Para>REFUEL VLV CLOSE-C L</Para>
+</ListItem>
+<ListItem>
+<Para>REFUEL VLV OPEN-C L</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>For center right tank refuel valve inoperative, using a flight deck multi-function display only, open the following circuit breakers and lock with an INOP tag:</Para>
+<List listType="A.">
+<ListItem>
+<Para>REFUEL VLV CLOSE-C R</Para>
+</ListItem>
+<ListItem>
+<Para>REFUEL VLV OPEN-C R</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Open and deactivate the landing gear doors.</Para>
+</ListItem>
+<ListItem>
+<Para>Gain access to the inoperative center tank refuel valve in the main gear wheel well.</Para>
+</ListItem>
+<ListItem>
+<Para>Disconnect, cap and stow the valve electrical connector.</Para>
+</ListItem>
+<ListItem>
+<Para>Lock the valve closed.</Para>
+</ListItem>
+<ListItem>
+<Para>Close the landing gear doors.</Para>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="28-21-01-03">
+<Title>Refuel Valve Lights</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="6" nbrRequired="0" maintIndicator="(M)">
+<DispatchConditionRemarks>
+<Para>May be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Associated valve is verified closed after each refueling.</Para>
+</ListItem>
+<ListItem>
+<Para>Overfill light operates normally.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Verify the associated valve is closed after each refueling (AMM DDG 28-21-01).</Para>
+<List listType="1.">
+<ListItem>
+<Para>After each refueling, confirm the associated REFUEL VALVE status message is not displayed.</Para>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="28-21-01-04">
+<Title>Refuel Control Panel Fuel Quantity Indicators</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="3" nbrRequired="0" maintIndicator="(M)">
+<DispatchConditionRemarks>
+<Para>May be inoperative provided alternate procedures are used for refueling.</Para>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Verify the fuel quantity in the tank associated with the inoperative quantity indication using one of the following methods (AMM DDG 28-21-01):</Para>
+<List listType="1.">
+<ListItem>
+<Para>Refuel using the Refuel Control Panel (RCP) (P28) appropriate Load Select Display fuel quantity indication (if operating). </Para>
+</ListItem>
+<ListItem>
+<Para>Refuel using the flight deck EICAS or Fuel Synoptic quantity indications (if operating). </Para>
+</ListItem>
+<ListItem>
+<Para>Determine the associated tank quantity using the FMC calculated Fuel on CDU PROGRESS page from the previous flight and the operating fuel quantity indications.  Then refuel the associated tank with a known quantity of fuel.</Para>
+</ListItem>
+<ListItem>
+<Para>Defuel the associated tank and refuel with a known quantity of fuel.</Para>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="28-21-01-05">
+<Title>Load Select System</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="1" nbrRequired="0" maintIndicator="(M)">
+<DispatchConditionRemarks>
+<Para>May be inoperative provided maintenance procedure is used for refueling.</Para>
+<Note>
+<Para>Any function which operates normally may be used.</Para>
+</Note>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Note>
+<Para>The Load Select System includes the Load Select Displays, the Display Select switches, the Load Select Quantity switch and the All Valves switch.</Para>
+</Note>
+<Para>Use alternate procedures for refueling (AMM DDG 28-21-01).</Para>
+<List listType="1.">
+<ListItem>
+<Para>Utilize individual components of pressure refueling system which operate to refuel.</Para>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="28-21-01-06">
+<Title>Overfill Light</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="1" nbrRequired="0" maintIndicator="(M)">
+<DispatchConditionRemarks>
+<Para>May be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Refuel valves are verified to close when appropriate during refueling.</Para>
+</ListItem>
+<ListItem>
+<Para>Refuel valve lights operate normally.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Verify refuel valves close when appropriate during refueling (AMM DDG 28-21-01).</Para>
+<List listType="1.">
+<ListItem>
+<Para>Monitor and ensure the refuel valves close appropriately during refueling.</Para>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="28-21-01-07">
+<Title>Power Switch</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="1" nbrRequired="0">
+<DispatchConditionRemarks>
+<Para>May be inoperative.</Para>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceNote>
+<Para>Refueling using battery mode will not be available.</Para>
+</MaintenanceNote>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="28-21-01-08">
+<Title>Defuel Switch</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="1" nbrRequired="0">
+<DispatchConditionRemarks>
+<Para>May be inoperative.</Para>
+</DispatchConditionRemarks>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="28-21-01-09">
+<Title>Test Features (Panel and System)</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="2" nbrRequired="0">
+<DispatchConditionRemarks>
+<Para>One or both may be inoperative.</Para>
+</DispatchConditionRemarks>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="28-21-01-10">
+<Title>Manual Fueling Valve Switches</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="3" nbrRequired="0">
+<DispatchConditionRemarks>
+<Para>May be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Load select system operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Overfill light operates normally.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+</DispatchCondition>
+</MELSubItem>
+</MELItem>
+</DispatchItems>

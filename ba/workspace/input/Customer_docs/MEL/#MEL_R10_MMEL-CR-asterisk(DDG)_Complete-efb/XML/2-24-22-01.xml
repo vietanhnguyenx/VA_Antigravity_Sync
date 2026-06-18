@@ -1,0 +1,366 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM">]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.2-24-22-01.9124.2-24-22-01" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="24" superSectionNumber="2" sectionName="MEL" chapterName="Electrical Power" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2025-09-30" rev:revStatus="R" rev:revNumber="10" />
+</PUMetaData>
+<MELItem itemNbr="24-22-01" id="X-BOEING:FTID:81205.787.DDG.CU.MEL.2-24-22-01.1.2-24-22-01">
+<Title>Variable Frequency Starter Generator (VFSG) Systems</Title>
+<MELSubItem itemNbr="24-22-01-03">
+<Title>GE</Title>
+<DispatchCondition dispCondOptions="A" repairInterval="A" nbrInstalled="4" nbrRequired="3" maintIndicator="(M)" opsIndicator="(O)">
+<Title>
+<?FTID-xref 1385126.2-24-22-01?>VFSG Connected</Title>
+<DispatchConditionRemarks>
+<Para>May be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Inoperative VFSG is connected.</Para>
+</ListItem>
+<ListItem>
+<Para>Verify ELEC GEN DRIVE is not displayed when associated engine is running.</Para>
+</ListItem>
+<ListItem>
+<Para>Verify the associated GEN CTRL indication box shows an amber “X” on the electrical synoptic page.</Para>
+</ListItem>
+<ListItem>
+<Para>Verify the associated Electrical Panel (P5) drive light is illuminated while engine is off.</Para>
+</ListItem>
+<ListItem>
+<Para>Both Left and Right ASG generators operate normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Left APU generator control unit operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>APU battery operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>APU battery charger operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>APU is started before departure and operated continuously throughout the flight.</Para>
+</ListItem>
+<ListItem>
+<Para>Flight remains within 180 minutes of landing at a suitable airport.</Para>
+</ListItem>
+<ListItem>
+<Para>Repairs are made within three flight days.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<Note>
+<Para>For ELEC GEN SYS L1 or R1 status message, right ram air fan motor controller and associated right ram air fan must operate normally (RAM FAN CONTROL R and RAM FAN R are not displayed) for main engine start.</Para>
+</Note>
+<Note>
+<Para>For ELEC GEN SYS L2 or R2 status message, left ram air fan motor controller and associated left ram air fan must operate normally (RAM FAN CONTROL L and RAM FAN L are not displayed) for main engine start.</Para>
+</Note>
+<Note>
+<Para>For one or two CAC also inoperative (MEL item 21-51-01), one or two specific VFSGs must be operative.</Para>
+</Note>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Leave the inoperative VFSG connected (AMM DDG 24-22-01).</Para>
+<List listType="1.">
+<ListItem>
+<Para>Set or verify the associated Electrical Panel (P5) GEN CTRL switch is ON.</Para>
+<Note rev:revStatus="R" rev:revHighlight="Added note to specify switch must remain ON for further clarification.">
+<?FTID-rev start?>
+<Para>The GEN CTRL switch must remain in the ON position.</Para>
+<?FTID-rev end?>
+</Note>
+</ListItem>
+<ListItem>
+<Para>Verify the associated Electrical Panel (P5) drive light is illuminated while engine is off.</Para>
+</ListItem>
+<ListItem>
+<Para>Start the associated engine.</Para>
+<Note>
+<Para>Steps 3 through 5 may be accomplished based on Aircraft Maintenance Record/Logbook of prior flight segment or engine run.</Para>
+</Note>
+</ListItem>
+<ListItem>
+<Para>Verify the associated GEN CTRL indication box shows an amber "X" on the electrical synoptic page</Para>
+</ListItem>
+<ListItem>
+<Para>Verify the associated ELEC GEN DRIVE advisory message is not displayed.</Para>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+<OperationProcedure>
+<Note>
+<Para>Expect engine start time to be longer.</Para>
+</Note>
+<Note>
+<Para>For in-flight engine restart attempts above FL 250, use windmilling start envelope and procedures. Restart envelope and procedures below FL 250 are unchanged.</Para>
+</Note>
+<Note>
+<Para>Single engine start is recommended.</Para>
+</Note>
+<Note rev:revStatus="R" rev:revHighlight="Added additional note to provide clarity to flight crews on when the MMEL verification can occur, but also provides a step for the flight crew to perform the required verification, if desired.">
+<?FTID-rev start?>
+<Para>After engine start, the associated GEN CTRL indication
+box shows an amber X on the electrical synoptic page.</Para>
+<?FTID-rev end?>
+</Note>
+<List listType="1.">
+<ListItem>
+<Para>The flight must remain within 180 minutes of landing at a suitable airport.</Para>
+</ListItem>
+<ListItem>
+<Para>Increase flight planning fuel by either using an airplane drag correction factor of 1.0% or increase the flight planning fuel by 1.2% with APU running to account for the open APU air inlet door fully open.</Para>
+</ListItem>
+<ListItem>
+<Para>Increase flight planning fuel by 250 lb (114 kg) per hour of APU usage inflight and 480 lb (218 kg) per hour of APU usage on the ground.</Para>
+</ListItem>
+<ListItem>
+<Para>Start the APU before departure and operate the APU continuously.</Para>
+</ListItem>
+<ListItem>
+<Para rev:revStatus="R" rev:revHighlight="MISC SYSTEM CTRLS page does not provide the necessary data to confirm the ram air fan is operating.">
+<?FTID-rev start?>For VFSG L1 or R1 inoperative, On MISC SYSTEM CTRLS (MSC) maintenance page, confirm right ram fan is operating:<?FTID-rev end?></Para>
+<List listType="A.">
+<ListItem>
+<Para rev:revStatus="R" rev:revHighlight="EMPTY">
+<?FTID-rev start?>Select "SYS" switch on the Display Select Panel to display the SYS page on an MFD.<?FTID-rev end?></Para>
+</ListItem>
+<ListItem>
+<Para rev:revStatus="R" rev:revHighlight="EMPTY">
+<?FTID-rev start?>Select the MAINT button on the SYS menu.<?FTID-rev end?></Para>
+</ListItem>
+<ListItem>
+<Para rev:revStatus="R" rev:revHighlight="EMPTY">
+<?FTID-rev start?>Select the DISPLAY button for "21 AIR CONDITIONING".<?FTID-rev end?></Para>
+</ListItem>
+<ListItem>
+<Para rev:revStatus="R" rev:revHighlight="EMPTY">
+<?FTID-rev start?>On AIR CONDITIONING maintenance page 2, confirm RAM FAN SPEED KRPM under R is 6.0 or greater.<?FTID-rev end?></Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para rev:revStatus="R" rev:revHighlight="EMPTY">
+<?FTID-rev start?>For VFSG L2 or R2 inoperative, On MISC SYSTEM CTRLS (MSC) maintenance page, confirm left ram fan is operating:<?FTID-rev end?></Para>
+<List listType="A.">
+<ListItem>
+<Para rev:revStatus="R" rev:revHighlight="EMPTY">
+<?FTID-rev start?>Select "SYS" switch on the Display Select Panel to display the SYS page on an MFD.<?FTID-rev end?></Para>
+</ListItem>
+<ListItem>
+<Para rev:revStatus="R" rev:revHighlight="EMPTY">
+<?FTID-rev start?>Select the MAINT button on the SYS menu.<?FTID-rev end?></Para>
+</ListItem>
+<ListItem>
+<Para rev:revStatus="R" rev:revHighlight="EMPTY">
+<?FTID-rev start?>Select the DISPLAY button for "21 AIR CONDITIONING".<?FTID-rev end?></Para>
+</ListItem>
+<ListItem>
+<Para rev:revStatus="R" rev:revHighlight="EMPTY">
+<?FTID-rev start?>On AIR CONDITIONING maintenance page 2, confirm RAM FAN. SPEED KRPM under L is 6.0 or greater.<?FTID-rev end?></Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>ELEC GEN OFF XX advisory message will be displayed while engine is running.</Para>
+</ListItem>
+<ListItem>
+<Para rev:revStatus="R" rev:revHighlight="Added note for further clarification.">ELEC ENGINE STAR<?FTID-rev start?>TER Lx or <?FTID-rev end?>Rx may be displayed after engine start.</Para>
+</ListItem>
+</List>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+<DispatchCondition dispCondOptions="B" repairInterval="A" nbrInstalled="4" nbrRequired="3" maintIndicator="(M)" opsIndicator="(O)">
+<Title>
+<?FTID-xref 1385591.2-24-22-01?>VFSG Disconnected</Title>
+<DispatchConditionRemarks>
+<Para>May be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Inoperative VFSG is disconnected.</Para>
+</ListItem>
+<ListItem>
+<Para>Both Left and Right ASG generators operate normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Left APU generator control unit operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>APU battery operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>APU battery charger operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>APU is started before departure and operated continuously throughout the flight.</Para>
+</ListItem>
+<ListItem>
+<Para>Flight remains within 180 minutes of landing at a suitable airport.</Para>
+</ListItem>
+<ListItem>
+<Para>Repairs are made within three flight days.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<Note>
+<Para>For VFSG L1, L2, or R2 disconnected, the PFCS INTERFACE status message will be displayed.  The airplane must also be dispatched using MEL item 27-02-03.</Para>
+</Note>
+<Note>
+<Para>For ELEC GEN SYS L1 or R1 status message, right ram air fan motor controller and associated right ram air fan must operate normally (RAM FAN CONTROL R and RAM FAN R are not displayed) for main engine start.</Para>
+</Note>
+<Note>
+<Para>For ELEC GEN SYS L2 or R2 status message, left ram air fan motor controller and associated left ram air fan must operate normally (RAM FAN CONTROL L and RAM FAN L are not displayed) for main engine start.</Para>
+</Note>
+<Note>
+<Para>For one or two CAC also inoperative (MEL item 21-51-01), one or two specific VFSGs must be operative.</Para>
+</Note>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Disconnect the inoperative VFSG (AMM DDG 24-22-01).</Para>
+<List listType="1.">
+<ListItem>
+<Para>Start the associated engine.</Para>
+<Note>
+<Para>Steps 1 through 3 may be accomplished based on Aircraft Maintenance Record/Logbook of prior flight segment or engine run.</Para>
+</Note>
+</ListItem>
+<ListItem>
+<Para>Disconnect the VFSG using the associated generator DRIVE disconnect switch.</Para>
+<Note>
+<Para>Operating the airplane with a disconnected VFSG will cause internal heat damage to the VFSG input shaft and disconnect mechanism.</Para>
+</Note>
+</ListItem>
+<ListItem>
+<Para>On the Electrical Synoptic page, confirm the associated green GEN DRIVE indication box shows an amber “X”.</Para>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+<OperationProcedure>
+<Note>
+<Para>Expect engine start time to be longer.</Para>
+</Note>
+<Note>
+<Para>For in-flight engine restart attempts above FL 250, use windmilling start envelope and procedures. Restart envelope and procedures below FL 250 are unchanged.</Para>
+</Note>
+<Note>
+<Para>Single engine start is recommended.</Para>
+</Note>
+<List listType="1.">
+<ListItem>
+<Para>The flight must remain within 180 minutes of landing at a suitable airport.</Para>
+</ListItem>
+<ListItem>
+<Para>Increase flight planning fuel by either using an airplane drag correction factor of 1.0% or increase the flight planning fuel by 1.2% with APU running to account for the open APU air inlet door fully open.</Para>
+</ListItem>
+<ListItem>
+<Para>Increase flight planning fuel by 250 lb (114 kg) per hour of APU usage inflight and 480 lb (218 kg) per hour of APU usage on the ground.</Para>
+</ListItem>
+<ListItem>
+<Para>Start the APU before departure and operate the APU continuously.</Para>
+</ListItem>
+<ListItem>
+<Para rev:revStatus="R" rev:revHighlight="MISC SYSTEM CTRLS page does not provide the necessary data to confirm the ram air fan is operating.">
+<?FTID-rev start?>For VFSG L1 or R1 inoperative, On MISC SYSTEM CTRLS (MSC) maintenance page, confirm right ram fan is operating:<?FTID-rev end?></Para>
+<List listType="A.">
+<ListItem>
+<Para rev:revStatus="R" rev:revHighlight="EMPTY">
+<?FTID-rev start?>Select "SYS" switch on the Display Select Panel to display the SYS page on an MFD.<?FTID-rev end?></Para>
+</ListItem>
+<ListItem>
+<Para rev:revStatus="R" rev:revHighlight="EMPTY">
+<?FTID-rev start?>Select the MAINT button on the SYS menu.<?FTID-rev end?></Para>
+</ListItem>
+<ListItem>
+<Para rev:revStatus="R" rev:revHighlight="EMPTY">
+<?FTID-rev start?>Select the DISPLAY button for "21 AIR CONDITIONING".<?FTID-rev end?></Para>
+</ListItem>
+<ListItem>
+<Para rev:revStatus="R" rev:revHighlight="EMPTY">
+<?FTID-rev start?>On AIR CONDITIONING maintenance page 2, confirm RAM FAN SPEED KRPM under R is 6.0 or greater.<?FTID-rev end?></Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para rev:revStatus="R" rev:revHighlight="EMPTY">
+<?FTID-rev start?>For VFSG L2 or R2 inoperative, On MISC SYSTEM CTRLS (MSC) maintenance page, confirm left ram fan is operating:<?FTID-rev end?></Para>
+<List listType="A.">
+<ListItem>
+<Para rev:revStatus="R" rev:revHighlight="EMPTY">
+<?FTID-rev start?>Select "SYS" switch on the Display Select Panel to display the SYS page on an MFD.<?FTID-rev end?></Para>
+</ListItem>
+<ListItem>
+<Para rev:revStatus="R" rev:revHighlight="EMPTY">
+<?FTID-rev start?>Select the MAINT button on the SYS menu.<?FTID-rev end?></Para>
+</ListItem>
+<ListItem>
+<Para rev:revStatus="R" rev:revHighlight="EMPTY">
+<?FTID-rev start?>Select the DISPLAY button for "21 AIR CONDITIONING".<?FTID-rev end?></Para>
+</ListItem>
+<ListItem>
+<Para rev:revStatus="R" rev:revHighlight="EMPTY">
+<?FTID-rev start?>On AIR CONDITIONING maintenance page 2, confirm RAM FAN. SPEED KRPM under L is 6.0 or greater.<?FTID-rev end?></Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>ELEC GEN OFF XX advisory message will be displayed while engine is running.</Para>
+</ListItem>
+<ListItem>
+<Para rev:revStatus="R" rev:revHighlight="Added note for further clarification.">ELEC ENGINE STAR<?FTID-rev start?>TER Lx or <?FTID-rev end?>Rx may be displayed after engine start.</Para>
+</ListItem>
+</List>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="24-22-01-04">
+<Title>Starter Systems</Title>
+<MELSubItem itemNbr="24-22-01-04-02">
+<Title>
+<?FTID-xref 1388847.2-24-22-01?>GE</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="4" nbrRequired="2">
+<DispatchConditionRemarks>
+<Para>One starter system on each engine may be inoperative.</Para>
+</DispatchConditionRemarks>
+<Note>
+<Para>For ELEC ENGINE STARTER L1 or R1 status message, right ram air fan motor controller and associated right ram air fan must operate normally (RAM FAN CONTROL R and RAM FAN R are not displayed) for main engine start.</Para>
+</Note>
+<Note>
+<Para>For ELEC ENGINE STARTER L2 or R2 status message, left ram air fan motor controller and associated left ram air fan must operate normally (RAM FAN CONTROL L and RAM FAN L are not displayed) for main engine start.</Para>
+</Note>
+<DispatchProcedure>
+<MaintenanceNote rev:revStatus="R" rev:revHighlight="Added maintenance note to provide further dispatch instruction/clarification.">
+<?FTID-rev start?>
+<Para>If the APU is inoperative, Ground Power Engine Start is not allowed if either associated ELEC ENGINE STARTER status message is displayed.</Para>
+<?FTID-rev end?>
+</MaintenanceNote>
+<OperationNote>
+<List listType="1.">
+<ListItem>
+<Para rev:revStatus="R" rev:revHighlight="Added note # reference only.  No content change.">
+<?FTID-rev start?>Expect engine start time to be longer.<?FTID-rev end?></Para>
+</ListItem>
+<ListItem>
+<Para rev:revStatus="R" rev:revHighlight="Added note to provide further dispatch instruction/clarification.">
+<?FTID-rev start?>If the APU is inoperative, Ground Power Engine Start is not allowed if either associated ELEC ENGINE STARTER status message is displayed.<?FTID-rev end?></Para>
+</ListItem>
+</List>
+</OperationNote>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+</MELSubItem>
+<MELSubItem itemNbr="24-22-01-05">
+<Title>GEN CTRL Switch OFF Lights (*)</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="4" nbrRequired="0" />
+</MELSubItem>
+<MELSubItem itemNbr="24-22-01-06">
+<Title>GEN CTRL Switch ON Lights (*)</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="4" nbrRequired="0" />
+</MELSubItem>
+</MELItem>
+</DispatchItems>

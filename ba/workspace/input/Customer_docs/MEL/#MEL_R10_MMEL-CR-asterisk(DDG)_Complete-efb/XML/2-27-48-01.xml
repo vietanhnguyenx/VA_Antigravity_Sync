@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM">]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.2-27-48-01.953.2-27-48-01" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="27" superSectionNumber="2" sectionName="MEL" chapterName="Flight Controls" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2019-07-12" rev:revStatus="U" rev:revNumber="10" />
+</PUMetaData>
+<MELItem itemNbr="27-48-01" id="X-BOEING:FTID:81205.787.DDG.CU.MEL.2-27-48-01.1.2-27-48-01">
+<Title>Stabilizer Position Transducers</Title>
+<MELSubItem itemNbr="27-48-01-01">
+<Title>Transducer 1</Title>
+<DispatchCondition repairInterval="A" nbrInstalled="1" nbrRequired="0">
+<DispatchConditionRemarks>
+<Para>May be inoperative provided: </Para>
+<List listType="a.">
+<ListItem>
+<Para>Transducers 2 and 3 operate normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Repairs are made within 10 flights.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="27-48-01-02">
+<Title>Transducers 2 and 3</Title>
+<DispatchCondition repairInterval="A" nbrInstalled="2" nbrRequired="1" maintIndicator="(M)">
+<DispatchConditionRemarks>
+<Para>One may be inoperative provided: </Para>
+<List listType="a.">
+<ListItem>
+<Para>Associated stabilizer control channel is deactivated.</Para>
+</ListItem>
+<ListItem>
+<Para>Transducer 1 operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Repairs are made within 10 flights.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<Note>
+<Para>The airplane must also be dispatched using MEL item 27-41-03.</Para>
+</Note>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Deactivate the associated stabilizer control channel (AMM DDG 27-48-01).</Para>
+<List listType="1.">
+<ListItem>
+<Para>For transducer 2 inoperative: </Para>
+<List listType="A.">
+<ListItem>
+<Para>Using a flight deck multi-function display only, open circuit breaker ELECT STAB-L and lock with an INOP tag.</Para>
+</ListItem>
+<ListItem>
+<Para>Gain access to the L2 Electronic Motor Control Unit (EMCU).</Para>
+</ListItem>
+<ListItem>
+<Para>Disconnect, cap, and stow the associated 235 VAC electrical connector.</Para>
+<Note>
+<Para>The STABILIZER L2 advisory message and STAB CHANNEL status message will be displayed.</Para>
+</Note>
+<Note>
+<Para>For stabilizer channel deactivation due to stabilizer position transducer fault, it is not required to remove the associated motor / brake assembly and install dispatch tool K27048.</Para>
+</Note>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>For transducer 3 inoperative: </Para>
+<List listType="A.">
+<ListItem>
+<Para>Using a flight deck multi-function display only, open circuit breaker ELECT STAB-R and lock with an INOP tag.</Para>
+</ListItem>
+<ListItem>
+<Para>Gain access to the R2 Electronic Motor Control Unit (EMCU).</Para>
+</ListItem>
+<ListItem>
+<Para>Disconnect, cap, and stow the associated 235 VAC electrical connector.</Para>
+<Note>
+<Para>The STABILIZER R2 advisory message and STAB CHANNEL status message will be displayed.</Para>
+</Note>
+<Note>
+<Para>For stabilizer channel deactivation due to stabilizer position transducer fault, it is not required to remove the associated motor / brake assembly and install dispatch tool K27048.</Para>
+</Note>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Confirm the FLIGHT CONTROL SYS status message is not displayed.</Para>
+</ListItem>
+<ListItem>
+<Para>Confirm the STABILIZER SYS status message is not displayed.</Para>
+</ListItem>
+<ListItem>
+<Para>Verify remaining stabilizer channel operates normally.</Para>
+<List listType="A.">
+<ListItem>
+<Para>From either control wheel trim switch, trim in either direction and confirm stabilizer movement on the EICAS stabilizer position indication. The stabilizer will move at half the normal rate.</Para>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+<OperationNote>
+<Para>The STABILIZER L2 or STABILIZER R2 advisory message will be displayed. </Para>
+</OperationNote>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+</MELItem>
+</DispatchItems>

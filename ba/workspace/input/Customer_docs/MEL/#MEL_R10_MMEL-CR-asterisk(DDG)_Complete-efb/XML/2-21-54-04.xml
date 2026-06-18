@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM">]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.2-21-54-04.998550.2-21-54-04" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="21" superSectionNumber="2" sectionName="MEL" chapterName="Air Conditioning" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2025-09-30" rev:revStatus="R" rev:revNumber="10" />
+</PUMetaData>
+<MELItem itemNbr="21-54-04" id="X-BOEING:FTID:81205.787.DDG.CU.MEL.2-21-54-04.1.2-21-54-04">
+<Title />
+<MELSubItem itemNbr="21-54-04">
+<Title>
+<?FTID-xref 1290345.2-21-54-04?>Forward Cargo Air Conditioning (FCAC) Compressor Systems (787-9: VN-A861, VN-A862, VN-A863, VN-A864, VN-A865, VN-A866, VN-A867, VN-A868, VN-A869, VN-A870, VN-A871) (*)</Title>
+<DispatchCondition repairInterval="D" nbrInstalled="2" nbrRequired="1">
+<DispatchConditionRemarks>
+<Para rev:revStatus="R" rev:revHighlight="Added new proviso to ensure CRUMC 2 opearating normally in order for the compressor system to work.">One may be inop<?FTID-rev start?>erative provided Cargo Refrigeration Unit Motor Controller (CRUMC) 2 operates normally.<?FTID-rev end?></Para>
+</DispatchConditionRemarks>
+<Note>
+<Para>Cargo Refrigeration Unit Motor Controllers (CRUMCs) are interchangeable</Para>
+</Note>
+<DispatchProcedure>
+<OperationNote>
+<List listType="1.">
+<ListItem>
+<?FTID-rev start?>
+</ListItem>
+<ListItem rev:revStatus="R" rev:revHighlight="Added additional info providing a description on how the Cargo Refrigeration Unite Motor Control (CRUMC) functions within the FCAC compressor system" />
+<ListItem>
+<Para>Forward cargo temperatures may be warmer than desired. CRUMC 2 controls
+the compressor suction pressure and temperature sensors that are used to modulate the CRU Electronic Expansion Valve (EEV) and control the superheat of the refrigerant.</Para>
+</ListItem>
+<ListItem>
+<Para>Extended operation of the CRU with either a single compressor faulted or a motor controller faulted can expose the remaining compressor to conditions that may result in further failure of the CRU</Para>
+</ListItem>
+<ListItem>
+<?FTID-rev end?>
+</ListItem>
+</List>
+</OperationNote>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+</MELItem>
+</DispatchItems>

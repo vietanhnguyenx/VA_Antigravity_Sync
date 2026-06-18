@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM">]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.2-34-16-01.2813.2-34-16-01_FAA" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="34" superSectionNumber="2" sectionName="MEL" chapterName="Navigation" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2021-02-24" rev:revStatus="U" rev:revNumber="10" />
+</PUMetaData>
+<MELItem itemNbr="34-16-01" id="X-BOEING:FTID:81205.787.DDG.CU.MEL.2-34-16-01.1.2-34-16-01_FAA">
+<Title>Altitude Alerting System</Title>
+<DispatchCondition repairInterval="A" nbrInstalled="1" nbrRequired="0" opsIndicator="(O)">
+<DispatchConditionRemarks>
+<Para>May be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Autopilot with altitude hold and altitude capture operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Enroute operations (i.e., RVSM) do not require its use.</Para>
+</ListItem>
+<ListItem>
+<Para>Airplane does not depart from a designated airport where repair or replacement can be made.</Para>
+</ListItem>
+<ListItem>
+<Para>Repairs are made within three flight days.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<OperationProcedure>
+<Para>Alternate Procedure:</Para>
+<List listType="1.">
+<ListItem>
+<Para>RVSM operations are not to be conducted.</Para>
+</ListItem>
+<ListItem>
+<Para>Use the autopilot and altitude hold for all operations for which it is appropriate.</Para>
+</ListItem>
+<ListItem>
+<Para>Cross-check the altitude displays between the captain’s and first officer’s PFDs upon reaching and departing an assigned altitude.  Periodically cross-check altitude indications when maintaining an assigned altitude.</Para>
+</ListItem>
+<ListItem>
+<Para>Pilot monitoring should call out approaching and departing assigned altitudes.</Para>
+</ListItem>
+<ListItem>
+<Para>Flight crew must be aware that the usual alerts for altitude deviations will not occur.</Para>
+</ListItem>
+</List>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELItem>
+</DispatchItems>

@@ -1,0 +1,863 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM">]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.2-21-52-12.998550.2-21-52-12" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="21" superSectionNumber="2" sectionName="MEL" chapterName="Air Conditioning" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2025-09-30" rev:revStatus="R" rev:revNumber="10" />
+</PUMetaData>
+<MELItem itemNbr="21-52-12" id="X-BOEING:FTID:81205.787.DDG.CU.MEL.2-21-52-12.1.2-21-52-12">
+<Title>Ram Air Fan</Title>
+<MELSubItem itemNbr="21-52-12-01">
+<Title>
+<?FTID-xref 1385473.2-21-52-12?>Left Ram Air Fan</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="1" nbrRequired="0" maintIndicator="(M)" opsIndicator="(O)">
+<DispatchConditionRemarks>
+<Para>May be inoperative provided: </Para>
+<List listType="a.">
+<ListItem>
+<Para>Left ram air fan is deactivated.</Para>
+</ListItem>
+<ListItem>
+<Para>Right ram air fan operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Right ram air fan motor controller operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Right air conditioning pack operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Right cabin air compressors operate normally.</Para>
+</ListItem>
+<ListItem>
+<Para>L2 VFSG operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>R2 VFSG operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>R1 cabin air compressor CMSC operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>R2 cabin air compressor CMSC operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Center hydraulic pump C2 operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Left PECS aft section operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Left PECS temperature sensor operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>APU operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Ground operations are limited to OAT below 49 degrees C.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Note>
+<Para>For an air conditioning pack to be operating normally, certain items associated with that system must operate normally.  See MEL item 21-51-01 for a list of those items.</Para>
+</Note>
+<Note>
+<Para>For a cabin air compressor to be operating normally, certain items must operate normally. See MEL item 21-52-01 for a list of those items.</Para>
+</Note>
+<Para>Deactivate the left ram air fan (AMM DDG 21-52-12).</Para>
+<List listType="1.">
+<ListItem>
+<Para>Visually inspect the ram air fan blades for broken or damaged blades. If missing/damaged blades are found, visually inspect the inside and outside of the ram air outlet header for structural damage.</Para>
+</ListItem>
+<ListItem>
+<Para>On the MISC SYSTEM CTRLS maintenance page, select RAM FANS LEFT OFF.</Para>
+</ListItem>
+</List>
+<Note>
+<Para>PACK L or PACK MODE L advisory message may be displayed.</Para>
+</Note>
+</MaintenanceProcedure>
+<OperationProcedure>
+<Note>
+<Para>PACK L or PACK MODE L advisory message may be displayed.</Para>
+</Note>
+<Note>
+<Para>The left pack will be off and will not operate normally unless airspeed is sufficient to support ram air duct cooling (approximately 120 knots).  The PACK L or PACK MODE L advisory message will be displayed when ram air duct cooling is not available.</Para>
+</Note>
+<Note>
+<Para>Before engine start RAM FAN L, HYD PUMP C1, HYD PUMP DEM R and FUEL PUMP CENTER L status messages may be displayed.</Para>
+</Note>
+<Note>
+<Para>For FCAC installed, FCAC performance may be degraded during ground operations.  CARGO A/C FWD may be displayed when FWD CARGO A/C Selector is in the ON position.</Para>
+</Note>
+<Note>
+<Para>Simultaneous engine start is not allowed.</Para>
+</Note>
+<Note>
+<Para>ICS galley cooling performance may be degraded during ground operations if the SCUs are loadshed from the PECS.</Para>
+</Note>
+<Note>
+<Para>On takeoff, the PACK ALTITUDE LIMIT caution message may appear anytime after liftoff until 1,000 feet above airport elevation. The message may be displayed for up to 2 minutes. On landing, this message may appear at altitudes less than 1000 feet above airport elevation until touchdown.</Para>
+</Note>
+<?FTID-rev deleted highlight="Delete note as CN-AA49115 and 61225 has been corporated for all fleet"?>
+<List listType="1.">
+<ListItem>
+<Para>Ground operations are limited to OAT below 49 degrees C.</Para>
+</ListItem>
+<ListItem>
+<Para>If cabin temperatures become warmer than desired, consider one or more of the following temporary actions:</Para>
+<List listType="A.">
+<ListItem>
+<Para>Use pre-conditioned air to cool the cabin to 75 degrees F (24 degrees C) or less an hour before passenger loading.</Para>
+</ListItem>
+<ListItem>
+<Para>Set IFE OFF using the IFE Power switch on the Video Control Station.</Para>
+</ListItem>
+<ListItem>
+<Para>Select HEAT REDUCTION mode using the Cabin Attendant Panel TEMPERATURE menu.</Para>
+</ListItem>
+<ListItem>
+<Para>For FCAC installed, select FCAC OFF.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>To minimize PECS heating, operators should consider the following options:</Para>
+<List listType="A.">
+<ListItem>
+<Para>Set packs OFF and use pre-conditioned air prior to engine start.</Para>
+</ListItem>
+<ListItem>
+<Para>Delay closing forward or aft cargo doors until airplane is ready for push back or engine start.</Para>
+</ListItem>
+<ListItem>
+<Para>Minimize APU ground operations.</Para>
+</ListItem>
+<ListItem>
+<Para>Start APU prior to closing cargo doors.</Para>
+</ListItem>
+<ListItem>
+<Para>Minimize time between cargo door closing and first engine start.</Para>
+</ListItem>
+<ListItem>
+<Para>Each engine should be started individually at the gate.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>On POWER ELEC COOLING maintenance page 1, confirm SUPPLY TEMP of left and right PECS loop is 142 degrees F (61 degrees C) or lower.</Para>
+</ListItem>
+<ListItem>
+<Para>Start the APU.</Para>
+</ListItem>
+<ListItem>
+<Para>Start first engine.</Para>
+<Note>
+<Para>Engine start time will be longer than normal.</Para>
+</Note>
+</ListItem>
+<ListItem>
+<Para>After first engine start has been completed, on POWER ELEC COOLING maintenance page 1, confirm SUPPLY TEMP of the left and right PECS loop is 142 degrees F (61 degrees C) or lower.</Para>
+</ListItem>
+<ListItem>
+<Para>Start second engine.</Para>
+</ListItem>
+<ListItem>
+<Para>Shutdown APU.</Para>
+</ListItem>
+<ListItem>
+<Para>Within three minutes after second engine start, perform flight controls freedom of movement check and extend flaps.</Para>
+</ListItem>
+<ListItem>
+<Para>Check status page for status messages.</Para>
+<Note>
+<Para>ELEC ENGINE STARTER L1, ELEC ENGINE STARTER R1 and ELEC APU STARTER L status messages may be displayed.  No action is required.</Para>
+</Note>
+<List listType="A.">
+<ListItem>
+<Para>For HYD PUMP DEM R status message displayed:</Para>
+<List listType="1)">
+<ListItem>
+<Para>Set R ENG PRIMARY pump switch OFF and R ELEC DEMAND pump selector ON until HYD PUMP DEM R status message is not displayed.</Para>
+</ListItem>
+<ListItem>
+<Para>Set R ENG PRIMARY pump switch ON and R ELEC DEMAND selector AUTO.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>For HYD PUMP C1 status message displayed:</Para>
+<Note>
+<Para>If MEL 29-11-02 Center System EMP is applied, no action is required.</Para>
+</Note>
+<List listType="1)">
+<ListItem>
+<Para>Set C2 ELEC pump selector OFF and C1 ELEC pump selector ON until HYD PUMP C1 status message is not displayed.</Para>
+</ListItem>
+<ListItem>
+<Para>Set C1 and C2 ELEC pump selectors AUTO.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>No further action is required for the following ram fan status messages:</Para>
+<List listType="1)">
+<ListItem>
+<Para>RAM FAN L</Para>
+</ListItem>
+<ListItem>
+<Para>RAM FAN PRIMARY L</Para>
+</ListItem>
+<ListItem>
+<Para>RAM FAN CONTROL L</Para>
+</ListItem>
+<ListItem>
+<Para>RAM FAN BACKUP L</Para>
+</ListItem>
+<ListItem>
+<Para>RAM FAN BACKUP LEFT A</Para>
+</ListItem>
+<ListItem>
+<Para>RAM FAN BACKUP LEFT B</Para>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="21-52-12-02">
+<Title>
+<?FTID-xref 1385626.2-21-52-12?>Right Ram Air Fan</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="1" nbrRequired="0" maintIndicator="(M)" opsIndicator="(O)">
+<DispatchConditionRemarks>
+<Para>May be inoperative provided: </Para>
+<List listType="a.">
+<ListItem>
+<Para>Right ram air fan is deactivated.</Para>
+</ListItem>
+<ListItem>
+<Para>Left ram air fan operates normally</Para>
+</ListItem>
+<ListItem>
+<Para>Left ram air fan motor controller operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Left air conditioning pack operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Left cabin air compressors operate normally.</Para>
+</ListItem>
+<ListItem>
+<Para>L1 VFSG operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>R1 VFSG operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>L1 cabin air compressor CMSC operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>L2 cabin air compressor CMSC operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Center hydraulic pump C1 operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Right PECS aft section operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Right PECS temperature sensor operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>APU operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Ground operations are limited to OAT below 49 degrees C.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Note>
+<Para>For an air conditioning pack to be operating normally, certain items associated with that system must operate normally.  See MEL item 21-51-01 for a list of those items.</Para>
+</Note>
+<Note>
+<Para>For a cabin air compressor to be operating normally, certain items must operate normally. See MEL item 21-52-01 for a list of those items.</Para>
+</Note>
+<Para>Deactivate the right ram air fan (AMM DDG 21-52-12).</Para>
+<List listType="1.">
+<ListItem>
+<Para>Visually inspect the ram air fan blades for broken or damaged blades. If missing/damaged blades are found, visually inspect the inside and outside of the ram air outlet header for structural damage.</Para>
+</ListItem>
+<ListItem>
+<Para>On the MISC SYSTEM CTRLS maintenance page, select RAM FANS RIGHT OFF.</Para>
+</ListItem>
+</List>
+<Note>
+<Para>PACK R or PACK MODE R advisory message may be displayed.</Para>
+</Note>
+</MaintenanceProcedure>
+<OperationProcedure>
+<Note>
+<Para>PACK R or PACK MODE R advisory message may be displayed.</Para>
+</Note>
+<Note>
+<Para>The right pack will be off and will not operate normally unless airspeed is sufficient to support ram air duct cooling (approximately 120 knots).  The PACK R or PACK MODE R advisory message will be displayed when ram air duct cooling is not available.</Para>
+</Note>
+<Note>
+<Para>Before engine start RAM FAN R, HYD PUMP C2 HYD PUMP DEM L, and FUEL PUMP CENTER R status messages may be displayed.</Para>
+</Note>
+<Note>
+<Para>For FCAC installed, FCAC performance may be degraded during ground operations.  CARGO A/C FWD may be displayed when FWD CARGO A/C Selector is in the ON position.</Para>
+</Note>
+<Note>
+<Para>Simultaneous engine start is not allowed.</Para>
+</Note>
+<Note>
+<Para>ICS galley cooling performance may be degraded during ground operations if the SCUs are loadshed from the PECS</Para>
+</Note>
+<Note>
+<Para>On takeoff, the PACK ALTITUDE LIMIT caution message may appear anytime after liftoff until 1,000 feet above airport elevation. The message may be displayed for up to 2 minutes. On landing, this message may appear at altitudes less than 1000 feet above airport elevation until touchdown.</Para>
+</Note>
+<?FTID-rev deleted highlight="Deleted NOTE as CN-AA49115 & CN-AA61225 has been corporated for all fleet"?>
+<List listType="1.">
+<ListItem>
+<Para>Ground operations are limited to OAT below 49 degrees C.</Para>
+</ListItem>
+<ListItem>
+<Para>If cabin temperatures become warmer than desired, consider one or more of the following temporary actions:</Para>
+<List listType="A.">
+<ListItem>
+<Para>Use pre-conditioned air to cool the cabin to 75 degrees F (24 degrees C) or less an hour before passenger loading.</Para>
+</ListItem>
+<ListItem>
+<Para>Set IFE OFF using the IFE Power switch on the Video Control Station.</Para>
+</ListItem>
+<ListItem>
+<Para>Select HEAT REDUCTION mode using the Cabin Attendant Panel TEMPERATURE menu.</Para>
+</ListItem>
+<ListItem>
+<Para>For FCAC installed, select FCAC OFF</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>To minimize PECS heating, operators should consider the following options:</Para>
+<List listType="A.">
+<ListItem>
+<Para>Set packs OFF and use pre-conditioned air prior to engine start.</Para>
+</ListItem>
+<ListItem>
+<Para>Delay closing forward or aft cargo doors until airplane is ready for push back or engine start.</Para>
+</ListItem>
+<ListItem>
+<Para>Minimize APU ground operations.</Para>
+</ListItem>
+<ListItem>
+<Para>Start APU prior to closing cargo doors.</Para>
+</ListItem>
+<ListItem>
+<Para>Minimize time between cargo door closing and first engine start.</Para>
+</ListItem>
+<ListItem>
+<Para>Each engine should be started individually at the gate.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>On POWER ELEC COOLING maintenance page 1, confirm SUPPLY TEMP of right and left PECS loop is 142 degrees F (61 degrees C) or lower.</Para>
+</ListItem>
+<ListItem>
+<Para>Start the APU.</Para>
+</ListItem>
+<ListItem>
+<Para>Start first engine.</Para>
+<Note>
+<Para>Engine start time will be longer than normal.</Para>
+</Note>
+</ListItem>
+<ListItem>
+<Para>After first engine start has been completed, on POWER ELEC COOLING maintenance page 1, confirm SUPPLY TEMP of the right and left PECS loop is 142 degrees F (61 degrees C) or lower.</Para>
+</ListItem>
+<ListItem>
+<Para>Start second engine.</Para>
+</ListItem>
+<ListItem>
+<Para>Shutdown APU.</Para>
+</ListItem>
+<ListItem>
+<Para>Within three minutes after second engine start, perform flight controls freedom of movement check and extend flaps.</Para>
+</ListItem>
+<ListItem>
+<Para>Check status page for status messages.</Para>
+<Note>
+<Para>ELEC ENGINE STARTER L2, ELEC ENGINE STARTER R2 and ELEC APU STARTER R status messages may be displayed.  No action is required.</Para>
+</Note>
+<List listType="A.">
+<ListItem>
+<Para>For HYD PUMP DEM L status message displayed:</Para>
+<List listType="1)">
+<ListItem>
+<Para>Set L ENG PRIMARY pump switch OFF and L ELEC DEMAND pump selector ON until HYD PUMP DEM L status message is not displayed.</Para>
+</ListItem>
+<ListItem>
+<Para>Set L ENG PRIMARY pump switch  ON and L ELEC DEMAND pump selector AUTO.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>For HYD PUMP C2 status message displayed:</Para>
+<Note>
+<Para>If MEL 29-11-02 Center System EMP is applied, no action is required.</Para>
+</Note>
+<List listType="1)">
+<ListItem>
+<Para>Set C1 ELEC pump selector OFF and C2 ELEC pump selector ON until HYD PUMP C2 status message is not displayed.</Para>
+</ListItem>
+<ListItem>
+<Para>Set C1 and C2 ELEC pump selectors AUTO.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>No further action is required for the following ram fan status messages:</Para>
+<List listType="1)">
+<ListItem>
+<Para>RAM FAN R</Para>
+</ListItem>
+<ListItem>
+<Para>RAM FAN PRIMARY R</Para>
+</ListItem>
+<ListItem>
+<Para>RAM FAN CONTROL R</Para>
+</ListItem>
+<ListItem>
+<Para>RAM FAN BACKUP R</Para>
+</ListItem>
+<ListItem>
+<Para>RAM FAN DUAL CONTROL</Para>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="21-52-12-03">
+<Title>Left Ram Air Fan Motor Controller</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="1" nbrRequired="0" maintIndicator="(M)" opsIndicator="(O)">
+<DispatchConditionRemarks>
+<Para>May be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Right ram air fan operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Right ram air fan motor controller operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>L2 cabin air compressor CMSC operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>L2 VFSG operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>R2 VFSG operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Left ram inlet door or ram air exit door operates normally.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<Note>
+<Effectivities>
+<Effectivity>For 787-9 / -10 (VN-A861,
+VN-A862, VN-A863, VN-A864, VN-865, VN-A866, VN-A867, VN-A868, VN-A869, VN-A870, VN-A871, VN-A872, VN-A873, VN-A874, VN-A877, VN-A878, VN-A879):</Effectivity>
+</Effectivities>
+<Para>Status message RAM FAN DUAL CONTROL will also be displayed.  The airplane must also be dispatched using MEL item 21-52-12-05.</Para>
+</Note>
+<Note>
+<Para>Status message CABIN TEMP CONTROL L will also be displayed.</Para>
+</Note>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Note>
+<Effectivities>
+<Effectivity>For 787-9 / -10 (VN-A861, VN-A862, VN-A863, VN-A864, VN-865, VN-A866, VN-A867, VN-A868,
+VN-A869, VN-A870, VN-A871, VN-A872, VN-A873, VN-A874, VN-A877, VN-A878, VN-A879):</Effectivity>
+</Effectivities>
+<Para>Dispatch is allowed with INOP RFMC installed if L1 ATRUC does not trip when circuit breaker MC-RAM Fan L CHAN 1 is open.  To avoid L1 ATRUC trip, lock with an INOP tag circuit breaker MC-RAM FAN L CHAN 1 to remove L RFMC 28V power.  Dispatch is not allowed with the ATRUC tripped.</Para>
+</Note>
+<Para>A VFSG system is considered to be operating normally if its associated status message (ELEC GEN SYS L1, L2, R1 or R2) is not displayed.</Para>
+<Para>An inoperative ram fan motor controller (RFMC) may be removed provided dispatch tool K24002 is installed (AMM DDG 21-52-12).</Para>
+<List listType="1.">
+<ListItem>
+<Para>Remove the ram fan motor controller.</Para>
+<List listType="A.">
+<ListItem>
+<Para>Open the following circuit breakers and lock with DO NOT CLOSE tags:</Para>
+<List listType="1)">
+<ListItem>
+<Para>MC-RAM FAN L CHAN 1</Para>
+</ListItem>
+<ListItem>
+<Para>LIQUID CLG PUMP-L1</Para>
+</ListItem>
+<ListItem>
+<Para>LIQUID CLG PUMP-L2</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Open the following contactors and lock with DO NOT CLOSE tags:</Para>
+<List listType="1)">
+<ListItem>
+<Para>ATRUC-L1</Para>
+</ListItem>
+<ListItem>
+<Para>ATRUC-L2</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Gain access to the P700 panel.</Para>
+</ListItem>
+<ListItem>
+<Para>Disconnect and set swing bolts clear of RFMC mounting brackets.</Para>
+</ListItem>
+<ListItem>
+<Para>Remove RFMC from the EE tray.</Para>
+</ListItem>
+<ListItem>
+<Para>Install plugs on RFMC liquid connector.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Install RFMC dispatch tool.</Para>
+<List listType="A.">
+<ListItem>
+<Para>Remove necessary plugs and caps on the RFMC dispatch tool.</Para>
+</ListItem>
+<ListItem>
+<Para>Carefully install dispatch tool in the RFMC E/E tray.</Para>
+</ListItem>
+<ListItem>
+<Para>Install swing bolts in dispatch tool mounting brackets and tighten if necessary.</Para>
+</ListItem>
+<ListItem>
+<Para>Close the following circuit breakers:</Para>
+<List listType="1)">
+<ListItem>
+<Para>MC-RAM FAN L CHAN 1</Para>
+</ListItem>
+<ListItem>
+<Para>LIQUID CLG PUMP-L1</Para>
+</ListItem>
+<ListItem>
+<Para>LIQUID CLG PUMP-L2</Para>
+</ListItem>
+</List>
+<Note>
+<Para>The following steps are required to reset the ATRUC contactors to AUTO.</Para>
+</Note>
+</ListItem>
+<ListItem>
+<Para>Set the following contactors to AUTO: </Para>
+<List listType="1)">
+<ListItem>
+<Para>ATRUC-L1</Para>
+</ListItem>
+<ListItem>
+<Para>ATRUC-L2</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Lock the following contactors with DO NOT CLOSE tags: </Para>
+<List listType="1)">
+<ListItem>
+<Para>ATRUC-L1</Para>
+</ListItem>
+<ListItem>
+<Para>ATRUC-L2</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Set the following contactors to AUTO: </Para>
+<List listType="1)">
+<ListItem>
+<Para>ATRUC-L1</Para>
+</ListItem>
+<ListItem>
+<Para>ATRUC-L2</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Momentarily push the AFT EXT PWR switch on the P5 overhead panel.</Para>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+<OperationProcedure>
+<Note>
+<Para>Engine start time will be longer than normal.</Para>
+</Note>
+<Note>
+<Para>PACK MODE L, ELEC MC HYD R, ELEC ENGINE STARTER L1, ELEC ENGINE STARTER R1 may be displayed during engine start.</Para>
+</Note>
+<Note>
+<Para>Simultaneous engine start is not allowed.</Para>
+</Note>
+<Note>
+<Para>On takeoff, the PACK ALTITUDE LIMIT caution message may appear anytime after liftoff until 1,000 feet above airport elevation. The message may be displayed for up to 2 minutes. On landing, this message may appear at altitudes less than 1000 feet above airport elevation until touchdown.</Para>
+</Note>
+<Para>Use MEL Item 21-52-12-01 (O) procedure.</Para>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="21-52-12-04">
+<Title>Right Ram Air Fan Motor Controller</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="1" nbrRequired="0" maintIndicator="(M)" opsIndicator="(O)">
+<DispatchConditionRemarks>
+<Para>May be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Left ram air fan operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Left ram air fan motor controller operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>R2 cabin air compressor CMSC operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>L1 VFSG operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>R1 VFSG operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Right ram inlet door or ram air exit door operates normally.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<Note>
+<Effectivities>
+<Effectivity>For 787-9 / -10 (VN-A861,
+VN-A862, VN-A863, VN-A864, VN-865, VN-A866, VN-A867, VN-A868, VN-A869, VN-A870, VN-A871, VN-A872, VN-A873, VN-A874, VN-A877, VN-A878, VN-A879):</Effectivity>
+</Effectivities>
+<Para>Status message RAM FAN DUAL CONTROL will also be displayed.  The airplane must also be dispatched using MEL item 21-52-12-05.</Para>
+</Note>
+<Note>
+<Para>Status message CABIN TEMP CONTROL L will also be displayed.</Para>
+</Note>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Note>
+<Effectivities>
+<Effectivity>For 787-9 / -10 (VN-A861, VN-A862, VN-A863, VN-A864, VN-865, VN-A866, VN-A867, VN-A868,
+VN-A869, VN-A870, VN-A871, VN-A872, VN-A873, VN-A874, VN-A877, VN-A878, VN-A879):</Effectivity>
+</Effectivities>
+<Para>Dispatch is allowed with INOP RFMC installed if R1 ATRUC does not trip when circuit breaker MC-RAM FAN R CHAN 1 is open.  To avoid R1 ATRUC trip, lock with an INOP tag circuit breaker MC-RAM FAN R CHAN 1 to remove R RFMC 28V power. Dispatch is not allowed with the ATRUC tripped.</Para>
+</Note>
+<Para>A VFSG system is considered to be operating normally if its associated status message (ELEC GEN SYS L1, L2, R1 or R2) is not displayed.</Para>
+<Para>An inoperative ram fan motor controller (RFMC) may be removed provided dispatch tool K24002 is installed (AMM DDG 21-52-12).</Para>
+<List listType="1.">
+<ListItem>
+<Para>Remove the ram fan motor controller.</Para>
+<List listType="A.">
+<ListItem>
+<Para>Open the following circuit breakers and lock with a DO NOT CLOSE tag:</Para>
+<List listType="1)">
+<ListItem>
+<Para>MC-RAM FAN R CHAN 1</Para>
+</ListItem>
+<ListItem>
+<Para>LIQUID CLG PUMP-R1</Para>
+</ListItem>
+<ListItem>
+<Para>LIQUID CLG PUMP-R2</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Open the following contactors and lock with DO NOT CLOSE tags:</Para>
+<List listType="1)">
+<ListItem>
+<Para>ATRUC-R1</Para>
+</ListItem>
+<ListItem>
+<Para>ATRUC-R2</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Gain access to the P800 panel.</Para>
+</ListItem>
+<ListItem>
+<Para>Disconnect and set swing bolts clear of RFMC mounting brackets.</Para>
+</ListItem>
+<ListItem>
+<Para>Remove RFMC from the EE tray.</Para>
+</ListItem>
+<ListItem>
+<Para>Install plugs on RFMC liquid connector.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Install RFMC dispatch tool.</Para>
+<List listType="A.">
+<ListItem>
+<Para>Remove necessary plugs and caps on the RFMC dispatch tool.</Para>
+</ListItem>
+<ListItem>
+<Para>Carefully install dispatch tool in the RFMC E/E tray.</Para>
+</ListItem>
+<ListItem>
+<Para>Install swing bolts in dispatch tool mounting brackets and tighten if necessary.</Para>
+</ListItem>
+<ListItem>
+<Para>Close the following circuit breakers:</Para>
+<List listType="1)">
+<ListItem>
+<Para>MC-RAM FAN R CHAN 1</Para>
+</ListItem>
+<ListItem>
+<Para>LIQUID CLG PUMP-R1</Para>
+</ListItem>
+<ListItem>
+<Para>LIQUID CLG PUMP-R2</Para>
+</ListItem>
+</List>
+<Note>
+<Para>The following steps are required to reset the ATRUC contactors to AUTO.</Para>
+</Note>
+</ListItem>
+<ListItem>
+<Para>Set the following contactors to AUTO: </Para>
+<List listType="1)">
+<ListItem>
+<Para>ATRUC-R1</Para>
+</ListItem>
+<ListItem>
+<Para>ATRUC-R2</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Lock the following contactors with DO NOT CLOSE tags: </Para>
+<List listType="1)">
+<ListItem>
+<Para>ATRUC-R1</Para>
+</ListItem>
+<ListItem>
+<Para>ATRUC-R2</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Set the following contactors to AUTO: </Para>
+<List listType="1)">
+<ListItem>
+<Para>ATRUC-R1</Para>
+</ListItem>
+<ListItem>
+<Para>ATRUC-R2</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Momentarily push the AFT EXT PWR switch on the P5 overhead panel.</Para>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+<OperationProcedure>
+<Note>
+<Para>Engine start time will be longer than normal.</Para>
+</Note>
+<Note>
+<Para>PACK MODE L, ELEC MC HYD R, ELEC ENGINE STARTER L1, ELEC ENGINE STARTER R1 may be displayed during engine start.</Para>
+</Note>
+<Note>
+<Para>Simultaneous engine start is not allowed.</Para>
+</Note>
+<Note>
+<Para>On takeoff, the PACK ALTITUDE LIMIT caution message may appear anytime after liftoff until 1,000 feet above airport elevation. The message may be displayed for up to 2 minutes. On landing, this message may appear at altitudes less than 1000 feet above airport elevation until touchdown.</Para>
+</Note>
+<Para>Use MEL Item 21-52-12-01 (O) procedure.</Para>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="21-52-12-05">
+<Title>Ram Air Fan Primary Control</Title>
+<MELSubItem itemNbr="21-52-12-05-02">
+<Title>787-9 / -10 (VN-A861, VN-A862, VN-A863, VN-A864, VN-865, VN-A866, VN-A867, VN-A868, VN-A869, VN-A870, VN-A871, VN-A872, VN-A873, VN-A874, VN-A877, VN-A878, VN-A879)</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="3" nbrRequired="1">
+<DispatchProcedure>
+<OperationNote>
+<List listType="1.">
+<ListItem>
+<Para>If cabin temperatures become warmer than desired, consider one or more of the following temporary actions:</Para>
+<List listType="A.">
+<ListItem>
+<Para>Select IFE system modes designed to reduce cabin heat loads.</Para>
+<Note>
+<Para>Availability of modes dependent on IFE system installed and airline modifiable options.</Para>
+</Note>
+</ListItem>
+<ListItem>
+<Para>Set IFE OFF using the IFE Power switch on the Video Control Station.</Para>
+</ListItem>
+<ListItem>
+<Para>Select HEAT REDUCTION mode using the Cabin Attendant Panel TEMPERATURE menu (adjusts cabin lighting and window shading).</Para>
+</ListItem>
+<ListItem>
+<Para>For FCAC installed, set FCAC OFF.</Para>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</OperationNote>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+</MELSubItem>
+<MELSubItem itemNbr="21-52-12-06">
+<Title>Ram Air Fan Backup Control</Title>
+<MELSubItem itemNbr="21-52-12-06-02">
+<Title>787-9 / -10 (VN-A861, VN-A862, VN-A863, VN-A864, VN-865, VN-A866, VN-A867, VN-A868, VN-A869, VN-A870, VN-A871, VN-A872, VN-A873, VN-A874, VN-A877, VN-A878, VN-A879)</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="3" nbrRequired="0">
+<DispatchConditionRemarks>
+<Para>May be inoperative provided air conditioning packs operate normally.</Para>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceNote>
+<Para>For an air conditioning pack to be operating normally, certain items must operate normally.  See MEL  item 21-51-01 for a list of those items.</Para>
+</MaintenanceNote>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+</MELSubItem>
+</MELItem>
+</DispatchItems>

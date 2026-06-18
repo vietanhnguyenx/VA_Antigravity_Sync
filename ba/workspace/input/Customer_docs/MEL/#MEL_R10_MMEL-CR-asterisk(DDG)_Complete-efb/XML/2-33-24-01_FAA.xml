@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM">]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.2-33-24-01.1918.2-33-24-01_FAA" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="33" superSectionNumber="2" sectionName="MEL" chapterName="Lights" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2021-02-24" rev:revStatus="U" rev:revNumber="10" />
+</PUMetaData>
+<MELItem itemNbr="33-24-01" id="X-BOEING:FTID:81205.787.DDG.CU.MEL.2-33-24-01.1.2-33-24-01_FAA">
+<Title>Passenger Information Signs</Title>
+<DispatchCondition dispCondOptions="A" repairInterval="C" nbrInstalled="-" nbrRequired="0" opsIndicator="(O)">
+<Title>PA System Operates Normally</Title>
+<DispatchConditionRemarks>
+<Para>May be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>PA system operates normally and can be clearly heard throughout the cabin during flight.</Para>
+</ListItem>
+<ListItem>
+<Para>PA system is used to alert passengers when associated passenger lighted information sign is inoperative.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<OperationProcedure>
+<Para>PA system is used to notify passengers when seat belts must be fastened.</Para>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+<DispatchCondition dispCondOptions="B" repairInterval="C" nbrInstalled="-" nbrRequired="-" maintIndicator="(M)">
+<Title>PA System Inoperative</Title>
+<DispatchConditionRemarks>
+<Para>May be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Passenger seats from which a passenger lighted information sign is not readily legible are blocked and placarded DO NOT OCCUPY.</Para>
+</ListItem>
+<ListItem>
+<Para>Lavatory with passenger lighted information sign not readily legible has entrance door locked closed and placarded, INOPERATIVE - DO NOT ENTER.</Para>
+</ListItem>
+</List>
+<Note>
+<Para>These conditions are not intended to prohibit lavatory use or inspections by crew members.</Para>
+</Note>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>If required, block and placard associated seats or lavatory (AMM DDG 33-24-01)</Para>
+<Note>
+<Para>In tests conducted at Boeing for the FAA, a sign was considered readily legible if enough of the sign could be seen to identify it.  For example, FASTEN SEAT B would be considered readily legible. </Para>
+</Note>
+<List listType="1.">
+<ListItem>
+<Para>Install tapes or ropes of conspicuous contrasting colors to block access to unusable seats prior to boarding of passengers.</Para>
+</ListItem>
+<ListItem>
+<Para>Place conspicuous signs or placards in appropriate locations to indicate seats which are not to be occupied by passengers or flight attendants.</Para>
+</ListItem>
+<ListItem>
+<Para>For an associated lavatory, close and lock the lavatory door.</Para>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+<DispatchCondition dispCondOptions="C" repairInterval="C" nbrInstalled="-" nbrRequired="0" opsIndicator="(O)">
+<Title>No Passengers Carried</Title>
+<DispatchConditionRemarks>
+<Para>May be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>No passengers are carried.</Para>
+</ListItem>
+<ListItem>
+<Para>Alternate procedures are established and used.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<OperationProcedure>
+<List listType="1.">
+<ListItem>
+<Para>Regular passengers may not be carried, however remaining crew or engineers that require repositioning due to the unserviceability may travel.</Para>
+</ListItem>
+<ListItem>
+<Para>Where the PA is inoperative, any persons carried on the flight must be briefed that seat belts are to be worn at all times unless they receive specific advice from a flight crew member during the flight that they are permitted to unfasten seat belts.</Para>
+</ListItem>
+<ListItem>
+<Para>In order to facilitate communication from the flight deck, any additional persons are to be seated in the forward three rows.</Para>
+</ListItem>
+</List>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+<MELSubItem itemNbr="33-24-01-01">
+<Title>Flight Deck Automatic Function (*)</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="1" nbrRequired="0" opsIndicator="(O)">
+<DispatchConditionRemarks>
+<Para>May be inoperative provided operations procedure is used.</Para>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<OperationProcedure>
+<Para>PA system is used to notify passengers when seat belts must be fastened.</Para>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+</MELItem>
+</DispatchItems>

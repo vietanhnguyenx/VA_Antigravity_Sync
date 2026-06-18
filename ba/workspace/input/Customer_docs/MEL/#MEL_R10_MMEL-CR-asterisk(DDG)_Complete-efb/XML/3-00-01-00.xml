@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE FrontMatter[<!NOTATION CGM SYSTEM "CGM">]>
+<FrontMatter id="X-BOEING:FTID:81205.787.DDG.PU.FM.3-00-01-00.1124876.3-00-01-00" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/FrontMatter.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="" superSectionNumber="3" sectionName="CDL" chapterName="Introduction" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2021-02-24" rev:revStatus="U" rev:revNumber="10" />
+</PUMetaData>
+<Introduction id="X-BOEING:FTID:81205.787.DDG.CU.INT.3-00-01-00.1124876.3-00-01-00">
+<FMtopic>
+<Title>General Notes</Title>
+<Para>This section contains locations, illustrations and performance information for all of the CDL items from the 787 Airplane Flight Manual (AFM) Appendix Configuration Deviation List (CDL).</Para>
+</FMtopic>
+<FMtopic>
+<Title>Limitations</Title>
+<Para>The associated limitations must be listed on a placard affixed in the cockpit in clear view of the pilot-in-command and other appropriate crew members.</Para>
+<Para>Operation with those missing parts requiring a reduction of VMO/MMO is permitted only when the airplane has the maximum airspeed limit indication and the Mach airspeed warning system programmed for the altitude/speed schedule specified for the applicable missing part.</Para>
+<Para>The pilot in command will be notified of each operation with a missing parts by listing the missing parts in the flight or dispatch release.</Para>
+<Para>The operator will list in the aircraft logbook an appropriate notation covering the missing parts on each flight.</Para>
+<Para>If an additional part is lost in flight the airplane may not depart the airport at which it landed following this event until it again complies with CDL limitations.  This, does not preclude the issuance of a ferry permit to allow the airplane to be flown to a point where the necessary repairs or replacements can be made.</Para>
+<Para>Unless otherwise specified, combinations of parts from any system or sub-systems may be missing.  Combinations of parts from systems or sub-systems that are not allowed will be specifically listed in the CDL.</Para>
+</FMtopic>
+<FMtopic>
+<Title>Weight Reductions</Title>
+<Para>The performance adjustments are cumulative unless specifically designated adjustments for combination of missing parts are indicated.  Where performance adjustments are listed as negligible, no more than three negligible items may be missing without taking further penalty.  For each missing item more than three, reduce the takeoff, landing and enroute
+climb limits by 100 pounds (46 kilograms).  Where performance adjustments are listed as no decrement, any accumulative number of items listed as no penalty may be missing without further penalty.</Para>
+</FMtopic>
+<FMtopic>
+<Title>Enroute Diversion Speed Effects</Title>
+<Para>The enroute climb weight adjustments listed are based on operating speeds that approximate the maximum lift-to-drag ratio speed.  To account for the difference in level off altitude when operating at other speeds, multiply the enroute climb weight penalty listed by the following appropriate factor:</Para>
+<table frame="all">
+<tgroup cols="2" colsep="1">
+<colspec colname="1" colwidth="63%" />
+<colspec colname="2" colwidth="37%" />
+<thead>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">Diversion Speed</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Factor</Para>
+</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">LRC</Para>
+</entry>
+<entry colname="2">
+<Para align="left">1.9</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">280 KIAS</Para>
+</entry>
+<entry colname="2">
+<Para align="left">2.5</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">300 KIAS</Para>
+</entry>
+<entry colname="2">
+<Para align="left">3.5</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">320 KIAS</Para>
+</entry>
+<entry colname="2">
+<Para align="left">4.3</Para>
+</entry>
+</row>
+<row rowsep="0">
+<entry colname="1">
+<Para align="left">340 KIAS</Para>
+</entry>
+<entry colname="2">
+<Para align="left">5.2</Para>
+</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+</FMtopic>
+<FMtopic>
+<Title>Enroute Fuel Mileage Effects</Title>
+<Para>The drag effects of many 787 CDL items are so small that the changes in flight planning fuel are negligible.  For items that have enroute climb weight adjustments listed, an increase in flight planning fuel of 0.44% per 1,000 lb (454 kg) of enroute climb weight penalty (non-factored penalty) may be used to account for the drag increase.</Para>
+</FMtopic>
+</Introduction>
+</FrontMatter>

@@ -1,0 +1,101 @@
+table { clear:both; width: 95%; border-collapse: collapse; text-align: left; vertical-align: text-top; table-layout: auto; border: none; margin-bottom: 1em; }
+
+.EFB table { width:auto; }
+th { text-align: center; vertical-align: middle; background-color: #00599C; }
+th p { margin-bottom: 0; padding: .2em; }
+
+td { vertical-align: top; }
+
+table.BorderTop  td { border-top: solid 1px; }
+table.BorderBottom  td { border-bottom: solid 1px; }
+table.BorderSides td { border-left: solid 1px; border-right: solid 1px; }
+table.BorderAll td { border: solid 1px; padding: .25em; }
+
+
+table.BulletinList { table-layout: auto; border: solid 1px; margin-bottom: 1em; }
+table.BulletinList th { padding: 0 .5em 0 .5em; border: solid 1px; }
+table.BulletinList td { border: solid 1px; }
+table.BulletinList p { margin: 1em; }
+td.RowHeader { text-align: right; font-weight: bold; padding-right: 1em; }
+
+
+table.GlossaryList { table-layout: auto; margin-bottom: 1em; }
+table.GlossaryList th { text-align: center; padding: .25em; font-weight: bold; border: solid 1px; }
+table.GlossaryList td { border: solid 1px; }
+table.GlossaryList td p { margin: .5em; }
+
+
+table.DispatchProcedure td { padding: .5em; }
+table.DispatchProcedure th { padding: 2px; }
+
+
+table.EffectXRefList { border: solid 1px; padding: 2px; }
+table.EffectXRefList th { border: solid 1px; }
+table.EffectXRefList td { border: solid 1px; }
+table.EffectXRefList td p { margin: 1em; }
+
+
+table.EICASList { border: solid 1px; width: 80%; margin: 1em auto 0 auto; text-align: center; }
+table.EICASList th { border: solid 1px; text-align: center; }
+table.EICASList td { padding: .75em .75em 0 .75em; border: solid 1px; }
+
+
+
+table.MELItemHeader { margin-bottom: 1em; font-weight: bolder; font-size: large; }
+table.MELItemHeader td.FirstTD { white-space: nowrap; width: 25%; }
+
+
+
+table.CDLItemHeader { margin: 1em 0 1em 0; font-size: x-large; font-weight: bolder; }
+table.CDLItemHeader tr td.FirstTD { white-space: nowrap; width: 25%; }
+
+table.MELItemTable { width: 75%; border: solid 1px; margin-bottom: 1em; }
+table.MELItemTable th { background-color: #00599c; border: solid 1px; }
+table.MELItemTable td { border: solid 1px; text-align: center; padding-top: 0; }
+
+
+table.PerfTable { text-align: center; font-size: small; margin-bottom: 1em; border: none; table-layout: auto; width: 100%; }
+table.PerfTable tbody { width: inherit; }
+table.PerfTable p { margin-bottom: 0; }
+table.PerfTable td, th { border: solid 1px white; padding: 0 .25em 0 .25em; vertical-align: middle; }
+tr.isHighlighted, td.isHighlighted, th.isHighlighted { background-color: #696969; }
+
+table.PerfTable .clickedCell { background-color: #006600; /* required by human factors */ color: white; }
+
+
+
+
+td.ApprovalInfo { text-align: center; padding-bottom: 2em; border: none; }
+td.GlossaryCell { text-align: left; text-indent: 0; font: normal inherit normal inherit; text-decoration: none; vertical-align: baseline; padding-left: 0.5em; }
+td.TableFooter { text-align: left; vertical-align: baseline; }
+td.TableFooter p { margin: 1em; }
+
+table.SDBody { margin-bottom: 1em; }
+table.SDBody td { padding:1em;}
+
+table.Bordered, table.Bordered td, table.Bordered th { border: solid 1px; }
+table.Bordered td p { margin: 1em; }
+
+table.PUMetaData { table-layout: auto; border: solid 3px Gray; background-color: #778899; color: Black; margin-bottom: 1em; }
+table.PUMetaData tr.TopRow td { border-bottom: solid 1px White; font-size: larger; }
+table.PUMetaData td { padding: 2px; }
+
+td.headerTableChapterSectionName { text-align: left; width: 80%; color: White; }
+td.headerTableChapterSectionNumber { width: 20%; text-align: center; border-left: solid 1px White; color: White; font-size: larger; }
+
+tr.headerTableEffectivities td { border-top: solid 1px white; color: White; font-size: small; }
+table.Normal th p { margin-bottom: 0; }
+
+div.Approvals { border: solid 1px; padding: 2em; margin-top: 0; margin-bottom: 1em; }
+table.Approvals { table-layout: auto; text-align: center; font-size: small; }
+table.Approvals tr { margin: 1em; }
+
+div.SignedBy { padding: 2em 2em 0 2em; white-space: nowrap; border-bottom: solid 1px; text-align: center; }
+td.ApprovedBy { padding-top: 2em; }
+tr.Performances { background-color: Black; color: Aqua; font-size: small; }
+tr.Performances td { padding: 2px; border-top: solid 1px white; }
+
+table.StackedTable { width:100%; margin-bottom:0em; table-layout:fixed}
+table.StackedTable td {padding:.5em; overflow:hidden}
+table.PadBelow { margin-bottom: 1.5em; }
+

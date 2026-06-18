@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://www.boeing.com/FTID-ML"
+    xmlns:rev="http://www.boeing.com/FTID-ML/Revision"
+    targetNamespace="http://www.boeing.com/FTID-ML" 
+    elementFormDefault="qualified" 
+    attributeFormDefault="unqualified"
+    version="FTID 2.6">
+
+<!-- 	
+=================================================================
+
+
+Copyright Information:
+      Boeing Proprietary and Confidential - 
+      All Rights Reserved since 2006.
+
+      This schema file is part of the Boeing Flight Technical 
+      Integrated Data (FTID) Specification based on XML.
+      All rights are reserved under Boeing Flight Operations 
+      digital data entitlements, products or services.
+
+     
+Contact Information:   	
+        The Boeing Company
+        Flight Operations Support
+        P.O. Box 3707	MS 20-89
+        Seattle, WA 98124-2207
+        USA
+        email:  flighttraining@Boeing.com
+        Phone:  (206) 662-4000
+        Fax:    (206) 662-4743
+
+
+===================================================================
+-->
+
+
+<xs:include schemaLocation="../attributeTypes/generalAttrs.xsd"/>
+<xs:include schemaLocation="../metadataTypes/effect.xsd"/>
+<xs:import namespace="http://www.boeing.com/FTID-ML/Revision" schemaLocation="../metadataTypes/revision.xsd"/>
+<xs:include schemaLocation="links.xsd"/>
+<xs:include schemaLocation="groups.xsd"/>
+
+
+
+
+<!--=====================================================-->
+<!-- CalloutDescription element definition -->
+<!--=====================================================-->
+<xs:complexType name="CalloutDescriptionType">
+    <xs:annotation>
+        <xs:documentation>Container for each callout in the illustration</xs:documentation>
+    </xs:annotation>
+
+    <xs:sequence>
+        <xs:element name="Effectivities" type="EffectivitiesType" minOccurs="0"/>
+        <xs:element name="CalloutIcon" type="CalloutIconType" maxOccurs="unbounded"/>
+        <xs:element name="Title" type="TitleType" maxOccurs="unbounded"/>
+        <xs:group ref="TextCWNGroupType" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+
+    <xs:attributeGroup ref="globalAttrGrp"/>
+</xs:complexType>
+
+
+<!--=====================================================-->
+<!-- CalloutIcon element definition -->
+<!--=====================================================-->
+<xs:complexType name="CalloutIconType">
+    <xs:annotation>
+        <xs:documentation>An icon to reference between the illustration and its CalloutDescription</xs:documentation>
+    </xs:annotation>
+
+    <xs:attribute name="calloutLabel" type="calloutLabelType" use="required"/>
+</xs:complexType>
+
+
+
+<!--=====================================================-->
+<!-- Illustration element definition -->
+<!--=====================================================-->
+<xs:complexType name="IllustrationType">
+    <xs:annotation>
+        <xs:documentation>Illustration container</xs:documentation>
+    </xs:annotation>
+
+    <xs:sequence>
+        <xs:element name="Effectivities" type="EffectivitiesType" minOccurs="0"/>
+        <xs:element name="Title" type="TitleType" minOccurs="0"/>
+        <xs:group ref="CWNGroupType" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+
+    <xs:attribute name="illusNbr" type="illusNbrType" default="1"/>
+    <xs:attributeGroup ref="linkAttrGrp"/>
+    <xs:attributeGroup ref="globalAttrGrp"/>
+</xs:complexType>
+
+
+<!--=====================================================-->
+<!-- GraphicDescription element definition -->
+<!--=====================================================-->
+<xs:complexType name="GraphicDescriptionType">
+    <xs:annotation>
+        <xs:documentation>Container for the description text of a graphic</xs:documentation>
+    </xs:annotation>
+
+    <xs:sequence>
+        <xs:element name="Effectivities" type="EffectivitiesType" minOccurs="0"/>
+        <xs:element name="CalloutDescription" type="CalloutDescriptionType" maxOccurs="unbounded"/>
+    </xs:sequence>
+
+    <xs:attributeGroup ref="globalAttrGrp"/>
+</xs:complexType>
+
+
+<!--=====================================================-->
+<!-- GraphicSet element definition -->
+<!--=====================================================-->
+<xs:complexType name="GraphicSetType">
+    <xs:annotation>
+        <xs:documentation>Container for illustration(s) and their descriptive text.</xs:documentation>
+    </xs:annotation>
+
+    <xs:sequence>
+        <xs:element name="Effectivities" type="EffectivitiesType" minOccurs="0"/>
+        <xs:element name="Title" type="TitleType" minOccurs="0"/>
+        <xs:element name="Illustration" type="IllustrationType" maxOccurs="unbounded"/>
+        <xs:element name="GraphicDescription" type="GraphicDescriptionType" minOccurs="0"/>
+    </xs:sequence>
+
+    <xs:attribute name="id" type="UIDType" use="required"/>
+    <xs:attributeGroup ref="globalAttrGrp"/>
+</xs:complexType>
+
+
+<!--=====================================================-->
+<!-- illustration Number attribute definition -->
+<!--=====================================================-->
+<xs:simpleType name="illusNbrType">
+    <xs:annotation>
+        <xs:documentation>Sequential illustration number</xs:documentation>
+    </xs:annotation>
+
+    <xs:restriction base="xs:positiveInteger">
+    </xs:restriction>
+</xs:simpleType>
+
+
+
+</xs:schema>

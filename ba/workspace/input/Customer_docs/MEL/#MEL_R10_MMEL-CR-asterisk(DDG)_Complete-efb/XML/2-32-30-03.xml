@@ -1,0 +1,338 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM">]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.2-32-30-03.967.2-32-30-03" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="32" superSectionNumber="2" sectionName="" chapterName="" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2025-09-30" rev:revStatus="R" rev:revNumber="10" />
+</PUMetaData>
+<MELItem itemNbr="32-30-03" id="X-BOEING:FTID:81205.787.DDG.CU.MEL.2-32-30-03.1.2-32-30-03">
+<Title>Semi Lever Gear Lock System (787-10: VN-A872, VN-A873, VN-A874, VN-A875, VN-A876, VN-A877, VN-A878, VN-A879)</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="1" nbrRequired="0" maintIndicator="(M)" opsIndicator="(O)">
+<DispatchConditionRemarks>
+<Para>May be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Both lockup valve control systems for the left and right semi lever gears are deactivated.</Para>
+</ListItem>
+<ListItem>
+<Para>The left and right semi lever gear tilt functions are verified to operate normally once each flight day.</Para>
+</ListItem>
+<ListItem>
+<Para>Appropriate performance adjustments are applied.</Para>
+</ListItem>
+</List>
+<Note>
+<Para>Use Boeing Onboard Performance Tool (OPT) to determine take-off weight and/or landing weight as it affects aircraft performance.</Para>
+</Note>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Deactivate the Semi Lever Gear (SLG) lockup valve control systems and verify the left and right semi lever gear tilt functions operate normally (AMM-DDG 32-30-03).</Para>
+<List listType="1.">
+<ListItem>
+<Para>Deactivate both semi lever gear lockup valve control systems.</Para>
+<List listType="A.">
+<ListItem>
+<Para>For left SLG circuit-1 system, using a flight deck multi-function display only, open circuit breaker MLG L LOCK 1 and lock with an INOP tag.</Para>
+</ListItem>
+<ListItem>
+<Para>For right SLG circuit-1 system, using a flight deck multi-function display only, open circuit breaker MLG R LOCK 1 and lock with an INOP tag.</Para>
+</ListItem>
+<ListItem>
+<Para>For left SLG circuit-2 system, using a flight deck multi-function display only, open circuit breaker MLG L LOCK 2 and lock with an INOP tag.</Para>
+</ListItem>
+<ListItem>
+<Para>For right SLG circuit-2 system, using a flight deck multi-function display only, open circuit breaker MLG R LOCK 2 and lock with an INOP tag.</Para>
+</ListItem>
+</List>
+<Note>
+<Para>SEMI LEVER GEAR LOCK SOL L and SEMI LEVER GEAR LOCK SOL R status messages will be displayed.</Para>
+</Note>
+</ListItem>
+<ListItem>
+<Para>Verify the left and right semi lever gear tilt function operates normally.</Para>
+<List listType="A.">
+<ListItem>
+<Para>Confirm the landing gear control lever is in the DOWN position.</Para>
+</ListItem>
+<ListItem>
+<Para>Install landing gear downlock pins.</Para>
+</ListItem>
+<ListItem>
+<Para>Confirm all landing gear doors are open and all three landing gear door safety valve handles are in the SAFE position.  If necessary, open the landing gear doors using the P56 switches.</Para>
+</ListItem>
+<ListItem>
+<Para>Pressurize the center hydraulic system.</Para>
+</ListItem>
+<ListItem>
+<Para>Set the ground test switch to the ENABLE position.</Para>
+</ListItem>
+<ListItem>
+<Para>Set the landing gear lever to the UP position and after 5-seconds set the landing gear lever to the DOWN position.</Para>
+</ListItem>
+<ListItem>
+<Para>The following steps will confirm that the semi lever gear will still perform the tilt function.  If a faulty Semi Lever Gear Hydraulic Pressure Sensor is suspected, the pressure indication for that semi lever gear may not change.  The tilt function will not be impacted; however, a visual verification of telescopic piston movement will
+be required.</Para>
+<List listType="1)">
+<ListItem>
+<Para>Use CMCF to start the Special Function LGAC SLG ISOLATION VALVE TEST.</Para>
+<Note>
+<Para>The telescoping pistons on both left and right semi lever gear will retract. Retraction may require approximately 17-seconds.</Para>
+</Note>
+<Note>
+<Para>Do not stop the CMCF test or navigate away from the CMCF test page so that the ground test remains running.</Para>
+</Note>
+</ListItem>
+<ListItem>
+<Para>On LANDING GEAR CONTROL maintenance page 3, verify the L SLG HYD PRESS and R SLG HYD PRESS indicate approximately 1150 psi or verify that the telescopic piston retracts.</Para>
+</ListItem>
+<ListItem>
+<Para>Use CMCF to stop the Special Function LGAC SLG ISOLATION VALVE TEST.</Para>
+<Note>
+<Para>The telescoping pistons on both left and right semi lever gear will extend.  Extension may require approximately 2-seconds.</Para>
+</Note>
+</ListItem>
+<ListItem>
+<Para>On LANDING GEAR CONTROL maintenance page 3, verify the L SLG HYD PRESS and R SLG HYD PRESS indicate approximately 70 psi or verify that the telescopic piston extends.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Return the ground test switch to NORM.</Para>
+</ListItem>
+<ListItem>
+<Para>Remove pressure from the center hydraulic system.</Para>
+</ListItem>
+<ListItem>
+<Para>Remove landing gear downlock pins.</Para>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+<OperationProcedure>
+<Para>Dispatch with appropriate performance adjustments applied.  Performance is available using the Boeing Takeoff Module (BTM).</Para>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+<MELSubItem itemNbr="32-30-03-01">
+<Title>Left Lockup Valve Control Systems (1 and 2)</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="2" nbrRequired="1" maintIndicator="(M)">
+<DispatchConditionRemarks>
+<Para>One may be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Inoperative system is deactivated.</Para>
+</ListItem>
+<ListItem>
+<Para>Remaining left lockup valve control system is verified to operate normally once each flight day.</Para>
+</ListItem>
+<ListItem>
+<Para>Both lockup valve control systems for the right semi lever gear operate normally.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Deactivate the inoperative left lockup valve control system and verify the remaining left valve lockup control system operates normally once each flight day (AMM-DDG 32-30-03).</Para>
+<List listType="1.">
+<ListItem>
+<Para>On the LANDING GEAR CONTROL maintenance page 3, identify the inoperative system (1 or 2).</Para>
+<Note>
+<Para>The inoperative system will have a blank display under SLG LOCKUP VALVE.</Para>
+</Note>
+</ListItem>
+<ListItem>
+<Para>Deactivate the inoperative left lockup valve control system (1 or 2).</Para>
+<List listType="A.">
+<ListItem>
+<Para>For inoperative left SLG circuit-1 system, using a flight deck multi-function display only, open circuit breaker MLG L LOCK 1 and lock with an INOP tag.</Para>
+</ListItem>
+<ListItem>
+<Para>For inoperative left SLG circuit-2 system, using a flight deck multi-function display only, open circuit breaker MLG L LOCK 2 and lock with an INOP tag.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Verify the remaining left lockup valve control system operates normally once each flight day.</Para>
+<List listType="A.">
+<ListItem>
+<Para>Confirm the landing gear control lever is in the DOWN position.</Para>
+</ListItem>
+<ListItem>
+<Para>Install landing gear downlock pins.</Para>
+</ListItem>
+<ListItem>
+<Para>Confirm all landing gear doors are open and all three landing gear door safety valve handles are in the SAFE position.  If necessary, open the landing gear doors using the P56 switches.</Para>
+</ListItem>
+<ListItem>
+<Para>Pressurize the center hydraulic system.</Para>
+</ListItem>
+<ListItem>
+<Para>Set the ground test switch to the ENABLE position.</Para>
+</ListItem>
+<ListItem>
+<Para>Set the landing gear lever to the UP position and after 5-seconds set the landing gear lever to the DOWN position.</Para>
+</ListItem>
+<ListItem>
+<Para>On LANDING GEAR CONTROL maintenance page 3, verify the L SLG HYD PRESS indicates approximately 70 PSI.</Para>
+</ListItem>
+<ListItem>
+<Para>Clear the airplane sufficiently to accommodate possible downward vertical motion. For a lightly loaded airplane, vertical downward motion may be as much as 2 inches at the main gear, 4 inches at the tail, and as much as 12 inches at the wing tips. No vertical downward motion is expected for an airplane heavier than 275,000 lb (124,738 kg).</Para>
+</ListItem>
+<ListItem>
+<Para>Use CMCF to start the Special Function LGAC SLG LOCKUP TEST.</Para>
+<Note>
+<Para>The telescoping pistons on both left and right semi lever gear will retract.  Retraction may require approximately 17-seconds.  </Para>
+</Note>
+<Note>
+<Para>Do not stop the CMCF test or navigate away from the CMCF test page so that the ground test remains running.</Para>
+</Note>
+</ListItem>
+<ListItem>
+<Para>On LANDING GEAR CONTROL maintenance page 3, verify the L SLG HYD PRESS indicates approximately 1150 psi.</Para>
+<Note>
+<Para>The indication will be displayed during the first 10-seconds of running the CMCF Special Function LGAC SLG LOCKUP TEST.</Para>
+</Note>
+</ListItem>
+<ListItem>
+<Para>After the left telescoping pistons have retracted, on LANDING GEAR CONTROL maintenance page 3, verify the L SLG HYD PRESS indicates approximately 5000 PSI.</Para>
+</ListItem>
+<ListItem>
+<Para>Use CMCF to stop the Special Function LGAC SLG LOCKUP TEST.</Para>
+<Note>
+<Para>The telescoping pistons on both left and right semi lever gear will extend.  Extension may require approximately 2-seconds.</Para>
+</Note>
+</ListItem>
+<ListItem>
+<Para>On LANDING GEAR CONTROL maintenance page 3, verify the L SLG HYD PRESS indicates approximately 70 PSI.</Para>
+</ListItem>
+<ListItem>
+<Para>Return the ground test switch to NORM.</Para>
+</ListItem>
+<ListItem>
+<Para>Remove pressure from the center hydraulic system.</Para>
+</ListItem>
+<ListItem>
+<Para>Remove landing gear downlock pins.</Para>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="32-30-03-02">
+<Title>Right Lockup Valve Control Systems (1 and 2)</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="2" nbrRequired="1" maintIndicator="(M)">
+<DispatchConditionRemarks>
+<Para>One may be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Inoperative system is deactivated.</Para>
+</ListItem>
+<ListItem>
+<Para>Remaining right lockup valve control system is verified to operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Both lockup valve control systems for the left semi lever gear operate normally.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Deactivate the inoperative right lockup valve control system and verify the remaining right lockup valve control system operates normally once each flight day (AMM-DDG 32-30-03).</Para>
+<List listType="1.">
+<ListItem>
+<Para>On the LANDING GEAR CONTROL maintenance page 3, identify the inoperative system (1 or 2).</Para>
+<Note>
+<Para>The inoperative system will have a blank display under SLG LOCKUP VALVE.</Para>
+</Note>
+</ListItem>
+<ListItem>
+<Para>Deactivate the inoperative right lockup valve control system (1 or 2).</Para>
+<List listType="A.">
+<ListItem>
+<Para>For inoperative right SLG circuit-1 system, using a flight deck multi-function display only, open circuit breaker MLG R LOCK 1 and lock with an INOP tag.</Para>
+</ListItem>
+<ListItem>
+<Para>For inoperative right SLG circuit-2 system, using a flight deck multi-function display only, open circuit breaker MLG R LOCK 2 and lock with an INOP tag.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Verify the remaining right lockup valve control system operates normally once each flight day.</Para>
+<List listType="A.">
+<ListItem>
+<Para>Confirm the landing gear control lever is in the DOWN position.</Para>
+</ListItem>
+<ListItem>
+<Para>Install landing gear downlock pins.</Para>
+</ListItem>
+<ListItem>
+<Para>Confirm all landing gear doors are open and all three landing gear door safety valve handles are in the SAFE position.  If necessary, open the landing gear doors using the P56 switches.</Para>
+</ListItem>
+<ListItem>
+<Para>Pressurize the center hydraulic system.</Para>
+</ListItem>
+<ListItem>
+<Para>Set the ground test switch to the ENABLE position.</Para>
+</ListItem>
+<ListItem>
+<Para>Set the landing gear lever to the UP position and after 5-seconds set the landing gear lever to the DOWN position.</Para>
+</ListItem>
+<ListItem>
+<Para>On LANDING GEAR CONTROL maintenance page 3, verify the R SLG HYD PRESS indicates approximately 70 PSI.</Para>
+</ListItem>
+<ListItem>
+<Para>Clear the airplane sufficiently to accommodate possible downward vertical motion. For a lightly loaded airplane, vertical downward motion may be as much as 2 inches at the main gear, 4 inches at the tail, and as much as 12 inches at the wing tips. No vertical downward motion is expected for an airplane heavier than 275,000 lb (124,738 kg).</Para>
+</ListItem>
+<ListItem>
+<Para>Use CMCF to start the Special Function LGAC SLG LOCKUP TEST.</Para>
+<Note>
+<Para>The telescoping pistons on both left and right semi lever gear will retract.  Retraction may require approximately 17-seconds.  </Para>
+</Note>
+<Note>
+<Para>Do not stop the CMCF test or navigate away from the CMCF test page so that the ground test remains running.</Para>
+</Note>
+</ListItem>
+<ListItem>
+<Para>On LANDING GEAR CONTROL maintenance page 3, verify the R SLG HYD PRESS indicates approximately 1150 psi.</Para>
+<Note>
+<Para>The indication will be displayed during the first 10-seconds of running the CMCF Special Function LGAC SLG LOCKUP TEST.</Para>
+</Note>
+</ListItem>
+<ListItem>
+<Para>After the left telescoping pistons have retracted, on LANDING GEAR CONTROL maintenance page 3, verify the R SLG HYD PRESS indicates approximately 5000 PSI.</Para>
+</ListItem>
+<ListItem>
+<Para>Use CMCF to stop the Special Function LGAC SLG LOCKUP TEST.</Para>
+<Note>
+<Para>The telescoping pistons on both left and right semi lever gear will extend.  Extension may require approximately 2-seconds.</Para>
+</Note>
+</ListItem>
+<ListItem>
+<Para>On LANDING GEAR CONTROL maintenance page 3, verify the R SLG HYD PRESS indicates approximately 70 PSI.</Para>
+</ListItem>
+<ListItem>
+<Para>Return the ground test switch to NORM.</Para>
+</ListItem>
+<ListItem>
+<Para>Remove pressure from the center hydraulic system.</Para>
+</ListItem>
+<ListItem>
+<Para>Remove landing gear downlock pins.</Para>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+</MELItem>
+</DispatchItems>

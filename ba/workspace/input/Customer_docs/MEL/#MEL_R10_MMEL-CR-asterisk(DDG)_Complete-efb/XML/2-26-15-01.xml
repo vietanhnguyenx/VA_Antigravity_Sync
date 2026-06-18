@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM">]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.2-26-15-01.1658.2-26-15-01" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="26" superSectionNumber="2" sectionName="MEL" chapterName="Fire Protection" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2021-02-24" rev:revStatus="U" rev:revNumber="10" />
+</PUMetaData>
+<MELItem itemNbr="26-15-01" id="X-BOEING:FTID:81205.787.DDG.CU.MEL.2-26-15-01.1.2-26-15-01">
+<Title>APU Fire Detection System</Title>
+<DispatchCondition dispCondOptions="A" repairInterval="C" nbrInstalled="1" nbrRequired="0">
+<Title>APU Not Used (*)</Title>
+<DispatchConditionRemarks>
+<Para>May be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>APU selector switch remains in OFF position.</Para>
+</ListItem>
+<ListItem>
+<Para>VFSG systems operate normally.</Para>
+</ListItem>
+<ListItem>
+<Para>EDTO beyond 180 minutes is not conducted.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceNote>
+<Para>The APU fire detection system is inoperative when both DET FIRE LOOP A APU and DET FIRE LOOP B APU status messages are displayed.</Para>
+</MaintenanceNote>
+<OperationNote>
+<Para>Use MEL item 49-11-01 (O) procedure.</Para>
+</OperationNote>
+</DispatchProcedure>
+</DispatchCondition>
+<DispatchCondition dispCondOptions="B" repairInterval="C" nbrInstalled="1" nbrRequired="0" maintIndicator="(M)">
+<Title>APU Used on Ground</Title>
+<DispatchConditionRemarks>
+<Para>May be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>APU is used for ground operations only.</Para>
+</ListItem>
+<ListItem>
+<Para>APU is continuously monitored by ground personnel when operating.</Para>
+</ListItem>
+<ListItem>
+<Para>APU external control system operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>APU is not used during taxi.</Para>
+</ListItem>
+<ListItem>
+<Para>VFSG systems operate normally.</Para>
+</ListItem>
+<ListItem>
+<Para>EDTO beyond 180 minutes is not conducted. </Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Note>
+<Para>A VFSG system is considered to be operating normally if its associated status message (ELEC GEN SYS L1, L2, R1 or R2) is not displayed.</Para>
+</Note>
+<Note>
+<Para>The APU fire detection system is inoperative when both DET FIRE LOOP A APU and DET FIRE LOOP B APU status messages are displayed.</Para>
+</Note>
+<Para>The APU must be continually visually monitored when the APU is used on the ground.  If an APU fire is observed, the APU fire extinguisher must be manually discharged using the APU fire shutdown switch on the P40 service and APU shutdown panel (nose gear) or the APU and Cargo Fire Panel (P5) APU fire switch.</Para>
+</MaintenanceProcedure>
+<OperationNote>
+<Para>Use MEL item 49-11-01 (O) procedure.</Para>
+</OperationNote>
+</DispatchProcedure>
+</DispatchCondition>
+<MELSubItem itemNbr="26-15-01-01">
+<Title>APU Fire Detection Loops (*)</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="2" nbrRequired="1">
+<DispatchConditionRemarks>
+<Para>One may be inoperative.</Para>
+</DispatchConditionRemarks>
+</DispatchCondition>
+</MELSubItem>
+</MELItem>
+</DispatchItems>

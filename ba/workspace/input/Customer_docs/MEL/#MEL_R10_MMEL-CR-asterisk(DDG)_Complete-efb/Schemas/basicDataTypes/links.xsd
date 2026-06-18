@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://www.boeing.com/FTID-ML"
+    xmlns:rev="http://www.boeing.com/FTID-ML/Revision"
+    targetNamespace="http://www.boeing.com/FTID-ML" 
+    elementFormDefault="qualified" 
+    attributeFormDefault="unqualified"
+    version="FTID 2.6">
+
+<!-- 	
+=================================================================
+
+
+Copyright Information:
+      Boeing Proprietary and Confidential - 
+      All Rights Reserved since 2006.
+
+      This schema file is part of the Boeing Flight Technical 
+      Integrated Data (FTID) Specification based on XML.
+      All rights are reserved under Boeing Flight Operations 
+      digital data entitlements, products or services.
+
+     
+Contact Information:   	
+        The Boeing Company
+        Flight Operations Support
+        P.O. Box 3707	MS 20-89
+        Seattle, WA 98124-2207
+        USA
+        email:  flighttraining@Boeing.com
+        Phone:  (206) 662-4000
+        Fax:    (206) 662-4743
+
+		
+===================================================================
+-->
+
+
+<xs:include schemaLocation="../metadataTypes/effect.xsd"/>
+<xs:import namespace="http://www.boeing.com/FTID-ML/Revision" schemaLocation="../metadataTypes/revision.xsd"/>
+
+
+<!--=====================================================-->
+<!--  iLink element definition -->
+<!--=====================================================-->
+<xs:element name="iLink" type="iLinkType"/>
+<xs:complexType name="iLinkType" mixed="true">
+    <xs:annotation>
+        <xs:documentation>Container for different linking mechanism</xs:documentation>
+    </xs:annotation>
+
+    <xs:sequence>
+        <xs:element name="Effectivities" type="EffectivitiesType" minOccurs="0"/>
+
+    </xs:sequence>
+
+    <xs:attributeGroup ref="linkAttrGrp"/>
+    <xs:attributeGroup ref="globalAttrGrp"/>
+</xs:complexType>
+
+
+<!--=====================================================-->
+<!-- domain Reference attribute definition -->
+<!-- domain is implementation specific. Tranditional document types
+     can be used as domains like (FCOM, OM1, OM2, QRH, etc.) 
+-->
+<!--=====================================================-->
+<xs:simpleType name="domainRefType">
+    <xs:annotation>
+        <xs:documentation>Specify the data domain where the target link is referenced</xs:documentation>
+    </xs:annotation>
+
+    <xs:restriction base="xs:string">
+        <xs:pattern value="(\c)+"/>
+    </xs:restriction>
+</xs:simpleType>
+
+
+<!--=====================================================-->
+<!-- fileRef attribute definition -->
+<!-- allowed for including path, space, underscore, hyphen, etc. in the name -->
+<!--=====================================================-->
+<xs:simpleType name="fileRefType">
+    <xs:annotation>
+        <xs:documentation>A File-name reference</xs:documentation>
+    </xs:annotation>
+
+    <xs:restriction base="xs:string">
+        <xs:pattern value="(\c|/| )+"/>
+    </xs:restriction>
+</xs:simpleType>
+
+
+<!--=====================================================-->
+<!-- linkRef attribute definition -->
+<!-- system implementated unique linked target -->
+<!--=====================================================-->
+<xs:simpleType name="linkRefType">
+    <xs:annotation>
+        <xs:documentation>Unique linked target like a persistent ID</xs:documentation>
+    </xs:annotation>
+
+    <xs:restriction base="xs:string">
+    </xs:restriction>
+</xs:simpleType>
+
+
+<!--=====================================================-->
+<!-- Group of link attributes -->
+<!--=====================================================-->
+<xs:attributeGroup name="linkAttrGrp">
+    <xs:attribute name="type" type="xs:string" fixed="simple"/>
+    <xs:attribute name="domainRef" type="domainRefType" default="local"/>
+    <xs:attribute name="fileRef" type="fileRefType" use="optional"/>
+    <xs:attribute name="linkRef" type="linkRefType" use="required"/>
+</xs:attributeGroup>
+
+
+</xs:schema>
+

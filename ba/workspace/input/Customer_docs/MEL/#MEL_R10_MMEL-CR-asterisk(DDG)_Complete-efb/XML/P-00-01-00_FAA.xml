@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE FrontMatter[<!NOTATION CGM SYSTEM "CGM">]>
+<FrontMatter id="X-BOEING:FTID:81205.787.DDG.PU.FM.P-00-01-00.105460.P-00-01-00_FAA" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/FrontMatter.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="" superSectionNumber="P" sectionName="Preface" chapterName="Revision Record" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2025-09-30" rev:revStatus="R" rev:revNumber="10" />
+</PUMetaData>
+<RevisionRecord id="X-BOEING:FTID:81205.787.DDG.CU.FMR.P-00-01-00.105460.P-00-01-00_FAA">
+<Para />
+<FMtopic>
+<Title>
+<?FTID-xref 1331696.P-00-01-00_FAA?>Revision Transmittal Letter</Title>
+<Para rev:revStatus="R" rev:revHighlight="Update revision record">
+<?FTID-rev start?>This is the MINIMUM EQUIPMENT LIST at issue date 30SEP25 for the B787 and replacing last issue dated 19JUN24<?FTID-rev end?></Para>
+</FMtopic>
+<FMtopic>
+<Title>Normal Revision</Title>
+<Para>Issued to cover the FAA MMEL full number revision. The MEL normal revision is numbered in a numerical ascending sequence i.e. 1, 2, 3 and so on.</Para>
+</FMtopic>
+<FMtopic>
+<Title>Intermediate Revision</Title>
+<Para>Intermediate revision is issued between normal revision to cover minor changes but not limited to MMEL supplement, additional aircraft registration, correction to current approved MEL, etc. They are numbered in ascending sequence i.e. 1A, 1B, 1C… for intermediate revisions issued between normal revision 1 and 2.</Para>
+</FMtopic>
+<FMtopic>
+<Title>
+<?FTID-xref 1332776.P-00-01-00_FAA?>Temporary Revision</Title>
+<Para rev:revStatus="R" rev:revHighlight="Update Tempo rev definition">Temporary Revisions are printed on yellow paper and issued to address urgent matters arising between normal revisions. They are accompanied by a List of Effective Temporary Pages. <?FTID-rev start?>When a temporary content replaces an existing
+content rather than introducing a new one, the replaced content is displayed on a grey cross-hatched background for clear identification.<?FTID-rev end?></Para>
+<Para rev:revStatus="R" rev:revHighlight="Update Tempo rev definition">
+<?FTID-rev start?>Several Temporary Revisions may coexist until a Normal Revision is issued incorporating all of them. - Refer to Section 4.2.5.1 – VNA Quality Manual (QM)<?FTID-rev end?></Para>
+<Para rev:revStatus="R" rev:revHighlight="Update Tempo rev definition">
+<?FTID-rev start?>- Refer to Section 4.2.5.1 – VNA Quality Manual (QM)<?FTID-rev end?></Para>
+</FMtopic>
+<FMtopic>
+<Para>For any questions or comments related to this manual, please contact the Flight Operation Engineering Dept (FOE).
+FOR DISTRIBUTION RELATED QUESTIONS </Para>
+<Para rev:revStatus="R" rev:revHighlight="Update contactor">
+<?FTID-rev start?>E.MAIL: chinl@vietnamairlines.com<?FTID-rev end?></Para>
+<Para>FOR TECHNICAL CONTENT RELATED QUESTIONS</Para>
+<Para rev:revStatus="R" rev:revHighlight="Update contactor">
+<?FTID-rev start?>E.MAIL: ngatv@vietnamairlines.com<?FTID-rev end?></Para>
+<Para>Mailing address: FLIGHT OPERATIONS ENGINEERING DEPARTMENT
+200 NGUYEN SON STREET - LONG BIEN DISTRICT - HA NOI -
+VIETNAM
+TEL : +84 24 38 732 732/ ext: 2856</Para>
+</FMtopic>
+<FMtopic>
+<Title>Filing Instructions</Title>
+<Para>Consult the List of Effective Pages. The List of Effective Pages determines the correct content of the manual. Pages identified with an asterisk (*) are either replacement pages or new (original) issue pages.</Para>
+<Para>Pages may be re-dated without revision bars. This is due to repagination of content. The List of Effected Pages will reflect the date change, but there will not be a corresponding revision highlight.</Para>
+</FMtopic>
+<FMtopic>
+<Title>Revision Highlights</Title>
+<Para>Specific changes in this revision are noted in the highlights.</Para>
+</FMtopic>
+</RevisionRecord>
+</FrontMatter>

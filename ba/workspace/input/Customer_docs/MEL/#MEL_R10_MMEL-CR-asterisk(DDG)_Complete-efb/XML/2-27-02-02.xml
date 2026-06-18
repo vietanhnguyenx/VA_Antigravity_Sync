@@ -1,0 +1,373 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM">]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.2-27-02-02.1339.2-27-02-02" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="27" superSectionNumber="2" sectionName="MEL" chapterName="Flight Controls" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2024-06-19" rev:revStatus="U" rev:revNumber="10" />
+</PUMetaData>
+<MELItem itemNbr="27-02-02" id="X-BOEING:FTID:81205.787.DDG.CU.MEL.2-27-02-02.1.2-27-02-02">
+<Title>Flight Control Modules (FCM)</Title>
+<MELSubItem itemNbr="27-02-02-01">
+<Title>Center FCM</Title>
+<DispatchCondition repairInterval="B" nbrInstalled="1" nbrRequired="0" maintIndicator="(M)">
+<DispatchConditionRemarks>
+<Para>May be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Center FCM is deactivated.</Para>
+</ListItem>
+<ListItem>
+<Para>Left and right FCMs are power cycled and operate normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Flap/slat hydraulic control module (HCM) solenoid coils are considered inoperative.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<Note>
+<Para> One coil of each pair of flap/slat hydraulic control module (HCM) solenoid coils will be unpowered.  The airplane must also be dispatched using MEL item 27-51-05.</Para>
+</Note>
+<Note>
+<Para> ISFD Heading will be inoperative and the associated HDG flag will be displayed.  The airplane must also be dispatched using MEL item 34-24-01-04.</Para>
+</Note>
+<Note>
+<Para>The PFCS INTERFACE status message will be displayed. The airplane must also be dispatched using MEL item 27-02-03.</Para>
+</Note>
+<Note>
+<Para>The PEDAL STEERING CHAN status message will be displayed. The airplane must also be dispatched using MEL item 32-51-01-02.</Para>
+</Note>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Deactivate the Center FCM and verify Left and Right FCMs work normally (AMM DDG 27-02-02).</Para>
+<Note>
+<Para> The FCMs are interchangeable.</Para>
+</Note>
+<List listType="1.">
+<ListItem>
+<Para>Gain access to the C1 flight control electronics cabinet.  Open and collar PCM-C1 panel FCM circuit breaker.</Para>
+</ListItem>
+<ListItem>
+<Para>Cycle power to Left FCM:</Para>
+<List listType="A.">
+<ListItem>
+<Para>Using a flight deck multi-function display only, open circuit breaker FCE CABINET-L BACKUP.</Para>
+</ListItem>
+<ListItem>
+<Para>Wait a minimum of 30 seconds.</Para>
+</ListItem>
+<ListItem>
+<Para>Close circuit breaker FCE CABINET-L BACKUP.</Para>
+</ListItem>
+<ListItem>
+<Para>Wait a minimum of 5 minutes for FCM to complete power-up and initialization. </Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Cycle power to Right FCM:</Para>
+<List listType="A.">
+<ListItem>
+<Para>Using a flight deck multi-function display only, open circuit breaker FCE CABINET-R BACKUP.</Para>
+</ListItem>
+<ListItem>
+<Para>Wait a minimum of 30 seconds.</Para>
+</ListItem>
+<ListItem>
+<Para>Close circuit breaker FCE CABINET-R BACKUP.</Para>
+</ListItem>
+<ListItem>
+<Para>Wait a minimum of 5 minutes for FCM to complete power-up and initialization. </Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Do the FCM (L) and FCM (R) system tests (AMM 27-02-18-00A). If the test fails, do corrective action and test again.</Para>
+</ListItem>
+<ListItem>
+<Para>Confirm the following status messages are not displayed:</Para>
+<List listType="A.">
+<ListItem>
+<Para>FLIGHT CONTROL SYS</Para>
+</ListItem>
+<ListItem>
+<Para>AILERON SYS</Para>
+</ListItem>
+<ListItem>
+<Para>ELEC SPOILER SYS</Para>
+</ListItem>
+<ListItem>
+<Para>ELEVATOR SYS</Para>
+</ListItem>
+<ListItem>
+<Para>FLAPERON SYS</Para>
+</ListItem>
+<ListItem>
+<Para>HYD SPOILER SYS</Para>
+</ListItem>
+<ListItem>
+<Para>PILOT CONTROL SYS</Para>
+</ListItem>
+<ListItem>
+<Para>RUDDER SYS</Para>
+</ListItem>
+<ListItem>
+<Para>STABILIZER SYS</Para>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+<OperationNote>
+<Para>Automatic dimming of the ISFD lighting will be inoperative.  Manual ISFD dimming is still available.</Para>
+<Para>RNP AR APCH, RNP APCH, RNP 1/RNP 2, RNAV 1/RNAV 2, P-RNAV, B-RNAV, RNAV 5, RNP 2/RNP 4, RNP 10/RNAV 10 and Advanced RNP operations require a single Air Data Reference Function (ADRF). ADRF function is hosted inside each of the 3 FCMs.</Para>
+</OperationNote>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="27-02-02-02">
+<Title>Left FCM</Title>
+<DispatchCondition repairInterval="B" nbrInstalled="1" nbrRequired="0" maintIndicator="(M)">
+<DispatchConditionRemarks>
+<Para>May be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Left FCM is deactivated.</Para>
+</ListItem>
+<ListItem>
+<Para>Center and right FCMs are power cycled and operate normally.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<Note>
+<Para>The PFCS INTERFACE status message will be displayed.  The airplane must also be dispatched using MEL item 27-02-03.</Para>
+</Note>
+<Note>
+<Para>The PEDAL STEERING CHAN status message will be displayed.  The airplane must also be dispatched using MEL item 32-51-01-02.</Para>
+</Note>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Deactivate the Left FCM and verify Center and Right FCMs work normally (AMM DDG 27-02-02).</Para>
+<Note>
+<Para> The FCMs are interchangeable.</Para>
+</Note>
+<Note>
+<Para> When the left FCM is deactivated, the opposite side PFD FPM fail flag is expected to appear when the PFD FPV is selected on the ground. The Captain and FO FPVs will operate normally when airborne.</Para>
+</Note>
+<List listType="1.">
+<ListItem>
+<Para>Gain access to the L flight control electronics cabinet.  Open and collar PCM-L panel FCM circuit breaker.</Para>
+</ListItem>
+<ListItem>
+<Para>Cycle power to C1 FCM:</Para>
+<List listType="A.">
+<ListItem>
+<Para>Using a flight deck multi-function display only, open circuit breaker FCE CABINET-C1 BACKUP.</Para>
+</ListItem>
+<ListItem>
+<Para>Wait a minimum of 30 seconds.</Para>
+</ListItem>
+<ListItem>
+<Para>Close circuit breaker FCE CABINET-C1 BACKUP.</Para>
+</ListItem>
+<ListItem>
+<Para>Wait a minimum of 5 minutes for FCM to complete power-up and initialization. </Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Cycle power to Right FCM:</Para>
+<List listType="A.">
+<ListItem>
+<Para>Using a flight deck multi-function display only, open circuit breaker FCE CABINET-R BACKUP.</Para>
+</ListItem>
+<ListItem>
+<Para>Wait a minimum of 30 seconds.</Para>
+</ListItem>
+<ListItem>
+<Para>Close circuit breaker FCE CABINET-R BACKUP.</Para>
+</ListItem>
+<ListItem>
+<Para>Wait a minimum of 5 minutes for FCM to complete power-up and initialization. </Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Do the FCM (C) and FCM (R) system tests (AMM 27-02-18-00A). If the test fails, do corrective action and test again.</Para>
+</ListItem>
+<ListItem>
+<Para>Confirm the following status messages are not displayed:</Para>
+<List listType="A.">
+<ListItem>
+<Para>FLIGHT CONTROL SYS</Para>
+</ListItem>
+<ListItem>
+<Para>AILERON SYS</Para>
+</ListItem>
+<ListItem>
+<Para>ELEC SPOILER SYS</Para>
+</ListItem>
+<ListItem>
+<Para>ELEVATOR SYS</Para>
+</ListItem>
+<ListItem>
+<Para>FLAPERON SYS</Para>
+</ListItem>
+<ListItem>
+<Para>HYD SPOILER SYS</Para>
+</ListItem>
+<ListItem>
+<Para>PILOT CONTROL SYS</Para>
+</ListItem>
+<ListItem>
+<Para>RUDDER SYS</Para>
+</ListItem>
+<ListItem>
+<Para>STABILIZER SYS</Para>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+<OperationNote>
+<Para>RNP AR APCH, RNP APCH, RNP 1/RNP 2, RNAV 1/RNAV 2, P-RNAV, B-RNAV, RNAV 5, RNP 2/RNP 4, RNP 10/RNAV 10 and Advanced RNP operations require a single Air Data Reference Function (ADRF). ADRF function is hosted inside each of the 3 FCMs.</Para>
+</OperationNote>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="27-02-02-03">
+<Title>Right FCM</Title>
+<DispatchCondition repairInterval="B" nbrInstalled="1" nbrRequired="0" maintIndicator="(M)">
+<DispatchConditionRemarks>
+<Para>May be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Right FCM is deactivated.</Para>
+</ListItem>
+<ListItem>
+<Para>Left and center FCMs are power cycled and operate normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Flap/slat hydraulic control module (HCM) solenoid coils are considered inoperative.</Para>
+</ListItem>
+<ListItem>
+<Para>Trailing edge variable camber (cruise flaps) function is considered inoperative.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<Note>
+<Para> One coil of each pair of flap/slat hydraulic control module (HCM) solenoid coils will be unpowered.  The airplane must also be dispatched using MEL item 27-51-05.</Para>
+</Note>
+<Note>
+<Para> Variable camber trim unit solenoid valves will be unpowered, resulting in loss of the trailing edge variable camber (cruise flaps) function.  The airplane must also be dispatched using MEL item 27-51-02.</Para>
+</Note>
+<Note>
+<Effectivities>
+<Effectivity>For 787-9 / -10 (VN-A861, VN-A862, VN-A863, VN-A864, VN-865, VN-A866, VN-A867, VN-A868, VN-A869, VN-A870, VN-A871, VN-A872, VN-A873, VN-A874, VN-A877, VN-A878, VN-A879):</Effectivity>
+</Effectivities>
+<Para>The TAIL AIRFLOW SYS status message will be displayed.  The airplane must also be dispatched using MEL item 27-24-01.</Para>
+</Note>
+<Note>
+<Para>The PFCS INTERFACE status message will be displayed.  The airplane must also be dispatched using MEL item 27-02-03.</Para>
+</Note>
+<Note>
+<Para>The PEDAL STEERING CHAN status message will be displayed.  The airplane must also be dispatched using MEL item 32-51-01-02.</Para>
+</Note>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Deactivate the Right FCM and verify Left and Center FCMs work normally (AMM DDG 27-02-02).</Para>
+<Note>
+<Para> The FCMs are interchangeable.</Para>
+</Note>
+<Note>
+<Para> When the right FCM is deactivated, the opposite side PFD FPM fail flag is expected to appear when the PFD FPV is selected on the ground. The Captain and FO FPVs will operate normally when airborne.</Para>
+</Note>
+<List listType="1.">
+<ListItem>
+<Para>Gain access to the R flight control electronics cabinet.  Open and collar PCM-R panel FCM circuit breaker.</Para>
+</ListItem>
+<ListItem>
+<Para>Cycle power to Left FCM:</Para>
+<List listType="A.">
+<ListItem>
+<Para>Using a flight deck multi-function display only, open circuit breaker FCE CABINET-L BACKUP.</Para>
+</ListItem>
+<ListItem>
+<Para>Wait a minimum of 30 seconds.</Para>
+</ListItem>
+<ListItem>
+<Para>Close circuit breaker FCE CABINET-L BACKUP.</Para>
+</ListItem>
+<ListItem>
+<Para>Wait a minimum of 5 minutes for FCM to complete power-up and initialization. </Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Cycle power to C1 FCM:</Para>
+<List listType="A.">
+<ListItem>
+<Para>Using a flight deck multi-function display only, open circuit breaker FCE CABINET-C1 BACKUP.</Para>
+</ListItem>
+<ListItem>
+<Para>Wait a minimum of 30 seconds.</Para>
+</ListItem>
+<ListItem>
+<Para>Close circuit breaker FCE CABINET-C1 BACKUP.</Para>
+</ListItem>
+<ListItem>
+<Para>Wait a minimum of 5 minutes for FCM to complete power-up and initialization. </Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Do the FCM (C) and FCM (L) system tests (AMM 27-02-18-00A). If the test fails, do corrective action and test again.</Para>
+</ListItem>
+<ListItem>
+<Para>Confirm the following status messages are not displayed:</Para>
+<List listType="A.">
+<ListItem>
+<Para>FLIGHT CONTROL SYS</Para>
+</ListItem>
+<ListItem>
+<Para>AILERON SYS</Para>
+</ListItem>
+<ListItem>
+<Para>ELEC SPOILER SYS</Para>
+</ListItem>
+<ListItem>
+<Para>ELEVATOR SYS</Para>
+</ListItem>
+<ListItem>
+<Para>FLAPERON SYS</Para>
+</ListItem>
+<ListItem>
+<Para>HYD SPOILER SYS</Para>
+</ListItem>
+<ListItem>
+<Para>PILOT CONTROL SYS</Para>
+</ListItem>
+<ListItem>
+<Para>RUDDER SYS</Para>
+</ListItem>
+<ListItem>
+<Para>STABILIZER SYS</Para>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+<OperationNote>
+<Para>RNP AR APCH, RNP APCH, RNP 1/RNP 2, RNAV 1/RNAV 2, P-RNAV, B-RNAV, RNAV 5, RNP 2/RNP 4, RNP 10/RNAV 10 and Advanced RNP operations require a single Air Data Reference Function (ADRF). ADRF function is hosted inside each of the 3 FCMs.</Para>
+</OperationNote>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="27-02-02-04">
+<Title>Primary Flight Computers DISC Light (*)</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="1" nbrRequired="0" />
+</MELSubItem>
+</MELItem>
+</DispatchItems>

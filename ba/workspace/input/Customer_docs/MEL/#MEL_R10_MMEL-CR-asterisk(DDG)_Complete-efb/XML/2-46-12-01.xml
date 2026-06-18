@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM">]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.2-46-12-01.1731.2-46-12-01" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="46" superSectionNumber="2" sectionName="MEL" chapterName="Information Systems" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2024-06-19" rev:revStatus="U" rev:revNumber="10" />
+</PUMetaData>
+<MELItem itemNbr="46-12-01" id="X-BOEING:FTID:81205.787.DDG.CU.MEL.2-46-12-01.1.2-46-12-01">
+<Title>Core Network System</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="1" nbrRequired="0">
+<DispatchConditionRemarks>
+<Note>
+<Para>Any function that operates normally may be used.</Para>
+</Note>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceNote>
+<Para>The Core Network System consists of the Network Interface Module (NIM), Ethernet Gateway Module (EGM), Controller Server Module (CSM), Crew information system / maintenance system (CIS/MS), Airline File Server Modules (FSM), hosted applications, and the core network cabinet. An inoperative core network system or supporting component may render one or more of the following functions
+inoperative:</Para>
+<List listType="1.">
+<ListItem>
+<Para>Maintenance laptop interfaces (both wired and wireless) to:</Para>
+<List listType="A.">
+<ListItem>
+<Para>System Maintenance Pages</Para>
+</ListItem>
+<ListItem>
+<Para>Synoptics</Para>
+</ListItem>
+<ListItem>
+<Para>Circuit breakers</Para>
+</ListItem>
+<ListItem>
+<Para>Central Maintenance Computing Function (CMCF)</Para>
+<Note>
+<Para>The above functions can still be accessed via Flight Deck Multi-Function Displays</Para>
+</Note>
+</ListItem>
+<ListItem>
+<Para>e-Logbook</Para>
+<Note>
+<Para>The e-Logbook can still be accessed directly via the Electronic Flight Bags.</Para>
+</Note>
+</ListItem>
+<ListItem>
+<Para>Airplane Condition Monitoring Function (ACMF)</Para>
+</ListItem>
+<ListItem>
+<Para>IFE maintenance screens</Para>
+</ListItem>
+<ListItem>
+<Para>CSS maintenance screens</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>All software and database data load functions</Para>
+</ListItem>
+<ListItem>
+<Para>Broadband off-board communication or wireless gatelink:</Para>
+<List listType="A.">
+<ListItem>
+<Para>Upload of parts via Boeing Electronic Distribution of Software (BEDS)</Para>
+</ListItem>
+<ListItem>
+<Para>Download of recorded data (ACMF, engine, etc.) via BEDS</Para>
+</ListItem>
+<ListItem>
+<Para>Upload &amp; download of EFB data (charts, logbook data, airport database, etc.).  The airplane must be dispatched using MEL item 46-11-01.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Core Network quick access recorder functions</Para>
+</ListItem>
+<ListItem>
+<Para>Onboard maintenance information, if hosted on the Core Network</Para>
+</ListItem>
+<ListItem>
+<Para>Airport map function.  The airplane must be dispatched using MEL item 31-61-13.</Para>
+</ListItem>
+<ListItem>
+<Para>Flight deck printer (except via either EFB).  The airplane must be dispatched using MEL item 31-33-01.</Para>
+</ListItem>
+<ListItem>
+<Para>Flight deck door video surveillance. The airplane must be dispatched using MEL item 23-75-01.</Para>
+</ListItem>
+</List>
+</MaintenanceNote>
+<OperationNote>
+<Para>An inoperative Core Network System or supporting component may render the following functions inoperative: </Para>
+<List listType="1.">
+<ListItem>
+<Para>ACARS communication to or from the EFBs.  Manual entry of preflight EFB and/or Flight Management Function inputs may be required.</Para>
+</ListItem>
+<ListItem>
+<Para>Airport map function.  </Para>
+</ListItem>
+<ListItem>
+<Para>Flight deck printer (except via either EFB).  </Para>
+</ListItem>
+<ListItem>
+<Para>Flight deck door video surveillance.  </Para>
+</ListItem>
+</List>
+</OperationNote>
+</DispatchProcedure>
+</DispatchCondition>
+</MELItem>
+</DispatchItems>

@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM">]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.2-27-51-01.2585.2-27-51-01" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="27" superSectionNumber="2" sectionName="MEL" chapterName="Flight Controls" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2021-02-24" rev:revStatus="U" rev:revNumber="10" />
+</PUMetaData>
+<MELItem itemNbr="27-51-01" id="X-BOEING:FTID:81205.787.DDG.CU.MEL.2-27-51-01.1.2-27-51-01">
+<Title>Flap Lever Position Transducers</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="4" nbrRequired="3" maintIndicator="(M)">
+<DispatchConditionRemarks>
+<Para>One may be inoperative provided:  </Para>
+<List listType="a.">
+<ListItem>
+<Para>Remaining transducers are verified to operate normally before each departure.</Para>
+</ListItem>
+<ListItem>
+<Para>Slats and flaps alternate mode is verified to operate normally before each departure.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Verify remaining flap lever position transducers operate normally prior to each departure and verify operation of slat and flaps alternate mode before each departure (AMM DDG 27-51-01).</Para>
+<List listType="1.">
+<ListItem>
+<Para>Verify remaining flap lever position transducers operate normally.</Para>
+<List listType="A.">
+<ListItem>
+<Para>Confirm flaps are UP.</Para>
+</ListItem>
+<ListItem>
+<Para>Pressurize the center hydraulic system.</Para>
+</ListItem>
+<ListItem>
+<Para>Move flap lever to the F1 position.</Para>
+</ListItem>
+<ListItem>
+<Para>Confirm the FLAP/SLAT CONTROL caution message is not displayed.</Para>
+</ListItem>
+<ListItem>
+<Para>Move flap lever to the UP position.</Para>
+</ListItem>
+<ListItem>
+<Para>Depressurize the hydraulic system.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Verify operation of slat and flaps alternate mode.</Para>
+<List listType="A.">
+<ListItem>
+<Para>Confirm flaps are UP.</Para>
+</ListItem>
+<ListItem>
+<Para>For all three hydraulic systems available, turn hydraulics on.</Para>
+</ListItem>
+<ListItem>
+<Para>For only one or two of the hydraulic systems available at once:</Para>
+<List listType="1)">
+<ListItem>
+<Para>With hydraulics off, move the speedbrake lever UP.</Para>
+</ListItem>
+<ListItem>
+<Para>Pressurize and depressurize hydraulic systems in this sequence: left, right.</Para>
+</ListItem>
+<ListItem>
+<Para>Pressurize the center hydraulic system</Para>
+</ListItem>
+<ListItem>
+<Para>Confirm that all spoilers are extended.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Select ALTN on the ALTN FLAPS ARM switch. </Para>
+<Note>
+<Para>The FLAP/SLAT CONTROL caution message will be displayed.</Para>
+</Note>
+</ListItem>
+<ListItem>
+<Para>Move the ALTN FLAPS selector to EXT.</Para>
+<Note>
+<Para>If hydraulic systems are pressurized, spoilers, ailerons, and flaperons will move during test.</Para>
+</Note>
+</ListItem>
+<ListItem>
+<Para>		After movement of both leading and trailing edges is verified on expanded flap and slat position indications, move the ALTN FLAPS selector to OFF.</Para>
+</ListItem>
+<ListItem>
+<Para>Wait at least 30 seconds.</Para>
+</ListItem>
+<ListItem>
+<Para>Move the ALTN FLAPS selector to RET until leading and trailing edges are fully retracted.</Para>
+</ListItem>
+<ListItem>
+<Para>Move the ALTN FLAPS selector to OFF.</Para>
+</ListItem>
+<ListItem>
+<Para>Disarm the ALTN FLAPS ARM switch.</Para>
+</ListItem>
+<ListItem>
+<Para>Confirm the FLAP/SLAT CONTROL caution message is not displayed.</Para>
+</ListItem>
+<ListItem>
+<Para>Retract spoilers if extended:</Para>
+<List listType="1)">
+<ListItem>
+<Para>With hydraulics off, move the speedbrake lever DN.</Para>
+</ListItem>
+<ListItem>
+<Para>Pressurize and depressurize hydraulic systems in this sequence: left, right, center.</Para>
+</ListItem>
+<ListItem>
+<Para>Confirm that all spoilers are retracted.</Para>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELItem>
+</DispatchItems>

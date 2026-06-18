@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM">]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.2-33-51-01.1458.2-33-51-01_FAA" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="33" superSectionNumber="2" sectionName="MEL" chapterName="Lights" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2025-09-30" rev:revStatus="U" rev:revNumber="10" />
+</PUMetaData>
+<MELItem itemNbr="33-51-01" id="X-BOEING:FTID:81205.787.DDG.CU.MEL.2-33-51-01.1.2-33-51-01_FAA">
+<Title />
+<MELSubItem itemNbr="33-51-01">
+<Title>Emergency Lights System</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="1" nbrRequired="0" opsIndicator="(O)">
+<DispatchConditionRemarks>
+<Para>May be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>No passengers are carried.</Para>
+</ListItem>
+<ListItem>
+<Para>Operations procedure is used.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<OperationProcedure>
+<List listType="1.">
+<ListItem>
+<Para>No passengers may be carried.</Para>
+</ListItem>
+<ListItem>
+<Para>Flight crew members and authorized persons - must be briefed prior to takeoff and landing regarding alternate procedures for emergency evacuation.</Para>
+</ListItem>
+</List>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="33-51-01-01">
+<Title>
+<?FTID-xref 1284782.2-33-51-01_FAA?>Main-Aisle Overhead Emergency Lights</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="18" nbrRequired="12" rev:revStatus="R" rev:revHighlight="Update NI &amp; NR">
+<?FTID-rev start?>
+<?FTID-rev end?>
+<DispatchConditionRemarks>
+<Para>Two main-aisle overhead emergency lights may be inoperative between each fore and aft pair of adjacent passenger entry doors provided: </Para>
+<List listType="a.">
+<ListItem>
+<Para>Inoperative lights are not located over same aisle.</Para>
+</ListItem>
+<ListItem>
+<Para>Overhead emergency lights integrated into exit locator signs at associated passenger entry doors operate normally.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="33-51-01-02">
+<Title>Cross-Aisle Overhead Emergency Lights (Applicable to 787-9: VN-A861, VN-A862, VN-A863, VN-A864, VN-A865, VN-A866, VN-A867, VN-A868, VN-A869, VN-A870, VN-A871)</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="18" nbrRequired="12" rev:revStatus="R">
+<DispatchConditionRemarks>
+<Para>One cross-aisle overhead emergency light may be inoperative at each passenger entry door pair.</Para>
+</DispatchConditionRemarks>
+<?FTID-rev start?>
+<?FTID-rev end?>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="33-51-01-02">
+<Title>
+<?FTID-xref 1284821.2-33-51-01_FAA?>Cross-Aisle Overhead Emergency Lights (Applicable to 787-10: VN-A872, VN-A873, VN-A874, VN-A877, VN-A878, VN-A879)</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="18" nbrRequired="14" rev:revStatus="R" rev:revHighlight="Update&#xD;&#xA;NI &amp; NR">
+<?FTID-rev start?>
+<?FTID-rev end?>
+<DispatchConditionRemarks>
+<Para>One cross-aisle overhead emergency light may be inoperative at each passenger entry door pair.</Para>
+</DispatchConditionRemarks>
+</DispatchCondition>
+</MELSubItem>
+</MELItem>
+</DispatchItems>

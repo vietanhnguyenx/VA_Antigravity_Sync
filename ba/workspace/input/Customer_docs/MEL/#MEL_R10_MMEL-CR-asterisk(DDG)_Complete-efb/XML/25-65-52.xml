@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM">]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.4-25-65-52.900.25-65-52" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="EEL" superSectionNumber="4" sectionName="MEL" chapterName="Equipment Furnishings" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2025-09-30" rev:revStatus="N" rev:revNumber="10" />
+</PUMetaData>
+<MELItem itemNbr="25-65-52" id="X-BOEING:FTID:81205.787.DDG.CU.MEL.4-25-65-52.1.25-65-52">
+<Title rev:revStatus="R" rev:revHighlight="re-number">
+<?FTID-xref 1355288.25-65-52?>
+<?FTID-rev start?>Extension Safety Belt</Title>
+<DispatchCondition dispCondOptions="A" repairInterval="-" nbrInstalled="4" nbrRequired="4">
+<Title>At the Mainbase</Title>
+<DispatchConditionRemarks>
+<Para>Must be operative.</Para>
+</DispatchConditionRemarks>
+</DispatchCondition>
+<DispatchCondition dispCondOptions="B" repairInterval="C" nbrInstalled="4" nbrRequired="0">
+<Title>Outside the Mainbase</Title>
+<DispatchConditionRemarks>
+<Para>May be inoperative.</Para>
+</DispatchConditionRemarks>
+</DispatchCondition>
+</MELItem>
+</DispatchItems>

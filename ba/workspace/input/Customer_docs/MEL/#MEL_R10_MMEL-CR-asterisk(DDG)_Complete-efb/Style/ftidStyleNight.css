@@ -1,0 +1,28 @@
+@import url("ftidStyleCommon.css");
+
+span.EFBLink /* JavaScript */ { border-color: Black; }
+span.EFBLinkOver /* JavaScript */ { border-color: White; cursor: pointer; }
+span.OpnoteListCell { background-color: #000000; }
+
+body { background-color: #000000; color: #FFFFFF; }
+
+
+div.TitlePage { background-color: #000000; color: #FFFFFF; }
+
+td { border-color: white; }
+
+td.GlossaryCell { border-color: white; }
+table.GlossaryList, table.GlossaryList td, table.GlossaryList th { border-color: White; }
+th.PerfTable { border: solid 1px white; background-color: #00599C; }
+
+td.PerfTable { border-color: white; }
+
+td.TableFooter { border-color: white; }
+
+th { border-color: white; background-color: #00599c; }
+
+
+tr { border-color: white; }
+
+.Effectivities { color: Aqua; }
+div.Approvals, div.SignedBy { border-color: White; }

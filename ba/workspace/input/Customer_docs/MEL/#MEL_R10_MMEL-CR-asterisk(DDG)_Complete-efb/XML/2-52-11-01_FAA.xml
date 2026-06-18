@@ -1,0 +1,780 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM"><!ENTITY G2-52-11-01_FAA.fm_1185195 SYSTEM "..\Images\2-52-11-01_FAA.fm_1185195.cgm" NDATA CGM><!ENTITY G2-52-11-01_FAA.fm_1185707 SYSTEM "..\Images\2-52-11-01_FAA.fm_1185707.cgm" NDATA CGM><!ENTITY G2-52-11-01_FAA.fm_1193776 SYSTEM "..\Images\2-52-11-01_FAA.fm_1193776.cgm" NDATA CGM>]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.2-52-11-01.4758.2-52-11-01_FAA" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="52" superSectionNumber="2" sectionName="MEL" chapterName="Doors" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2025-09-30" rev:revStatus="R" rev:revNumber="10" />
+</PUMetaData>
+<MELItem itemNbr="52-11-01" id="X-BOEING:FTID:81205.787.DDG.CU.MEL.2-52-11-01.1.2-52-11-01_FAA">
+<Title>Passenger Entry Doors/Slides</Title>
+<DispatchCondition dispCondOptions="A" repairInterval="A" nbrInstalled="8" nbrRequired="7" maintIndicator="(M)" opsIndicator="(O)">
+<Title>
+<?FTID-xref 1215417.2-52-11-01_FAA?>Passengers Carried</Title>
+<DispatchConditionRemarks>
+<Para>One may be inoperative or slide missing provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>A conspicuous barrier strap or rope and a placard stating that the door is inoperative shall be placed across the inoperative door.</Para>
+</ListItem>
+<ListItem>
+<Para>Emergency exit sign and floor proximity lights associated with the inoperative exit must be covered to obscure the sign and lights.</Para>
+</ListItem>
+<ListItem>
+<Para>Conspicuous signs and placards shall be placed in appropriate locations to indicate seats are not to be occupied by passengers.</Para>
+</ListItem>
+<ListItem>
+<Para>All other passenger entry doors are fully operational.</Para>
+</ListItem>
+<ListItem>
+<Para>For extended overwater operations, occupancy shall not exceed the normal rated capacity of the slide/rafts, or the remaining slide/rafts, or the rated overload capacity of the slide/rafts remaining after loss of one additional slide/raft of greatest capacity, whichever is least.</Para>
+</ListItem>
+<ListItem>
+<Para>Affected door is not used for passenger loading.</Para>
+</ListItem>
+<ListItem>
+<Para>Passengers must be advised to not use affected door.</Para>
+</ListItem>
+<ListItem>
+<Para>Repairs are made within one flight day.</Para>
+<Note>
+<Para>Flight attendants may be stationed in the vicinity of each door within blocked areas.</Para>
+</Note>
+<Note>
+<Para>Weight and Balance Manifest must be revised as necessary to ensure proper loading limits are observed.</Para>
+</Note>
+</ListItem>
+<ListItem>
+<Para>All passenger seats halfway to the next exit in each direction from the inoperative door/slide, across the entire width of the airplane, shall be blocked off with conspicuous tapes or ropes that contrast with the airplane interior before loading passengers.  Only the seats in these areas shall be blocked; main passenger aisles, cross aisles
+and exit areas must not be blocked.  (For an inoperative forward door/slide, the blocked seating area shall extend from the forward cabin end, rearward to a line halfway between the inoperative forward door and the next set of doors aft of the inoperative one.  For an inoperative rear door/slide, the blocked seating area shall extend forward from the aft cabin end to a line halfway between
+the inoperative door and the next set of doors forward of the inoperative one). Block seats as follows:</Para>
+<table frame="all">
+<tgroup cols="2" colsep="1">
+<colspec colname="1" colwidth="36%" />
+<colspec colname="2" colwidth="64%" />
+<thead>
+<row rowsep="1">
+<entry colname="1">
+<Para />
+</entry>
+<entry colname="2">
+<Para />
+</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep="1">
+<entry namest="1" nameend="2">
+<Para>Applicable to: VN-A861, VN-A862, VN-A863, VN-A864, VN-A867, VN-868, VN-A870, VN-A871</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para>L1 or R1</Para>
+</entry>
+<entry colname="2" rev:revStatus="R" rev:revHighlight="Update block seat">
+<?FTID-rev start?>
+<Para>Rows 1 to 4</Para>
+<?FTID-rev end?>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para>L2 or R2</Para>
+</entry>
+<entry colname="2" rev:revStatus="R" rev:revHighlight="Added additional wording to allow for dispatch flexibility. Revised block seat for inop passenger entry doors/slides">
+<?FTID-rev start?>
+<Para>Rows 4 to 7 and Rows 10 to 16</Para>
+<?FTID-rev end?>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para>L3 or R3</Para>
+</entry>
+<entry colname="2">
+<Para align="left" rev:revStatus="R" rev:revHighlight="Update block seat">
+<?FTID-rev start?>Rows 16 to 24 and Rows 25 to 33<?FTID-rev end?></Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para>L4 or R4</Para>
+</entry>
+<entry colname="2">
+<Para align="left" rev:revStatus="R" rev:revHighlight="Update block seat">
+<?FTID-rev start?>Rows 33 to 40<?FTID-rev end?></Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry namest="1" nameend="2">
+<Para>Applicable to: VN-A865, VN-A866, VN-A869</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para>L1 or R1</Para>
+</entry>
+<entry colname="2">
+<Para align="left" rev:revStatus="R" rev:revHighlight="Update block seat">
+<?FTID-rev start?>Rows 1 to 4<?FTID-rev end?></Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para>L2 or R2</Para>
+</entry>
+<entry colname="2">
+<Para align="left" rev:revStatus="R" rev:revHighlight="Update block seat">
+<?FTID-rev start?>Rows 4 to 7 and Rows 16 to 23<?FTID-rev end?></Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para>L3 or R3</Para>
+</entry>
+<entry colname="2">
+<Para align="left" rev:revStatus="R" rev:revHighlight="Update block seat">
+<?FTID-rev start?>Rows 24 to 32 and Rows 33 to 42<?FTID-rev end?></Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para>L4 or R4</Para>
+</entry>
+<entry colname="2">
+<Para align="left" rev:revStatus="R" rev:revHighlight="Update block seat">
+<?FTID-rev start?>Rows 42 to 50<?FTID-rev end?></Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry namest="1" nameend="2">
+<Para>Applicable to: VN-A872, VN-A873, VN-A874, VN-A877, VN-A878, VN-A879</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para>L1 or R1</Para>
+</entry>
+<entry colname="2">
+<Para align="left" rev:revStatus="R" rev:revHighlight="Update&#xD;&#xA;block seat">
+<?FTID-rev start?>Rows 1 to 5 plus 17 additional seats<?FTID-rev end?>*</Para>
+<Para align="left" rev:revStatus="R" rev:revHighlight="Add a recommendation for 17 additional seats.">
+<?FTID-rev start?>(* 17 additional seats:<?FTID-rev end?></Para>
+<Para align="left" rev:revStatus="R" rev:revHighlight="Add a recommendation for 17 additional seats.">
+<?FTID-rev start?>- Seats have signs that indicate they cannot be occupied,<?FTID-rev end?></Para>
+<Para align="left" rev:revStatus="R" rev:revHighlight="Add a recommendation for 17 additional seats.">
+<?FTID-rev start?>-  Preferably 17 the last eco seats)<?FTID-rev end?></Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para>L2 or R2</Para>
+</entry>
+<entry colname="2">
+<Para>Rows 5 to 20 and Rows 21 to 29</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para>L3 or R3</Para>
+</entry>
+<entry colname="2">
+<Para align="left" rev:revStatus="R" rev:revHighlight="Update block seat">
+<?FTID-rev start?>Rows 29 to 37 and Rows 38 to 47<?FTID-rev end?></Para>
+</entry>
+</row>
+<row rowsep="0">
+<entry colname="1">
+<Para>L4 or R4</Para>
+</entry>
+<entry colname="2">
+<Para>Rows 47 to 56</Para>
+</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Configure the associated emergency exit sign, floor proximity escape path markings and passenger seats as appropriate (AMM DDG 52-11-01). </Para>
+<List listType="1.">
+<ListItem>
+<Para>Cover the emergency exit signs unique to the inoperative door.</Para>
+</ListItem>
+<ListItem>
+<Para>Cover the floor proximity escape path marking system lights unique to the inoperative door.</Para>
+</ListItem>
+<ListItem>
+<Para>Block the inoperative door with conspicuous barrier strap or rope and placard door is inoperative.</Para>
+</ListItem>
+<ListItem>
+<Para>Block off the affected passenger seats with conspicuous tapes or ropes and placard seats are not to be occupied by passengers.</Para>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+<OperationProcedure>
+<List listType="1.">
+<ListItem>
+<Para rev:revStatus="R" rev:revHighlight="Added additional wording to allow for dispatch flexibility.">
+<?FTID-rev start?>Arming of the passenger entry doors using the mode select handles in the automatic position (red band) prior to taxi, takeoff and
+landing whenever passengers are carried includes the inoperative door, whenever possible, with or without the escape slide removed.<?FTID-rev end?></Para>
+</ListItem>
+<ListItem>
+<Para>Flight crew members and passengers must be briefed prior to takeoff and landing regarding the inoperative door that cannot be used for emergency evacuation.</Para>
+</ListItem>
+<ListItem>
+<Para>Cabin crew briefing to Passengers in emergency evacuation: In event of an emergency evacuation, subject to door inoperative, Cabin crew will brief passengers to use appropriate doors as follows:</Para>
+<table frame="all">
+<tgroup cols="3" colsep="1">
+<colspec colname="1" colwidth="29%" />
+<colspec colname="2" colwidth="37%" />
+<colspec colname="3" colwidth="34%" />
+<thead>
+<row rowsep="1">
+<entry colname="1" morerows="1">
+<Para>
+<Emphasis txtStyle="bold">Inoperative Door</Emphasis>
+</Para>
+</entry>
+<entry namest="2" nameend="3">
+<Para>
+<Emphasis txtStyle="bold">Cabin crews briefing to Passenger
+in Emergency Evacuation</Emphasis>
+</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="2">
+<Para>
+<Emphasis txtStyle="bold">Passenger Zone</Emphasis>
+</Para>
+</entry>
+<entry colname="3">
+<Para>
+<Emphasis txtStyle="bold">Evacuation Door</Emphasis>
+</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry namest="1" nameend="3">
+<Para align="center">Applicable to: VN-A861, VN-A862, VN-A863, VN-A864,
+VN-A867, VN-A868, VN-A870, VN-A871.</Para>
+</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep="1">
+<entry colname="1" morerows="2">
+<Para align="center">1L or 1R</Para>
+</entry>
+<entry colname="2">
+<Para align="center">28 pax of zone A; 26 pax of zone B&amp;C</Para>
+</entry>
+<entry colname="3">
+<Para align="center">2</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="2">
+<Para align="center">90 pax of zone B&amp;C; 20 pax of zone D</Para>
+</entry>
+<entry colname="3">
+<Para align="center">3</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="2">
+<Para align="center">110 pax of zone D</Para>
+</entry>
+<entry colname="3">
+<Para align="center">4</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1" morerows="2">
+<Para align="center">2L or 2R</Para>
+</entry>
+<entry colname="2">
+<Para align="center">28 pax of zone A</Para>
+</entry>
+<entry colname="3">
+<Para align="center">1</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="2">
+<Para align="center">90 pax of zone B&amp;C; 20 pax of zone D</Para>
+</entry>
+<entry colname="3">
+<Para align="center">3</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="2">
+<Para align="center">110 pax of zone D</Para>
+</entry>
+<entry colname="3">
+<Para align="center">4</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1" morerows="2">
+<Para align="center">3L or 3R</Para>
+</entry>
+<entry colname="2">
+<Para align="center">28 pax of zone A</Para>
+</entry>
+<entry colname="3">
+<Para align="center">1</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="2">
+<Para align="center">110 pax of zone B&amp;C</Para>
+</entry>
+<entry colname="3">
+<Para align="center">2</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="2">
+<Para align="center">110 pax
+of zone D</Para>
+</entry>
+<entry colname="3">
+<Para align="center">4</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1" morerows="2">
+<Para align="center">4L or 4R</Para>
+</entry>
+<entry colname="2">
+<Para align="center">28 pax of zone A</Para>
+</entry>
+<entry colname="3">
+<Para align="center">1</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="2">
+<Para align="center">110 pax of zone B&amp;C</Para>
+</entry>
+<entry colname="3">
+<Para align="center">2</Para>
+</entry>
+</row>
+<row rowsep="0">
+<entry colname="2">
+<Para align="center">6 pax of zone B&amp;C; 104 pax of zone D</Para>
+</entry>
+<entry colname="3">
+<Para align="center">3</Para>
+</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+<GraphicSet id="X-BOEING:FTID:81205.787.DDG.CU.GR.2-52-11-01.1185168.2-52-11-01_FAA">
+<Illustration fileRef="G2-52-11-01_FAA.fm_1185195" linkRef="URN:X-BOEING:FTID:81205.787.DDG.NX.GR.2-52-11-01.1185195." />
+</GraphicSet>
+<table frame="all">
+<tgroup cols="3" colsep="1">
+<colspec colname="1" colwidth="29%" />
+<colspec colname="2" colwidth="37%" />
+<colspec colname="3" colwidth="34%" />
+<thead>
+<row rowsep="1">
+<entry colname="1" morerows="1">
+<Para>
+<Emphasis txtStyle="bold">Inoperative Door</Emphasis>
+</Para>
+</entry>
+<entry namest="2" nameend="3">
+<Para>
+<Emphasis txtStyle="bold">Cabin crews briefing to Passenger
+in Emergency Evacuation</Emphasis>
+</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="2">
+<Para>
+<Emphasis txtStyle="bold">Passenger Zone</Emphasis>
+</Para>
+</entry>
+<entry colname="3">
+<Para>
+<Emphasis txtStyle="bold">Evacuation Door</Emphasis>
+</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry namest="1" nameend="3">
+<Para align="center">Applicable to: VN-A865, VN-A866, VN-A869</Para>
+</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep="1">
+<entry colname="1" morerows="2">
+<Para align="center">1L or 1R</Para>
+</entry>
+<entry colname="2">
+<Para align="center">28 pax of zone A; 63 pax of zone B</Para>
+</entry>
+<entry colname="3">
+<Para align="center">2</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="2">
+<Para align="center">84 pax of zone B; 26 pax
+of zone C</Para>
+</entry>
+<entry colname="3">
+<Para align="center">3</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="2">
+<Para align="center">110 pax of zone C</Para>
+</entry>
+<entry colname="3">
+<Para align="center">4</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1" morerows="2">
+<Para align="center">2L or 2R</Para>
+</entry>
+<entry colname="2">
+<Para align="center">28 pax of zone A</Para>
+</entry>
+<entry colname="3">
+<Para align="center">1</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="2">
+<Para align="center">84 pax of zone B; 26 pax of zone C</Para>
+</entry>
+<entry colname="3">
+<Para align="center">3</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="2">
+<Para align="center">110 pax of zone C</Para>
+</entry>
+<entry colname="3">
+<Para align="center">4</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1" morerows="2">
+<Para align="center">3L or 3R</Para>
+</entry>
+<entry colname="2">
+<Para align="center">28 pax of zone A</Para>
+</entry>
+<entry colname="3">
+<Para align="center">1</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="2">
+<Para align="center">110 pax of zone B</Para>
+</entry>
+<entry colname="3">
+<Para align="center">2</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="2">
+<Para align="center">110 pax of zone C</Para>
+</entry>
+<entry colname="3">
+<Para align="center">4</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1" morerows="2">
+<Para align="center">4L or 4R</Para>
+</entry>
+<entry colname="2">
+<Para align="center">28 pax of zone A</Para>
+</entry>
+<entry colname="3">
+<Para align="center">1</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="2">
+<Para align="center">110 pax of zone B</Para>
+</entry>
+<entry colname="3">
+<Para align="center">2</Para>
+</entry>
+</row>
+<row rowsep="0">
+<entry colname="2">
+<Para align="center">37 pax of zone B; 73 pax of zone C</Para>
+</entry>
+<entry colname="3">
+<Para align="center">3</Para>
+</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+<GraphicSet id="X-BOEING:FTID:81205.787.DDG.CU.GR.2-52-11-01.1185234.2-52-11-01_FAA">
+<Illustration fileRef="G2-52-11-01_FAA.fm_1185707" linkRef="URN:X-BOEING:FTID:81205.787.DDG.NX.GR.2-52-11-01.1185707." />
+</GraphicSet>
+<table frame="all">
+<tgroup cols="3" colsep="1">
+<colspec colname="1" colwidth="29%" />
+<colspec colname="2" colwidth="37%" />
+<colspec colname="3" colwidth="34%" />
+<thead>
+<row rowsep="1">
+<entry colname="1" morerows="1">
+<Para>
+<Emphasis txtStyle="bold">Inoperative Door</Emphasis>
+</Para>
+</entry>
+<entry namest="2" nameend="3">
+<Para>
+<Emphasis txtStyle="bold">Cabin crews briefing to Passenger
+in Emergency Evacuation</Emphasis>
+</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="2">
+<Para>
+<Emphasis txtStyle="bold">Passenger Zone</Emphasis>
+</Para>
+</entry>
+<entry colname="3">
+<Para>
+<Emphasis txtStyle="bold">Evacuation Door</Emphasis>
+</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry namest="1" nameend="3">
+<Para align="center">Applicable to: VN-A872, VN-A873, VN-A874, VN-A879</Para>
+</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep="1">
+<entry colname="1" morerows="2">
+<Para align="center">1L or 1R</Para>
+</entry>
+<entry colname="2">
+<Para align="center">63 pax of zone A</Para>
+<Para align="center">47 pax of zon B</Para>
+</entry>
+<entry colname="3">
+<Para align="center">2</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="2">
+<Para align="center">63 pax of zone B; </Para>
+<Para align="center">47 pax of zone C</Para>
+</entry>
+<entry colname="3">
+<Para align="center">3</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="2">
+<Para align="center">110 pax of zone C</Para>
+</entry>
+<entry colname="3">
+<Para align="center">4</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1" morerows="2">
+<Para align="center">2L or 2R</Para>
+</entry>
+<entry colname="2">
+<Para align="center">63 pax of zone A</Para>
+<Para align="center">47 pax of zone B</Para>
+</entry>
+<entry colname="3">
+<Para align="center">1</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="2">
+<Para align="center">63 pax of zone B; </Para>
+<Para align="center">47 pax of zone C</Para>
+</entry>
+<entry colname="3">
+<Para align="center">3</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="2">
+<Para align="center">110 pax of zone C</Para>
+</entry>
+<entry colname="3">
+<Para align="center">4</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1" morerows="2">
+<Para align="center">3L or 3R</Para>
+</entry>
+<entry colname="2">
+<Para align="center">63 pax of zone A</Para>
+<Para align="center">47 pax of zone B</Para>
+</entry>
+<entry colname="3">
+<Para align="center">1</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="2">
+<Para align="center">100 pax of zone B</Para>
+<Para align="center">10 pax of zone C</Para>
+</entry>
+<entry colname="3">
+<Para align="center">2</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="2">
+<Para align="center">110 pax of zone C</Para>
+</entry>
+<entry colname="3">
+<Para align="center">4</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1" morerows="2">
+<Para align="center">4L or 4R</Para>
+</entry>
+<entry colname="2">
+<Para align="center">63 pax of zone A</Para>
+<Para align="center">47 pax of zone B</Para>
+</entry>
+<entry colname="3">
+<Para align="center">1</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="2">
+<Para align="center">100 pax of zone B</Para>
+<Para align="center">10 pax of zone C</Para>
+</entry>
+<entry colname="3">
+<Para align="center">2</Para>
+</entry>
+</row>
+<row rowsep="0">
+<entry colname="2">
+<Para align="center">110 pax of zone C</Para>
+</entry>
+<entry colname="3">
+<Para align="center">3</Para>
+</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+<GraphicSet id="X-BOEING:FTID:81205.787.DDG.CU.GR.2-52-11-01.1193701.2-52-11-01_FAA">
+<Illustration fileRef="G2-52-11-01_FAA.fm_1193776" linkRef="URN:X-BOEING:FTID:81205.787.DDG.NX.GR.2-52-11-01.1193776." />
+</GraphicSet>
+</ListItem>
+</List>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+<DispatchCondition dispCondOptions="B" repairInterval="C" nbrInstalled="8" nbrRequired="4" maintIndicator="(M)" opsIndicator="(O)">
+<Title>
+<?FTID-xref 1221610.2-52-11-01_FAA?>No Passengers Carried</Title>
+<DispatchConditionRemarks>
+<Para>May be inoperative or slide missing provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>No passengers are carried.</Para>
+</ListItem>
+<ListItem>
+<Para>A maximum of 19 persons authorized by VAR for non-passenger carrying operations are carried.</Para>
+</ListItem>
+<ListItem>
+<Para>A conspicuous barrier strap or rope and a placard stating that the door is inoperative shall be placed across the inoperative door.</Para>
+</ListItem>
+<ListItem>
+<Para>Emergency exit sign and floor proximity lights associated with the inoperative exit must be covered to obscure the sign and lights.</Para>
+</ListItem>
+<ListItem>
+<Para>Inoperative doors are not used for loading.</Para>
+</ListItem>
+<ListItem>
+<Para>Each person carried has unobstructed access from their seat to an operative door.</Para>
+</ListItem>
+<ListItem>
+<Para>Safety briefing includes location of inoperative doors and instructions not to use them.</Para>
+</ListItem>
+<ListItem>
+<Para>Operations procedure is used.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Block the inoperative doors with conspicuous barrier strap or rope and placard as inoperative, configure the associated emergency exit signs and floor proximity escape path markings as appropriate (AMM DDG 52-11-01). </Para>
+<List listType="1.">
+<ListItem>
+<Para>Block the inoperative doors with conspicuous barrier strap or rope and placard as inoperative.</Para>
+</ListItem>
+<ListItem>
+<Para>Cover the emergency exit signs unique to the inoperative doors.</Para>
+</ListItem>
+<ListItem>
+<Para>Cover the floor proximity escape path marking system lights unique to the inoperative doors.</Para>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+<OperationProcedure>
+<List listType="1.">
+<ListItem rev:revStatus="R" rev:revHighlight="Added additional wording to allow for dispatch flexibility">
+<Para>No passengers may be carried.</Para>
+<?FTID-rev start?>
+<?FTID-rev end?>
+</ListItem>
+<ListItem rev:revStatus="R" rev:revHighlight="Added additional wording to allow for dispatch flexibility">
+<Para>A maximum of 19 persons may be carried.</Para>
+<?FTID-rev start?>
+<?FTID-rev end?>
+</ListItem>
+<ListItem>
+<Para>Inoperative doors are not to be used for loading.</Para>
+</ListItem>
+<ListItem>
+<Para>Flight crew members and authorized persons must be briefed prior to takeoff and landing regarding the inoperative doors that cannot be used for emergency evacuation.</Para>
+</ListItem>
+<ListItem>
+<Para rev:revStatus="R" rev:revHighlight="Added additional wording to allow for dispatch flexibility.">
+<?FTID-rev start?>Arming of the passenger entry doors using the mode select handles in the automatic position (red band) prior to taxi, takeoff and landing includes the inoperative
+doors, whenever possible, with or without the escape slide removed.<?FTID-rev end?></Para>
+</ListItem>
+</List>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELItem>
+</DispatchItems>

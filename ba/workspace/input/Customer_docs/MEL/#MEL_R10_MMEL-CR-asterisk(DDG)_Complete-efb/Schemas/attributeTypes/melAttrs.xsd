@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns="http://www.boeing.com/FTID-ML"
+           targetNamespace="http://www.boeing.com/FTID-ML"
+           elementFormDefault="qualified"
+           attributeFormDefault="unqualified"
+           version="FTID 2.6">
+           
+<!-- 	
+=================================================================
+
+
+Copyright Information:
+      Boeing Proprietary and Confidential - 
+      All Rights Reserved since 2006.
+
+      This schema file is part of the Boeing Flight Technical 
+      Integrated Data (FTID) Specification based on XML.
+      All rights are reserved under Boeing Flight Operations 
+      digital data entitlements, products or services.
+
+     
+Contact Information:   	
+        The Boeing Company
+        Flight Operations Support
+        P.O. Box 3707	MS 20-89
+        Seattle, WA 98124-2207
+        USA
+        email:  flighttraining@Boeing.com
+        Phone:  (206) 662-4000
+        Fax:    (206) 662-4743
+
+	
+===================================================================
+-->
+
+	<!--=====================================================-->
+	<!--  MEL/CDL Item-Number attribute definition -->
+	<!--  
+      The full Item-Number is defined as follows:
+      cc-ss-nn[x], cc-ss-nn-mm[x] and ss-nn-mm-oo[x] where as:
+	    - cc is ATA chapter number, 
+	    - ss is ATA section number, 
+	    - nn is a sequential item number, 
+	    - [x] is the Dispatch-Condition-Option attribute
+	    - mm is a sequential sub-item number,
+	    - oo is a sequential sub-sub-item number
+    -->
+	<!--=====================================================-->
+	<xs:simpleType name="itemNbrType">
+		<xs:annotation>
+			<xs:documentation>Unique identifier that represents a MEL or CDL item.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(\d){1,2}(-(\d){1,3})*"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!--=====================================================-->
+	<!--  Dipatch Condition Option attribute definition -->
+	<!--=====================================================-->
+	<xs:simpleType name="dispCondOptionsType">
+		<xs:annotation>
+			<xs:documentation>Code identifies different options for a given dispatch condition.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[A-Z]"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!--=====================================================-->
+	<!--  MEL repair-interval attribute definition -->
+	<!--=====================================================-->
+	<xs:simpleType name="repairIntervalType">
+		<xs:annotation>
+			<xs:documentation>Repair interval indicator</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+            <xs:pattern value="A|B|C|D|\-|| "/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!--=====================================================-->
+	<!--  MEL Number of Installed/Required attribute definition -->
+	<!--=====================================================-->
+	<xs:simpleType name="nbrType">
+		<xs:annotation>
+			<xs:documentation>A non-negative integer number</xs:documentation>
+		</xs:annotation>
+		<xs:union memberTypes="xs:nonNegativeInteger">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:pattern value="-"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:union>
+	</xs:simpleType>
+	<!--=====================================================-->
+	<!--  CDL Model attribute definition -->
+	<!--=====================================================-->
+	<xs:simpleType name="CDLModelType">
+		<xs:annotation>
+			<xs:documentation>Model information</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<!--=====================================================-->
+	<!--  Maintenance Procedure Indicator -->
+	<!--=====================================================-->
+	<xs:simpleType name="maintIndicatorType">
+		<xs:annotation>
+			<xs:documentation>Maitenance Indicator</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="(M)"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!--=====================================================-->
+	<!--  Operations Procedure Indicator -->
+	<!--=====================================================-->
+	<xs:simpleType name="opsIndicatorType">
+		<xs:annotation>
+			<xs:documentation>Operation Indicator</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="(O)"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!--=====================================================-->
+	<!--  Technical Indicator -->
+	<!--=====================================================-->
+	<xs:simpleType name="techIndicatorType">
+		<xs:annotation>
+			<xs:documentation>Technical Indicator as defined by user</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<!--=====================================================-->
+	<!--  equipment Operational Capability -->
+	<!--=====================================================-->
+	<xs:simpleType name="equipOpCapabilityType">
+		<xs:annotation>
+			<xs:documentation>Used in military to indicate the type of missions for a given MMEL item.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+</xs:schema>

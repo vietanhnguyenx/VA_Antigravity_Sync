@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM"><!ENTITY G3-57-51-31.fm_1310060 SYSTEM "..\Images\3-57-51-31.fm_1310060.cgm" NDATA CGM>]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.3-57-51-31.4047.3-57-51-31" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="57" superSectionNumber="3" sectionName="CDL" chapterName="Wings" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2021-02-24" rev:revStatus="U" rev:revNumber="10" />
+</PUMetaData>
+<CDLItem itemNbr="57-51-31" id="X-BOEING:FTID:81205.787.DDG.CU.CDL.3-57-51-31.1.3-57-51-31">
+<Title>Wing Outboard Fixed Trailing Edge Aileron Inboard End Seals</Title>
+<DispatchCondition>
+<DispatchConditionRemarks>
+<Para>Any number may be missing.  The total decrement per wing should not exceed the value provided in the table.  Once the maximum penalty is reached on one phase of flight the penalties stop incrementing for the other phases of flight.</Para>
+<Para>Reduce performance limited weights for each missing seal by:</Para>
+<table frame="all">
+<tgroup cols="6" colsep="1">
+<colspec colname="1" colwidth="17%" />
+<colspec colname="2" colwidth="17%" />
+<colspec colname="3" colwidth="18%" />
+<colspec colname="4" colwidth="16%" />
+<colspec colname="5" colwidth="16%" />
+<colspec colname="6" colwidth="16%" />
+<thead>
+<row rowsep="1">
+<entry colname="1">
+<Para>
+<Emphasis txtStyle="bold">Applicable Models</Emphasis>
+</Para>
+</entry>
+<entry colname="2">
+<Para>
+<Emphasis txtStyle="bold">Number Installed</Emphasis>
+</Para>
+</entry>
+<entry colname="3">
+<Para>
+<Emphasis txtStyle="bold">Maximum Decrement per Wing </Emphasis>
+</Para>
+</entry>
+<entry colname="4">
+<Para>
+<Emphasis txtStyle="bold">Takeoff </Emphasis>
+</Para>
+</entry>
+<entry colname="5">
+<Para>
+<Emphasis txtStyle="bold">Enroute Climb</Emphasis>
+</Para>
+</entry>
+<entry colname="6">
+<Para>
+<Emphasis txtStyle="bold">Approach and Landing</Emphasis>
+</Para>
+</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep="0">
+<entry colname="1">
+<Para />
+</entry>
+<entry colname="2">
+<Para />
+</entry>
+<entry colname="3">
+<Para />
+</entry>
+<entry colname="4">
+<Para />
+</entry>
+<entry colname="5">
+<Para />
+</entry>
+<entry colname="6">
+<Para />
+</entry>
+</row>
+</tbody>
+</tgroup>
+<tgroup cols="6" colsep="1">
+<tbody>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">787-9 (GE)</Para>
+</entry>
+<entry colname="2">
+<Para align="center">10</Para>
+</entry>
+<entry colname="3">
+<Para align="center">3,900 lb 
+(1,769 kg)</Para>
+</entry>
+<entry colname="4">
+<Para align="center">1,750 lb 
+(794 kg)</Para>
+</entry>
+<entry colname="5">
+<Para align="center">850 lb 
+(385 kg)</Para>
+</entry>
+<entry colname="6">
+<Para align="center">500 lb 
+(227 kg)</Para>
+</entry>
+</row>
+<row rowsep="0">
+<entry colname="1">
+<Para align="center">787-10 (GE)</Para>
+</entry>
+<entry colname="2">
+<Para align="center">10</Para>
+</entry>
+<entry colname="3">
+<Para align="center">4,200 lb 
+(1,905 kg)</Para>
+</entry>
+<entry colname="4">
+<Para align="center">1,950 lb 
+(885 kg)</Para>
+</entry>
+<entry colname="5">
+<Para align="center">800 lb 
+(363 kg)</Para>
+</entry>
+<entry colname="6">
+<Para align="center">450 lb 
+(204 kg)</Para>
+</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+</DispatchConditionRemarks>
+</DispatchCondition>
+<LocationDiagram id="X-BOEING:FTID:81205.787.DDG.CU.GR.3-57-51-31.1310057.3-57-51-31">
+<Illustration fileRef="G3-57-51-31.fm_1310060" linkRef="URN:X-BOEING:FTID:81205.787.DDG.NX.GR.3-57-51-31.1310060." />
+</LocationDiagram>
+</CDLItem>
+</DispatchItems>

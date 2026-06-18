@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM">]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.2-26-17-01.1445.2-26-17-01" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="26" superSectionNumber="2" sectionName="MEL" chapterName="Fire Protection" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2025-09-30" rev:revStatus="R" rev:revNumber="10" />
+</PUMetaData>
+<MELItem itemNbr="26-17-01" id="X-BOEING:FTID:81205.787.DDG.CU.MEL.2-26-17-01.1.2-26-17-01">
+<Title>Wheel Well Fire Detection System</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="1" nbrRequired="0" opsIndicator="(O)">
+<DispatchConditionRemarks>
+<Para>May be inoperative provided: </Para>
+<List listType="a.">
+<ListItem>
+<Para>Use of flaps 20 for takeoff is prohibited.</Para>
+</ListItem>
+<ListItem>
+<Para>Landing gear remains extended for 10 minutes after takeoff.</Para>
+</ListItem>
+</List>
+<Note>
+<Para>In case of engine failure after V1, landing gear should be retracted until takeoff obstacles are cleared and airplane is 1500 feet above the airport.</Para>
+</Note>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<OperationProcedure>
+<List listType="1.">
+<Effectivities>
+<Effectivity>For 787-9 (VN-A861, VN-A862, VN-A863, VN-A864, VN-A865, VN-A866, VN-A867, VN-A868, VN-A869,
+VN-A870, VN-A871):</Effectivity>
+</Effectivities>
+<ListItem>
+<Para>Increase flight planning fuel by 2,900 lb (1,315 kg). </Para>
+</ListItem>
+<ListItem>
+<Para>Use of flaps 20 for takeoff is prohibited.</Para>
+</ListItem>
+<ListItem>
+<Para>After takeoff, leave the landing gear extended for a minimum of ten minutes.</Para>
+</ListItem>
+<ListItem>
+<Para>In case of engine failure after V1, landing gear should be retracted after takeoff until a minimum of 1500ft. Extending gear after engine failure can cause the airplane to descend. Extend the gear after terrain clearance is assured.</Para>
+</ListItem>
+<ListItem>
+<Para>It is not necessary to apply landing gear extended takeoff performance adjustments when dispatching under this item.</Para>
+</ListItem>
+</List>
+<List listType="1.">
+<Effectivities>
+<Effectivity>For 787-10 (VN-A872, VN-A873, VN-A874,
+VN-A877, VN-A878, VN-A879):</Effectivity>
+</Effectivities>
+<ListItem>
+<Para>Increase flight planning fuel by 2,800 lb (1,270 kg). </Para>
+</ListItem>
+<ListItem>
+<Para>Use of flaps 20 for takeoff is prohibited.</Para>
+</ListItem>
+<ListItem>
+<Para>After takeoff, leave the landing gear extended for a minimum of ten minutes.</Para>
+</ListItem>
+<ListItem>
+<Para>In case of engine failure after V1, landing gear should be retracted after takeoff until a minimum of 1500ft. Extending gear after engine failure can cause the airplane to descend. Extend the gear after terrain clearance is assured. </Para>
+</ListItem>
+<ListItem>
+<Para>It is not necessary to apply landing gear extended takeoff performance adjustments when dispatching under this item.</Para>
+</ListItem>
+</List>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+<MELSubItem itemNbr="26-17-01-01">
+<Title>Wheel Well Fire Temperature Detectors</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="12" nbrRequired="8">
+<DispatchConditionRemarks>
+<Para>One detector per wheel axle may be inoperative provided outboard detectors operate normally.</Para>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceNote>
+<Para>Outboard detectors and associated status messages are shown in the following table:</Para>
+<table frame="all">
+<tgroup cols="2" colsep="1">
+<colspec colname="1" colwidth="45%" />
+<colspec colname="2" colwidth="55%" />
+<thead>
+<row rowsep="1">
+<entry colname="1">
+<Para>
+<Emphasis txtStyle="bold">Detector</Emphasis>
+</Para>
+</entry>
+<entry colname="2">
+<Para>
+<Emphasis txtStyle="bold">Status Message</Emphasis>
+</Para>
+</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">Left Forward</Para>
+</entry>
+<entry colname="2">
+<Para align="center">DET 1 WHEEL WELL L</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">Left Aft</Para>
+</entry>
+<entry colname="2">
+<Para align="center">DET 6 WHEEL WELL L</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">Right
+Forward</Para>
+</entry>
+<entry colname="2">
+<Para align="center">DET 3 WHEEL WELL R</Para>
+</entry>
+</row>
+<row rowsep="0">
+<entry colname="1">
+<Para align="center">Right Aft</Para>
+</entry>
+<entry colname="2">
+<Para align="center">DET 4 WHEEL WELL R</Para>
+</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+<Para>Detectors 1, 2 and 3 are associated with the forward axle of the landing gear truck and detectors 4, 5 and 6 are associated with the rear axle of the landing gear truck.</Para>
+<Para>Wheel well fire temperature detectors are interchangeable.</Para>
+</MaintenanceNote>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+</MELItem>
+</DispatchItems>

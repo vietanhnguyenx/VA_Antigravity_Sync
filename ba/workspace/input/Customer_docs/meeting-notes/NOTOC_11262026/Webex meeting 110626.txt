@@ -1,0 +1,600 @@
+[00:00:00 --> 00:00:02] Cảm ơn mọi người.
+[00:00:02 --> 00:00:04] Cảm ơn các bạn.
+[00:00:31 --> 00:00:33] Cảm ơn mọi người.
+[00:00:33 --> 00:00:35] Cảm ơn các bạn.
+[00:01:00 --> 00:01:03] Cảm ơn mọi người.
+[00:01:30 --> 00:01:33] Cảm ơn mọi người.
+[00:02:00 --> 00:02:03] Cảm ơn mọi người.
+[00:02:30 --> 00:02:32] Cảm ơn mọi người.
+[00:03:00 --> 00:03:03] Cảm ơn mọi người.
+[00:03:30 --> 00:03:32] Cảm ơn mọi người.
+[00:04:00 --> 00:04:02] Cảm ơn mọi người.
+[00:04:30 --> 00:04:32] Cảm ơn mọi người.
+[00:05:00 --> 00:05:03] Cảm ơn mọi người.
+[00:05:30 --> 00:05:32] Cảm ơn mọi người.
+[00:06:00 --> 00:06:02] Cảm ơn mọi người.
+[00:06:30 --> 00:06:32] Cảm ơn mọi người.
+[00:07:00 --> 00:07:02] Cảm ơn mọi người.
+[00:07:30 --> 00:07:32] Cảm ơn mọi người.
+[00:08:00 --> 00:08:02] Cảm ơn mọi người.
+[00:08:30 --> 00:08:32] Cảm ơn mọi người.
+[00:09:00 --> 00:09:02] Cảm ơn mọi người.
+[00:09:30 --> 00:09:32] Cảm ơn mọi người.
+[00:10:00 --> 00:10:02] Cảm ơn mọi người.
+[00:10:30 --> 00:10:32] Cảm ơn mọi người.
+[00:11:00 --> 00:11:02] Cảm ơn mọi người.
+[00:11:31 --> 00:11:33] Cảm ơn mọi người.
+[00:11:33 --> 00:11:35] Cảm ơn mọi người.
+[00:11:55 --> 00:11:57] Cảm ơn mọi người.
+[00:12:00 --> 00:12:06] Cái e-manifest này từ điện FM khi các công ty phục vụ hoàng hóa gửi từ hệ thống của họ hay không
+[00:12:06 --> 00:12:12] hay là mình phải sau khi gửi FM từ hệ thống như hiện thành
+[00:12:12 --> 00:12:17] mình phải lấy lại cái điện FM đấy và chuyển sang gửi lại một lần nữa
+[00:12:17 --> 00:12:23] bằng file PDF trên hệ thống mới này của mình
+[00:12:24 --> 00:12:32] Mình có 3 câu hỏi đấy muốn làm rõ để thực hiện tốt hơn. Cảm ơn Hiếu
+[00:12:32 --> 00:12:34] Cảm ơn em
+[00:12:34 --> 00:12:38] Dạ vâng em cảm ơn câu hỏi của anh
+[00:12:38 --> 00:12:46] Em đi từ từng câu hỏi trước
+[00:12:46 --> 00:12:54] Đối với câu hỏi thứ ba là điện FM
+[00:12:54 --> 00:13:06] Bên em đang bóc tách từ Cita và đẩy tự động lên trang web phim cargo này
+[00:13:06 --> 00:13:18] Bên em sẽ lấy điện đó từ mail và bên anh gửi để đẩy và gửi đến một địa chỉ email được cấp
+[00:13:18 --> 00:13:26] Tiến hành đọc bóc tách sau đó sẽ đẩy thành PDF lên trang web này
+[00:13:26 --> 00:13:50] Đối với câu hỏi thứ hai thì khi mà bên phục vụ mặt đất đã Submit và đẩy lên mô Overload
+[00:13:50 --> 00:14:02] Khi mà bên phục vụ hoàng hóa phát hiện ra là cái phần đấy đang sai hoặc là có một số chi tiết gì sai đấy
+[00:14:02 --> 00:14:16] thì cũng có thể là mình sẽ upload lại cái phần bằng file cell hoặc là gửi lại một cái điện FM
+[00:14:16 --> 00:14:26] Và sau đó bên phục vụ hoàng hóa sẽ điện lại địa chỉ
+[00:14:26 --> 00:14:36] Thì đó tài liệu cargo này sẽ đẩy lên thành một revision mới và đẩy cho bên phục vụ mặt đất
+[00:14:36 --> 00:14:48] Tiến hành đọc bóc tách sau đó sẽ đẩy lên hệ thống rồi
+[00:14:48 --> 00:14:58] Sau đó phục vụ mặt đất đã Submit đến phi công rồi
+[00:14:58 --> 00:15:08] Về mặt chức năng thì liệu là bên lúc đấy có phải liên hệ với phục vụ mặt đất để hoàn lại cái nâu tốc để phục vụ hoàng hóa sửa
+[00:15:08 --> 00:15:16] hay là phục vụ hoàng hóa cứ tế sửa được luôn thì cái này phải làm rõ về mặt hệ thống cho anh Dú tí xét rõ
+[00:15:28 --> 00:15:46] Thì nếu mà đã đẩy lên Overload rồi thì hiện tại sẽ không chỉnh sửa lại được cái file tài liệu cũ, cái file nâu tốc với revision đấy
+[00:15:46 --> 00:15:54] Mà sẽ phải bắt đầu lại quy trình, từ đầu sẽ tạo nên revision mới
+[00:15:54 --> 00:16:08] Nhưng mà user của phục vụ hoàng hóa có tạo được mới không khi gốc ban đầu đã được đẩy đến hệ thống phi công rồi?
+[00:16:08 --> 00:16:24] User của phục vụ hoàng hóa sẽ tạo được revision mới với điều kiện là phi công chưa confirm là ok với cái tài liệu đấy
+[00:16:24 --> 00:16:34] Từ từ một chút, Hiếu ơi, tức là kể cả trường phí công tạo vấn đề của anh
+[00:16:34 --> 00:16:44] Phí công sắp sinh phí công đã xếp rồi thì em vẫn tạo được bản SL được mà, quy trình nó quay lại thành vòng lập thôi
+[00:16:44 --> 00:17:06] Đúng như anh nói đấy, anh cũng nhớ là trong cái phần setup của mình là đến n hợp cũng được mà, miễn là chút trình lập nó bắt đầu lại từ đầu
+[00:17:06 --> 00:17:18] Bây giờ thử tìm một cái nô tốc đã được phê duyệt rồi trên hệ thống này, sau đó tạo một cái mới đè lên để gửi lại từ đầu xem có được không
+[00:17:18 --> 00:17:32] Ví dụ như em sẽ lấy chuyến VN1 3, ở đây thì cái nô tốc cargo đã được confirm từ kích công
+[00:17:48 --> 00:18:08] Anh thề nghe trong lúc mà bạn Hiếu bạn ấy đã bận bận, bạn Nghĩa đã bận bận từ phía bên anh Dũng, chứ anh em có hiện tại, tại đầu tân sân nhất có hai thông tin dục vụ
+[00:18:08 --> 00:18:24] nội địa và quốc tế, nếu như mà có hai nô tốc trên cùng một chuyến bay hệ thống, mình sẽ xử lý như thế nào được nhỉ
+[00:18:24 --> 00:18:44] Tức là trên chuyến bay nội địa, bao gồm cả nô tốc cho hàng nội địa và nô tốc cho hàng quốc tế đúng không?
+[00:18:44 --> 00:18:46] Đúng rồi, đúng rồi, chính xác như vậy
+[00:18:46 --> 00:18:56] Cái này thì theo em thì chắc phải cố gắng chập lại thành một thôi chứ làm sao tầm hai, thực tế là mình đang làm thực tế thì có làm hai nô tốc giấy không?
+[00:18:56 --> 00:18:58] Có làm hai bản không anh?
+[00:18:58 --> 00:19:00] Đang làm hai nô tốc
+[00:19:00 --> 00:19:04] Đang làm hai bản nô tốc khác nhau trên cùng một chuyến bay
+[00:19:04 --> 00:19:07] Đúng rồi, đúng rồi, hai bản
+[00:19:08 --> 00:19:13] Thế cái trường hợp này đúng không, hệ thống khi thiết kế thì cũng chưa lường ra được cái trường hợp này
+[00:19:13 --> 00:19:18] Thế thì vẫn phải, nếu mà về mặt hệ thống thì phải làm chung là thành một
+[00:19:18 --> 00:19:23] Hiện tại thì phải làm chung là một, chưa có tách ra được hai cái
+[00:19:23 --> 00:19:27] Khi mà đã phê duyệt cái này rồi thì thôi cái kia
+[00:19:27 --> 00:19:35] Mà khi mà đã phê duyệt cái sau thì nó sẽ hủy cái trước, nên sẽ không tồn tại được hai bản nô tốc trên cùng một chuyến bay được
+[00:19:37 --> 00:19:42] Nghĩa ơi, cho anh hỏi một chút
+[00:19:42 --> 00:19:47] Chào mọi người
+[00:19:47 --> 00:19:58] Trường hợp mà anh Dũng đang nói này thì mình có xử lý, mình có thể điều chỉnh lối dích một chút giống như tương tự như cái phần file weather note time
+[00:19:58 --> 00:20:02] Tức là mình có thể nhiều file chung một revision được không?
+[00:20:02 --> 00:20:07] Hiện tại bây giờ ví dụ như gửi weather note time mình có thể làm revision part 1, part 2, part 3
+[00:20:07 --> 00:20:10] Không biết là cái này mình có thể làm tương tự được không nhỉ?
+[00:20:15 --> 00:20:19] Hay là cái này cũng tương tự như cái phần mà weather note time của hệ thống film
+[00:20:19 --> 00:20:28] Tức là mình có thể có cái sương án đó là weather revision 1, part 1, revision 1, part 2 mình có thể làm như vậy
+[00:20:28 --> 00:20:33] Nhưng mà sợ là cái này cũng phải, điều chỉ là quy trình cũng khá khá đấy
+[00:20:34 --> 00:20:43] Weather note time mà ở trên hệ thống film thì nó đều dựa vào các cái tên file mà mình đã đặt trước
+[00:20:43 --> 00:20:51] Thì mình mới nhận diện được là part 1, part 2 và đôi khi mà xạo ra các thứ thì nó sẽ không có phần part 1, part 2 để nhận diện nữa
+[00:20:52 --> 00:20:59] Nếu mà để thực hiện với nhau như gợi ý của anh thì chắc bên em phải nghiên cứu thêm xem có thực hiện được không
+[00:21:06 --> 00:21:11] Anh Dũng ơi, cái trường hợp hay nâu tốc trên Hồ Chí Bay nó có thường xuyên xảy ra có nhiều không?
+[00:21:11 --> 00:21:14] Cũng khá thường xuyên bình quân ngày một lần
+[00:21:15 --> 00:21:23] Báo của anh Thành với anh chị em xin bổ sung thêm là tại vì chiến bay nội địa hay có hai nâu tốc
+[00:21:23 --> 00:21:28] Ngoài do hàng transit ở bên quốc tế về có nâu tốc và có hàng nguy hiểm
+[00:21:28 --> 00:21:36] Và đồng thời hàng nội địa cũng có hàng nguy hiểm của bên xưởng, bên A75 đi thường xuyên
+[00:21:36 --> 00:21:41] Cho nên là nó cũng khá là hay xảy ra cái tình trạng này
+[00:21:45 --> 00:21:54] Bán xin bổ sung nữa là đặc biệt là hàng của bên xưởng là thời gian ra kho rất là bất thường
+[00:21:54 --> 00:22:04] Không có thông báo gì trước, cứ thông báo hàng AOZ và hàng DZ cần cứu tàu là ra là nhập kho là đi thôi
+[00:22:04 --> 00:22:10] Cho nên là cái thời gian mà để kết nối, ví dụ như theo anh Thành là kết nối hai nâu tốc thành một
+[00:22:10 --> 00:22:15] Không có thời gian để kết nối bên quốc tế đâu, nó cũng hơi bất cập ở chỗ đấy một tí
+[00:22:20 --> 00:22:28] Cho nên là các anh cũng tạo tất cả các trường hợp hay phát sinh trong thực tế để mình đưa vào
+[00:22:28 --> 00:22:33] Chương trình sao cho nó phù hợp nhất cho công việc
+[00:22:40 --> 00:22:46] Phần này lúc làm thì không lường ra được, trước đấy cũng cho bên chi nhánh sử dụng thử mềm rồi
+[00:22:46 --> 00:22:50] Nhưng mà cũng không phát hiện sớm để đưa cái này vào
+[00:22:50 --> 00:22:54] Thì khả năng chắc là sẽ chỉ trong phiên bản sau thôi
+[00:22:54 --> 00:22:57] Sự đổi bổ sung thêm với hai nâu tốc trong cùng một chuyến bay
+[00:22:57 --> 00:23:01] Còn nếu mà khi mà triển khai thực tế trước mắt cho version 1 này
+[00:23:01 --> 00:23:08] Rồi tôi nghĩ thì có thể chập, tức là phải mất công chập hai cái thành một để đưa lên hệ thống
+[00:23:08 --> 00:23:13] Thế thì anh sẽ xét lời hỏi anh Dũng một tí để mình tìm phát phù hợp nhất cho anh
+[00:23:13 --> 00:23:19] Bởi vì nếu mà các bạn như anh nói là để các anh đi chập làm sợ là cũng bị chạy chậm mất công tác của các anh ấy
+[00:23:19 --> 00:23:26] Thì anh Dũng thêm hỏi là hai cái nâu tốc này thì thường là các anh sẽ sửa khuyến là mình lấy nguồn vụ hệ thống
+[00:23:26 --> 00:23:32] Thế mai là mình có pham nâu tốc vào mẫu hay như thế nào anh nhỉ?
+[00:23:33 --> 00:23:36] Nâu tốc dữ niệu bắt buộc phải lấy từ tài niệu giấy
+[00:23:36 --> 00:23:43] Các cái tài niệu của tờ khai của khách hàng như các cái thông tin về chất xếp thực tế của kho hàng hóa
+[00:23:43 --> 00:23:46] Để tạo ra các cái thông tin trên nâu tốc
+[00:23:46 --> 00:23:54] Cho nên là không phải lấy dữ niệu trực tiếp ngay từ hệ thống Go Support thì có được hệ thống nào khác được
+[00:23:54 --> 00:23:57] Tức là các anh sẽ phải nhập tay lên hệ thống đấy ạ?
+[00:23:57 --> 00:23:59] Đúng rồi, phải nhập tay lên hệ thống
+[00:24:03 --> 00:24:11] Nếu như mà nhập tay thì nghĩa với trường ơi nếu mà các anh phải nhập tay thì mình có cách nào mình cấu hình
+[00:24:11 --> 00:24:19] Tức là không phải làm ngay lúc này nhưng mình nên cứ cách điều chỉnh làm sao để mà các anh có thể nhập nó thành chung một cái phiên bản cho hai cái nâu tốc được không?
+[00:24:19 --> 00:24:24] Bởi vì là các anh này nó phải nhập tay thì mình hoàn toàn có thể nhờ các anh điền những thông tin cần thiết mà
+[00:24:24 --> 00:24:27] Để đỡ anh đỡ các anh đỡ phải gáp ấy
+[00:24:32 --> 00:24:43] Cái này anh có thể nói rõ hơn cho em mới được không? Bởi vì em đang chưa rõ cái phần đấy
+[00:24:43 --> 00:24:51] Em mở rút cái pha mà các anh sẽ dự kiến để nhập nâu tốc lên
+[00:25:02 --> 00:25:16] Anh Dũng ơi thì trong trường hợp là nó sẽ phải là hai nâu tốc riêng nó là bắt buộc hay là mình có thể nhập chung vào một cái nâu tốc như thế này hả anh?
+[00:25:16 --> 00:25:18] Hay là phải nâu tốc riêng hả anh?
+[00:25:18 --> 00:25:30] Đối với cơ trưởng thì chỉ cần đảm bảo thông tin hàng hóa in tàu bay được cung cấp đến cơ trưởng có nghĩa nào một nâu tốc đều được
+[00:25:30 --> 00:25:40] Tuy nhiên về mặt quy định của AYATA cũng như quy định của VN liên quan đến trách nhiệm của người nập nền nâu tốc
+[00:25:40 --> 00:25:52] Việc cập nhật hai nâu tốc do một người cover cho hai nâu tốc thì phải có quy trình cũng như là phải dạng một cái trách nhiệm của các đơn vị
+[00:25:52 --> 00:26:04] Thì sau này nó mới rõ ràng cái thông tin được bởi vì một nâu tốc sai thông tin dẫn đến các việc ảnh hưởng đến điều hành bay trong quá trình bay theo quy định rất là phức tạ
+[00:26:04 --> 00:26:10] Nên đòi hỏi phải có sự trách nhiệm của người nập thông tin của nâu tốc, đấy là quy định
+[00:26:10 --> 00:26:18] Nên là rất là khó khăn cho cái việc mà khi nhập hai cái là một chúng ta không thể kiểm soát được, hay là người đã sửa cái phần nâu tốc đó
+[00:26:18 --> 00:26:28] Hoặc là đến lúc sửa rồi thì không phát hiện rất là khó để mà có thể phát hiện được nỗi ở đâu, thì lúc bây giờ thời gian bay thì nó lại có hạn
+[00:26:28 --> 00:26:34] Nên vẫn để tồn tại hai nâu tốc như thực tế nâu tốc giấy hiện nay là tốt nhất
+[00:26:34 --> 00:26:39] Dạ vâng, em cảm ơn anh ạ. Thế nên chắc là em sẽ làm việc với cả các bạn ở ATS
+[00:26:39 --> 00:26:47] Định hướng sẽ là phục vụ được chính xác cái nhu cầu của cái quy trình của mình
+[00:26:47 --> 00:26:51] Thì nghĩa là ở chỗ này ấy, cái phần mà nhập các cái thông tin DGS luôn này này
+[00:26:51 --> 00:26:55] Ở trên mình có các chiều thông tin liên quan đến số hiệu chuyến bay các phố
+[00:26:55 --> 00:27:00] Thứ nhất là khả năng là mình sẽ có thêm revision về đây và mình cũng sẽ có cái option
+[00:27:00 --> 00:27:07] Cái nghĩa là gắn thêm vào revision chứ không phải là thêm revision mới
+[00:27:07 --> 00:27:13] Chắc là sẽ không kịp sửa ngay trong lúc này, nhưng mà trong cái thời gian mà mình chạy demo
+[00:27:13 --> 00:27:20] Vậy là mình chỉ sửa nhẹ thêm cái phần nữa, thì cứ ghi lại để nghiên cứu nhé Nghĩa nhé
+[00:27:21 --> 00:27:24] Cảm ơn anh, em đi xong rồi
+[00:27:24 --> 00:27:29] Cảm ơn anh sắp lại, mình quay lại cái câu hỏi của Cảnh Trị lúc nãy là về cái vấn đề là
+[00:27:29 --> 00:27:34] Một cái file nô tộc trong khi mà nó được confirm thì nhiều tiềm điểm ạ
+[00:27:34 --> 00:27:39] C patriot ạ
+[00:27:49 --> 00:27:55] Về câu hỏi đầu tiên của quốc Anh là về cái reject một phần và reject toàn phần của Captain
+[00:27:55 --> 00:28:00] Thì trên lại không có lúc, nếu reject toàn phần thì sẽ thấy là màu đỏ
+[00:28:00 --> 00:28:04] Còn dưới một phần sẽ hình thị màu cổng quá.
+[00:28:04 --> 00:28:07] Các bạn nhìn cho vào.
+[00:28:11 --> 00:28:15] Thì phần này sẽ hình thị trạng phái qua màu sắc.
+[00:28:15 --> 00:28:21] Cũng như là ở đây sẽ có một số phần liên quan đến lịch sử riêng nhất.
+[00:28:21 --> 00:28:25] Khi mà vi công gửi cái phần vi xích
+[00:28:26 --> 00:28:29] số nào hoặc là vị trí chế sếp nào.
+[00:28:29 --> 00:28:33] Đối với phần ghi chủ ở đây
+[00:28:33 --> 00:28:37] sẽ ghi tên của một số...
+[00:28:37 --> 00:28:42] sẽ ghi lại lịch sử của kỹ công.
+[00:28:42 --> 00:28:49] Còn đối với phần mà upload cái tài liệu Notebook
+[00:28:49 --> 00:28:56] khi mà vi công đã thực hiện, confirm OK rồi.
+[00:28:56 --> 00:29:01] Theo bài toán từ trước mình đặt ra
+[00:29:01 --> 00:29:06] đối với tài liệu Notebook khi mà vi công đã confirm OK
+[00:29:06 --> 00:29:12] thì cái tài liệu này sẽ bắt lại và sẽ không được upload lại lần thứ hai.
+[00:29:12 --> 00:29:15] Đối với các tài liệu khác thì có thể là lên T-version
+[00:29:15 --> 00:29:18] và upload thoải mái lên lần thứ Nl được.
+[00:29:18 --> 00:29:37] Anh số này có dính không ạ?
+[00:29:49 --> 00:29:53] Hiếu ơi, anh nghĩ là cái phần mà
+[00:29:53 --> 00:29:56] khóa Notebook mà không được upload Reversion 2
+[00:29:56 --> 00:29:58] thì anh nghĩ là lên mở lại.
+[00:29:58 --> 00:30:01] Vì Reversion 2 nó cũng quan trọng lắm.
+[00:30:01 --> 00:30:03] Như các anh ý có ý kiến đặc biệt là hàng hóa
+[00:30:03 --> 00:30:05] mà khi anh em đang làm mà thấy phát hiện ra
+[00:30:05 --> 00:30:07] cái gì mà cần phải update, cần phải bổ sung.
+[00:30:07 --> 00:30:13] Trong khi mà phục vụ mặt đất đã chuyển lên cap rồi
+[00:30:13 --> 00:30:15] thì vẫn làm Reversion 2 được.
+[00:30:15 --> 00:30:18] Vì quy trình hiện nay là vẫn có thể chỉnh sửa
+[00:30:18 --> 00:30:22] thành Reversion 2 để mà cap upload lại thôi.
+[00:30:22 --> 00:30:24] Vì trong cái không có lúc khai thác
+[00:30:24 --> 00:30:28] làm mình không thể đóng chết được một lần đâu.
+[00:30:28 --> 00:30:31] Dạ vâng, anh Sơn thì phần này em sẽ
+[00:30:31 --> 00:30:36] hiện luôn cái phần mở phần upload Notebook
+[00:30:36 --> 00:30:38] nên các Reversion này mới
+[00:30:38 --> 00:30:41] kể cả khi mà phi công đã confirm.
+[00:30:53 --> 00:30:57] Đối với AITS liệu xem khả năng là có thể
+[00:30:57 --> 00:31:00] chỉnh cái cấu hình của phần mềm
+[00:31:00 --> 00:31:03] cho cái Notebook, phần Notebook này
+[00:31:03 --> 00:31:07] kể cả Reversion 1 được phi công confirm rồi.
+[00:31:07 --> 00:31:09] Nhưng mà khi mà đẩy Reversion 2
+[00:31:09 --> 00:31:12] thì phi công vẫn confirm được Reversion 2
+[00:31:12 --> 00:31:15] và cả Reversion 2 đều cùng tồn tại
+[00:31:15 --> 00:31:17] Confirm thì liệu có được không?
+[00:31:21 --> 00:31:23] Anh đảm chắc là phải ý kiến chủ này
+[00:31:23 --> 00:31:25] bởi vì hệ tống Reversion 2
+[00:31:25 --> 00:31:27] nên được thiết kế Reversion 1, Reversion 2 trước.
+[00:31:27 --> 00:31:29] Nếu như anh nói thì nó sẽ phải là
+[00:31:29 --> 00:31:31] hai tuần Reversion, chứ còn
+[00:31:31 --> 00:31:33] một ngày mình cũng tham phát của Reversion 1
+[00:31:33 --> 00:31:34] thì nó mới thiết được cả hai
+[00:31:34 --> 00:31:36] trước khi mà đã Reversion 2 rồi.
+[00:31:36 --> 00:31:38] Thì theo đúng lý Reversion 1
+[00:31:38 --> 00:31:40] phải mất hiệu lực rồi anh ạ.
+[00:31:42 --> 00:31:44] Tức là khi mà cả hai cái cùng tồn tại
+[00:31:44 --> 00:31:46] thì sẽ giải quyết được cái chỗ lài toán
+[00:31:46 --> 00:31:48] của anh Dung ở Sài Gòn.
+[00:31:48 --> 00:31:50] Anh đề nghị tức là tồn tại cả
+[00:31:50 --> 00:31:52] Notebook nội địa, Notebook quốc tế
+[00:31:52 --> 00:31:54] trên cùng một chuyên bay.
+[00:31:54 --> 00:31:56] Tức là để mở được
+[00:31:56 --> 00:31:58] hai cái bản cùng tồn tại.
+[00:31:58 --> 00:32:01] Còn hai bản nó bị con lịch anh ạ.
+[00:32:01 --> 00:32:05] Nó sẽ bị không biết bản lao đúng mà nào sai.
+[00:32:05 --> 00:32:07] Còn cái cách lối lại hai part ấy
+[00:32:07 --> 00:32:09] thì mình sẽ có kỹ thuật sau
+[00:32:09 --> 00:32:11] lối lại part 1, part 2 thì coi như là
+[00:32:11 --> 00:32:13] lúc đấy thì ở bên quốc tế
+[00:32:13 --> 00:32:15] thì luôn luôn là part 1.
+[00:32:15 --> 00:32:17] Còn bên nội địa thì luôn luôn là part 2 chẳng hạn.
+[00:32:17 --> 00:32:19] Thì mình sẽ, khi mà có đặt cái tên
+[00:32:19 --> 00:32:21] ví dụ như là cái tên Notebook part 1
+[00:32:21 --> 00:32:23] nếu mà nó dừng lại ở cái bản cuối cùng rồi
+[00:32:23 --> 00:32:25] thì nó luôn luôn là part 1.
+[00:32:25 --> 00:32:27] Còn ở quốc tế thì mình đặt là part 2
+[00:32:27 --> 00:32:29] thì luôn luôn là part 2.
+[00:32:29 --> 00:32:31] Khi mà part 1 gặp part 2 thì thành Reversion
+[00:32:31 --> 00:32:33] từ N.
+[00:32:33 --> 00:32:35] Chắc là cái thuật toán ấy
+[00:32:35 --> 00:32:37] hiếu với cả anh hiểu ý anh không?
+[00:32:37 --> 00:32:39] Chắc là mình riêng với Sài Gòn nữa ạ.
+[00:32:39 --> 00:32:41] Riêng với Sài Gòn thôi.
+[00:32:41 --> 00:32:43] Còn đâu tại nội bài với cả Đà Nẵng
+[00:32:43 --> 00:32:45] với cả các sân khác thì anh nghĩ là không vướng đâu.
+[00:32:45 --> 00:32:47] Lúc nào anh hơi giật bình
+[00:32:47 --> 00:32:49] vì ở Sài Gòn nó có bài toán này.
+[00:32:49 --> 00:32:51] Vâng, em cũng sợ cái câu chuyện ở đây
+[00:32:51 --> 00:32:53] là có hai Revision
+[00:32:53 --> 00:32:55] nên câu chuyện là thời điểm nữa.
+[00:32:55 --> 00:32:57] Bởi vì là ví dụ như là em không chắc
+[00:32:57 --> 00:32:59] cái chỗ này nó phải là anh Dũng là bây giờ
+[00:32:59 --> 00:33:01] giả sở mình có một Final Talk của
+[00:33:01 --> 00:33:03] của sân bay, của nội địa, nội thông quốc tế
+[00:33:03 --> 00:33:05] bây giờ sửa là áp một Final Talk
+[00:33:05 --> 00:33:07] nội địa rồi.
+[00:33:07 --> 00:33:09] Phí công đã Confirm rồi.
+[00:33:09 --> 00:33:11] Lúc sau áp đêm Final Talk quốc tế thì phí công phải Confirm lại
+[00:33:11 --> 00:33:13] hay là gap như thế nào thì cái này chắc là mình
+[00:33:13 --> 00:33:15] sẽ phải có một cái lửa riêng ở chỗ này
+[00:33:15 --> 00:33:17] bởi vì cái lửa của mình
+[00:33:17 --> 00:33:19] hiện tại là đang chưa cover được
+[00:33:19 --> 00:33:21] cái case này của anh ấy.
+[00:33:23 --> 00:33:25] Đấy, nhưng mà nó còn quan đến quy trình nữa
+[00:33:25 --> 00:33:27] tại vì nhiều khi
+[00:33:27 --> 00:33:29] áp đến rồi mà gap lại OK rồi
+[00:33:29 --> 00:33:31] Tiếp đến bản thứ hai thì
+[00:33:31 --> 00:33:33] nó sẽ lối vào như nào nữa
+[00:33:33 --> 00:33:35] thì cái đấy ở Sài Gòn nó hơi đặc thù
+[00:33:35 --> 00:33:37] tí.
+[00:33:39 --> 00:33:41] Lối cũng khó nha, tại vì khi mà
+[00:33:41 --> 00:33:43] lối vào thì cùng một cái
+[00:33:43 --> 00:33:45] hai cái No Talk lối vào thành một No Talk
+[00:33:45 --> 00:33:47] chung thì nó còn liên quan đến
+[00:33:47 --> 00:33:49] trách nhiệm của cái người tạo
+[00:33:49 --> 00:33:51] người ký No Talk đấy.
+[00:33:51 --> 00:33:53] Trách nhiệm thì đơn giản, tại vì trách nhiệm thì nó sẽ
+[00:33:53 --> 00:33:55] làm cho mình một trách nhiệm.
+[00:33:55 --> 00:33:57] Mình hiểu như thế này là
+[00:33:57 --> 00:33:59] cái file No Talk ấy
+[00:33:59 --> 00:34:01] thì mình sẽ có như kiểu là
+[00:34:01 --> 00:34:03] mình có hai, mình có thể
+[00:34:03 --> 00:34:05] tách biệt là hai trang No Talk
+[00:34:05 --> 00:34:07] nhưng mà nó nằm trong
+[00:34:07 --> 00:34:09] cùng một file, phi công vẫn xem và confirm cùng một file
+[00:34:09 --> 00:34:11] nhưng mình vẫn có hai trang tách biệt
+[00:34:11 --> 00:34:13] nó hai trang pf tách biệt, mỗi trang
+[00:34:13 --> 00:34:15] đều có đầy đủ tên của
+[00:34:15 --> 00:34:17] người chuẩn bị No Talk, tên của hàng No Talk
+[00:34:17 --> 00:34:19] vị trí chất xét đầy đủ đầy cái đấy.
+[00:34:19 --> 00:34:21] Em nghĩ cái việc mà gap file thì các bạn ấy
+[00:34:21 --> 00:34:23] biết nó gắn hai file pf nhau không phải là vấn đề
+[00:34:23 --> 00:34:25] đối với cái quy trình của mình là
+[00:34:25 --> 00:34:27] làm sao để cái chị ở dưới
+[00:34:27 --> 00:34:29] phục vụ hàng hóa
+[00:34:29 --> 00:34:31] nhập liệu cho nó
+[00:34:31 --> 00:34:33] đơn giản hóa
+[00:34:33 --> 00:34:35] để nó đỡ phức tạp để cái anh ấy có thể
+[00:34:35 --> 00:34:37] làm kịp trong cái lúc mà công tác mặt đặc sản
+[00:34:37 --> 00:34:39] nó chỉ là nhiều công tác
+[00:34:39 --> 00:34:41] tốn thời gian thì mình phải tổng sản
+[00:34:41 --> 00:34:43] cái chị nhập nhất, còn cái việc mà gap file thì
+[00:34:43 --> 00:34:45] gap file phải pdf
+[00:34:45 --> 00:34:47] em nghĩ không phải là vấn đề.
+[00:34:47 --> 00:34:49] Đúng rồi, nó liên quan đến công ty
+[00:34:49 --> 00:34:51] mặt đất nữa, đặc biệt là ở Sài Gòn
+[00:34:51 --> 00:34:53] còn phải báo với nhau trước
+[00:34:53 --> 00:34:55] Ở chỗ RAM, chỗ Ính Lập
+[00:34:55 --> 00:34:57] là lúc đấy
+[00:34:57 --> 00:34:59] truyền mai này có hai nô tốc
+[00:34:59 --> 00:35:01] là ông phải chờ đủ hai nô tốc rồi
+[00:35:01 --> 00:35:03] ông mới RAM clear để đẩy lên gap nữa
+[00:35:03 --> 00:35:05] thì đấy là nó phải trong cái quy trình phối hợp
+[00:35:05 --> 00:35:07] đối với giấy thì chắc anh em ở đấy
+[00:35:07 --> 00:35:09] cũng đang báo nhau như thế rồi
+[00:35:09 --> 00:35:11] thì cũng phải là phải chờ
+[00:35:11 --> 00:35:13] hai cái nô tốc mang ra thì mới mang lên hết một lần chứ
+[00:35:13 --> 00:35:15] chứ mình cũng không kiểu là
+[00:35:15 --> 00:35:17] mỗi cái lại lắt nhắt lắt nhắt
+[00:35:17 --> 00:35:19] lên tàu thì nó cũng vừa
+[00:35:19 --> 00:35:21] tăng mức lốt cho anh em ở ngoài
+[00:35:21 --> 00:35:23] mà cũng các tuần cũng khó chịu
+[00:35:25 --> 00:35:27] Chỗ này em xinh kết với các anh chị
+[00:35:27 --> 00:35:29] như thế này ạ
+[00:35:29 --> 00:35:31] định hướng em thấy phù hợp nhất bây giờ
+[00:35:31 --> 00:35:33] đó sẽ là mình sẽ bổ sung thêm
+[00:35:33 --> 00:35:35] cái form nhập ở dưới website này
+[00:35:35 --> 00:35:37] định hướng của mình là
+[00:35:37 --> 00:35:39] sẽ làm sao để các anh chị có thể
+[00:35:39 --> 00:35:41] nhập đặc biệt hai cái nô tốc
+[00:35:41 --> 00:35:43] nhưng kết quả đưa ra
+[00:35:43 --> 00:35:45] khi mà hệ thống Generate ra thành
+[00:35:45 --> 00:35:47] cái file và gửi lên trên cho phi công
+[00:35:47 --> 00:35:49] thì sẽ là
+[00:35:49 --> 00:35:51] một cái nô tốc có hai trang
+[00:35:51 --> 00:35:53] định hướng em
+[00:35:53 --> 00:35:55] thì gửi ra như vậy
+[00:35:55 --> 00:35:57] em nghĩ sẽ là kiểu quả nhất để phù hợp
+[00:35:57 --> 00:35:59] sử lý cái bài toàn này
+[00:35:59 --> 00:36:01] chắc chắn sẽ làm tên với các bạn ATS
+[00:36:01 --> 00:36:03] nhưng mà chắc là các anh
+[00:36:03 --> 00:36:05] xem như vậy, anh Sơn với các anh Thanh
+[00:36:05 --> 00:36:07] như vậy có ổn không ạ?
+[00:36:07 --> 00:36:09] Cái mà anh vừa nói là
+[00:36:09 --> 00:36:11] làm đặc biệt diễn biệt
+[00:36:11 --> 00:36:13] cho tổng của chuyến bay
+[00:36:13 --> 00:36:15] thì đấy chỉ áp dụng trung hợp là nhập tay
+[00:36:15 --> 00:36:17] hoặc là nhập bằng template
+[00:36:17 --> 00:36:19] nhập bằng điện ntm thì sao?
+[00:36:19 --> 00:36:21] ntm vào thì làm sao nó biết được
+[00:36:21 --> 00:36:23] nó sẽ chui vào form trên hay form dưới?
+[00:36:23 --> 00:36:25] hay nó đè vào?
+[00:36:25 --> 00:36:27] Cái này em vừa hỏi chỗ anh ấy
+[00:36:27 --> 00:36:29] thì anh ấy bảo là với Sài Gòn là anh phải dùng tay hết
+[00:36:29 --> 00:36:31] chứ không dùng ntm được
+[00:36:31 --> 00:36:33] đây là kênh kinh dụng control em ơi
+[00:36:35 --> 00:36:37] Chỗ Sài Gòn là dùng tay nhưng có những sân bay khác
+[00:36:37 --> 00:36:39] họ dùng ntm thì sẽ chui vào form nào?
+[00:36:39 --> 00:36:41] Ở nội bài thì sao?
+[00:36:41 --> 00:36:43] Nội bài họ sẽ dùng ntm đấy?
+[00:36:43 --> 00:36:45] Vâng ạ thì bao gọi là những cái sân nào dùng ntm
+[00:36:45 --> 00:36:47] mình sẽ đưa nó về 1 form như bình thường
+[00:36:47 --> 00:36:49] cái form này nó không phải là mandatory
+[00:36:49 --> 00:36:51] nó sẽ là option cho vẽo kênh là
+[00:36:51 --> 00:36:53] ấn 1 cái nút để mình tạo thêm 1 cái form nữa
+[00:36:53 --> 00:36:55] và mình nhập vào form đấy chứ không phải là tất cả các chỗ đấy
+[00:36:55 --> 00:36:57] nó sẽ có 2 form, ý em là dùng đấy
+[00:37:01 --> 00:37:03] Trước mắt thì cứ thử theo hướng đấy
+[00:37:03 --> 00:37:05] xem nó còn hướng như không
+[00:37:07 --> 00:37:09] Về cái 2 cái nô tốc này
+[00:37:09 --> 00:37:11] về phía tí xét thì mình có
+[00:37:11 --> 00:37:13] ý kiến thế này có anh tham khảo
+[00:37:13 --> 00:37:15] Có thể là trên thệ thống này của mình
+[00:37:15 --> 00:37:17] khi mình đã mở 2
+[00:37:17 --> 00:37:19] version rồi
+[00:37:19 --> 00:37:21] thì có thể là version mình
+[00:37:21 --> 00:37:23] cho chọn thêm quốc tế, quốc nội
+[00:37:23 --> 00:37:25] trong chương trình quốc tế đối với 2 cái zip
+[00:37:25 --> 00:37:27] thì khi mà
+[00:37:27 --> 00:37:29] nhập hay là upload file lên thì chọn là file
+[00:37:29 --> 00:37:31] đó là quốc tế
+[00:37:31 --> 00:37:33] và khi mà quốc nội mà
+[00:37:33 --> 00:37:35] có hành
+[00:37:35 --> 00:37:37] đã có hành đặc biệt
+[00:37:37 --> 00:37:39] và cần phải làm nô tốc thì các anh sẽ
+[00:37:39 --> 00:37:41] khi mà upload file lên các anh sẽ cho quốc nội
+[00:37:41 --> 00:37:43] Và sau khi mà 2 cái form này
+[00:37:43 --> 00:37:45] mà phải đến cuối cùng rồi
+[00:37:45 --> 00:37:47] mà vua mà đất muốn chuyển đến phi công
+[00:37:47 --> 00:37:49] thì có thể cầm bay 2 cái
+[00:37:49 --> 00:37:51] cái form này và
+[00:37:51 --> 00:37:53] chuyển đến cho phi công 1 lần để tránh cái tình trạng
+[00:37:53 --> 00:37:55] trong trường hợp mà nếu mà cầm bay
+[00:37:55 --> 00:37:57] ngay từ đầu thì có thể là
+[00:37:57 --> 00:37:59] khi mà nó xảy ra cái tình trạng mà bị
+[00:37:59 --> 00:38:01] sai xót thì không biết là
+[00:38:01 --> 00:38:03] đơn vị nào là cái người phải
+[00:38:03 --> 00:38:05] tiềm tre lại thì cũng rất là
+[00:38:05 --> 00:38:07] cận phi với chỗ này, thì cái này các anh
+[00:38:07 --> 00:38:09] tham khảo xem
+[00:38:11 --> 00:38:13] Và mình có ít thêm ý kiến
+[00:38:13 --> 00:38:15] cho anh Tú thì
+[00:38:15 --> 00:38:17] ý kiến cái khúc đầu thì có thể
+[00:38:17 --> 00:38:19] ok, chúng ta lấy được những khúc sau
+[00:38:19 --> 00:38:21] nếu chúng ta cầm bay nó này
+[00:38:21 --> 00:38:23] nếu mà cầm bay cả nội địa
+[00:38:23 --> 00:38:25] và quốc tế, trong khi đó 1
+[00:38:25 --> 00:38:27] trong 2 cái nô tốc ấy mà có
+[00:38:27 --> 00:38:29] vấn đề, cơ trưởng refill sẽ
+[00:38:29 --> 00:38:31] giúp luôn cả 1 cái nô tốc cho cả
+[00:38:31 --> 00:38:33] 2 trạng. Nên theo ý kiến mình thì
+[00:38:33 --> 00:38:35] hiện nay thực ra quy trình giấy như thế nào
+[00:38:35 --> 00:38:37] thì chúng ta cứ căng cứ vào cái
+[00:38:37 --> 00:38:39] công tác phối hợp đấy để xây dựng cái
+[00:38:39 --> 00:38:41] hình thức 2 nô tốc này. Hiện nay
+[00:38:41 --> 00:38:43] ở dưới rem thì bộ phận
+[00:38:43 --> 00:38:45] giám sát chất xếp của VR
+[00:38:45 --> 00:38:47] cũng đều căng cứ vào bên nia
+[00:38:47 --> 00:38:49] các thông tin hàng nguy hiểm, hàng
+[00:38:49 --> 00:38:51] đặc biệt đều có ở trên đấy và họ sẽ căng cứ vào
+[00:38:51 --> 00:38:53] những cái đó để xác định vị trí
+[00:38:53 --> 00:38:55] của nô tốc nếu chưa trên hệ thống
+[00:38:55 --> 00:38:57] đầy đủ thông tin của nô tốc, điều đó có nghĩa là
+[00:38:57 --> 00:38:59] bộ phận ở quốc tế hay là nội địa
+[00:38:59 --> 00:39:01] đều đang bị thiếu
+[00:39:01 --> 00:39:03] thì chưa thể trình lên cơ trưởng được
+[00:39:03 --> 00:39:05] nếu mà cái việc mà đầy đủ trên hệ thống thì
+[00:39:05 --> 00:39:07] chúng ta thể trình cùng nốc lên cho
+[00:39:07 --> 00:39:09] cơ trưởng thì việc đó sẽ không ảnh hưởng
+[00:39:09 --> 00:39:11] để việc cơ trưởng phải
+[00:39:11 --> 00:39:13] trách 1 cái, nếu sau đó đầy phải
+[00:39:13 --> 00:39:15] cho thông tin đâu đó lại trách cái thứ 2
+[00:39:15 --> 00:39:17] thì như vậy để cố gắng là chúng ta bám theo
+[00:39:17 --> 00:39:19] cái quy trình
+[00:39:19 --> 00:39:21] của giấy để chúng ta làm
+[00:39:21 --> 00:39:23] nó sẽ đỡ thông cảm hơn và vẫn kiểm soát được
+[00:39:23 --> 00:39:25] của từng cái nô tốc của từng
+[00:39:25 --> 00:39:27] đơn vị nào mà xây dựng
+[00:43:07 --> 00:43:09] Cảm ơn mọi người.
+[00:43:09 --> 00:43:11] Cảm ơn mọi người.
+[00:43:11 --> 00:43:13] Cảm ơn mọi người.
+[00:43:43 --> 00:43:45] Cảm ơn mọi người
+[00:43:45 --> 00:43:47] Cảm ơn mọi người.
+[00:44:13 --> 00:44:14] Cảm ơn mọi người.
+[00:44:43 --> 00:44:47] Và mình sẽ dùng tên đa thôi.
+[00:44:48 --> 00:44:53] Thôi, tôi sẽ trở nêninnen, con người hình như,
+[00:44:53 --> 00:44:57] Dù tôi không muốn có vẻ ngu ngốc, thì tôi sẽ trở nên racks.
+[00:44:57 --> 00:45:01] Tôi sẽ đ onwards.
+[00:45:01 --> 00:45:07] Vì vậy, hãy đặt tên, chứa mà của tôi là nhau.
+[00:47:07 --> 00:47:09] Hiểu rồi, hiểu rồi
+[00:47:09 --> 00:47:11] Cảm ơn
+[00:47:11 --> 00:47:15] Em có thể làm một cái tình hình bản thân
+[00:47:15 --> 00:47:17] Cảm ơn mọi người, mọi người
+[00:47:17 --> 00:47:19] Mình cảm ơn mọi người
+[00:47:19 --> 00:47:21] Em lời cho mọi người, mọi người
+[00:47:21 --> 00:47:23] Cảm ơn mọi người, mọi người
+[00:47:23 --> 00:47:25] Năm mươi là 20 triệu mấy người đã tham gia
+[00:47:25 --> 00:47:27] Điều này là linh của mình
+[00:47:27 --> 00:47:29] Cảm ơn
+[00:47:31 --> 00:47:33] Vậy thì chắc là
+[00:47:33 --> 00:47:35] Lát nữa em sẽ làm thêm một cái site
+[00:47:35 --> 00:47:37] Về câu hỏi mà các anh chị
+[00:47:37 --> 00:47:39] Còn đặt sang
+[00:47:39 --> 00:47:41] Chương trình live như là
+[00:47:41 --> 00:47:43] Hiện tại bây giờ, em sẽ gửi cái đấy
+[00:47:43 --> 00:47:45] Đứng kèm theo cái site
+[00:47:45 --> 00:47:47] Và lấy thắc
+[00:47:47 --> 00:47:49] Hôm nay mình sẽ đào tạp
+[00:47:49 --> 00:47:51] Quay email cho anh chị
+[00:47:51 --> 00:47:53] Chắc là buổi đào tạp
+[00:47:53 --> 00:47:55] Hôm nay thì em xin phép
+[00:47:55 --> 00:47:57] Và kết thúc tại đây
+[00:47:57 --> 00:47:59] Cho anh em hỏi thêm một câu hỏi
+[00:47:59 --> 00:48:01] Em biết anh chị có nghĩ kiến nào không ạ?
+[00:48:01 --> 00:48:03] Cảm ơn em hỏi nhé
+[00:48:05 --> 00:48:07] Bộ phần giám sát chất xếp
+[00:48:07 --> 00:48:09] Ngoài tàu bay
+[00:48:09 --> 00:48:11] Thì người ta sẽ sử dụng cái
+[00:48:11 --> 00:48:13] Film trên phiên bản mobile
+[00:48:13 --> 00:48:15] Thì thì anh muốn
+[00:48:15 --> 00:48:17] Nếu có thể thì em đề bộ cái việc
+[00:48:17 --> 00:48:19] Sử dụng trên mobile thì nó sẽ
+[00:48:19 --> 00:48:21] Có cái gì, các film chức năng
+[00:48:21 --> 00:48:23] Có gì khác không so với
+[00:48:23 --> 00:48:25] Trên tàu tiện máy tính bởi vì toàn độ
+[00:48:25 --> 00:48:27] Công tác ngoài rem size là
+[00:48:27 --> 00:48:29] Nó sẽ được thực hiện trên mobile hết
+[00:48:31 --> 00:48:33] Vâng, mình cũng có thêm một câu hỏi là
+[00:48:33 --> 00:48:35] Hiện tại là các user name
+[00:48:35 --> 00:48:37] Đăng dùng
+[00:48:37 --> 00:48:39] Để ở trên hệ thống phim này
+[00:48:39 --> 00:48:41] Đều là user name thật
+[00:48:41 --> 00:48:43] Và thông tin
+[00:48:43 --> 00:48:45] Mình gửi lên
+[00:48:45 --> 00:48:47] Thông tin thật
+[00:48:47 --> 00:48:49] Thế thì em hỏi là trong cái quá trình
+[00:48:49 --> 00:48:51] Mình thử nghiệm này mình có
+[00:48:51 --> 00:48:53] Mình có áp dụng cái
+[00:48:53 --> 00:48:55] Chế độ mà
+[00:48:55 --> 00:48:57] Text không ạ?
+[00:48:57 --> 00:48:59] Vì nếu như mình làm thật hết
+[00:48:59 --> 00:49:01] Nhưng mà nó
+[00:49:01 --> 00:49:03] Không đúng thì có ảnh hưởng gì đến
+[00:49:03 --> 00:49:05] Hệ thống không ạ?
+[00:49:11 --> 00:49:13] Với vấn đề thực hiện text này thì
+[00:49:13 --> 00:49:15] Bên em sẽ có thực hiện
+[00:49:15 --> 00:49:17] Phần size text cho anh chị trước
+[00:49:17 --> 00:49:19] Khi mà mình thực hiện
+[00:49:19 --> 00:49:21] Thật
+[00:49:21 --> 00:49:23] Th何?
+[00:49:27 --> 00:49:29] Khi là luồng yện tại ở đây
+[00:49:29 --> 00:49:31] Thất cả các phần mà anh chị đang thoát tu biểuะ hiện cũng tại
+[00:49:31 --> 00:49:33] Đó là giữ liệu text
+[00:49:33 --> 00:49:35] Khi mà so với thốngún gì hết
+[00:49:35 --> 00:49:37] Là mình truyền khai thực tế
+[00:49:37 --> 00:49:39] Mình gọi là truyền khai thử nghiệm
+[00:49:39 --> 00:49:40] Mình fung dang sẽ sử dụng wii
+[00:49:41 --> 00:49:42] Thì lúc đấy
+[00:49:42 --> 00:49:43] Crazy
+[00:49:43 --> 00:49:45] So mà weak
+[00:49:45 --> 00:49:47] Đấy lúc đấy
+[00:49:47 --> 00:49:49] hour saying
+[00:49:49 --> 00:49:51] Cảm ơn mọi người.
+[00:50:20 --> 00:50:23] Các chức năng ở đây sẽ tương tự như phần web.
+[00:50:23 --> 00:50:28] Cũng có module, cũng có các phần filter để tìm kiếm chuyển bay.
+[00:50:28 --> 00:50:35] Các phần status của các thành liệu, cũng như upload thành liệu thì sẽ cũng tương tự.
+[00:50:35 --> 00:50:40] Ở đây thì bên em sẽ vẫn có phần upload manifest.
+[00:50:41 --> 00:50:44] Các chức năng ở đây sẽ tương tự.
+[00:50:44 --> 00:50:48] Ở đây thì bên em sẽ vẫn có phần upload manifest.
+[00:50:48 --> 00:50:52] Tốc tốc là Go và tốc tốc là Git.
+[00:50:52 --> 00:51:03] Các chức năng ở đây cũng có thể lấy một cái file ở trên mobile để đẩy vào và tạo thành một cái tài liệu.
+[00:51:03 --> 00:51:11] Cũng đều sẽ có phần ghi lại lịch sử, suy lý của phần tài liệu.
+[00:51:11 --> 00:51:34] Phần tìm kiếm và phần lựa chọn cũng tương tự như trên phần web.
+[00:51:34 --> 00:51:42] Các chức trọng thái của tài liệu cũng đều sẽ ghi nhận và có thông tin chi tiết của từng chuyến bay.
+[00:51:42 --> 00:52:10] Đối với các vắc phần liên quan đến phần nấu tốc,
+[00:52:10 --> 00:52:14] tốc tốc là Go.
+[00:52:22 --> 00:52:27] Ở đây sẽ vẫn là những vắc phần đó.
+[00:52:27 --> 00:52:34] Các anh chị có thể thực hiện phần unsubmit, submit và review trước khi mình đẩy cho một bên nào đó.
+[00:52:34 --> 00:52:42] Các chức năng này tương tự như trên phần web.
+[00:52:42 --> 00:52:47] Nếu có tính năng này thì sẽ tương tự như trên phần web.
+[00:52:50 --> 00:52:55] Phần nhập dữ liệu chất xếp về vị trí chất xếp thì nó hình thị ở đâu nhỉ?
+[00:52:55 --> 00:53:03] Ở đây thì anh sẽ thấy là phần sẽ có cồn để mình nhập vị trí chất xếp.
+[00:53:12 --> 00:53:17] Sau đó thì anh chỉ có thể thích phần review.
+[00:53:17 --> 00:53:24] Ở đây thì nó sẽ chuyển sang một phần dữ liệu chất xếp về vị trí chất xếp.
+[00:53:24 --> 00:53:33] Ở đây thì nó sẽ chuyển sang một phần dữ liệu chất xếp về vị trí chất xếp.
+[00:53:33 --> 00:53:37] Sau đó thì anh chỉ có thể thích phần review.
+[00:53:37 --> 00:53:43] Ở đây thì nó sẽ chuyển sang một phần review của file PDF.
+[00:53:44 --> 00:53:48] Sau đó thì anh chỉ có thể thích phần review.
+[00:53:48 --> 00:53:58] Ở đây thì nó sẽ chuyển sang một phần review về file PDF.
+[00:53:58 --> 00:54:03] Sau đó thì anh chỉ có thể thích phần review.
+[00:54:09 --> 00:54:12] Vào đây thì anh chỉ có thể thích phần review.
+[00:54:12 --> 00:54:23] Về phần moving như thế thì anh vệ cổ kiến được không ạ?
+[00:54:23 --> 00:54:43] Em đề mô lại giúp anh cái phần nhập vị trí chất xếp vào một cái notebook cụ thể để xem lại anh chưa xem được.
+[00:54:43 --> 00:54:53] Em xin chào mọi người.
+[00:55:13 --> 00:55:29] Em xin mẹp upload phần laptop.
+[00:55:43 --> 00:55:53] Em xin chào mọi người.
+[00:55:53 --> 00:56:03] Em xin chào mọi người.
+[00:56:03 --> 00:56:13] Em xin chào mọi người.
+[00:56:13 --> 00:56:23] Em xin chào mọi người.
+[00:56:23 --> 00:56:33] Em xin chào mọi người.
+[00:56:53 --> 00:57:03] Em xin chào mọi người.
+[00:57:23 --> 00:57:33] Em xin chào mọi người.
+[00:57:33 --> 00:57:43] Em xin chào mọi người.
+[00:57:43 --> 00:57:53] Em xin chào mọi người.
+[00:57:53 --> 00:57:59] Em xin chào mọi người.
+[00:58:13 --> 00:58:23] Em xin chào mọi người.
+[00:58:23 --> 00:58:33] Em xin chào mọi người.
+[00:58:33 --> 00:58:43] Em xin chào mọi người.
+[00:59:03 --> 00:59:13] Em xin chào mọi người.
+[00:59:33 --> 00:59:43] Em xin chào mọi người.
+[01:00:03 --> 01:00:13] Em xin chào mọi người.
+[01:00:33 --> 01:00:43] Em xin chào mọi người.
+[01:01:03 --> 01:01:13] Em xin chào mọi người.
+[01:01:33 --> 01:01:43] Em xin chào mọi người.
+[01:01:43 --> 01:01:53] Em xin chào mọi người.
+[01:01:53 --> 01:02:03] Em xin chào mọi người.
+[01:02:23 --> 01:02:33] Em xin chào mọi người.
+[01:02:33 --> 01:02:43] Em xin chào mọi người.
+[01:02:43 --> 01:02:53] Em xin chào mọi người.
+[01:02:53 --> 01:03:03] Em xin chào mọi người.
+[01:03:03 --> 01:03:13] Em xin chào mọi người.
+[01:03:13 --> 01:03:23] Em xin chào mọi người.
+[01:03:23 --> 01:03:33] Em xin chào mọi người.
+[01:03:53 --> 01:04:03] Em xin chào mọi người.
+[01:04:03 --> 01:04:13] Em xin chào mọi người.
+[01:04:13 --> 01:04:23] Em xin chào mọi người.
+[01:04:43 --> 01:04:53] Em xin chào mọi người.
+[01:05:13 --> 01:05:23] Em xin chào mọi người.
+[01:05:43 --> 01:05:53] Em xin chào mọi người.
+[01:06:13 --> 01:06:23] Em xin chào mọi người.
+[01:06:43 --> 01:06:53] Em xin chào mọi người.
+[01:07:13 --> 01:07:23] Em xin chào mọi người.
+[01:07:43 --> 01:07:53] Em xin chào mọi người.
+[01:08:13 --> 01:08:23] Em xin chào mọi người.
+[01:08:43 --> 01:08:53] Em xin chào mọi người.
+[01:09:13 --> 01:09:23] Em xin chào mọi người.
+[01:09:43 --> 01:09:53] Em xin chào mọi người.
+[01:10:13 --> 01:10:23] Em xin chào mọi người.
+[01:10:43 --> 01:10:53] Em xin chào mọi người.
+[01:11:13 --> 01:11:23] Em xin chào mọi người.
+[01:11:43 --> 01:11:53] Em xin chào mọi người.
+[01:12:13 --> 01:12:23] Em xin chào mọi người.
+[01:12:43 --> 01:12:53] Em xin chào mọi người.
+[01:13:13 --> 01:13:23] Em xin chào mọi người.
+[01:13:43 --> 01:13:53] Em xin chào mọi người.
+[01:14:13 --> 01:14:23] Em xin chào mọi người.
+[01:14:43 --> 01:14:53] Em xin chào mọi người.
+[01:15:13 --> 01:15:23] Em xin chào mọi người.
+[01:15:43 --> 01:15:53] Em xin chào mọi người.
+[01:16:13 --> 01:16:23] Em xin chào mọi người.
+[01:16:43 --> 01:16:53] Em xin chào mọi người.
+[01:17:13 --> 01:17:23] Em xin chào mọi người.
+[01:17:43 --> 01:17:53] Em xin chào mọi người.
+[01:18:13 --> 01:18:23] Em xin chào mọi người.
+[01:18:43 --> 01:18:53] Em xin chào mọi người.
+[01:19:13 --> 01:19:23] Em xin chào mọi người.
+[01:19:43 --> 01:19:53] Em xin chào mọi người.
+[01:20:13 --> 01:20:23] Em xin chào mọi người.
+[01:20:43 --> 01:20:53] Em xin chào mọi người.
+[01:21:13 --> 01:21:23] Em xin chào mọi người.
+[01:21:43 --> 01:21:53] Em xin chào mọi người.

@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM">]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.2-38-30-01.1938.2-38-30-01" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="38" superSectionNumber="2" sectionName="MEL" chapterName="Water / Waste" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2024-06-19" rev:revStatus="U" rev:revNumber="10" />
+</PUMetaData>
+<MELItem itemNbr="38-30-01" id="X-BOEING:FTID:81205.787.DDG.CU.MEL.2-38-30-01.1.2-38-30-01">
+<Title>Waste Water System</Title>
+<DispatchCondition dispCondOptions="A" repairInterval="C" nbrInstalled="-" nbrRequired="0" maintIndicator="(M)">
+<Title>Individual Components Deactivated/Isolated</Title>
+<DispatchConditionRemarks>
+<Para>Individual components may be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Associated components are deactivated or isolated.</Para>
+</ListItem>
+<ListItem>
+<Para>Associated system components are verified not to have leaks.</Para>
+</ListItem>
+</List>
+<Note>
+<Para>Any portion of system which operates normally may be used.</Para>
+</Note>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Deactivate or isolate inoperative components and verify associated system components do not have leaks (AMM DDG 38-30-01).</Para>
+<Note>
+<Para>Due to the wide variety of lavatory installations and various component failure possibilities, operators must develop procedures tailored to their specific installations. </Para>
+</Note>
+</MaintenanceProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+<DispatchCondition dispCondOptions="B" repairInterval="C" nbrInstalled="-" nbrRequired="0" maintIndicator="(M)">
+<Title>Lavatory Locked Closed</Title>
+<DispatchConditionRemarks>
+<Para>Number installed: 10 - Applicable to: VN-A861, VN-A862, VN-A863, VN-A864, VN-A867, VN-A868, VN-A870, VN-A871, VN-A872, VN-A873, VN-A877, VN-A878, VN-A879.</Para>
+<Para>Number installed: 9 - Applicable to: VN-A865, VN-A866, VN-A869.</Para>
+<Para>Associated lavatory may be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Associated components are deactivated or isolated to prevent leaks.</Para>
+</ListItem>
+<ListItem>
+<Para>Associated lavatory door is locked closed and placarded, INOPERATIVE - DO NOT ENTER.</Para>
+</ListItem>
+</List>
+<Note>
+<Para>These provisions are not intended to prohibit inspections by crew members.</Para>
+</Note>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Deactivate or isolate inoperative components and lock associated lavatory door (AMM DDG 38-30-01).</Para>
+<List listType="1.">
+<ListItem>
+<Para>Deactivate or isolate inoperative components.</Para>
+</ListItem>
+<ListItem>
+<Para>For leaking waste tank, drain the tank.  Do not add the precharge chemical to the associated waste tank.</Para>
+</ListItem>
+<ListItem>
+<Para>Close, lock and placard the associated lavatory door.</Para>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+<MELSubItem itemNbr="38-30-01-01">
+<Title>Vacuum Blowers</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="2" nbrRequired="0" maintIndicator="(M)" opsIndicator="(O)">
+<DispatchConditionRemarks>
+<Para>May be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Associated vacuum blower is deactivated.</Para>
+</ListItem>
+<ListItem>
+<Para>Galley sinks and lavatories affected by inoperative vacuum blower are not used on the ground or at flight altitudes below 16,000 feet.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Deactivate the inoperative vacuum blower (AMM DDG 38-30-01).</Para>
+<List listType="1.">
+<ListItem>
+<Para>For the left vacuum blower inoperative, using a flight deck multi-function display only, open the VAC BLOWER-L circuit breaker and lock with an INOP tag.</Para>
+</ListItem>
+<ListItem>
+<Para>For the right vacuum blower inoperative, using a flight deck multi-function display only, open the VAC BLOWER-R circuit breaker and lock with an INOP tag.</Para>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+<OperationProcedure>
+<Para>Establish and use procedures to prevent use of lavatories and galley sinks associated with the inoperative vacuum blower at flight altitudes below 16,000 feet.</Para>
+<Note>
+<Para>Inoperative vacuum blower(s) may result in galley cooling unit (GCU) condensate filling the galley sink reservoirs, which cannot drain on the ground without vacuum. When operating in humid conditions, ground operations should minimize GCU usage and avoid pouring fluid into the sink. Consideration should be given to minimize humidity in the cabin by keeping doors closed</Para>
+</Note>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+</MELItem>
+</DispatchItems>

@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM">]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.2-21-81-05.998550.2-21-81-05" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="21" superSectionNumber="2" sectionName="MEL" chapterName="Air Conditioning" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2024-06-19" rev:revStatus="U" rev:revNumber="10" />
+</PUMetaData>
+<MELItem itemNbr="21-81-05" id="X-BOEING:FTID:81205.787.DDG.CU.MEL.2-21-81-05.1.2-21-81-05">
+<Title>Power Electronics Cooling System (PECS) Pumps</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="4" nbrRequired="3" maintIndicator="(M)">
+<DispatchConditionRemarks>
+<Para>One may be inoperative deactivated.</Para>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Note>
+<Para>(Not applicable after incorporation of CN-AA83014 Part B thru D)     When dispatching with R1 or L1 PECS Pump deactivated, verify that the R2 or L2 PECS Pump is ON and running after the airplane is powered, and prior to every dispatch via the PECS Maintenance Page.  If the R2 or L2 PECS Pump is OFF, perform the applicable Power Electronics Cooling System - System Test
+in Central Maintenance Computing Function (CMCF), and verify that R2 or L2 PECS Pump is operating via the PECS Maintenance Page.</Para>
+</Note>
+<Para>Deactivate inoperative pump (AMM DDG 21-81-05).</Para>
+<List listType="1.">
+<ListItem>
+<Para>For left loop:</Para>
+<List listType="A.">
+<ListItem>
+<Para>	For pump 1:</Para>
+<List listType="1)">
+<ListItem>
+<Para> Using a flight deck multi-function display only, open the following circuit breakers and lock with an INOP tag:</Para>
+<List listType="a.">
+<ListItem>
+<Para>MC LIQUID CLG 	PUMP-L1</Para>
+</ListItem>
+<ListItem>
+<Para>MC LIQUID CLG PUMP-L1-SECONDARY</Para>
+</ListItem>
+<ListItem>
+<Para>LIQUID CLG PUMP-L1</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Gain access to left liquid cooling pump 1.</Para>
+</ListItem>
+<ListItem>
+<Para>Disconnect, cap and stow the electrical connectors J1 and J2 to left liquid cooling pump 1.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>	For pump 2:</Para>
+<List listType="1)">
+<ListItem>
+<Para> Using a flight deck multi-function display only, open the following circuit breakers and lock with an INOP tag:</Para>
+<List listType="a.">
+<ListItem>
+<Para>MC LIQUID CLG 	PUMP-L2</Para>
+</ListItem>
+<ListItem>
+<Para>MC LIQUID CLG PUMP-L2-SECONDARY</Para>
+</ListItem>
+<ListItem>
+<Para>LIQUID CLG PUMP-L2</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Gain access to left liquid cooling pump 2.</Para>
+</ListItem>
+<ListItem>
+<Para>Disconnect, cap and stow the electrical connectors to left liquid cooling pump 2.</Para>
+<List listType="a.">
+<ListItem>
+<Para>Electrical connectors J1 and J2.</Para>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>For right loop:</Para>
+<List listType="A.">
+<ListItem>
+<Para>	For pump 1:</Para>
+<List listType="1)">
+<ListItem>
+<Para> Using a flight deck multi-function display only, open the following circuit breakers and lock with an INOP tag:</Para>
+<List listType="a.">
+<ListItem>
+<Para>MC LIQUID CLG 	PUMP-R1</Para>
+</ListItem>
+<ListItem>
+<Para>MC LIQUID CLG PUMP-R1-SECONDARY</Para>
+</ListItem>
+<ListItem>
+<Para>LIQUID CLG PUMP-R1</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Gain access to right liquid cooling pump 1.</Para>
+</ListItem>
+<ListItem>
+<Para>Disconnect, cap and stow the electrical connectors J1 and J2 to right liquid cooling pump 1.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>	For pump 2:</Para>
+<List listType="1)">
+<ListItem>
+<Para> Using a flight deck multi-function display only, open the following circuit breakers and lock with an INOP tag:</Para>
+<List listType="a.">
+<ListItem>
+<Para>MC LIQUID CLG 	PUMP-R2</Para>
+</ListItem>
+<ListItem>
+<Para>MC LIQUID CLG PUMP-R2-SECONDARY</Para>
+</ListItem>
+<ListItem>
+<Para>LIQUID CLG PUMP-R2</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Gain access to right liquid cooling pump 2.</Para>
+</ListItem>
+<ListItem>
+<Para>Disconnect, cap and stow the electrical connectors to right liquid cooling pump 2.</Para>
+<List listType="a.">
+<ListItem>
+<Para>Electrical connectors J1 and J2.</Para>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELItem>
+</DispatchItems>

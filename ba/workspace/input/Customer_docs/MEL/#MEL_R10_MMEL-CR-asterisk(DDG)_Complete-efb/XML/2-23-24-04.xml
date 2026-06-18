@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM">]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.2-23-24-04.4047.2-23-24-04" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="23" superSectionNumber="2" sectionName="" chapterName="Communications" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2025-09-30" rev:revStatus="R" rev:revNumber="10" />
+</PUMetaData>
+<MELItem itemNbr="23-24-04" id="X-BOEING:FTID:81205.787.DDG.CU.MEL.2-23-24-04.1.2-23-24-04">
+<Title>Aircraft Autonomous Distress Tracking (ADT) System - Applicable to VN-A877, VN-A878</Title>
+<MELSubItem itemNbr="23-24-04-01">
+<Title>Emergency Locator Transmitter - Distress Tracking (ELT-DT)</Title>
+<DispatchCondition dispCondOptions="A" repairInterval="A" nbrInstalled="1" nbrRequired="0" maintIndicator="(M)">
+<Title>Inoperative</Title>
+<DispatchConditionRemarks>
+<Para>May be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>System is deactivated.</Para>
+</ListItem>
+<ListItem>
+<Para>Repairs are made within 90 consecutive calendar days.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<Note>
+<Para> CN-AA85747 Incorporated.</Para>
+</Note>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Deactivate the ELT-DT (AMM DDG 23-24-04).</Para>
+<List listType="1.">
+<ListItem>
+<Para>Gain access to the ELT-DT in the passenger compartment ceiling.</Para>
+</ListItem>
+<ListItem>
+<Para>For ACR model ELT-DT, set the ELT-DT front panel switch to OFF.</Para>
+</ListItem>
+<ListItem>
+<Para>For Dukane-Seacom model ELT-DT, disconnect the ELT-DT J1 connector (D3007) and secure for flight.</Para>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+<MELSubItem itemNbr="23-24-04-01-01">
+<Title>Remote ELT Switch</Title>
+<DispatchCondition repairInterval="D" nbrInstalled="1" nbrRequired="0" maintIndicator="(M)">
+<DispatchConditionRemarks>
+<Para>May be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Remote ELT Switch is deactivated.</Para>
+</ListItem>
+<ListItem>
+<Para>	ELT-DT Switch is placed in ARMED mode.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<Note>
+<Para>CN-AA85747 Incorporated.</Para>
+</Note>
+<Note>
+<Para>The remote ELT switch is meant to refer to the panel in the flight deckand is not to be confused with the remote function panel (RFP) which is a maintenance device provided by the ELT-DT supplier.</Para>
+</Note>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Note>
+<Para>If remote ELT switch is failed so that the ELT-DT system is activated, deactivate the ELT-DT system and dispatch per MMEL 23-24-04-01A or 23-24-04-01C.</Para>
+</Note>
+<Para>If ELT-DT does not activate with the remote ELT switch set to ON, deactivate the remote ELT switch (AMM DDG 23-24-04).</Para>
+<List listType="1.">
+<ListItem>
+<Para>Placard the inoperative remote ELT switch.</Para>
+</ListItem>
+<ListItem>
+<Para>Set the remote ELT switch to ARM.</Para>
+</ListItem>
+<ListItem>
+<Para>Set the ELT-DT (LRU) front panel switch to ARM.</Para>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+</MELSubItem>
+<MELSubItem itemNbr="23-24-04-02">
+<Title>ADT Trigger Unit (ATU)</Title>
+<DispatchCondition dispCondOptions="A" repairInterval="A" nbrInstalled="1" nbrRequired="0" maintIndicator="(M)">
+<Title>Inoperative</Title>
+<DispatchConditionRemarks>
+<Para>May be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>System is deactivated.</Para>
+</ListItem>
+<ListItem>
+<Para>ELT-DT is set to fixed ELT mode.</Para>
+</ListItem>
+<ListItem>
+<Para>Repairs are made within 90 consecutive calendar days.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<Note>
+<Para>CN-AA85747 Incorporated.</Para>
+</Note>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Deactivate ATU and set the ELT-DT to fixed ELT mode (AMM DDG 23-24-04).</Para>
+<List listType="1.">
+<ListItem>
+<Para>Open circuit breaker CE2324802 and lock with an INOP tag. </Para>
+</ListItem>
+<ListItem>
+<Para>Gain access to the ATU Lockout toggle switch (S2324111) in the E-12 rack.</Para>
+</ListItem>
+<ListItem>
+<Para>Position the ATU Lockout toggle switch to ATU LOCKOUT to set the ELT-DT to fixed ELT mode.</Para>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+</MELItem>
+</DispatchItems>

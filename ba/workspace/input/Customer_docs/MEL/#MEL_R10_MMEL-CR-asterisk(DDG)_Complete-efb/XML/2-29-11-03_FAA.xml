@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM">]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.2-29-11-03.2125.2-29-11-03_FAA" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="29" superSectionNumber="2" sectionName="MEL" chapterName="Hydraulic Power" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2019-09-25" rev:revStatus="U" rev:revNumber="10" />
+</PUMetaData>
+<MELItem itemNbr="29-11-03" id="X-BOEING:FTID:81205.787.DDG.CU.MEL.2-29-11-03.1.2-29-11-03_FAA">
+<Title>Electric Motor-Driven Pump (EMP) Selectors</Title>
+<MELSubItem itemNbr="29-11-03-01">
+<Title>Center System AUTO Position</Title>
+<DispatchCondition dispCondOptions="A" repairInterval="C" nbrInstalled="2" nbrRequired="1" opsIndicator="(O)">
+<Title>One AUTO Position Inoperative</Title>
+<DispatchConditionRemarks>
+<Para>One may be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Associated pump selector ON and OFF positions operate normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Opposite center system EMP operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Associated pump selector is ON for all operations.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<OperationProcedure>
+<Para>Set the associated C1 or C2 ELEC pump selector ON.</Para>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+<DispatchCondition dispCondOptions="B" repairInterval="C" nbrInstalled="2" nbrRequired="0" opsIndicator="(O)">
+<Title>Both AUTO Positions Inoperative</Title>
+<DispatchConditionRemarks>
+<Para>May be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Both center system pump selector ON and OFF positions operate normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Left and right system EMP selector AUTO positions operate normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Both center system pump selectors are ON for takeoff and landing.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<OperationProcedure>
+<Para>Set both the C1 ELEC and C2 ELEC pump selectors ON for takeoff and landing.  Set one center system pump selector OFF at all other times.</Para>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="29-11-03-02">
+<Title>Left System AUTO Position</Title>
+<DispatchCondition repairInterval="A" nbrInstalled="1" nbrRequired="0" opsIndicator="(O)">
+<DispatchConditionRemarks>
+<Para>May be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Left pump selector ON and OFF positions operate normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Center system EMP selector AUTO positions operate normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Nitrogen generation system is considered inoperative.</Para>
+</ListItem>
+<ListItem>
+<Para>Left pump selector is ON for takeoff and landing.</Para>
+</ListItem>
+<ListItem>
+<Para>Repairs are made within 10 flight days.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<Note>
+<Para>The airplane must also be dispatched using MEL item 47-11-01-01.</Para>
+</Note>
+<DispatchProcedure>
+<OperationProcedure>
+<Para>Set the L ELEC pump selector ON for takeoff and landing and OFF at all other times.</Para>
+<Note>
+<Para>The HYD PRESS DEM L advisory message will be displayed when the L ELEC pump selector is OFF.</Para>
+</Note>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="29-11-03-03">
+<Title>Right System AUTO Position</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="1" nbrRequired="0" opsIndicator="(O)">
+<DispatchConditionRemarks>
+<Para>May be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Right pump selector ON and OFF positions operate normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Center system EMP selector AUTO positions operate normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Right pump selector is ON for takeoff and landing.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<OperationProcedure>
+<Para>Set the R ELEC pump selector ON for takeoff and landing and OFF at all other times.</Para>
+<Note>
+<Para>The HYD PRESS DEM R advisory message will be displayed when the R ELEC pump selector is OFF.</Para>
+</Note>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="29-11-03-04">
+<Title>ON Position</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="4" nbrRequired="0">
+<DispatchConditionRemarks>
+<Para>May be inoperative provided the AUTO and OFF positions for associated pump operate normally.</Para>
+</DispatchConditionRemarks>
+</DispatchCondition>
+</MELSubItem>
+</MELItem>
+</DispatchItems>

@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM">]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.2-32-30-06.967.2-32-30-06" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="32" superSectionNumber="2" sectionName="" chapterName="" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2019-09-25" rev:revStatus="U" rev:revNumber="10" />
+</PUMetaData>
+<MELItem itemNbr="32-30-06" id="X-BOEING:FTID:81205.787.DDG.CU.MEL.2-32-30-06.1.2-32-30-06">
+<Title>Semi Lever Gear Gas Pressure/Temperature Sensors (787-10: VN-A872, VN-A873, VN-A874, VN-A875, VN-A876, VN-A877, VN-A878, VN-A879)</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="2" nbrRequired="0" maintIndicator="(M)">
+<DispatchConditionRemarks>
+<Para>May be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Inoperative sensor is deactivated.</Para>
+</ListItem>
+<ListItem>
+<Para>Gas pressure in associated semi lever gear is verified to be within the required range once each flight day.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Deactivate the inoperative gas pressure/temperature sensor, and once each flight day verify the gas pressure for the associated semi lever gear is within the specified range (AMM DDG 32-30-06).</Para>
+<List listType="1.">
+<ListItem>
+<Para>Deactivate the inoperative gas pressure/temperature sensor.</Para>
+<List listType="A.">
+<ListItem>
+<Para>For inoperative left semi lever gear gas pressure/temperature sensor, using a flight deck multi-function display only, open circuit breaker MLG L STRUT-GAS SNSR and lock with an INOP tag.</Para>
+</ListItem>
+<ListItem>
+<Para>For inoperative right semi lever gear gas pressure/temperature sensor, using a flight deck multi-function display only, open circuit breaker MLG R STRUT-GAS SNSR and lock with an INOP tag.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Verify the gas pressure for the associated semi lever gear is within the specified range.</Para>
+<List listType="A.">
+<ListItem>
+<Para>Determine the ambient temperature of the associated semi lever gear by direct measurement of the strut.</Para>
+<Note>
+<Para>If the opposite gas sensor is operative, the maintenance page temperature from that opposite operative sensor may be used to determine the temperature of the strut with the inoperative sensor.</Para>
+</Note>
+</ListItem>
+<ListItem>
+<Para>Measure the length of exposed piston on the associated semi lever gear.</Para>
+</ListItem>
+<ListItem>
+<Para>Compared the measured values for strut temperature and piston length with published tabular values to determine to the associated gas pressure for the semi lever gear strut.</Para>
+</ListItem>
+<ListItem>
+<Para>If necessary, add or remove nitrogen or dry air until the strut pressure is within 20 PSI of required pressure.</Para>
+<Note>
+<Para>A strut inflation tool connected to the associated semi lever gear gas service port may be used to determine the pressure in the semi lever gear.</Para>
+</Note>
+</ListItem>
+<ListItem>
+<Para>If adjustment to gas pressure was made, wait at least 60 seconds then recheck the pressure. Repeat as needed until the pressure is within the required range.</Para>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELItem>
+</DispatchItems>

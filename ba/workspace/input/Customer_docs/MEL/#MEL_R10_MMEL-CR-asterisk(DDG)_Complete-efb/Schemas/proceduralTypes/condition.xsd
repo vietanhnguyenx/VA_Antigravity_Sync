@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://www.boeing.com/FTID-ML"
+    xmlns:rev="http://www.boeing.com/FTID-ML/Revision"
+    targetNamespace="http://www.boeing.com/FTID-ML" 
+    elementFormDefault="qualified" 
+    attributeFormDefault="unqualified"
+    version="FTID 2.8">
+
+<!-- 	
+=================================================================
+
+
+Copyright Information:
+      Boeing Proprietary and Confidential - 
+      All Rights Reserved since 2006.
+
+      This schema file is part of the Boeing Flight Technical 
+      Integrated Data (FTID) Specification based on XML.
+      All rights are reserved under Boeing Flight Operations 
+      digital data entitlements, products or services.
+
+     
+Contact Information:   	
+        The Boeing Company
+        Flight Operations Support
+        P.O. Box 3707	MS 20-89
+        Seattle, WA 98124-2207
+        USA
+        email:  flighttraining@Boeing.com
+        Phone:  (206) 662-4000
+        Fax:    (206) 662-4743
+
+		
+===================================================================
+-->
+
+<xs:include schemaLocation="../attributeTypes/generalAttrs.xsd"/>
+<xs:include schemaLocation="../basicDataTypes/basicDataInclude.xsd"/>
+<xs:include schemaLocation="../metadataTypes/effect.xsd"/>
+<xs:import namespace="http://www.boeing.com/FTID-ML/Revision" schemaLocation="../metadataTypes/revision.xsd"/>
+<xs:include schemaLocation="procItems.xsd"/>
+
+
+<!--=====================================================-->
+<!-- Condition element definition -->
+<!--=====================================================-->
+<xs:complexType name="ConditionType">
+    <xs:annotation>
+        <xs:documentation>Conditional situation that encompass a set of Actions or Commands to be evaluated and performed by pilots</xs:documentation>
+    </xs:annotation>
+
+    <xs:sequence>
+        <xs:element name="Effectivities" type="EffectivitiesType" minOccurs="0"/>
+        <xs:element name="ConditionStatement" type="ConditionStatementType" maxOccurs="unbounded"/>
+        <xs:element name="ProcActionsGrp" type="ProcActionsGrpType" maxOccurs="unbounded"/>      
+
+    </xs:sequence>
+
+    <xs:attribute name="recall" type="YNType" default="N"/>
+    <xs:attribute name="end" type="YNType" use="optional"/>
+    <xs:attributeGroup ref="globalAttrGrp"/>
+</xs:complexType>
+
+
+<!--=====================================================-->
+<!-- ExCondition element definition -->
+<!--=====================================================-->
+<xs:complexType name="ExConditionType">
+    <xs:annotation>
+        <xs:documentation>exclusive conition. There must be more than one ExCondition and that only one of them may be applicable at any one time.</xs:documentation>
+    </xs:annotation>
+
+    <xs:sequence>
+        <xs:element name="Effectivities" type="EffectivitiesType" minOccurs="0"/>
+        <xs:element name="ConditionStatement" type="ConditionStatementType" maxOccurs="unbounded"/>
+        <xs:element name="ProcActionsGrp" type="ProcActionsGrpType" maxOccurs="unbounded"/>        
+    </xs:sequence>       
+
+    <xs:attribute name="recall" type="YNType" default="N"/>
+    <xs:attribute name="end" type="YNType" use="optional"/>
+    <xs:attributeGroup ref="globalAttrGrp"/>
+</xs:complexType>
+
+
+<!--=====================================================-->
+<!-- ConditionStatement element definition -->
+<!--=====================================================-->
+<xs:complexType name="ConditionStatementType">
+    <xs:annotation>
+        <xs:documentation>Describes the conditional situation</xs:documentation>
+    </xs:annotation>
+
+    <xs:sequence maxOccurs="unbounded">
+        <xs:element name="Effectivities" type="EffectivitiesType" minOccurs="0"/>
+        <xs:element name="Para" type="ParaType"/>
+    </xs:sequence>
+
+    <xs:attributeGroup ref="globalAttrGrp"/>
+</xs:complexType>
+
+
+<!--=====================================================-->
+<!-- DeferItems element definition -->
+<!--=====================================================-->
+<xs:complexType name="DeferItemsType">
+    <xs:annotation>
+        <xs:documentation>Non-Normal checklist items that may be deferred</xs:documentation>
+    </xs:annotation>
+
+    <xs:sequence>
+        <xs:element name="Effectivities" type="EffectivitiesType" minOccurs="0"/>
+        <xs:element name="Destin" type="DestinType"/>
+        <xs:choice maxOccurs="unbounded">
+            <xs:element name="ProcActionsGrp" type="ProcActionsGrpType"/>
+            <xs:element name="ExcludeItems" type="ExcludeItemsType" minOccurs="0"/>
+        </xs:choice>
+    </xs:sequence>      
+
+    <xs:attributeGroup ref="globalAttrGrp"/>
+</xs:complexType>
+
+
+<!--=====================================================-->
+<!-- Destin element definition -->
+<!--=====================================================-->
+<xs:complexType name="DestinType" mixed="true">
+    <xs:annotation>
+        <xs:documentation>holds the time or condition specifying when to continue the non-normal actions. This may be a normal checklist or a position/time/altitude</xs:documentation>
+    </xs:annotation>
+
+    <xs:attributeGroup ref="globalAttrGrp"/>
+</xs:complexType>
+
+
+</xs:schema>

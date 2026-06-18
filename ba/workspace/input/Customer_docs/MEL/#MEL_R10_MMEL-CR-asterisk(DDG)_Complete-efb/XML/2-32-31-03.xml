@@ -1,0 +1,830 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM">]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.2-32-31-03.3127.2-32-31-03" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="32" superSectionNumber="2" sectionName="MEL" chapterName="Landing Gear" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2025-09-30" rev:revStatus="R" rev:revNumber="10" />
+</PUMetaData>
+<MELItem itemNbr="32-31-03" id="X-BOEING:FTID:81205.787.DDG.CU.MEL.2-32-31-03.1.2-32-31-03">
+<Title>Landing Gear Control Solenoids</Title>
+<MELSubItem itemNbr="32-31-03-01">
+<Title>
+<?FTID-xref 1310409.2-32-31-03?>Main Landing Gear Control Solenoids</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="18" nbrRequired="9" maintIndicator="(M)">
+<DispatchConditionRemarks>
+<Para>May be inoperative on one system channel provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Inoperative solenoid is deactivated.</Para>
+</ListItem>
+<ListItem>
+<Para>Opposite system channel is verified to operate normally.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Deactivate the inoperative landing gear control solenoid and verify opposite system channel operates normally (AMM DDG 32-31-03).</Para>
+<List listType="1.">
+<ListItem>
+<Para>Identify the inoperative solenoid on LANDING GEAR CONTROL maintenance page 2.   Inoperative solenoids will have a blank display of the associated valve module. One main landing gear control solenoid of each type may be inoperative. All inoperative control solenoids must be on the same system.</Para>
+</ListItem>
+<ListItem>
+<Para>To deactivate solenoid, using a flight deck multi-function display only, open the associated circuit breaker according to the table below and lock with an INOP tag: </Para>
+<table frame="all">
+<tgroup cols="2" colsep="1">
+<colspec colname="1" colwidth="47%" />
+<colspec colname="2" colwidth="53%" />
+<thead>
+<row rowsep="1">
+<entry colname="1">
+<Para>
+<Emphasis txtStyle="bold">System 1 Solenoid</Emphasis>
+</Para>
+</entry>
+<entry colname="2">
+<Para>
+<Emphasis txtStyle="bold">Circuit Breaker</Emphasis>
+</Para>
+</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">MLG BYPASS AUTO-OFF ENABLE</Para>
+</entry>
+<entry colname="2">
+<Para align="center">MLG BYPASS VLV-ENABLE 1</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">MLG DOOR CONTROL CLOSE</Para>
+</entry>
+<entry colname="2">
+<Para align="center">MLG DOOR CTRL VLV CLOSE-1</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">MLG DOOR SAFETY NORM CLS L</Para>
+</entry>
+<entry colname="2">
+<Para align="center">MLG L DR SAFE VLV-NORM CLOSE 1</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">MLG DOOR SAFETY NORM CLS R</Para>
+</entry>
+<entry colname="2">
+<Para align="center">MLG R DR SAFE VLV-NORM CLOSE 1</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">MLG DOOR CONTROL OPEN</Para>
+</entry>
+<entry colname="2">
+<Para align="center">MLG DOOR CTRL VLV OPEN-1</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">MLG GEAR CONTROL DOWN</Para>
+</entry>
+<entry colname="2">
+<Para align="center">MLG CTRL VLV-DN1</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">MLG GEAR CONTROL UP</Para>
+</entry>
+<entry colname="2">
+<Para align="center">MLG CTRL VLV-UP1</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">MLG TRUCK ACTUATOR TILT L</Para>
+</entry>
+<entry colname="2">
+<Para align="center">MLG L TILT1</Para>
+</entry>
+</row>
+<row rowsep="0">
+<entry colname="1">
+<Para align="center">MLG TRUCK ACTUATOR TILT R</Para>
+</entry>
+<entry colname="2">
+<Para align="center">MLG R TILT1</Para>
+</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+<table frame="all">
+<tgroup cols="2" colsep="1">
+<colspec colname="1" colwidth="47%" />
+<colspec colname="2" colwidth="53%" />
+<thead>
+<row rowsep="1">
+<entry colname="1">
+<Para>
+<Emphasis txtStyle="bold">System 2 Solenoid</Emphasis>
+</Para>
+</entry>
+<entry colname="2">
+<Para>
+<Emphasis txtStyle="bold">Circuit Breaker</Emphasis>
+</Para>
+</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">MLG BYPASS AUTO-OFF ENABLE</Para>
+</entry>
+<entry colname="2">
+<Para align="center">MLG BYPASS VLV-ENABLE 2</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">MLG DOOR CONTROL CLOSE</Para>
+</entry>
+<entry colname="2">
+<Para align="center">MLG DOOR CTRL VLV CLOSE-2</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">MLG DOOR SAFETY NORM CLS L</Para>
+</entry>
+<entry colname="2">
+<Para align="center">MLG L DR SAFE VLV-NORM CLOSE 2</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">MLG DOOR SAFETY NORM CLS R</Para>
+</entry>
+<entry colname="2">
+<Para align="center">MLG R DR SAFE VLV-NORM CLOSE 2</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">MLG DOOR CONTROL OPEN</Para>
+</entry>
+<entry colname="2">
+<Para align="center">MLG DOOR CTRL VLV OPEN-2</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">MLG GEAR CONTROL DOWN</Para>
+</entry>
+<entry colname="2">
+<Para align="center">MLG CTRL VLV-DN2</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">MLG GEAR CONTROL UP</Para>
+</entry>
+<entry colname="2">
+<Para align="center">MLG CTRL VLV-UP2</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">MLG TRUCK ACTUATOR TILT L</Para>
+</entry>
+<entry colname="2">
+<Para align="center">MLG L TILT2</Para>
+</entry>
+</row>
+<row rowsep="0">
+<entry colname="1">
+<Para align="center">MLG TRUCK ACTUATOR TILT R</Para>
+</entry>
+<entry colname="2">
+<Para align="center">MLG R TILT2</Para>
+</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+</ListItem>
+<ListItem>
+<Para>Verify opposite system channel operates normally.</Para>
+<List listType="A.">
+<ListItem>
+<Para>For an inoperative MLG BYPASS AUTO-OFF ENABLE solenoid:</Para>
+<List listType="1)">
+<ListItem>
+<Para>Install landing gear downlock pins.</Para>
+</ListItem>
+<ListItem>
+<Para>Confirm the landing gear doors are closed and door safety valves are in STOW.</Para>
+</ListItem>
+<ListItem rev:revStatus="R" rev:revHighlight="Revised procedure to not focus on whether the ground test passes or fails, but instead to observe the valve command on the maintenance page.">
+<Para>Identify the operative BYPASS/AUTO-OFF VALVE MODULE solenoid on LANDING GEAR CONTROL, maintenance page
+2. The operative solenoid will display either ENABLE 1 or ENABLE 2 in the MLG area.</Para>
+<?FTID-rev start?>
+<?FTID-rev end?>
+</ListItem>
+<ListItem>
+<Para rev:revStatus="R" rev:revHighlight="Revised procedure to not focus on whether the ground test passes or fails, but instead to observe the valve command on the maintenance page.">
+<?FTID-rev start?>Use the Central Maintenance Computing Function (CMCF) to start the Initiated/Ground
+Test: 32 Landing Gear Actuation System, Operational, Landing Gear Actuation Bypass Valve Off.<?FTID-rev end?></Para>
+<List listType="a.">
+<ListItem>
+<Para rev:revStatus="R" rev:revHighlight="EMPTY">
+<?FTID-rev start?>While the test is running, the operative ENABLE command will change to NOT ENABLE, then return back to ENABLE, and the test will conclude.<?FTID-rev end?></Para>
+</ListItem>
+<ListItem>
+<Para rev:revStatus="R" rev:revHighlight="EMPTY">
+<?FTID-rev start?>If the valve command switched from ENABLE to NOT ENABLE and back to ENABLE, the test successfully demonstrated the remaining MLG BYPASS/AUTO OFF VALVE MODULE channel is functioning correctly.<?FTID-rev end?></Para>
+</ListItem>
+<ListItem>
+<Note>
+<Para rev:revStatus="R" rev:revHighlight="EMPTY">
+<?FTID-rev start?>The Landing Gear Actuation Bypass Valve Off test results may be disregarded during this procedure as they may pass or fail.<?FTID-rev end?></Para>
+</Note>
+</ListItem>
+<ListItem>
+<Para rev:revStatus="R" rev:revHighlight="EMPTY">
+<?FTID-rev start?>If the valve command did not switch from ENABLE to NOT ENABLE and back to ENABLE, the test did not successfully demonstrate the remaining MLG BYPASS/AUTO OFF VALVE MODULE channel is functioning correctly, do
+the fault isolation procedure for the maintenance message.<?FTID-rev end?></Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Pressurize the center hydraulic system.</Para>
+</ListItem>
+<ListItem rev:revStatus="R" rev:revHighlight="Added the missing word &quot;door&quot; to title to align with the AMM.">
+<Para>Use the Central Maintenance Computing Function (CMCF) to start the SPECIAL FUNCTIONS: 32 Landing Gear Actuation System, Landing Gear Actuation Allow Door Normal Close.</Para>
+<?FTID-rev start?>
+<?FTID-rev end?>
+</ListItem>
+<ListItem>
+<Para>Set the landing gear control lever UP.</Para>
+</ListItem>
+<ListItem>
+<Para>Confirm the landing gear doors are open.</Para>
+</ListItem>
+<ListItem>
+<Para>Wait at least 10 seconds.</Para>
+</ListItem>
+<ListItem>
+<Para>Set the landing gear control lever DN. </Para>
+</ListItem>
+<ListItem>
+<Para>Confirm the GEAR CONTROL SYS status message is not displayed.</Para>
+</ListItem>
+<ListItem>
+<Para>Close the landing gear doors.</Para>
+</ListItem>
+<ListItem>
+<Para>Press the STOP FUNCTION button on the CMCF SPECIALFUNCTIONS screen: 32 Landing Gear Actuation System, Landing Gear Actuation Allow Normal Close.</Para>
+</ListItem>
+<ListItem>
+<Para>Depressurize the center hydraulic system.</Para>
+</ListItem>
+<ListItem>
+<Para>Remove landing gear downlock pins.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>For an inoperative MLG GEAR CONTROL UP or GEAR CONTROL DOWN solenoid:</Para>
+<List listType="1)">
+<ListItem>
+<Para>Install landing gear downlock pins.</Para>
+</ListItem>
+<ListItem>
+<Para>Confirm the landing gear doors are closed and door safety valves are in STOW.</Para>
+</ListItem>
+<ListItem>
+<Para>Pressurize the center hydraulic system.</Para>
+</ListItem>
+<ListItem rev:revStatus="R" rev:revHighlight="Added the missing word &quot;door&quot; to title to align with the AMM.">
+<Para>Use the Central Maintenance Computing Function (CMCF) to start the SPECIAL FUNCTIONS: 32 Landing Gear Actuation System, Landing Gear Actuation Allow Door Normal Close.</Para>
+<?FTID-rev start?>
+<?FTID-rev end?>
+</ListItem>
+<ListItem>
+<Para>Install actuator/deactuator part number A27092 on each TRK STOWED SENSOR for SYS 1 and SYS 2 on the left and right main landing gear.</Para>
+<Note>
+<Para>To avoid sensor disagreement faults, apply the SYS 1 and SYS 2 sensor actuators within 2 seconds of each other for each truck.</Para>
+</Note>
+</ListItem>
+<ListItem>
+<Para>On the LANDING GEAR CONTROL maintenance page 1, confirm that the TRK STOWED SENSOR for SYS 1 and SYS 2 on the left and right main landing gear show NEAR in the status field. </Para>
+</ListItem>
+<ListItem>
+<Para>Set the landing gear control lever UP.</Para>
+</ListItem>
+<ListItem>
+<Para>Confirm the landing gear doors open.</Para>
+</ListItem>
+<ListItem>
+<Para>Wait at least 10 seconds.</Para>
+</ListItem>
+<ListItem>
+<Para>Set the landing gear control lever DN. </Para>
+</ListItem>
+<ListItem>
+<Para>Confirm the GEAR CONTROL SYS status message is not displayed.</Para>
+</ListItem>
+<ListItem>
+<Para>Remove actuator/deactuator part number A27092 from each TRK STOWED SENSOR on the left and right main landing gear.</Para>
+<Note>
+<Para>To avoid sensor disagreement faults, remove the SYS 1 and SYS 2 sensor actuators within 2 seconds of each other for each truck.</Para>
+</Note>
+</ListItem>
+<ListItem>
+<Para>Close the landing gear doors.</Para>
+</ListItem>
+<ListItem>
+<Para>Press the STOP FUNCTION button on the CMCF SPECIALFUNCTIONS screen: 32 Landing Gear Actuation System, Landing Gear Actuation Allow Normal Close.</Para>
+</ListItem>
+<ListItem>
+<Para>Depressurize the center hydraulic system.</Para>
+</ListItem>
+<ListItem>
+<Para>Remove landing gear downlock pins.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>For an inoperative MLG DOOR CONTROL CLOSE, DOOR CONTROL OPEN, TRUCK ACTUATOR TILT L, or TRUCK ACTUATOR TILT R solenoid:</Para>
+<List listType="1)">
+<ListItem>
+<Para>Install landing gear downlock pins.</Para>
+</ListItem>
+<ListItem>
+<Para>Confirm the landing gear doors are closed and door safety valves are in STOW.</Para>
+</ListItem>
+<ListItem>
+<Para>Pressurize the center hydraulic system.</Para>
+</ListItem>
+<ListItem rev:revStatus="R" rev:revHighlight="Added the missing word &quot;door&quot; to title to align with the AMM.">
+<Para>Use the Central Maintenance Computing Function (CMCF) to start the SPECIAL FUNCTIONS: 32 Landing Gear Actuation System, Landing Gear Actuation Allow Door Normal Close.</Para>
+<?FTID-rev start?>
+<?FTID-rev end?>
+</ListItem>
+<ListItem>
+<Para>Set the landing gear control lever UP.</Para>
+</ListItem>
+<ListItem>
+<Para>Confirm the landing gear doors open.</Para>
+</ListItem>
+<ListItem>
+<Para>Wait at least 10 seconds.</Para>
+</ListItem>
+<ListItem>
+<Para>Set the landing gear control lever DN. </Para>
+</ListItem>
+<ListItem>
+<Para>Confirm the GEAR CONTROL SYS status message is not displayed.</Para>
+</ListItem>
+<ListItem>
+<Para>Close the landing gear doors.</Para>
+</ListItem>
+<ListItem>
+<Para>Press the STOP FUNCTION button on the CMCF SPECIALFUNCTIONS screen: 32 Landing Gear Actuation System, Landing Gear Actuation Allow Normal Close.</Para>
+</ListItem>
+<ListItem>
+<Para>Depressurize the center hydraulic system.</Para>
+</ListItem>
+<ListItem>
+<Para>Remove landing gear downlock pins.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>For an inoperative MLG DOOR SAFETY NORM CLS L or DOOR SAFETY NORM CLS R solenoid:</Para>
+<List listType="1)">
+<ListItem>
+<Para>Install landing gear downlock pins.</Para>
+</ListItem>
+<ListItem>
+<Para>Confirm the landing gear doors are closed and door safety valves are in STOW.</Para>
+</ListItem>
+<ListItem>
+<Para>Pressurize the center hydraulic system.</Para>
+</ListItem>
+<ListItem>
+<Para>Use the Central Maintenance Computing Function (CMCF) to start the Initiated/Ground Test: 32 Landing Gear Actuation System, Operational, Landing Gear Actuation Bypass Valve Off.</Para>
+</ListItem>
+<ListItem>
+<Para>On the LNDG GEAR INDN AND STRN Maintenance page, confirm that while the test runs, the MLG SYS and NLG SYS pressures drop below 500 psi for 10 seconds and then increase to the CENTER SYS pressure when the test is complete.</Para>
+</ListItem>
+<ListItem rev:revStatus="R" rev:revHighlight="Added the missing word &quot;door&quot; to title to align with the AMM.">
+<Para>Use the Central Maintenance Computing Function (CMCF) to start the SPECIAL FUNCTIONS: 32 Landing Gear Actuation System, Landing Gear Actuation Allow Door Normal Close.</Para>
+<?FTID-rev start?>
+<?FTID-rev end?>
+</ListItem>
+<ListItem>
+<Para>Set the landing gear control lever UP.</Para>
+</ListItem>
+<ListItem>
+<Para>Confirm the landing gear doors are open.</Para>
+</ListItem>
+<ListItem>
+<Para>Wait at least 10 seconds.</Para>
+</ListItem>
+<ListItem>
+<Para>On the LANDING GEAR CONTROL maintenance page 2, confirm that the SYS 1 BYPASS/DR CLOSE CMD and SYS 2 BYPASS/DR CLOSE CMD relays show NOT INHIBIT.</Para>
+</ListItem>
+<ListItem>
+<Para>Set the landing gear control lever DN. </Para>
+</ListItem>
+<ListItem>
+<Para>Confirm the landing gear doors close.</Para>
+</ListItem>
+<ListItem>
+<Para>Confirm the GEAR CONTROL SYS status message is not displayed.</Para>
+</ListItem>
+<ListItem>
+<Para>Press the STOP FUNCTION button on the CMCF SPECIAL FUNCTIONS screen: 32 Landing Gear Actuation System, Landing Gear Actuation Allow Normal Close.</Para>
+</ListItem>
+<ListItem>
+<Para>Depressurize the center hydraulic system.</Para>
+</ListItem>
+<ListItem>
+<Para>Remove landing gear downlock pins.</Para>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="32-31-03-02">
+<Title>
+<?FTID-xref 1311256.2-32-31-03?>Nose Landing Gear Control Solenoids</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="12" nbrRequired="6" maintIndicator="(M)">
+<DispatchConditionRemarks>
+<Para>May be inoperative on one system channel provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Inoperative solenoid is deactivated.</Para>
+</ListItem>
+<ListItem>
+<Para>Opposite system channel is verified to operate normally.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Deactivate the inoperative landing gear control solenoid and verify opposite system channel operates normally (AMM DDG 32-31-03).</Para>
+<List listType="1.">
+<ListItem>
+<Para>Identify the inoperative solenoid on LANDING GEAR CONTROL maintenance page 2.  Inoperative solenoids will have a blank display of the associated valve module.  One nose landing gear control solenoid of each type may be inoperative. All inoperative control solenoids must be on the same system.</Para>
+</ListItem>
+<ListItem>
+<Para>To deactivate solenoid, using a flight deck multi-function display only, open the associated circuit breaker according to the table below and lock with an INOP tag: </Para>
+<table frame="all">
+<tgroup cols="2" colsep="1">
+<colspec colname="1" colwidth="47%" />
+<colspec colname="2" colwidth="53%" />
+<thead>
+<row rowsep="1">
+<entry colname="1">
+<Para>
+<Emphasis txtStyle="bold">System 1 Solenoid</Emphasis>
+</Para>
+</entry>
+<entry colname="2">
+<Para>
+<Emphasis txtStyle="bold">Circuit Breaker</Emphasis>
+</Para>
+</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">NLG BYPASS AUTO-OFF ENABLE</Para>
+</entry>
+<entry colname="2">
+<Para align="center">NLG BYPASS VLV-ENABLE 1</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">NLG DOOR CONTROL CLOSE</Para>
+</entry>
+<entry colname="2">
+<Para align="center">NLG DOOR CTRL VLV CLOSE-1</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">NLG DOOR SAFETY NORM CLS </Para>
+</entry>
+<entry colname="2">
+<Para align="center">NLG DR SAFE VLV NORM CLOSE-1</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">NLG DOOR CONTROL OPEN</Para>
+</entry>
+<entry colname="2">
+<Para align="center">NLG DOOR CTRL VLV OPEN-1</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">NLG GEAR CONTROL DOWN</Para>
+</entry>
+<entry colname="2">
+<Para align="center">NLG CTRL VLV-DN1</Para>
+</entry>
+</row>
+<row rowsep="0">
+<entry colname="1">
+<Para align="center">NLG GEAR CONTROL UP</Para>
+</entry>
+<entry colname="2">
+<Para align="center">NLG CTRL VLV-UP1</Para>
+</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+<table frame="all">
+<tgroup cols="2" colsep="1">
+<colspec colname="1" colwidth="48%" />
+<colspec colname="2" colwidth="52%" />
+<thead>
+<row rowsep="1">
+<entry colname="1">
+<Para>
+<Emphasis txtStyle="bold">System 2 Solenoid</Emphasis>
+</Para>
+</entry>
+<entry colname="2">
+<Para>
+<Emphasis txtStyle="bold">Circuit Breaker</Emphasis>
+</Para>
+</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">NLG BYPASS AUTO-OFF ENABLE</Para>
+</entry>
+<entry colname="2">
+<Para align="center">NLG BYPASS VLV-ENABLE 2</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">NLG DOOR CONTROL CLOSE</Para>
+</entry>
+<entry colname="2">
+<Para align="center">NLG DOOR CTRL VLV CLOSE-2</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">NLG DOOR SAFETY NORM CLS </Para>
+</entry>
+<entry colname="2">
+<Para align="center">NLG DR SAFE VLV NORM CLOSE-2</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">NLG DOOR CONTROL OPEN</Para>
+</entry>
+<entry colname="2">
+<Para align="center">NLG DOOR CTRL VLV OPEN-2</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">NLG GEAR CONTROL DOWN</Para>
+</entry>
+<entry colname="2">
+<Para align="center">NLG CTRL VLV-DN2</Para>
+</entry>
+</row>
+<row rowsep="0">
+<entry colname="1">
+<Para align="center">NLG GEAR CONTROL UP</Para>
+</entry>
+<entry colname="2">
+<Para align="center">NLG CTRL VLV-UP2</Para>
+</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+</ListItem>
+<ListItem>
+<Para>Verify opposite system channel operates normally.</Para>
+<List listType="A.">
+<ListItem>
+<Para>For an inoperative NLG BYPASS AUTO-OFF ENABLE solenoid:</Para>
+<List listType="1)">
+<ListItem>
+<Para>Install landing gear downlock pins.</Para>
+</ListItem>
+<ListItem>
+<Para>Confirm the landing gear doors are closed and door safety valves are in STOW.</Para>
+</ListItem>
+<ListItem rev:revStatus="R" rev:revHighlight="Revised procedure to not focus on whether the ground test passes or fails, but instead to observe the valve command on the maintenance page.">
+<Para>Identify the operative BYPASS/AUTO-OFF VALVE MODULE solenoid on LANDING GEAR CONTROL, maintenance page
+2. The operative solenoid will display either ENABLE 1 or ENABLE 2 in the NLG area.</Para>
+<?FTID-rev start?>
+<?FTID-rev end?>
+</ListItem>
+<ListItem>
+<Para rev:revStatus="R" rev:revHighlight="Revised procedure to not focus on whether the ground test passes or fails, but instead to observe the valve command on the maintenance page.">
+<?FTID-rev start?>Use the Central Maintenance Computing Function (CMCF) to start the Initiated/Ground
+Test: 32 Landing Gear Actuation System, Operational, Landing Gear Actuation Bypass Valve Off.<?FTID-rev end?></Para>
+<List listType="a.">
+<ListItem>
+<Para rev:revStatus="R">
+<?FTID-rev start?>While the test is running, the operative ENABLE  <?FTID-rev end?><?FTID-rev start?> command will change to NOT ENABLE, then return back  <?FTID-rev end?><?FTID-rev start?> to ENABLE, and the test will conclude. <?FTID-rev end?></Para>
+</ListItem>
+<ListItem>
+<Para rev:revStatus="R">
+<?FTID-rev start?>If the valve command switched from ENABLE to NOT  <?FTID-rev end?><?FTID-rev start?> ENABLE and back to ENABLE, the test successfully  <?FTID-rev end?><?FTID-rev start?> demonstrated the remaining NLG BYPASS/AUTO OFF  <?FTID-rev end?><?FTID-rev start?> VALVE MODULE channel is functioning correctly. <?FTID-rev end?></Para>
+</ListItem>
+<ListItem>
+<Note rev:revStatus="R">
+<Para>
+<?FTID-rev start?>The Landing Gear Actuation Bypass Valve Off  <?FTID-rev end?><?FTID-rev start?> test results may be disregarded during this  <?FTID-rev end?><?FTID-rev start?> procedure as they may pass or fail. <?FTID-rev end?></Para>
+</Note>
+</ListItem>
+<ListItem>
+<Para rev:revStatus="R">
+<?FTID-rev start?>If the valve command did not switch from ENABLE to NOT  <?FTID-rev end?><?FTID-rev start?> ENABLE and back to ENABLE, the test did not  <?FTID-rev end?><?FTID-rev start?> successfully demonstrate the remaining NLG  <?FTID-rev end?><?FTID-rev start?> BYPASS/AUTO OFF VALVE MODULE channel is  <?FTID-rev end?><?FTID-rev start?> functioning correctly, do the fault isolation procedure for  <?FTID-rev end?><?FTID-rev start?> the maintenance message. <?FTID-rev end?></Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Pressurize the center hydraulic system.</Para>
+</ListItem>
+<ListItem rev:revStatus="R" rev:revHighlight="Added the missing word &quot;door&quot; to title to align with the AMM.">
+<Para>Use the Central Maintenance Computing Function (CMCF) to start the SPECIAL FUNCTIONS: 32 Landing Gear Actuation System, Landing Gear Actuation Allow Door Normal Close.</Para>
+<?FTID-rev start?>
+<?FTID-rev end?>
+</ListItem>
+<ListItem>
+<Para>Set the landing gear control lever UP.</Para>
+</ListItem>
+<ListItem>
+<Para>Confirm the landing gear doors are open.</Para>
+</ListItem>
+<ListItem>
+<Para>Wait at least 10 seconds.</Para>
+</ListItem>
+<ListItem>
+<Para>Set the landing gear control lever DN. </Para>
+</ListItem>
+<ListItem>
+<Para>Confirm the GEAR CONTROL SYS status message is not displayed.</Para>
+</ListItem>
+<ListItem>
+<Para>Close the landing gear doors.</Para>
+</ListItem>
+<ListItem>
+<Para>Press the STOP FUNCTION button on the CMCF SPECIALFUNCTIONS screen: 32 Landing Gear Actuation System, Landing Gear Actuation Allow Normal Close.</Para>
+</ListItem>
+<ListItem>
+<Para>Depressurize the center hydraulic system.</Para>
+</ListItem>
+<ListItem>
+<Para>Remove landing gear downlock pins.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>For an inoperative NLG GEAR CONTROL UP, GEAR CONTROL DOWN, DOOR CONTROL CLOSE or DOOR CONTROL OPEN solenoid:</Para>
+<List listType="1)">
+<ListItem>
+<Para>Install landing gear downlock pins.</Para>
+</ListItem>
+<ListItem>
+<Para>Confirm the landing gear doors are closed and door safety valves are in STOW.</Para>
+</ListItem>
+<ListItem>
+<Para>Pressurize the center hydraulic system.</Para>
+</ListItem>
+<ListItem rev:revStatus="R" rev:revHighlight="Added the missing word &quot;door&quot; to title to align with the AMM.">
+<Para>Use the Central Maintenance Computing Function (CMCF) to start the SPECIAL FUNCTIONS: 32 Landing Gear Actuation System, Landing Gear Actuation Allow Door Normal Close.</Para>
+<?FTID-rev start?>
+<?FTID-rev end?>
+</ListItem>
+<ListItem>
+<Para>Set the landing gear control lever UP.</Para>
+</ListItem>
+<ListItem>
+<Para>Confirm the landing gear doors are open.</Para>
+</ListItem>
+<ListItem>
+<Para>Wait at least 10 seconds.</Para>
+</ListItem>
+<ListItem>
+<Para>Set the landing gear control lever DN. </Para>
+</ListItem>
+<ListItem>
+<Para>Close the landing gear doors.</Para>
+</ListItem>
+<ListItem>
+<Para>Confirm that GEAR CONTROL SYS status message is not displayed.</Para>
+</ListItem>
+<ListItem>
+<Para>Press the STOP FUNCTION button on the CMCF SPECIALFUNCTIONS screen: 32 Landing Gear Actuation System, Landing Gear Actuation Allow Normal Close.</Para>
+</ListItem>
+<ListItem>
+<Para>Depressurize the center hydraulic system.</Para>
+</ListItem>
+<ListItem>
+<Para>Remove landing gear downlock pins.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>For an inoperative NLG DOOR SAFETY NORM CLS solenoid:</Para>
+<List listType="1)">
+<ListItem>
+<Para>Install landing gear downlock pins.</Para>
+</ListItem>
+<ListItem>
+<Para>Confirm the landing gear doors are closed and door safety valves are in STOW.</Para>
+</ListItem>
+<ListItem>
+<Para>Pressurize the center hydraulic system.</Para>
+</ListItem>
+<ListItem>
+<Para>Use the Central Maintenance Computing Function (CMCF) to start the Initiated/Ground Test: 32 Landing Gear Actuation System, Operational, Landing Gear Actuation Bypass Valve Off.</Para>
+</ListItem>
+<ListItem>
+<Para>On the LNDG GEAR INDN AND STRN Maintenance page, confirm that while the test runs, the MLG SYS and NLG SYS pressures drop below 500 psi for 10 seconds and then increase to the CENTER SYS pressure when the test is complete.</Para>
+</ListItem>
+<ListItem rev:revStatus="R" rev:revHighlight="Added the missing word &quot;door&quot; to title to align with the AMM.">
+<Para>Use the Central Maintenance Computing Function (CMCF) to start the SPECIAL FUNCTIONS: 32 Landing Gear Actuation System, Landing Gear Actuation Allow Door Normal Close.</Para>
+<?FTID-rev start?>
+<?FTID-rev end?>
+</ListItem>
+<ListItem>
+<Para>Set the landing gear control lever UP.</Para>
+</ListItem>
+<ListItem>
+<Para>Confirm the landing gear doors are open.</Para>
+</ListItem>
+<ListItem>
+<Para>Wait at least 10 seconds.</Para>
+</ListItem>
+<ListItem>
+<Para>On the LANDING GEAR CONTROL maintenance page 2, confirm that the SYS 1 BYPASS/DR CLOSE CMD and SYS 2 BYPASS/DR CLOSE CMD relays show NOT INHIBIT.</Para>
+</ListItem>
+<ListItem>
+<Para>Set the landing gear control lever DN. </Para>
+</ListItem>
+<ListItem>
+<Para>Confirm the landing gear doors close.</Para>
+</ListItem>
+<ListItem>
+<Para>Confirm the GEAR CONTROL SYS status message is not displayed.</Para>
+</ListItem>
+<ListItem>
+<Para>Press the STOP FUNCTION button on the CMCF SPECIAL FUNCTIONS screen: 32 Landing Gear Actuation System, Landing Gear Actuation Allow Normal Close.</Para>
+</ListItem>
+<ListItem>
+<Para>Depressurize the center hydraulic system.</Para>
+</ListItem>
+<ListItem>
+<Para>Remove landing gear downlock pins.</Para>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+</MELItem>
+</DispatchItems>

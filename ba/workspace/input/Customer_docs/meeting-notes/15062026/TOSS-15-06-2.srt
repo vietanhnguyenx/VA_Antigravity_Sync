@@ -1,0 +1,399 @@
+1
+00:00:00,000 --> 00:00:26,000
+Đầu tiên là thông tin về OAP. Có mấy cuộn mình bấm ẩn đi đâu? Có, ví dụ em monitor, em muốn làm tập trí gì em bảo, người chắc có mày đúng không? Em tự view với màn của em, em không quan trọng với mình. Ví dụ em bảo là em quan tâm đến trời tiết, còn mô ta đã xử lý. Em ẩn mô ta đi, được rồi.
+
+2
+00:00:29,000 --> 00:00:55,000
+Đối với đầu tiên là OSP, mình có cái trạng thái như sau, thứ nhất là chuyến bay chưa có. Chuyến bay chưa có thì là để gạch ngang thôi, không có? Chuyến bay chưa có nhưng mà chưa đến thời gian màng rồi, mà chưa có. Và một trạng thái nữa là chuyến bay có rồi nhưng mà chưa được release, chưa be start release.
+
+3
+00:00:55,000 --> 00:01:25,000
+Một thằng khác đã có rồi nhưng mà đã đưa đi rồi. Ở đây bên cạnh Dispatch đưa đi thì nó phải có cái pilot đưa đi. Tức là Dispatch đưa đi xong nhưng mà pilot chưa đưa đi chẳng hạn. Hoặc là Dispatch đưa đi xong thì pilot đã đưa đi. Hoặc là OAP đến version 3 rồi, Dispatch đưa đi rồi nhưng mà pilot đưa đi rồi. Vừa dừng trước mà chưa đưa đi, thì cái version cuối cùng.
+
+4
+00:01:25,000 --> 00:01:50,000
+Đấy, đấy chính là mấy cái kỷ yếu tố trạng thái liên quan đến Dispac UBD với hành pháp UBD. Thứ nhất là Dispac, cái chỗ mà nhận biết về cái OFI có hay chưa, đến lúc ban hành rồi mà chưa ban hành thì mình thể hiện như thế nào? Ở cái phần mà Dispac UBD thì lại thể hiện như nào?
+
+5
+00:01:51,000 --> 00:02:09,000
+Bây giờ sẽ hối tùy rep trước nhé. Thì đấy chị định là not cái hiệu quả của mp có hay chưa thì vào với rep luôn luôn. Với release luôn đúng không? Ừ. No release.
+
+6
+00:02:09,000 --> 00:02:39,000
+tạm tạm thì thôi cái thằng nó vẽ thì chỉ áng áng thôi
+
+7
+00:02:39,000 --> 00:02:59,000
+Có cái lau mà lau được không là vấn đề khác. Chắc phải cho những nước vào.
+
+8
+00:02:59,000 --> 00:03:43,000
+Anh thích ngãi
+
+9
+00:03:43,000 --> 00:04:14,000
+Các bạn hãy đăng ký kênh để ủng hộ kênh của mình nhé.
+
+10
+00:04:14,000 --> 00:04:52,000
+Hãy subscribe cho kênh Ghiền Mì Gõ Để không bỏ lỡ những video hấp dẫn
+
+11
+00:04:52,000 --> 00:05:38,000
+Ở đây mình nhận đi được mấy thằng máy rồi. Chuyến bay chưa có thì đang chưa có ở đây đúng không? Chưa có thì gần ngang thôi. Bước nữa em. OIP class đường sẽ được thử thử thử thử thử thử thử thử thử thử thử thử thử thử thử thử thử thử thử thử thử thử thử thử thử thử thử thử thử thử thử thử thử thử thử thử thử thử thử thử thử thử thử thử thử thử thử thử thử thử thử thử thử thử thử thử thử thử thử thử thử thử thử thử thử thử thử thử thử thử thử thử thử thử thử thử thử thử thử thử thử thử thử thử thử
+
+12
+00:05:38,000 --> 00:06:11,000
+Anh Dũng đang xét thôi, có trang phone mà? Phone gì? Thì dạy phone đấy. Phone về USB 3.0.30 phút đấy ạ. USB update đấy. Phone USB update. USB... USB... USB... Em nhớ là có cái update mobile upload tham đấy.
+
+13
+00:06:11,000 --> 00:07:00,000
+Chưa có phải trách làm ngay, chưa đến giờ làm, ý là chưa có mặt nhưng mà thầy chưa vào thì cũng không cần có mặt. Nếu mà thầy có mặt rồi mà vẫn chưa có mặt thì lại làm chuyện khác.
+
+14
+00:07:01,000 --> 00:07:29,000
+chưa có nhưng mà chỉ đến giờ làm thôi thôi
+
+15
+00:07:29,000 --> 00:07:58,000
+không 3 tiếng của quốc nội rồi đấy là vàng đúng không vàng mô ép chưa có ừ ừ ừ giờ làm bây giờ phân ra đúng không là quốc nội thì bao nhiêu quốc kế bao nhiêu đúng không đúng rồi đấy cái quý vị bây giờ đấy em tìm thấy chứ không tìm luôn sau đó trên video mà nó có nhiều 90 phút và 240 phút
+
+16
+00:07:59,000 --> 00:08:50,000
+Trong quy trình của DeepFast 90 với quốc nội Quốc nội là 75 đấy nhỉ? Quốc nội lần cuối là 75, tức là 75 Chưa có OAPP này, đập ngang, nếu chưa tới giờ, hẳn nhắn hết đấy, cái này nó chưa hẳn nhắn
+
+17
+00:08:52,000 --> 00:09:59,000
+Cái đấy có thay đổi không? Có, có thì mình đưa vào dạng gọi là tham số. Mình có, sẽ có tham số. Mình cứ cấu hình như thế đấy nhưng mà bây giờ mình cứ xem xem cấu hình chiều như thế nào. Ví dụ như là quốc tế thì nó có chia ra quãng thời gian không? Ví dụ như là 15-16h bay thì khác, còn 12h bay thì khác không? Hay là giống nhau đi? Để con biết xem là cái tham số đi có ăn cho chiều gì? Mình cứ mội là lần đầu tiên mắc là 210 phút.
+
+18
+00:10:00,000 --> 00:10:21,000
+210 phút là... có 10 phút là... 3 tiếng rưỡi... và 4 tiếng rưỡi... 210 phút là 1 tiếng rưỡi... Anh nhớ là 3 tiếng rưỡi và 4 tiếng rưỡi... Ở đấy có phân cho giờ bay nữa không? Có, phân cho giờ bay không? À không, phân cho giờ bay thì chỉ phân cho quốc tế, quốc tế, quốc tế...
+
+19
+00:10:21,000 --> 00:10:40,000
+Mình dùng 1 ru thôi, gọi là tương đối, cái nào dài hơn thì mình lấy.
+
+20
+00:10:40,000 --> 00:11:12,000
+Quốc nội là 210 chứ không ạ? Quốc nội là 210. Thì gọng thêm 60 thì là 270. Quốc tế là 270. Thế thì mình chỉ cấu hình theo quốc tế quốc nội thôi. Quốc tế thì có phân ra nhiều người, đứng chung đường dài thì không. Đứng chung đường dài thì không.
+
+21
+00:11:12,000 --> 00:11:52,000
+sau tiền đấy là công tác chuẩn bị còn đưa cho phi công là một cái giờ khác
+
+22
+00:11:52,000 --> 00:12:19,000
+Xét đặt thì có thể là giờ em xét đặt để lên để nó sớm hơn cái giờ quy định không? Chắc nó phải sớm hơn giờ quy định chứ. Sớm hơn giờ quy định sớm hơn. Ừ. Thì đây giờ quy định của mình sẽ chặn hơn, mòng giờ trên đấy của em có thể nó sẽ rộng hơn. Tại vì đang xét con này theo cái thứ đuôi luôn, có thể có hiện với những cái hộp tiêu luôn. Tiền vào bữa đấy cũng sẽ up thêm copy lên lần đầu tiên. Thì trên này nó cũng thể hiện luôn. 200, 3, 225, và 200.
+
+23
+00:12:19,000 --> 00:12:50,000
+Nhưng ở đấy là không đơn những nhóm chặp bay gì không đến với một cô hay chia đề gì nữa. Hay chia đề bay. Vậy ta làm cả 28 năm đó hả? Vậy thì không đến với một cô. Vậy mới chỉ ăn xếp ở quốc tế với quốc tế với một cô. Vậy thì bà trang truyền Trung Âu thì không xếp ở quốc tế với một cô. Không xếp ở đậu trí thì mình cũng có thể nhìn ra một bài bài bài bài bài bài bài bài bài bài bài bài bài bài bài bài bài bài bài bài bài bài bài bài bài bài bài bài bài bài bài bài bài bài bài bài bài bài bài bài bài bài bài bài bài bài bài bài bài bài b
+
+24
+00:12:50,000 --> 00:13:24,000
+Tự nhiên đang nhìn ở đây, nhìn lại thì run lại tự nhiên... Chị thấy còn chiến 5-6 tiếng rồi mà. Đưa lên là nó sớm 5-6 tiếng đấy. Ai sửa cái... bình thường hôm trước, anh sếp nó là 270 mà. Sao sợ lên 350 nhỉ? Sửa lại đi. 57 là... 4 tiếng rưỡi. 27 là 4 tiếng rưỡi.
+
+25
+00:13:24,000 --> 00:13:33,000
+Với những trận tế bình thường, còn mình chuyến cho hôn thì đường dài hẳn thì hủy vào lúc xin tế thôi.
+
+26
+00:13:33,000 --> 00:13:55,000
+Cảnh báo lúc đấy chưa có OSP thì nó mới báo Lúc đấy có rồi thì nó cũng không báo nữa Mình lấy khuôn đội mô 210, bên này quốc tế 270 nhé Ok, lấy thời gian đi Đây, Việt Nam Sắp Xếp là nếu trong trường hợp chưa đến giờ thì nó gạch ngay như điểm
+
+27
+00:13:55,000 --> 00:14:24,000
+Nếu đến giờ chưa có thì hiển thị có cái thang giác vàng như kìa. Nó chứ không có số gì cả. Ừ, nó chứ không có số gì cả. Đó chỉ có mỗi tấm rác như thế này. Sau đó em relay trên video thì nó sẽ tàn như kìa. Sau đó em sẽ tích cái xăng relay ở đây thì nó mới thành xanh được. Thế thì chị phải cho em 2 cái chút chắc. Là sao?
+
+28
+00:14:24,000 --> 00:14:52,000
+Cái tam giác kia thì ok rồi, nhưng 1 cái tam giác màu vàng và 1 cái tam giác màu đỏ. Tám giác đỏ là đỏ khi hả? Đỏ khi mà cái chút đầu của em là 270 và 210 đúng không? Nhưng mà cái cuối cùng của em sẽ là 75 và 90. À, rồi rồi còn chút dưới nữa. 75 và 90 kìa? Đó chắc. Tức là cái 210 với 270 là 1 eo up, cái eo p là nửa tiên. Trong trường hợp chưa có OAP nhé, thì nó sẽ cảnh đó 2 lần.
+
+29
+00:14:52,000 --> 00:15:00,000
+Tức là nếu mà nó chấm than nếu là 210
+
+30
+00:15:00,000 --> 00:15:19,000
+Chấm thanh màu vàng nếu mà 210 thì 270 đúng không ạ? Hoặc 270 hoặc 210. Quốc nội quốc tế mình cứ nói 210 270 đúng không? Hoặc là chấm thanh đỏ. Chấm thanh vàng. À vàng vàng. Còn chấm thanh đỏ là 75 và 90 trước từ các cái, trước ETD.
+
+31
+00:15:19,000 --> 00:15:49,000
+Thì cái vàng ấy nếu mà chưa có đấy Chưa có cái gì? Chưa có gì thì nó chuyển vào Nó chuyển từ cái gạch thế thì tức thế nhá Nó sẽ chuyển như sau, đầu tiên là nó gạch trắng Một tí nó sẽ sang gạch vàng nếu mà đến trạm mốc 210,270 mà em vẫn không làm gì thì đến mốc 75,90 là chuyển thành đỏ Đúng, đúng, đúng, đúng, đúng, đúng, đúng, đúng, đúng, đúng, đúng, đúng, đúng, đúng, đúng, đúng, đúng, đúng, đúng, đúng, đúng, đúng, đúng, đúng, đúng, đúng, đúng, đúng, đúng, đúng, đúng, đúng, đúng, đúng, đúng, đúng, đúng, đúng, đúng, đúng
+
+32
+00:15:49,000 --> 00:16:30,000
+Có hay không? Nếu nâu thì đúng như là nó có thể cẩn báo, còn nếu giờ sợ thì nó sẽ tham gia trái tiếp theo. Nói hay là 90 và 75, còn nó không có so với nhanh. Em phải có ít đá, còn muốn làm gì là... Thường xin sẽ ra tình huống như thế này. Thế thì chị bị hỏi mỡ không? Không, các cái này nó nói, chị dùng ở đây nhé, nhưng mà thất nhiên nó không lên đến đây rồi thì nó phải mỡ.
+
+33
+00:16:30,000 --> 00:16:59,000
+Chứ không có chuyện nó lên đến đây nhưng chưa lên đâu Chỉ có làm bây giờ mình kiên một động tác là Dispatch Rez Thì có thể nếu cho mình quên rồi đi thì... Thì cái đấy là tính sau? Dispatch Rez thì phải có OAP rồi, đêm ở trường hợp chưa có? Chưa có, thế thì đối với mức lỗi bây giờ chỉ có trong tình huống AOS của em lỗi để bị kiếm gì đấy thôi Đúng không? Có, đầy Có thì em mới phải để cái thuốc chạy như thế chứ? Chưa có, đầy luôn hả?
+
+34
+00:16:59,000 --> 00:17:25,000
+Không phải đầy nhưng mà có sắc xuất xảy ra. Đồn thời tiết là số, đổi từng băng, xét được, đúng rồi thì mới thôi. Rồi, ok, ok, chuyển 3 trạng thái lúc mà chưa có. Chưa có, đúng rồi. Và khi mà thấy thế thì em có, áp lên rồi. Áp lên rồi mà chưa bị ly thì em có số là đáng như kìa. Đúng rồi, áp lên rồi, chưa bị ly là có số.
+
+35
+00:17:26,000 --> 00:17:54,000
+Kèm theo R1, R2 cái gì đấy thì... Xem rồi... Chưa... R3, R3 thì... Chấm than... Không, không chấm than nữa. Thì bàn thôi hả? Chỉ để... Số... Kèm theo... Số... Màu bàn là... Chấm than để cho nó chưa có. Chứ không bao giờ có chấm than để xấu đi. Thứ lắm ạ. Cho em hỏi là làm sao biết xem rồi đó.
+
+36
+00:17:54,000 --> 00:18:09,000
+Xem rồi mình xem phải làm được tắt xe nào đấy hả? Chỉ lúc đấy cái này là một bản phim bằng monitor ở đâu có bản phim. Bên Dispatch sẽ gửi, nếu mà thấy cảm cáo thì... Còn một câu tác duy nhất đấy là xe Dispatch ở đây. Còn một câu tác duy nhất.
+
+37
+00:18:11,000 --> 00:18:31,000
+Cứ hẳn đề nọc báo tam giác là chưa có đúng không? Thì ItSpark sẽ phải làm rồi send lên mơ thì lúc đấy cái này nó sẽ phải biết là có OEPI rồi thì nó sẽ chuyển trạng thái đi. Thì nó chuyển xong lần đã làm vì em chưa... Đúng rồi chị. Chưa ItSpark gửi đi chợ đây. Thì nó sẽ lên chữ vàng. Ừ. Nó lên chữ vàng rồi nhá chị.
+
+38
+00:18:31,000 --> 00:19:05,000
+Nếu thế thì mình này có phân biệt 2 chữ ở đây không? Bàn nếu trong cái quán kia thì màu bàn mà ngoài trong thì hợp 7590 đến nơi đó em chưa xem được không? Nó sẽ theo màu của cái tâm giác ban đầu. Ừ, theo 2 mốc thời gian ý. Thế là đã có OFP mà dispatch chưa release thì sẽ hiển thị cái phiên bản OFP đấy. Không, nếu có OFP, tức là khi mà chưa có OFP thì có 3 cái thẳng thái đúng không?
+
+39
+00:19:05,000 --> 00:19:28,000
+là cái không màu này không đây trường hợp đã có chưa có thì em ok rồi thì anh nói từ đó không màu này tam giác vàng và tam giác đỏ thì khi mà đã sen lên thì nó sẽ ăn theo cái màu của cái tam giác phím ngay phía trước ý à vâng tức là màu ở đây
+
+40
+00:19:31,000 --> 00:20:00,000
+Nếu mà ông tăng tắc vàng, ông sẽ nấu OSP thì ông phải có chữ vàng. Và khi bấm release rồi thì nó mới xanh, thì nó mới chuyển sang xanh. Bởi từ nha, bởi vì nếu mà xanh thì nó sẽ phải đồng nghĩa với việc là cả phi công và cả điều phái. Tạm thời đến dừng lại điều phái. Pilot release như là kiểu một cái thông tin, information.
+
+41
+00:20:00,000 --> 00:20:20,000
+đã có OAP mà điều khói chưa release thì sẽ hiển thị dữ liệu là phiên bản OAP đấy còn màu sẽ ăn theo cái ru bên trên màu sẽ ăn theo quãng thời gian nếu mà chưa tới giờ thì nó vẫn trắng
+
+42
+00:20:20,000 --> 00:20:47,000
+mà nếu mà sắp tới giờ mà nó nằm trong khoảng ngưỡng trên thì là màu vàng nhưng mà màu ở trên đây thì là màu đỏ màu theo
+
+43
+00:20:47,000 --> 00:20:55,000
+Trắng luôn chứ, nó đúng theo đúng lực, đúng không? Nó đúng theo đúng lực, đúng không? Nó đúng theo đúng lực, đúng không? Nó đúng theo đúng lực, đúng không?
+
+44
+00:20:55,000 --> 00:21:21,000
+Tức là lúc ấy có rồi, dứt phát quý liên đúng giờ không? Nhưng mà chưa đến giờ. Kể cả chưa đến giờ không ơn ơn ơn ơn ơn ơn ơn ơn ơn ơn ơn ơn ơn ơn ơn ơn ơn ơn ơn ơn ơn ơn ơn ơn ơn ơn ơn ơn ơn ơn ơn ơn ơn ơn ơn ơn ơn ơn ơn ơn ơn ơn ơn ơn ơn ơn ơn ơn ơn ơn ơn ơn ơn ơn ơn ơn ơn ơn ơn ơn ơn ơn ơn ơn ơn ơn ơn ơn ơn ơn ơn ơn ơn ơn ơn ơn ơn ơn ơn ơn ơn ơn ơn ơn ơn ơn ơn ơn ơn ơn ơn ơn ơn
+
+45
+00:21:21,000 --> 00:21:42,000
+Để đoán phân biệt, không nên để nó xanh luôn bởi vì... Nếu xanh luôn thì em sẽ... Như thế là không làm đúng lực đấy. Ừ, bởi vì nó cứ để trắng thôi. Đến đúng cái giờ mà nó cần bị ly thì nó mới xanh. Đã bị ly thì xanh luôn chứ.
+
+46
+00:21:42,000 --> 00:21:58,000
+Không. Con làm trước giờ ấy. Con làm trước giờ ấy. Mà ông nào tiện tay kiểu làm trước đúng không? Ừ. Mà ông bấm thì vẫn cái trắng đấy thôi bởi vì không cần... Nhưng mà thế thì chị cũng nghĩ là cái trang thái là ông làm trước giờ như thế ông cũng làm không không? Ờ.
+
+47
+00:21:58,000 --> 00:22:20,000
+Không phải trắng, không thà thử với ông như thế rồi. Không phải, không phải. Tự hoàn là vì mấy cái chấn nghĩ gì đó là làm sức khám tiếng mà. Thì ông ấy cứ để lên trên đấy. Thứ ra ông cứ để lên, ông không relit được mà. Ông làm trước rồi ông cứ để lên thôi. Không relit được ạ. Không cần relit. Thế thì hơi khoai nha. Lại relit bây giờ lại phải gán thêm những điều kiện trước bao nhiêu mới được relit.
+
+48
+00:22:20,000 --> 00:22:47,000
+Thật rồi, cái đấy thì không có gì rõ ràng là mình sẽ là đúng thôi Nhưng mà đây này quay lại đến số lễ Bây giờ mình ngươi lên trước 8 tiếng, em không ngươi hơn không? Các cây bình thường trước đấy nhé Cây bình thường trước này là đến giờ thì nó mới đổi màu Chắc hả? Chị hiểu đi trước hôm nãy rồi Là trắng mẻ, vàng, vàng, đỏ, cứ đến giờ thì nó sẽ cho 3 cái màu đấy
+
+49
+00:22:48,000 --> 00:23:17,000
+Đấy, thì thông thường là xong rồi. Bất thường là đưa lên sớm ý. Đưa lên sớm. Đưa lên sớm mà không Vili thì không nói làm gì, nó trắng là đương nhiên. Nhưng nếu trong kiểu mà nó đưa lên sớm mà Vili trước ở mốc 210, 270 thì thứ nhất là có cho Vili không. Đi sau Vili có cho không. Có chứ. Thứ hai là nếu Vili thì nó vẫn màu tráng hay màu xanh. Nhưng mà chị sẽ có cho em một cái cột.
+
+50
+00:23:17,000 --> 00:23:44,000
+Đặt cột đi Spark Relief đúng không? Không phải còn mà đồ nút nút bấm Ừ nút bấm? Thì cái nút đấy nó có lời màu không? Khi em muốn nó đổi thì nó đổi như gì rồi thì nó sẽ đổi thành màu khác mà chưa vì nó đổi thành màu khác Cái đấy là nó sẽ màu danh, vì nó sẽ xanh luôn Cái đấy là sẽ nhận biết được, cái chỗ bấm đấy sẽ nhận biết được là em đã thấy chưa? Thì là có dấu tích không? Không tích rồi! Ừ! Thì tích thì là sờ Relief
+
+51
+00:23:45,000 --> 00:24:09,000
+Ví dụ như thế này, tất xây hiển những 2 cái giảng máy là như này. Ví dụ nhìn thế này mà em nhìn sang bên kia nó nằm vào màu vàng vàu đỏ rồi mà. Thì em cấm vào cái này là nợ tích xanh nên tối nhiên là em release cái bên kia. Không, cái cột đấy là cột function, cột chức năng. Ấn vào release xong thì cái nút đấy nó chuyển thành un-release đấy.
+
+52
+00:24:09,000 --> 00:24:26,000
+Được không? Thế, không sao cả, nhưng mà ý là nó sẽ phân biệt được hai trạng thái, đã phân biệt chưa? Đã rì ly nhưng mà chưa đến giờ, và đã rì ly theo đúng mật đến giờ. Vì có cần phân biệt thì đi khóc.
+
+53
+00:24:26,000 --> 00:24:51,000
+Thôi nhả bớt ra đi, đừng để gỡ ngép quá Em thấy như thế là hơi bị lượng hết Không, nhưng mà em nói hiện lập là vấn đề không đúng hay lắm nãy? Đúng hay không đúng thì mình dựa vào cái cột OFP, DFPREP này này Thường này sẽ là trước thêm khá được Thế nên là bấm review luôn là ok Cái đấy là em đang nói về việc lập
+
+54
+00:24:51,000 --> 00:25:14,000
+Ok cho người dùng nhưng mà... Ok cho người dùng đấy Về mặt quản lý thì nói đấy Ừ... Ừ... Ở đây là ok cho người dùng Cái đấy... Nếu mà bây giờ tôi phải bắt buộc phải để huy ly thì bắt buộc phải đúng cho người dùng và đúng cho cả mặt của ông Tức là thời gian để huy ly thì chúng ta có được, cũng giống được cả Bây giờ chỉ là đổi trang thái thôi Có đổi không đấy, có đổi không thôi Nhưng mà không đổi như vấn đề trang
+
+55
+00:25:14,000 --> 00:25:26,000
+Thì nó theo được luôn cố. Còn nếu không muốn đổi thì đổi thế nào? Thì đơn giản là... Thế em hiểu là nếu mà đắp lên mà bấm đi thì xuất hiện xanh luôn chứ.
+
+56
+00:25:26,000 --> 00:25:54,000
+Cái đấy em nghĩ là nếu mà giả sử mình đi vào khai thác thực tế thì lúc đấy thì mình sẽ giảng tiếp của trước mắt nhá thì theo ông đề xuất ấy là cái trường hợp mà chưa có
+
+57
+00:25:54,000 --> 00:26:05,000
+đã có OAP nhưng chưa release sẽ chung một cái màu chung một cái ru màu đúng không còn khi ấn release xong cái thì nó chuyển lên màu xanh
+
+58
+00:26:06,000 --> 00:26:32,000
+Thế nên thì chuẩn bị ý của báo Thế thì đưa ra thêm một cái là bấm đi đi xong thì nếu mà chưa đến giờ đúng không ạ? Thế thì thực ra không Cảnh báo đấy thì có thể có, đúng rồi, cho em nhưng mà chỉ hỏi em được một lần thôi Sau khi mà em hô kê một cái thì nó sẽ không phân biệt được gì nữa Nó nhược thật thật thật nhưng mà bây giờ cái... Ok, cường bí là có thể là bấm đi đi xong rồi nó thành màu xanh luôn
+
+59
+00:26:32,000 --> 00:27:02,000
+Nhưng mà có một cái nữa là lúc mà mình bấm vào trong cái... À chưa đến con detail đúng không? Tiếp của cái cột chưa chưa chưa đúng không? Mình đang ở cái bảng này làm sao vắn tắt nhất, anh dùng ra nó nhanh nhất. Ví dụ như vậy anh nhìn nó đăng vàng khè hà như thế. Xong rồi tự dưng nó sẽ có đâu đó 5, 7 chuyến vàng, 3, 4 chuyến đỏ kiểu như thế đúng không? Anh làm xanh muốn xử lý hết cái đống vàng và đống đỏ thôi. Làm sao nó nhanh nhất, làm sao để cái bảng này toàn màu xanh.
+
+60
+00:27:02,000 --> 00:27:25,000
+cho nó màu xanh bấm tích vào phát thì nó thành màu xanh luôn dù là quý lúc nào nhưng mà lúc nào mình lưu được sự kiện, lưu được lóc là lúc nào thì lưu được làm cho xứ thì chắc là em lưu hết anh cũng thích cái đấy để đè đầu tội ra cái chuyến này 12h bay mà sau làm trước 6 tiếng rồi đấy sẽ có cái báo cáo nhé
+
+61
+00:27:25,000 --> 00:27:49,000
+Sẽ có một báo cáo quân thủ về thời gian các mốc của em. Em sẽ xúc nào làm ngoài sớm, ngoài luận hay như nào cũng sẽ có báo cáo thêm. Còn mình đang bổ sung thêm bước ly này thì nó cũng chưa thực sự đưa vào khai tác chính thức. Cho nên mình chưa lên ép điều kiện quả.
+
+62
+00:27:49,000 --> 00:28:15,000
+Khi mình đưa vào bắt đầu chạy thử nghiệm, thấy nhiều lỗi phát sinh từ phía người dùng nạng sớm, công tuân phủ, lúc đấy mình lại đi phai vào tiệm.
+
+63
+00:28:15,000 --> 00:28:45,000
+à à à à à à à à à à à à à à à à à à à à à à à à à à à à à à à à à à à à à à à à à à à à à à à à à à à
+
+64
+00:28:51,000 --> 00:29:23,000
+Còn cái trường hợp mà nếu mà anh ân, ân rủi ly đúng không? Anh thấy là còn ân rủi ly đi nữa, ân rủi ly thiệt đỏ thôi. Không ân rủi ly thì nó lại quay trở về cái trường hợp mà đã có OFP và chưa rủi ly. Bởi vì lúc đấy là... Tức là lúc đấy ân rủi ly thì nó sẽ sinh ra một cái vô dịch tiếp nhau đặt vào đây luôn luôn. Đúng rồi, đúng rồi.
+
+65
+00:29:23,000 --> 00:29:34,000
+thì mình sẽ sinh ra nó lại quay về trường hợp chưa release đúng không? và cái phiên bản này nó sẽ nâng lên một phiên bản mới và đồng thời là TOS sẽ đẩy sang bên M.O một cái phiên bản cao hơn
+
+66
+00:29:34,000 --> 00:30:00,000
+Tức là nó sẽ tự động nhét một cái phiên bản cao hơn vào đây. Xong cái phiên bản đấy là coi như là cái phiên bản mà có OAPT cho bế đi. Thì ăn với màu vàng hay màu đỏ là theo với thung với dân kia. Vẫn là vàng vàng vàng vàng đỏ và vẫn trắng vàng đỏ như kia ở đây. Và sau đó thì nó lại thung kiện bế đi như bình thường. Đây nhưng mà cái này còn về phi công nữa. Thường disparty thì xong.
+
+67
+00:30:00,000 --> 00:30:28,000
+thì nó phải có khi công release hay chưa? thì đây mình cái cột này của mình đang là cột Dispatch thôi tí sẽ có cột PIC còn không chưa? thì Dispatch có quyền nó có thể release hoặc un-release thì nó lại có bách về cái trạng thái mà đã có khi công release theo cốt màu đấy nhưng như thế lại trong trường hợp đấy thì thi công pilot đã release hay chưa?
+
+68
+00:30:28,000 --> 00:30:41,000
+Tôi cứ biết là nhiệm vụ điều khoái của tôi là Rely xong đã xanh nữa nhá. Rồi ok nhá. Thì bây giờ...
+
+69
+00:30:42,000 --> 00:31:04,000
+thì bây giờ em sẽ ghi nhận một cái cột ngay bên cạnh này nữa đi thêm một cột ngay bên cạnh cái này nó đi là cột PIC confirm thì nó sẽ có một cái dấu tích hoặc là không có gì
+
+70
+00:31:04,000 --> 00:31:35,000
+xong cái cột của điều phái này điều phái gửi đi xong rồi sang cái cột của PIC confirm này nếu mà chưa có OFP đúng không thì là nó gài trắng
+
+71
+00:31:35,000 --> 00:32:04,000
+Đã có OSP nhưng mà điều phái chưa release. À mà không, đã có OSP.
+
+72
+00:32:04,000 --> 00:32:27,000
+Các bạn có thể nhớ like và share video này để ủng hộ kênh của mình nhé!
+
+73
+00:32:27,000 --> 00:32:40,000
+Thì đang thắc mắc là ví dụ một người đi ở đây thì nó mới nhảy lên bố hay là mình cứ áp lên đây mà là hình ảnh nhảy lên bố rồi? Mình phải áp lên bố rồi nó mới nhảy lên đây chứ. Mình đang hỏi bài trường được lại nữa.
+
+74
+00:32:40,000 --> 00:33:09,000
+Mình chỉ làm 1 chiều thôi Cái này là 1 chiều là nhận từ MOO đúng không chị? Cái này, Adapter sẽ lăng 2 đứa 1 đứa lên MO, 1 đứa lên TOS ở đây, nó trả lý toàn với nhau Nhưng mà có nghĩa là cùng 1 đọc tất xem của em ở trên video thì nó sẽ về 2 nơi Còn nếu không thì nó cũng sẽ có trên trường hợp là ví dụ như MO lỗi thì nó lên đây mà nó không lên MO, họ mà lên MO mà không lên đây Từ đến là cái trường hợp mà yêu sẽ ra
+
+75
+00:33:09,000 --> 00:33:39,000
+Thì thấy nó là đẹp à? Mà mình tin tưởng cái bà này là em thấy trên này của em có hết tất cả thứ rồi. Ừ, rồi đấy. Mình em cũng không biết anh có thấy hết rồi.
+
+76
+00:33:40,000 --> 00:34:08,000
+Mà có quy định nào mà yêu cầu PIC phải confirm OFI báo trước bao lâu trước ETD không? Không, tôi thấy tại như confirm trước bao lâu trước bao lâu trước. Không. Anh chẳng ý. Tôi không để lắm cách này chắc được chắc được. Ừ, mất hỏi anh Vị. Tôi có ý kiến thức tại tin phương nhiều, các tình tin khá muộn, nhưng không nhiều. Ông tin phương rất sớm. Trước khoảng 2-3 tiếng rồi. Nhiều hơn cho khách sạn khó sản ngoài phát. Ông tin phương luôn, trong giai tàu bay. Trong giai tàu bay tàu tăng 10 tầng.
+
+77
+00:34:08,000 --> 00:34:33,000
+Nhưng mà cái ăn với ly mình sẽ quay về phiên bản trước, thứ 2 này bắt để chọn, ví dụ như là chân ăn ở Thần Vương Rừng Mấu, ăn với ly lại không phải để chọn xem là dừng phiên bản 1 hay 2 hay 3. Còn chứng hợp nào thấy không? Nhưng cái ăn với ly thì trên mấu sẽ quay về phiên bản này, nó sẽ bắt đến phiên bản hiện tại cho mấu. Không. Hay không qua mấu? Nếu trong chứng hợp bà em đang ở đây, bà em ăn với ly.
+
+78
+00:34:33,000 --> 00:34:59,000
+thì nó sẽ tạo ra một cái L5, nhưng mà sẽ lấy bảng L3 trước đó. Em chỉ có kiếm kiếm được mới cái động tác này em không thể xem mãi trên video thôi. Nó đã lấy cái bảng L3 trước đấy em xem rồi, thì nó sẽ có cái bảng L3 đấy thành cái bảng L5. Xong nó đưa lên đây, em đã phải thực hiện bì lưu cái bảng L5 đấy, thì nó mới lên được em không?
+
+79
+00:34:59,000 --> 00:35:29,000
+em lấy cái bản N4 về nó ăn để nó bố đi lắm để tiết kiệm cho con một cái thao tác đỡ phải vào Lido để tiết kiệm khá là nhiều công sức đấy. Thế thì bây giờ chị mới nặng cái cái nền vớt lại của em ý. Nó vớt lại ngay cái bản trước đấy, hay muốn nền vớt đến bản trước trước. Chắc là đã ngay bản trước đấy đâu, cũng có những trường hợp này. Sẽ có trường hợp là xếp hình của bạn đầu tiên. Thế thì ăn gì đi là phụ nghiệp này phải cho cho.
+
+80
+00:35:29,000 --> 00:35:41,000
+Revert lại cái bản nào Bấm vào an early là phải ra một cái bản kiểu nhỏ đi nhỏ đi nhỏ đi nhỏ đi nhỏ đi nhỏ đi kia đấy Sao mà ông thế này cái ảnh ảnh ảnh ảnh ảnh ảnh ảnh ảnh ảnh ảnh ảnh ảnh ảnh ảnh ảnh ảnh ảnh ảnh ảnh ảnh ảnh ảnh ảnh ảnh ảnh ảnh ảnh ảnh ảnh ảnh ảnh ảnh ảnh ảnh ảnh ảnh ảnh ảnh ảnh ảnh ảnh ảnh ảnh ảnh ảnh ảnh ảnh ảnh ảnh ảnh ảnh ảnh ảnh ảnh ảnh ảnh ảnh ảnh
+
+81
+00:35:41,000 --> 00:36:10,000
+Cũng đúng đấy. Làm thì làm được thôi. Ví dụ em không ăn really thì em phải up khoảng 50 thì em... Sau khi mà nó đi vượt rồi em... Em hỏi cho chừng hợp vào ví dụ em... Em up đè lên mà cái bảng nó lên thì em lại phải ly lại thôi. Thế còn đi kia em không muốn ăn really nữa. Không cần ăn really. Nếu em không muốn ly lại thì cũng không cần ăn gì. Ăn really là chỉ để lấy bản vũ.
+
+82
+00:36:10,000 --> 00:36:43,000
+Cách kiệm được công sức. Đó phải vào kia cóp lại đúng cái thông số đấy rồi.
+
+83
+00:36:47,000 --> 00:37:17,000
+Còn trường hợp làm nữa không? Ấp lên. Thế có lúc phi công cực chối thì chị lên. RIDGEC hay còn hướp RIDGEC. Làm gì có lúc RIDGEC trên mô? Nó sẽ nằm ở cái cột của PIDRES. Có, có chứ. Có phi công RIDGEC mà. Chắc thế ông là RIDGEC. Thế đúng rồi. Nhưng mà thông thường họ RIDGEC là họ hay gọi trên đường sáng như không? Có gọi thật thì mới up với ông đỡ phải RIDGEC. Không sao, mình vẫn thay đổi trường hợp đấy. Bởi vì trên em ô nó không phải chạm thấy RIDGEC mà. Thì em nhìn trên mô có, em biết phải hỏi. Có.
+
+84
+00:37:17,000 --> 00:37:50,000
+Ông nào ông ấy ghét điều khái ông ấy không thích nói chuyện. Ôi ông ấy không thích nói chuyện. Ôi ông ấy không thích nói chuyện. Ôi ông ấy hôm nay biết thằng Zabar trực. Ôi, người rách cho mày chết. Thế là mình đúng tươi tươi tươi vào trong. Ok, thế là với trường hợp Bistock Relief và An Relief thì ok rồi. Thế bây giờ đến trường hợp phi công, DIC confirm. Có nghĩa là cái việc mà ban hành này, chuyển mốc thời gian này.
+
+85
+00:37:50,000 --> 00:38:10,000
+Vì ly ăn, vì ly thì xong hết rồi, bên ô ấy, vì ly của Bình Khói rồi nha. Dù cái nổi. Thế thảm bận gốc về nhiều máy thì sổ cái nút mà vì ly thì nó sẽ hình thị lại cái như nào là gì? Nó nghĩ là khi mà hover chuột vào ấy, nó sẽ hình thị cái nút chức năng ngay cả cái cột đấy luôn. Vâng, được.
+
+86
+00:38:10,000 --> 00:38:26,000
+Anh nghĩ là để luôn thành một cái núi tròn mà luôn ở đấy, khỏi cần Hover vào để luôn thành núi. Bấm vào một phát thì nó thành màu thành tích V, còn bấm thêm một lần nữa thì nó lại hiện ra cái bảng version cũ. Thôi, thật, thật nhiều quá. Thôi nghi điểm.
+
+87
+00:38:26,000 --> 00:38:56,000
+Em bấm Rely thì em có tiền mục tích thì lên. Nhưng mà còn cái loại mà ăn Rely là sẽ phải có flow với em đấy. Không, lúc chị bấm ăn Rely đúng không? Chị bấm nào thì nó sẽ hiện ra một cái bản các version cũ. Xong rồi phải bấm chọn các version cũ đấy thì nó mới thành... Kể cả có version cũ phải ra thì em chọn cái version đấy. Đúng rồi. Chính như thế là có những bước để em quan tâm lại ấy. Ủa, không cho hỏi là cái chỗ mà Rely này có nhập tài khoản pháp thuộc lại một cái gì nhiều khi nó đẩy mãi như thế nào đâu.
+
+88
+00:38:56,000 --> 00:39:24,000
+Nhật tài khoản xác thực lại là không? Ý là có thể là ví dụ một màn hình em đang monitor ở đấy, một ảo đen cung vào. Không sao, có cần phải nhập lại cái tài khoản của user đấy để xác thực lại không? Nhưng mà nếu như mình có một người mà đã... Đấy rồi, họ đi nhiều Gmail liên tục, mỗi lần mình nhập như thế thì nó rất là vô tệ. Mình nghĩ là em biết nó biết tiền nhưng mà nó có đảm bảo không? Cái ý của bạn An này cũng không. Nhưng mà ý là xác thực như nào?
+
+89
+00:39:24,000 --> 00:39:43,000
+Khi mà mình nhấn lên thì mình bấm giống như là ăn relive đúng không? Tự nhiên, ăn người relive nhưng mà sao ca của em, em là người ăn relive thì cũng được hay không? Dì em đu hết ca, em bể mua nhưng mà mình nghe đi tơ. Được phải cho ca được quyền relive, mình ăn relive mà không? Không nhưng ông cứ không nhận ca, nhưng em mới không sai nào.
+
+90
+00:39:43,000 --> 00:40:11,000
+Cái gì phải làm cái kiểu quả lập trên phân quyền phân quyền là có sở có một số ông đó, ông ấy lại quyền không, người lại review được rất nhiều. Của chủ leader matter, top matter. Ông ấy thì chưa đánh nhiệm với cơ cao của mình thôi. Thì nó sẽ như vậy, tự nhiên là người sẽ phải chứ không nhận rồi. Không nhưng mà em đang sử dụng lận.
+
+91
+00:40:11,000 --> 00:40:40,000
+ý là khi mình đánh về ly thì nó sẽ có thêm step nữa là bấm xác thực thì lúc đó xác thực không phải là mấy trăm chuyến xác thực mấy trăm chuyến á
+
+92
+00:40:41,000 --> 00:41:05,000
+Đúng rồi, mọi người tự suy nghĩ thứ cho kênh này có nhiều không? Không, mọi người tự suy nghĩ thứ cho kênh này có nhiều không? Không, mọi người tự suy nghĩ là sắp thức kiểu gì? Không, mọi người tự suy nghĩ là nó ok rồi. Mình bắt đầu bí xin đổ cho kênh này. Mình xin lỗi các bạn rồi. Mình xin lỗi các bạn rồi. Mình xin lỗi các bạn rồi. Mình xin lỗi các bạn rồi. Mình xin lỗi các bạn rồi. Mình xin lỗi các bạn rồi. Mình xin lỗi các bạn rồi. Mình xin lỗi các bạn rồi. Mình xin lỗi các bạn rồi. Mình xin lỗi các bạn rồi. Mình xin lỗi các bạn rồi. Mình xin lỗi các bạn rồi. Mình xin lỗi các bạn rồi.
+
+93
+00:41:05,000 --> 00:41:30,000
+Nếu mà nói chung là mình thấy cái nó nhiều quá mình bypass được nhưng mà cái chuyện là phải hỏi lại để nó ok cái đó. Bởi vì nếu mà trong gặp người đi đi, bay đi rồi xong rồi.
+
+94
+00:41:30,000 --> 00:41:50,000
+Khi có đâu, hôm nay tụi đi về mà lúc tất cả nhau cũng phải thế. Thế thì điện có thể thân như thế này đúng không anh? Ví dụ như là nếu trong trường hợp ông làm liên tục thì ông làm với biến động viên thì nó hỏi. Nhưng mà nếu trong trường hợp trong vòng khoảng 2-3 phút thì ông có ra làm tiếp tục những phao tác như thế thì nó hỏi được.
+
+95
+00:41:50,000 --> 00:42:14,000
+Nhưng trong những người mà ông về, cái monitor này nó idol trong 15 phút chẳng hạn. Nếu ông hãy tự bùi lý thì lại hỏi. Hay là khoảng tầng nửa tiếng hoặc một tiếng hoặc lấy gì cả. Thì đấy, chỉ cần nói là khoảng 15 phút hay 30 phút đấy cho mình. Nhưng mà nếu ông trong khoảng thời gian, ông cũng là ông kính khoản đây em lại bùi lý thì bùi lý thì họ sẽ em ghi lưu lại cái trạng thái đấy thì nó không hoại.
+
+96
+00:42:14,000 --> 00:42:39,000
+Nếu trong trường hợp em không gì nghĩ, không ăn gì gì gì trong khoảng 15-30 phút gì đấy thì lúc nào em làm chuyện thì nó sẽ phải. Kết hoạt một sát bay của bạn có đang học không? Ừ, đang học tập không? Giống kiểu như là kết hoạt làm bềm ấy. Nó lâu cũng được. Mặc dù nó hơi mất tiện đấy, nhưng mà... Nếu mà em không biết nó không thích thì nó tự ao cái này của em là...
+
+97
+00:42:39,000 --> 00:43:00,000
+Không phải nào mà nó xin chỉ cho em chỉ có điều này khi em ấn đây gì đi, ăn gì gì lắm đi mà thôi. Tức là sau khoảng 30 phút. Sau bao nhiêu thì sau mình đã. Một tiếng và làm cho mình xin lạnh gì hết. Anh có check của trên mặt thế này. Nhưng mà có nghĩ thế nào thôi. Màn bình này nó cũng xảy. Thay nào.
+
+98
+00:43:01,000 --> 00:43:28,000
+Bên chỗ ông Dương với Bình có ai này đánh khí tượng như thế nào? Mình muốn đối trọng sáng đi lên thái dương. Mới chuyện với anh chị bên khí tượng kìa. Thầy... thầy... thầy... thầy... thầy... thầy... thầy... thầy... thầy... thầy... thầy... thầy... thầy... thầy... thầy... thầy... thầy... thầy... thầy... thầy... thầy... thầy... thầy... thầy... thầy... thầy... thầy... thầy... thầy... thầy... thầy... thầy... thầy... thầy... thầy... thầy... thầy... thầy... thầy... thầy... thầy... thầy...
+
+99
+00:43:29,000 --> 00:43:59,000
+Để giải pháp được nhé. Nhưng mà thời gian bao nhiêu? Thời gian bao nhiêu? Mình sẽ đặt tham số ở với hệ thống. Admin xét quyền rồi kìa. Thế là bóng thính như thế cũng chẳng đủ phải làm nhiên tục, không chí nó bắt đầu. Không chẳng tốt, không chẳng phải làm giải làm đấy. Nhưng mà cũng không thể làm nhiên tục được, bởi vì là máy nó chạy theo giờ mà. Nhưng mà thôi mình vẫn phải có 1 cái chốt chặn. Đồng ý là phải có chốt chặn.
+
+100
+00:44:00,000 --> 00:44:17,000
+Hãy subscribe cho kênh Ghiền Mì Gõ Để không bỏ lỡ những video hấp dẫn

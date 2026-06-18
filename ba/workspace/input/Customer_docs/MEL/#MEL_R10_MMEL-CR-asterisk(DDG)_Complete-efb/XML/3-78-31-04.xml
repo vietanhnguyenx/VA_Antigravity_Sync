@@ -1,0 +1,282 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM"><!ENTITY G3-78-31-04.fm_1311923 SYSTEM "..\Images\3-78-31-04.fm_1311923.cgm" NDATA CGM>]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.3-78-31-04.4468.3-78-31-04" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="78" superSectionNumber="3" sectionName="CDL" chapterName="Exhaust" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2021-02-24" rev:revStatus="U" rev:revNumber="10" />
+</PUMetaData>
+<CDLItem itemNbr="78-31-04" id="X-BOEING:FTID:81205.787.DDG.CU.CDL.3-78-31-04.1.3-78-31-04">
+<Title>Thrust Reverser Blocker Door Hinge Covers</Title>
+<DispatchCondition>
+<DispatchConditionRemarks>
+<Para>
+<Effectivities>
+<Effectivity>For GE Engines:</Effectivity>
+</Effectivities>Up to thirteen may be missing.  Twelve may be missing from one engine and one may be missing from the other engine.</Para>
+<Para>
+<Effectivities>
+<Effectivity>For GE Engines:</Effectivity>
+</Effectivities>For each missing thrust reverser blocker door hinge cover, the corresponding thrust reverser blocker door (CDL item 78-31-01) must also be removed.</Para>
+<Para>
+<Effectivities>
+<Effectivity>For GE Engines:</Effectivity>
+</Effectivities>If blocker hinge covers are missing from both engines, determine the performance limited weight adjustments for each engine and then combine the results.</Para>
+<Note>
+<Para>For more than one blocker door missing from one engine, the airplane must be dispatched using MEL item 78-31-01.</Para>
+</Note>
+<Para>For an engine with one blocker door hinge cover missing (thrust reverser is operative), reduce performance limited weights by:</Para>
+<table frame="all">
+<tgroup cols="5" colsep="1">
+<colspec colname="1" colwidth="17%" />
+<colspec colname="2" colwidth="14%" />
+<colspec colname="3" colwidth="24%" />
+<colspec colname="4" colwidth="21%" />
+<colspec colname="5" colwidth="24%" />
+<thead>
+<row rowsep="1">
+<entry colname="1">
+<Para>
+<Emphasis txtStyle="bold">Model / Engine</Emphasis>
+</Para>
+</entry>
+<entry colname="2">
+<Para>
+<Emphasis txtStyle="bold">Number Installed</Emphasis>
+</Para>
+</entry>
+<entry colname="3">
+<Para>
+<Emphasis txtStyle="bold">Takeoff </Emphasis>
+</Para>
+</entry>
+<entry colname="4">
+<Para>
+<Emphasis txtStyle="bold">Enroute Climb</Emphasis>
+</Para>
+</entry>
+<entry colname="5">
+<Para>
+<Emphasis txtStyle="bold">Approach and Landing</Emphasis>
+</Para>
+</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep="0">
+<entry colname="1">
+<Para />
+</entry>
+<entry colname="2">
+<Para />
+</entry>
+<entry colname="3">
+<Para />
+</entry>
+<entry colname="4">
+<Para />
+</entry>
+<entry colname="5">
+<Para />
+</entry>
+</row>
+</tbody>
+</tgroup>
+<tgroup cols="5" colsep="1">
+<tbody>
+<row rowsep="1">
+<entry colname="1" morerows="2">
+<Para align="center">787-9 (GE)</Para>
+</entry>
+<entry colname="2" morerows="2">
+<Para align="center"> 24</Para>
+</entry>
+<entry colname="3">
+<Para align="left">5,150 lb 
+(2,336 kg) (Dry)</Para>
+</entry>
+<entry colname="4" morerows="2">
+<Para align="center">2,450 lb 
+(1,111 kg)</Para>
+</entry>
+<entry colname="5">
+<Para align="left">2,450 lb 
+(1,111 kg) (Dry)</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="3">
+<Para align="left">15,550 lb 
+(7,053 kg) (Wet)</Para>
+</entry>
+<entry colname="5">
+<Para align="left">2,450 lb 
+(1,111 kg) (Wet)</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="3">
+<Para align="left">34,950 lb (15,853 kg) (Contaminated)</Para>
+</entry>
+<entry colname="5">
+<Para align="left">34,550 lb (15,672 kg) (Contaminated)</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1" morerows="2">
+<Para align="center">787-10 (GE)</Para>
+</entry>
+<entry colname="2" morerows="2">
+<Para align="center"> 24</Para>
+</entry>
+<entry colname="3">
+<Para align="left">5,350 lb 
+(2,427 kg) (Dry)</Para>
+</entry>
+<entry colname="4" morerows="2">
+<Para align="center">2,400 lb 
+(1,089 kg)</Para>
+</entry>
+<entry colname="5">
+<Para align="left">1,950 lb 
+(885 kg) (Dry)</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="3">
+<Para align="left">15,510 lb 
+(7,035 kg) (Wet)</Para>
+</entry>
+<entry colname="5">
+<Para align="left">1,950 lb 
+(885 kg) (Wet)</Para>
+</entry>
+</row>
+<row rowsep="0">
+<entry colname="3">
+<Para align="left">35,110 lb (15,926 kg) (Contaminated)</Para>
+</entry>
+<entry colname="5">
+<Para align="left">34,760 lb (15,767 kg) (Contaminated)</Para>
+</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+<Note>
+<Para>The above table accounts for both the missing hinge cover and the missing blocker door (CDL item 78-31-01).</Para>
+</Note>
+<Para>For an engine with more than one blocker door hinge cover missing, the thrust reverser must be considered inoperative. Reduce the performance limited weights for each blocker door hinge cover missing from this engine by:</Para>
+<table frame="all">
+<tgroup cols="5" colsep="1">
+<colspec colname="1" colwidth="17%" />
+<colspec colname="2" colwidth="14%" />
+<colspec colname="3" colwidth="21%" />
+<colspec colname="4" colwidth="24%" />
+<colspec colname="5" colwidth="24%" />
+<thead>
+<row rowsep="1">
+<entry colname="1">
+<Para>
+<Emphasis txtStyle="bold">Model / Engine</Emphasis>
+</Para>
+</entry>
+<entry colname="2">
+<Para>
+<Emphasis txtStyle="bold">Number Installed</Emphasis>
+</Para>
+</entry>
+<entry colname="3">
+<Para>
+<Emphasis txtStyle="bold">Takeoff </Emphasis>
+</Para>
+</entry>
+<entry colname="4">
+<Para>
+<Emphasis txtStyle="bold">Enroute Climb</Emphasis>
+</Para>
+</entry>
+<entry colname="5">
+<Para>
+<Emphasis txtStyle="bold">Approach and Landing</Emphasis>
+</Para>
+</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep="0">
+<entry colname="1">
+<Para />
+</entry>
+<entry colname="2">
+<Para />
+</entry>
+<entry colname="3">
+<Para />
+</entry>
+<entry colname="4">
+<Para />
+</entry>
+<entry colname="5">
+<Para />
+</entry>
+</row>
+</tbody>
+</tgroup>
+<tgroup cols="5" colsep="1">
+<tbody>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">787-9 (GE)</Para>
+</entry>
+<entry colname="2">
+<Para align="center">24</Para>
+</entry>
+<entry colname="3">
+<Para align="center">5,150 lb 
+(2,336 kg)</Para>
+</entry>
+<entry colname="4">
+<Para align="center">2,450 lb 
+(1,111 kg)</Para>
+</entry>
+<entry colname="5">
+<Para align="center">2,450 lb 
+(1,111 kg)</Para>
+</entry>
+</row>
+<row rowsep="0">
+<entry colname="1">
+<Para align="center">787-10 (GE)</Para>
+</entry>
+<entry colname="2">
+<Para align="center"> 24</Para>
+</entry>
+<entry colname="3">
+<Para align="center">5,350 lb 
+(2,427 kg)</Para>
+</entry>
+<entry colname="4">
+<Para align="center">2,400 lb 
+(1,089 kg)</Para>
+</entry>
+<entry colname="5">
+<Para align="center">1,950 lb 
+(885 kg)</Para>
+</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+<Note>
+<Para>The above table accounts for both the missing hinge covers and the missing blocker doors (CDL item 78-31-01).</Para>
+</Note>
+</DispatchConditionRemarks>
+</DispatchCondition>
+<LocationDiagram id="X-BOEING:FTID:81205.787.DDG.CU.GR.3-78-31-04.1311920.3-78-31-04">
+<Illustration fileRef="G3-78-31-04.fm_1311923" linkRef="URN:X-BOEING:FTID:81205.787.DDG.NX.GR.3-78-31-04.1311923." />
+</LocationDiagram>
+</CDLItem>
+</DispatchItems>

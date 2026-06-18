@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM">]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.2-21-27-28.3195.2-21-27-28" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="21" superSectionNumber="2" sectionName="MEL" chapterName="Air Conditioning" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2024-06-19" rev:revStatus="U" rev:revNumber="10" />
+</PUMetaData>
+<MELItem itemNbr="21-27-28" id="X-BOEING:FTID:81205.787.DDG.CU.MEL.2-21-27-28.1.2-21-27-28">
+<Title>Aft Cargo Heat Valve</Title>
+<MELSubItem itemNbr="21-27-28-01">
+<Title>787-9 (VN-A861, VN-A862, VN-A863, VN-A864, VN-A865, VN-A866, VN-A867, VN-A868, VN-A869, VN-A870, VN-A871)</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="1" nbrRequired="0" maintIndicator="(M)">
+<DispatchConditionRemarks>
+<Para>May be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Valve is deactivated closed.</Para>
+</ListItem>
+<ListItem>
+<Para>Aft equipment cooling supply fan smoke detector operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>For ground operations at OAT 30 degrees C or higher, both packs are selected on or conditioned air is supplied to the airplane.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Deactivate the aft cargo heat valve closed (AMM DDG 21-27-28).</Para>
+<List listType="1.">
+<ListItem>
+<Para>Using a flight deck multi-function display only, open the following circuit breakers and lock with an INOP tag:</Para>
+<List listType="A.">
+<ListItem>
+<Para>AFT CARGO HEAT	 VLV OPEN</Para>
+</ListItem>
+<ListItem>
+<Para>AFT CARGO HEAT 	VLV CLOSE</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Gain access to aft cargo heat valve.</Para>
+</ListItem>
+<ListItem>
+<Para>Turn the open/close knob until the valve is fully closed.</Para>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+<OperationNote>
+<Para>Aft cargo compartment heat is not available. Temperature sensitive cargo should not be carried in the aft cargo compartment. Refer the flight NOTOC for details</Para>
+</OperationNote>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="21-27-28-02">
+<Title>787-10 (VN-A872, VN-A873, VN-A874, VN-A877, VN-A878, VN-A879)</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="1" nbrRequired="0" maintIndicator="(M)">
+<DispatchConditionRemarks>
+<Para>May be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Valve is deactivated closed.</Para>
+</ListItem>
+<ListItem>
+<Para>Aft cargo heater is deactivated.</Para>
+</ListItem>
+<ListItem>
+<Para>Aft equipment cooling supply fan smoke detector operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>For ground operations at OAT 30 degrees C or higher, both packs are selected on or conditioned air is supplied to the airplane.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Deactivate the aft cargo heat valve closed and deactivate the aft cargo heater (AMM DDG 21-27-28).</Para>
+<List listType="1.">
+<ListItem>
+<Para>Deactivate the aft cargo heat valve closed.</Para>
+<List listType="A.">
+<ListItem>
+<Para>Using a flight deck multi-function display only, open the following circuit breakers and lock with an INOP tag:</Para>
+<List listType="1)">
+<ListItem>
+<Para>AFT CARGO HEAT	 VLV OPEN</Para>
+</ListItem>
+<ListItem>
+<Para>AFT CARGO HEAT 	VLV CLOSE</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Gain access to aft cargo heat valve.</Para>
+</ListItem>
+<ListItem>
+<Para>Turn the open/close knob until the valve is fully closed.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Deactivate the aft cargo heater.</Para>
+<List listType="A.">
+<ListItem>
+<Para>Using a flight deck multi-function display only, open the following circuit breakers and lock with an INOP tag:</Para>
+<List listType="1)">
+<ListItem>
+<Para>HEATER-AFT CARGO-ELEMENT 1</Para>
+</ListItem>
+<ListItem>
+<Para>HEATER-AFT CARGO-ELEMENT 2</Para>
+</ListItem>
+</List>
+<Note>
+<Para>The CARGO AFT HEATER status message will be displayed.</Para>
+</Note>
+</ListItem>
+<ListItem>
+<Para>Gain access to the inoperative aft cargo heater.</Para>
+</ListItem>
+<ListItem>
+<Para>Disconnect, cap and stow  the electrical connector to the inoperative aft cargo heater.</Para>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+<OperationNote>
+<Para>Aft cargo compartment heat is not available. Temperature sensitive cargo should not be carried in the aft cargo compartment. Refer the flight NOTOC for details</Para>
+</OperationNote>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+</MELItem>
+</DispatchItems>

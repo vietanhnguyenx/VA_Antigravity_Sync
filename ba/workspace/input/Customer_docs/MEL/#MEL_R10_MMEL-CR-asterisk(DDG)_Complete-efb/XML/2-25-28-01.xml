@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM">]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.2-25-28-01.783.2-25-28-01" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="25" superSectionNumber="2" sectionName="MEL" chapterName="Equipment Furnishings" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2025-09-30" rev:revStatus="R" rev:revNumber="10" />
+</PUMetaData>
+<MELItem itemNbr="25-28-01" id="X-BOEING:FTID:81205.787.DDG.CU.MEL.2-25-28-01.1.2-25-28-01">
+<Title>Storage Bins/Cabin, Galley and Lavatory Storage Compartments/Closets</Title>
+<DispatchCondition dispCondOptions="A" repairInterval="C" nbrInstalled="-" nbrRequired="-" maintIndicator="(M)">
+<Title>Secured Closed</Title>
+<DispatchConditionRemarks>
+<Para>May be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Procedures are established to secure the affected bin, compartment or closet in the closed position.</Para>
+</ListItem>
+<ListItem>
+<Para>Affected bin, compartment or closet is prominently placarded DO NOT USE.</Para>
+</ListItem>
+<ListItem>
+<Para>Any emergency equipment located in affected bin, compartment or closet is considered inoperative.</Para>
+</ListItem>
+<ListItem>
+<Para>Affected bin, compartment or closet is not used for storage of any items except for those permanently affixed.</Para>
+</ListItem>
+</List>
+<Note>
+<Para>For overhead bins, if no partitions are installed, the entire overhead bin is considered inoperative.</Para>
+</Note>
+<Note>
+<Para>Proviso is not intended to preclude crewmember inspections.</Para>
+</Note>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>secure inoperative bins, compartments or closets closed (AMM DDG 25-28-01).</Para>
+</MaintenanceProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+<DispatchCondition dispCondOptions="B" repairInterval="C" nbrInstalled="-" nbrRequired="-" maintIndicator="(M)" opsIndicator="(O)">
+<Title>Door Removed or Retractable Door Secured Open</Title>
+<DispatchConditionRemarks>
+<Para>May be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>For non-retractable doors, affected door is removed.</Para>
+</ListItem>
+<ListItem>
+<Para>For retractable doors, affected door is removed or secured in the retracted (fully open) position.</Para>
+</ListItem>
+<ListItem>
+<Para>Affected bin, compartment or closet is not used for storage of any items, except those permanently affixed.</Para>
+</ListItem>
+<ListItem>
+<Para>Affected bin, compartment or closet is prominently placarded DO NOT USE.</Para>
+</ListItem>
+<ListItem>
+<Para>Procedures are established and used to alert crew members and passengers of inoperative bins, compartments or closets.</Para>
+</ListItem>
+<ListItem>
+<Para>Passengers are briefed that affected bin, compartment or closet is not to be used.</Para>
+</ListItem>
+</List>
+<Note>
+<Para>For overhead bins, if no partitions are installed, the entire overhead bin is considered inoperative.</Para>
+</Note>
+<Note>
+<Para>Any emergency equipment located in the affected bin, compartment or closet (permanently affixed) is available for use.</Para>
+</Note>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Remove door from associated bin, compartment or closet (AMM DDG 25-28-01).</Para>
+</MaintenanceProcedure>
+<OperationProcedure>
+<Para>Ensure crew members and passengers are briefed that associated bin, compartment or closet is not to be used.</Para>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+<MELSubItem itemNbr="25-28-01-01">
+<Title>Multi Latch/Quarter Turn Lug Installations</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="-" nbrRequired="-">
+<DispatchConditionRemarks>
+<Para>One latch/lug per compartment may be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Remaining latch(es)/lug(s) on affected compartments operate normally.</Para>
+</ListItem>
+<ListItem>
+<Para>If affected compartment is used for a galley cart, the cart remains empty.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="25-28-01-02">
+<Title>Storage Compartment Key Locks</Title>
+<DispatchCondition repairInterval="D" nbrInstalled="-" nbrRequired="0" maintIndicator="(M)">
+<DispatchConditionRemarks>
+<Para>May be inoperative in the unlocked position provided doors can be secured by other means.</Para>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Ensure that door with inoperative lock can be secured by other means (AMM DDG 25-28-01).</Para>
+</MaintenanceProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+</MELItem>
+</DispatchItems>

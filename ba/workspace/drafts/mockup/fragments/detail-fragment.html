@@ -1,0 +1,701 @@
+<!--CSS_START-->
+/*
+  Flight Detail fragment — screen-specific CSS only.
+  Shared CSS resides in the host prototype shell.
+  data-src citations use format [DDMMYYYY §section].
+  SÔ LIÊU = du lieu mâu. BÔ CUC = dê xuât, cân BA/UI duyêt.
+  CLAUDE.md §0 — moi truong/nhan/trang thai truy xuât toi nguon khao sat.
+*/
+
+/* Release history row — struck-through / faded for cancelled version */
+.ofp-row-cancelled {
+  opacity: 0.6;
+  text-decoration: none; /* strikethrough applied per-cell below */
+}
+.ofp-row-cancelled td:not(.no-strike) {
+  text-decoration: line-through;
+  text-decoration-color: var(--dark-on-variant);
+}
+
+/* Crew change timeline — vertical list */
+.crew-timeline {
+  border-left: 2px solid var(--dark-outline);
+  margin-left: 8px;
+  padding-left: 14px;
+}
+.crew-timeline-entry {
+  position: relative;
+  margin-bottom: 10px;
+  font-size: 12px;
+}
+.crew-timeline-entry::before {
+  content: '';
+  position: absolute;
+  left: -19px;
+  top: 4px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--dark-outline);
+  border: 2px solid var(--dark-surface2);
+}
+.crew-timeline-entry.current::before {
+  background: var(--md-success);
+}
+
+/* Aircraft info grid — 4-col */
+.ac-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px 16px;
+  margin-bottom: 14px;
+}
+.ac-grid .ac-cell label {
+  display: block;
+  font-size: 11px;
+  color: var(--dark-on-variant);
+  margin-bottom: 2px;
+}
+.ac-grid .ac-cell .val {
+  font-weight: 500;
+  font-size: 13px;
+}
+
+/* Load metric cards — 4-col */
+.load-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 14px;
+}
+.load-card {
+  background: var(--dark-surface2);
+  border: 1px solid var(--dark-outline);
+  border-radius: var(--md-radius-sm);
+  padding: 14px 12px;
+  text-align: center;
+}
+.load-card .lc-val {
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 4px;
+}
+.load-card .lc-val.delta-ok { color: #69d58f; }
+.load-card .lc-val.delta-warn { color: #ffb347; }
+.load-card .lc-lbl {
+  font-size: 11px;
+  color: var(--dark-on-variant);
+}
+
+/* Banner variants */
+.banner-ok {
+  background: #0f3d20;
+  color: #69d58f;
+  border: 1px solid #1b6e36;
+  border-radius: var(--md-radius-sm);
+  padding: 10px 14px;
+  font-size: 12px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-top: 8px;
+}
+
+/* METAR raw string */
+.metar-raw {
+  font-family: monospace;
+  font-size: 11px;
+  background: var(--dark-surface2);
+  border: 1px solid var(--dark-outline);
+  border-radius: var(--md-radius-sm);
+  padding: 8px 12px;
+  color: var(--dark-on-variant);
+  margin-bottom: 10px;
+  word-break: break-all;
+}
+
+/* Note text below tables */
+.src-note {
+  font-size: 11px;
+  color: var(--dark-on-variant);
+  margin-top: 8px;
+}
+
+@media (max-width: 768px) {
+  .ac-grid { grid-template-columns: repeat(2, 1fr); }
+  .load-grid { grid-template-columns: repeat(2, 1fr); }
+}
+<!--CSS_END-->
+
+<!--HTML_START-->
+<div id="screen-detail" class="screen">
+  <!-- Prototype banner -->
+  <div class="banner" data-src="[12062026 §1 — Flight Detail]">
+    <span class="ms">info</span>
+    PROTOTYPE — Flight Detail · Chi tiêt chuyên bay VN 208 · Nguôn: 11–12/06, 17/06/2026
+  </div>
+
+  <!-- ===== Header card ===== -->
+  <div data-mat="mat-card"
+       data-src="[12062026 §1 — click chuyên mô tab moi Flight Detail; §2 — chip trang thai Dispatch Release + Pilot Release]"
+       style="display:flex;align-items:center;gap:18px;flex-wrap:wrap;padding:14px 18px;">
+
+    <!-- Flight identity -->
+    <div data-src="[12062026 §3 — Flight Number câu truc 3 côt: carrier+fly-number+suffix]">
+      <div style="font-size:26px;font-weight:700;letter-spacing:.5px;">VN 208</div>
+      <div style="font-size:12px;color:var(--dark-on-variant);margin-top:2px;">
+        SGN &rarr; HAN &nbsp;&middot;&nbsp; Airbus A321 &nbsp;&middot;&nbsp; VN-A321
+      </div>
+    </div>
+
+    <!-- Status chips -->
+    <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;"
+         data-src="[12062026 §7 — bô ma mau 4 trang thai; §2 — chip Dispatch/Pilot Release]">
+      <span data-mat="mat-chip" class="chip-blue">ENR &mdash; Dang bay</span>
+      <span data-mat="mat-chip" class="chip-green">Dispatch Release &#10003;</span>
+      <span data-mat="mat-chip" class="chip-green">Pilot Release &#10003;</span>
+    </div>
+
+    <div style="flex:1;"></div>
+
+    <!-- Schedule times -->
+    <div style="text-align:right;font-size:12px;color:var(--dark-on-variant);"
+         data-src="[12062026 §6 — gio UTC; 11062026-sang §1 — STD/STA]">
+      <div>STD: 08:00 UTC &nbsp;&middot;&nbsp; STA: 09:45 UTC</div>
+      <div style="margin-top:3px;">ETD thuc tê: 08:15 UTC <span style="color:#ffb347;">(+15 phut)</span></div>
+    </div>
+  </div>
+
+  <!-- ===== Tab group — 6 tabs ===== -->
+  <div data-mat="mat-tab-group"
+       data-src="[12062026 §2 — câu truc tab: Canh bao, Flight Release, Tau bay, To bay; §2 — tab Thoi tiêt/NOTAM, Tai trong]">
+
+    <div class="tabs">
+      <div class="tab active"
+           onclick="detail_switchTab(this,'dtab-warnings')"
+           data-src="[12062026 §2 — tab Canh bao: raise-time, trang thai xu ly]">
+        <span class="alert-dot alert-red"></span>Canh bao (2)
+      </div>
+      <div class="tab"
+           onclick="detail_switchTab(this,'dtab-release')"
+           data-src="[12062026 §2 — tab Flight Release: Dispatch + Pilot; 11062026-chieu §II.4 — lich su phien ban OFP]">
+        Flight Release
+      </div>
+      <div class="tab"
+           onclick="detail_switchTab(this,'dtab-aircraft')"
+           data-src="[12062026 §2 — tab Tau bay + MEL/CDL; 17062026 §2,§3 — MEL active, penalty]">
+        Tau bay / MEL
+      </div>
+      <div class="tab"
+           onclick="detail_switchTab(this,'dtab-weather')"
+           data-src="[11062026-sang §6,§7 — NOTAM, METAR/SPECI, 3 thong so canh bao]">
+        Thoi tiêt / NOTAM
+      </div>
+      <div class="tab"
+           onclick="detail_switchTab(this,'dtab-crew')"
+           data-src="[12062026 §2 — tab To bay: lich su thay doi day du]">
+        To bay
+      </div>
+      <div class="tab"
+           onclick="detail_switchTab(this,'dtab-load')"
+           data-src="[11062026-sang §8; 11062026-chieu §II.10 — ZFW, Payload, Block Fuel, delta]">
+        Tai trong
+      </div>
+    </div>
+
+    <!-- ===== TAB 1: Canh bao ===== -->
+    <div id="dtab-warnings" class="tab-panel active"
+         data-src="[12062026 §2 — tab Canh bao: toan bo canh bao phat sinh, trang thai da/chua xu ly, raise-time; 17062026 §3 — canh bao MEL phat sinh/clear]">
+
+      <!-- Alert 1 — MEL (red) -->
+      <div class="mel-item critical"
+           data-src="[17062026 §3 — AMOS phat MEL moi, canh bao Dispatcher lam lai OFP; §2 — penalty: fuel, payload, altitude cap]">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+          <span class="alert-dot alert-red"></span>
+          <span style="font-weight:500;font-size:13px;">Canh bao MEL &mdash; 21-25-01 Bleed Air Pack 1 khong hoat dong</span>
+          <span data-mat="mat-chip" class="chip-red" style="margin-left:auto;">Chua xu ly</span>
+        </div>
+        <div style="font-size:12px;color:var(--dark-on-variant);">
+          Phat sinh: 06:30 UTC &nbsp;&middot;&nbsp; MEL active tu AMOS &nbsp;&middot;&nbsp; [17062026 §3]
+        </div>
+        <div class="mel-meta">
+          <span class="tag impact">Fuel +2.5%</span>
+          <span class="tag impact">Payload &minus;800 kg</span>
+          <span class="tag">Altitude cap FL350</span>
+          <span class="tag">Dual AP yeu câu</span>
+        </div>
+      </div>
+
+      <!-- Alert 2 — OFP fuel delta (yellow) -->
+      <div class="mel-item warn"
+           data-src="[11062026-sang §8; 11062026-chieu §II.10 — canh bao lech tai: delta = Actual - OFP; nguong theo loai tau x gio bay]">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+          <span class="alert-dot alert-yellow"></span>
+          <span style="font-weight:500;font-size:13px;">OFP doi tai &mdash; Block Fuel +150 kg so voi kê hoach</span>
+          <span data-mat="mat-chip" class="chip-yellow" style="margin-left:auto;">Can theo doi</span>
+        </div>
+        <div style="font-size:12px;color:var(--dark-on-variant);">
+          Phat sinh: 07:55 UTC &nbsp;&middot;&nbsp; Delta = Actual &minus; OFP &nbsp;&middot;&nbsp; [11062026-chieu §II.10]
+        </div>
+      </div>
+
+      <p class="src-note">[12062026 §2 — tab Canh bao luu toan bo canh bao tu dau den cuoi chuyên, trang thai da/chua xu ly, raise-time; 17062026 §3 — canh bao khi MEL phat sinh hoac duoc clear]</p>
+    </div>
+
+    <!-- ===== TAB 2: Flight Release ===== -->
+    <div id="dtab-release" class="tab-panel"
+         data-src="[12062026 §2 — tab Flight Release: Dispatch Release + Pilot Release, toan bo phien ban OFP; 11062026-chieu §II.3,§II.4 — co chê Release/Unrelease, quan ly phien ban R1/R2]">
+
+      <div data-mat="mat-card" data-src="[11062026-chieu §II.4 — TOSS gan phien ban R1, R2 theo thu tu nhan; 15062026 §II.3 — lich su toan bo phien ban]">
+        <div class="card-title">
+          <span class="ms">history</span>Lich su phien ban OFP
+        </div>
+        <div class="table-wrap">
+          <table data-mat="mat-table+MatSort">
+            <thead>
+              <tr>
+                <th>Phien ban</th>
+                <th>Thoi gian</th>
+                <th>Block Fuel KH</th>
+                <th>Block Fuel OFP</th>
+                <th>Lay them tai</th>
+                <th>Dispatch</th>
+                <th>Pilot Confirm</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- R2 — current -->
+              <tr data-src="[11062026-chieu §II.4 — phien ban hien tai; TOSS gan R2 theo thu tu nhan]">
+                <td><strong>R2</strong> <span data-mat="mat-chip" class="chip-green" style="font-size:10px;">Hien tai</span></td>
+                <td>07:50 UTC</td>
+                <td>13 200 kg</td>
+                <td>13 350 kg</td>
+                <td>Khong</td>
+                <td><span data-mat="mat-chip" class="chip-green">&#10003; Dispatcher A</span></td>
+                <td><span data-mat="mat-chip" class="chip-green">&#10003; PIC Nguyên V.A</span></td>
+              </tr>
+              <!-- R1 — unrelease / cancelled -->
+              <tr class="ofp-row-cancelled"
+                  data-src="[11062026-chieu §II.4 — Unrelease: TOSS sinh revision moi, reset Confirm Release cua phi cong; phi cong phai Confirm lai]">
+                <td class="no-strike">R1 <span data-mat="mat-chip" class="chip-grey" style="font-size:10px;">Da huy</span></td>
+                <td>06:40 UTC</td>
+                <td>13 200 kg</td>
+                <td>13 200 kg</td>
+                <td>Khong</td>
+                <td><span data-mat="mat-chip" class="chip-grey">Da huy</span></td>
+                <td><span data-mat="mat-chip" class="chip-grey">&mdash;</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div style="margin-top:10px;padding:8px 12px;background:var(--dark-surface2);border-radius:var(--md-radius-sm);font-size:12px;color:var(--dark-on-variant);"
+             data-src="[11062026-chieu §II.4 — Unrelease phat sinh khi MEL moi sau Release; ly do phi cong tu choi phien ban moi lien quan sô luong dâu to quay]">
+          <span class="ms" style="font-size:15px;vertical-align:middle;">info</span>
+          &nbsp;Ly do Unrelease R1: MEL phat sinh sau khi da release &mdash; Dispatcher lam lai OFP phien ban R2.
+        </div>
+        <p class="src-note">[11062026-chieu §II.4 — mo hinh phien ban: Lido co sô OFP, TOSS gan R1/R2 theo thu tu nhan; Unrelease tao revision moi voi noi dung phien ban cu; MO Plus luon lay ban moi nhat]</p>
+      </div>
+    </div>
+
+    <!-- ===== TAB 3: Tau bay / MEL ===== -->
+    <div id="dtab-aircraft" class="tab-panel"
+         data-src="[12062026 §2 — tab Tau bay: hien trang tau, MEL/CDL, luu y tau quay dâu; 17062026 §2,§3 — câu truc MEL item, penalty x1/x2/x3; §3 — canh bao Dispatcher]">
+
+      <!-- Aircraft info -->
+      <div data-mat="mat-card" data-src="[12062026 §9 — lich su doi tau; §2 — tab Tau bay thê hien MEL/CDL]">
+        <div class="card-title">
+          <span class="ms">airplanemode_active</span>Tau bay &mdash; VN-A321 (Airbus A321)
+        </div>
+        <div class="ac-grid">
+          <div class="ac-cell">
+            <label>Sô dang ky</label>
+            <div class="val">VN-A321</div>
+          </div>
+          <div class="ac-cell">
+            <label>Loai tau</label>
+            <div class="val">Airbus A321</div>
+          </div>
+          <div class="ac-cell">
+            <label>Thay doi tau</label>
+            <div class="val"><span data-mat="mat-chip" class="chip-grey">Khong</span></div>
+          </div>
+          <div class="ac-cell">
+            <label>Chuyên tau quay dâu</label>
+            <div class="val" style="font-size:12px;">VN 107 &middot; DAD&rarr;SGN (07:10)</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MEL active items -->
+      <div data-mat="mat-card"
+           data-src="[17062026 §2 — câu truc Master MEL: code, ten, penalty (fuel-factor, payload-reduction, altitude-cap, autopilot, airport-restriction); §3 — MEL Active tu AMOS; Dispatcher quyet dinh ap dung truong hop nao (x1/x2/x3)]">
+        <div class="card-title">
+          <span class="ms">build</span>MEL Active (2 item)
+          <span data-mat="mat-chip" class="chip-red" style="margin-left:8px;">Anh huong khai thac</span>
+        </div>
+
+        <!-- MEL item 1 -->
+        <div class="mel-item critical" data-src="[17062026 §2,§3 — MEL item: code, ten, penalty; §3 — AMOS dong bo MEL active, hien thi canh bao Dispatcher]">
+          <div class="mel-item-code">21-25-01</div>
+          <div class="mel-item-name">Bleed Air Pack 1 &mdash; Khong hoat dong</div>
+          <div style="font-size:12px;color:var(--dark-on-variant);margin-top:4px;">
+            Active tu: 2026-06-17 &nbsp;&middot;&nbsp; Thoi han: 30 ngay &nbsp;&middot;&nbsp; Nguon: AMOS
+          </div>
+          <div class="mel-meta">
+            <span class="tag impact">Fuel +2.5%</span>
+            <span class="tag impact">Payload &minus;800 kg</span>
+            <span class="tag">Altitude cap FL350</span>
+            <span class="tag">Autopilot: Dual AP yeu câu</span>
+          </div>
+          <div style="font-size:11px;color:var(--dark-on-variant);margin-top:6px;">[17062026 §2 — moi item co nhieu truong hop penalty (x1/x2/x3); Dispatcher quyet dinh ap dung truong hop nao &mdash; TOSS chi hien thi]</div>
+        </div>
+
+        <!-- MEL item 2 -->
+        <div class="mel-item warn" data-src="[17062026 §2 — MEL item: airport-restriction (CAT II); §3 — canh bao Dispatcher khi MEL anh huong khai thac]">
+          <div class="mel-item-code">34-10-02</div>
+          <div class="mel-item-name">ILS Receiver Channel 2 &mdash; Khong hoat dong</div>
+          <div style="font-size:12px;color:var(--dark-on-variant);margin-top:4px;">
+            Active tu: 2026-06-15 &nbsp;&middot;&nbsp; Thoi han: 30 ngay &nbsp;&middot;&nbsp; Nguon: AMOS
+          </div>
+          <div class="mel-meta">
+            <span class="tag">Khong anh huong nhien lieu</span>
+            <span class="tag impact">Gioi han san CAT II</span>
+          </div>
+        </div>
+
+        <p class="src-note">[17062026 §2 — câu truc 2 tang: Master MEL (tinh, theo loai tau) + MEL Active (tu AMOS, theo tung tau); §3 — khi MEL clear: TOSS thong bao Dispatcher giam nhien lieu]</p>
+      </div>
+    </div>
+
+    <!-- ===== TAB 4: Thoi tiêt / NOTAM ===== -->
+    <div id="dtab-weather" class="tab-panel"
+         data-src="[11062026-sang §6 — NOTAM: phan loai san bay/vung troi/duong bay, RFFS canh bao truc tiep; §7 — METAR/SPECI, 3 thong sô canh bao: tam nhin, trân may, TSRA so voi VMA + bien an toan]">
+
+      <!-- METAR card -->
+      <div data-mat="mat-card" data-src="[11062026-sang §7 — METAR: tâm nhin, trân may, TSRA, gio; nguon noi dia = co quan khi tuong hang khong VN; TOSS tich hop & phan tich METAR/SPECI]">
+        <div class="card-title">
+          <span class="ms">thermostat</span>Thoi tiêt san bay den &mdash; HAN (VVNB)
+        </div>
+        <div class="metar-raw" data-src="[11062026-sang §7 — METAR dang van ban ma hoa, TOSS phan tich thanh cac truong de doi chieu nguong canh bao]">
+          METAR 08:00Z: HAN 170800Z 06008KT 9999 FEW020 29/23 Q1011 NOSIG [du lieu mâu]
+        </div>
+        <div class="metar-row">
+          <div class="metar-card"
+               data-src="[11062026-sang §7 — tam nhin (Visibility), nguong VMA + 500 m bien an toan]">
+            <div class="metar-val">9 999 m</div>
+            <div class="metar-lbl">Tâm nhin (VIS)</div>
+            <div style="font-size:10px;color:var(--dark-on-variant);margin-top:4px;">VMA + bien: 1 300 m &#10003;</div>
+          </div>
+          <div class="metar-card"
+               data-src="[11062026-sang §7 — trân may (Cloud Ceiling), nguong VMA]">
+            <div class="metar-val">2 000 ft</div>
+            <div class="metar-lbl">Trân may (FEW)</div>
+            <div style="font-size:10px;color:var(--dark-on-variant);margin-top:4px;">VMA &#10003;</div>
+          </div>
+          <div class="metar-card"
+               data-src="[11062026-sang §7 — TSRA (Thunderstorm + Rain): mot trong 3 thong so canh bao]">
+            <div class="metar-val">Khong</div>
+            <div class="metar-lbl">TSRA (Dong/Mua)</div>
+          </div>
+          <div class="metar-card"
+               data-src="[11062026-sang §7 — gio: thong tin kem theo METAR]">
+            <div class="metar-val">06008KT</div>
+            <div class="metar-lbl">Gio (Dir/Speed)</div>
+          </div>
+        </div>
+        <p class="src-note">[11062026-sang §7 — canh bao khi thong sô tiên gan hoac xuong duoi nguong VMA cong bien an toan (500 m duoc nhac den); nguon noi dia: co quan khi tuong hang khong VN; nguon quoc te: goi Lido]</p>
+      </div>
+
+      <!-- NOTAM list -->
+      <div data-mat="mat-card" data-src="[11062026-sang §6 — NOTAM: nguon VATM, phan loai 3 nhom: san bay/vung troi/duong bay; RFFS canh bao truc tiep khong giu danh sach tieu chuan hien hanh]">
+        <div class="card-title">
+          <span class="ms">announcement</span>NOTAM anh huong chuyên (3)
+        </div>
+
+        <!-- NOTAM 1 — airport -->
+        <div class="notam-item"
+             data-src="[11062026-sang §6 — NOTAM san bay]">
+          <div class="notam-code">A2145/26 &middot; VVNB &mdash; San bay Ha Noi</div>
+          <div class="notam-text">ILS RWY 11L &mdash; Navaids dang bao duong. Effective 0800&ndash;1200 UTC 17 JUN 2026.</div>
+          <div style="margin-top:4px;"><span data-mat="mat-chip" class="chip-grey" style="font-size:10px;">NOTAM San bay</span></div>
+        </div>
+
+        <!-- NOTAM 2 — airspace -->
+        <div class="notam-item"
+             data-src="[11062026-sang §6 — NOTAM vung troi]">
+          <div class="notam-code">P0312/26 &middot; Vung troi &mdash; HANOI TMA</div>
+          <div class="notam-text">Gioi han do cao tam thoi khu A1 &le; FL150. TFR theo NOTAM CAAV.</div>
+          <div style="margin-top:4px;"><span data-mat="mat-chip" class="chip-blue" style="font-size:10px;">NOTAM Vung troi</span></div>
+        </div>
+
+        <!-- NOTAM 3 — RFFS urgent -->
+        <div class="notam-item urgent"
+             data-src="[11062026-sang §6 — RFFS: khi NOTAM cuu hoa phat ra thi canh bao truc tiep; TOSS khong luu danh sach tieu chuan RFFS hien hanh]">
+          <div class="notam-code">A2150/26 &middot; VVNB &mdash; RFFS &nbsp;<span data-mat="mat-chip" class="chip-red">Khân câp</span></div>
+          <div class="notam-text">Xe cuu hoa sô 3 khong hoat dong &mdash; giam Category RFFS xuong CAT 5. Canh bao truc tiep.</div>
+          <div style="margin-top:4px;"><span data-mat="mat-chip" class="chip-red" style="font-size:10px;">NOTAM RFFS</span></div>
+        </div>
+
+        <p class="src-note">[11062026-sang §6 — phan loai NOTAM: san bay / vung troi / duong bay; workshop SME can de chi tiêt hoa; RFFS canh bao truc tiep]</p>
+      </div>
+    </div>
+
+    <!-- ===== TAB 5: To bay ===== -->
+    <div id="dtab-crew" class="tab-panel"
+         data-src="[12062026 §2 — tab To bay: lich su thay doi day du — ai duoc gan ban dau, ai doi va doi luc nao, cuoi cung to bay la ai; khong chi trang thai cuoi]">
+
+      <div data-mat="mat-card" data-src="[12062026 §2 — to bay hien tai: PIC, FO, Purser]">
+        <div class="card-title">
+          <span class="ms">people</span>To bay hien tai
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px;">
+          <div>
+            <label style="font-size:11px;color:var(--dark-on-variant);display:block;">PIC (Co truong)</label>
+            <div style="font-weight:500;">Nguyên Van An</div>
+            <div style="font-size:11px;color:var(--dark-on-variant);">A321 &middot; Rating: A/B</div>
+          </div>
+          <div>
+            <label style="font-size:11px;color:var(--dark-on-variant);display:block;">F/O (Co pho)</label>
+            <div style="font-weight:500;">Trân Thi Binh</div>
+            <div style="font-size:11px;color:var(--dark-on-variant);">A321</div>
+          </div>
+          <div>
+            <label style="font-size:11px;color:var(--dark-on-variant);display:block;">Purser</label>
+            <div style="font-weight:500;">Le Van Cuong</div>
+            <div style="font-size:11px;color:var(--dark-on-variant);">&mdash;</div>
+          </div>
+        </div>
+
+        <!-- Change history -->
+        <div class="card-title" style="margin-top:8px;">
+          <span class="ms">history</span>Lich su thay doi to bay
+          <span style="font-size:11px;font-weight:400;color:var(--dark-on-variant);margin-left:8px;">[12062026 §13 — format timeline doc, cac môc nôi nhau kem gio UTC]</span>
+        </div>
+        <div class="crew-timeline" data-src="[12062026 §2 — lich su thay doi: ai được gan, ai doi, luc nao; §13 — format timeline keo doc, gio UTC]">
+          <div class="crew-timeline-entry"
+               data-src="[12062026 §2 — to bay ban dau duoc gan]">
+            <div style="font-size:12px;color:var(--dark-on-variant);">05:15 UTC &mdash; Gan ban dau</div>
+            <div style="font-size:13px;">PIC: Pham Duc Dung &middot; F/O: Trân Thi Binh &middot; Purser: Le Van Cuong</div>
+          </div>
+          <div class="crew-timeline-entry"
+               data-src="[12062026 §2 — to bay doi: ai doi, ly do, thoi gian; tab To bay luu tron cau chuyen thay doi]">
+            <div style="font-size:12px;color:var(--dark-on-variant);">05:30 UTC &mdash; Thay doi PIC</div>
+            <div style="font-size:13px;">PIC Pham Duc Dung &rarr; <strong>Nguyên Van An</strong> (su co suc khoe) [canh bao doi to bay da gui Dispatcher]</div>
+          </div>
+          <div class="crew-timeline-entry current"
+               data-src="[12062026 §2 — trang thai cuoi; to bay hien tai]">
+            <div style="font-size:12px;color:#69d58f;">06:10 UTC &mdash; Xac nhan to bay cuoi</div>
+            <div style="font-size:13px;">To bay hien tai: PIC Nguyên Van An / F/O Trân Thi Binh / Purser Le Van Cuong</div>
+          </div>
+        </div>
+        <p class="src-note">[12062026 §2 — tab To bay ghi day du luong thay doi; §13 — format lich su chung ap dung cho doi tau, doi to bay, doi gio ETD]</p>
+      </div>
+    </div>
+
+    <!-- ===== TAB 6: Tai trong ===== -->
+    <div id="dtab-load" class="tab-panel"
+         data-src="[11062026-sang §8 — canh bao lech tai: ZFW, payload, TOW; nguong theo loai tau x gio bay x tren/duoi; 11062026-chieu §II.10 — delta = Actual - OFP; Payload Extra + bao cao Pallet Relief]">
+
+      <div data-mat="mat-card" data-src="[11062026-sang §8 — so sanh OFP voi sô lieu thuc te CLC/Lido; §II.10 — delta Block Fuel]">
+        <div class="card-title">
+          <span class="ms">scale</span>Tai trong chuyên bay VN 208
+        </div>
+
+        <div class="load-grid">
+          <!-- ZFW -->
+          <div class="load-card" data-src="[11062026-sang §8 — ZFW (Zero Fuel Weight): truong so sanh chinh giua OFP va CLC]">
+            <div class="lc-val">78 240 kg</div>
+            <div class="lc-lbl">ZFW (Zero Fuel Weight)</div>
+          </div>
+          <!-- Payload -->
+          <div class="load-card" data-src="[11062026-sang §8 — Payload (HK + hanh ly): truong so sanh; nguong canh bao phan theo loai tau x gio bay]">
+            <div class="lc-val">15 800 kg</div>
+            <div class="lc-lbl">Payload (HK + HH)</div>
+          </div>
+          <!-- Block Fuel OFP -->
+          <div class="load-card" data-src="[11062026-sang §8; 12062026 §2 — Block Fuel KH va Block Fuel OFP hien trong tab Flight Release]">
+            <div class="lc-val">13 350 kg</div>
+            <div class="lc-lbl">Block Fuel (OFP)</div>
+          </div>
+          <!-- Delta fuel -->
+          <div class="load-card" data-src="[11062026-chieu §II.10 — delta = Actual - OFP; Payload Extra: phi cong tu de nghi lay them so voi OFP; bao cao Pallet Relief them cot delta]">
+            <div class="lc-val delta-ok">+150 kg</div>
+            <div class="lc-lbl">&Delta; Fuel vs KH (Payload Extra)</div>
+          </div>
+        </div>
+
+        <!-- Status banner -->
+        <div class="banner-ok" data-src="[11062026-sang §8 — trang thai binh thuong: delta nam trong nguong loai tau x gio bay]">
+          <span class="ms" style="font-size:18px;">check_circle</span>
+          Trong nguong binh thuong &mdash; khong phat sinh canh bao lech tai.
+        </div>
+
+        <p class="src-note">[11062026-sang §8 — nguong canh bao: ma tran loai tau × gio bay × nguong tren/duoi khong doi xung (VD: cho thieu 1.5 tan nhung chi cho vuot 1 tan); TOSS dung sô CLC nhap cuoi cung de doi chieu OFP cuoi cung; 11062026-chieu §II.10 — bao cao Pallet Relief: loc theo ngay, duong bay, khung gio, loai tau]</p>
+      </div>
+    </div>
+
+  </div><!-- /mat-tab-group -->
+
+  <!-- ===== Legend ===== -->
+  <div class="legend" data-src="[CLAUDE.md — QC: legend bat buoc cho moi screen]">
+    <div style="font-weight:500;margin-bottom:6px;">Component Map &mdash; Flight Detail</div>
+    <table>
+      <tr><th>Vung UI</th><th>Angular Material component</th><th>data-mat</th><th>Nguon (data-src)</th></tr>
+      <tr>
+        <td>Header chuyên bay (flight identity + chips + schedule)</td>
+        <td>MatCard + MatChip</td>
+        <td><code>mat-card, mat-chip</code></td>
+        <td class="src">12062026 §1, §2, §6</td>
+      </tr>
+      <tr>
+        <td>Tab dieu huong 6 tab</td>
+        <td>MatTabGroup + MatTab</td>
+        <td><code>mat-tab-group</code></td>
+        <td class="src">12062026 §2</td>
+      </tr>
+      <tr>
+        <td>Alert card canh bao (MEL, fuel delta)</td>
+        <td>MatCard (custom left-border)</td>
+        <td><code>mat-card [.mel-item.critical/.warn]</code></td>
+        <td class="src">12062026 §2; 17062026 §3; 11062026-chieu §II.10</td>
+      </tr>
+      <tr>
+        <td>Bang lich su phien ban OFP (R1, R2)</td>
+        <td>MatTable + MatSort</td>
+        <td><code>mat-table+MatSort</code></td>
+        <td class="src">11062026-chieu §II.4; 15062026 §II.3</td>
+      </tr>
+      <tr>
+        <td>Chip trang thai (Hien tai, Da huy, Dispatch, Pilot)</td>
+        <td>MatChip</td>
+        <td><code>mat-chip</code></td>
+        <td class="src">11062026-chieu §II.4; 12062026 §2</td>
+      </tr>
+      <tr>
+        <td>4-col thong tin tau bay (AC info grid)</td>
+        <td>MatCard (grid layout)</td>
+        <td><code>mat-card [.ac-grid]</code></td>
+        <td class="src">12062026 §2, §9</td>
+      </tr>
+      <tr>
+        <td>MEL item cards (2 item: 21-25-01, 34-10-02)</td>
+        <td>MatCard (custom left-border: critical/warn)</td>
+        <td><code>mat-card [.mel-item.critical/.warn]</code></td>
+        <td class="src">17062026 §2, §3</td>
+      </tr>
+      <tr>
+        <td>METAR thê sô lieu (4 card: VIS, Ceiling, TSRA, Wind)</td>
+        <td>MatCard (grid)</td>
+        <td><code>mat-card [.metar-row/.metar-card]</code></td>
+        <td class="src">11062026-sang §7</td>
+      </tr>
+      <tr>
+        <td>METAR raw string (monospace)</td>
+        <td>Custom pre-formatted block</td>
+        <td><code>[.metar-raw]</code></td>
+        <td class="src">11062026-sang §7</td>
+      </tr>
+      <tr>
+        <td>NOTAM list (3 item: san bay, vung troi, RFFS)</td>
+        <td>MatList + MatListItem</td>
+        <td><code>mat-card [.notam-item]</code></td>
+        <td class="src">11062026-sang §6</td>
+      </tr>
+      <tr>
+        <td>Lich su thay doi to bay (vertical timeline)</td>
+        <td>MatTimeline (custom vertical) [can xac nhan]</td>
+        <td><code>[.crew-timeline]</code> (custom / can xac nhan)</td>
+        <td class="src">12062026 §2, §13</td>
+      </tr>
+      <tr>
+        <td>4 metric card tai trong (ZFW, Payload, Fuel, Delta)</td>
+        <td>MatCard (grid layout)</td>
+        <td><code>mat-card [.load-grid/.load-card]</code></td>
+        <td class="src">11062026-sang §8; 11062026-chieu §II.10</td>
+      </tr>
+      <tr>
+        <td>Banner trang thai binh thuong (xanh)</td>
+        <td>Custom inline banner</td>
+        <td><code>[.banner-ok]</code></td>
+        <td class="src">11062026-sang §8 — trong nguong binh thuong</td>
+      </tr>
+    </table>
+  </div>
+
+</div><!-- /#screen-detail -->
+<!--HTML_END-->
+
+<!--DIALOGS_START-->
+<!-- No dialogs required for Flight Detail v0.3.
+     The source (12062026 §1) specifies Flight Detail opens as a new tab from the Monitoring screen,
+     not as a modal/dialog. All interactions are tab-switching within the screen.
+     No dialog flows are documented in the source for this screen. -->
+<!--DIALOGS_END-->
+
+<!--JS_START-->
+/**
+ * detail_switchTab(el, panelId)
+ * Switches active tab within the closest [data-mat^="mat-tab-group"] ancestor.
+ * All functions prefixed detail_ per fragment convention.
+ * No global variables — all lookups relative to the triggered element.
+ *
+ * Source: 12062026 §1 — click canh bao mo Flight Detail va active dung tab phu tuong ung;
+ *         §2 — moi tab dai dien mot nhom thong tin nghiep vu doc lap.
+ */
+function detail_switchTab(el, panelId) {
+  var group = el.closest('[data-mat^="mat-tab-group"]');
+  if (!group) { return; }
+
+  // Deactivate all tabs
+  var tabs = group.querySelectorAll('.tab');
+  for (var i = 0; i < tabs.length; i++) {
+    tabs[i].classList.remove('active');
+  }
+  el.classList.add('active');
+
+  // Deactivate all panels
+  var panels = group.querySelectorAll('.tab-panel');
+  for (var j = 0; j < panels.length; j++) {
+    panels[j].classList.remove('active');
+  }
+
+  // Activate requested panel
+  var target = document.getElementById(panelId);
+  if (target) { target.classList.add('active'); }
+}
+
+/**
+ * detail_openFromAlert(panelId)
+ * Opens Flight Detail screen and activates the tab matching the alert that was clicked.
+ * Implements: 12062026 §1 — "click canh bao: mo Flight Detail va active dung tab phu tuong ung".
+ * Called from the parent prototype (e.g., from OCC alert chips) when navigating into detail.
+ * No global side-effects — delegates to showScreen() provided by the host shell.
+ */
+function detail_openFromAlert(panelId) {
+  // Activate the detail screen via host function
+  if (typeof showScreen === 'function') { showScreen('detail'); }
+
+  // Reset all tabs to default, then activate the requested one
+  var group = document.querySelector('#screen-detail [data-mat^="mat-tab-group"]');
+  if (!group) { return; }
+
+  var tabs = group.querySelectorAll('.tab');
+  var panels = group.querySelectorAll('.tab-panel');
+
+  for (var i = 0; i < tabs.length; i++) { tabs[i].classList.remove('active'); }
+  for (var j = 0; j < panels.length; j++) { panels[j].classList.remove('active'); }
+
+  // Find the tab whose onclick targets panelId and activate it
+  for (var k = 0; k < tabs.length; k++) {
+    var onclick = tabs[k].getAttribute('onclick') || '';
+    if (onclick.indexOf(panelId) !== -1) {
+      tabs[k].classList.add('active');
+      break;
+    }
+  }
+
+  var target = document.getElementById(panelId);
+  if (target) { target.classList.add('active'); }
+}
+<!--JS_END-->

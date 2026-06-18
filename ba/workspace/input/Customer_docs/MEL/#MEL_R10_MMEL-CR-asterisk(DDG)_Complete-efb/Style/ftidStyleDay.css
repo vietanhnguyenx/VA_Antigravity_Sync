@@ -1,0 +1,43 @@
+@import url("ftidStyleCommon.css");
+
+hr { color: Black; background-color: Black; }
+a:link, a:visited { color: blue; }
+a img { border: none; clear: both; }
+p.InvertedTitle { color: White; background-color: Black; }
+span.EFBLink /* JavaScript */ { border-color: White; }
+span.EFBLinkOver /* JavaScript */ { border-color: Black; cursor:pointer;}
+span.EFBLinkClick { color:white; background-color: #006600; } /*required to be 006600 by EFB human factors*/ 
+
+span.OpnoteListCell { background-color: white; }
+body { background-color: white; color: black; }
+div.TitlePage { background-color: white; color: black; }
+
+
+div.crm { background-color: white; color:Black;}
+
+div.NonNormalTitle h3, div.fauxChallenge { background-color: White; color: Black; }
+div.Approvals, div.SignedBy { border-color: Black; }
+table { border-color: Black; }
+table.ExcludeTitle { text-align: left; border-width: 0; width: 90%; padding: 0; }
+table.GlossaryList, table.GlossaryList td, table.GlossaryList th { border-color: Black; }
+table.MELItemTable th { background-color: #AACBEF; }
+table.PerfTable, table.PerfTable td, th { border-color: Black; }
+td { border-color: black; }
+td.GlossaryCell { border-color: black; }
+td.TableFooter { border-color: black; }
+th { border-color: black; background-color: #AACBEF; }
+th.PerfMarkerReverse { background-color: black; }
+tr { border-color: black; }
+tr.Performances { background-color: White; }
+.efbImage, .efbOut { border: solid thick white; }
+.efbOver { border: solid thick black; }
+.PerfTitleReverse { border-color: black; background-color: black; color: white; }
+.NNCTitle { background-color: white; }
+.Effectivities { color: purple; }
+.Effectivity { color: Purple; }
+.InopItems p { margin: 0; background-color: #E6E6E6 }
+
+.warnCondition { background-color: #D5D5D5}
+
+.opaque, .opaque span.RevMark{ background-color: White; }
+ 

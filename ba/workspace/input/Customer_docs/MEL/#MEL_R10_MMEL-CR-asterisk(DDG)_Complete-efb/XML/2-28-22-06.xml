@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM">]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.2-28-22-06.783.2-28-22-06" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="28" superSectionNumber="2" sectionName="MEL" chapterName="Fuel" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2025-09-30" rev:revStatus="R" rev:revNumber="10" />
+</PUMetaData>
+<MELItem itemNbr="28-22-06" id="X-BOEING:FTID:81205.787.DDG.CU.MEL.2-28-22-06.1.2-28-22-06">
+<Title>Fuel Balance Switch</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="1" nbrRequired="0" maintIndicator="(M)" opsIndicator="(O)">
+<DispatchConditionRemarks>
+<Para>May be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Crossfeed valve is verified to operate normally before each departure.</Para>
+</ListItem>
+<ListItem>
+<Para>Operations procedure is used for fuel balancing.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Verify crossfeed valve operates normally (AMM DDG 28-22-06). </Para>
+<Para>(Required by AD 2019-19-10) </Para>
+<List listType="1.">
+<ListItem>
+<Para>Gain access to the crossfeed valve in the main gear wheel well.</Para>
+</ListItem>
+<ListItem>
+<Para>Set Fuel Control Panel (P5) CROSSFEED switch to ON and visually confirm the valve drive moves from the closed (C) position to the open (O) position.</Para>
+</ListItem>
+<ListItem>
+<Para>Set Fuel Control Panel (P5) CROSSFEED switch to OFF and visually confirm the valve drive moves from the open (O) position to closed (C) position.</Para>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+<OperationProcedure>
+<Para>(Required by AD 2019-19-10) </Para>
+<List listType="1.">
+<ListItem>
+<Para>Prior to each flight, verify crossfeed valve operates normally.  </Para>
+<List listType="A.">
+<ListItem>
+<Para>Set Fuel Control Panel (P5) CROSSFEED switch to ON and after 15 seconds, confirm FUEL CROSSFEED advisory message does not display.</Para>
+</ListItem>
+<ListItem>
+<Para>Set Fuel Control Panel (P5) CROSSFEED switch to OFF and after 15 seconds, confirm FUEL CROSSFEED advisory message does not display.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>For fuel balancing, do the FUEL BALANCE SYS Non-Normal Checklist.</Para>
+</ListItem>
+</List>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+<MELSubItem itemNbr="28-22-06-01">
+<Title>FAULT Light (*)</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="1" nbrRequired="0">
+<DispatchConditionRemarks>
+<Para>May be inoperative.</Para>
+</DispatchConditionRemarks>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="28-22-06-02">
+<Title>ON Light (*)</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="1" nbrRequired="0">
+<DispatchConditionRemarks>
+<Para>May be inoperative.</Para>
+</DispatchConditionRemarks>
+</DispatchCondition>
+</MELSubItem>
+</MELItem>
+</DispatchItems>

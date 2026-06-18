@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM">]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.2-21-41-01.998550.2-21-41-01" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="21" superSectionNumber="2" sectionName="MEL" chapterName="Air Conditioning" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2024-06-19" rev:revStatus="U" rev:revNumber="10" />
+</PUMetaData>
+<MELItem itemNbr="21-41-01" id="X-BOEING:FTID:81205.787.DDG.CU.MEL.2-21-41-01.1.2-21-41-01">
+<Title>Overhead Flight Crew Rest (OFCR) Duct Heater System</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="1" nbrRequired="0" maintIndicator="(M)">
+<DispatchConditionRemarks>
+<Para>Applicable to: VN-A861, VN-A862, VN-A863, VN-A864, VN-A867, VN-A868, VN-A870, VN-A871.</Para>
+<Para>May be inoperative deactivated.</Para>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Deactivate the overhead flight crew rest (OFCR) duct heater (AMM DDG 21-41-01).</Para>
+<List listType="1.">
+<ListItem>
+<Para>Using a flight deck multi-function display only, open circuit breaker HEATER-FLT CREW 	REST and lock with an INOP tag.</Para>
+</ListItem>
+<ListItem>
+<Para>Gain access to flight crew rest duct heater.</Para>
+</ListItem>
+<ListItem>
+<Para>Disconnect, cap and stow electrical connector to flight crew rest duct heater.</Para>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+<OperationNote>
+<List listType="1.">
+<ListItem>
+<Para>Temperature control will be degraded and the OFCR may not be usable.</Para>
+</ListItem>
+<ListItem>
+<Para>For augmented flight crew operations, flight crew duty periods should be adjusted appropriately.</Para>
+</ListItem>
+<ListItem>
+<Para>Cold crew rest temperature can be mitigated by disabling the humidifier.  To disable the humidifier, follow the procedures in item MEL 21-71-02.</Para>
+</ListItem>
+</List>
+<Para />
+</OperationNote>
+</DispatchProcedure>
+</DispatchCondition>
+</MELItem>
+</DispatchItems>

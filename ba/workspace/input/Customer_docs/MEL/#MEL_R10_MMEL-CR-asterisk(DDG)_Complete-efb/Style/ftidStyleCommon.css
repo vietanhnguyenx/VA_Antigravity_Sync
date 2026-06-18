@@ -1,0 +1,51 @@
+@import url("ftidStyleTables.css");
+@import url("ftidStyleAction.css");
+@import url("ftidStyleBlocks.css");
+@import url("ftidStyleLists.css");
+
+* { margin: 0; padding: 0;  line-height:1.15em;}
+
+a:link, a:visited { text-decoration: none; color: #87CEFA; }
+.efbImage, .efbOut { border: solid thick black; }
+.efbOver { border: solid thick white; }
+
+/*  HR  */
+hr { border: 0; color: White; background-color: White; height: 2px; width: 100%; text-align: left; clear: both; margin-top: .5em; }
+hr.Memory { background-color: Black; border-top: dashed 4px; height: 4px; width: 100%; margin-bottom:1em; }
+hr.MemoryRed { background-color: Black; color: Red; border-top: dashed 4px; height: 4px; width: 100%; margin-bottom:1em; }
+hr.wideLine { clear: none; height: .3em; border-top: solid medium; }
+
+/*  "Generic" Classes  */
+.Effectivity { clear:both; color: Aqua; margin-bottom: 0; font-weight:normal; font-size:medium}
+dd p.Effectivity { clear:none; }
+.PerfTitleReverse { font-weight: bold; text-align: center; }
+.Recall { border:solid 1px red }
+
+.cocBar { width:0px; border-right:medium dotted; position: absolute; font-size:smaller; z-index:100; /* Always topmost */}
+
+p.ChoiceItems {clear:both;}
+.RevMark { background-color: #FFFFCC; color: Black; font-style: inherit; } /* overridden with JavaScript for RevBars */
+.RevBar { width:3px; position: absolute; font-size:smaller; z-index:100; /* Always topmost */}
+.RevBarEFB { width:9px; position: absolute; font-size:smaller; z-index:100; /* Always topmost */}
+.RevHeader { font-weight:bold}
+.RevContent { padding-left:2em;}
+.RevFooter { font-weight:bold; text-align:center; }
+ 
+.ShowHighlight { width:auto; color:Black; padding:1em; border:3px solid gray}
+.Title { clear:both; margin-top: 1em; margin-bottom: 1em; }
+
+.InopItems { margin-bottom: 1em; width:100%; /* width req. for ie6 background-color bugfix */}
+.InopItems * {background-color:#333; }
+.InopItems p { margin: 0; }
+.InopItems .Title { font-weight: bold; background-color: Transparent; }
+.InopItems .Condition { padding-left: .5em; font-weight: bold; border-top: solid thin; }
+.InopItems .Effect { padding-left: 1.5em; }
+
+img.TitlePage_Illustration { width: 100%; }
+img { clear: both; margin-bottom: 1em; display: block; }
+span.Hit { background-color: #FFFF00; color: #000000; }
+.WarningMessage { font-weight:bold; text-align:center; }
+
+.commentIcon {display:inline;}
+
+.EARFooter {  font-size:small; text-align:center; padding:1em; color:Gray }

@@ -1,0 +1,188 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM">]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.2-42-21-02.1962.2-42-21-02" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="42" superSectionNumber="2" sectionName="MEL" chapterName="Integrated Modular Avionics" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2025-09-30" rev:revStatus="R" rev:revNumber="10" />
+</PUMetaData>
+<MELItem itemNbr="42-21-02" id="X-BOEING:FTID:81205.787.DDG.CU.MEL.2-42-21-02.1.2-42-21-02">
+<Title>Remote Data Concentrators (RDCs)</Title>
+<MELSubItem itemNbr="42-21-02-01">
+<Title>RDCs 1 and 3</Title>
+<DispatchCondition dispCondOptions="A" repairInterval="C" nbrInstalled="2" nbrRequired="1">
+<Title>Left Thrust Reverser Sensors Operate Normally (*)</Title>
+<DispatchConditionRemarks>
+<Para>May be dispatched with CCS RDC FAULT	 provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Remaining RDCs operate normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Left thrust reverser locking actuator proximity sensors operate normally.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceNote>
+<Para>RDCs are interchangeable.</Para>
+</MaintenanceNote>
+</DispatchProcedure>
+</DispatchCondition>
+<DispatchCondition dispCondOptions="B" repairInterval="C" nbrInstalled="2" nbrRequired="1">
+<Title>Left Thrust Reverser Sensors Inoperative</Title>
+<DispatchConditionRemarks>
+<Para>May be dispatched with CCS RDC FAULT	 provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Remaining RDCs operate normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Left thrust reverser is considered inoperative.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<Note>
+<Para>For ENG REVERSER SNSR L status message displayed, the airplane must also be dispatched using MEL item 78-31-01 for the left thrust reverser.</Para>
+</Note>
+<DispatchProcedure>
+<MaintenanceNote>
+<Para>RDCs are interchangeable.</Para>
+</MaintenanceNote>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="42-21-02-02">
+<Title>RDCs 2 and 4</Title>
+<DispatchCondition dispCondOptions="A" repairInterval="C" nbrInstalled="2" nbrRequired="1">
+<Title>Right Thrust Reverser Sensors Operate Normally (*)</Title>
+<DispatchConditionRemarks>
+<Para>May be dispatched with CCS RDC FAULT	 provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Remaining RDCs operate normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Right thrust reverser locking actuator proximity sensors operate normally.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceNote>
+<Para>RDCs are interchangeable.</Para>
+</MaintenanceNote>
+</DispatchProcedure>
+</DispatchCondition>
+<DispatchCondition dispCondOptions="B" repairInterval="C" nbrInstalled="2" nbrRequired="1">
+<Title>Right Thrust Reverser Sensors Inoperative</Title>
+<DispatchConditionRemarks>
+<Para>May be dispatched with CCS RDC FAULT	 provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Remaining RDCs operate normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Right thrust reverser is considered inoperative.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<Note>
+<Para>For ENG REVERSER SNSR R status message displayed, the airplane must also be dispatched using MEL item 78-31-01 for the right thrust reverser.</Para>
+</Note>
+<DispatchProcedure>
+<MaintenanceNote>
+<Para>RDCs are interchangeable.</Para>
+</MaintenanceNote>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="42-21-02-03">
+<Title>RDCs 5-18, 21, 23 (*)</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="16" nbrRequired="15">
+<DispatchConditionRemarks>
+<Para>May be dispatched with CCS RDC FAULT	 provided remaining RDCs operate normally.</Para>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceNote>
+<Para>RDCs are interchangeable.</Para>
+</MaintenanceNote>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="42-21-02-04">
+<Title>RDC 19</Title>
+<DispatchCondition dispCondOptions="A" repairInterval="C" nbrInstalled="1" nbrRequired="0">
+<Title>RDC 19 Fault (*)</Title>
+<DispatchConditionRemarks>
+<Para>May be dispatched with CCS RDC FAULT provided remaining RDCs operate normally.</Para>
+</DispatchConditionRemarks>
+</DispatchCondition>
+<DispatchCondition dispCondOptions="B" repairInterval="C" nbrInstalled="1" nbrRequired="0" maintIndicator="(M)" opsIndicator="(O)">
+<Title>RDC 19 Inoperative</Title>
+<DispatchConditionRemarks>
+<Para>May be inoperative deactivated provided remaining RDCs operate normally.</Para>
+</DispatchConditionRemarks>
+<Note>
+<Para>See Operations Procedure (O) for inoperative functions.</Para>
+</Note>
+<Note>
+<Para>The airplane must also be dispatched using MEL items 32-08-01-05, 33-31-01, 25-63-01, and 33-21-01.</Para>
+</Note>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Note>
+<Para>RDCs are interchangeable.</Para>
+</Note>
+<Para>Deactivate RDC 19 (AMM DDG 42-21-02).</Para>
+<List listType="1.">
+<ListItem>
+<Para>Using a flight deck multi-function display only, open the following circuit breakers and lock with an INOP tag.</Para>
+<List listType="A.">
+<ListItem>
+<Para>RDC-AFT EE BAY NE PRI</Para>
+</ListItem>
+<ListItem>
+<Para>RDC-AFT EE BAY NE SEC </Para>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+<OperationProcedure>
+<Para>For RDC 19 inoperative, the following functions will be inoperative:</Para>
+<List listType="1.">
+<ListItem>
+<Para>One set of redundant databuses for PSDC 2, 3, 4, and 5.  Status messages PSDC 2 DATABUS, PSDC 3 DATABUS, PSDC 4 DATABUS and PSDC 5 DATABUS will be displayed.   The airplane must also be dispatched using MEL item 32-08-01-05.</Para>
+</ListItem>
+<ListItem>
+<Para>Several service area light switches.  The airplane must also be dispatched using MEL item 33-31-01, as appropriate for the following items:</Para>
+<List listType="A.">
+<ListItem>
+<Para>One of two lighting control switches for AFT EE Bay Service Lights. The AFT EE Bay Lights may be controlled by the other switch (connected to RDC 8). </Para>
+</ListItem>
+<ListItem>
+<Para>Lighting control switch for Main Landing Gear Wheel Well lights. </Para>
+</ListItem>
+<ListItem>
+<Para>Lighting control switch for Right ECS service compartment lights.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Emergency evacuation signal system operation not available from attendant panel at Door 4.  The airplane must also be dispatched using MEL item 25-63-01.</Para>
+</ListItem>
+<ListItem>
+<Para>Attendant work lights in area of Door 3.  The airplane must also be dispatched using MEL item 33-21-01.</Para>
+</ListItem>
+<ListItem>
+<Para>SATCOM functions cannot be accessed using the center tuning and control panel.</Para>
+</ListItem>
+</List>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+</MELItem>
+</DispatchItems>

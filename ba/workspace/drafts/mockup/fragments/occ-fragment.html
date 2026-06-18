@@ -1,0 +1,549 @@
+<!--
+  OCC DASHBOARD — Screen Fragment v0.1
+  CLAUDE.md §0: mọi trường/nhãn/trạng thái lấy từ nguồn khảo sát, không tự thêm.
+  SỐ LIỆU = dữ liệu mẫu. BỐ CỤC cần BA/UI duyệt.
+  Nguồn chính:
+    - BAO-CAO-KHAO-SAT-12062026-buoi-sang-v0.1.md  (§2,§5,§6,§7,§8,§9)
+    - BAO-CAO-KHAO-SAT-11062026-buoi-chieu-v0.1.md (§II.6)
+  Fragment format: CSS_START/CSS_END · HTML_START/HTML_END · DIALOGS_START/DIALOGS_END · JS_START/JS_END
+  Các class dùng chung: định nghĩa trong toss-prototype-v0.1.html — KHÔNG redeclare ở đây.
+  Font CDN: https://fonts.googleapis.com — nếu offline tự fallback Roboto → Segoe UI → Arial.
+-->
+
+<!--CSS_START-->
+/* ===== OCC Fragment — screen-specific overrides only ===== */
+
+/* REG cell tooltip — hiển thị "REG cũ → REG mới  HH:MM UTC" [12062026 §9] */
+.occ-reg-tip { min-width: 160px; text-align: left; }
+
+/* Cell-level color coding per 4-state scheme [12062026 §7] */
+.cell-red  { background: rgba(92,21,21,0.60); color: #ff9090; }
+.cell-yellow { background: rgba(92,72,0,0.60); color: #ffe090; }
+.cell-green  { background: rgba(15,61,32,0.55); color: #69d58f; }
+
+/* Dispatch inline action button — shortcut inside table cell [12062026 §10] */
+.dispatch-btn {
+  display: inline-flex; align-items: center; gap: 4px;
+  background: transparent; border: 1px solid var(--md-primary);
+  color: var(--md-primary); border-radius: 999px;
+  padding: 3px 10px; font: inherit; font-size: 11px; font-weight: 500;
+  cursor: pointer; white-space: nowrap;
+}
+.dispatch-btn:hover { background: rgba(238,0,51,0.12); }
+.dispatch-btn.released {
+  border-color: var(--md-success); color: #69d58f;
+  cursor: default;
+}
+.dispatch-btn.released:hover { background: transparent; }
+
+/* Pilot cell — same released style */
+.pilot-cell-released { color: #69d58f; font-size: 12px; }
+.pilot-cell-none     { color: var(--dark-on-variant); font-size: 12px; }
+
+/* Alert column — center dot */
+[data-mat^="mat-table"] td.col-alert { text-align: center; }
+
+/* Paginator strip */
+.occ-paginator {
+  display: flex; justify-content: flex-end; align-items: center;
+  gap: 14px; padding: 8px 12px;
+  color: var(--dark-on-variant); font-size: 12px;
+  border-top: 1px solid var(--dark-outline);
+}
+
+/* Flight No clickable indicator */
+[data-mat^="mat-table"] tbody tr.occ-clickable td.col-flt:hover {
+  text-decoration: underline;
+  color: var(--md-primary);
+  cursor: pointer;
+}
+<!--CSS_END-->
+
+<!--HTML_START-->
+<div id="screen-occ" class="screen active"
+     data-src="[12062026 §5,§6,§7,§8,§9; 11062026-chiều §II.6]">
+
+  <!-- Prototype banner -->
+  <div class="banner" data-src="[CLAUDE.md §0 — dữ liệu mẫu]">
+    <span class="ms">info</span>
+    PROTOTYPE — OCC Dashboard · Giám sát chuyến bay · Dữ liệu mẫu · Bố cục cần BA/UI duyệt
+    &nbsp;·&nbsp; Nguồn: BAO-CAO-KHAO-SAT-12062026-buoi-sang · 11062026-buoi-chieu
+  </div>
+
+  <!-- ── KPI Row ── [12062026 §8] ─────────────────────────────────────── -->
+  <div class="kpi-row" data-mat="mat-card" data-src="[12062026 §8 — thống kê tổng quan; 11062026-chiều §II.6 — nhóm chưa cất/đang bay/đã hạ]">
+
+    <div class="kpi" data-src="[12062026 §8]">
+      <div class="kpi-val" id="occ-kpi-total">47</div>
+      <div class="kpi-lbl">Tổng chuyến hôm nay</div>
+    </div>
+
+    <div class="kpi" data-src="[11062026-chiều §II.6 — nhóm đang bay (ENR)]">
+      <div class="kpi-val" id="occ-kpi-enr">12</div>
+      <div class="kpi-lbl">Đang bay (ENR)</div>
+    </div>
+
+    <div class="kpi warn" data-src="[12062026 §10 — cột Dispatch Release; 12062026 §8]">
+      <div class="kpi-val" id="occ-kpi-pending">5</div>
+      <div class="kpi-lbl">Pending Dispatch Release</div>
+    </div>
+
+    <div class="kpi err" data-src="[12062026 §7 — đỏ = action ngay]">
+      <div class="kpi-val" id="occ-kpi-red">3</div>
+      <div class="kpi-lbl">Red Alerts — cần xử lý</div>
+    </div>
+
+    <div class="kpi ok" data-src="[12062026 §8 — OTP giám sát; CLAUDE.md §2]">
+      <div class="kpi-val" id="occ-kpi-otp">82%</div>
+      <div class="kpi-lbl">OTP (On-Time Performance)</div>
+    </div>
+
+  </div><!-- /kpi-row -->
+
+  <!-- ── Filter bar ── [12062026 §5,§8] ─────────────────────────────── -->
+  <div class="tool-row" data-src="[12062026 §5 — phân quyền view theo carrier/role; §8 — time window cấu hình]">
+
+    <!-- Search [12062026 §5] -->
+    <div class="search-box" data-mat="mat-form-field(outline)+matInput"
+         data-src="[12062026 §5]">
+      <span class="ms" style="color:#aaa">search</span>
+      <input type="text" id="occ-search-input"
+             placeholder="Tìm số hiệu, REG, tuyến…"
+             oninput="occ_renderTable()">
+    </div>
+
+    <!-- Carrier select [12062026 §5 — phân quyền theo carrier] -->
+    <div data-mat="mat-select" data-src="[12062026 §5 — carrier phân quyền dữ liệu]">
+      <select id="occ-filter-carrier"
+              style="padding:8px 12px;background:var(--dark-surface2);border:1px solid var(--dark-outline);color:var(--dark-on-surface);border-radius:28px;font:inherit;"
+              onchange="occ_renderTable()">
+        <option value="">Tất cả Carrier</option>
+        <option value="VN">VN (Vietnam Airlines)</option>
+        <option value="BL">BL (Pacific Airlines)</option>
+      </select>
+    </div>
+
+    <!-- State select [12062026 §9 — bộ trạng thái GRD/BRD/OUT/ENR/IN/ARR, ghi chú: SME cần xác nhận đầy đủ] -->
+    <div data-mat="mat-select"
+         data-src="[12062026 §IV.9 — danh sách trạng thái cần SME xác nhận; 12062026 §6 — UTC, EN]">
+      <select id="occ-filter-state"
+              style="padding:8px 12px;background:var(--dark-surface2);border:1px solid var(--dark-outline);color:var(--dark-on-surface);border-radius:28px;font:inherit;"
+              onchange="occ_renderTable()">
+        <option value="">All States</option>
+        <option value="GRD">GRD</option>
+        <option value="BRD">BRD</option>
+        <option value="OUT">OUT</option>
+        <option value="ENR">ENR</option>
+        <option value="IN">IN</option>
+        <option value="ARR">ARR</option>
+      </select>
+    </div>
+
+    <!-- Time window select [12062026 §8 — time window cấu hình, look-back + look-ahead] -->
+    <div data-mat="mat-select"
+         data-src="[12062026 §8 — time window admin cấu hình mặc định, user override]">
+      <select id="occ-filter-window"
+              style="padding:8px 12px;background:var(--dark-surface2);border:1px solid var(--dark-outline);color:var(--dark-on-surface);border-radius:28px;font:inherit;">
+        <option>±4 hrs from now</option>
+        <option>±2 hrs from now</option>
+        <option>Full day</option>
+        <option>Custom [TBD — chưa xác nhận ngưỡng]</option>
+      </select>
+    </div>
+
+    <button class="btn btn-outlined" style="padding:7px 14px;"
+            onclick="occ_renderTable()"
+            data-src="[12062026 §8 — auto-refresh qua webhook; nút thủ công chỉ cho demo]">
+      <span class="ms">refresh</span>Refresh
+    </button>
+
+  </div><!-- /tool-row -->
+
+  <!-- ── Flight table ── [12062026 §2,§8,§9; 11062026-chiều §II.6] ──── -->
+  <div class="table-wrap"
+       data-src="[12062026 §2,§5,§6,§7,§8,§9,§10,§11; 11062026-chiều §II.6]">
+    <table data-mat="mat-table+MatSort+MatPaginator"
+           data-src="[12062026 §4 — mỗi dòng = một chuyến; §6 — EN col headers, UTC]">
+      <thead>
+        <tr data-src="[12062026 §6 — 100% tiếng Anh, giờ UTC]">
+          <!-- Alert dot — [12062026 §7] -->
+          <th class="col-alert" title="Alert level">Alert</th>
+          <!-- Flight No — [12062026 §3,§11; Netline carrier+fly+suffix] -->
+          <th>Flight No
+            <span class="ms" style="font-size:13px;vertical-align:middle">unfold_more</span>
+          </th>
+          <!-- REG — [12062026 §9 — hover=lịch sử đổi tàu; VNA/VNB cắt tiền tố VN] -->
+          <th>REG</th>
+          <!-- Route -->
+          <th>Route</th>
+          <!-- STD UTC — [12062026 §6 — UTC, 24h] -->
+          <th>STD (UTC)</th>
+          <!-- STA UTC -->
+          <th>STA (UTC)</th>
+          <!-- State — [12062026 §IV.9 — cần SME xác nhận] -->
+          <th>State</th>
+          <!-- Dispatch — [12062026 §10 — cột riêng, action shortcut] -->
+          <th>Dispatch</th>
+          <!-- Pilot Confirm — [12062026 §2 — tab Flight Release; 11062026-chiều §II.4] -->
+          <th>Pilot</th>
+          <!-- MEL — [12062026 §2 — tab Tàu bay kèm MEL/CDL] -->
+          <th>MEL</th>
+          <!-- Detail nav -->
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="occ-tbody">
+        <!-- Rows injected by occ_renderTable() -->
+      </tbody>
+    </table>
+
+    <!-- Paginator [12062026 §8 — ~25 dòng thường trực; 47 chuyến mẫu] -->
+    <div class="occ-paginator" data-mat="mat-paginator"
+         data-src="[12062026 §8 — ~500–700 chuyến/ngày, hiển thị theo time window]">
+      <span id="occ-page-info">1–6 / 47 chuyến</span>
+      <button class="btn-icon" title="Trang trước"><span class="ms">chevron_left</span></button>
+      <button class="btn-icon" title="Trang sau"><span class="ms">chevron_right</span></button>
+    </div>
+  </div><!-- /table-wrap -->
+
+  <!-- ── Legend ─────────────────────────────────────────────────────── -->
+  <div class="legend" data-src="[gen-mockup agent — QC checklist]">
+    <div style="font-weight:500;margin-bottom:6px;">Component Map — OCC Dashboard</div>
+    <table>
+      <tr>
+        <th>Vùng UI</th>
+        <th>Angular Material component</th>
+        <th>data-mat</th>
+        <th>Nguồn</th>
+      </tr>
+      <tr>
+        <td>KPI cards</td>
+        <td><code>MatCard</code></td>
+        <td><code>mat-card</code></td>
+        <td class="src">12062026 §8; 11062026-chiều §II.6</td>
+      </tr>
+      <tr>
+        <td>Ô tìm kiếm</td>
+        <td><code>MatFormField(outline) + matInput</code></td>
+        <td><code>mat-form-field(outline)+matInput</code></td>
+        <td class="src">12062026 §5</td>
+      </tr>
+      <tr>
+        <td>Bộ lọc Carrier / State / Time window</td>
+        <td><code>MatSelect</code></td>
+        <td><code>mat-select</code></td>
+        <td class="src">12062026 §5, §8</td>
+      </tr>
+      <tr>
+        <td>Bảng chuyến bay</td>
+        <td><code>MatTable + MatSort + MatPaginator</code></td>
+        <td><code>mat-table+MatSort+MatPaginator</code></td>
+        <td class="src">12062026 §2,§4,§6,§8</td>
+      </tr>
+      <tr>
+        <td>Badge trạng thái (chip)</td>
+        <td><code>MatChip</code></td>
+        <td><code>mat-chip</code></td>
+        <td class="src">12062026 §7 — 4-state color scheme</td>
+      </tr>
+      <tr>
+        <td>Alert dot (nhấp nháy)</td>
+        <td><code>custom CSS animation (cần xác nhận component)</code></td>
+        <td><code>custom / cần xác nhận</code></td>
+        <td class="src">11062026-chiều §II.6; 12062026 §7</td>
+      </tr>
+      <tr>
+        <td>Dispatch shortcut button trong bảng</td>
+        <td><code>MatButton (inline — ngoại lệ action trên Giám sát)</code></td>
+        <td><code>mat-button (inline)</code></td>
+        <td class="src">12062026 §10 — ngoại lệ duy nhất "view-only" rule</td>
+      </tr>
+      <tr>
+        <td>REG tooltip hover</td>
+        <td><code>MatTooltip (custom CSS fallback)</code></td>
+        <td><code>mat-tooltip (custom)</code></td>
+        <td class="src">12062026 §9 — hover REG cũ→mới + giờ UTC</td>
+      </tr>
+      <tr>
+        <td>Paginator</td>
+        <td><code>MatPaginator</code></td>
+        <td><code>mat-paginator</code></td>
+        <td class="src">12062026 §8</td>
+      </tr>
+    </table>
+
+    <!-- TBD items from source [cần xác nhận] -->
+    <div style="margin-top:12px;font-size:12px;color:var(--dark-on-variant);">
+      <strong>[TBD — chưa xác nhận]</strong>
+      <ul style="margin:6px 0 0 16px;line-height:1.8;">
+        <li>Danh sách trạng thái GRD/BRD/OUT/ENR/IN/ARR — cần SME xác nhận định nghĩa &amp; quy tắc chuyển trạng thái
+          <span class="src">[12062026 §IV.9]</span></li>
+        <li>Cơ chế giữ chuyến đường dài chưa đáp ngoài time window (để trôi / giữ / filter phụ)
+          <span class="src">[12062026 §IV.4]</span></li>
+        <li>Ngưỡng "vào gate chậm" (phút trễ so với ETA kết điểm)
+          <span class="src">[12062026 §IV.5]</span></li>
+        <li>Quy tắc clear/giữ đỏ sau khi chuyến cất cánh theo từng cột
+          <span class="src">[12062026 §IV.6]</span></li>
+        <li>Tên khu vực điều phái (châu Âu, Mỹ, Hàn…) dùng cho phân quyền dữ liệu
+          <span class="src">[12062026 §IV.3]</span></li>
+      </ul>
+    </div>
+  </div><!-- /legend -->
+
+</div><!-- #screen-occ -->
+<!--HTML_END-->
+
+<!--DIALOGS_START-->
+<!-- OCC không có dialog riêng theo nguồn; click chuyến → mở screen-detail (showScreenDirect).
+     Nếu cần dialog confirm Dispatch Release shortcut — đặt tại đây.                     -->
+<!-- [12062026 §1 — click chuyến mở Flight Detail tab mới; §10 — Dispatch action shortcut] -->
+<!--DIALOGS_END-->
+
+<!--JS_START-->
+(function () {
+  'use strict';
+
+  /* ─── Sample data — SỐ LIỆU MẪU [CLAUDE.md §0] ─────────────────────
+     Cột trạng thái GRD/BRD/OUT/ENR/IN/ARR: cần SME xác nhận [12062026 §IV.9]
+     Dispatch/Pilot states: "none"|"pending"|"released"             [12062026 §10; 11062026-chiều §II.4]
+     REG tooltip: "REG cũ → REG mới  HH:MM UTC"                     [12062026 §9]
+     MEL count: badge chip, yellow=1, red≥2                          [12062026 §2 — tab Tàu bay MEL/CDL]
+  ─────────────────────────────────────────────────────────────────── */
+  var OCC_ROWS = [
+    {
+      alert:    'red',
+      flightNo: 'VN 302',
+      reg:      'A302',       /* VNA tiền tố cắt: VNA302 → A302 [12062026 §9] */
+      regTooltip: 'VNA298 → VNA302  07:41 UTC',  /* mẫu lịch sử đổi tàu */
+      route:    'HAN-DAD',
+      std:      '09:15',
+      sta:      '10:20',
+      state:    'BRD',
+      dispatch: 'pending',
+      pilot:    'none',
+      mel:      1,
+      detailLink: true   /* onclick → showScreenDirect('detail') */
+    },
+    {
+      alert:    'yellow',
+      flightNo: 'VN 123',
+      reg:      'A123',
+      regTooltip: null,
+      route:    'HAN-SGN',
+      std:      '10:30',
+      sta:      '12:15',
+      state:    'GRD',
+      dispatch: 'none',
+      pilot:    'none',
+      mel:      0,
+      detailLink: false
+    },
+    {
+      alert:    'none',
+      flightNo: 'VN 208',
+      reg:      'A321',
+      regTooltip: 'VNA319 → VNA321  05:30 UTC',
+      route:    'SGN-HAN',
+      std:      '08:00',
+      sta:      '09:45',
+      state:    'ENR',
+      dispatch: 'released',
+      pilot:    'released',
+      mel:      2,
+      detailLink: true
+    },
+    {
+      alert:    'none',
+      flightNo: 'VN 411',
+      reg:      'A411',
+      regTooltip: null,
+      route:    'HAN-PQC',
+      std:      '12:45',
+      sta:      '14:00',
+      state:    'GRD',
+      dispatch: 'released',
+      pilot:    'released',
+      mel:      0,
+      detailLink: false
+    },
+    {
+      alert:    'none',
+      flightNo: 'VN 850',
+      reg:      'A850',
+      regTooltip: null,
+      route:    'HAN-NRT',
+      std:      '11:20',
+      sta:      '18:45',
+      state:    'GRD',
+      dispatch: 'pending',
+      pilot:    'none',
+      mel:      0,
+      detailLink: false
+    },
+    {
+      alert:    'none',
+      flightNo: 'VN 002',
+      reg:      'A002',
+      regTooltip: null,
+      route:    'SGN-CDG',
+      std:      '23:55',
+      sta:      '06:10+1',
+      state:    'GRD',
+      dispatch: 'none',
+      pilot:    'none',
+      mel:      0,
+      detailLink: false
+    }
+  ];
+
+  /* ─── Render table ────────────────────────────────────────────────── */
+  function occ_renderTable() {
+    var tbody  = document.getElementById('occ-tbody');
+    var search = (document.getElementById('occ-search-input') || {}).value || '';
+    var fCarr  = (document.getElementById('occ-filter-carrier') || {}).value || '';
+    var fState = (document.getElementById('occ-filter-state') || {}).value || '';
+
+    search = search.toLowerCase();
+
+    var rows = OCC_ROWS.filter(function (r) {
+      if (fCarr  && r.flightNo.indexOf(fCarr)  === -1) { return false; }
+      if (fState && r.state !== fState)                { return false; }
+      if (search && r.flightNo.toLowerCase().indexOf(search) === -1 &&
+                    r.route.toLowerCase().indexOf(search) === -1 &&
+                    r.reg.toLowerCase().indexOf(search) === -1)  { return false; }
+      return true;
+    });
+
+    var html = '';
+    rows.forEach(function (r) {
+      /* -- Alert dot -- [12062026 §7; 11062026-chiều §II.6 blink effect] */
+      var alertHtml = '';
+      if (r.alert === 'red') {
+        alertHtml = '<span class="alert-dot alert-red" title="Cảnh báo đỏ — action ngay"></span>';
+      } else if (r.alert === 'yellow') {
+        alertHtml = '<span class="alert-dot alert-yellow" title="Cần lưu ý"></span>';
+      } else if (r.alert === 'green') {
+        alertHtml = '<span class="alert-dot alert-green" title="Đã xử lý"></span>';
+      }
+
+      /* -- State chip -- [12062026 §7,§IV.9] */
+      var stateClass = {
+        GRD: 'chip-grey', BRD: 'chip-blue', OUT: 'chip-blue',
+        ENR: 'chip-green', IN: 'chip-yellow', ARR: 'chip-grey'
+      }[r.state] || 'chip-grey';
+      var stateHtml = '<span data-mat="mat-chip" class="' + stateClass + '">' + r.state + '</span>';
+
+      /* -- Dispatch cell -- [12062026 §10 — action shortcut] */
+      var dispHtml;
+      if (r.dispatch === 'released') {
+        dispHtml = '<button class="dispatch-btn released" disabled>'
+                 + '<span class="ms" style="font-size:13px">check_circle</span>Released</button>';
+      } else if (r.dispatch === 'pending') {
+        dispHtml = '<button class="dispatch-btn" onclick="occ_dispatchRelease(\'' + r.flightNo + '\')">'
+                 + '<span class="ms" style="font-size:13px">flight</span>Release</button>';
+      } else {
+        dispHtml = '<span style="color:var(--dark-on-variant);font-size:12px">—</span>';
+      }
+
+      /* -- Pilot cell -- [11062026-chiều §II.4; 12062026 §2 tab Flight Release] */
+      var pilotHtml;
+      if (r.pilot === 'released') {
+        pilotHtml = '<span class="pilot-cell-released">'
+                  + '<span class="ms" style="font-size:13px">check_circle</span> Released</span>';
+      } else {
+        pilotHtml = '<span class="pilot-cell-none">—</span>';
+      }
+
+      /* -- MEL cell -- [12062026 §2 — tab Tàu bay kèm MEL/CDL] */
+      var melHtml;
+      if (r.mel === 0) {
+        melHtml = '<span style="color:var(--dark-on-variant);font-size:12px">—</span>';
+      } else if (r.mel === 1) {
+        melHtml = '<span data-mat="mat-chip" class="chip-yellow">' + r.mel + '</span>';
+      } else {
+        melHtml = '<span data-mat="mat-chip" class="chip-red">' + r.mel + '</span>';
+      }
+
+      /* -- REG cell with tooltip -- [12062026 §9] */
+      var regHtml;
+      if (r.regTooltip) {
+        regHtml = '<span class="has-tooltip">' + r.reg
+                + '<span class="tooltip occ-reg-tip">' + r.regTooltip + '</span></span>';
+      } else {
+        regHtml = r.reg;
+      }
+
+      /* -- Detail nav icon -- [12062026 §1 — click chuyến mở Flight Detail] */
+      var navHtml = r.detailLink
+        ? '<button class="btn-icon" title="Mở Flight Detail" onclick="occ_openDetail(\'' + r.flightNo + '\')">'
+          + '<span class="ms">open_in_new</span></button>'
+        : '';
+
+      /* -- Row click on Flight No -- [12062026 §1] */
+      var fltCell = r.detailLink
+        ? '<td class="col-flt" onclick="occ_openDetail(\'' + r.flightNo + '\')" style="cursor:pointer;color:var(--md-primary);text-decoration:underline dotted;">'
+          + '<strong>' + r.flightNo + '</strong></td>'
+        : '<td class="col-flt"><strong>' + r.flightNo + '</strong></td>';
+
+      html += '<tr class="occ-clickable" data-src="[12062026 §4,§6,§7,§9,§10]">'
+            + '<td class="col-alert">' + alertHtml + '</td>'
+            + fltCell
+            + '<td>' + regHtml + '</td>'
+            + '<td>' + r.route + '</td>'
+            + '<td>' + r.std + '</td>'
+            + '<td>' + r.sta + '</td>'
+            + '<td>' + stateHtml + '</td>'
+            + '<td>' + dispHtml + '</td>'
+            + '<td>' + pilotHtml + '</td>'
+            + '<td>' + melHtml + '</td>'
+            + '<td>' + navHtml + '</td>'
+            + '</tr>';
+    });
+
+    if (html === '') {
+      html = '<tr><td colspan="11" style="text-align:center;color:var(--dark-on-variant);padding:20px;">Không tìm thấy chuyến bay phù hợp</td></tr>';
+    }
+    tbody.innerHTML = html;
+  }
+
+  /* ─── Dispatch Release shortcut [12062026 §10] ────────────────────── */
+  function occ_dispatchRelease(flightNo) {
+    /* Locate row in sample data and toggle state — demo only */
+    var row = OCC_ROWS.filter(function (r) { return r.flightNo === flightNo; })[0];
+    if (!row) { return; }
+    if (row.dispatch !== 'released') {
+      row.dispatch = 'released';
+      /* Synchronise REG column color: if REG was yellow (khớp tàu, chưa release)
+         it clears to green — [12062026 §10 — clear đồng bộ vàng] */
+      occ_renderTable();
+    }
+  }
+
+  /* ─── Open Flight Detail [12062026 §1] ────────────────────────────── */
+  function occ_openDetail(flightNo) {
+    /* Delegate to showScreenDirect() defined in parent prototype shell.
+       If running standalone (fragment only), fall back gracefully. */
+    if (typeof showScreenDirect === 'function') {
+      showScreenDirect('detail');
+    } else if (typeof showScreen === 'function') {
+      showScreen('detail');
+    } else {
+      /* Fragment standalone — no-op, show console note */
+      console.info('[occ-fragment] showScreenDirect not available. Fragment requires parent shell.');
+    }
+  }
+
+  /* ─── Expose to parent scope ─────────────────────────────────────── */
+  window.occ_renderTable    = occ_renderTable;
+  window.occ_dispatchRelease = occ_dispatchRelease;
+  window.occ_openDetail     = occ_openDetail;
+
+  /* ─── Auto-render on load ────────────────────────────────────────── */
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', occ_renderTable);
+  } else {
+    occ_renderTable();
+  }
+
+})();
+<!--JS_END-->

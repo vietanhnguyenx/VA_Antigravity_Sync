@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://www.boeing.com/FTID-ML"
+    xmlns:rev="http://www.boeing.com/FTID-ML/Revision"
+    targetNamespace="http://www.boeing.com/FTID-ML" 
+    elementFormDefault="qualified" 
+    attributeFormDefault="unqualified"
+    version="FTID 2.6">
+
+<!-- 	
+=================================================================
+
+
+Copyright Information:
+      Boeing Proprietary and Confidential - 
+      All Rights Reserved since 2006.
+
+      This schema file is part of the Boeing Flight Technical 
+      Integrated Data (FTID) Specification based on XML.
+      All rights are reserved under Boeing Flight Operations 
+      digital data entitlements, products or services.
+
+     
+Contact Information:   	
+        The Boeing Company
+        Flight Operations Support
+        P.O. Box 3707	MS 20-89
+        Seattle, WA 98124-2207
+        USA
+        email:  flighttraining@Boeing.com
+        Phone:  (206) 662-4000
+        Fax:    (206) 662-4743
+
+		
+===================================================================
+-->
+
+<xs:include schemaLocation="../attributeTypes/generalAttrs.xsd"/>
+<xs:include schemaLocation="../basicDataTypes/basicDataInclude.xsd"/>
+<xs:include schemaLocation="../metadataTypes/effect.xsd"/>
+<xs:import namespace="http://www.boeing.com/FTID-ML/Revision" schemaLocation="../metadataTypes/revision.xsd"/>
+
+
+<!--=====================================================-->
+<!--  BulletinRecord element declaration -->
+<!--=====================================================-->
+<xs:element name="BulletinRecord" type="BulletinRecordType"/>
+
+
+<!--=====================================================-->
+<!--  BulletinRecord element definition -->
+<!--=====================================================-->
+<xs:complexType name="BulletinRecordType">
+    <xs:annotation>
+        <xs:documentation>Content-Unit for a List of bulletins, applicable for a configuration</xs:documentation>
+    </xs:annotation>
+
+    <xs:sequence>
+        <xs:element name="Title" type="TitleType" minOccurs="0"/>
+        <xs:choice maxOccurs="unbounded">
+            <xs:group ref="TextGroupType"/>
+        </xs:choice>
+        <xs:element name="BulletinList" type="BulletinListType" minOccurs="0"/>
+    </xs:sequence>
+
+    <xs:attribute name="id" type="UIDType" use="required"/>
+    <xs:attributeGroup ref="globalAttrGrp"/>
+</xs:complexType>
+
+
+<!--=====================================================-->
+<!--  BulletinList element definition -->
+<!--=====================================================-->
+<xs:complexType name="BulletinListType">
+    <xs:annotation>
+        <xs:documentation>Container for list of bulletins</xs:documentation>
+    </xs:annotation>
+
+    <xs:sequence maxOccurs="unbounded">
+        <xs:element name="BulletinItem" type="BulletinItemType"/>
+    </xs:sequence>
+
+</xs:complexType>
+
+
+<!--=====================================================-->
+<!--  BulletinItem element definition -->
+<!--=====================================================-->
+<xs:complexType name="BulletinItemType">
+    <xs:annotation>
+        <xs:documentation>A bulletin info container</xs:documentation>
+    </xs:annotation>
+
+    <xs:sequence>
+        <xs:element name="BulletinNumber" type="SimpleMixedContentType"/>
+        <xs:element name="BulletinSubject" type="SimpleMixedContentType"/>
+        <xs:element name="BulletinRefNo" type="SimpleMixedContentType" minOccurs="0"/>
+        <xs:element name="BulletinDate" type="SimpleMixedContentType" minOccurs="0"/>
+        <xs:element name="BulletinStatus" type="SimpleMixedContentType" minOccurs="0"/>
+    </xs:sequence>
+
+    <xs:attributeGroup ref="globalAttrGrp"/>
+</xs:complexType>
+
+
+</xs:schema>

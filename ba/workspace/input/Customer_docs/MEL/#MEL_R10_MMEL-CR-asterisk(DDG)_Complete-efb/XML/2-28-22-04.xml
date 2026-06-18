@@ -1,0 +1,228 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM">]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.2-28-22-04.2467.2-28-22-04" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="28" superSectionNumber="2" sectionName="MEL" chapterName="Fuel" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2025-09-30" rev:revStatus="R" rev:revNumber="10" />
+</PUMetaData>
+<MELItem itemNbr="28-22-04" id="X-BOEING:FTID:81205.787.DDG.CU.MEL.2-28-22-04.1.2-28-22-04">
+<Title>Fuel Scavenge System</Title>
+<MELSubItem itemNbr="28-22-04-01">
+<Title>Scavenge Pumps</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="2" nbrRequired="0" opsIndicator="(O)">
+<DispatchConditionRemarks>
+<Para>May be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Center tank quantity indication operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Appropriate amount of center tank fuel is considered unusable and is accounted for in the airplane weight and balance.</Para>
+</ListItem>
+</List>
+<Note>
+<Para>AFM fuel loading and usage limitations are for usable fuel.</Para>
+</Note>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<OperationProcedure>
+<Note>
+<Para>For one scavenge pump inoperative, fuel imbalance will occur when center tank fuel is scavenged.</Para>
+</Note>
+<List listType="1.">
+<ListItem>
+<Para>For center tank fuel required:</Para>
+<List listType="A.">
+<ListItem>
+<Para>Increase flight planning fuel by 4800 lb (2177 kg).</Para>
+</ListItem>
+<ListItem>
+<Para>Reduce the maximum zero fuel weight limit by 4800 lb (2177 kg).</Para>
+</ListItem>
+<ListItem>
+<Para>Adjust the zero fuel weight center of gravity forward limit 0.5% MAC aft.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>For center tank fuel not required:</Para>
+<List listType="A.">
+<ListItem>
+<Para>Center tank fuel at or above 4800 lb (2177 kg):</Para>
+<List listType="1)">
+<ListItem>
+<Para>Reduce the maximum zero fuel weight limit by 4800 lb (2177 kg).</Para>
+</ListItem>
+<ListItem>
+<Para>Adjust the zero fuel weight center of gravity forward limit 0.5% MAC aft.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Center tank fuel less than 4800 lb (2177 kg):</Para>
+<List listType="1)">
+<ListItem>
+<Para>Reduce the maximum zero fuel weight limit by the amount of center tank fuel.</Para>
+</ListItem>
+<ListItem>
+<Para>Adjust the zero fuel weight center of gravity forward limit based on the amount of center tank fuel.</Para>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>For dispatches with center tank fuel quantities between 4800 lb (2177 kg) and 16,000 lb (7257 kg) (FUEL IN CENTER advisory message not display):</Para>
+<List listType="A.">
+<ListItem>
+<Para>After cruise altitude has been established, set both center tank pump switches on.</Para>
+<Note>
+<Para>Fuel usage from the center tank may be delayed up to 30 minutes.</Para>
+</Note>
+</ListItem>
+<ListItem>
+<Para>When FUEL LOW CENTER advisory message is displayed, set both center tank pump switches off.</Para>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="28-22-04-02">
+<Title>Scavenge Valves</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="2" nbrRequired="0" maintIndicator="(M)" opsIndicator="(O)">
+<DispatchConditionRemarks>
+<Para>May be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Inoperative valve is locked closed.</Para>
+</ListItem>
+<ListItem>
+<Para>Center tank quantity indication operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Appropriate amount of center tank fuel is considered unusable and is accounted for in the airplane weight and balance.</Para>
+</ListItem>
+</List>
+<Note>
+<Para>AFM fuel loading and usage limitations are for usable fuel.</Para>
+</Note>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Lock the inoperative scavenge isolation valve closed (AMM DDG 28-22-04).</Para>
+<List listType="1.">
+<ListItem>
+<Para>For left scavenge isolation valve inoperative, using a flight deck multi-function display only, open the following circuit breakers and lock with an INOP tag:</Para>
+<List listType="A.">
+<ListItem>
+<Para>SCAVENGE ISLN VLV CLOSE-L</Para>
+</ListItem>
+<ListItem>
+<Para>SCAVENGE ISLN VLV OPEN-L</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>For right scavenge valve inoperative, using a flight deck multi-function display only, open the following circuit breakers and lock with an INOP tag:</Para>
+<List listType="A.">
+<ListItem>
+<Para>SCAVENGE ISLN VLV CLOSE-R</Para>
+</ListItem>
+<ListItem>
+<Para>SCAVENGE ISLN VLV OPEN-R</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Open and deactivate the landing gear doors.</Para>
+</ListItem>
+<ListItem>
+<Para>Gain access to the inoperative scavenge isolation valve in the main gear wheel well.</Para>
+</ListItem>
+<ListItem>
+<Para>Disconnect, cap and stow the valve electrical connector.</Para>
+</ListItem>
+<ListItem>
+<Para>Lock the valve closed.</Para>
+</ListItem>
+<ListItem>
+<Para>Close the landing gear doors.</Para>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+<OperationProcedure>
+<Note>
+<Para>For one scavenge valve inoperative, fuel imbalance will occur when center tank fuel is scavenged.</Para>
+</Note>
+<Note>
+<Para>The fuel synoptic will incorrectly display a green flow line for the deactivated scavenge valve when the center tank is or would normally be scavenged.</Para>
+</Note>
+<List listType="1.">
+<ListItem>
+<Para>For center tank fuel required:</Para>
+<List listType="A.">
+<ListItem>
+<Para>Increase flight planning fuel by 4800 lb (2177 kg).</Para>
+</ListItem>
+<ListItem>
+<Para>Reduce the maximum zero fuel weight limit by 4800 lb (2177 kg).</Para>
+</ListItem>
+<ListItem>
+<Para>Adjust the zero fuel weight center of gravity forward limit 0.5% MAC aft.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>For center tank fuel not required:</Para>
+<List listType="A.">
+<ListItem>
+<Para>Center tank fuel at or above 4800 lb (2177 kg):</Para>
+<List listType="1)">
+<ListItem>
+<Para>Reduce the maximum zero fuel weight limit by 4800 lb (2177 kg).</Para>
+</ListItem>
+<ListItem>
+<Para>Adjust the zero fuel weight center of gravity forward limit 0.5% MAC aft.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Center tank fuel less than 4800 lb (2177 kg):</Para>
+<List listType="1)">
+<ListItem>
+<Para>Reduce the maximum zero fuel weight limit by the amount of center tank fuel.</Para>
+</ListItem>
+<ListItem>
+<Para>Adjust the zero fuel weight center of gravity forward limit based on the amount of center tank fuel.</Para>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>For dispatches with center tank fuel quantities between 4800 lb (2177 kg) and 16,000 lb (7257 kg) (FUEL IN CENTER advisory message not display):</Para>
+<List listType="A.">
+<ListItem>
+<Para>After cruise altitude has been established, set both center tank pump switches on.</Para>
+<Note>
+<Para>Fuel usage from the center tank may be delayed up to 30 minutes.</Para>
+</Note>
+</ListItem>
+<ListItem>
+<Para>When FUEL LOW CENTER advisory message is displayed, set both center tank pump switches off.</Para>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+</MELItem>
+</DispatchItems>

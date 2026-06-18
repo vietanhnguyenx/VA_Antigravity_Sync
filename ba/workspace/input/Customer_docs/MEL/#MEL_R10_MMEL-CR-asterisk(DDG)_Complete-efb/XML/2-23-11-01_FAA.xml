@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM">]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.2-23-11-01.1553.2-23-11-01_FAA" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="23" superSectionNumber="2" sectionName="MEL" chapterName="Communications" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2021-02-24" rev:revStatus="U" rev:revNumber="10" />
+</PUMetaData>
+<MELItem itemNbr="23-11-01" id="X-BOEING:FTID:81205.787.DDG.CU.MEL.2-23-11-01.1.2-23-11-01_FAA">
+<Title>High Frequency (HF) Communication Systems</Title>
+<DispatchCondition dispCondOptions="A" repairInterval="C" nbrInstalled="2" nbrRequired="1" opsIndicator="(O)">
+<Title>SATCOM Operates Normally</Title>
+<DispatchConditionRemarks>
+<Para>One may be inoperative while conducting operations that require two LRCS provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Aircraft SATVOICE system operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>SATVOICE services are available as a LRCS over the intended route of flight.</Para>
+</ListItem>
+<ListItem>
+<Para>The ICAO flight plan is updated (as required) to notify ATC of the communications equipment status of the aircraft.</Para>
+</ListItem>
+<ListItem>
+<Para>If SATCOM voice is to be used over the intended route of flight, SATCOM voice short codes (INMARSAT) or direct dial commercial numbers (IRIDIUM) must be available. If not available, prior coordination with the appropriate ATS (FIR) facility is required.</Para>
+</ListItem>
+</List>
+<Note>
+<Para>SATCOM is to be used only as a backup to normal HF communications.</Para>
+</Note>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceNote>
+<Para>If desired, the inoperative HF radio may be deactivated.</Para>
+<List listType="1.">
+<ListItem>
+<Para>For left HF radio inoperative, using a flight deck multi-function display only, open circuit breaker HF-L and lock with an INOP tag.</Para>
+</ListItem>
+<ListItem>
+<Para>For right HF radio inoperative, using a flight deck multi-function display only, open circuit breaker HF-R and lock with an INOP tag.</Para>
+</ListItem>
+</List>
+</MaintenanceNote>
+<OperationProcedure>
+<Para>Ensure SATCOM voice is available over the intended route of flight.</Para>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+<DispatchCondition dispCondOptions="B" repairInterval="D" nbrInstalled="2" nbrRequired="0">
+<Title>Not Required</Title>
+<DispatchConditionRemarks>
+<Para>Any in excess of those required may be inoperative.</Para>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceNote>
+<Para>If desired, the inoperative HF radio may be deactivated.</Para>
+<List listType="1.">
+<ListItem>
+<Para>For left HF radio inoperative, using a flight deck multi-function display only, open circuit breaker HF-L and lock with an INOP tag.</Para>
+</ListItem>
+<ListItem>
+<Para>For right HF radio inoperative, using a flight deck multi-function display only, open circuit breaker HF-R and lock with an INOP tag.</Para>
+</ListItem>
+</List>
+</MaintenanceNote>
+</DispatchProcedure>
+</DispatchCondition>
+<MELSubItem itemNbr="23-11-01-01">
+<Title>HF Datalink</Title>
+<DispatchCondition dispCondOptions="A" repairInterval="C" nbrInstalled="1" nbrRequired="0" opsIndicator="(O)">
+<Title>Alternate Procedures Required</Title>
+<DispatchConditionRemarks>
+<Para>May be inoperative provided alternate procedures are established and used.</Para>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<OperationProcedure>
+<Para>Alternate procedures:</Para>
+<Para>Operation required HF datalink communication/surveillance (ADS-C, CPDLC, DCL, OCL, D-ATIS) is not permitted.</Para>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+<DispatchCondition dispCondOptions="B" repairInterval="D" nbrInstalled="1" nbrRequired="0">
+<Title>Procedures Do Not Require Use</Title>
+<DispatchConditionRemarks>
+<Para>May be inoperative provided procedures do not require its use.</Para>
+</DispatchConditionRemarks>
+</DispatchCondition>
+</MELSubItem>
+</MELItem>
+</DispatchItems>

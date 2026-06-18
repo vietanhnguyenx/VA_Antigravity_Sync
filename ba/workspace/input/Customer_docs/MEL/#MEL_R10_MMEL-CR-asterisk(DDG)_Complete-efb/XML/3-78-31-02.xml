@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM"><!ENTITY G3-78-31-02.fm_1280914 SYSTEM "..\Images\3-78-31-02.fm_1280914.cgm" NDATA CGM>]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.3-78-31-02.4468.3-78-31-02" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="78" superSectionNumber="3" sectionName="CDL" chapterName="Exhaust" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2021-02-24" rev:revStatus="U" rev:revNumber="10" />
+</PUMetaData>
+<CDLItem itemNbr="78-31-02" id="X-BOEING:FTID:81205.787.DDG.CU.CDL.3-78-31-02.1.3-78-31-02">
+<Title>Thrust Reverser Blocker Door Wedge Fairing</Title>
+<DispatchCondition>
+<DispatchConditionRemarks>
+<Para>Any number may be missing.</Para>
+<Para>Reduce performance limited weights for each missing fairing by:</Para>
+<table frame="all">
+<tgroup cols="5" colsep="1">
+<colspec colname="1" colwidth="17%" />
+<colspec colname="2" colwidth="14%" />
+<colspec colname="3" colwidth="21%" />
+<colspec colname="4" colwidth="24%" />
+<colspec colname="5" colwidth="24%" />
+<thead>
+<row rowsep="1">
+<entry colname="1">
+<Para>
+<Emphasis txtStyle="bold">Applicable Models</Emphasis>
+</Para>
+</entry>
+<entry colname="2">
+<Para>
+<Emphasis txtStyle="bold">Number Installed</Emphasis>
+</Para>
+</entry>
+<entry colname="3">
+<Para>
+<Emphasis txtStyle="bold">Takeoff </Emphasis>
+</Para>
+</entry>
+<entry colname="4">
+<Para>
+<Emphasis txtStyle="bold">Enroute Climb</Emphasis>
+</Para>
+</entry>
+<entry colname="5">
+<Para>
+<Emphasis txtStyle="bold">Approach and Landing</Emphasis>
+</Para>
+</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep="0">
+<entry colname="1">
+<Para />
+</entry>
+<entry colname="2">
+<Para />
+</entry>
+<entry colname="3">
+<Para />
+</entry>
+<entry colname="4">
+<Para />
+</entry>
+<entry colname="5">
+<Para />
+</entry>
+</row>
+</tbody>
+</tgroup>
+<tgroup cols="5" colsep="1">
+<tbody>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">787-9</Para>
+</entry>
+<entry colname="2">
+<Para align="center">20</Para>
+</entry>
+<entry colname="3">
+<Para align="center">550
+lb (249 kg)</Para>
+</entry>
+<entry colname="4">
+<Para align="center">250 lb (113 kg)</Para>
+</entry>
+<entry colname="5">
+<Para align="center">300 lb (136 kg)</Para>
+</entry>
+</row>
+<row rowsep="0">
+<entry colname="1">
+<Para align="center">787-10 (GE)</Para>
+</entry>
+<entry colname="2">
+<Para align="center">20</Para>
+</entry>
+<entry colname="3">
+<Para align="center">600 lb (272 kg)</Para>
+</entry>
+<entry colname="4">
+<Para align="center">300 lb (136 kg)</Para>
+</entry>
+<entry colname="5">
+<Para align="center">250 lb (113 kg)</Para>
+</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+</DispatchConditionRemarks>
+</DispatchCondition>
+<LocationDiagram id="X-BOEING:FTID:81205.787.DDG.CU.GR.3-78-31-02.1280911.3-78-31-02">
+<Illustration fileRef="G3-78-31-02.fm_1280914" linkRef="URN:X-BOEING:FTID:81205.787.DDG.NX.GR.3-78-31-02.1280914." />
+</LocationDiagram>
+</CDLItem>
+</DispatchItems>

@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://www.boeing.com/FTID-ML"
+    xmlns:rev="http://www.boeing.com/FTID-ML/Revision"
+    targetNamespace="http://www.boeing.com/FTID-ML" 
+    elementFormDefault="qualified" 
+    attributeFormDefault="unqualified"
+    version="FTID 2.6">
+
+<!-- 	
+=================================================================
+
+
+Copyright Information:
+      Boeing Proprietary and Confidential - 
+      All Rights Reserved since 2006.
+
+      This schema file is part of the Boeing Flight Technical 
+      Integrated Data (FTID) Specification based on XML.
+      All rights are reserved under Boeing Flight Operations 
+      digital data entitlements, products or services.
+
+     
+Contact Information:   	
+        The Boeing Company
+        Flight Operations Support
+        P.O. Box 3707	MS 20-89
+        Seattle, WA 98124-2207
+        USA
+        email:  flighttraining@Boeing.com
+        Phone:  (206) 662-4000
+        Fax:    (206) 662-4743
+
+		
+===================================================================
+-->
+
+<xs:include schemaLocation="../attributeTypes/generalAttrs.xsd"/>
+<xs:import namespace="http://www.boeing.com/FTID-ML/Revision" schemaLocation="../metadataTypes/revision.xsd"/>
+<xs:include schemaLocation="text.xsd"/>
+<xs:include schemaLocation="cwnc.xsd"/>
+<xs:include schemaLocation="table.xsd"/>
+<xs:include schemaLocation="graphic.xsd"/>
+
+
+<!--=====================================================-->
+<!-- Declare one global attribute group and to be re-used in any elements -->
+<!--=====================================================-->
+<xs:attributeGroup name="globalAttrGrp">
+    <xs:annotation>
+        <xs:documentation>Include common attributes for coc and revision management that are used by most elements</xs:documentation>
+    </xs:annotation>
+
+    <xs:attribute name="coc" type="cocType" use="optional"/>
+    <xs:attributeGroup ref="rev:revAttrGrp"/>
+
+</xs:attributeGroup>
+
+
+<!--=====================================================-->
+<!--  General text group  -->
+<!--=====================================================-->
+<xs:group name="TextGroupType">
+    <xs:choice>
+        <xs:element name="GraphicSet" type="GraphicSetType"/>
+        <xs:element name="List" type="ListType"/>
+        <xs:element name="Para" type="ParaType"/>
+        <xs:element name="table" type="tableType"/>
+    </xs:choice>
+</xs:group>
+
+<!--=====================================================-->
+<!--  General text & CWN group  -->
+<!--=====================================================-->
+<xs:group name="TextCWNGroupType">
+    <xs:choice>
+        <xs:element name="Caution" type="CautionType"/>
+        <xs:element name="Warning" type="WarningType"/>
+        <xs:element name="GraphicSet" type="GraphicSetType"/>
+        <xs:element name="List" type="ListType"/>
+        <xs:element name="Para" type="ParaType"/>
+        <xs:element name="table" type="tableType"/>
+        <xs:element name="Note" type="NoteType"/>
+    </xs:choice>
+</xs:group>
+
+<!--=====================================================-->
+<!--  Short Text group with Para & List only  -->
+<!--=====================================================-->
+<xs:group name="ShortTextGroupType">
+    <xs:choice>
+        <xs:element name="List" type="ListType"/>
+        <xs:element name="Para" type="ParaType"/>
+    </xs:choice>
+</xs:group>
+
+<!--=====================================================-->
+<!--  Short Text group with Note  -->
+<!--=====================================================-->
+<xs:group name="ShortTextNoteGroupType">
+    <xs:choice>
+        <xs:element name="List" type="ListType"/>
+        <xs:element name="Para" type="ParaType"/>
+        <xs:element name="Note" type="NoteType"/>
+    </xs:choice>
+</xs:group>
+
+<!--=====================================================-->
+<!--  caution,warning,note group -->
+<!--=====================================================-->
+<xs:group name="CWNGroupType">
+    <xs:choice>
+        <xs:element name="Caution" type="CautionType"/>
+        <xs:element name="Warning" type="WarningType"/>
+        <xs:element name="Note" type="NoteType"/>
+    </xs:choice>
+</xs:group>
+
+
+<!--=====================================================-->
+<!-- Comment,caution,warning,note group -->
+<!--=====================================================-->
+<xs:group name="CCWNGroupType">
+    <xs:choice>
+        <xs:element name="Comment" type="CommentType"/>
+        <xs:element name="Caution" type="CautionType"/>
+        <xs:element name="Warning" type="WarningType"/>
+        <xs:element name="Note" type="NoteType"/>
+    </xs:choice>
+</xs:group>
+
+
+<!--=====================================================-->
+<!-- Comment,caution,warning group -->
+<!--=====================================================-->
+<xs:group name="CCWGroupType">
+    <xs:choice>
+        <xs:element name="Comment" type="CommentType"/>
+        <xs:element name="Caution" type="CautionType"/>
+        <xs:element name="Warning" type="WarningType"/>
+    </xs:choice>
+</xs:group>
+
+
+</xs:schema>

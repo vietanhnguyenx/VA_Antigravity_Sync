@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://www.boeing.com/FTID-ML"
+    xmlns:rev="http://www.boeing.com/FTID-ML/Revision"
+    targetNamespace="http://www.boeing.com/FTID-ML" 
+    elementFormDefault="qualified" 
+    attributeFormDefault="unqualified"
+    version="FTID 2.8">
+
+<!-- 	
+=================================================================
+
+Copyright Information:
+      Boeing Proprietary and Confidential - 
+      All Rights Reserved since 2006.
+
+      This schema file is part of the Boeing Flight Technical 
+      Integrated Data (FTID) Specification based on XML.
+      All rights are reserved under Boeing Flight Operations 
+      digital data entitlements, products or services.
+
+     
+Contact Information:   	
+        The Boeing Company
+        Flight Operations Support
+        P.O. Box 3707	MS 20-89
+        Seattle, WA 98124-2207
+        USA
+        email:  flighttraining@Boeing.com
+        Phone:  (206) 662-4000
+        Fax:    (206) 662-4743
+		
+===================================================================
+-->
+
+<xs:include schemaLocation="../attributeTypes/generalAttrs.xsd"/>
+<xs:include schemaLocation="../metadataTypes/effect.xsd"/>
+<xs:import namespace="http://www.boeing.com/FTID-ML/Revision" schemaLocation="../metadataTypes/revision.xsd"/>
+<xs:include schemaLocation="links.xsd"/>
+<xs:include schemaLocation="groups.xsd"/>
+
+
+<!--=====================================================-->
+<!--  Address element definition -->
+<!--=====================================================-->
+<xs:complexType name="AddressType">
+    <xs:annotation>
+        <xs:documentation>Street address</xs:documentation>
+    </xs:annotation>
+
+    <xs:sequence>
+       <xs:element name="Para" type="ParaType" maxOccurs="unbounded"/>
+    </xs:sequence>
+</xs:complexType>
+
+
+<!--=====================================================-->
+<!-- List element definition -->
+<!--=====================================================-->
+<xs:complexType name="ListType">
+    <xs:annotation>
+        <xs:documentation>General list structure</xs:documentation>
+    </xs:annotation>
+
+    <xs:sequence>
+        <xs:element name="Effectivities" type="EffectivitiesType" minOccurs="0"/>
+        <xs:element name="Title" type="TitleType" minOccurs="0"/>
+        <xs:element name="Para" type="ParaType" minOccurs="0"/>
+        <xs:element name="ListItem" type="ListItemType" maxOccurs="unbounded"/>
+    </xs:sequence>
+
+    <xs:attribute name="listType" type="listTypeType" use="optional"/>
+    <xs:attributeGroup ref="globalAttrGrp"/>
+</xs:complexType>
+
+
+<!--=====================================================-->
+<!-- ListItem element definition -->
+<!--=====================================================-->
+<xs:complexType name="ListItemType">
+    <xs:annotation>
+        <xs:documentation>Item on a list</xs:documentation>
+    </xs:annotation>
+
+    <xs:sequence>
+        <xs:element name="Effectivities" type="EffectivitiesType" minOccurs="0"/>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="Caution" type="CautionType"/>
+            <xs:element name="Warning" type="WarningType"/>
+            <xs:element name="GraphicSet" type="GraphicSetType"/>
+            <xs:element name="Para" type="ParaType"/>
+            <xs:element name="table" type="tableType"/>
+            <xs:element name="Note" type="NoteType"/>
+            <xs:element name="List" type="ListType"/>
+        </xs:choice>
+    </xs:sequence>
+    <xs:attributeGroup ref="globalAttrGrp"/>
+</xs:complexType>
+
+
+<!--=====================================================-->
+<!-- Para element definition -->
+<!--=====================================================-->
+<xs:complexType name="ParaType" mixed="true">
+    <xs:annotation>
+        <xs:documentation>Basic text paragraph</xs:documentation>
+    </xs:annotation>
+
+    <xs:sequence>
+        <xs:element name="Effectivities" type="EffectivitiesType" minOccurs="0"/>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="Emphasis" type="EmphasisType"/>
+            <xs:element name="TechMessage" type="TechMessageType"/>
+            <xs:element name="iLink" type="iLinkType"/>
+        </xs:choice>
+    </xs:sequence>
+
+    <xs:attribute name="recall" type="YNType" use="optional"/>
+    <xs:attribute name="align" type="alignType" use="optional"/>
+    <xs:attributeGroup ref="globalAttrGrp"/>
+</xs:complexType>
+
+
+<!--=====================================================-->
+<!-- Emphasis element definition -->
+<!--=====================================================-->
+<xs:complexType name="EmphasisType" mixed="true">
+    <xs:annotation>
+        <xs:documentation>Used to format the text</xs:documentation>
+        <xs:documentation>Note: color or bgColor values must match the CSS value strings</xs:documentation>
+    </xs:annotation>
+
+    <xs:attribute name="color" type="genericStrType" use="optional"/>
+    <xs:attribute name="bgColor" type="genericStrType" use="optional"/>
+    <xs:attribute name="script" type="scriptType" use="optional"/>
+    <xs:attribute name="txtEffect" type="txtEffectType" use="optional"/>
+    <xs:attribute name="txtStyle" type="txtStyleType" use="optional"/>
+    <xs:attributeGroup ref="globalAttrGrp"/>
+</xs:complexType>
+
+
+<!--=====================================================-->
+<!-- Title element definition -->
+<!-- Attribute Info:
+        Recall: Used in the checklists and contains recall items; 
+        checklistIndex: e is for an EICAS message title that 
+                        displays an electronic checklist icon like [];
+                        U is title in the checklist that has no EICAS 
+                        message. It's displayed as an Italic U; 
+                        none - not a checklist title.
+        indexXXX: different index indicator for non-normal procedures
+-->
+<!--=====================================================-->
+<xs:complexType name="TitleType" mixed="true">
+    <xs:annotation>
+        <xs:documentation>Heading text</xs:documentation>
+    </xs:annotation>
+
+    <xs:sequence>
+        <xs:element name="Effectivities" type="EffectivitiesType" minOccurs="0"/>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="Emphasis" type="EmphasisType"/>
+            <xs:element name="iLink" type="iLinkType"/>
+        </xs:choice>
+    </xs:sequence>
+
+    <xs:attribute name="recall" type="YNType" use="optional"/>
+    <xs:attribute name="omitTOC" type="YNType" use="optional"/>
+    <xs:attribute name="checklistIndex" type="checklistIndexType" use="optional" default="none"/>
+    <xs:attribute name="indexAI" type="YNType" use="optional"/>
+    <xs:attribute name="indexQAI" type="YNType" use="optional"/>
+    <xs:attribute name="largeFont" type="largeFontType" use="optional" default="No"/>
+    <xs:attributeGroup ref="globalAttrGrp"/>
+</xs:complexType>
+
+
+<!--=====================================================-->
+<!--  AdditionalTitles element definition -->
+<!--=====================================================-->
+<xs:complexType name="AdditionalTitlesType">
+    <xs:annotation>
+        <xs:documentation>alias headings to the main title</xs:documentation>
+    </xs:annotation>
+
+    <xs:sequence maxOccurs="unbounded">
+        <xs:element name="Title" type="TitleType"/>        
+    </xs:sequence>
+
+</xs:complexType>
+
+
+
+<!--=====================================================-->
+<!-- Introduction element definition -->
+<!--=====================================================-->
+<xs:complexType name="IntroType">
+    <xs:annotation>
+        <xs:documentation>General text introduction structure</xs:documentation>
+    </xs:annotation>
+
+    <xs:sequence>
+        <xs:element name="Title" type="TitleType" minOccurs="0"/>
+        <xs:element name="Effectivities" type="EffectivitiesType" minOccurs="0"/>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:group ref="TextCWNGroupType"/>
+        </xs:choice>
+    </xs:sequence>
+
+    <xs:attributeGroup ref="globalAttrGrp"/>
+</xs:complexType>
+
+
+<!--=====================================================-->
+<!-- TechMessage element definition -->
+<!--=====================================================-->
+<xs:complexType name="TechMessageType" mixed="true">
+    <xs:annotation>
+        <xs:documentation>Techical code, term or icon</xs:documentation>
+    </xs:annotation>
+
+    <xs:attribute name="techCode" type="genericStrType" use="optional"/>
+    <xs:attribute name="techDesc" type="genericStrType" use="optional"/>
+    <xs:attribute name="techIcon" type="graphicEntityType" use="optional"/>
+    <xs:attributeGroup ref="globalAttrGrp"/>
+</xs:complexType>
+
+
+<!--=====================================================-->
+<!--  SimpleMixedContent element definition -->
+<!--=====================================================-->
+<xs:complexType name="SimpleMixedContentType" mixed="true">
+    <xs:annotation>
+        <xs:documentation>Simple generic data element</xs:documentation>
+    </xs:annotation>
+
+    <xs:attributeGroup ref="globalAttrGrp"/>
+</xs:complexType>
+
+
+<!--=====================================================-->
+<!--  ExtendedMixedContent element definition -->
+<!--=====================================================-->
+<xs:complexType name="ExtendedMixedContentType" mixed="true">
+    <xs:annotation>
+        <xs:documentation>Mixed data element with extension</xs:documentation>
+    </xs:annotation>
+
+    <xs:complexContent>
+        <xs:extension base="SimpleMixedContentType">
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+                <xs:element name="Emphasis" type="EmphasisType"/>
+                <xs:element name="TechMessage" type="TechMessageType"/>
+            </xs:choice>
+        </xs:extension>
+    </xs:complexContent>
+
+</xs:complexType>
+
+
+</xs:schema>
+

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://www.boeing.com/FTID-ML/Revision"
+    targetNamespace="http://www.boeing.com/FTID-ML/Revision" 
+    elementFormDefault="qualified"
+    attributeFormDefault="qualified"
+    version="FTID 2.6">
+
+<!-- 	
+=================================================================
+
+
+Copyright Information:
+      Boeing Proprietary and Confidential - 
+      All Rights Reserved since 2006.
+
+      This schema file is part of the Boeing Flight Technical 
+      Integrated Data (FTID) Specification based on XML.
+      All rights are reserved under Boeing Flight Operations 
+      digital data entitlements, products or services.
+
+     
+Contact Information:   	
+        The Boeing Company
+        Flight Operations Support
+        P.O. Box 3707	MS 20-89
+        Seattle, WA 98124-2207
+        USA
+        email:  flighttraining@Boeing.com
+        Phone:  (206) 662-4000
+        Fax:    (206) 662-4743
+
+		
+===================================================================
+-->
+
+
+<!--=====================================================-->
+<!-- Revision Attribute Group element definition -->
+<!--=====================================================-->
+<xs:attributeGroup name="revAttrGrp">
+    <xs:annotation>
+        <xs:documentation>
+        </xs:documentation>
+    </xs:annotation>
+
+    <xs:attribute name="revStatus" type="revStatusType" use="optional" default="U"/>
+    <xs:attribute name="revNumber" type="revNumberType" use="optional"/>
+    <xs:attribute name="revDate" type="DateType" use="optional"/>
+    <xs:attribute name="revHighlight" type="revHighlightType" use="optional"/>
+    <xs:attribute name="revExpireDate" type="DateType" use="optional"/>
+
+</xs:attributeGroup>
+
+
+
+<!--=====================================================-->
+<!--  Revision Status Type element definition -->
+<!--  U=unchanged, R=Revised, N=New, D=Deleted, M=Moved, T=Temporary -->
+<!--=====================================================-->
+<xs:simpleType name="revStatusType">
+    <xs:annotation>
+        <xs:documentation>Status of the data in respect to the current revision cycle</xs:documentation>
+    </xs:annotation>
+
+    <xs:restriction base="xs:NMTOKEN">
+        <xs:enumeration value="U"/>
+        <xs:enumeration value="R"/>
+        <xs:enumeration value="N"/>
+        <xs:enumeration value="D"/>
+        <xs:enumeration value="M"/>
+        <xs:enumeration value="T"/>
+    </xs:restriction>
+</xs:simpleType>
+
+
+<!--=====================================================-->
+<!--  Date attribute definition -->
+<!--=====================================================-->
+<xs:simpleType name="DateType">
+    <xs:annotation>
+        <xs:documentation>Date field represents a Gregorian calendar date of CCYY-MM-DD
+        </xs:documentation>
+    </xs:annotation>
+
+    <xs:restriction base="xs:date"/>
+</xs:simpleType>
+
+
+<!--=====================================================-->
+<!-- Revision Highlight (reasons) attribute definition -->
+<!--=====================================================-->
+<xs:simpleType name="revHighlightType">
+    <xs:annotation>
+        <xs:documentation>Descriptions for reasons to make the changes</xs:documentation>
+    </xs:annotation>
+
+    <xs:restriction base="xs:string">
+    </xs:restriction>
+</xs:simpleType>
+
+
+<!--=====================================================-->
+<!-- Revision Number attribute definition -->
+<!--=====================================================-->
+<xs:simpleType name="revNumberType">
+    <xs:annotation>
+        <xs:documentation>Traditional sequential number of publishing cycle</xs:documentation>
+    </xs:annotation>
+
+    <xs:restriction base="xs:string">
+        <xs:pattern value="(\c)+"/>
+    </xs:restriction>
+</xs:simpleType>
+
+</xs:schema>
+

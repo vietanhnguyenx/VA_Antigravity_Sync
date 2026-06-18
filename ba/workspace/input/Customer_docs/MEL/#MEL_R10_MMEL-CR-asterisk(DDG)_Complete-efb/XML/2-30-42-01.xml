@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM">]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.2-30-42-01.1006.2-30-42-01" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="30" superSectionNumber="2" sectionName="MEL" chapterName="Ice Rain Protection" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2019-07-12" rev:revStatus="U" rev:revNumber="10" />
+</PUMetaData>
+<MELItem itemNbr="30-42-01" id="X-BOEING:FTID:81205.787.DDG.CU.MEL.2-30-42-01.1.2-30-42-01">
+<Title>Windshield Wiper System (*)</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="2" nbrRequired="0">
+<DispatchConditionRemarks>
+<Para>May be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Airplane is not operated in precipitation within five statute miles of airport of departure or intended landing.</Para>
+</ListItem>
+<ListItem>
+<Para>CAT II and CAT III Approaches are not conducted.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+</DispatchCondition>
+<MELSubItem itemNbr="30-42-01-01">
+<Title>Low Speed Functions</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="2" nbrRequired="0" maintIndicator="(M)">
+<DispatchConditionRemarks>
+<Para>May be inoperative provided associated high speed function is verified to operate normally.</Para>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Verify associated high speed function operates normally (AMM DDG 30-42-01).</Para>
+<List listType="1.">
+<ListItem>
+<Para>Clean associated windshield and supply water to the windshield before operating the wiper.</Para>
+</ListItem>
+<ListItem>
+<Para>Set associated wiper/washer panel (P5) wiper switch to HIGH.</Para>
+</ListItem>
+<ListItem>
+<Para>Confirm windshield wiper high speed function operates normally.</Para>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="30-42-01-02">
+<Title>High Speed Functions</Title>
+<DispatchCondition dispCondOptions="A" repairInterval="C" nbrInstalled="2" nbrRequired="1" maintIndicator="(M)">
+<Title>One Inoperative</Title>
+<DispatchConditionRemarks>
+<Para>One may be inoperative provided associated low speed function is verified to operate normally.</Para>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Verify associated low speed function operates normally (AMM DDG 30-42-01).</Para>
+<List listType="1.">
+<ListItem>
+<Para>Clean associated windshield and supply water to the windshield before operating the wiper.</Para>
+</ListItem>
+<ListItem>
+<Para>Set associated wiper/washer panel (P5) wiper switch to LOW.</Para>
+</ListItem>
+<ListItem>
+<Para>Confirm windshield wiper low speed function operates normally.</Para>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+<DispatchCondition dispCondOptions="B" repairInterval="C" nbrInstalled="2" nbrRequired="0" maintIndicator="(M)">
+<Title>Both Inoperative</Title>
+<DispatchConditionRemarks>
+<Para>May be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Both low speed functions are verified to operate normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Airplane is not operated in known or forecast precipitation of moderate or greater intensity within 5 statute miles of the airport of departure or intended landing.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Verify low speed function operates normally (AMM DDG 30-42-01).</Para>
+<List listType="1.">
+<ListItem>
+<Para>Clean  windshield and supply water to the windshield before operating the wipers.</Para>
+</ListItem>
+<ListItem>
+<Para>Set wiper/washer panel (P5) wiper switches to LOW.</Para>
+</ListItem>
+<ListItem>
+<Para>Confirm windshield wipers low speed function operates normally.</Para>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="30-42-01-03">
+<Title>Intermittent Functions (*)</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="2" nbrRequired="0">
+<DispatchConditionRemarks>
+<Para>One or both may be inoperative.</Para>
+</DispatchConditionRemarks>
+</DispatchCondition>
+</MELSubItem>
+</MELItem>
+</DispatchItems>

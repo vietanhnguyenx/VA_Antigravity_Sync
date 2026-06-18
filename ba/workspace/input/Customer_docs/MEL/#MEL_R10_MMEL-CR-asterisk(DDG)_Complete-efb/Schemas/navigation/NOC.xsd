@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://www.boeing.com/FTID-ML"
+    xmlns:rev="http://www.boeing.com/FTID-ML/Revision"
+    targetNamespace="http://www.boeing.com/FTID-ML" 
+    elementFormDefault="qualified" 
+    attributeFormDefault="unqualified"
+    version="FTID 2.6">
+
+<!-- 	
+=================================================================
+
+
+Copyright Information:
+      Boeing Proprietary and Confidential - 
+      All Rights Reserved since 2006.
+
+      This schema file is part of the Boeing Flight Technical 
+      Integrated Data (FTID) Specification based on XML.
+      All rights are reserved under Boeing Flight Operations 
+      digital data entitlements, products or services.
+
+     
+Contact Information:   	
+        The Boeing Company
+        Flight Operations Support
+        P.O. Box 3707	MS 20-89
+        Seattle, WA 98124-2207
+        USA
+        email:  flighttraining@Boeing.com
+        Phone:  (206) 662-4000
+        Fax:    (206) 662-4743
+
+		
+===================================================================
+-->
+
+<xs:include schemaLocation="../attributeTypes/generalAttrs.xsd"/>
+<xs:include schemaLocation="../basicDataTypes/links.xsd"/>
+<xs:include schemaLocation="../metadataTypes/effect.xsd"/>
+<xs:import namespace="http://www.boeing.com/FTID-ML/Revision" schemaLocation="../metadataTypes/revision.xsd"/>
+<xs:include schemaLocation="../metadataTypes/ataPOF.xsd"/>
+
+
+<!--=====================================================-->
+<!--  NOC (Navigation of Contents) element declaration -->
+<!--=====================================================-->
+<xs:element name="NOC" type="NOCType"/>
+
+
+<!--=====================================================-->
+<!-- NOC element definition -->
+<!--=====================================================-->
+<xs:complexType name="NOCType">
+    <xs:annotation>
+        <xs:documentation>root element to start of a navigation content</xs:documentation>
+    </xs:annotation>
+
+    <xs:choice maxOccurs="unbounded">
+        <xs:element name="NavigationList" type="NavigationListType"/>
+        <xs:element name="SuperSection" type="SuperSectionType"/>
+        <xs:element name="Chapter" type="ChapterType"/>
+        <xs:element name="Section" type="SectionType"/>
+        <xs:element name="FlightPhases" type="FlightPhasesType"/>
+        <xs:element name="Index" type="IndexType"/>
+    </xs:choice>
+
+    <xs:attribute name="model" type="modelType" use="required"/>
+    <xs:attribute name="manualCode" type="manualCodeType" use="required"/>
+    <xs:attribute name="manualName" type="manualNameType" use="required"/>
+    <xs:attribute name="manualNumber" type="manualNumberType" use="required"/>
+    <xs:attribute name="customerCode" type="customerCodeType" use="required"/>
+    <xs:attribute name="customerName" type="customerNameType" use="required"/>
+    <xs:attribute name="revDate" type="rev:DateType" use="required"/>
+    <xs:attribute name="revNumber" type="rev:revNumberType" use="required"/>
+</xs:complexType>
+
+
+<!--=====================================================-->
+<!-- NavigationList element definition -->
+<!-- fileRef attribute must be specified if it is the first node.
+     implied value means its parent has already had the value.
+-->
+<!--=====================================================-->
+<xs:complexType name="NavigationListType">
+    <xs:annotation>
+        <xs:documentation>Group of navigation content</xs:documentation>
+    </xs:annotation>
+
+    <xs:sequence maxOccurs="unbounded">
+        <xs:element name="NavigationItem" type="NavigationItemType"/>
+    </xs:sequence>
+
+    <xs:attribute name="fileRef" type="fileRefType" use="optional"/>
+</xs:complexType>
+
+
+<!--=====================================================-->
+<!-- NavigationItem element definition -->
+<!--=====================================================-->
+<xs:complexType name="NavigationItemType">
+    <xs:annotation>
+        <xs:documentation>Item within a Navigation group.</xs:documentation>
+    </xs:annotation>
+
+    <xs:sequence minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="NavigationList" type="NavigationListType"/>
+    </xs:sequence>
+
+    <xs:attribute name="idRef" type="UIDType" use="required"/>
+    <xs:attribute name="labelRef" type="labelRefType" use="optional"/>
+    <xs:attribute name="titleRef" type="titleRefType" use="optional" default="Title"/>
+    <xs:attribute name="mapFrom" type="mapFromType" use="optional"/>
+</xs:complexType>
+
+
+<!--=====================================================-->
+<!-- SuperSection element definition -->
+<!--=====================================================-->
+<xs:complexType name="SuperSectionType">
+    <xs:annotation>
+        <xs:documentation>A section above the Chapter for DDG/MEL</xs:documentation>
+    </xs:annotation>
+
+    <xs:choice maxOccurs="unbounded">
+        <xs:element name="Chapter" type="ChapterType"/>
+        <xs:element name="NavigationItem" type="NavigationItemType"/>
+    </xs:choice>
+
+    <xs:attribute name="superSectionNumber" type="superSectionNumberType" use="optional"/>
+    <xs:attribute name="titleRef" type="titleRefType" use="optional" default="Title"/>
+</xs:complexType>
+
+
+<!--=====================================================-->
+<!-- Chapter element definition -->
+<!--=====================================================-->
+<xs:complexType name="ChapterType">
+    <xs:annotation>
+        <xs:documentation>Traditional Chapter navigation level</xs:documentation>
+    </xs:annotation>
+
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Section" type="SectionType"/>
+        <xs:element name="NavigationItem" type="NavigationItemType"/>
+    </xs:choice>
+
+    <xs:attribute name="fileRef" type="fileRefType" use="optional"/>
+    <xs:attribute name="idRef" type="UIDType" use="optional"/>
+    <xs:attribute name="chapterNumber" type="chapterNumberType" use="optional"/>
+    <xs:attribute name="chapterName" type="chapterNameType" use="optional"/>
+</xs:complexType>
+
+
+<!--=====================================================-->
+<!-- Section element definition -->
+<!--=====================================================-->
+<xs:complexType name="SectionType">
+    <xs:annotation>
+        <xs:documentation>Traditional Section navigation level</xs:documentation>
+    </xs:annotation>
+
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="NavigationItem" type="NavigationItemType"/>
+    </xs:choice>
+
+    <xs:attribute name="fileRef" type="fileRefType" use="optional"/>
+    <xs:attribute name="idRef" type="UIDType" use="required"/>
+    <xs:attribute name="superSectionNumber" type="superSectionNumberType" use="optional"/>
+    <xs:attribute name="chapterNumber" type="chapterNumberType" use="optional"/>
+    <xs:attribute name="chapterName" type="chapterNameType" use="optional"/>
+    <xs:attribute name="sectionNumber" type="sectionNumberType" use="optional"/>
+    <xs:attribute name="sectionName" type="sectionNameType" use="optional"/>
+    <xs:attribute name="titleRef" type="titleRefType" use="optional" default="Title"/>
+</xs:complexType>
+
+
+<!--=====================================================-->
+<!-- FlightPhases element definition -->
+<!--=====================================================-->
+<xs:complexType name="FlightPhasesType">
+    <xs:annotation>
+        <xs:documentation>Navigation by Phases of flights</xs:documentation>
+    </xs:annotation>
+
+    <xs:sequence maxOccurs="unbounded">
+        <xs:element name="FlightPhase" type="FlightPhaseType"/>
+    </xs:sequence>
+
+</xs:complexType>
+
+
+<!--=====================================================-->
+<!-- FlightPhase element definition -->
+<!--=====================================================-->
+<xs:complexType name="FlightPhaseType">
+    <xs:annotation>
+        <xs:documentation>Navigation phases of flights</xs:documentation>
+    </xs:annotation>
+
+    <xs:sequence>
+        <xs:element name="FlightPhaseType" type="POFListType"/>
+        <xs:element name="NavigationItem" type="NavigationItemType"  minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+
+    <xs:attribute name="fileRef" type="fileRefType" use="required"/>
+</xs:complexType>
+
+
+
+<!--=====================================================-->
+<!-- Index element definition -->
+<!--=====================================================-->
+<xs:complexType name="IndexType">
+    <xs:annotation>
+        <xs:documentation>Navigation using indexing certain content elements like the Titles</xs:documentation>
+    </xs:annotation>
+
+    <xs:sequence maxOccurs="unbounded">
+        <xs:element name="IndexList" type="IndexListType"/>
+    </xs:sequence>
+
+    <xs:attribute name="indexType" type="indexTypeType" use="required"/>
+</xs:complexType>
+
+
+<!--=====================================================-->
+<!-- IndexList element definition -->
+<!--=====================================================-->
+<xs:complexType name="IndexListType">
+    <xs:annotation>
+        <xs:documentation>Group of related Index list</xs:documentation>
+    </xs:annotation>
+
+    <xs:sequence>
+        <xs:element name="IndexGroup" type="IndexGroupType" minOccurs="0"/>
+        <xs:element name="IndexItem" type="IndexItemType" maxOccurs="unbounded"/>
+    </xs:sequence>
+</xs:complexType>
+
+<!--=====================================================-->
+<!-- IndexGroup element definition -->
+<!--=====================================================-->
+<xs:complexType name="IndexGroupType">
+    <xs:annotation>
+        <xs:documentation>Container for an index group</xs:documentation>
+    </xs:annotation>
+
+    <xs:attribute name="groupName" type="groupNameType" use="required"/>
+</xs:complexType>
+
+<!--=====================================================-->
+<!-- IndexItem element definition -->
+<!--=====================================================-->
+<xs:complexType name="IndexItemType">
+    <xs:annotation>
+        <xs:documentation>An index item like a Title</xs:documentation>
+    </xs:annotation>
+
+    <xs:sequence minOccurs="0">
+        <xs:element name="IndexList" type="IndexListType"/>
+    </xs:sequence>
+
+    <xs:attribute name="fileRef" type="fileRefType" use="required"/>
+    <xs:attribute name="idRef" type="UIDType" use="required"/>
+    <xs:attribute name="chapterNumber" type="chapterNumberType" use="optional"/>
+    <xs:attribute name="sectionNumber" type="sectionNumberType" use="optional"/>
+    <xs:attribute name="labelRef" type="labelRefType" use="optional"/>
+    <xs:attribute name="titleRef" type="titleRefType" use="optional" default="Title"/>
+</xs:complexType>
+
+
+<!--=====================================================-->
+<!--  indexType attribute definition -->
+<!--=====================================================-->
+<xs:simpleType name="indexTypeType">
+    <xs:annotation>
+        <xs:documentation>
+        </xs:documentation>
+    </xs:annotation>
+
+    <xs:restriction base="xs:NMTOKEN">
+        <xs:enumeration value="NNC"/>
+        <xs:enumeration value="AI"/>
+        <xs:enumeration value="QAI"/>
+        <xs:enumeration value="UAI"/>
+        <xs:enumeration value="HL"/>
+        <xs:enumeration value="Light"/>
+        <xs:enumeration value="All"/>
+    </xs:restriction>
+</xs:simpleType>
+
+
+<!--=====================================================-->
+<!--  labelRef attribute definition -->
+<!--=====================================================-->
+<xs:simpleType name="labelRefType">
+    <xs:annotation>
+        <xs:documentation>
+        </xs:documentation>
+    </xs:annotation>
+
+    <xs:restriction base="xs:string">
+    </xs:restriction>
+</xs:simpleType>
+
+
+<!--=====================================================-->
+<!--  titleRef attribute definition -->
+<!--=====================================================-->
+<xs:simpleType name="titleRefType">
+    <xs:annotation>
+        <xs:documentation>
+        </xs:documentation>
+    </xs:annotation>
+
+    <xs:restriction base="xs:string">
+    </xs:restriction>
+</xs:simpleType>
+
+
+<!--=====================================================-->
+<!--  groupName attribute definition -->
+<!--=====================================================-->
+<xs:simpleType name="groupNameType">
+    <xs:annotation>
+        <xs:documentation>
+        </xs:documentation>
+    </xs:annotation>
+
+    <xs:restriction base="xs:string">
+    </xs:restriction>
+</xs:simpleType>
+
+
+<!--=====================================================-->
+<!--  mapFrom attribute definition -->
+<!--=====================================================-->
+<xs:simpleType name="mapFromType">
+    <xs:annotation>
+        <xs:documentation>
+        </xs:documentation>
+    </xs:annotation>
+
+    <xs:restriction base="xs:string">
+        <xs:pattern value="(\c)+"/>
+    </xs:restriction>
+</xs:simpleType>
+
+</xs:schema>

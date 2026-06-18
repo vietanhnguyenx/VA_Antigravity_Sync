@@ -1,0 +1,1741 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE FrontMatter[<!NOTATION CGM SYSTEM "CGM"><!ENTITY G0-00-01-00_FAA.fm_3178 SYSTEM "..\Images\0-00-01-00_FAA.fm_3178.cgm" NDATA CGM><!ENTITY G0-00-01-00_FAA.fm_1675354 SYSTEM "..\Images\0-00-01-00_FAA.fm_1675354.cgm" NDATA CGM>]>
+<FrontMatter id="X-BOEING:FTID:81205.787.DDG.PU.FM.0-00-01-00.128638.0-00-01-00_FAA" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/FrontMatter.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="" superSectionNumber="0" sectionName="General" chapterName="Introduction" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2025-09-30" rev:revStatus="R" rev:revNumber="10" />
+</PUMetaData>
+<Introduction id="X-BOEING:FTID:81205.787.DDG.CU.INT.0-00-01-00.128638.0-00-01-00_FAA">
+<FMtopic>
+<Title>
+<?FTID-xref 1731554.0-00-01-00_FAA?>Foreword</Title>
+<List listType="1.">
+<ListItem>
+<Para>This Minimum Equipment List (MEL) is an official manual published in English. It is approved by the Civil Aviation Authority of Vietnam (CAAV).</Para>
+</ListItem>
+<ListItem>
+<Para>This MEL takes into account the specific configuration of each aircraft of VNA B787's fleet.</Para>
+</ListItem>
+<ListItem rev:revStatus="R" rev:revHighlight="Update revision record">
+<Para>This MEL REV 30SEP25  is based on and incorporates all changes in DDG Rev 29MAY2025.</Para>
+<?FTID-rev start?>
+<?FTID-rev end?>
+</ListItem>
+<ListItem>
+<Para>This MEL is produced in frame maker format and can be published in PDF and in electronic format for electronic consultation on EFB</Para>
+</ListItem>
+</List>
+</FMtopic>
+<FMtopic>
+<Title>Model Identification</Title>
+<Para>The airplanes listed in the table below are covered in this Minimum Equipment List (MEL). The table information is used to distinguish data peculiar to one or more, but not all of the airplanes. Where data applies to all airplanes listed, no reference is made to individual airplanes.</Para>
+<table frame="all">
+<tgroup cols="4" colsep="1">
+<colspec colname="1" colwidth="22%" />
+<colspec colname="2" colwidth="27%" />
+<colspec colname="3" colwidth="26%" />
+<colspec colname="4" colwidth="25%" />
+<thead>
+<row rowsep="1">
+<entry colname="1">
+<Para>
+<Emphasis txtStyle="bold">Airplane Number</Emphasis>
+</Para>
+</entry>
+<entry colname="2">
+<Para>
+<Emphasis txtStyle="bold">Registry Number</Emphasis>
+</Para>
+</entry>
+<entry colname="3">
+<Para>
+<Emphasis txtStyle="bold">Serial Number</Emphasis>
+</Para>
+</entry>
+<entry colname="4">
+<Para>
+<Emphasis txtStyle="bold">A/c Type</Emphasis>
+</Para>
+</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">001</Para>
+</entry>
+<entry colname="2">
+<Para align="center">VN-A861</Para>
+</entry>
+<entry colname="3">
+<Para align="center">35151</Para>
+</entry>
+<entry colname="4">
+<Para align="center">787-9</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">002</Para>
+</entry>
+<entry colname="2">
+<Para align="center">VN-A862</Para>
+</entry>
+<entry colname="3">
+<Para align="center">35152</Para>
+</entry>
+<entry colname="4">
+<Para align="center">787-9</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">003</Para>
+</entry>
+<entry colname="2">
+<Para align="center">VN-A863</Para>
+</entry>
+<entry colname="3">
+<Para align="center">35153</Para>
+</entry>
+<entry colname="4">
+<Para align="center">787-9</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">004</Para>
+</entry>
+<entry colname="2">
+<Para align="center">VN-A864</Para>
+</entry>
+<entry colname="3">
+<Para align="center">35154</Para>
+</entry>
+<entry colname="4">
+<Para align="center">787-9</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">005</Para>
+</entry>
+<entry colname="2">
+<Para align="center">VN-A865</Para>
+</entry>
+<entry colname="3">
+<Para align="center">38761</Para>
+</entry>
+<entry colname="4">
+<Para align="center">787-9</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">006</Para>
+</entry>
+<entry colname="2">
+<Para align="center">VN-A866</Para>
+</entry>
+<entry colname="3">
+<Para align="center">38762</Para>
+</entry>
+<entry colname="4">
+<Para align="center">787-9</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">007</Para>
+</entry>
+<entry colname="2">
+<Para align="center">VN-A867</Para>
+</entry>
+<entry colname="3">
+<Para align="center">39287</Para>
+</entry>
+<entry colname="4">
+<Para align="center">787-9</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">008</Para>
+</entry>
+<entry colname="2">
+<Para align="center">VN-A868</Para>
+</entry>
+<entry colname="3">
+<Para align="center">39288</Para>
+</entry>
+<entry colname="4">
+<Para align="center">787-9</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">009</Para>
+</entry>
+<entry colname="2">
+<Para align="center">VN-A869</Para>
+</entry>
+<entry colname="3">
+<Para align="center">38768</Para>
+</entry>
+<entry colname="4">
+<Para align="center">787-9</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">010</Para>
+</entry>
+<entry colname="2">
+<Para align="center">VN-A870</Para>
+</entry>
+<entry colname="3">
+<Para align="center">39289</Para>
+</entry>
+<entry colname="4">
+<Para align="center">787-9</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">011</Para>
+</entry>
+<entry colname="2">
+<Para align="center">VN-A871</Para>
+</entry>
+<entry colname="3">
+<Para align="center">39290</Para>
+</entry>
+<entry colname="4">
+<Para align="center">787-9</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">012</Para>
+</entry>
+<entry colname="2">
+<Para align="center">VN-A872</Para>
+</entry>
+<entry colname="3">
+<Para align="center">60294</Para>
+</entry>
+<entry colname="4">
+<Para align="center">787-10</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">013</Para>
+</entry>
+<entry colname="2">
+<Para align="center">VN-A873</Para>
+</entry>
+<entry colname="3">
+<Para align="center">60288</Para>
+</entry>
+<entry colname="4">
+<Para align="center">787-10</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">014</Para>
+</entry>
+<entry colname="2">
+<Para align="center">VN-A874</Para>
+</entry>
+<entry colname="3">
+<Para align="center">60290</Para>
+</entry>
+<entry colname="4">
+<Para align="center">787-10</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">015</Para>
+</entry>
+<entry colname="2">
+<Para align="center">VN-A877</Para>
+</entry>
+<entry colname="3">
+<Para align="center">60295</Para>
+</entry>
+<entry colname="4">
+<Para align="center">787-10</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">016</Para>
+</entry>
+<entry colname="2">
+<Para align="center">VN-A878</Para>
+</entry>
+<entry colname="3">
+<Para align="center">60296</Para>
+</entry>
+<entry colname="4">
+<Para align="center">787-10</Para>
+</entry>
+</row>
+<row rowsep="0">
+<entry colname="1">
+<Para align="center">017</Para>
+</entry>
+<entry colname="2">
+<Para align="center">VN-A879</Para>
+</entry>
+<entry colname="3">
+<Para align="center">60287</Para>
+</entry>
+<entry colname="4">
+<Para align="center">787-10</Para>
+</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+<Para>This manual is prepared for Vietnam Airlines and specifically for the
+airplanes listed in the "Model Identification" section. </Para>
+</FMtopic>
+<FMtopic>
+<Title>
+<?FTID-xref 1736707.0-00-01-00_FAA?>Document Content and Organization</Title>
+<Para>The MEL is divided into five sections as follows:</Para>
+<Para>SECTION 0 - GENERAL</Para>
+<Para>SECTION 1 - EICAS MESSAGES</Para>
+<Para>This section provides a cross reference between EICAS messages and MEL items which may provide dispatch relief.  The EICAS message list is in alphabetic order and includes all of the current EICAS messages.  The EICAS messages applicable to an operator’s airplane and the description of the condition or fault indicated by the messages can be found in the operator’s Fault
+Isolation Manual (FIM).</Para>
+<Para />
+<Para>SECTION 2 - MEL</Para>
+<Para>This section contains all items from the FAA MMEL.  For ease of use, page numbering uses the MEL item number as follows:</Para>
+<GraphicSet id="X-BOEING:FTID:81205.787.DDG.CU.GR.0-00-01-00.1672864.0-00-01-00_FAA">
+<Illustration fileRef="G0-00-01-00_FAA.fm_3178" linkRef="URN:X-BOEING:FTID:81205.787.DDG.NX.GR.0-00-01-00.3178." />
+</GraphicSet>
+<Para rev:revStatus="R" rev:revHighlight="Update numbering rule">
+<?FTID-rev start?>Explanation of structure:
+	- The first two digits (XX) indicate the ATA Chapter.
+	- The second pair of digits (XX) indicates the Subsystem.
+	- The third pair of digits (XX) is the Item Rank.
+Item Rank allocation:
+	- Item ranks 01-49 correspond to MMEL items.
+	- Item ranks 50-99 correspond to Operator's MEL items<?FTID-rev end?></Para>
+<Para rev:revStatus="R" rev:revHighlight="Update numbering rule">
+<?FTID-rev start?>For example:<?FTID-rev end?></Para>
+<Para rev:revStatus="R" rev:revHighlight="Update numbering rule">
+<?FTID-rev start?>- MEL item 21-51-01 would be found on page 2.21-51-01.1 in Section 2 is item correspond to MMEL item.<?FTID-rev end?></Para>
+<Para rev:revStatus="R" rev:revHighlight="Update numbering rule">
+<?FTID-rev start?>- MEL item 11-01-50 would be found on page 2.11-50-01.1 in Section 2 is item correspond to Operator's MEL item.<?FTID-rev end?></Para>
+<Para />
+<Para>SECTION 3 - CDL</Para>
+<Para>This section contains all items from the AFM Appendix CDL.  For ease of use, page numbering uses the CDL item number as follows:</Para>
+<GraphicSet id="X-BOEING:FTID:81205.787.DDG.CU.GR.0-00-01-00.1675345.0-00-01-00_FAA">
+<Illustration fileRef="G0-00-01-00_FAA.fm_1675354" linkRef="URN:X-BOEING:FTID:81205.787.DDG.NX.GR.0-00-01-00.1675354." />
+</GraphicSet>
+<Para>For example, CDL item 52-11-01 would be found on page 3.52-11-01.1 in Section 3.</Para>
+<Para>When appropriate, illustrations, system effects and performance adjustments follow the CDL item.  The CDL General Limitations information has been printed in this section.</Para>
+<Para>SECTION 4 - MISCELLANEOUS</Para>
+<Para>This section contains information on the use of annotations for airplane model applicability.</Para>
+</FMtopic>
+<FMtopic>
+<Title>Abbreviations and Acronyms</Title>
+<Para>The abbreviations and acronyms appearing in this manual are listed in the following table.</Para>
+<table frame="all">
+<tgroup cols="2" colsep="1">
+<colspec colname="1" colwidth="16%" />
+<colspec colname="2" colwidth="84%" />
+<thead>
+<row rowsep="1">
+<entry colname="1">
+<Para>
+<Emphasis txtStyle="bold">Term</Emphasis>
+</Para>
+</entry>
+<entry colname="2">
+<Para>
+<Emphasis txtStyle="bold">Definition</Emphasis>
+</Para>
+</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">A/P</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Autopilot</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">ABP</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Able Bodied Passenger</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">ACARS</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Aircraft
+Communications Addressing and Reporting System</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">ACM</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Air Cycle Machine</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">ACMF</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Airplane Conditioning
+Monitoring Function</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">ACP</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Audio Control Panel</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">AD</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Airworthiness Directive</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">ADS</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Automatic Dependent Surveillance</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">AFDS</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Autopilot Flight Director System</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">AFM</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Approved Flight Manual / Airplane Flight Manual</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">AGCU</Para>
+</entry>
+<entry colname="2">
+<Para align="left">APU Generator Control Unit</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">AHM</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Airplane Health Monitoring</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">AHRU</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Attitude Heading Reference Unit</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">AIP</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Aeronautical Information Publication</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">AMM</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Aircraft Maintenance Manual</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">AOA</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Angle of Attack</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">APS</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Auxiliary Power System</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">APU</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Auxiliary
+Power Unit</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">ASG</Para>
+</entry>
+<entry colname="2">
+<Para align="left">APU Starter Generator</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">ATC</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Air Traffic Cont</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">ATS</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Air Traffic Services</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">BAI</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Booster Anti-Ice</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">BEDS</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Boeing Electronic Distribution of Software</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">BTMS</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Brake Temperature Monitor System</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">CAC</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Cabin Air Compressor</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">CAP</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Cabin Attendant Panel</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">CAAV</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Civil Aviation Authority of Vietnam</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">CCC</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Core Component Cooling</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">CCD</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Cursor Control Device</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">CCR</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Common Computing Resource</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">CCS</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Common Core
+System</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">CDL</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Configuration Deviation List</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">CDN</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Common Data Network</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">CDU</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Control Display Unit</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">CEC</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Cabin Equipment Center</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">CG</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Centre of Gravity</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">CIPS</Para>
+</entry>
+<entry colname="2">
+<Para align="left">CAC Inlet Ice Protection System</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">CMCF</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Central Maintenance Computing Function</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">CMSC</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Common Motor Start Controller</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">CPCS</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Cabin Pressure Control System</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">CPDLC</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Controller to Pilot Data link Communications</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">CSM</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Controller Server Module or Cabin Service Manager</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">CVR</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Cockpit Voice Recorder</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">DDG</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Dispatch Deviations Guide</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">DLR</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Datalink Recorder</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">DME</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Distance Measuring
+Equipment</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">DMS</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Debris Monitoring System</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">DSP</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Display Select Panel</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">DTMF</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Dual Tone Multi Frequency</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">DU</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Display Unit</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">EAD</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Automatic External Defibrillator</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">EAI</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Engine Anti-Ice</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">ECD</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Electronic Chip Detector</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">ECL</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Electronic Checklist</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">ECV</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Economy Cooling Valves</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">EDP</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Engine Driven Pump</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">EDTO</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Extended Diversion
+Time Operations</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">EE</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Electrical Equipment</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">EEC</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Electronic Engine Control</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">EFB</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Electronic Flight Bag</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">EFIS</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Electronic Flight Information System</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">EGM</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Ethernet Gateway Module</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">EICAS</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Engine Indicating and Crew Alerting System</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">ELT</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Emergency Locator Transmitter</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">EMA</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Electro Mechanical Actuator</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">EMP</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Electric Motor-Driven Pump</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">EP</Para>
+</entry>
+<entry colname="2">
+<Para align="left">External Power</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">EPAS</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Emergency
+Power Assist System</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">ER</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Extended Range</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">ERS</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Earth Reference System</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">FAK</Para>
+</entry>
+<entry colname="2">
+<Para align="left">First Aid Kit</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">FCAC</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Forward Cargo Air Conditioning</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">FCM</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Fault Containment Module</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">FD</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Flight Deck</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">FDE</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Flight Deck Effect</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">FDR</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Flight Data Recorder</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">FEGP</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Fixed
+Electrical Ground Power</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">FIM</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Fault Isolation Manual</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">FMS</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Flight Management System</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">FOHE</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Fuel/Oil Heat Exchanger</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">FPA</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Flight Path Angle</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">FQDC</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Fuel Quantity Data Concentrator</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">FSM</Para>
+</entry>
+<entry colname="2">
+<Para align="left">File Server Module</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">GATU</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Galley Autotransformer Unit</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">GCU</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Galley Cooling Unit</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">GGM</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Graphics Generator Module</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">GLS</Para>
+</entry>
+<entry colname="2">
+<Para align="left">GPS Landing System</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">GPM</Para>
+</entry>
+<entry colname="2">
+<Para align="left">General Processing
+Module</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">GPS</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Global Positioning System</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">GPWS</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Ground Proximity Warning System</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">HCM</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Hydraulic Control Module</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">HF</Para>
+</entry>
+<entry colname="2">
+<Para align="left">High Frequency</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">HMV</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Heavy Maintenance Visit</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">HPTACC</Para>
+</entry>
+<entry colname="2">
+<Para align="left">High Pressure Turbine Active Clearance Control</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">HUD</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Head-Up Display</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">ICS</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Integrated Cooling System</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">IFE</Para>
+</entry>
+<entry colname="2">
+<Para align="left">In Flight Entertainment</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">IFR</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Instrument Flight Rules</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">ILS</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Instrument Landing System</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">IRU</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Inertial Reference Unit</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">ISFD</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Integrated
+Standby Flight Display</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">LNAV</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Lateral Navigation</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">LOC</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Localiser</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">LPTACC</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Low Pressure Turbine Active Clearance Control</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">LRCS</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Long Range Communication Systems</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">LVO</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Low Visibility Operations</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">MCP</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Mode Control Panel</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">MEDC</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Main Engine Data Concentrator</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">MEL</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Minimum Equipment List</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">MFD</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Multi-Function Display</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">MFK</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Multifunction Keypad</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">MOC</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Maintenance
+Operations Centre</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">NAD</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Not an Airworthiness Defect</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">NGS</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Nitrogen Generation System</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">NIM</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Network Interface Module</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">OAT</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Outside Air Temperature</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">OCC</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Operations Control Centre</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">ODS</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Overheat Detection System</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">OFAR</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Overhead Flight Attendant Rest</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">OFCR</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Overhead Flight Crew Rest</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">OPT</Para>
+</entry>
+<entry colname="2">
+<Para align="left">On Board Performance Tool</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">PA</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Passenger Address</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">PBE</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Personal Breathing
+Equipment</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">PCU</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Pack Control Unit</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">PDU</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Power Drive Unit</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">PECS</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Power Electronics Cooling System</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">PF</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Pilot Flying</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">PFCS</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Primary Flight Control System</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">PFD</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Primary Flight Display</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">PIC</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Pilot In Command</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">PM</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Pilot Monitoring</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">POS</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Position</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">PRSOV</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Pressure Regulating Shutoff Valve</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">PRV</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Pressure Regulating Valve</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">PSDC</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Proximity Sensor Data Concentrator</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">QRH</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Quick Reference Handbook</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">RAF</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Ram Air Fan</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">RAT</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Ram Air Turbine</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">RDC</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Remote Data Concentrator</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">REF</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Reference</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">REU</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Remote
+Electronics Unit</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">RFMC</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Ram Fan Motor Controller</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">RLS</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Remote Light Sensor</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">RNAV</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Area Navigation</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">RNP</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Required Navigation Performance</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">RPDU</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Remote Power Distribution Unit</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">RTA</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Required Time of Arrival</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">RVR</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Runway Visual Range</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">RVSM</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Reduced Vertical Separation Minima</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">SCU</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Supplemental Cooling Unit</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">SELCAL</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Selective Call Function</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">SGL</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Single</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">SPU</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Start Power Unit</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">TAT</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Total Air Temperature</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">TCAS</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Traffic Collision and Avoidance System</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">TCP</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Tuning and Control Panels</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">TO/GA</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Take Off/Go Around</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">TPIS</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Tire Pressure Indication System</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">UL</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Uplink</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">VCTU</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Variable Camber Trim Unit</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">VFR</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Visual Flight Rules</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">VFSG</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Variable Frequency Starter Generator</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">VHF</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Very High Frequency</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">VMC</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Visual Meteorological Conditions</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">VNAV</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Vertical Navigation</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">VOR</Para>
+</entry>
+<entry colname="2">
+<Para align="left">VHF Omni Range</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">VSD</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Vertical Situation Display</Para>
+</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">WAI</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Wing Anti-Ice</Para>
+</entry>
+</row>
+<row rowsep="0">
+<entry colname="1">
+<Para align="left">WIPS</Para>
+</entry>
+<entry colname="2">
+<Para align="left">Wing Ice Protection System</Para>
+</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+</FMtopic>
+</Introduction>
+</FrontMatter>

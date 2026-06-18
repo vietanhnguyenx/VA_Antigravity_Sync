@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://www.boeing.com/FTID-ML"
+    xmlns:rev="http://www.boeing.com/FTID-ML/Revision"
+    targetNamespace="http://www.boeing.com/FTID-ML" 
+    elementFormDefault="qualified" 
+    attributeFormDefault="unqualified"
+    version="FTID 2.7">
+
+<!-- 	
+=================================================================
+
+
+Copyright Information:
+      Boeing Proprietary and Confidential - 
+      All Rights Reserved since 2006.
+
+      This schema file is part of the Boeing Flight Technical 
+      Integrated Data (FTID) Specification based on XML.
+      All rights are reserved under Boeing Flight Operations 
+      digital data entitlements, products or services.
+
+     
+Contact Information:   	
+        The Boeing Company
+        Flight Operations Support
+        P.O. Box 3707	MS 20-89
+        Seattle, WA 98124-2207
+        USA
+        email:  flighttraining@Boeing.com
+        Phone:  (206) 662-4000
+        Fax:    (206) 662-4743
+
+		
+===================================================================
+-->
+
+<xs:include schemaLocation="../attributeTypes/generalAttrs.xsd"/>
+<xs:include schemaLocation="../basicDataTypes/basicDataInclude.xsd"/>
+<xs:include schemaLocation="../metadataTypes/effect.xsd"/>
+<xs:import namespace="http://www.boeing.com/FTID-ML/Revision" schemaLocation="../metadataTypes/revision.xsd"/>
+<xs:include schemaLocation="../metadataTypes/ataSystems.xsd" />
+<xs:include schemaLocation="../metadataTypes/publishMD.xsd" />
+<xs:include schemaLocation="../contentUnits/PerfTopic.xsd" />
+<xs:include schemaLocation="../contentUnits/SoftwareUnit.xsd" />
+
+
+<!--=====================================================-->
+<!--  Performances element declaration -->
+<!--=====================================================-->
+<xs:element name="Performances" type="PerformancesType"/>
+
+
+<!--=====================================================-->
+<!--  Performances element definition -->
+<!--=====================================================-->
+<xs:complexType name="PerformancesType">
+    <xs:annotation>
+        <xs:documentation>Publish-Unit for performance content</xs:documentation>
+    </xs:annotation>
+
+    <xs:sequence>
+        <xs:element name="PUMetaData" type="PUMetaDataType"/>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element ref="PerfTopic" />
+            <xs:element ref="SoftwareUnit" />
+            <xs:element ref="iLink" />
+        </xs:choice> 
+    </xs:sequence>
+
+    <xs:attribute name="id" type="UIDType" use="required"/>
+</xs:complexType>
+
+
+
+</xs:schema>

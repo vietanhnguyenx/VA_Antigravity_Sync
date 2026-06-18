@@ -1,0 +1,527 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM">]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.2-32-45-01.6578.2-32-45-01_FAA" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="32" superSectionNumber="2" sectionName="MEL" chapterName="Landing Gear" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2025-09-30" rev:revStatus="U" rev:revNumber="10" />
+</PUMetaData>
+<MELItem itemNbr="32-45-01" id="X-BOEING:FTID:81205.787.DDG.CU.MEL.2-32-45-01.1.2-32-45-01_FAA">
+<Title>Wheel Brake Systems</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="8" nbrRequired="6" maintIndicator="(M)" opsIndicator="(O)">
+<DispatchConditionRemarks>
+<Para>May be inoperative on one main landing gear wheel per truck provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Inoperative wheel brake is deactivated.</Para>
+</ListItem>
+<ListItem>
+<Para>Electric brake actuator systems on remaining wheels on associated truck operate normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Use of flaps 20 for takeoff is prohibited.</Para>
+</ListItem>
+<ListItem>
+<Para>Appropriate performance adjustments for brake deactivated are applied.</Para>
+</ListItem>
+<ListItem>
+<Para>After takeoff, gear remains down for two minutes before retraction.</Para>
+</ListItem>
+</List>
+<Note>
+<Para>In the event of engine failure after V1, retract landing gear after takeoff. </Para>
+</Note>
+<Note>
+<Para>Use Boeing Onboard Performance Tool (OPT) to determine take-off weight and/or landing weight as it affects aircraft performance.</Para>
+</Note>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Note>
+<Para>It is acceptable for the PARKING BRAKE SET memo to not be displayed as long as the parking brake is verified to be operational.  To verify that the parking brake is operational, verify in the 32 LANDING GEAR BRAKES maintenance page that the remaining active brakes display a brake clamping force of 25% or greater when the parking brake lever is latched up in the set position.</Para>
+</Note>
+<Para>Deactivate the inoperative wheel brake (AMM DDG 32-45-01).</Para>
+<List listType="1.">
+<ListItem>
+<Para>Chock the wheels.</Para>
+</ListItem>
+<ListItem>
+<Para>Install landing gear downlock pins.</Para>
+</ListItem>
+<ListItem>
+<Para>Deactivate inoperative wheel brake using one of the following two methods:</Para>
+<Note>
+<Para>Inoperative electric brake actuators on affected wheel brake may be removed for dispatch.</Para>
+</Note>
+<List listType="A.">
+<ListItem>
+<Para>Use the CMCF Special Functions test to deactivate affected brake. </Para>
+<List listType="1)">
+<ListItem>
+<Para>Set parking brake.</Para>
+</ListItem>
+<ListItem>
+<Para>Do the appropriate test to deactivate the inoperative brake:</Para>
+<List listType="a.">
+<ListItem>
+<Para>32 Electric Brake Actuation Control, Wheel 1 Brake/EBA Deactivation</Para>
+</ListItem>
+<ListItem>
+<Para>32 Electric Brake Actuation Control, Wheel 2 Brake/EBA Deactivation</Para>
+</ListItem>
+<ListItem>
+<Para>32 Electric Brake Actuation Control, Wheel 3 Brake/EBA Deactivation</Para>
+</ListItem>
+<ListItem>
+<Para>32 Electric Brake Actuation Control, Wheel 4 Brake/EBA Deactivation</Para>
+</ListItem>
+<ListItem>
+<Para>32 Electric Brake Actuation Control, Wheel 5 Brake/EBA Deactivation</Para>
+</ListItem>
+<ListItem>
+<Para>32 Electric Brake Actuation Control, Wheel 6 Brake/EBA Deactivation</Para>
+</ListItem>
+<ListItem>
+<Para>32 Electric Brake Actuation Control, Wheel 7 Brake/EBA Deactivation</Para>
+</ListItem>
+<ListItem>
+<Para>32 Electric Brake Actuation Control, Wheel 8 Brake/EBA Deactivation</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Confirm the associated brake status on the LANDING GEAR BRAKES maintenance page indicates BRAKE DEAC.</Para>
+</ListItem>
+<ListItem>
+<Para>For the inoperative Safran (Messier-Bugatti-Dowty) brake, confirm the gap between the electric brake actuators and the brake pressure plate is a minimum of 0.07 in (1.8 mm).  An electric brake actuator in contact with the brake pressure plate must be manually retracted or removed.</Para>
+</ListItem>
+<ListItem>
+<Para>For the inoperative Collins (UTAS, Goodrich) brake, confirm the electric brake actuators on the inoperative brake are not in contact with the brake pressure plate.  An electric brake actuator in contact with the brake pressure plate must be retracted or removed.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>For an inoperative brake that cannot be deactivated using the CMCF Special Functions test, deactivate the brake by disconnecting, capping and stowing the electrical connector to the inoperative brake.</Para>
+<Note>
+<Para>BRAKE TEMP SYS may be displayed.</Para>
+</Note>
+<List listType="1)">
+<ListItem>
+<Para>Release parking brake.</Para>
+</ListItem>
+<ListItem>
+<Para>For brake on wheel 1 or 5:</Para>
+<List listType="a.">
+<ListItem>
+<Para>On the P500 panel, open and collar the EBPSU-C1-BSCU circuit breaker.</Para>
+</ListItem>
+<ListItem>
+<Para>On the P500 panel, open and collar the EBPSU-C1-EBAC circuit breaker.</Para>
+</ListItem>
+<ListItem>
+<Para>Disconnect, cap and stow the electrical connector for the inoperative brake.</Para>
+</ListItem>
+<ListItem>
+<Para>Install protective cap (dispatch tool number K32021) on the electrical connector receptacle.</Para>
+</ListItem>
+<ListItem>
+<Para>For the inoperative Safran (Messier-Bugatti-Dowty) brake, confirm the gap between the electric brake actuators and the brake pressure plate is a minimum of 0.07 in (1.8 mm).  An electric brake actuator in contact with the brake pressure plate must be manually retracted or removed.</Para>
+</ListItem>
+<ListItem>
+<Para>For the inoperative UTAS (Goodrich) brake, confirm the electric brake actuators on the inoperative brake are not in contact with the brake pressure plate.  An electric brake actuator in contact with the brake pressure plate must be manually retracted or removed.</Para>
+</ListItem>
+<ListItem>
+<Para>On the P500 panel, close the EBPSU-C1-EBAC circuit breaker.</Para>
+</ListItem>
+<ListItem>
+<Para>On the P500 panel, close the EBPSU-C1-BSCU circuit breaker.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>For brake on wheel 2 or 6:</Para>
+<List listType="a.">
+<ListItem>
+<Para>On the P500 panel, open and collar the EBPSU-L-BSCU circuit breaker.</Para>
+</ListItem>
+<ListItem>
+<Para>On the P500 panel, open and collar the EBPSU-L-EBAC circuit breaker.</Para>
+</ListItem>
+<ListItem>
+<Para>Disconnect, cap and stow the electrical connector for the inoperative brake.</Para>
+</ListItem>
+<ListItem>
+<Para>Install protective cap (dispatch tool number K32021) on the electrical connector receptacle.</Para>
+</ListItem>
+<ListItem>
+<Para>For the inoperative Safran (Messier-Bugatti-Dowty) brake, confirm the gap between the electric brake actuators and the brake pressure plate is a minimum of 0.07 in (1.8 mm).  An electric brake actuator in contact with the brake pressure plate must be manually retracted or removed.</Para>
+</ListItem>
+<ListItem>
+<Para>For the inoperative Collins (UTAS, Goodrich) brake, confirm the  electric brake actuators on the inoperative brake are not in contact with the brake pressure plate.  An electric brake actuator in contact with the brake pressure plate must be retracted or removed.</Para>
+</ListItem>
+<ListItem>
+<Para>On the P500 panel, close the EBPSU-L-EBAC circuit breaker.</Para>
+</ListItem>
+<ListItem>
+<Para>On the P500 panel, close the EBPSU-L-BSCU circuit breaker.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>For brake on wheel 3 or 7:</Para>
+<List listType="a.">
+<ListItem>
+<Para>On the P600 panel, open and collar the EBPSU-R-BSCU circuit breaker.</Para>
+</ListItem>
+<ListItem>
+<Para>On the P600 panel, open and collar the EBPSU-R-EBAC circuit breaker.</Para>
+</ListItem>
+<ListItem>
+<Para>Disconnect, cap and stow the electrical connector for the inoperative brake.</Para>
+</ListItem>
+<ListItem>
+<Para>Install protective cap (dispatch tool number K32021) on the electrical connector receptacle.</Para>
+</ListItem>
+<ListItem>
+<Para>For the inoperative Safran (Messier-Bugatti-Dowty) brake, confirm the gap between the electric brake actuators and the brake pressure plate is a minimum of 0.07 in (1.8 mm).  An electric brake actuator in contact with the brake pressure plate must be manually retracted or removed.</Para>
+</ListItem>
+<ListItem>
+<Para>For the inoperative Collins (UTAS, Goodrich) brake, confirm the electric brake actuators on the inoperative brake are not in contact with the brake pressure plate.  An electric brake actuator in contact with the brake pressure plate must be retracted or removed.</Para>
+</ListItem>
+<ListItem>
+<Para>On the P600 panel, close the EBPSU-R-EBAC circuit breaker.</Para>
+</ListItem>
+<ListItem>
+<Para>On the P600 panel, close the EBPSU-R-BSCU circuit breaker.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>For brake on wheel 4 or 8:</Para>
+<List listType="a.">
+<ListItem>
+<Para>On the P600 panel, open and collar the EBPSU-C2-BSCU circuit breaker.</Para>
+</ListItem>
+<ListItem>
+<Para>On the P600 panel, open and collar the EBPSU-C2-EBAC circuit breaker.</Para>
+</ListItem>
+<ListItem>
+<Para>Disconnect, cap and stow the electrical connector for the inoperative brake.</Para>
+</ListItem>
+<ListItem>
+<Para>Install protective cap (dispatch tool number K32021) on the electrical connector receptacle.</Para>
+</ListItem>
+<ListItem>
+<Para>For the inoperative Safran (Messier-Bugatti-Dowty) brake, confirm the gap between the electric brake actuators and the brake pressure plate is a minimum of 0.07 in (1.8 mm).  An electric brake actuator in contact with the brake pressure plate must be manually retracted or removed.</Para>
+</ListItem>
+<ListItem>
+<Para>For the inoperative Collins (UTAS, Goodrich) brake, confirm the electric brake actuators on the inoperative brake are not in contact with the brake pressure plate.  An electric brake actuator in contact with the brake pressure plate must be retracted or removed.</Para>
+</ListItem>
+<ListItem>
+<Para>On the P600 panel, close the EBPSU-C2-EBAC circuit breaker.</Para>
+</ListItem>
+<ListItem>
+<Para>On the P600 panel, close the EBPSU-C2-BSCU circuit breaker.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Effectivities>
+<Effectivity>For UTAS (Goodrich) brakes:</Effectivity>
+</Effectivities>
+<Para>Use the CMCF Special Functions test (step 3A) to deactivate affected brake.</Para>
+</ListItem>
+<ListItem>
+<Effectivities>
+<Effectivity>For Safran (Messier-Bugatti-Dowty) brakes:</Effectivity>
+</Effectivities>
+<Para>The AUTOBRAKE status message will be displayed.  The airplane must also be dispatched using MMEL item 32-42-01.</Para>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Remove landing gear downlock pins.</Para>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+<OperationProcedure>
+<Note>
+<Para>Operations may be affected at airports identified as having Low Range Radio Altimeter (LRRA) Safety Risk and at contiguous United States airports impacted by 5G C-Band interference [Ref FAA Airworthiness Directive (AD) 2023-12-10 and associated Boeing Flight Crew Operations Manual Bulletin (OMB)]</Para>
+</Note>
+<List listType="1.">
+<ListItem>
+<Para>Use of flaps 20 for takeoff is prohibited.</Para>
+</ListItem>
+<ListItem>
+<Para>Increase flight planning fuel by 600 lb (272 kg). </Para>
+</ListItem>
+<ListItem>
+<Para>Use takeoff and landing performance based on one or two brakes deactivated. </Para>
+</ListItem>
+<ListItem>
+<Para>After takeoff, leave the landing gear extended for a minimum of two minutes to allow the wheels to spin down prior to gear retraction.</Para>
+</ListItem>
+<ListItem>
+<Para>In case of engine failure after V1, landing gear should be retracted after takeoff.</Para>
+</ListItem>
+<ListItem>
+<Para>It is not necessary to apply landing gear extended takeoff performance adjustments when dispatching under this item.</Para>
+</ListItem>
+<ListItem>
+<Para>For brakes deactivated using manual disconnect procedure, BRAKE TEMP SYS will display. Prior to dispatch, confirm temperatures for operating brakes are in an acceptable range.</Para>
+</ListItem>
+</List>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+<MELSubItem itemNbr="32-45-01-01">
+<Title>Electric Brake Actuator Systems</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="32" nbrRequired="24" maintIndicator="(M)" opsIndicator="(O)">
+<DispatchConditionRemarks>
+<Para>One per wheel may be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Inoperative electric brake actuator is deactivated.</Para>
+</ListItem>
+<ListItem>
+<Para>Remaining wheel brake systems on associated truck have not been deactivated.</Para>
+</ListItem>
+<ListItem>
+<Para>Appropriate performance adjustments for electric brake actuator deactivated are applied.</Para>
+</ListItem>
+</List>
+<Note>
+<Para>Use Boeing Onboard Performance Tool (OPT) to determine take-off weight and/or landing weight as it affects aircraft performance.</Para>
+</Note>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Deactivate the inoperative electric brake actuator (EBA) (AMM DDG 32-45-01).</Para>
+<List listType="1.">
+<ListItem>
+<Para>Chock the wheels.</Para>
+</ListItem>
+<ListItem>
+<Para>Install landing gear downlock pins.</Para>
+</ListItem>
+<ListItem>
+<Para>Deactivate inoperative electric brake actuator using one of the following two methods:</Para>
+<List listType="A.">
+<ListItem>
+<Para>Use the CMCF Special Functions test to deactivate the inoperative EBA. </Para>
+<List listType="1)">
+<ListItem>
+<Para>Set parking brake.</Para>
+</ListItem>
+<ListItem>
+<Para>Do the appropriate test to deactivate the inoperative EBA:</Para>
+<List listType="a.">
+<ListItem>
+<Para>32 Electric Brake Actuation Control, Wheel 1 Brake/EBA Deactivation</Para>
+</ListItem>
+<ListItem>
+<Para>32 Electric Brake Actuation Control, Wheel 2 Brake/EBA Deactivation</Para>
+</ListItem>
+<ListItem>
+<Para>32 Electric Brake Actuation Control, Wheel 3 Brake/EBA Deactivation</Para>
+</ListItem>
+<ListItem>
+<Para>32 Electric Brake Actuation Control, Wheel 4 Brake/EBA Deactivation</Para>
+</ListItem>
+<ListItem>
+<Para>32 Electric Brake Actuation Control, Wheel 5 Brake/EBA Deactivation</Para>
+</ListItem>
+<ListItem>
+<Para>32 Electric Brake Actuation Control, Wheel 6 Brake/EBA Deactivation</Para>
+</ListItem>
+<ListItem>
+<Para>32 Electric Brake Actuation Control, Wheel 7 Brake/EBA Deactivation</Para>
+</ListItem>
+<ListItem>
+<Para>32 Electric Brake Actuation Control, Wheel 8 Brake/EBA Deactivation</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Confirm the associated EBA status on the LANDING GEAR BRAKES maintenance page indicates DEAC.</Para>
+</ListItem>
+<ListItem>
+<Para>For Safran (Messier-Bugatti-Dowty) brakes, confirm the gap between the inoperative electric brake actuator and the brake pressure plate is a minimum of 0.07 in (1.8 mm).  An electric brake actuator in contact with the brake pressure plate must be manually retracted or removed.  If the electric brake actuator is removed, the associated brake must be deactivated, and
+the airplane must be dispatched using MEL item 32-45-01.</Para>
+</ListItem>
+<ListItem>
+<Para>For Collins (UTAS, Goodrich) brakes, confirm that inoperative electric brake actuator is not in contact with the brake pressure plate.  An electric brake actuator in contact with the brake pressure plate must be retracted or removed.  If the electric brake actuator is removed, the associated brake must be deactivated, and the airplane
+must be dispatched using MEL item 32-45-01.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>For an inoperative EBA that cannot be deactivated using the CMCF Special Functions test, deactivate the inoperative EBA by disconnecting, capping and stowing the electrical connector to the inoperative EBA.</Para>
+<List listType="1)">
+<ListItem>
+<Para>Release parking brake.</Para>
+</ListItem>
+<ListItem>
+<Para>For EBA on wheel 1 or 5:</Para>
+<List listType="a.">
+<ListItem>
+<Para>On the P500 panel, open and collar the EBPSU-C1-BSCU circuit breaker.</Para>
+</ListItem>
+<ListItem>
+<Para>On the P500 panel, open and collar the EBPSU-C1-EBAC circuit breaker.</Para>
+</ListItem>
+<ListItem>
+<Para>Disconnect, cap and stow the electrical connector for the inoperative EBA.</Para>
+</ListItem>
+<ListItem>
+<Para>Install protective cap (dispatch tool number K32021) on the electrical connector receptacle.</Para>
+</ListItem>
+<ListItem>
+<Para>For Safran (Messier-Bugatti-Dowty) brakes, confirm the gap between the inoperative electric brake actuator and the brake pressure plate is a minimum of 0.07 in (1.8 mm).  An electric brake actuator in contact with the brake pressure plate must be manually retracted or removed.  If the electric brake actuator is removed, the associated brake must be deactivated, and
+the airplane must be dispatched using MEL item 32-45-01.</Para>
+</ListItem>
+<ListItem>
+<Para>For Collins (UTAS, Goodrich) brakes, confirm that inoperative electric brake actuator is not in contact with the brake pressure plate.  An electric brake actuator in contact with the brake pressure plate must be retracted or removed.  If the electric brake actuator is removed, the associated brake must be deactivated, and the airplane must
+be dispatched using MEL item 32-45-01.</Para>
+</ListItem>
+<ListItem>
+<Para>On the P500 panel, close the EBPSU-C1-EBAC circuit breaker.</Para>
+</ListItem>
+<ListItem>
+<Para>On the P500 panel, close the EBPSU-C1-BSCU circuit breaker.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>For EBA on wheel 2 or 6:</Para>
+<List listType="a.">
+<ListItem>
+<Para>On the P500 panel, open and collar the EBPSU-L-BSCU circuit breaker.</Para>
+</ListItem>
+<ListItem>
+<Para>On the P500 panel, open and collar the EBPSU-L-EBAC circuit breaker.</Para>
+</ListItem>
+<ListItem>
+<Para>Disconnect, cap and stow the electrical connector for the inoperative EBA.</Para>
+</ListItem>
+<ListItem>
+<Para>Install protective cap (dispatch tool number K32021) on the electrical connector receptacle.</Para>
+</ListItem>
+<ListItem>
+<Para>For Safran (Messier-Bugatti-Dowty) brakes, confirm the gap between the inoperative electric brake actuator and the brake pressure plate is a minimum of 0.07 in (1.8 mm).  An electric brake actuator in contact with the brake pressure plate must be manually retracted or removed.  If the electric brake actuator is removed, the associated brake must be deactivated, and
+the airplane must be dispatched using MEL item 32-45-01.</Para>
+</ListItem>
+<ListItem>
+<Para>For Collins (UTAS, Goodrich) brakes, confirm that inoperative electric brake actuator is not in contact with the brake pressure plate.  An electric brake actuator in contact with the brake pressure plate must be retracted or removed.  If the electric brake actuator is removed, the associated brake must be deactivated, and the airplane must
+be dispatched using MEL item 32-45-01.</Para>
+</ListItem>
+<ListItem>
+<Para>On the P500 panel, close the EBPSU-L-EBAC circuit breaker.</Para>
+</ListItem>
+<ListItem>
+<Para>On the P500 panel, close the EBPSU-L-BSCU circuit breaker.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>For EBA on wheel 3 or 7:</Para>
+<List listType="a.">
+<ListItem>
+<Para>On the P600 panel, open and collar the EBPSU-R-BSCU circuit breaker.</Para>
+</ListItem>
+<ListItem>
+<Para>On the P600 panel, open and collar the EBPSU-R-EBAC circuit breaker.</Para>
+</ListItem>
+<ListItem>
+<Para>Disconnect, cap and stow the electrical connector for the inoperative EBA.</Para>
+</ListItem>
+<ListItem>
+<Para>Install protective cap (dispatch tool number K32021) on the electrical connector receptacle.</Para>
+</ListItem>
+<ListItem>
+<Para>For Safran (Messier-Bugatti-Dowty) brakes, confirm the gap between the inoperative electric brake actuator and the brake pressure plate is a minimum of 0.07 in (1.8 mm).  An electric brake actuator in contact with the brake pressure plate must be manually retracted or removed.  If the electric brake actuator is removed, the associated brake must be deactivated, and
+the airplane must be dispatched using MEL item 32-45-01.</Para>
+</ListItem>
+<ListItem>
+<Para>For Collins (UTAS, Goodrich) brakes, confirm that inoperative electric brake actuator is not in contact with the brake pressure plate.  An electric brake actuator in contact with the brake pressure plate must be retracted or removed.  If the electric brake actuator is removed, the associated brake must be deactivated, and the airplane must
+be dispatched using MEL item 32-45-01.</Para>
+</ListItem>
+<ListItem>
+<Para>On the P600 panel, close the EBPSU-R-EBAC circuit breaker.</Para>
+</ListItem>
+<ListItem>
+<Para>On the P600 panel, close the EBPSU-R-BSCU circuit breaker.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>For EBA on wheel 4 or 8:</Para>
+<List listType="a.">
+<ListItem>
+<Para>On the P600 panel, open and collar the EBPSU-C2-BSCU circuit breaker.</Para>
+</ListItem>
+<ListItem>
+<Para>On the P600 panel, open and collar the EBPSU-C2-EBAC circuit breaker.</Para>
+</ListItem>
+<ListItem>
+<Para>Disconnect, cap and stow the electrical connector for the inoperative EBA.</Para>
+</ListItem>
+<ListItem>
+<Para>Install protective cap (dispatch tool number K32021) on the electrical connector receptacle.</Para>
+</ListItem>
+<ListItem>
+<Para>For Safran (Messier-Bugatti-Dowty) brakes, confirm the gap between the inoperative electric brake actuator and the brake pressure plate is a minimum of 0.07 in (1.8 mm).  An electric brake actuator in contact with the brake pressure plate must be manually retracted or removed.  If the electric brake actuator is removed, the associated brake must be deactivated, and
+the airplane must be dispatched using MEL item 32-45-01.</Para>
+</ListItem>
+<ListItem>
+<Para>For Collins (UTAS, Goodrich) brakes, confirm that inoperative electric brake actuator is not in contact with the brake pressure plate.  An electric brake actuator in contact with the brake pressure plate must be retracted or removed.  If the electric brake actuator is removed, the associated brake must be deactivated, and the airplane must
+be dispatched using MEL item 32-45-01.</Para>
+</ListItem>
+<ListItem>
+<Para>On the P600 panel, close the EBPSU-C2-EBAC circuit breaker.</Para>
+</ListItem>
+<ListItem>
+<Para>On the P600 panel, close the EBPSU-C2-BSCU circuit breaker.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Use the CMCF Special Functions test (step 3A) to deactivate affected EBA.</Para>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Remove landing gear downlock pins.</Para>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+<OperationProcedure>
+<Note>
+<Para>Operations may be affected at airports identified as having Low Range Radio Altimeter (LRRA) Safety Risk and at contiguous United States airports impacted by 5G C-Band interference [Ref FAA Airworthiness Directive (AD) 2023-12-10 and associated Boeing Flight Crew Operations Manual Bulletin (OMB)]</Para>
+</Note>
+<Note>
+<Para>For one brake deactivated in combination with one or more EBAs deactivated, base performance on two brakes inoperative.</Para>
+</Note>
+<List listType="1.">
+<ListItem>
+<Para>For one EBA deactivated, base performance on one electric brake actuator inoperative.</Para>
+</ListItem>
+<ListItem>
+<Para>For two to four EBAs deactivated, base performance on one brake inoperative.</Para>
+</ListItem>
+<ListItem>
+<Para>For five to eight EBAs deactivated, base performance on two brakes inoperative.</Para>
+</ListItem>
+</List>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+</MELItem>
+</DispatchItems>

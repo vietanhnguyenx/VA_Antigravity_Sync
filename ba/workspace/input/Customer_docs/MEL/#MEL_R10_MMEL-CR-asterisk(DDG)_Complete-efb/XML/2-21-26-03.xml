@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM">]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.2-21-26-03.998550.2-21-26-03" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="21" superSectionNumber="2" sectionName="MEL" chapterName="Air Conditioning" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2019-09-25" rev:revStatus="U" rev:revNumber="10" />
+</PUMetaData>
+<MELItem itemNbr="21-26-03" id="X-BOEING:FTID:81205.787.DDG.CU.MEL.2-21-26-03.1.2-21-26-03">
+<Title>Lavatory/Galley Ventilation PECS Liquid Heat Exchanger Barrier Filter</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="1" nbrRequired="0" maintIndicator="(M)">
+<DispatchConditionRemarks>
+<Para>May be inoperative provided lavatory/galley flow and temperature sensor is deactivated.</Para>
+</DispatchConditionRemarks>
+<Note>
+<Para>Deactivation of lavatory/galley flow and temperature sensor results in display of LAVATORY/GALLEY FLOW DET status message.  The airplane must also be dispatched using MEL item 21-26-02.</Para>
+</Note>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Deactivate lavatory/galley flow and temperature sensor and, if desired, remove filter (AMM DDG 21-26-03).</Para>
+<List listType="1.">
+<ListItem>
+<Para>Using a flight deck multi-function display only, open the LAV GALLEY FLOW	 DET circuit breaker and lock with an INOP tag.</Para>
+</ListItem>
+<ListItem>
+<Note>
+<Para>LAVATORY/GALLEY FLOW DET status message will be displayed.  The airplane must also be dispatched using MEL item 21-26-02.</Para>
+</Note>
+</ListItem>
+<ListItem>
+<Para>If desired, a dirty or clogged filter may be removed:</Para>
+<List listType="A.">
+<ListItem>
+<Para>Open the following circuit breakers and lock with an DO NOT CLOSE tag:</Para>
+<List listType="1)">
+<ListItem>
+<Para>MC LAV GALLEY FAN 1</Para>
+</ListItem>
+<ListItem>
+<Para>MC LAV GALLEY FAN 2</Para>
+</ListItem>
+<ListItem>
+<Para>LAV GALLEY FAN 1</Para>
+</ListItem>
+<ListItem>
+<Para>LAV GALLEY FAN 2</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Gain access to lav/galley filter.</Para>
+</ListItem>
+<ListItem>
+<Para>Remove filter.</Para>
+</ListItem>
+<ListItem>
+<Para>Close the following circuit breakers:</Para>
+<List listType="1)">
+<ListItem>
+<Para>MC LAV GALLEY FAN 1</Para>
+</ListItem>
+<ListItem>
+<Para>MC LAV GALLEY FAN 2</Para>
+</ListItem>
+<ListItem>
+<Para>LAV GALLEY FAN 1</Para>
+</ListItem>
+<ListItem>
+<Para>LAV GALLEY FAN 2</Para>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELItem>
+</DispatchItems>

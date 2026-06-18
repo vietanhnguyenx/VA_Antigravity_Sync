@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM">]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.2-34-42-03.4733.2-34-42-03_FAA" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="34" superSectionNumber="2" sectionName="MEL" chapterName="Navigation" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2025-09-30" rev:revStatus="U" rev:revNumber="10" />
+</PUMetaData>
+<MELItem itemNbr="34-42-03" id="X-BOEING:FTID:81205.787.DDG.CU.MEL.2-34-42-03.1.2-34-42-03_FAA">
+<Title>ATC Transponder/Automatic Altitude Reporting Systems</Title>
+<DispatchCondition dispCondOptions="A" repairInterval="D" nbrInstalled="2" nbrRequired="1">
+<Title>One Inoperative (*)</Title>
+<DispatchConditionRemarks>
+<Para>One may be inoperative.</Para>
+</DispatchConditionRemarks>
+</DispatchCondition>
+<DispatchCondition dispCondOptions="B" repairInterval="B" nbrInstalled="2" nbrRequired="0">
+<Title>
+<?FTID-xref 1349465.2-34-42-03_FAA?>Both Inoperative</Title>
+<DispatchConditionRemarks>
+<Para>May be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Enroute operations do not require its use.</Para>
+</ListItem>
+<ListItem>
+<Para>Prior to flight, approval is obtained from ATC facilities having jurisdiction over the planned route of flight.</Para>
+</ListItem>
+<ListItem>
+<Para>Flight is planned below RVSM airspace.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<Note>
+<Para>The ADS-B Out data will be inoperative. The airplane must also be dispatched using MEL item 34-42-06-01.</Para>
+</Note>
+<Note rev:revStatus="R" rev:revHighlight="Added new note to provide dispatch guidance that TCAS system will also be inoperative.">
+<?FTID-rev start?>
+<Para>The TCAS will be inoperative and TCAS L/R status messages will be displayed. The airplane must also be dispatched using MEL item 34-42-02.</Para>
+<?FTID-rev end?>
+</Note>
+<DispatchProcedure>
+<OperationNote>
+<List listType="1.">
+<ListItem>
+<Para>RVSM and EDTO operations are not to be conducted.</Para>
+</ListItem>
+<ListItem>
+<Para>Contact OCC Dispatch to confirm that ATC approval has been obtained for the planned flight.</Para>
+</ListItem>
+</List>
+</OperationNote>
+</DispatchProcedure>
+</DispatchCondition>
+<MELSubItem itemNbr="34-42-03-01">
+<Title>Elementary and Enhanced Downlink Aircraft Reportable Parameters</Title>
+<DispatchCondition repairInterval="A" nbrInstalled="2" nbrRequired="0">
+<DispatchConditionRemarks>
+<Para>May be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Enroute operations do not require its use.</Para>
+</ListItem>
+<ListItem>
+<Para>Repairs are made prior to completion of next heavy maintenance visit.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+</DispatchCondition>
+</MELSubItem>
+</MELItem>
+</DispatchItems>

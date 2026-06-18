@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM">]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.2-46-11-01.2375.2-46-11-01_FAA" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="46" superSectionNumber="2" sectionName="MEL" chapterName="Information Systems" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2024-06-19" rev:revStatus="U" rev:revNumber="10" />
+</PUMetaData>
+<MELItem itemNbr="46-11-01" id="X-BOEING:FTID:81205.787.DDG.CU.MEL.2-46-11-01.1.2-46-11-01_FAA">
+<Title>Electronic Flight Bag (EFB) Systems</Title>
+<MELSubItem itemNbr="46-11-01-01">
+<Title>Class 3 EFB</Title>
+<DispatchCondition dispCondOptions="A" repairInterval="C" nbrInstalled="2" nbrRequired="1" opsIndicator="(O)">
+<Title>One Inoperative</Title>
+<DispatchConditionRemarks>
+<Para>One may be inoperative.</Para>
+<Note>
+<Para>Any function, program or document which operates normally may be used.</Para>
+</Note>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<OperationProcedure>
+<Para>Alternate Procedure:</Para>
+<List listType="1.">
+<ListItem>
+<Para>At main base, flight crews request 02 back-up iPads for international flights.</Para>
+</ListItem>
+<ListItem>
+<Para>If one Class 3 OPT is unserviceable, all the required OPT announcements and crosschecks are to be made with both crew members by viewing the remaining device. </Para>
+</ListItem>
+<ListItem>
+<Para>If navigation charts are not available on one Class 3 device, ensure current charts are available on back-up iPad. iPad is not to be used during critical phases, but may be referenced at other times. Having the required chart(s) displayed on only one Class 3 device is acceptable, but for complex procedures consider using the flight deck printer to produce a hard
+copy of the relevant chart (for the affected pilot) prior to commencement of the procedure.</Para>
+</ListItem>
+<ListItem>
+<Para>Request assistances from dispatcher/ representative office if required.</Para>
+</ListItem>
+</List>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+<DispatchCondition dispCondOptions="B" repairInterval="C" nbrInstalled="2" nbrRequired="0" opsIndicator="(O)">
+<Title>Both Inoperative</Title>
+<DispatchConditionRemarks>
+<Para>Both may be inoperative.</Para>
+<Note>
+<Para>Any function, program or document which operates normally may be used provided that its database are up to date.</Para>
+</Note>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<OperationProcedure>
+<Para>Alternate Procedure:</Para>
+<List listType="1.">
+<ListItem>
+<Para>At main base, flight crews request 02 back-up iPads for international flights.</Para>
+</ListItem>
+<ListItem>
+<Para>Both EDB applications can be unserviceable provided that at least one back-up iPad with updated documents is available.</Para>
+</ListItem>
+<ListItem>
+<Para>Both OPT applications can be unserviceable provided that: </Para>
+<List listType="A.">
+<ListItem>
+<Para>At least one back-up iPad with updated 787 RTOW charts are available. All the crosschecks are to be made with both crew members viewing the back-up iPad; or</Para>
+</ListItem>
+<ListItem>
+<Para>Flight crew can contact OCC dispatch and provide actual data for all performance calculations.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Both LIDO applications can be unserviceable. For navigation charts, the required departure, destination and/or planned alternate terminal procedures, en-route charts are covered by an back-up iPad. Flight crews can request supports from VNA Office to print out all required charts.</Para>
+</ListItem>
+<ListItem>
+<Para>Airport Moving Map: Alternate source of information is not required.</Para>
+</ListItem>
+<ListItem>
+<Para>If both Flight Deck Entry Video Surveillance are unserviceable, Refer to MEL item 23-75-01-01 and 23-75-01-02 for Alternate procedures.</Para>
+</ListItem>
+<ListItem>
+<Para>If both Class 3 Hardware are inoperative or Class 3 EFB applications are not met operational requirements. Flight crews can operate Class 1 EFB provided that their data are up-to-date.</Para>
+</ListItem>
+<ListItem>
+<Para>Request assistances from  dispatcher/ representative office  if required.</Para>
+</ListItem>
+</List>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+</MELItem>
+</DispatchItems>

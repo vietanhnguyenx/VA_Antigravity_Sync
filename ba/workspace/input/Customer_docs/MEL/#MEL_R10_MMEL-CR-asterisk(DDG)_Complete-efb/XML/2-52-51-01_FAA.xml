@@ -1,0 +1,483 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM">]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.2-52-51-01.2870.2-52-51-01_FAA" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="52" superSectionNumber="2" sectionName="MEL" chapterName="Doors" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2021-02-24" rev:revStatus="U" rev:revNumber="10" />
+</PUMetaData>
+<MELItem itemNbr="52-51-01" id="X-BOEING:FTID:81205.787.DDG.CU.MEL.2-52-51-01.1.2-52-51-01_FAA">
+<Title>Flight Deck Door Automatic Locking System</Title>
+<MELSubItem itemNbr="52-51-01-02">
+<Title>787-9/787-10</Title>
+<DispatchCondition dispCondOptions="A" repairInterval="A" nbrInstalled="1" nbrRequired="0" maintIndicator="(M)" opsIndicator="(O)">
+<Title>Passenger Allowed</Title>
+<DispatchConditionRemarks>
+<Para>May be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Automatic locking system is deactivated.</Para>
+</ListItem>
+<ListItem>
+<Para>Door dead bolt operates normally and is used to lock the door.</Para>
+</ListItem>
+<ListItem>
+<Para>Alternate procedures are established and used for locking and unlocking the door using the dead bolt.</Para>
+</ListItem>
+<ListItem>
+<Para>Repairs are made within two flight days.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Deactivate the flight deck door automatic locking system (AMM DDG 52-51-01).</Para>
+<List listType="1.">
+<ListItem>
+<Para>Deactivate the flight deck door automatic locking system by setting the overhead panel (P5) Flight Deck Door Power switch OFF.</Para>
+<Note>
+<Para>The FD DOOR LOCK FAIL advisory message will be displayed.</Para>
+</Note>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+<OperationProcedure>
+<Para>Alternate procedures:</Para>
+<Para>Normal procedures are to be followed when flight deck access is required, with the following additional requirements/changes:</Para>
+<List listType="1.">
+<ListItem>
+<Para>Cabin crew request for access to the flight deck:</Para>
+<List listType="A.">
+<ListItem>
+<Para>At the discretion of the Captain, the PM (or additional flight crew member) will unlock the deadbolt and open the door.</Para>
+</ListItem>
+<ListItem>
+<Para>The door should be closed and locked using the deadbolt as soon as practical.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Flight crew leaving the flight deck:</Para>
+<List listType="A.">
+<ListItem>
+<Para>In addition to the PF, there must be another crew member that remains on the flight deck in order to operate the door. Unless the jump seat is already occupied by an additional crew member, a cabin crew member must come to the flight deck prior to the PM leaving. This cabin crew member will occupy the flight deck jump seat until the PM
+returns.</Para>
+</ListItem>
+<ListItem>
+<Para>When the PM leaves the flight deck, the additional crew member will close and lock the door using the deadbolt and will then unlock and open the door on PM return.</Para>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+<DispatchCondition dispCondOptions="B" repairInterval="C" nbrInstalled="1" nbrRequired="0" maintIndicator="(M)" opsIndicator="(O)">
+<Title>Passengers Not Allowed</Title>
+<DispatchConditionRemarks>
+<Para>May be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Automatic locking system is deactivated.</Para>
+</ListItem>
+<ListItem>
+<Para>No passengers are carried.</Para>
+</ListItem>
+<ListItem>
+<Para>A maximum of 19 persons authorized by VAR for non-passenger carrying operations are carried.</Para>
+</ListItem>
+<ListItem>
+<Para>Operations procedures is used.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Deactivate the flight deck door automatic locking system (AMM DDG 52-51-01).</Para>
+<List listType="1.">
+<ListItem>
+<Para>Deactivate the flight deck door automatic locking system by setting the overhead panel (P5) Flight Deck Door Power switch OFF.</Para>
+<Note>
+<Para>The FD DOOR LOCK FAIL advisory message will be displayed.</Para>
+</Note>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+<OperationProcedure>
+<Para>Regular passengers may not be carried, however remaining crew or engineers that require repositioning due to the un-serviceability may travel.</Para>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+<MELSubItem itemNbr="52-51-01-02-01">
+<Title>Flight Deck Access System</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="1" nbrRequired="0" maintIndicator="(M)" opsIndicator="(O)">
+<DispatchConditionRemarks>
+<Para>May be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Keypad is deactivated.</Para>
+</ListItem>
+<ListItem>
+<Para>Door dead bolt operates normally and is used to lock the door.</Para>
+</ListItem>
+<ListItem>
+<Para>Alternate procedures are established and used.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Deactivate the flight deck access keypad (AMM DDG 52-51-01).</Para>
+<List listType="1.">
+<ListItem>
+<Para>Using a flight deck multi-function display only, open circuit breaker FLT DK ACCESS SYS KEYPAD and lock with an INOP tag.</Para>
+<Note>
+<Para>Ensure the Flight Deck Door Power switch is OFF when the flight deck door is to be closed and the flight deck is not occupied.</Para>
+</Note>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+<OperationProcedure>
+<Para>Alternate procedures:</Para>
+<Para>Normal procedures are to be followed when flight deck access is required, with the following additional requirements/changes:</Para>
+<List listType="1.">
+<ListItem>
+<Para>Cabin crew request for access to the flight deck:</Para>
+<List listType="A.">
+<ListItem>
+<Para>At the discretion of the Captain, the PM (or additional flight crew member) will unlock the deadbolt and open the door.</Para>
+</ListItem>
+<ListItem>
+<Para>The door should be closed and locked using the deadbolt as soon as practical.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Flight crew leaving the flight deck:</Para>
+<List listType="A.">
+<ListItem>
+<Para>In addition to the PF, there must be another crew member that remains on the flight deck in order to operate the door. Unless the jump seat is already occupied by an additional crew member, a cabin crew member must come to the flight deck prior to the PM leaving. This cabin crew member will occupy the flight deck jump seat until the PM
+returns.</Para>
+</ListItem>
+<ListItem>
+<Para>When the PM leaves the flight deck, the additional crew member will close and lock the door using the deadbolt and will then unlock and open the door on PM return.</Para>
+</ListItem>
+</List>
+</ListItem>
+</List>
+<Note>
+<Para>Ensure the Flight Deck Door Power switch is OFF when the flight deck door is to be closed and the flight deck is not occupied.</Para>
+</Note>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+<MELSubItem itemNbr="52-51-01-02-01-01">
+<Title>LEDs</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="3" nbrRequired="0" opsIndicator="(O)">
+<DispatchConditionRemarks>
+<Para>May be inoperative provided alternate procedures are established and used.</Para>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<OperationProcedure>
+<Para>The pilot-in-command shall brief cabin crews that the LEDs are inoperative, as appropriate:</Para>
+<List listType="1.">
+<ListItem>
+<Para>For red LED inoperative, each time after the flight deck door is closed, the door must be physically verified that it is auto-locked by applying a push-pull force on the door.</Para>
+</ListItem>
+<ListItem>
+<Para>For green LED inoperative, each time after a flight deck entry request is made, the person(s) requesting entry must apply a constant pressure on the door from the cabin side until it opens.</Para>
+</ListItem>
+<ListItem>
+<Para>For amber LED inoperative, every first flight of the crew’s duty day, one of the pilots must verify that the emergency access mode operates normally. While doing this, the other pilot must remain in the flight deck.</Para>
+<List listType="none">
+<ListItem>
+<Para>A. Close the flight deck door.
+B. On the cabin side, enter the emergency access code on keypad and
+apply a constant pressure on the door.
+C. After 30 seconds, verify that the door unlocks automatically.</Para>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="52-51-01-02-01-02">
+<Title>Door Bell Mode</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="1" nbrRequired="0" opsIndicator="(O)">
+<DispatchConditionRemarks>
+<Para>May be inoperative provided Operations procedure is used.</Para>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<OperationProcedure>
+<Para>The door bell is inoperative. Normal flight deck access procedures are unaffected.</Para>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="52-51-01-02-01-03">
+<Title>Keypad Channels</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="2" nbrRequired="1">
+<DispatchConditionRemarks>
+<Para>One may be inoperative.</Para>
+</DispatchConditionRemarks>
+</DispatchCondition>
+</MELSubItem>
+</MELSubItem>
+<MELSubItem itemNbr="52-51-01-02-02">
+<Title>Flight Deck Door Access Selector</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="1" nbrRequired="0" maintIndicator="(M)" opsIndicator="(O)">
+<DispatchConditionRemarks>
+<Para>May be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Keypad is deactivated.</Para>
+</ListItem>
+<ListItem>
+<Para>Electric lock is verified to operate normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Alternate procedures are established and used.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Deactivate the keypad and verify the electric lock operates normally (AMM DDG 52-51-01).</Para>
+<List listType="1.">
+<ListItem>
+<Para>Deactivate the keypad.</Para>
+<List listType="A.">
+<ListItem>
+<Para>Using a flight deck multi-function display only, open circuit breaker FLT DK ACCESS SYS KEYPAD and lock with an INOP tag.</Para>
+<Note>
+<Para>Ensure the Flight Deck Door Power switch is OFF when the flight deck door is to be closed and the flight deck is not occupied.</Para>
+</Note>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Verify the electric lock operates normally.</Para>
+<List listType="A.">
+<ListItem>
+<Para>With the flight deck door open, supply electrical power on the airplane.</Para>
+</ListItem>
+<ListItem>
+<Para>Set the overhead panel (P5) Flight Deck Door Power switch ON.</Para>
+</ListItem>
+<ListItem>
+<Para>Verify the electric strike is in the locked position (solenoid pin in the electric strike will be extended up such that you cannot rotate the strike).</Para>
+</ListItem>
+<ListItem>
+<Para>Set the overhead panel (P5) Flight Deck Door Power switch OFF.</Para>
+</ListItem>
+<ListItem>
+<Para>Verify the electric strike is in the unlocked position (solenoid pin in the electric strike will retract down such that you can rotate the strike).</Para>
+</ListItem>
+<ListItem>
+<Para>Set the overhead panel (P5) Flight Deck Door Power switch ON.</Para>
+</ListItem>
+<ListItem>
+<Para>Verify the electric strike is in the locked position (solenoid pin in the electric strike will be extended up such that you cannot rotate the strike).</Para>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+<OperationProcedure>
+<Para>Alternate procedures:</Para>
+<Para>Normal procedures are to be followed when flight deck access is required, with the following additional requirements/changes:</Para>
+<List listType="1.">
+<ListItem>
+<Para>Cabin crew request for access to the flight deck:</Para>
+<List listType="A.">
+<ListItem>
+<Para>At the discretion of the Captain, the PM (or additional flight crew member) will unlock the deadbolt and open the door.</Para>
+</ListItem>
+<ListItem>
+<Para>The door should be closed and locked using the deadbolt as soon as practical.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Flight crew leaving the flight deck:</Para>
+<List listType="A.">
+<ListItem>
+<Para>In addition to the PF, there must be another crew member that remains on the flight deck in order to operate the door. Unless the jump seat is already occupied by an additional crew member, a cabin crew member must come to the flight deck prior to the PM leaving. This cabin crew member will occupy the flight deck jump seat until the PM
+returns.</Para>
+</ListItem>
+<ListItem>
+<Para>When the PM leaves the flight deck, the additional crew member will close and lock the door using the deadbolt and will then unlock and open the door on PM return.</Para>
+</ListItem>
+</List>
+</ListItem>
+</List>
+<Note>
+<Para>Ensure the Flight Deck Door Power switch is OFF when the flight deck door is to be closed and the flight deck is not occupied.</Para>
+</Note>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="52-51-01-02-03">
+<Title>FD DOOR LOCK FAIL Indication</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="1" nbrRequired="0" maintIndicator="(M)">
+<DispatchConditionRemarks>
+<Para>May be inoperative provided automatic locking controls are verified to operate normally.</Para>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Verify the automatic locking controls operate normally (AMM DDG 52-51-01).</Para>
+<List listType="1.">
+<ListItem>
+<Para>With the flight deck door open, supply electrical power on the airplane.</Para>
+</ListItem>
+<ListItem>
+<Para>Set the overhead panel (P5) Flight Deck Door Power switch ON.</Para>
+</ListItem>
+<ListItem>
+<Para>Set the control stand panel (P8) Flight Deck Door Access selector AUTO.</Para>
+</ListItem>
+<ListItem>
+<Para>Verify the electric strike is in the locked position (solenoid pin in the electric strike will be extended up such that you cannot rotate the strike).</Para>
+</ListItem>
+<ListItem>
+<Para>Enter keypad access code and verify the door chime sounds.</Para>
+</ListItem>
+<ListItem>
+<Para>Set the control stand panel (P8) Flight Deck Door Access selector DENY.</Para>
+</ListItem>
+<ListItem>
+<Para>Before the DENY time delay has expired, enter the keypad access code and verify the door chime does not sound.</Para>
+</ListItem>
+<ListItem>
+<Para>Set and hold control stand panel (P8) Flight Deck Door Access selector UNLKD.</Para>
+</ListItem>
+<ListItem>
+<Para>Verify the electric strike is in the unlocked position (solenoid pin in the electric strike will retract down such that you can rotate the strike).</Para>
+</ListItem>
+<ListItem>
+<Para>Set the control stand panel (P8) Flight Deck Door Access selector AUTO.</Para>
+</ListItem>
+<ListItem>
+<Para>Verify the electric strike is in the locked position (solenoid pin in the electric strike will be extended up such that you cannot rotate the strike).</Para>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="52-51-01-02-04">
+<Title>FD DOOR AUTO UNLK Indication</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="1" nbrRequired="0" maintIndicator="(M)">
+<DispatchConditionRemarks>
+<Para>May be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Automatic locking controls are verified to operate normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Door chime is verified to operate normally.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Verify the automatic locking controls operate normally (AMM DDG 52-51-01).</Para>
+<List listType="1.">
+<ListItem>
+<Para>With the flight deck door open, supply electrical power on the airplane.</Para>
+</ListItem>
+<ListItem>
+<Para>Set the overhead panel (P5) Flight Deck Door Power switch ON.</Para>
+</ListItem>
+<ListItem>
+<Para>Set the control stand panel (P8) Flight Deck Door Access selector AUTO.</Para>
+</ListItem>
+<ListItem>
+<Para>Verify the electric strike is in the locked position (solenoid pin in the electric strike will be extended up such that you cannot rotate the strike).</Para>
+</ListItem>
+<ListItem>
+<Para>Enter keypad access code and verify the door chime sounds.</Para>
+</ListItem>
+<ListItem>
+<Para>Set the control stand panel (P8) Flight Deck Door Access selector DENY.</Para>
+</ListItem>
+<ListItem>
+<Para>Before the DENY time delay has expired, enter the keypad access code and verify the door chime does not sound.</Para>
+</ListItem>
+<ListItem>
+<Para>Set and hold control stand panel (P8) Flight Deck Door Access selector UNLKD.</Para>
+</ListItem>
+<ListItem>
+<Para>Verify the electric strike is in the unlocked position (solenoid pin in the electric strike will retract down such that you can rotate the strike).</Para>
+</ListItem>
+<ListItem>
+<Para>Set the control stand panel (P8) Flight Deck Door Access selector AUTO.</Para>
+</ListItem>
+<ListItem>
+<Para>Verify the electric strike is in the locked position (solenoid pin in the electric strike will be extended up such that you cannot rotate the strike).</Para>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="52-51-01-02-05">
+<Title>FD DOOR OPEN Indication</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="1" nbrRequired="0" maintIndicator="(M)">
+<DispatchConditionRemarks>
+<Para>May be inoperative provided electric lock is verified to operate normally.</Para>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Verify the electric lock operates normally (AMM DDG 52-51-01).</Para>
+<List listType="1.">
+<ListItem>
+<Para>With the flight deck door open, supply electrical power on the airplane.</Para>
+</ListItem>
+<ListItem>
+<Para>Set the overhead panel (P5) Flight Deck Door Power switch ON.</Para>
+</ListItem>
+<ListItem>
+<Para>Verify the electric strike is in the locked position (solenoid pin in the electric strike will be extended up such that you cannot rotate the strike).</Para>
+</ListItem>
+<ListItem>
+<Para>Set the overhead panel (P5) Flight Deck Door Power switch OFF.</Para>
+</ListItem>
+<ListItem>
+<Para>Verify the electric strike is in the unlocked position (solenoid pin in the electric strike will retract down such that you can rotate the strike).</Para>
+</ListItem>
+<ListItem>
+<Para>Set the overhead panel (P5) Flight Deck Door Power switch ON.</Para>
+</ListItem>
+<ListItem>
+<Para>Verify the electric strike is in the locked position (solenoid pin in the electric strike will be extended up such that you cannot rotate the strike).</Para>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="52-51-01-02-06">
+<Title>Power Switch OFF Light</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="1" nbrRequired="0">
+<DispatchConditionRemarks>
+<Para>May be inoperative.</Para>
+</DispatchConditionRemarks>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="52-51-01-02-07">
+<Title>Power Switch ON Light (*)</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="1" nbrRequired="0">
+<DispatchConditionRemarks>
+<Para>May be inoperative.</Para>
+</DispatchConditionRemarks>
+</DispatchCondition>
+</MELSubItem>
+</MELSubItem>
+</MELItem>
+</DispatchItems>

@@ -1,0 +1,685 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM">]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.2-21-31-03.438822.2-21-31-03" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="21" superSectionNumber="2" sectionName="MEL" chapterName="Air Conditioning" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2024-06-19" rev:revStatus="U" rev:revNumber="10" />
+</PUMetaData>
+<MELItem itemNbr="21-31-03" id="X-BOEING:FTID:81205.787.DDG.CU.MEL.2-21-31-03.1.2-21-31-03">
+<Title>Forward and Aft Outflow Valves</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="2" nbrRequired="0" maintIndicator="(M)" opsIndicator="(O)">
+<DispatchConditionRemarks>
+<Para>May be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Cargo compartments remain empty or contain only non flammable/combustible ballast, empty cargo handling equipment (ballast may be loaded in ULDs), or fly away kits (excluding items such as cans of hydraulic fluid, cleaning solvents, batteries, capacitors, chemical generators, etc).</Para>
+</ListItem>
+<ListItem>
+<Para>Flight is conducted unpressurized.</Para>
+</ListItem>
+<ListItem>
+<Para>Extended overwater flight is prohibited.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Use MEL item 21-31-01B (M) procedure.</Para>
+</MaintenanceProcedure>
+<OperationProcedure>
+<Para>Use MEL item 21-31-01B (O) procedure.</Para>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+<MELSubItem itemNbr="21-31-03-02">
+<Title>787-9/ -10</Title>
+<MELSubItem itemNbr="21-31-03-02-01">
+<Title>Forward Outflow Valve</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="1" nbrRequired="0" maintIndicator="(M)" opsIndicator="(O)">
+<DispatchConditionRemarks>
+<Para>One may be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Forward outflow valve is locked in the fixed cruise position.</Para>
+</ListItem>
+<ListItem>
+<Para>Manual cabin pressure control is verified to operate normally on aft outflow valve.</Para>
+</ListItem>
+<ListItem>
+<Para>Passenger entry door vent door springs are verified to operate normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Aft outflow valve operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Air conditioning packs operate normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Verify at least three cabin air compressors operate normally before each departure.</Para>
+</ListItem>
+<ListItem>
+<Para>Aft EE cooling overboard exhaust (skin flush) valve operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>For ground operations with forward outflow valve inoperative and OAT 24 degrees C or higher, both packs are selected on or conditioned air is supplied to the airplane.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Note>
+<Para>For an air conditioning pack to be operating normally, certain items associated with that system must operate normally.  See MEL item 21-51-01 for a list of those items.</Para>
+</Note>
+<Note>
+<Para>For a cabin air compressor to be operating normally, certain items must operate normally. See MEL item 21-52-01 for a list of those items.</Para>
+</Note>
+<Para>Verify at least three CAC’s operate normally before each departure, lock forward outflow valve in the fixed cruise position, verify manual cabin pressure control operates normally on aft outflow valve, and verify passenger entry door vent door springs operate normally (AMM DDG 21-31-03).</Para>
+<List listType="1.">
+<ListItem>
+<Para>Verify that both CAC's operate normally on one pack, and at least one CAC operates normally on the other pack before each departure.</Para>
+<List listType="A.">
+<ListItem>
+<Para>Power the airplane using the APU.</Para>
+</ListItem>
+<ListItem>
+<Para>Set one pack OFF and the other pack ON.</Para>
+</ListItem>
+<ListItem>
+<Para>On AIR CONDITIONING maintenance page 1, confirm status that both CABIN AIR COMP indicate ON for the operating pack.</Para>
+</ListItem>
+<ListItem>
+<Para>Set the OFF pack to ON, and the ON pack to OFF.</Para>
+</ListItem>
+<ListItem>
+<Para>On AIR CONDITIONING maintenance page 1, confirm status that at least one CABIN AIR COMP indicates ON for the operating pack.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Lock forward outflow valve in the fixed cruise position.</Para>
+<List listType="A.">
+<ListItem>
+<Para>Using a flight deck multi-function display only, open the following circuit breakers and lock with an INOP tag:</Para>
+<List listType="1)">
+<ListItem>
+<Para>VALVE CTRL UNIT-	FWD R</Para>
+</ListItem>
+<ListItem>
+<Para>VALVE CTRL UNIT-	FWD L </Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Open the following circuit breakers and lock with a DO NOT CLOSE tag:</Para>
+<List listType="1)">
+<ListItem>
+<Para>MC-VENT FAN FWD EQUIP CLG</Para>
+</ListItem>
+<ListItem>
+<Para>FWD EQUIP CLG EXHAUST FAN</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Open and collar P300 panel circuit breaker MAN OFV FWD.</Para>
+</ListItem>
+<ListItem>
+<Para>Deactivate RDC #11.</Para>
+<List listType="1)">
+<ListItem>
+<Para>Open and collar P300 panel circuit breaker RDC-FLT DK L PRI.</Para>
+</ListItem>
+<ListItem>
+<Para>Open circuit breaker RDC-FLT DK L SEC and lock with an DO NOT CLOSE tag.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Gain access to the forward outflow valve.</Para>
+</ListItem>
+<ListItem>
+<Para>Disconnect cap and stow the electrical connectors to the following outflow valve components:</Para>
+<List listType="1)">
+<ListItem>
+<Para>Manual outflow valve motor (J5).</Para>
+</ListItem>
+<ListItem>
+<Para>Manual outflow valve potentiometer (J1).</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Manually lock the forward outflow valve in the fixed cruise position.</Para>
+<List listType="1)">
+<ListItem>
+<Para>Disengage the primary pushrod from the actuator output crank.</Para>
+</ListItem>
+<ListItem>
+<Para>Attach the primary pushrod to the outflow valve frame.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Activate RDC # 11.</Para>
+<List listType="1)">
+<ListItem>
+<Para>Close P300 panel circuit breaker RDC-FLT DK L PRI.</Para>
+</ListItem>
+<ListItem>
+<Para>Close circuit breaker RDC-FLT DK L SEC.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Close the following circuit breakers:</Para>
+<List listType="1)">
+<ListItem>
+<Para>MC-VENT FAN FWD EQUIP CLG</Para>
+</ListItem>
+<ListItem>
+<Para>FWD EQUIP CLG EXHAUST FAN</Para>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Verify manual cabin pressure control operates normally on aft outflow valve.</Para>
+<List listType="A.">
+<ListItem>
+<Para>Set aft OUTFLOW VALVE switch on the Pressurization Panel (P5) to MAN.</Para>
+</ListItem>
+<ListItem>
+<Para>Hold aft OUTFLOW VALVE MANUAL switch CLOSE until  EICAS outflow valve position indicator is CL and confirm outflow valve door is closed.</Para>
+</ListItem>
+<ListItem>
+<Para>Hold aft OUTFLOW VALVE MANUAL switch OPEN until EICAS outflow valve position indicator is in the 1-o’clock position and confirm the outflow valve door is open.</Para>
+</ListItem>
+<ListItem>
+<Para>Set the aft OUTFLOW VALVE switch on the Pressurization Panel (P5) to AUTO.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Verify passenger entry door vent door springs operate normally:</Para>
+<List listType="A.">
+<ListItem>
+<Para>	Gain access to exterior of each passenger entry door.</Para>
+</ListItem>
+<ListItem>
+<Para>	If door is closed, latched and locked (vent door closed), pull out the external handle and rotate approximately 30 degrees in the open direction to open the vent door.  Release handle.</Para>
+</ListItem>
+<ListItem>
+<Para>	Visually verify that the free ends of each of the two springs common to the vent door are in contact with their corresponding spring stops.</Para>
+</ListItem>
+<ListItem>
+<Para>	Visually verify there are no failures in the spring coils.</Para>
+</ListItem>
+<ListItem>
+<Para>	Close/Latch and Lock the door.</Para>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+<OperationProcedure>
+<Para>The OUTFLOW VALVE FWD advisory message will be displayed.</Para>
+<Para>During ground operation with one outflow valve locked in the fixed cruise position, shutdown one air conditioning pack before opening the passenger door.  After the first passenger entry door is opened, set air conditioning packs as desired.</Para>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="21-31-03-02-02">
+<Title>Aft Outflow Valve (OFCR and OFAR not Installed)</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="1" nbrRequired="0" maintIndicator="(M)" opsIndicator="(O)">
+<DispatchConditionRemarks>
+<Para>Applicable to: VN-A865, VN-A866, VN-A869. VN-A872, VN-A873, VN-A874, VN-A877, VN-A878, VN-A879</Para>
+<Para>One may be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Aft outflow valve is locked in the fixed cruise position.</Para>
+</ListItem>
+<ListItem>
+<Para>Manual cabin pressure control is verified to operate normally on forward outflow valve.</Para>
+</ListItem>
+<ListItem>
+<Para>Passenger entry door vent door springs are verified to operate normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Forward outflow valve operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Air conditioning packs operate normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Verify at least three cabin air compressors operate normally before each departure.</Para>
+</ListItem>
+<ListItem>
+<Para>Aft EE cooling overboard exhaust (skin flush) valve operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>For ground operations at OAT 24 degrees C or higher, both packs are selected on or conditioned air is supplied to the airplane.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Note>
+<Para>For an air conditioning pack to be operating normally, certain items associated with that system must operate normally.  See MEL item 21-51-01 for a list of those items.</Para>
+</Note>
+<Note>
+<Para>For a cabin air compressor to be operating normally, certain items must operate normally. See MEL item 21-52-01 for a list of those items.</Para>
+</Note>
+<Para>Verify at least three CAC’s operate normally before each departure, lock aft outflow valve in the fixed cruise position, verify manual cabin pressure control operates normally on forward outflow valve and verify passenger entry door vent door springs operate normally (AMM MEL 21-31-03).</Para>
+<List listType="1.">
+<ListItem>
+<Para>Verify that both CAC's operate normally on one pack, and at least one CAC operates normally on the other pack before each departure.</Para>
+<List listType="A.">
+<ListItem>
+<Para>Power the airplane using the APU.</Para>
+</ListItem>
+<ListItem>
+<Para>Set one pack OFF and the other pack ON.</Para>
+</ListItem>
+<ListItem>
+<Para>On AIR CONDITIONING maintenance page 1, confirm status that both CABIN AIR COMP indicate ON for the operating pack.</Para>
+</ListItem>
+<ListItem>
+<Para>Set the OFF pack to ON, and the ON pack to OFF.</Para>
+</ListItem>
+<ListItem>
+<Para>On AIR CONDITIONING maintenance page 1, confirm status that at least one CABIN AIR COMP indicates ON for the operating pack.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Lock aft outflow valve in the fixed cruise position.</Para>
+<List listType="A.">
+<ListItem>
+<Para>Using a flight deck multi-function display only, open the following circuit breakers and lock with an INOP tag:</Para>
+<List listType="1)">
+<ListItem>
+<Para>VALVE CTRL UNIT-	AFT R	</Para>
+</ListItem>
+<ListItem>
+<Para>VALVE CTRL UNIT-	AFT L	</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Open the following circuit breakers and lock with a DO NOT CLOSE tag:</Para>
+<List listType="1)">
+<ListItem>
+<Para>MC-LAV GALLEY FAN 1</Para>
+</ListItem>
+<ListItem>
+<Para>MC-LAV GALLEY FAN 2</Para>
+</ListItem>
+<ListItem>
+<Para>LAV GALLEY FAN 1</Para>
+</ListItem>
+<ListItem>
+<Para>LAV GALLEY FAN 2</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Deactivate RDC #10.</Para>
+<List listType="1)">
+<ListItem>
+<Para>Open and collar P400 panel circuit breaker RDC-CROWN DR 3 R PRI.</Para>
+</ListItem>
+<ListItem>
+<Para>Open circuit breaker RDC-CROWN DR 3 R SEC and lock with an DO NOT CLOSE tag.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Open and collar P400 panel circuit breaker MAN OFV AFT.</Para>
+</ListItem>
+<ListItem>
+<Para>Gain access to the aft outflow valve.</Para>
+</ListItem>
+<ListItem>
+<Para>Disconnect cap and stow the electrical connectors to the following outflow valve components:</Para>
+<List listType="1)">
+<ListItem>
+<Para>Manual outflow valve motor (J5).</Para>
+</ListItem>
+<ListItem>
+<Para>Manual outflow valve potentiometer (J1).</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Manually lock the aft outflow valve in the fixed cruise position.</Para>
+<List listType="1)">
+<ListItem>
+<Para>Disengage the primary pushrod from the actuator output crank.</Para>
+</ListItem>
+<ListItem>
+<Para>Attach the primary pushrod to the outflow valve frame.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Activate RDC # 10.</Para>
+<List listType="1)">
+<ListItem>
+<Para>Close P400 panel circuit breaker RDC-CROWN DR 3 R PRI.</Para>
+</ListItem>
+<ListItem>
+<Para>Close circuit breaker RDC-CROWN DR 3 R SEC.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Close the following circuit breakers:</Para>
+<List listType="1)">
+<ListItem>
+<Para>MC-LAV GALLEY FAN 1</Para>
+</ListItem>
+<ListItem>
+<Para>MC-LAV GALLEY FAN 2</Para>
+</ListItem>
+<ListItem>
+<Para>LAV GALLEY FAN 1</Para>
+</ListItem>
+<ListItem>
+<Para>LAV GALLEY FAN 2</Para>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Verify manual cabin pressure control operates normally on forward outflow valve.</Para>
+<List listType="A.">
+<ListItem>
+<Para>Set the forward OUTFLOW VALVE switch on the Pressurization Panel (P5) to MAN.</Para>
+</ListItem>
+<ListItem>
+<Para>Hold the forward OUTFLOW VALVE MANUAL switch CLOSE until the EICAS outflow valve position indicator is CL and confirm the  outflow valve door is closed.</Para>
+</ListItem>
+<ListItem>
+<Para>Hold aft OUTFLOW VALVE MANUAL switch OPEN until EICAS outflow valve position indicator is in the 1-o’clock position and confirm the outflow valve door is open.</Para>
+</ListItem>
+<ListItem>
+<Para>Set the forward OUTFLOW VALVE switch on the Pressurization Panel (P5) to AUTO.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Verify passenger entry door vent door springs operate normally:</Para>
+<List listType="A.">
+<ListItem>
+<Para>	Gain access to the exterior of each passenger entry door.</Para>
+</ListItem>
+<ListItem>
+<Para>	If the door is closed, latched and locked (vent door closed), pull out the external handle and rotate approximately 30 degrees in the open direction to open the vent door.  Release handle.</Para>
+</ListItem>
+<ListItem>
+<Para>	Visually verify that the free ends of each of the two springs common to the vent door are in contact with their corresponding spring stops</Para>
+</ListItem>
+<ListItem>
+<Para>	Visually verify there are no failures in the spring coils.</Para>
+</ListItem>
+<ListItem>
+<Para>	Close/Latch and Lock the door.</Para>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+<OperationProcedure>
+<Para>The OUTFLOW VALVE AFT advisory message will be displayed.</Para>
+<Para>During ground operation with one outflow valve locked in the fixed cruise position, shutdown one air conditioning pack before opening the passenger door.  After the first passenger entry door is opened, set air conditioning packs as desired.</Para>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="21-31-03-02-03">
+<Title>Aft Outflow Valve (OFCR or OFAR Installed)</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="1" nbrRequired="0" maintIndicator="(M)" opsIndicator="(O)">
+<DispatchConditionRemarks>
+<Para>Applicable: VN-A861, VN-A862, VN-A863, VN-A864, VN-A867, VN-A868, VN-A870, VN-A871.</Para>
+<Para>One may be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Aft outflow valve is locked in the fixed cruise position.</Para>
+</ListItem>
+<ListItem>
+<Para>Crew rest areas are deactivated closed.</Para>
+</ListItem>
+<ListItem>
+<Para>Manual cabin pressure control is verified to operate normally on forward outflow valve.</Para>
+</ListItem>
+<ListItem>
+<Para>Passenger entry door vent door springs are verified to operate normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Forward outflow valve operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Air conditioning packs operate normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Verify at least three cabin air compressors operate normally before each departure.</Para>
+</ListItem>
+<ListItem>
+<Para>Aft EE cooling overboard exhaust (skin flush) valve operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>For ground operations at OAT 24 degrees C or higher, both packs are selected on or conditioned air is supplied to the airplane.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Note>
+<Para>For an air conditioning pack to be operating normally, certain items associated with that system must operate normally.  See MEL item 21-51-01 for a list of those items.</Para>
+</Note>
+<Note>
+<Para>For a cabin air compressor to be operating normally, certain items must operate normally. See MEL item 21-52-01 for a list of those items.</Para>
+</Note>
+<Para>Verify at least three CAC’s operate normally before each departure, lock aft outflow valve in the fixed cruise position, verify manual cabin pressure control operates normally on forward outflow valve, and verify passenger entry door vent door springs operate normally (AMM DDG 21-31-03).</Para>
+<List listType="1.">
+<ListItem>
+<Para>Verify that both CAC's operate normally on one pack, and at least one CAC operates normally on the other pack before each departure.</Para>
+<List listType="A.">
+<ListItem>
+<Para>Power the airplane using the APU.</Para>
+</ListItem>
+<ListItem>
+<Para>Set one pack OFF and the other pack ON.</Para>
+</ListItem>
+<ListItem>
+<Para>On AIR CONDITIONING maintenance page 1, confirm status that both CABIN AIR COMP indicate ON for the operating pack.</Para>
+</ListItem>
+<ListItem>
+<Para>Set the OFF pack to ON, and the ON pack to OFF.</Para>
+</ListItem>
+<ListItem>
+<Para>On AIR CONDITIONING maintenance page 1, confirm status that at least one CABIN AIR COMP indicates ON for the operating pack.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Lock aft outflow valve in the fixed cruise position.</Para>
+<List listType="A.">
+<ListItem>
+<Para>Using a flight deck multi-function display only, open the following circuit breakers and lock with an INOP tag:</Para>
+<List listType="1)">
+<ListItem>
+<Para>VALVE CTRL UNIT-	AFT R	</Para>
+</ListItem>
+<ListItem>
+<Para>VALVE CTRL UNIT-	AFT L	</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Open the following circuit breakers and lock with a DO NOT CLOSE tag:</Para>
+<List listType="1)">
+<ListItem>
+<Para>MC-LAV GALLEY FAN 1</Para>
+</ListItem>
+<ListItem>
+<Para>MC-LAV GALLEY FAN 2</Para>
+</ListItem>
+<ListItem>
+<Para>LAV GALLEY FAN 1</Para>
+</ListItem>
+<ListItem>
+<Para>LAV GALLEY FAN 2</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Deactivate RDC #10.</Para>
+<List listType="1)">
+<ListItem>
+<Para>Open and collar P400 panel circuit breaker RDC-CROWN DR 3 R PRI.</Para>
+</ListItem>
+<ListItem>
+<Para>Open circuit breaker RDC-CROWN DR 3 R SEC and lock with an DO NOT CLOSE tag.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Open and collar P400 panel circuit breaker MAN OFV AFT.</Para>
+</ListItem>
+<ListItem>
+<Para>Gain access to the aft outflow valve.</Para>
+</ListItem>
+<ListItem>
+<Para>Disconnect cap and stow the electrical connectors to the following outflow valve components:</Para>
+<List listType="1)">
+<ListItem>
+<Para>Manual outflow valve motor (J5).</Para>
+</ListItem>
+<ListItem>
+<Para>Manual outflow valve potentiometer (J1).</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Manually lock the aft outflow valve in the fixed cruise position.</Para>
+<List listType="1)">
+<ListItem>
+<Para>Disengage the primary pushrod from the actuator output crank.</Para>
+</ListItem>
+<ListItem>
+<Para>Attach the primary pushrod to the outflow valve frame.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Activate RDC # 10.</Para>
+<List listType="1)">
+<ListItem>
+<Para>Close P400 panel circuit breaker RDC-CROWN DR 3 R PRI.</Para>
+</ListItem>
+<ListItem>
+<Para>Close circuit breaker RDC-CROWN DR 3 R SEC.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Close the following circuit breakers:</Para>
+<List listType="1)">
+<ListItem>
+<Para>MC-LAV GALLEY FAN 1</Para>
+</ListItem>
+<ListItem>
+<Para>MC-LAV GALLEY FAN 2</Para>
+</ListItem>
+<ListItem>
+<Para>LAV GALLEY FAN 1</Para>
+</ListItem>
+<ListItem>
+<Para>LAV GALLEY FAN 2</Para>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Verify manual cabin pressure control operates normally on forward outflow valve.</Para>
+<List listType="A.">
+<ListItem>
+<Para>Set the forward OUTFLOW VALVE switch on the Pressurization Panel (P5) to MAN.</Para>
+</ListItem>
+<ListItem>
+<Para>Hold the forward OUTFLOW VALVE MANUAL switch CLOSE until the EICAS outflow valve position indicator is CL and confirm the  outflow valve door is closed.</Para>
+</ListItem>
+<ListItem>
+<Para>Hold the forward OUTFLOW VALVE MANUAL switch OPEN until the EICAS outflow valve position indicator is in the 1-o’clock position and confirm the outflow valve door is open.</Para>
+</ListItem>
+<ListItem>
+<Para>Set the forward OUTFLOW VALVE switch on the Pressurization Panel (P5) to AUTO.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Verify passenger entry door vent door springs operate normally:</Para>
+<List listType="A.">
+<ListItem>
+<Para>	Gain access to the exterior of each passenger entry door.</Para>
+</ListItem>
+<ListItem>
+<Para>	If the door is closed, latched and locked (vent door closed), pull out the external handle and rotate approximately 30 degrees in the open direction to open the vent door.  Release handle.</Para>
+</ListItem>
+<ListItem>
+<Para>	Visually verify that the free ends of each of the two springs common to the vent door are in contact with their corresponding spring stops</Para>
+</ListItem>
+<ListItem>
+<Para>	Visually verify there are no failures in the spring coils.</Para>
+</ListItem>
+<ListItem>
+<Para>	Close/Latch and Lock the door.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Remove all baggage and personal items from the OFCR or OFAR.</Para>
+<Note>
+<Para>Blankets, pillows and other items normally used in the crew rest may remain.</Para>
+</Note>
+</ListItem>
+<ListItem>
+<Para>Close the OFCR or OFAR entrance door.</Para>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+<OperationProcedure>
+<Para>The OUTFLOW VALVE AFT advisory message will be displayed.</Para>
+<Para>The  crew rest areas are not available for inflight use.  Remove personal items and do not enter except for inspections by crew members.</Para>
+<Para>For augmented flight crew operations, flight crew duty periods should be adjusted appropriately.</Para>
+<Para>During ground operation with one outflow valve locked in the fixed cruise position, shutdown one air conditioning pack before opening the passenger door.  After the first passenger entry door is opened, set air conditioning packs as desired.</Para>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELSubItem>
+</MELSubItem>
+<MELSubItem itemNbr="21-31-03-03">
+<Title>OUTFLOW VALVE Switch MAN Lights</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="2" nbrRequired="0">
+<DispatchConditionRemarks>
+<Para>One or both may be inoperative.</Para>
+</DispatchConditionRemarks>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="21-31-03-04">
+<Title>OUTFLOW VALVE Switch AUTO Lights</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="2" nbrRequired="0">
+<DispatchConditionRemarks>
+<Para>One or both may be inoperative.</Para>
+</DispatchConditionRemarks>
+</DispatchCondition>
+</MELSubItem>
+</MELItem>
+</DispatchItems>

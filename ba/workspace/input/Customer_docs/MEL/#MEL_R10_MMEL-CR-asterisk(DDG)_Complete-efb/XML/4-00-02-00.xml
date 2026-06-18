@@ -1,0 +1,312 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE FrontMatter[<!NOTATION CGM SYSTEM "CGM">]>
+<FrontMatter id="X-BOEING:FTID:81205.787.DDG.PU.FM.4-00-02-00.128638.4-00-02-00" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/FrontMatter.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="" superSectionNumber="4" sectionName="Miscellaneous" chapterName="Performance Based Navigation" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2024-06-19" rev:revStatus="U" rev:revNumber="10" />
+</PUMetaData>
+<Introduction id="X-BOEING:FTID:81205.787.DDG.CU.INT.4-00-02-00.128638.4-00-02-00">
+<FMtopic>
+<Title>Performance Based Navigation (PBN) Information</Title>
+<Para>Applying dispatch relief for the following items may affect the ability of the airplane to meet certain operational requirements. The following table lists items that must be operational for various PBN operations. This information can aid in identifying potentially affected capabilities associated with a particular dispatch configuration. A complete list of equipment
+requirements may be found in the 787 RNP Navigation Capabilities Document D613Z033-01, Revision I (or later). Operators must consult their Operations Specification for requirements applicable to their operations.</Para>
+</FMtopic>
+<FMtopic>
+<Title>PBN Equipment Requirements</Title>
+<table frame="all">
+<tgroup cols="1" colsep="1">
+<colspec colname="1" colwidth="100%" />
+<thead>
+<row rowsep="1">
+<entry colname="1">
+<Para>
+<Emphasis txtStyle="bold">22-11-03 Flight Director Systems</Emphasis>
+</Para>
+</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">RNP AR APCH operations require two Autopilot Flight Function (AFF) with
+auto pilot and flight director function.</Para>
+</entry>
+</row>
+<row rowsep="0">
+<entry colname="1">
+<Para align="left">RNP APCH, RNP 1/RNP 2, RNAV 1/RNAV 2, P-RNAV, B-RNAV, RNAV 5, RNP 2/RNP 4, RNP 10/RNAV 10 and Advanced RNP operations require a single Autopilot Flight Function (AFF) with auto pilot and flight director function.</Para>
+</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+<table frame="all">
+<tgroup cols="1" colsep="1">
+<colspec colname="1" colwidth="100%" />
+<thead>
+<row rowsep="1">
+<entry colname="1">
+<Para>
+<Emphasis txtStyle="bold">27-02-02 Flight Control Module (FCM) - Air Data Reference Function </Emphasis>
+</Para>
+</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep="0">
+<entry colname="1">
+<Para align="left">RNP AR APCH, RNP APCH, RNP 1/RNP
+2, RNAV 1/RNAV 2, P-RNAV, B-RNAV, RNAV 5, RNP 2/RNP 4, RNP 10/RNAV 10 and Advanced RNP operations require a single Air Data Reference Function (ADRF).  ADRF function is hosted inside each of the 3 FCMs.   </Para>
+</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+<table frame="all">
+<tgroup cols="1" colsep="1">
+<colspec colname="1" colwidth="100%" />
+<thead>
+<row rowsep="1">
+<entry colname="1">
+<Para>
+<Emphasis txtStyle="bold">31-61-01 Display Units (DU)</Emphasis>
+</Para>
+</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep="0">
+<entry colname="1">
+<Para align="left">RNP AR APCH, RNP APCH, RNP 1/RNP 2, RNAV 1/RNAV 2, P-RNAV, B-RNAV, RNAV
+5, RNP 2/RNP 4, RNP 10/RNAV 10 and Advanced RNP operations require two Primary Flight Displays (PFD) with mini map (2 outboard DUs) and two Multi-Function Display (MFD) (2 inboard DUs) .</Para>
+</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+<table frame="all">
+<tgroup cols="1" colsep="1">
+<colspec colname="1" colwidth="100%" />
+<thead>
+<row rowsep="1">
+<entry colname="1">
+<Para>
+<Emphasis txtStyle="bold">34-21-01-01 Inertial Reference Unit (IRU)</Emphasis>
+</Para>
+</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep="0">
+<entry colname="1">
+<Para align="left">RNP AR APCH, RNP APCH, RNP 1/RNP 2, RNAV 1/RNAV 2*, P-RNAV*,
+B-RNAV*, RNAV 5*, RNP 2/RNP 4, RNP 10/RNAV 10* and Advanced RNP operations require two Inertial Reference Unit (IRU) or one IRU and one AHRU (ref. item 34-21-01-02).</Para>
+</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+<Para>*Configuration with one IRU and one AHRU also requires one GPS (Ref. 34-31-05).</Para>
+<table frame="all">
+<tgroup cols="1" colsep="1">
+<colspec colname="1" colwidth="100%" />
+<thead>
+<row rowsep="1">
+<entry colname="1">
+<Para>
+<Emphasis txtStyle="bold">34-21-01-02 Altitude/Heading Reference Unit (AHRU)</Emphasis>
+</Para>
+</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep="0">
+<entry colname="1">
+<Para align="left">RNP AR APCH, RNP APCH, RNP 1/RNP 2, RNAV 1/RNAV
+2*, P-RNAV*, B-RNAV*, RNAV 5*, RNP 2/RNP 4, RNP 10/RNAV 10* and Advanced RNP operations require one Altitude/Heading Reference Unit  (AHRU) and one Inertial Reference Unit (IRU) (Ref. item 34-21-01-01).</Para>
+</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+<Para>*Configuration with one IRU and one AHRU also requires one GPS (Ref. 34-31-05).</Para>
+<table frame="all">
+<tgroup cols="1" colsep="1">
+<colspec colname="1" colwidth="100%" />
+<thead>
+<row rowsep="1">
+<entry colname="1">
+<Para>
+<Emphasis txtStyle="bold">34-31-05 Global Positioning Systems (GPS)</Emphasis>
+</Para>
+</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">RNP AR APCH, RNP APCH*, RNP 1/RNP 2*, RNP 2/RNP 4, and Advanced
+RNP* operations require two Global Positioning System (INR-GPS).</Para>
+</entry>
+</row>
+<row rowsep="0">
+<entry colname="1">
+<Para align="left">RNAV 1/RNAV 2, and P-RNAV, B-RNAV, RNAV5 operations require one Global Positioning System (INR-GPS).</Para>
+</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+<Para>*Single configuration requires regulatory agency approval.</Para>
+<table frame="all">
+<tgroup cols="1" colsep="1">
+<colspec colname="1" colwidth="100%" />
+<thead>
+<row rowsep="1">
+<entry colname="1">
+<Para>
+<Emphasis txtStyle="bold">34-33-01 Radio Altimeter Systems</Emphasis>
+</Para>
+</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">RNP AR APCH operations require two Radio Altimeters.</Para>
+</entry>
+</row>
+<row rowsep="0">
+<entry colname="1">
+<Para align="left">No Radio Altimeter requirements for RNP APCH, RNP 1/RNP 2, RNAV 1/RNAV 2, P-RNAV, B-RNAV, RNAV 5, RNP 2/RNP 4, RNP 10/RNAV 10 and Advanced RNP operations.</Para>
+</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+<table frame="all">
+<tgroup cols="1" colsep="1">
+<colspec colname="1" colwidth="100%" />
+<thead>
+<row rowsep="1">
+<entry colname="1">
+<Para>
+<Emphasis txtStyle="bold">34-42-05 Ground Proximity Warning System (GPWS)</Emphasis>
+</Para>
+</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">RNP AR APCH operation requires one Terrain Awareness
+Function.</Para>
+</entry>
+</row>
+<row rowsep="0">
+<entry colname="1">
+<Para align="left">No GPWS requirements for RNP APCH, RNP 1/RNP 2, RNAV 1/RNAV 2, P-RNAV, B-RNAV, RNAV 5, RNP 2/RNP 4, RNP 10/RNAV 10 and Advanced RNP operations.</Para>
+</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+<table frame="all">
+<tgroup cols="1" colsep="1">
+<colspec colname="1" colwidth="100%" />
+<thead>
+<row rowsep="1">
+<entry colname="1">
+<Para>
+<Emphasis txtStyle="bold">34-42-05-03 Terrain Awareness Function</Emphasis>
+</Para>
+</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep="1">
+<entry colname="1">
+<Para align="left">RNP AR APCH operation requires one Terrain Awareness Function.</Para>
+</entry>
+</row>
+<row rowsep="0">
+<entry colname="1">
+<Para align="left">No Terrain Awareness Function requirements for RNP APCH, RNP 1/RNP 2, RNAV 1/RNAV 2, P-RNAV, B-RNAV, RNAV 5, RNP 2/RNP 4, RNP 10/RNAV 10 and Advanced RNP operations.</Para>
+</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+<table frame="all">
+<tgroup cols="1" colsep="1">
+<colspec colname="1" colwidth="100%" />
+<thead>
+<row rowsep="1">
+<entry colname="1">
+<Para>
+<Emphasis txtStyle="bold">34-55-01 Distance Measuring Equipment (DME)</Emphasis>
+</Para>
+</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep="0">
+<entry colname="1">
+<Para align="left">RNAV 1/RNAV 2, and P-RNAV, B-RNAV, RNAV5 operations
+require one Distance Measuring Equipment (DME).</Para>
+</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+<table frame="all">
+<tgroup cols="1" colsep="1">
+<colspec colname="1" colwidth="100%" />
+<thead>
+<row rowsep="1">
+<entry colname="1">
+<Para>
+<Emphasis txtStyle="bold">34-61-01 Flight Management Function (FMF)</Emphasis>
+</Para>
+</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep="0">
+<entry colname="1">
+<Para align="left">RNP AR APCH, RNP APCH, RNP 1/RNP 2, RNAV 1/RNAV 2, P-RNAV, B-RNAV,
+RNAV 5, RNP 2/RNP 4, RNP 10/RNAV 10 and Advanced RNP operations require two Flight Management Computers (FMC). (Note: flight management computing is accomplished via FMF application S/W residing in the Common Core System (CCS)).</Para>
+</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+<table frame="all">
+<tgroup cols="1" colsep="1">
+<colspec colname="1" colwidth="100%" />
+<thead>
+<row rowsep="1">
+<entry colname="1">
+<Para>
+<Emphasis txtStyle="bold">34-61-01-01 Flight Management Function (FMF) Navigation Databases**</Emphasis>
+</Para>
+</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep="0">
+<entry colname="1">
+<Para align="left">RNP AR APCH, RNP APCH, RNP 1/RNP
+2, RNAV 1/RNAV 2, P-RNAV, B-RNAV, RNAV 5, RNP 2/RNP 4, RNP 10/RNAV 10 and Advanced RNP operations require current Navigation Database.</Para>
+</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+<Para>**It is assumed that the operator has a preflight procedure to ensure that the navigation database complies with regulatory agency requirements for ensuring the navigation database remains valid for the duration of the flight unless an alternative regulatory agency approved process applies.</Para>
+</FMtopic>
+</Introduction>
+</FrontMatter>

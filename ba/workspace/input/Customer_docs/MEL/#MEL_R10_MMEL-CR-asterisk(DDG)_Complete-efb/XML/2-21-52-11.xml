@@ -1,0 +1,421 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM">]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.2-21-52-11.998550.2-21-52-11" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="21" superSectionNumber="2" sectionName="MEL" chapterName="Air Conditioning" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2025-09-30" rev:revStatus="R" rev:revNumber="10" />
+</PUMetaData>
+<MELItem itemNbr="21-52-11" id="X-BOEING:FTID:81205.787.DDG.CU.MEL.2-21-52-11.1.2-21-52-11">
+<Title>Ram Air Outlet Door Systems</Title>
+<DispatchCondition dispCondOptions="A" repairInterval="C" nbrInstalled="2" nbrRequired="1" maintIndicator="(M)" opsIndicator="(O)">
+<Title>Door Can Be Locked in Fixed Position</Title>
+<DispatchConditionRemarks>
+<Para>One may be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Associated outlet door is deactivated in fixed position of 17.5 degrees open.</Para>
+</ListItem>
+<ListItem>
+<Para>Associated ram air inlet door operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Opposite air conditioning pack operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Trim air systems operate normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Airplane remains at or below FL 350.</Para>
+</ListItem>
+<ListItem>
+<Para>Appropriate performance adjustments are applied.</Para>
+</ListItem>
+<ListItem>
+<Para>EDTO  is not conducted.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Note>
+<Para>For an air conditioning pack to be operating normally, certain items associated with that system must operate normally.  See MEL item 21-51-01 for a list of those items.</Para>
+</Note>
+<Note>
+<Para>For a trim air system to be operating normally, certain items must operate normally.  See MEL item  21-51-01 for a list of those items.</Para>
+</Note>
+<Note>
+<Para>Do no operate associated air conditioning pack on ground when OAT is greater than 27 degrees C</Para>
+</Note>
+<Para>Deactivate the inoperative ram air outlet door 17.5 degrees open (AMM DDG 21-52-11).</Para>
+<List listType="1.">
+<ListItem>
+<Para>For left ram air outlet door:</Para>
+<List listType="A.">
+<ListItem>
+<Para>Set left air conditioning pack OFF.</Para>
+</ListItem>
+<ListItem>
+<Para>Set the GND TEST selector to ENABLE no less than 30-seconds prior to opening the Pack Control Unit circuit breakers.</Para>
+</ListItem>
+<ListItem>
+<Para>Open the following circuit breakers and lock with a DO NOT CLOSE tag.</Para>
+<List listType="1)">
+<ListItem>
+<Para>PACK CTRL UNIT-	CHAN L1</Para>
+</ListItem>
+<ListItem>
+<Para>PACK CTRL UNIT-	CHAN L2</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Open the ram air outlet door actuator access door.</Para>
+</ListItem>
+<ListItem>
+<Para>Disconnect, cap and stow the electrical connector from the actuator.</Para>
+</ListItem>
+<ListItem>
+<Para>Disconnect the actuator from the crank arm.</Para>
+</ListItem>
+<ListItem>
+<Para>Manually set the actuator pushrod to 17.5 degrees open.</Para>
+<Note>
+<Para>Extend the actuator to 13.93 inches measured between the bolt centers on each end.</Para>
+</Note>
+</ListItem>
+<ListItem>
+<Para>Manually move the crank arm to align with the actuator.</Para>
+</ListItem>
+<ListItem>
+<Para>Reconnect actuator to the crank arm.</Para>
+</ListItem>
+<ListItem>
+<Para>Close the ram air outlet door actuator access door.</Para>
+</ListItem>
+<ListItem>
+<Para>Close the following circuit breakers:</Para>
+<List listType="1)">
+<ListItem>
+<Para>PACK CTRL UNIT-	CHAN L1</Para>
+</ListItem>
+<ListItem>
+<Para>PACK CTRL UNIT-	CHAN L2</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Return the GND TEST selector to NORM.</Para>
+</ListItem>
+<ListItem>
+<Para>Set air conditioning pack as desired.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>For right ram air outlet door:</Para>
+<List listType="A.">
+<ListItem>
+<Para>Set right air conditioning pack OFF.</Para>
+</ListItem>
+<ListItem>
+<Para>Set the GND TEST selector to ENABLE no less than 30-seconds prior to opening the Pack Control Unit circuit breakers.</Para>
+</ListItem>
+<ListItem>
+<Para>Open the following circuit breakers and lock with a DO NOT CLOSE tag.</Para>
+<List listType="1)">
+<ListItem>
+<Para>PACK CTRL UNIT-	CHAN R1</Para>
+</ListItem>
+<ListItem>
+<Para>PACK CTRL UNIT-	CHAN R2</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Open the ram air outlet door actuator access door.</Para>
+</ListItem>
+<ListItem>
+<Para>Disconnect, cap and stow the electrical connector from the actuator.</Para>
+</ListItem>
+<ListItem>
+<Para>Disconnect the actuator from the crank arm.</Para>
+</ListItem>
+<ListItem>
+<Para>Manually set the actuator pushrod to 17.5 degrees open.</Para>
+<Note>
+<Para>Extend the actuator to 13.93 inches measured between the bolt centers on each end.</Para>
+</Note>
+</ListItem>
+<ListItem>
+<Para>Manually move the crank arm to align with the actuator.</Para>
+</ListItem>
+<ListItem>
+<Para>Reconnect actuator to the crank arm.</Para>
+</ListItem>
+<ListItem>
+<Para>Close the ram air outlet door actuator access door.</Para>
+</ListItem>
+<ListItem>
+<Para>Close the following circuit breakers:</Para>
+<List listType="1)">
+<ListItem>
+<Para>PACK CTRL UNIT-	CHAN R1</Para>
+</ListItem>
+<ListItem>
+<Para>PACK CTRL UNIT-	CHAN R2</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Return the GND TEST selector to NORM.</Para>
+</ListItem>
+<ListItem>
+<Para>Set air conditioning pack as desired.</Para>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+<OperationProcedure>
+<Note>
+<Para>Do no operate associated air conditioning pack on ground when OAT is greater than 27 degrees C</Para>
+</Note>
+<Note>
+<Para>Associated pack may not operate until above 32,500 ft.</Para>
+</Note>
+<Note>
+<Para>On takeoff, the PACK ALTITUDE LIMIT caution message may appear anytime after liftoff until 1,000 feet above airport elevation. The message may be displayed for up to 2 minutes. On landing, appear at altitudes less than 1000 feet above airport until touchdown.</Para>
+</Note>
+<Para>
+<Effectivities>
+<Effectivity>For 787-9 (VN-A861, VN-A862, VN-A863, VN-A864, VN-A865, VN-A866, VN-A867, VN-A868, VN-A869,
+VN-A870, VN-A871):</Effectivity>
+</Effectivities>Reduce enroute climb limit weight by 1,300 lb (590 kg).</Para>
+<Note>
+<Para>The enroute climb weight penalties are based on single engine operating speeds that approximate maximum lift-to-drag ratio speed. To account for the difference in level off altitude when operating at other speeds, multiply the enroute climb weight penalty listed above by the appropriate factor listed on page 3.00-01-00.2 in the ENROUTE DIVERSION
+SPEED EFFECTS paragraph.</Para>
+</Note>
+<Para>
+<Effectivities>
+<Effectivity>For 787-10 (VN-A872, VN-A873, VN-A874, VN-A877,
+VN-A878, VN-A879):</Effectivity>
+</Effectivities>Reduce enroute climb limit weight by 1,300 lb (590 kg).</Para>
+<Note>
+<Para>The enroute climb weight penalties are based on single engine operating speeds that approximate maximum lift-to-drag ratio speed. To account for the difference in level off altitude when operating at other speeds, multiply the enroute climb weight penalty listed above by the appropriate factor listed on page 3.00-01-00.2 in the ENROUTE DIVERSION
+SPEED EFFECTS paragraph.</Para>
+</Note>
+<List listType="1.">
+<ListItem>
+<Para>Airplane must remain at or below FL350.</Para>
+</ListItem>
+<ListItem>
+<Para>Flight remains within 60 minutes of landing at a suitable airport.</Para>
+</ListItem>
+<ListItem>
+<Para>Increase flight planning fuel by either incrementing the current airplane drag correction factor by 0.4% or flight planning fuel by 0.5%.</Para>
+</ListItem>
+</List>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+<DispatchCondition dispCondOptions="B" repairInterval="C" nbrInstalled="2" nbrRequired="1" maintIndicator="(M)" opsIndicator="(O)">
+<Title>Door Cannot Be Locked in Fixed Position</Title>
+<DispatchConditionRemarks>
+<Para>One may be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Associated outlet door actuator is deactivated.</Para>
+</ListItem>
+<ListItem>
+<Para>Associated outlet door opens and closes freely.</Para>
+</ListItem>
+<ListItem>
+<Para>Associated ram air inlet door operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Opposite air conditioning pack operates normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Trim air systems operate normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Airplane remains at or below FL 350.</Para>
+</ListItem>
+<ListItem>
+<Para>Appropriate performance adjustments are applied.</Para>
+</ListItem>
+<ListItem>
+<Para>EDTO  is not conducted.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Note>
+<Para>For an air conditioning pack to be operating normally, certain items associated with that system must operate normally.  See MEL item 21-51-01 for a list of those items.</Para>
+</Note>
+<Note>
+<Para>For a trim air system to be operating normally, certain items must operate normally.  See MEL item  21-51-01 for a list of those items.</Para>
+</Note>
+<Note>
+<Para>Do no operate associated air conditioning pack on ground when OAT is greater than 27 degrees C.</Para>
+</Note>
+<Para>Disconnect the inoperative ram air outlet door actuator and verify the inoperative ram air outlet door is free to move fully open and fully closed (AMM DDG 21-52-11).</Para>
+<List listType="1.">
+<ListItem>
+<Para>For left ram air outlet door:</Para>
+<List listType="A.">
+<ListItem>
+<Para>Set left air conditioning pack OFF.</Para>
+</ListItem>
+<ListItem>
+<Para>Set the GND TEST selector to ENABLE no less than 30-seconds prior to opening the Pack Control Unit circuit breakers.</Para>
+</ListItem>
+<ListItem>
+<Para>Open the following circuit breakers and lock with a DO NOT CLOSE tag.</Para>
+<List listType="1)">
+<ListItem>
+<Para>PACK CTRL UNIT-	CHAN L1</Para>
+</ListItem>
+<ListItem>
+<Para>PACK CTRL UNIT-	CHAN L2</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Open the ram air outlet door actuator access door.</Para>
+</ListItem>
+<ListItem>
+<Para>Disconnect, cap and stow the electrical connector from the actuator.</Para>
+</ListItem>
+<ListItem>
+<Para>Disconnect and remove the actuator and associated crank arm.</Para>
+</ListItem>
+<ListItem>
+<Para>Close the ram air outlet door actuator access door.</Para>
+</ListItem>
+<ListItem>
+<Para>Close the following circuit breakers:</Para>
+<List listType="1)">
+<ListItem>
+<Para>PACK CTRL UNIT-	CHAN L1</Para>
+</ListItem>
+<ListItem>
+<Para>PACK CTRL UNIT-	CHAN L2</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Return the GND TEST selector to NORM.</Para>
+</ListItem>
+<ListItem>
+<Para>Manually move exhaust door from the full open position to the full closed position to confirm freedom of movement.</Para>
+</ListItem>
+<ListItem>
+<Para>Set air conditioning pack as desired.</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>For right ram air outlet door:</Para>
+<List listType="A.">
+<ListItem>
+<Para>Set right air conditioning pack OFF.</Para>
+</ListItem>
+<ListItem>
+<Para>Set the GND TEST selector to ENABLE no less than 30-seconds prior to opening the Pack Control Unit circuit breakers.</Para>
+</ListItem>
+<ListItem>
+<Para>Open the following circuit breakers and lock with a DO NOT CLOSE tag.</Para>
+<List listType="1)">
+<ListItem>
+<Para>PACK CTRL UNIT-	CHAN R1</Para>
+</ListItem>
+<ListItem>
+<Para>PACK CTRL UNIT-	CHAN R2</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Open the ram air outlet door actuator access door.</Para>
+</ListItem>
+<ListItem>
+<Para>Disconnect, cap and stow the electrical connector from the actuator.</Para>
+</ListItem>
+<ListItem>
+<Para>Disconnect and remove the actuator and associated crank arm.</Para>
+</ListItem>
+<ListItem>
+<Para>Close the ram air outlet door actuator access door.</Para>
+</ListItem>
+<ListItem>
+<Para>Close the following circuit breakers:</Para>
+<List listType="1)">
+<ListItem>
+<Para>PACK CTRL UNIT-	CHAN R1</Para>
+</ListItem>
+<ListItem>
+<Para>PACK CTRL UNIT-	CHAN R2</Para>
+</ListItem>
+</List>
+</ListItem>
+<ListItem>
+<Para>Return the GND TEST selector to NORM.</Para>
+</ListItem>
+<ListItem>
+<Para>Manually move exhaust door from the full open position to the full closed position to confirm freedom of movement.</Para>
+</ListItem>
+<ListItem>
+<Para>Set air conditioning pack as desired.</Para>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+<OperationProcedure>
+<Note>
+<Para>Do no operate associated air conditioning pack on ground when OAT is greater than 27 degrees C.</Para>
+</Note>
+<Note>
+<Para>Associated pack may not operate until above 32,500 ft.</Para>
+</Note>
+<Note>
+<Para>On takeoff, the PACK ALTITUDE LIMIT caution message may appear anytime after liftoff until 1,000 feet above airport elevation. The message may be displayed for up to 2 minutes. On landing, appear at altitudes less than 1000 feet above airport until touchdown.</Para>
+</Note>
+<Para>
+<Effectivities>
+<Effectivity>For 787-9 (VN-A861, VN-A862, VN-A863, VN-A864, VN-A865, VN-A866, VN-A867, VN-A868, VN-A869,
+VN-A870, VN-A871):</Effectivity>
+</Effectivities>Reduce enroute climb limit weight by 1,300 lb (590 kg).</Para>
+<Note>
+<Para>The enroute climb weight penalties are based on single engine operating speeds that approximate maximum lift-to-drag ratio speed. To account for the difference in level off altitude when operating at other speeds, multiply the enroute climb weight penalty listed above by the appropriate factor listed on page 3.00-01-00.2 in the ENROUTE DIVERSION
+SPEED EFFECTS paragraph.</Para>
+</Note>
+<Para>
+<Effectivities>
+<Effectivity>For 787-10 (VN-A872, VN-A873, VN-A874, VN-A877,
+VN-A878, VN-A879):</Effectivity>
+</Effectivities>Reduce enroute climb limit weight by 1,300 lb (590 kg).</Para>
+<Note>
+<Para>The enroute climb weight penalties are based on single engine operating speeds that approximate maximum lift-to-drag ratio speed. To account for the difference in level off altitude when operating at other speeds, multiply the enroute climb weight penalty listed above by the appropriate factor listed on page 3.00-01-00.2 in the ENROUTE DIVERSION
+SPEED EFFECTS paragraph.</Para>
+</Note>
+<List listType="1.">
+<ListItem>
+<Para>Airplane must remain at or below FL350.</Para>
+</ListItem>
+<ListItem>
+<Para>Flight remains within 60 minutes of landing at a suitable airport.</Para>
+</ListItem>
+<ListItem>
+<Para>Increase flight planning fuel by either incrementing the current airplane drag correction factor by 0.4% or flight planning fuel by 0.5%.</Para>
+</ListItem>
+</List>
+</OperationProcedure>
+</DispatchProcedure>
+</DispatchCondition>
+</MELItem>
+</DispatchItems>

@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://www.boeing.com/FTID-ML"
+    xmlns:rev="http://www.boeing.com/FTID-ML/Revision"
+    targetNamespace="http://www.boeing.com/FTID-ML" 
+    elementFormDefault="qualified" 
+    attributeFormDefault="unqualified"
+    version="FTID 2.8">
+
+<!-- 	
+=================================================================
+
+
+Copyright Information:
+      Boeing Proprietary and Confidential - 
+      All Rights Reserved since 2006.
+
+      This schema file is part of the Boeing Flight Technical 
+      Integrated Data (FTID) Specification based on XML.
+      All rights are reserved under Boeing Flight Operations 
+      digital data entitlements, products or services.
+
+     
+Contact Information:   	
+        The Boeing Company
+        Flight Operations Support
+        P.O. Box 3707	MS 20-89
+        Seattle, WA 98124-2207
+        USA
+        email:  flighttraining@Boeing.com
+        Phone:  (206) 662-4000
+        Fax:    (206) 662-4743
+
+		
+===================================================================
+-->
+
+<xs:include schemaLocation="../attributeTypes/generalAttrs.xsd"/>
+<xs:include schemaLocation="../basicDataTypes/basicDataInclude.xsd"/>
+<xs:include schemaLocation="../metadataTypes/effect.xsd"/>
+<xs:import namespace="http://www.boeing.com/FTID-ML/Revision" schemaLocation="../metadataTypes/revision.xsd"/>
+<xs:include schemaLocation="action.xsd"/>
+<xs:include schemaLocation="opnote.xsd"/>
+<xs:include schemaLocation="condition.xsd"/>
+<xs:include schemaLocation="procMisc.xsd"/>
+
+
+<!--=====================================================-->
+<!-- PilotDualActionList element definition -->
+<!--=====================================================-->
+<xs:complexType name="PilotDualActionListType">
+    <xs:annotation>
+        <xs:documentation>Pilot-Flying and Pilot-Monditoring perform dual action list</xs:documentation>
+    </xs:annotation>
+
+    <xs:sequence>
+        <xs:element name="Effectivities" type="EffectivitiesType" minOccurs="0"/>
+        <xs:element name="PilotDualActionItem" type="PilotDualActionItemType" maxOccurs="unbounded"/>
+    </xs:sequence>
+
+    <xs:attributeGroup ref="globalAttrGrp"/>
+</xs:complexType>
+
+
+<!--=====================================================-->
+<!-- PilotDualActionItem element definition -->
+<!--=====================================================-->
+<xs:complexType name="PilotDualActionItemType">
+    <xs:annotation>
+        <xs:documentation>Pilot-Flying and Pilot-Monditoring side-by-side action item</xs:documentation>
+    </xs:annotation>
+
+    <xs:sequence>
+        <xs:element name="Effectivities" type="EffectivitiesType" minOccurs="0"/>
+        <xs:choice minOccurs="1" maxOccurs="3">
+            <xs:element name="PilotFlying" type="ProcActionsGrpType"/>
+            <xs:element name="PilotMonitoring" type="ProcActionsGrpType"/>
+            <xs:element name="BothPilots" type="ProcActionsGrpType"/>
+        </xs:choice>
+    </xs:sequence>
+
+    <xs:attributeGroup ref="globalAttrGrp"/>
+</xs:complexType>
+
+
+
+<!--=====================================================-->
+<!-- ProcActionsGrp element definition -->
+<!--=====================================================-->
+<xs:complexType name="ProcActionsGrpType">
+    <xs:annotation>
+        <xs:documentation>Special grouping of all activities for a normal or non-normal procedure</xs:documentation>
+    </xs:annotation>
+
+    <xs:sequence>
+        <xs:element name="Effectivities" type="EffectivitiesType" minOccurs="0"/>
+        <xs:element name="Title" type="TitleType" minOccurs="0" />
+
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="Condition" type="ConditionType"/>
+            <xs:element name="ExCondition" type="ExConditionType"/>
+            <xs:element name="Action" type="ActionType"/>
+            <xs:element name="Command" type="CommandType"/>
+            <xs:element name="ChoiceItems" type="ChoiceItemsType"/>
+            <xs:element name="Precaution" type="PrecautionType"/>
+            <xs:element name="ConsiderationItems" type="ConsiderationItemsType"/>
+            <xs:element name="DeferItems" type="DeferItemsType"/>
+            <xs:element name="InoperativeItems" type="InoperativeItemsType"/>
+            <xs:element name="ExcludeItems" type="ExcludeItemsType"/>
+            <xs:element name="NavigationStep" type="ParaType"/>
+            <xs:element name="Opnote" type="OpnoteType"/>
+            <xs:element name="MemoryEndIndicator" type="MemoryEndIndicatorType"/>
+            <xs:group ref="TextCWNGroupType"/>
+        </xs:choice>
+    </xs:sequence>
+
+    <xs:attribute name="recall" type="YNType" use="optional"/>
+    <xs:attribute name="end" type="YNType" use="optional"/>
+    <xs:attributeGroup ref="globalAttrGrp"/>
+</xs:complexType>
+
+
+
+<!--=====================================================-->
+<!-- ChoiceItems element definition -->
+<!--=====================================================-->
+<xs:complexType name="ChoiceItemsType">
+    <xs:annotation>
+        <xs:documentation>Select one item (section) to continue the procedure</xs:documentation>
+    </xs:annotation>
+
+    <xs:sequence>
+        <xs:element name="Effectivities" type="EffectivitiesType" minOccurs="0"/>
+        <xs:sequence maxOccurs="unbounded">
+            <xs:element name="Condition" type="ConditionType"/>
+        </xs:sequence>
+    </xs:sequence>
+
+    <xs:attributeGroup ref="globalAttrGrp"/>
+</xs:complexType>
+
+
+<!--=====================================================-->
+<!-- ConsiderationItems element definition -->
+<!--=====================================================-->
+<xs:complexType name="ConsiderationItemsType">
+    <xs:annotation>
+        <xs:documentation>Conditions or items that should be considerred in a Non-Normal checklist</xs:documentation>
+    </xs:annotation>
+
+    <xs:sequence>
+        <xs:element name="Effectivities" type="EffectivitiesType" minOccurs="0"/>
+        <xs:element name="Title" type="TitleType" minOccurs="0" />
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:group ref="ShortTextNoteGroupType"/>
+        </xs:choice>
+        <xs:element name="ExcludeItems" type="ExcludeItemsType" minOccurs="0"/>      
+    </xs:sequence>
+
+    <xs:attributeGroup ref="globalAttrGrp"/>
+</xs:complexType>
+
+
+
+<!--=====================================================-->
+<!-- ExcludeItems element definition -->
+<!--=====================================================-->
+<xs:complexType name="ExcludeItemsType">
+    <xs:annotation>
+        <xs:documentation>Do not complete certain check list(s)</xs:documentation>
+    </xs:annotation>
+
+    <xs:sequence>
+        <xs:element name="Effectivities" type="EffectivitiesType" minOccurs="0"/>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:group ref="ShortTextGroupType"/>
+        </xs:choice>
+        <xs:element name="ExcludeTitle" type="TitleType" maxOccurs="unbounded"/>   
+    </xs:sequence>
+
+    <xs:attributeGroup ref="globalAttrGrp"/>
+</xs:complexType>
+
+
+<!--=====================================================-->
+<!-- InoperativeItems element definition -->
+<!--=====================================================-->
+<xs:complexType name="InoperativeItemsType">
+    <xs:annotation>
+        <xs:documentation>inop items and their effects in a Non-Normal checklist</xs:documentation>
+    </xs:annotation>
+
+    <xs:sequence>
+        <xs:element name="Effectivities" type="EffectivitiesType" minOccurs="0"/>
+        <xs:element name="Title" type="TitleType" minOccurs="0" />
+        <xs:element name="InopItem" type="InopItemType" maxOccurs="unbounded"/>      
+    </xs:sequence>
+
+    <xs:attributeGroup ref="globalAttrGrp"/>
+</xs:complexType>
+
+
+<!--=====================================================-->
+<!-- InopItem element definition -->
+<!--=====================================================-->
+<xs:complexType name="InopItemType">
+    <xs:annotation>
+        <xs:documentation>Condition and effect of an inop item</xs:documentation>
+    </xs:annotation>
+
+    <xs:sequence>
+        <xs:element name="Effectivities" type="EffectivitiesType" minOccurs="0"/>
+        <xs:element name="InopCondition" type="ParaType" />
+        <xs:element name="InopEffect" type="ParaType" />      
+    </xs:sequence>
+
+    <xs:attributeGroup ref="globalAttrGrp"/>
+</xs:complexType>
+
+
+
+<!--=====================================================-->
+<!-- ProcItem element definition -->
+<!--=====================================================-->
+<xs:complexType name="ProcItemType">
+    <xs:annotation>
+        <xs:documentation>General procedural item</xs:documentation>
+    </xs:annotation>
+
+    <xs:sequence>
+        <xs:element name="Effectivities" type="EffectivitiesType" minOccurs="0"/>
+        <xs:element name="Title" type="TitleType"/>
+        <xs:choice  minOccurs="0" maxOccurs="unbounded">
+            <xs:group ref="TextCWNGroupType"/>
+            <xs:element name="Example" type="ExampleType"/>
+        </xs:choice>
+        <xs:element name="ProcItem" type="ProcItemType" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+
+    <xs:attributeGroup ref="globalAttrGrp"/>
+</xs:complexType>
+
+
+
+</xs:schema>

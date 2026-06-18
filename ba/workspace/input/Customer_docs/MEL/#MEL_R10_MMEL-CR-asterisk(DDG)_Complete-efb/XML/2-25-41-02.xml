@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM">]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.2-25-41-02.1419.2-25-41-02" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="25" superSectionNumber="2" sectionName="MEL" chapterName="Equipment Furnishings" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2025-09-30" rev:revStatus="R" rev:revNumber="10" />
+</PUMetaData>
+<MELItem itemNbr="25-41-02" id="X-BOEING:FTID:81205.787.DDG.CU.MEL.2-25-41-02.1.2-25-41-02">
+<Title>Lavatory Waste Container Flapper/Access Doors</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="-" nbrRequired="-" maintIndicator="(M)">
+<DispatchConditionRemarks>
+<Para>May be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>Associated waste container is empty and access is secured to prevent waste introduction into the waste container.</Para>
+</ListItem>
+<ListItem>
+<Para>Associated lavatory is used only by crew members.</Para>
+</ListItem>
+<ListItem>
+<Para>Associated lavatory entrance door is locked closed and placarded, INOPERATIVE - DO NOT ENTER.</Para>
+</ListItem>
+</List>
+<Note>
+<Para>These provisions are not intended to prohibit lavatory use or inspections by crew members.</Para>
+</Note>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<MaintenanceProcedure>
+<Para>Secure the associated waste container to prevent waste from being introduced (AMM DDG 25-41-02).</Para>
+<List listType="1.">
+<ListItem>
+<Para>Empty the associated lavatory waste receptacle.</Para>
+</ListItem>
+<ListItem>
+<Para>Secure the flapper/access door in a manner that will prevent waste from being deposited into the receptacle.</Para>
+</ListItem>
+<ListItem>
+<Para>Close and lock the associated lavatory door.</Para>
+</ListItem>
+</List>
+</MaintenanceProcedure>
+<OperationNote>
+<Para>Lavatory door should remain locked closed, except for use or inspection by crew members.</Para>
+</OperationNote>
+</DispatchProcedure>
+</DispatchCondition>
+</MELItem>
+</DispatchItems>

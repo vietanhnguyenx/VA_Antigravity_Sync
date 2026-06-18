@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM"><!ENTITY G3-57-51-23.fm_1281739 SYSTEM "..\Images\3-57-51-23.fm_1281739.cgm" NDATA CGM>]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.3-57-51-23.4047.3-57-51-23" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="57" superSectionNumber="3" sectionName="CDL" chapterName="Wings" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2021-02-24" rev:revStatus="U" rev:revNumber="10" />
+</PUMetaData>
+<CDLItem itemNbr="57-51-23" id="X-BOEING:FTID:81205.787.DDG.CU.CDL.3-57-51-23.1.3-57-51-23">
+<Title>Wing Midspan Fixed Trailing Edge Lower Flap Seals</Title>
+<DispatchCondition>
+<DispatchConditionRemarks>
+<Para>Six may be missing.</Para>
+<Para>The most inboard midspan lower flap seal (midspan is the area outboard of the flaperon to the outboard end of the outboard flap) may not be missing.</Para>
+<Para>Reduce performance limited weights for each missing seal by:</Para>
+<table frame="all">
+<tgroup cols="5" colsep="1">
+<colspec colname="1" colwidth="17%" />
+<colspec colname="2" colwidth="14%" />
+<colspec colname="3" colwidth="24%" />
+<colspec colname="4" colwidth="24%" />
+<colspec colname="5" colwidth="21%" />
+<thead>
+<row rowsep="1">
+<entry colname="1">
+<Para>
+<Emphasis txtStyle="bold">Applicable Models</Emphasis>
+</Para>
+</entry>
+<entry colname="2">
+<Para>
+<Emphasis txtStyle="bold">Number Installed</Emphasis>
+</Para>
+</entry>
+<entry colname="3">
+<Para>
+<Emphasis txtStyle="bold">Takeoff </Emphasis>
+</Para>
+</entry>
+<entry colname="4">
+<Para>
+<Emphasis txtStyle="bold">Enroute Climb</Emphasis>
+</Para>
+</entry>
+<entry colname="5">
+<Para>
+<Emphasis txtStyle="bold">Approach and Landing</Emphasis>
+</Para>
+</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep="0">
+<entry colname="1">
+<Para />
+</entry>
+<entry colname="2">
+<Para />
+</entry>
+<entry colname="3">
+<Para />
+</entry>
+<entry colname="4">
+<Para />
+</entry>
+<entry colname="5">
+<Para />
+</entry>
+</row>
+</tbody>
+</tgroup>
+<tgroup cols="5" colsep="1">
+<tbody>
+<row rowsep="1">
+<entry colname="1">
+<Para align="center">787-9 (GE)</Para>
+</entry>
+<entry colname="2">
+<Para align="center">8</Para>
+</entry>
+<entry colname="3">
+<Para align="center">1700 lb (771 kg)</Para>
+</entry>
+<entry colname="4">
+<Para align="center">1500 lb (680 kg)</Para>
+</entry>
+<entry colname="5">
+<Para align="center">No decrement</Para>
+</entry>
+</row>
+<row rowsep="0">
+<entry colname="1">
+<Para align="center">787-10 (GE)</Para>
+</entry>
+<entry colname="2">
+<Para align="center">8</Para>
+</entry>
+<entry colname="3">
+<Para align="center">1800 lb (816 kg)</Para>
+</entry>
+<entry colname="4">
+<Para align="center">1450 lb (658 kg)</Para>
+</entry>
+<entry colname="5">
+<Para align="center">No decrement</Para>
+</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+</DispatchConditionRemarks>
+</DispatchCondition>
+<LocationDiagram id="X-BOEING:FTID:81205.787.DDG.CU.GR.3-57-51-23.1281736.3-57-51-23">
+<Illustration fileRef="G3-57-51-23.fm_1281739" linkRef="URN:X-BOEING:FTID:81205.787.DDG.NX.GR.3-57-51-23.1281739." />
+</LocationDiagram>
+</CDLItem>
+</DispatchItems>

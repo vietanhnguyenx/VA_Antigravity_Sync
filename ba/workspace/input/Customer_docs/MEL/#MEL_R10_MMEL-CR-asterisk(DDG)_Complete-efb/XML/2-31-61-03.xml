@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../Style/ftid.xsl"?>
+<?FTID-ProductionInfo FTID-version="2.8" source-app="IXP4.6"?>
+<?FTID-ExportCopyrightStatement Boeing Proprietary. Copyright © Boeing. May be subject to export restrictions under EAR. See title page for details.?>
+<!DOCTYPE DispatchItems[<!NOTATION CGM SYSTEM "CGM">]>
+<DispatchItems id="X-BOEING:FTID:81205.787.DDG.PU.DI.2-31-61-03.2180.2-31-61-03" xsi:schemaLocation="http://www.boeing.com/FTID-ML ../Schemas/publishUnits/DispatchItems.xsd" xmlns="http://www.boeing.com/FTID-ML" xmlns:rev="http://www.boeing.com/FTID-ML/Revision" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<PUMetaData exportControl="Y">
+<PUInfo model="787" manualName="Minimum Equipment List (MEL)" manualNumber="787 MEL" chapterNumber="31" superSectionNumber="2" sectionName="MEL" chapterName="Indicating / Recording Systems" customerName="The Boeing Company" customerCode="VNA" manualCode="DDG" />
+<PURevInfo rev:revDate="2025-09-30" rev:revStatus="R" rev:revNumber="10" />
+</PUMetaData>
+<MELItem itemNbr="31-61-03" id="X-BOEING:FTID:81205.787.DDG.CU.MEL.2-31-61-03.1.2-31-61-03">
+<Title>Touchpad Cursor Control Devices (CCD)</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="2" nbrRequired="1">
+<DispatchConditionRemarks>
+<Para>One may be inoperative provided:</Para>
+<List listType="a.">
+<ListItem>
+<Para>EFIS/DSP panels operate normally.</Para>
+</ListItem>
+<ListItem>
+<Para>Multifunction keypads (MFKs) operate normally.</Para>
+</ListItem>
+</List>
+</DispatchConditionRemarks>
+<DispatchProcedure>
+<OperationNote>
+<List listType="1.">
+<ListItem>
+<Para>Use the multifunction keypad rotary CURSOR CONTROL selector as necessary.  Cursor location switches may be inoperative.  Selection of any new multifunction display format will cause the cursor to automatically move to that format. To move the cursor to an already displayed format, select a different format, then reselect the original format. </Para>
+</ListItem>
+<ListItem>
+<Para>EFB cursor control may not be available to the affected pilot.  EFB touchscreen and/or line select keys must be used.</Para>
+</ListItem>
+<ListItem>
+<Para>The navigation display pick waypoint function will be inoperative for the affected pilot.</Para>
+</ListItem>
+<ListItem>
+<Para>Partial control stand panel lighting may be inoperative.  Use area floodlights if necessary for panel lighting during night operations.</Para>
+<List listType="A.">
+<ListItem>
+<Para>For left touchpad CCD inoperative: parking brake / altn pitch trim, speedbrake / stab cutout, and thrust control module lighting may be inoperative. </Para>
+</ListItem>
+<ListItem>
+<Para>For right touchpad CCD inoperative: flap lever module and altn flap module lighting may be inoperative.</Para>
+</ListItem>
+</List>
+</ListItem>
+</List>
+</OperationNote>
+</DispatchProcedure>
+</DispatchCondition>
+<MELSubItem itemNbr="31-61-03-01">
+<Title>Cursor Location Lights (*)</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="8" nbrRequired="0">
+<DispatchConditionRemarks>
+<Para>One or more may be inoperative.</Para>
+</DispatchConditionRemarks>
+</DispatchCondition>
+</MELSubItem>
+<MELSubItem itemNbr="31-61-03-02">
+<Title>EFB, L, R, LWR Switch Lights (*)</Title>
+<DispatchCondition repairInterval="C" nbrInstalled="8" nbrRequired="0">
+<DispatchConditionRemarks>
+<Para>One or more may be inoperative.</Para>
+</DispatchConditionRemarks>
+</DispatchCondition>
+</MELSubItem>
+</MELItem>
+</DispatchItems>
