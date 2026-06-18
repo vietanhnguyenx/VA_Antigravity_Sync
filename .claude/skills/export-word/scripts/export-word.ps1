@@ -113,6 +113,11 @@ function StripInternal($t){
   $t=[regex]::Replace($t,'[ \t]*tên trong transcript(?:[ \t]+được nhắc đến)?','')
   # e10: bỏ TRỌN dòng §IV đã được chốt — "1. (**) Đã xác nhận: ...[SME-xx — Đã chốt...]"
   $t=[regex]::Replace($t,'(?im)^[ \t]*\d+\.[ \t]*(?:~~[^~\r\n]*~~\s*)?(?:\*\*)?Đã xác nhận:[^\r\n]*\r?\n?','')
+  # e14: bỏ thẻ trích nguồn khảo sát inline — [DDMMYYYY §...], [DDMMYYYY-sáng/chiều §...], [MEL ...csv...], [YCKT ...] (truy vết nội bộ MD, KHÔNG vào bản giao khách §0.0)
+  $t=[regex]::Replace($t,'[ \t]*\[\d{8}[^\]]*\]','')
+  $t=[regex]::Replace($t,'[ \t]*\[MEL [^\]]*\]','')
+  $t=[regex]::Replace($t,'[ \t]*\[YCKT [^\]]*\]','')
+  $t=[regex]::Replace($t,'[ \t]*\[Function list [^\]]*\]','')
   # e11: bỏ backtick pair rỗng còn sót sau khi e8 strip nội dung bên trong `[...]` — "`  `", "` `"
   $t=[regex]::Replace($t,'`[ \t]*`','')
   # e11b: bỏ backtick đơn lẻ (không có cặp) còn sót cuối dòng/sau strip
@@ -168,9 +173,10 @@ $qc=[ordered]@{
   'no internal note leak (§0.0)'     = (([regex]'Lưu ý nội bộ|domain-knowledge|glossary|OID-TOSS|sổ theo dõi điểm chốt|P\d+\s*d\.').Matches($txt).Count -eq 0)
   'no OID code leak (§0.0)'          = (([regex]'\[cần (?:xác nhận|khảo sát)|\b(?:KS|SME|HC)-\d+\b').Matches($txt).Count -eq 0)
   'no transcript process note (§0.0)'= (([regex]'trong transcript|theo timestamp transcript').Matches($txt).Count -eq 0)
+  'no survey source citation (§0.0)' = (([regex]'\[\d{8}[^\]]*\]|\[MEL [^\]]*\]|\[YCKT [^\]]*\]|\[Function list [^\]]*\]').Matches($txt).Count -eq 0)
   'no residual backtick (§0.0)'      = (([regex]'`').Matches($txt).Count -eq 0)
   'no AI phrase: Hai phía (§0.0)'    = (([regex]'Hai phía\s+(?:thảo luận|làm rõ|chia sẻ|nhận định|đề xuất|cho biết)').Matches($txt).Count -eq 0)
-  'no AI phrase: arrow in prose (§0.0)' = (([regex]'(?<!\bAMOS\b|\bTOSS\b|\be-FON\b)\s+→\s+(?!\bTOSS\b|\bAMOS\b|\be-FON\b|\bLido\b)').Matches($txt).Count -eq 0)
+  'no AI phrase: arrow in prose (§0.0)' = (([regex]'(?<!\bAMOS\b|\bTOSS\b|OPS\+\+)\s+→\s+(?!\bTOSS\b|\bAMOS\b|OPS\+\+|\bLido\b)').Matches($txt).Count -eq 0)
   'no AI phrase: clichés (§0.0)'     = (([regex]'Cũng được đề cập|Logic kết nối|Định hướng thống nhất là|Điều này giúp').Matches($txt).Count -eq 0)
   'no non-technical EN: team (§0.0)' = (([regex]'\bteam\b').Matches($txt).Count -eq 0)
   'no non-technical EN: decode/parse/highlight/review (§0.0)' = (([regex]'\b(?:decode|parse|highlight)\b|\breview\b(?!ed\b)').Matches($txt).Count -eq 0)

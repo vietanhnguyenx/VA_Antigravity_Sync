@@ -30,6 +30,7 @@ Khi cần tạo bản Word giao người từ ≥1 file `.md` (SRS, Wireframe, B
 1. **Bỏ link nội bộ:** (a) đích link không phải `http(s)`/`mailto` → giữ nhãn; (b) bỏ path+đuôi `.md`/`.html` (giữ `.xlsx`/`.docx` nguồn thật); (c) bỏ **stem tên-file** còn sót (slug dẫn đầu bằng số mục hoặc `wf-`). Bỏ YAML frontmatter từng file.
    - **(d) Gỡ chú thích đính chính/cảnh báo ASR (§0.0):** xóa các câu/chú thích trong ngoặc `*(…)*` chứa "ASR", "đính chính", "chép nhầm", "lỗi nhận dạng"; xóa cả mục "Cảnh báo chất lượng ghi âm (ASR)". Giữ lại thuật ngữ ĐÚNG đã được sửa trong câu (không giữ vế sai). *(Đã tự động hoá trong `StripAsr` của script — chạy trên bản copy, KHÔNG sửa `.md` gốc.)*
    - **(e) Gỡ dấu vết NỘI BỘ khác (§0.0) — `StripInternal`:** bỏ dòng "Lưu ý nội bộ"; bỏ chú thích đối chiếu chứa "domain-knowledge"/"glossary"; bỏ khung đề xuất glossary ("CHỈ đề xuất"); bỏ trỏ "OID-TOSS-001"/"sổ theo dõi điểm chốt"; bỏ **trích dẫn dòng transcript** "(P1 d.x)"/"(P2 d.x)" (kể cả dạng trần trong ô bảng). Lý do: bản giao khách không lộ truy vết nội bộ/AI.
+   - **(f) Gỡ THẺ TRÍCH NGUỒN khảo sát (§0.0) — `StripInternal` e14:** bỏ thẻ truy vết inline dạng `[DDMMYYYY §...]` (vd `[17062026 §5–§7]`, kể cả hậu tố `-sáng`/`-chiều`), `[MEL ...csv...]`, `[YCKT ...]`. Đây là truy vết nội bộ giữ trong `.md` cho agent, KHÔNG đưa vào bản Word giao khách. Lý do: khách chỉ đọc nội dung nghiệp vụ, không đọc mã trích § của transcript.
 2. **Áp template** `.claude/templates/word-reference.docx` qua `--reference-doc` (style QT02 + letterhead) + mục lục `--toc`.
 3. **(Template đã dựng sẵn)** — nếu cần dựng lại: `build-reference-template.ps1` (font/theme/bảng + header logo + footer mã hiệu/số trang).
 4. **Vá logo header** vào docx (pandoc bỏ ảnh của reference): chèn `media/logo.png` + `header1.xml.rels` + `Default png` bằng `ZipArchive` 'Update'.
@@ -57,6 +58,7 @@ Khi cần tạo bản Word giao người từ ≥1 file `.md` (SRS, Wireframe, B
 - `.md` = 0 · `](` (link markdown) = 0 · **slug tên-file = 0** · không lọt khóa YAML · không mojibake.
 - **Chú thích ASR = 0:** không còn "ASR", "đính chính", "chép nhầm", "lỗi nhận dạng", mục "Cảnh báo chất lượng ghi âm" trong `document.xml` (§0.0).
 - **Dấu vết nội bộ = 0:** không còn "Lưu ý nội bộ", "domain-knowledge", "glossary", "OID-TOSS", "sổ theo dõi điểm chốt", trích dẫn dòng transcript "P1 d./P2 d." (§0.0).
+- **Thẻ trích nguồn khảo sát = 0:** không còn thẻ `[DDMMYYYY §...]`, `[MEL ...csv...]`, `[YCKT ...]` trong `document.xml` (giữ trong `.md`, strip ở Word — §0.0).
 - Gói OPC: entry dùng `/` (**không `\`**) · có `media/logo.png` + `header1.xml` + `footer1.xml` + field TOC.
 - **FONT đồng bộ:** mọi `w:ascii`/theme = **Times New Roman** (`Aptos`/`Calibri`/`Cambria` = 0); chỉ `Consolas` và chỉ ở code/verbatim.
 - XML well-formed · đủ các mục/section mong đợi.
@@ -67,6 +69,7 @@ Khi cần tạo bản Word giao người từ ≥1 file `.md` (SRS, Wireframe, B
 | 1 | Word còn link `.md` chết | md là kênh agent, không strip khi xuất | Strip link nội bộ; verify `.md`=0 |
 | 2 | Lọt **stem tên-file** ("3.1-phan-he-quan-ly-kho") | nhãn link chính là tên file (TOC/bảng cấu trúc) | `StripSlugs` chỉ gỡ slug dẫn đầu **số mục/`wf-`** (giữ `end-to-end`, `low-fidelity`, `MO-2026-012`) |
 | 3 | Gói docx hỏng, `GetEntry` lỗi | `ZipFile::CreateFromDirectory` (.NET Framework) ghi entry bằng `\` | Đóng gói thủ công `CreateEntry(rel.Replace('\\','/'))` |
+| 8 | Word lọt **thẻ trích nguồn** `[17062026 §5–§7]` | báo cáo khảo sát gắn thẻ `[DDMMYYYY §...]`/`[MEL …csv]`/`[YCKT …]` cho truy vết (kênh agent) | `StripInternal` e14 gỡ thẻ trích; giữ trong `.md`. QC "no survey source citation" = 0 (BA Lead 18/06/2026) |
 | 4 | Logo header mất trong file ra | **pandoc bỏ ảnh** khi copy header từ reference | Hậu xử lý: chèn lại `media/logo.png` + `header1.xml.rels` + `png` content-type |
 | 5 | **Font không đồng bộ** (Heading3-9/Subtitle/TOC ra Aptos) | theme pandoc = `Aptos`; style tham chiếu theme rơi về Aptos dù docDefaults là TNR | **Sửa `theme1.xml` latin major+minor = Times New Roman** (giữ Consolas cho code) |
 | 6 | QC sót | chỉ kiểm rò rỉ, **quên kiểm font** | QC kiểm CẢ font (§4) |
