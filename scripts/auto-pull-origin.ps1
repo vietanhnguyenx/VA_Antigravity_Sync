@@ -51,7 +51,7 @@ try {
     }
 
     # 3. Fetch cap nhat moi nhat tu origin (repo cua Gioan)
-    $fetchOut = & $git -c credential.helper= fetch origin main --quiet 2>&1
+    $fetchOut = & $git fetch origin main --quiet 2>&1
     if ($LASTEXITCODE -ne 0) {
         Write-PullLog "Loi khi fetch origin: $fetchOut" "ERROR"
         return
