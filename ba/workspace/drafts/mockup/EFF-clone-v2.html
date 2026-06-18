@@ -310,6 +310,15 @@
   .modal-head{background:var(--teal-grad);}
   .modal-head .mt{color:#fff;}
   .modal-head .mx{color:rgba(255,255,255,.9);}
+
+  /* save validation messages */
+  .err-msg{display:none;color:#B42318;font-size:12.5px;margin-top:6px;font-weight:500;}
+  .err-msg.show{display:block;}
+  .ok-msg{display:none;color:#067647;font-size:13px;font-weight:600;}
+  .ok-msg.show{display:inline-flex;align-items:center;gap:4px;}
+  .wta.field-err{border-color:#F04438 !important;box-shadow:0 0 0 3px rgba(240,68,56,.12);}
+  #wrow-manual.saved{background:#F0FDF4 !important;}
+  #wrow-manual.saved td{color:var(--g900);}
 </style>
 </head>
 <body>
@@ -540,10 +549,12 @@
                 <td>85% (850 L)</td><td>40% (400 L)</td><td>450 L (45%)</td>
                 <td><span class="link" onclick="openGauge()"><span class="icon" style="font-size:15px;vertical-align:-2px;">photo_camera</span> Xem ảnh đồng hồ</span></td>
               </tr>
-              <tr class="row-danger">
+              <tr class="row-danger" id="wrow-manual">
                 <td>Nhập tay / Điều chỉnh (Admin)</td>
-                <td colspan="3" style="color:var(--g400)">— Nhập ở form bên dưới khi có sai lệch —</td>
-                <td><span class="tag tag-amber">Cần lý do điều chỉnh</span></td>
+                <td id="m-dep" style="color:var(--g400)">—</td>
+                <td id="m-arr" style="color:var(--g400)">—</td>
+                <td id="m-use" style="color:var(--g400)">—</td>
+                <td id="m-status"><span class="tag tag-amber">Cần lý do điều chỉnh</span></td>
               </tr>
             </tbody>
           </table>
@@ -572,9 +583,13 @@
           </div>
           <div class="frm-row">
             <label>Ghi chú / Lý do điều chỉnh <span class="req">* (bắt buộc khi sửa bản ghi)</span></label>
-            <textarea class="wta" placeholder="Nhập lý do điều chỉnh số liệu..."></textarea>
+            <textarea class="wta" id="adj-reason" placeholder="Nhập lý do điều chỉnh số liệu..." oninput="clearAdjErr()"></textarea>
+            <div class="err-msg" id="adj-err"><span class="icon" style="font-size:15px;vertical-align:-2px;">error</span> Vui lòng nhập lý do điều chỉnh trước khi lưu.</div>
           </div>
-          <div class="save-row" style="margin-top:14px;"><button class="btn-save">Lưu</button></div>
+          <div class="save-row" style="margin-top:14px;display:flex;align-items:center;gap:14px;">
+            <button class="btn-save" onclick="saveWater()">Lưu</button>
+            <span class="ok-msg" id="adj-ok"><span class="icon" style="font-size:17px;vertical-align:-3px;">check_circle</span> Đã lưu &amp; ghi vết điều chỉnh. Số liệu nhập tay được ưu tiên trên báo cáo.</span>
+          </div>
           <div class="hint">Mọi thay đổi được lưu vết (Audit log): giá trị cũ, giá trị mới, người thực hiện, lý do — số liệu nhập tay được ưu tiên hiển thị trên báo cáo.</div>
         </div>
       </div>
@@ -919,6 +934,46 @@
     var pEl=document.getElementById(p+'-pct');
     if(isNaN(l)){ pEl.value=''; return; }
     pEl.value=Math.round(l/TANK_L*1000)/10;
+  }
+
+  // ===== Manual water adjustment (YC33) =====
+  function clearAdjErr(){
+    document.getElementById('adj-err').classList.remove('show');
+    document.getElementById('adj-reason').classList.remove('field-err');
+  }
+  function saveWater(){
+    var reason=document.getElementById('adj-reason').value.trim();
+    var ok=document.getElementById('adj-ok');
+    // validate: lý do bắt buộc
+    if(!reason){
+      document.getElementById('adj-err').classList.add('show');
+      document.getElementById('adj-reason').classList.add('field-err');
+      ok.classList.remove('show');
+      return;
+    }
+    clearAdjErr();
+    var depP=parseFloat(document.getElementById('dep-pct').value);
+    var depL=parseFloat(document.getElementById('dep-l').value);
+    var arrP=parseFloat(document.getElementById('arr-pct').value);
+    var arrL=parseFloat(document.getElementById('arr-l').value);
+    if(isNaN(depP)||isNaN(depL)||isNaN(arrP)||isNaN(arrL)){
+      document.getElementById('adj-err').classList.add('show');
+      document.getElementById('adj-err').innerHTML='<span class="icon" style="font-size:15px;vertical-align:-2px;">error</span> Vui lòng nhập đủ chỉ số nước đầu và cuối chuyến.';
+      return;
+    }
+    var useL=Math.round(depL-arrL);
+    var useP=Math.round(useL/TANK_L*1000)/10;
+    // đổ vào dòng 3 của bảng so khớp
+    document.getElementById('m-dep').textContent=depP+'% ('+Math.round(depL)+' L)';
+    document.getElementById('m-arr').textContent=arrP+'% ('+Math.round(arrL)+' L)';
+    document.getElementById('m-use').textContent=useL+' L ('+useP+'%)';
+    document.getElementById('m-dep').style.color='';
+    document.getElementById('m-arr').style.color='';
+    document.getElementById('m-use').style.color='';
+    document.getElementById('m-status').innerHTML='<span class="tag tag-green">Đã điều chỉnh</span>';
+    var row=document.getElementById('wrow-manual');
+    row.classList.remove('row-danger'); row.classList.add('saved');
+    ok.classList.add('show');
   }
 
   // deep-link support for review/screenshot: #view-yc34, #water
