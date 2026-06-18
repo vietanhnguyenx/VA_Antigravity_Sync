@@ -980,7 +980,6 @@
   (function(){
     var h=location.hash.replace('#','');
     if(h==='water'){ selectRTab(document.getElementById('rtab-water'),'water'); }
-    else if(h==='savedemo'){ selectRTab(document.getElementById('rtab-water'),'water'); document.getElementById('adj-reason').value='ACARS lỗi, nhập bù theo ảnh đồng hồ tổ bay'; saveWater(); }
     else if(h==='gauge'){ selectRTab(document.getElementById('rtab-water'),'water'); openGauge(); }
     else if(h && document.getElementById(h)){ showView(h); }
   })();
