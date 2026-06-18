@@ -73,12 +73,14 @@ Sinh **mockup HTML tự chứa** (mở bằng trình duyệt, không cần inter
 ## QC trước khi bàn giao
 
 - [ ] Mở được bằng trình duyệt, không lỗi console, không cần internet (hoặc đã ghi chú font).
-- [ ] Mọi element có `data-mat` map về catalog (không có component "lạ" ngoài catalog; nếu có → `(custom)` + flag).
+- [ ] Mọi element có `data-pui` map về catalog PrimeNG / wrapper (không có component "lạ" ngoài catalog; nếu có → `(custom)` + flag).
+- [ ] Bảng/form/dialog dùng **wrapper nội bộ** khi có (IamTable, cmm-dynamic-form, DialogRegistry…), không dùng `p-*` trần khi đã có wrapper.
 - [ ] Mọi trường/nhãn có `data-src` dẫn nguồn; số liệu đánh dấu mẫu.
 - [ ] Header comment đủ: §0 + nguồn + "bố cục cần duyệt".
 - [ ] Legend liệt kê đủ component đã dùng.
 
 ## Liên kết
-- Catalog: [`angular-material-components.md`](../../knowledge/angular-material-components.md)
+- Catalog (CANONICAL): [`primeng-components.md`](../../knowledge/primeng-components.md) · Wrapper nội bộ: [`angular-guidelines.md`](../../rules/angular-guidelines.md) (#18-#45)
+- Template khung: `assets/primeng-base.html`
 - Wireframe nguồn: `ba/process/wireframe/`
-- Sau khi duyệt → DEV dùng `gen-feature`/`gen-component` sinh code Angular tương ứng vào `dev/`.
+- Sau khi duyệt → DEV dùng `gen-feature`/`gen-component` sinh code Angular + PrimeNG tương ứng vào `dev/` (data-pui map thẳng sang component thật).

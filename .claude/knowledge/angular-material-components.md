@@ -6,6 +6,8 @@ version: "1.1"
 date: "2026-06-03"
 ---
 
+> ⚠️ **ĐÃ THAY THẾ (2026-06-18):** DEV stack của dự án là **PrimeNG 21** (rule #18), KHÔNG phải Angular Material. Catalog CANONICAL cho skill `gen-mockup` nay là [`primeng-components.md`](primeng-components.md). File này **chỉ giữ làm tham khảo lịch sử** — đừng dùng để dựng mockup mới.
+
 > Mirrored at `.claude/human/knowledge/angular-material-components.md` (full Vietnamese version). Sync per [SYNC-PROTOCOL.md](../sync/SYNC-PROTOCOL.md). Related: [`.claude/rules/angular-guidelines.md`](../rules/angular-guidelines.md).
 
 # Angular Material — Component Catalog for Mockups (AGENTS scope)

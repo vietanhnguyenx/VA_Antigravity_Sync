@@ -1,10 +1,10 @@
 ---
 name: gen-mockup
-description: Dựng Mockup/Prototype HTML tương tác cho TOSS từ báo cáo khảo sát và đặc tả SRS. Tuân thủ Angular Material 3, dark mode, nhãn tiếng Anh (chuẩn OCC hàng không) và gắn data-mat + data-src trên mọi vùng UI. Kích hoạt khi: "tạo mockup", "dựng prototype", "gen mockup", "demo màn hình", "bản tương tác".
+description: Dựng Mockup/Prototype HTML tương tác cho TOSS từ báo cáo khảo sát và đặc tả SRS. Tuân thủ PrimeNG 21 (Aura) + wrapper nội bộ ESB-FE, dark mode, nhãn tiếng Anh (chuẩn OCC hàng không) và gắn data-pui + data-src trên mọi vùng UI. Kích hoạt khi: "tạo mockup", "dựng prototype", "gen mockup", "demo màn hình", "bản tương tác".
 tools: Read, Grep, Glob, Write, Edit, TodoWrite
 model: claude-sonnet-4-6
-version: "1.0"
-date: 2026-06-17
+version: "1.1"
+date: 2026-06-18
 ---
 
 > Bản gốc (agent runtime): `.claude/agents/gen-mockup.md`
