@@ -1,21 +1,22 @@
 Table4 style: None
 Table5 style: None
-Table2(changelog) style: None
+Table2 style: None
 changelog cols=5 rows=29
 changelog header: Ngày
 thay đổi || Vị trí
 thay đổi || A*
 M, D || Mô tả thay đổi || ver
-changelog last row:  ||  ||  ||  || 
+changelog row1: 01/12/2024 || Tạo mới || A || All || 1.0
+changelog last:  ||  ||  ||  || 
 --- Table0 cover ---
 Mã hiệu dự án: | MOPLUS
 Mã hiệu tài liệu: | MOPLUS_SRS_EFF_WEB_v2.5
---- paragraphs containing 2.5 / version ---
+--- contains 2.5 (paras) ---
 [p80|normal] Cho phép user quản lý toàn bộ các version tài liệu của chuyến bay.
---- table cells containing 2.5 ---
+--- contains 2.5 (cells) ---
 table0: MOPLUS_SRS_EFF_WEB_v2.5
 table2: 2.5
---- styles with Heading ---
+--- heading styles ---
 Heading 1
 Heading 2
 Heading 3

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<!--
+  MOCKUP — <PHÂN HỆ / MÀN> — <DỰ ÁN>
+  CLAUDE.md §0: trường/nhãn/trạng thái/nút lấy từ nguồn (SRS/wireframe, [MT]/[PR]/[UI]/[BB]) — có data-src.
+  SỐ LIỆU = dữ liệu mẫu. BỐ CỤC/MÀU = đề xuất cần BA/UI duyệt.
+  Trình bày theo PrimeNG 21 (Aura); mỗi vùng có data-pui = component PrimeNG / wrapper dự án (xem Legend cuối trang).
+  Mở bằng trình duyệt. PrimeIcons qua CDN — nếu mạng nội bộ chặn: nhúng font hoặc thay icon bằng SVG inline.
+-->
+<html lang="vi"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mockup — &lt;màn&gt;</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/primeicons@7.0.0/primeicons.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* ===== PrimeNG Aura design tokens (primary = Viettel đỏ #EE0033 — chỉnh theo design-system) ===== */
+  :root{
+    --p-primary:#EE0033; --p-primary-hover:#cc002b; --p-on-primary:#fff; --p-primary-50:#fff1f3; --p-primary-100:#ffd9de;
+    --p-surface-0:#ffffff; --p-surface-50:#f9fafb; --p-surface-100:#f3f4f6; --p-surface-200:#e5e7eb; --p-surface-300:#d1d5db;
+    --p-text:#1f2937; --p-text-muted:#6b7280; --p-border:#e5e7eb;
+    --p-success:#22c55e; --p-info:#3b82f6; --p-warn:#f59e0b; --p-danger:#ef4444; --p-secondary:#64748b;
+    --p-radius:8px; --p-radius-sm:6px;
+    --p-shadow1:0 1px 3px rgba(0,0,0,.08),0 1px 2px rgba(0,0,0,.06);
+    --p-shadow2:0 4px 6px -1px rgba(0,0,0,.1),0 2px 4px -2px rgba(0,0,0,.1);
+  }
+  *{box-sizing:border-box;} body{margin:0;font-family:Inter,'Segoe UI',Arial,sans-serif;background:var(--p-surface-100);color:var(--p-text);font-size:14px;}
+  .pi{vertical-align:middle;line-height:1;}
+  /* ubck-header (p-toolbar) */
+  [data-pui^="ubck-header"],[data-pui^="p-toolbar"]{background:var(--p-surface-0);color:var(--p-text);display:flex;align-items:center;gap:14px;padding:12px 18px;position:sticky;top:0;z-index:20;box-shadow:var(--p-shadow1);border-bottom:1px solid var(--p-border);}
+  [data-pui^="ubck-header"] .brand,[data-pui^="p-toolbar"] .brand{color:var(--p-primary);font-weight:700;}
+  [data-pui^="ubck-header"] .spacer,[data-pui^="p-toolbar"] .spacer{flex:1;}
+  /* layout + p-panelMenu (sidebar) */
+  .shell{display:flex;min-height:calc(100vh - 57px);}
+  [data-pui^="p-panelMenu"],[data-pui^="p-menu"].side{width:248px;background:var(--p-surface-0);border-right:1px solid var(--p-border);padding:8px;}
+  [data-pui^="p-panelMenu"] a{display:flex;gap:10px;align-items:center;padding:11px 14px;color:var(--p-text);text-decoration:none;border-radius:var(--p-radius-sm);cursor:pointer;}
+  [data-pui^="p-panelMenu"] a:hover{background:var(--p-surface-100);}
+  [data-pui^="p-panelMenu"] a.active{background:var(--p-primary-50);color:var(--p-primary);font-weight:600;}
+  .content{flex:1;padding:18px 22px;}
+  .banner{background:#fff7ed;color:#9a3412;border:1px solid #fed7aa;border-radius:var(--p-radius-sm);padding:8px 12px;font-size:12px;margin-bottom:14px;}
+  /* p-card */
+  [data-pui^="p-card"]{background:var(--p-surface-0);border:1px solid var(--p-border);border-radius:var(--p-radius);padding:18px;margin-bottom:16px;box-shadow:var(--p-shadow1);}
+  [data-pui^="p-card"] .card-title{font-size:16px;font-weight:600;margin:0 0 14px;}
+  /* ubck-filter / form fields (pInputText, p-select, p-datepicker) */
+  [data-pui*="InputText"],[data-pui*="p-select"],[data-pui*="p-datepicker"],[data-pui*="IamSearchInput"]{position:relative;margin:8px 0;}
+  [data-pui*="InputText"] label,[data-pui*="p-select"] label,[data-pui*="p-datepicker"] label,[data-pui*="IamSearchInput"] label{display:block;font-size:12px;color:var(--p-text-muted);margin-bottom:5px;font-weight:500;}
+  [data-pui*="InputText"] input,[data-pui*="p-select"] select,[data-pui*="p-datepicker"] input,[data-pui*="IamSearchInput"] input{
+    width:100%;padding:9px 12px;border:1px solid var(--p-surface-300);border-radius:var(--p-radius-sm);
+    font:inherit;background:var(--p-surface-0);color:var(--p-text);}
+  [data-pui*="InputText"] input:focus,[data-pui*="p-select"] select:focus{outline:2px solid var(--p-primary-100);border-color:var(--p-primary);}
+  .form-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:4px 16px;} .form-grid .full{grid-column:1/-1;}
+  /* p-button severities */
+  .btn{display:inline-flex;align-items:center;gap:6px;border-radius:var(--p-radius-sm);padding:9px 18px;font:inherit;font-weight:600;cursor:pointer;border:1px solid transparent;font-size:13px;}
+  .btn-primary{background:var(--p-primary);color:var(--p-on-primary);} /* severity="primary" */
+  .btn-secondary{background:transparent;color:var(--p-secondary);border-color:var(--p-surface-300);} /* [outlined] secondary */
+  .btn-danger{background:var(--p-danger);color:#fff;} /* severity="danger" */
+  .btn-text{background:transparent;color:var(--p-primary);border:none;padding:9px 10px;} /* [text] */
+  .btn-icon{width:36px;height:36px;border-radius:var(--p-radius-sm);padding:0;justify-content:center;background:transparent;color:var(--p-text-muted);border:none;} /* [text] icon */
+  .btn-row{display:flex;gap:10px;justify-content:flex-end;margin-top:14px;flex-wrap:wrap;}
+  /* IamTable (p-table) */
+  [data-pui^="IamTable"]{width:100%;border-collapse:collapse;background:var(--p-surface-0);}
+  [data-pui^="IamTable"] th{text-align:left;padding:11px 12px;font-weight:600;color:var(--p-text-muted);border-bottom:1px solid var(--p-border);background:var(--p-surface-50);position:sticky;top:0;font-size:12.5px;}
+  [data-pui^="IamTable"] td{padding:11px 12px;border-bottom:1px solid var(--p-border);}
+  [data-pui^="IamTable"] tbody tr:hover{background:var(--p-surface-50);}
+  .table-wrap{border:1px solid var(--p-border);border-radius:var(--p-radius);overflow:auto;max-height:420px;}
+  /* p-paginator */
+  [data-pui^="p-paginator"]{display:flex;justify-content:flex-end;align-items:center;gap:14px;padding:10px;color:var(--p-text-muted);font-size:13px;}
+  /* IamBadgeStatus (p-tag) */
+  [data-pui^="IamBadgeStatus"],[data-pui^="p-tag"]{display:inline-block;padding:3px 11px;border-radius:var(--p-radius-sm);font-size:12px;font-weight:600;}
+  .tag-success{background:#dcfce7;color:#166534;} .tag-info{background:#dbeafe;color:#1e40af;} .tag-warn{background:#fef3c7;color:#92400e;} .tag-danger{background:#fee2e2;color:#991b1b;} .tag-secondary{background:var(--p-surface-200);color:var(--p-secondary);}
+  /* esb-tabs (p-tabs) */
+  [data-pui^="esb-tabs"] .tabs,[data-pui^="p-tabs"] .tabs{display:flex;gap:4px;border-bottom:1px solid var(--p-border);margin-bottom:14px;}
+  [data-pui^="esb-tabs"] .tab,[data-pui^="p-tabs"] .tab{padding:11px 18px;cursor:pointer;color:var(--p-text-muted);border-bottom:2px solid transparent;font-weight:500;}
+  [data-pui^="esb-tabs"] .tab.active,[data-pui^="p-tabs"] .tab.active{color:var(--p-primary);border-bottom-color:var(--p-primary);font-weight:600;}
+  /* p-dialog / DialogRegistry (scaffold ẩn) */
+  [data-pui*="Dialog"]{position:fixed;inset:0;background:rgba(0,0,0,.4);display:none;align-items:center;justify-content:center;z-index:50;}
+  [data-pui*="Dialog"] .panel{background:var(--p-surface-0);border-radius:var(--p-radius);padding:0;min-width:380px;max-width:90vw;box-shadow:var(--p-shadow2);overflow:hidden;}
+  [data-pui*="Dialog"] .dlg-head{background:var(--p-surface-50);padding:16px 20px;border-bottom:1px solid var(--p-border);font-weight:600;} /* IamDialogHeader */
+  [data-pui*="Dialog"] .dlg-body{padding:20px;}
+  /* Legend */
+  .legend{margin:24px 0;font-size:12.5px;} .legend table{width:100%;border-collapse:collapse;}
+  .legend th,.legend td{border:1px solid var(--p-border);padding:6px 10px;text-align:left;}
+  .src{color:var(--p-text-muted);font-size:11px;}
+  @media(max-width:880px){ .shell{flex-direction:column;} [data-pui^="p-panelMenu"]{width:100%;} .form-grid{grid-template-columns:1fr;} }
+</style></head>
+<body>
+
+<!-- ===== ubck-header (p-toolbar) ===== -->
+<div data-pui="ubck-header (p-toolbar)" data-src="SRS 4.x app shell">
+  <i class="pi pi-bars"></i>
+  <span class="brand">&lt;Tên hệ thống&gt;</span><span class="spacer"></span>
+  <i class="pi pi-bell"></i>
+  <i class="pi pi-user"></i>
+</div>
+
+<div class="shell">
+  <!-- ===== p-panelMenu (sidebar điều hướng) ===== -->
+  <nav data-pui="p-panelMenu" data-src="SRS điều hướng">
+    <a class="active"><i class="pi pi-th-large"></i> Tổng quan</a>
+    <a><i class="pi pi-list"></i> Danh sách &lt;X&gt;</a>
+    <a><i class="pi pi-cog"></i> Cấu hình</a>
+  </nav>
+
+  <main class="content">
+    <div class="banner">⚠️ Mockup demo — số liệu là dữ liệu mẫu; bố cục/màu cần BA/UI duyệt (§0).</div>
+
+    <!-- ===== p-card: bộ lọc + bảng ===== -->
+    <section data-pui="p-card" data-src="[MT x] SRS 3.x màn danh sách">
+      <div class="card-title">Danh sách &lt;X&gt;</div>
+
+      <!-- ubck-filter -->
+      <div class="form-grid" data-pui="ubck-filter (eventSearch)" data-src="[MT] Bộ lọc">
+        <div data-pui="IamSearchInput (pInputText)" data-src="[MT] Từ khóa"><label>Từ khóa</label><input placeholder="Tìm kiếm…"></div>
+        <div data-pui="p-select" data-src="[MT] Trạng thái"><label>Trạng thái</label><select><option>Tất cả</option><option>Đang thực hiện</option></select></div>
+        <div data-pui="p-datepicker" data-src="[MT] Khoảng ngày"><label>Từ ngày</label><input type="date"></div>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-text" data-pui="p-button [text]">Xóa lọc</button>
+        <button class="btn btn-primary" data-pui='p-button severity="primary"'><i class="pi pi-search"></i> Tìm</button>
+      </div>
+
+      <div class="table-wrap">
+        <table data-pui="IamTable (p-table)" data-src="[PR] cột bảng SRS 3.x">
+          <thead><tr><th>Mã</th><th>Tên</th><th>Trạng thái</th><th>Cập nhật</th><th style="text-align:right">Thao tác</th></tr></thead>
+          <tbody>
+            <tr><td>SX-001</td><td>&lt;mẫu&gt;</td><td><span data-pui="IamBadgeStatus (p-tag)" class="tag-info">Đang thực hiện</span></td><td>2026-06-18</td>
+                <td style="text-align:right"><button class="btn btn-icon" data-pui="p-button [text] + p-menu[popup]" title="Thao tác"><i class="pi pi-ellipsis-v"></i></button></td></tr>
+            <tr><td>SX-002</td><td>&lt;mẫu&gt;</td><td><span data-pui="IamBadgeStatus (p-tag)" class="tag-success">Hoàn thành</span></td><td>2026-06-17</td>
+                <td style="text-align:right"><button class="btn btn-icon" data-pui="p-button [text] + p-menu[popup]"><i class="pi pi-ellipsis-v"></i></button></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div data-pui="p-paginator" data-src="phân trang">Số dòng/trang: 10 &nbsp; 1–10 / 124 &nbsp;
+        <i class="pi pi-chevron-left"></i><i class="pi pi-chevron-right"></i></div>
+    </section>
+  </main>
+</div>
+
+<!-- ===== DialogRegistry + IamDialogHeader + cmm-dynamic-form (form tạo/sửa — ẩn) ===== -->
+<div data-pui="DialogRegistry (DynamicDialog)" data-src="[MT] form tạo/sửa">
+  <div class="panel">
+    <div class="dlg-head" data-pui="IamDialogHeader">Tạo mới &lt;X&gt;</div>
+    <div class="dlg-body">
+      <div data-pui="cmm-dynamic-form [config]" data-src="[MT] field form">
+        <div data-pui="pInputText"><label>Tên</label><input></div>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-secondary" data-pui="p-button [outlined]">Hủy</button>
+        <button class="btn btn-primary" data-pui='p-button severity="primary"'>Lưu</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== LEGEND: map component PrimeNG / wrapper đã dùng (cho DEV) ===== -->
+<div class="legend content">
+  <div class="card-title">Legend — component PrimeNG / wrapper đã dùng</div>
+  <table>
+    <tr><th>data-pui</th><th>Component (wrapper → PrimeNG gốc)</th><th>Docs / Rule</th></tr>
+    <tr><td>ubck-header (p-toolbar)</td><td>Header trang → Toolbar</td><td>rule #27 · primeng.org/toolbar</td></tr>
+    <tr><td>p-panelMenu</td><td>PanelMenu (sidebar điều hướng)</td><td>primeng.org/panelmenu</td></tr>
+    <tr><td>p-card</td><td>Card</td><td>primeng.org/card</td></tr>
+    <tr><td>ubck-filter (eventSearch)</td><td>Bộ lọc danh sách</td><td>rule #27</td></tr>
+    <tr><td>IamSearchInput (pInputText)</td><td>Ô tìm kiếm (directive)</td><td>rule #31</td></tr>
+    <tr><td>p-select / p-datepicker</td><td>Select / DatePicker</td><td>rule #38 · primeng.org/select</td></tr>
+    <tr><td>p-button (primary/text/outlined)</td><td>Button (severity)</td><td>rule #43 · primeng.org/button</td></tr>
+    <tr><td>IamTable (p-table)</td><td>Bảng danh sách → Table</td><td>rule #19 · primeng.org/table</td></tr>
+    <tr><td>IamBadgeStatus (p-tag)</td><td>Nhãn trạng thái → Tag</td><td>rule #29, #43</td></tr>
+    <tr><td>p-menu[popup]</td><td>Menu thao tác trên dòng</td><td>primeng.org/menu</td></tr>
+    <tr><td>p-paginator</td><td>Paginator</td><td>primeng.org/paginator</td></tr>
+    <tr><td>DialogRegistry (DynamicDialog)</td><td>Dialog mở bằng code</td><td>rule #23, #41, #45</td></tr>
+    <tr><td>IamDialogHeader</td><td>Header dialog (truyền data:{})</td><td>rule #35</td></tr>
+    <tr><td>cmm-dynamic-form [config]</td><td>Form engine động (#df)</td><td>rule #32, #42</td></tr>
+  </table>
+  <p class="src">Catalog đầy đủ: .claude/knowledge/primeng-components.md · Wrapper: .claude/rules/angular-guidelines.md (#18-#45). Mọi data-pui phải khớp catalog/ wrapper (không có → ghi "(custom)" + flag §0).</p>
+</div>
+
+</body></html>
