@@ -1,8 +1,11 @@
-# auto-pull-origin.ps1 - Tu dong KEO (pull) cap nhat moi tu repo cua anh Gioan
+# auto-pull-origin.ps1 - Tu dong KEO cap nhat moi tu repo cua anh Gioan
 # Remote: origin = https://github.com/nguyengioan00-cmyk/VITI-TOSS (branch main)
-# Chien luoc: FAST-FORWARD ONLY - chi pull khi local chua bi lech.
-#   Neu local da co commit rieng (divergence) -> BO QUA + ghi log, KHONG bao gio
-#   ghi de / lam mat thay doi cuc bo. Xu ly hop nhat thu cong khi can.
+#
+# Chien luoc: MERGE UU TIEN LOCAL (git merge -X ours):
+#   - File MOI chi co o repo Gioan  -> tu dong THEM vao dung vi tri.
+#   - File DA CO o local (da lam / da khac) -> GIU NGUYEN ban local, KHONG ghi de.
+#   - Khong bao gio xoa thay doi cuc bo. Neu merge bi ket xung dot -> abort + ghi log.
+#
 # Duoc goi dinh ky boi Windows Scheduled Task "TOSS-AutoPull-Gioan" (moi 1 gio).
 
 $env:GIT_TERMINAL_PROMPT = "0"
@@ -31,22 +34,27 @@ function Get-GitPath {
     throw "Khong tim thay Git. Vui long cai dat Git va dam bao no nam trong PATH."
 }
 
+function Test-MergeInProgress {
+    param([string]$Dir)
+    return (Test-Path (Join-Path $Dir ".git\rebase-merge")) -or
+           (Test-Path (Join-Path $Dir ".git\rebase-apply")) -or
+           (Test-Path (Join-Path $Dir ".git\MERGE_HEAD"))
+}
+
 try {
     $git = Get-GitPath
     Set-Location $ProjectDir
 
-    # 1. Khong dong vao giua mot tien trinh rebase/merge thu cong
-    if ((Test-Path (Join-Path $ProjectDir ".git\rebase-merge")) -or
-        (Test-Path (Join-Path $ProjectDir ".git\rebase-apply")) -or
-        (Test-Path (Join-Path $ProjectDir ".git\MERGE_HEAD"))) {
-        Write-PullLog "Dang co rebase/merge thu cong. Bo qua chu ky nay." "INFO"
+    # 1. Khong dong vao giua mot tien trinh rebase/merge dang do
+    if (Test-MergeInProgress $ProjectDir) {
+        Write-PullLog "Dang co rebase/merge dang do. Bo qua chu ky nay." "INFO"
         return
     }
 
     # 2. Phai dang o branch main
     $branch = (& $git rev-parse --abbrev-ref HEAD).Trim()
     if ($branch -ne "main") {
-        Write-PullLog "Dang o branch '$branch' (khong phai main). Bo qua de tranh pull nham branch." "WARNING"
+        Write-PullLog "Dang o branch '$branch' (khong phai main). Bo qua de tranh merge nham branch." "WARNING"
         return
     }
 
@@ -57,51 +65,52 @@ try {
         return
     }
 
-    # 4. So sanh local main voi origin/main
     $local  = (& $git rev-parse main).Trim()
     $remote = (& $git rev-parse origin/main).Trim()
     if ($local -eq $remote) {
-        Write-PullLog "Da cap nhat moi nhat (local == origin/main). Khong co gi de pull." "INFO"
+        Write-PullLog "Local da bang origin/main. Khong co gi de cap nhat." "INFO"
         return
     }
 
-    # merge-base de xac dinh quan he giua local va origin/main
-    $baseRaw = & $git merge-base main origin/main 2>$null
-    $base = if ($baseRaw) { $baseRaw.Trim() } else { "" }
-
-    if ([string]::IsNullOrEmpty($base)) {
-        # Khong co to tien chung -> hai lich su KHONG LIEN QUAN (unrelated histories).
-        # Fast-forward la bat kha thi. Theo chien luoc no-clobber: BO QUA + ghi log.
-        Write-PullLog "LICH SU KHONG LIEN QUAN (unrelated histories) giua local va origin/main." "WARNING"
-        Write-PullLog "Fast-forward bat kha thi. Theo che do an toan no-clobber: BO QUA, khong ghi de." "WARNING"
-        Write-PullLog "De lay ban cua Gioan can dung che do mirror (reset --hard) hoac clone moi - quyet dinh boi nguoi dung." "WARNING"
+    # 4. Neu origin/main da nam tron trong lich su local -> khong co gi moi de merge
+    & $git merge-base --is-ancestor origin/main main
+    if ($LASTEXITCODE -eq 0) {
+        Write-PullLog "Khong co commit moi tu Gioan (origin/main da duoc merge truoc do)." "INFO"
         return
     }
 
-    if ($base -eq $remote) {
-        # origin la to tien cua local -> local DANG VUOT TRUOC origin. Khong can pull.
-        Write-PullLog "Local dang vuot truoc origin/main (co commit rieng chua len origin). Khong pull." "INFO"
+    # 5. Commit moi thay doi cuc bo dang do de cay lam viec sach truoc khi merge
+    $dirty = & $git status --porcelain
+    if ($dirty) {
+        Write-PullLog "Phat hien thay doi cuc bo chua commit. Dang commit lai truoc khi merge..." "INFO"
+        & $git add -A
+        & $git commit -m "Auto-pull: luu thay doi cuc bo truoc khi merge tu Gioan" | Out-Null
+        if ($LASTEXITCODE -ne 0) {
+            Write-PullLog "Khong the commit thay doi cuc bo. Bo qua chu ky de an toan." "ERROR"
+            return
+        }
+    }
+
+    # 6. Merge origin/main, UU TIEN LOCAL khi trung file (-X ours).
+    #    --allow-unrelated-histories: can cho lan merge dau (hai lich su chua lien quan);
+    #    cac lan sau git tu bo qua co nay khi da lien quan.
+    Write-PullLog "Dang merge origin/main (uu tien local, them file moi tu Gioan)..." "INFO"
+    $mergeMsg = "Auto-pull: merge tu Gioan (origin/main) - them file moi, giu nguyen local"
+    $mergeOut = & $git merge origin/main --allow-unrelated-histories -X ours --no-edit -m $mergeMsg 2>&1
+    $mergeExit = $LASTEXITCODE
+
+    if ($mergeExit -ne 0 -or (Test-MergeInProgress $ProjectDir)) {
+        Write-PullLog "Merge bi ket (co the do xung dot rename/delete -X ours khong tu giai duoc)." "ERROR"
+        Write-PullLog "Chi tiet: $mergeOut" "ERROR"
+        Write-PullLog "Dang abort merge de giu cay lam viec an toan (git merge --abort)..." "WARNING"
+        & $git merge --abort 2>&1 | Out-Null
+        Write-PullLog "Da abort. Can xu ly thu cong: git merge origin/main -X ours" "WARNING"
         return
     }
 
-    if ($base -ne $local) {
-        # Khong phai to tien cua nhau -> DA LECH (divergence). Fast-forward khong duoc.
-        Write-PullLog "DA LECH (divergence) giua local va origin/main - co commit rieng ca hai phia." "WARNING"
-        Write-PullLog "Theo chien luoc fast-forward-only: BO QUA, khong ghi de. Xu ly thu cong:" "WARNING"
-        Write-PullLog "  git fetch origin ; git rebase origin/main   (hoac merge), giai quyet xung dot roi tiep tuc." "WARNING"
-        return
-    }
-
-    # base == local va remote khac local -> local LA to tien cua origin -> fast-forward duoc.
-    $ahead = (& $git rev-list --count "$local..$remote").Trim()
-    Write-PullLog "Co $ahead commit moi tu Gioan. Dang fast-forward..." "INFO"
-    $mergeOut = & $git merge --ff-only origin/main 2>&1
-    if ($LASTEXITCODE -ne 0) {
-        Write-PullLog "Fast-forward that bai (co the do thay doi chua commit trong working tree): $mergeOut" "ERROR"
-        Write-PullLog "Hay commit/stash thay doi cuc bo roi chay lai, hoac xu ly thu cong." "ERROR"
-        return
-    }
-    Write-PullLog "PULL THANH CONG - da cap nhat $ahead commit moi tu repo cua Gioan." "INFO"
+    # 7. Bao cao so file moi duoc them
+    $added = (& $git diff --name-only --diff-filter=A HEAD~1 HEAD 2>$null | Measure-Object -Line).Lines
+    Write-PullLog "MERGE THANH CONG - da them $added file moi tu repo cua Gioan, giu nguyen ban local." "INFO"
 }
 catch {
     Write-PullLog "Loi nghiem trong trong chu ky pull: $_" "ERROR"

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mobile Operation — EFF (clone)</title>
+<title>Mobile Operation — EFF (clone v2 · enhanced)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -223,6 +223,93 @@
   .modal-head .mx{margin-left:auto;cursor:pointer;color:var(--g500);font-size:24px;}
   .modal-body{padding:20px;}
   .gauge-meta{margin-top:14px;font-size:12.5px;color:var(--g500);text-align:center;}
+
+  /* =========================================================
+     V2 VISUAL POLISH — icon + màu nút + hiệu ứng (override)
+     ========================================================= */
+  :root{ --teal-grad:linear-gradient(135deg,#0E7089 0%,#13a0bf 100%);
+         --gold-grad:linear-gradient(135deg,#F7B733 0%,#F49B0B 100%);
+         --green-grad:linear-gradient(135deg,#12B76A 0%,#067647 100%); }
+  button{transition:transform .12s ease, box-shadow .12s ease, background .12s ease;}
+
+  /* Search — gold gradient + glow + icon */
+  .btn-search{background:var(--gold-grad);box-shadow:0 4px 12px rgba(244,155,11,.35);display:inline-flex;align-items:center;gap:8px;}
+  .btn-search::before{font-family:'Material Symbols Outlined';content:'search';font-size:19px;}
+  .btn-search:hover{transform:translateY(-1px);box-shadow:0 6px 16px rgba(244,155,11,.45);}
+  .btn-reset{display:inline-flex;align-items:center;gap:6px;}
+  .btn-reset::before{font-family:'Material Symbols Outlined';content:'restart_alt';font-size:18px;}
+
+  /* primary teal buttons */
+  .btn-add,.btn-save{background:var(--teal-grad);box-shadow:0 4px 12px rgba(14,112,137,.32);}
+  .btn-add:hover,.btn-save:hover{transform:translateY(-1px);box-shadow:0 6px 16px rgba(14,112,137,.42);}
+  .btn-excel{background:var(--green-grad);box-shadow:0 4px 12px rgba(6,118,71,.32);}
+  .btn-excel:hover{transform:translateY(-1px);box-shadow:0 6px 16px rgba(6,118,71,.42);}
+
+  /* outlined buttons — colored hover */
+  .obtn{transition:all .12s ease;}
+  .obtn:hover{border-color:var(--teal-l);color:var(--teal-l);background:#F0FBFF;box-shadow:0 3px 10px rgba(14,112,137,.14);}
+  .obtn:hover .icon{color:var(--teal-l);}
+
+  /* nav active pill — subtle glow */
+  .navitem.active{background:rgba(255,255,255,.22);box-shadow:0 2px 10px rgba(0,0,0,.12);}
+  .navitem{transition:background .12s ease;}
+
+  /* pagination active — gold gradient chip */
+  .pages .pg.act{background:var(--gold-grad);box-shadow:0 3px 8px rgba(244,155,11,.4);}
+  .pages .pg{transition:background .12s ease;}
+
+  /* flights table — selected accent + row hover */
+  .ftable tbody tr{transition:background .1s ease;}
+  .ftable tbody tr:hover{background:#F0F7FF;}
+  .ftable tbody tr.sel{background:var(--blue-sel);}
+  .ftable tbody tr.sel td:first-child{box-shadow:inset 4px 0 0 var(--teal-l);}
+  .gtable tbody tr{transition:background .1s ease;}
+  .gtable tbody tr:hover{background:#F0F7FF;}
+
+  /* right-panel tab — thicker underline + pill hover */
+  .rtab{border-radius:8px 8px 0 0;transition:background .12s ease,color .12s ease;}
+  .rtab:hover{background:#F4FAFB;color:var(--g900);}
+  .rtab.active{border-bottom-width:3px;}
+
+  /* dropdown menu items — colored icon chip */
+  .dd-menu a{transition:background .1s ease;}
+  .dd-menu a .icon{background:#EAF6F9;border-radius:8px;padding:6px;font-size:18px;}
+  .dd-menu a:hover{background:#F0FBFF;}
+  .dd-menu a:hover .icon{background:#D6EEF4;}
+
+  /* screen header — colored icon chip before title */
+  .scr-head h2{display:flex;align-items:center;gap:10px;}
+  .scr-head h2::before{font-family:'Material Symbols Outlined';content:'analytics';font-size:24px;color:#fff;
+       background:var(--teal-grad);border-radius:10px;padding:8px;box-shadow:0 3px 10px rgba(14,112,137,.3);}
+  #view-yc36 .scr-head h2::before,#view-yc37 .scr-head h2::before{content:'warning';background:var(--gold-grad);box-shadow:0 3px 10px rgba(244,155,11,.35);}
+  #view-yc25 .scr-head h2::before{content:'propane_tank';}
+  #view-yc26 .scr-head h2::before{content:'speed';}
+  #view-yc27 .scr-head h2::before{content:'tune';}
+  #view-yc28 .scr-head h2::before{content:'notification_important';background:var(--gold-grad);box-shadow:0 3px 10px rgba(244,155,11,.35);}
+
+  /* reco cards (Water tab) — icon chip + vivid highlight */
+  .reco{display:flex;align-items:flex-start;gap:12px;background:#fff;border:1px solid var(--g200);box-shadow:0 1px 3px rgba(16,24,40,.05);}
+  .reco .ic{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;
+       background:#EAF6F9;color:var(--teal-l);}
+  .reco .ic .icon{font-size:21px;}
+  .reco.hl{background:var(--teal-grad);border:none;box-shadow:0 6px 18px rgba(14,112,137,.3);}
+  .reco.hl .k{color:rgba(255,255,255,.85);}
+  .reco.hl .v{color:#fff;}
+  .reco.hl .ic{background:rgba(255,255,255,.22);color:#fff;}
+
+  /* section titles in water pane — icon chip */
+  .wsec .wt .icon{background:#EAF6F9;border-radius:8px;padding:6px;}
+
+  /* tags — slight shadow */
+  .tag{box-shadow:0 1px 2px rgba(16,24,40,.06);}
+
+  /* panels — lift on the active screen card */
+  .panel.screen{box-shadow:0 4px 20px rgba(16,24,40,.08);}
+
+  /* modal header — teal gradient bar */
+  .modal-head{background:var(--teal-grad);}
+  .modal-head .mt{color:#fff;}
+  .modal-head .mx{color:rgba(255,255,255,.9);}
 </style>
 </head>
 <body>
@@ -422,10 +509,10 @@
         <div class="wsec">
           <div class="wt"><span class="icon" style="color:var(--teal-l)">water_drop</span>Thông số khuyến nghị nạp</div>
           <div class="reco-grid">
-            <div class="reco"><div class="k">Suất lịch sử áp dụng</div><div class="v">1.5 L/người/giờ</div></div>
-            <div class="reco"><div class="k">Tổng khách (Pax + Crew)</div><div class="v">170 (160 + 10)</div></div>
-            <div class="reco"><div class="k">Giờ bay</div><div class="v">1.75 giờ</div></div>
-            <div class="reco hl"><div class="k">Nước khuyến nghị (kèm buffer)</div><div class="v">510 L</div></div>
+            <div class="reco"><div class="ic"><span class="icon">history</span></div><div><div class="k">Suất lịch sử áp dụng</div><div class="v">1.5 L/người/giờ</div></div></div>
+            <div class="reco"><div class="ic"><span class="icon">groups</span></div><div><div class="k">Tổng khách (Pax + Crew)</div><div class="v">170 (160 + 10)</div></div></div>
+            <div class="reco"><div class="ic"><span class="icon">schedule</span></div><div><div class="k">Giờ bay</div><div class="v">1.75 giờ</div></div></div>
+            <div class="reco hl"><div class="ic"><span class="icon">water_drop</span></div><div><div class="k">Nước khuyến nghị (kèm buffer)</div><div class="v">510 L</div></div></div>
           </div>
           <div class="formula">Lượng khuyến nghị = f(suất lịch sử, Pax+Crew, giờ bay, buffer) — công thức do engine tính toán (YC18) đảm nhiệm. Giá trị hiển thị là dữ liệu mẫu.</div>
         </div>
