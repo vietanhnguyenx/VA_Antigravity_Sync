@@ -11,4 +11,4 @@
 | `BAO-CAO-KHAO-SAT-11062026-ktktb-v0.1.md` | ~280 | 11/06/2026 — Phòng Kỹ thuật khai thác bay (KTKTB) VNA: Buổi 2 (MEL Boeing+Airbus, W&B) + Buổi 3 (Lập phương án đường bay LIDO, Thư viện khai thác SkyOffice/MO, Obstacle/EOSID) + Demo Webex NOTOC (vấn đề 2 NOTOC/chuyến bay Sài Gòn) |
 | `BAO-CAO-KHAO-SAT-12062026-buoi-sang-v0.1.md` | 312 | 12/06/2026 sáng — phỏng vấn Dispatcher: Flight Detail, màn hình Giám sát, mockup (v0.3, regenerate từ transcript) |
 | `BAO-CAO-KHAO-SAT-15062026-v0.1.md` | 173 | 15/06/2026 — Màn hình Flight Dispatch & quy trình OFP Release (v0.2, A-CDM / cảnh báo màu / phân quyền) |
-| `BAO-CAO-KHAO-SAT-17062026-v0.1.md` | ~200 | 17/06/2026 — Quản lý MEL/CDL & Tích hợp AMOS (v0.1, buổi chiều: Master MEL, MEL Active, cảnh báo Dispatcher, Lido ePot, khảo sát DB AMOS) |
+| `BAO-CAO-KHAO-SAT-17062026-v0.3.md` | 334 | 17/06/2026 — Quản lý Tàu bay, MEL/CDL & Tích hợp AMOS (v0.3, phủ trọn buổi: Master MEL / MEL Active / cảnh báo điều phái / Lido Import file / khảo sát DB AMOS + Aircraft list đồng bộ OPS++ / AOG-MNT Schedule / AOG-MNT Code / Performance Factor) |
