@@ -1,6 +1,6 @@
-# auto-pull-origin.ps1 — Tu dong KEO (pull) cap nhat moi tu repo cua anh Gioan
+# auto-pull-origin.ps1 - Tu dong KEO (pull) cap nhat moi tu repo cua anh Gioan
 # Remote: origin = https://github.com/nguyengioan00-cmyk/VITI-TOSS (branch main)
-# Chien luoc: FAST-FORWARD ONLY — chi pull khi local chua bi lech.
+# Chien luoc: FAST-FORWARD ONLY - chi pull khi local chua bi lech.
 #   Neu local da co commit rieng (divergence) -> BO QUA + ghi log, KHONG bao gio
 #   ghi de / lam mat thay doi cuc bo. Xu ly hop nhat thu cong khi can.
 # Duoc goi dinh ky boi Windows Scheduled Task "TOSS-AutoPull-Gioan" (moi 1 gio).
@@ -76,7 +76,7 @@ try {
 
     if ($base -ne $local) {
         # Khong phai to tien cua nhau -> DA LECH (divergence). Fast-forward khong duoc.
-        Write-PullLog "DA LECH (divergence) giua local va origin/main — co commit rieng ca hai phia." "WARNING"
+        Write-PullLog "DA LECH (divergence) giua local va origin/main - co commit rieng ca hai phia." "WARNING"
         Write-PullLog "Theo chien luoc fast-forward-only: BO QUA, khong ghi de. Xu ly thu cong:" "WARNING"
         Write-PullLog "  git fetch origin ; git rebase origin/main   (hoac merge), giai quyet xung dot roi tiep tuc." "WARNING"
         return
@@ -91,7 +91,7 @@ try {
         Write-PullLog "Hay commit/stash thay doi cuc bo roi chay lai, hoac xu ly thu cong." "ERROR"
         return
     }
-    Write-PullLog "PULL THANH CONG — da cap nhat $ahead commit moi tu repo cua Gioan." "INFO"
+    Write-PullLog "PULL THANH CONG - da cap nhat $ahead commit moi tu repo cua Gioan." "INFO"
 }
 catch {
     Write-PullLog "Loi nghiem trong trong chu ky pull: $_" "ERROR"
