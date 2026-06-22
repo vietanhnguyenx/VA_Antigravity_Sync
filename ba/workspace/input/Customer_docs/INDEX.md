@@ -19,6 +19,7 @@ date: "2026-06-16"
 | `TOSS - Total Operations Steering System_v0.1.xlsx` | YCKT v0.1 + tab "giải thích thuật ngữ" (nguồn glossary) | [TOSS-Total-Operations-Steering-System-v0.1.extracted.md](../../drafts/phan-tich/01-nguon/TOSS-Total-Operations-Steering-System-v0.1.extracted.md) | — | ✅ Đã extract — chưa phân tích riêng (dùng làm đối chiếu glossary) |
 | `Kế hoạch khảo sát TOSS.xlsx` | Kế hoạch 4 tuần/20 ngày: M1–M10, lịch ngày, Batch 1–3, đầu mối VNA | [Ke-hoach-khao-sat-TOSS.extracted.md](../../drafts/phan-tich/01-nguon/Ke-hoach-khao-sat-TOSS.extracted.md) | — | ✅ Đã extract — PC dùng làm BASELINE tiến độ |
 | `Sizing-update260609 - 4T.xlsx` | Định cỡ hạ tầng (09/06): 18TB data, 311 vCPU, 27 VM, K8s | [Sizing-update-260609-4T.extracted.md](../../drafts/phan-tich/01-nguon/Sizing-update-260609-4T.extracted.md) | → BR-516 | ✅ Đã extract — chưa phân tích sâu |
+| `VNAOCC_TOSS_Đề xuất giải pháp kỹ thuật_v0.3.pdf` | **Primary source** — Đề xuất giải pháp kỹ thuật TOSS v0.3 (VNA OCC): tổng quan giải pháp, 5 phân hệ nghiệp vụ, kiến trúc & công nghệ (13 chương), sizing | (PDF gốc — đã phân rã MD trong `domain-knowledge/vnaocc-proposal-decomposed/`) | [domain-knowledge/vnaocc-proposal-decomposed/](../domain-knowledge/vnaocc-proposal-decomposed/) | ✅ Đã phân rã — primary source cho BR/FUNC |
 
 ---
 
@@ -74,6 +75,14 @@ date: "2026-06-16"
 | Thư mục/File | Trạng thái |
 |---|---|
 | `A-CDM/` | Thư mục rỗng — chờ VNA cung cấp tài liệu A-CDM |
+
+---
+
+## G. Sơ đồ kiến trúc / Minh họa khách hàng
+
+| File | Mô tả | Phân tích sâu | Trạng thái |
+|---|---|---|---|
+| `Ops++/Sơ đồ tích hợp Ops++.png` | Sơ đồ kiến trúc tích hợp Inbound/Outbound của OPS++ (ISB làm gateway) — bản ảnh do khách hàng cung cấp | [Ops++-integration-architecture.drawio](../../drafts/phan-tich/04-quy-trinh/Ops++-integration-architecture.drawio) — đã chuyển sang drawio editable | ✅ Đã chuyển sang drawio; ⚠ Một số nhãn mũi tên khó đọc gắn `[?]` — cần đối chiếu bản gốc/SME |
 
 ---
 

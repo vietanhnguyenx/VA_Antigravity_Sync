@@ -31,6 +31,10 @@ document_id: "OID-TOSS-001"
 | DEC-05 | Duyệt **ánh xạ 7 phân hệ cũ → 5 phân hệ mới**, cập nhật `PHAN-CONG-ROLE-BA §3` | WF-TOSS-001 §2 | Nội bộ BA Lead | 🔴 Mở | |
 | DEC-06 | Bổ sung **chỉ tiêu định lượng + Time-bound** cho mục tiêu OBJ-001 (phủ Movement), OBJ-002 (chính xác Movement), OBJ-008 (Single Source of Truth danh mục), OBJ-009 (thời gian kiểm tra đầu ca) — cần workshop SME VNA để chốt baseline→target→tháng đạt; + ma trận RACI | BRD §4, §6.1 / VALIDATION-BRD-v0.10 §B | Workshop SME VNA | 🔴 Mở (chặn freeze BRD PH1/PH3/PH5 theo VALIDATION-BRD-v0.10 §G.1 G2) | |
 | G2-FREEZE | **Freeze BRD PH1/PH3/PH5 bị chặn** chờ workshop SME VNA chốt OID DEC-06 + KS-48 (định lượng 7 OBJ). Sau workshop: cập nhật §4 BRD khung → bump v0.12. Phán quyết: PH2 + PH4 đã sẵn sàng SRS, không chờ G2. | VALIDATION-BRD-v0.10 §G.1 G2 | Workshop SME VNA | 🔴 Mở (chặn) | Lên lịch workshop với VNA trong tuần tới |
+| DEC-07 | 🔴 **Nới giới hạn 20 ký tự Adapter Lido cho tên crew** — chấp nhận hiện trạng (16 ký tự tên + 4 ký tự group code) hay sửa cấu trúc FPX gửi ATC để nới? Ảnh hưởng trực tiếp độ chính xác matching PIC. | KS 18/06 §11 | Lãnh đạo dự án | 🔴 Mở | |
+| DEC-08 | **Cơ chế lưu vết cảnh báo đã từng phát sinh** — khi điều phái chưa thao tác nhưng CLC gửi điện cập nhật làm dữ liệu khớp lại: có lưu lịch sử "đã từng cảnh báo" để theo dõi hay tự động chuyển xanh là đủ? | KS 18/06 sáng 37:31–38:10 | BA Lead + điều phái | 🔴 Mở | |
+| DEC-09 | 🔴 **Vị trí tab "Ngưỡng Payload" và "Ngưỡng DAO"** — đặt trong phân hệ Quản lý chặng bay (PH4) theo lời CLC, hay phân hệ Quản trị hệ thống (PH5) vì là tham số cấu hình? | KS 18/06 sáng 45:02–53:15 | BA Lead + workshop danh mục | 🔴 Mở | |
+| DEC-10 | **Vị trí tab "MEL/CDL theo tàu"** trong phân hệ Quản lý tàu bay — xác nhận phân hệ chứa và quan hệ với màn Monitoring (theo chuyến). | KS 18/06 chiều 50:38–51:21 | BA Lead + workshop danh mục | 🔴 Mở | |
 
 ## B. Thuật ngữ & hệ thống cần SME xác nhận (SME)
 
@@ -85,6 +89,8 @@ document_id: "OID-TOSS-001"
 | SME-47 | **Hệ thống DDMS** (Document & Data Management System) VNA đang nghiên cứu — tên đầy đủ, tiến độ, khả năng export MEL dạng số hóa và tích hợp TOSS về sau | KS 17/06 §4 | SME VNA / đội DDMS | 🔴 Mở | |
 | SME-48 | **Logic lọc BCAO** — bộ phận trực ban kỹ thuật phát Báo cáo Khai thác Hàng ngày (BCAO) dùng tiêu chí nào để lọc danh sách MEL ảnh hưởng khai thác; cần khảo sát bộ phận này | KS 17/06 §3 | SME trực ban kỹ thuật VNA | 🔴 Mở | |
 | SME-49 | **Enum LEG STATE** màn Flight Dispatch (GRD/BRD/OUT/ENR/IN/ARR) — xác nhận danh sách đầy đủ, định nghĩa từng trạng thái và quy tắc chuyển (theo mốc ACARS OUT/OFF/ON/IN). Sheet ghi "tạm thời" | wf-monitoring §8-7; Function list "Màn hình Flight Dispatch" | SME điều phái VNA | 🔴 Mở | |
+| SME-50 | **Cấu trúc 5 thành phần trong file ATC FPL** dùng cho thuật toán so khớp và làm nổi cập nhật một phần — từng thành phần là gì, quy tắc bóc tách. | KS 18/06 chiều 30:48–31:18 | SME điều phái + SME ATC | 🔴 Mở | |
+| SME-51 | **Tên đầy đủ + vai trò của FOEM (Flight Ops Engineering)** — phân biệt với FOE; cấu trúc bảng DOW cấp ra; tần suất cập nhật. | KS 18/06 sáng 46:11–47:21 | SME khai thác | 🔴 Mở | |
 
 ## C. Vấn đề nghiệp vụ cần làm rõ qua khảo sát (KS)
 
@@ -167,6 +173,15 @@ document_id: "OID-TOSS-001"
 | KS-75 | **Details (lịch sử) cho các cột ngoài REG/FLTNO/ETD/Flight Type** — cột nào cần lịch sử riêng (đã có format chung FUNC-275/276) | wf-monitoring §8-11 | SME điều phái | 🔴 Mở | |
 | KS-76 | **6 cột cảnh báo bổ sung từ YCKT TOSS-180** (cabin defect, PAX nối chuyến, loadfactor thấp, thiếu phép bay, TAT không đủ, thiếu điện văn) — tách cột riêng hay gộp vào cột hiện có (ảnh hưởng 26 vs 32 cột) | wf-monitoring §9-1, §9-6; YCKT TOSS-180 | SME điều phái | 🔴 Mở | |
 | KS-77 | **Ngưỡng raise cảnh báo** cho các cột bổ sung: TAT thiếu (số phút), loadfactor thấp (%), định nghĩa "PAX nối chuyến cần ưu tiên" (số chuyến/thời gian nối tối thiểu) | wf-monitoring §9-3, §9-4, §9-5 | SME thương mại/khai thác | 🔴 Mở | |
+| KS-78 | **Quy tắc cảnh báo cột Pilot AXA** — ngưỡng chênh lệch extra fuel nào kích cảnh báo; theo mốc thời gian không; chỉ "đã nhập lý do hay chưa" hay cảnh báo theo lượng. | KS 18/06 chiều 02:18–02:51 | Workshop điều phái | 🔴 Mở | |
+| KS-79 | **Tập con cảnh báo chặn nút Dispatch Release** — phân loại tất cả cảnh báo theo "chặn/không chặn" (18/06 mới chốt 4 nhóm: tàu, ETD ≤ 30′, tổ bay đúng OFP, Pilot Confirm). | KS 18/06 chiều 01:14:34–01:15:31 | Workshop điều phái + tinh chỉnh sau khai thác | 🔴 Mở | |
+| KS-80 | **Quy ước đặt tên file Plotting/Icing chart** — chuỗi "plotting"/"icing" ở vị trí nào trong tên file; phân biệt hoa thường. | KS 18/06 chiều 13:18–18:53 | Workshop điều phái + đội phát triển | 🔴 Mở | |
+| KS-81 | **Phân loại NOTAM chi tiết** (sân bay/vùng trời/en-route × mức ảnh hưởng) — tách buổi làm việc riêng. | KS 18/06 chiều 01:23:32–01:23:58 | Workshop NOTAM riêng | 🔴 Mở | |
+| KS-82 | **Đặc tả màn Flight Plan dạng danh sách** — cột mặc định, cột tùy chọn, bộ lọc. | KS 18/06 chiều 21:20–23:46 | Buổi khảo sát tiếp theo | 🔴 Mở | |
+| KS-83 | **Phân mức cảnh báo DAO theo độ lớn lệch** — một mức ("lệch là cảnh báo") hay nhiều mức. | KS 18/06 sáng 51:30–52:11 | Workshop điều phái | 🔴 Mở | |
+| KS-84 | **Quy tắc cảnh báo route ATC khi thêm điểm KÈM đổi fly level** — cảnh báo theo điểm, theo fly level, hay cả hai. | KS 18/06 chiều 01:17:37–01:18:01 | Workshop điều phái | 🔴 Mở | |
+| KS-85 | **Mô hình hai mức 75′/60′ và 90′/75′ áp cho nhóm Tổ bay** — xác nhận có ngoại lệ cho Crew Download/Crew CHG không (18/06 nói "áp dụng chung" chưa demo case). | KS 18/06 sáng 42:40–43:03 | Workshop điều phái | 🔴 Mở | |
+| KS-86 | **Cơ chế kích hoạt OFP rỗng tổ bay** — tần suất AVES lỗi, nhật ký log, có thông báo riêng cho ADM/IT không. | KS 18/06 chiều 01:01:13–01:04:39 | SME tích hợp AVES | 🔴 Mở | |
 
 ## D. Tham số/ngưỡng & mô hình dữ liệu chưa có nguồn (DL)
 
@@ -212,17 +227,19 @@ document_id: "OID-TOSS-001"
 
 | Nhóm | Tổng | 🔴 Mở | 🟡 Đang xử lý | 🟢 Đã chốt |
 |---|---|---|---|---|
-| A. Quyết định BA Lead (QĐ) | 7 | 7 | 0 | 0 |
-| B. Thuật ngữ/hệ thống (SME) | 49 | 44 | 1 | 4 (gồm 2 "Đã gộp" + 2 "Đã chốt") |
-| C. Nghiệp vụ-khảo sát (KS) | 77 | 74 | 3 | 0 |
+| A. Quyết định BA Lead (QĐ) | 11 | 11 | 0 | 0 |
+| B. Thuật ngữ/hệ thống (SME) | 51 | 46 | 1 | 4 (gồm 2 "Đã gộp" + 2 "Đã chốt") |
+| C. Nghiệp vụ-khảo sát (KS) | 86 | 83 | 3 | 0 |
 | D. Tham số/dữ liệu (DL) | 5 | 5 | 0 | 0 |
 | E. Hành chính/hạ tầng (HC) | 4 | 3 | 1 | 0 |
-| **Tổng** | **142** | **133** | **5** | **4** |
+| **Tổng** | **157** | **148** | **5** | **4** |
 
 > Cập nhật sau khi regenerate 5 báo cáo khảo sát (rà 2026-06-16): +4 SME (SME-38…41: pgepoid, Vasco+HT 30-31, take-off/wet weight, "quả đấy dầu"/"anh Ngọt") và +11 KS (KS-44…54: SITA điện văn bổ sung, môi trường kiểm thử, BackPACK RPA, FMS thay thế, 4 KPI OTP/OSP, retention theo loại tài liệu, luồng thủ công ANABS, định dạng dữ liệu VIP, multi-session, lịch sử OFP sát giờ, cảnh báo tab Flight Release "bên ngoài"). SME-09 cập nhật chú thích ASR "ANABS/ANABIOS". Tổng 109 điểm sau 2026-06-16 (103 Mở / 5 Đang xử lý / 1 Đã chốt).
 >
 > **Cập nhật 2026-06-17 (sau KS MEL/CDL buổi 17/06):** +3 SME (SME-45: tên hệ thống FOEM; SME-46: danh sách MEL item ảnh hưởng khai thác; SME-47: DDMS), +5 KS (KS-55: cấu trúc DB AMOS MEL; KS-56: cơ chế tích hợp AMOS→TOSS; KS-57: format file MEL nhà sản xuất; KS-58: Lido ePot mapping; KS-59: XML insert/update), +1 HC (HC-04: lịch buổi khảo sát AMOS/VICO). **Đóng SME-45** (e-FON = Electronic Flight Operations Notice — BA Lead xác nhận 17/06). Tổng 122 điểm (114 Mở / 4 Đang xử lý / 4 Đã chốt).
 
+> **Cập nhật 2026-06-22 (áp dụng proposal khảo sát 18/06 — CLC & Điều phái):** +4 DEC (DEC-07 🔴 Adapter Lido 20 ký tự; DEC-08 lưu vết cảnh báo; DEC-09 🔴 vị trí tab Ngưỡng Payload/DAO; DEC-10 vị trí tab MEL/CDL theo tàu), +2 SME (SME-50 cấu trúc 5 thành phần ATC FPL; SME-51 FOEM), +9 KS (KS-78 Pilot AXA; KS-79 tập cảnh báo chặn release; KS-80 đặt tên Plotting/Icing; KS-81 phân loại NOTAM; KS-82 màn Flight Plan list; KS-83 phân mức DAO; KS-84 ATC route+fly level; KS-85 mô hình 2 mức cho Tổ bay; KS-86 OFP rỗng tổ bay). Nguồn: PROPOSAL-18062026-enrichment §4. **2 rủi ro 🔴**: DEC-07, DEC-09. Tổng 157 điểm (148 Mở / 5 Đang xử lý / 4 Đã chốt).
+>
 > **Cập nhật 2026-06-18 (đối chiếu màn Flight Dispatch ↔ Function list + nguồn liên quan):** +1 SME (SME-49: enum LEG STATE) +9 KS (KS-69 định dạng OFP DSP "2/0/1 R2"; KS-70 màu/ngưỡng 5 cột trống; KS-71 màu EPLD/EST DOW; KS-72 20 filter; KS-73 logic "Xanh" ETD vs Flight Type; KS-74 tooltip hover 19 cột; KS-75 Details cột khác; KS-76 6 cột bổ sung TOSS-180 tách/gộp; KS-77 ngưỡng TAT/loadfactor/PAX nối chuyến). Nguồn: wf-monitoring-overview v0.3 §8–§9 đối chiếu sheet "Màn hình Flight Dispatch" + YCKT TOSS-175…182 + KS 11–15/06. Hai cờ §8-2/§8-6 đã được nguồn khác giải (không mở OID). Tổng 142 điểm (133 Mở / 5 Đang xử lý / 4 Đã chốt).
 >
 > **Cập nhật 2026-06-18 (rà soát đầy đủ buổi 17/06 + báo cáo v0.3):** +1 SME (SME-48: logic lọc BCAO), +9 KS (KS-60 Data Warehouse Hà Tần; KS-61 ngưỡng bóc tách tự động MEL; KS-62 tương thích ngược Lido Import file; KS-63 chi tiết trường AMOS lịch bảo dưỡng; KS-64 chi tiết Performance Factor; KS-65 taxi time theo sân; KS-66 đồng bộ lịch bảo dưỡng OPS++↔AMOS; KS-67 recalculate báo cáo khi sửa ACARS multiplier; KS-68 rủi ro FN_Carrier chưa khai báo AOG/MNT Code). Phát sinh từ nửa sau buổi 17/06 (Quản lý tàu bay/AOG-MNT) chưa được v0.2 phủ. Tổng 132 điểm (123 Mở / 5 Đang xử lý / 4 Đã chốt).

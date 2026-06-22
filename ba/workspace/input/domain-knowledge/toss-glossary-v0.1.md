@@ -208,6 +208,8 @@ document_type: "Domain Knowledge — Từ điển Thuật ngữ TOSS"
 | **Payload (PLD)** | (giữ nguyên "payload") | Tổng tải thương mại trên chuyến bay. Khách hàng dùng nguyên dạng và định nghĩa: **payload = trọng lượng khách + hành lý + hàng + mail + ULD** (YCKT TOSS-251; TOSS-200/225). Trong vnaocc-proposal có chỗ dùng "tải trọng hữu ích". |
 | **POD** | (giữ nguyên — viết tắt nội bộ VNA) | Nguồn bản tin/đánh giá tại các thời điểm cập nhật hằng ngày mà điều phái NOTAM/WX tham khảo (nguồn: FDOP §3.2.2). *(Cần xác nhận tên đầy đủ với VNA — chưa có nguồn.)* |
 | **PER Group** (Aircraft Performance Group) | Nhóm tính năng tàu bay (FOE) | Nhóm thuộc FOE phụ trách tính năng tàu bay; nhận tài liệu Weigh and Balance / Chapter 2 từ Tech Dept khi nhận tàu mới (nguồn: FDOP §3.5 — "Aircarft performance Group (FOE)", "send to PER Group"). *(Cần xác nhận tên chính thức với VNA.)* |
+| **Pilot AXA** | Dầu lấy thêm của phi công | Cột hiển thị lượng nhiên liệu phi công lấy thêm (extra fuel) so với kế hoạch kèm lý do; hover xem nhanh, click xem chi tiết. (nguồn: KS 18/06/2026 chiều 02:18–02:51.) |
+| **Pilot Confirm** | Xác nhận của cơ trưởng | Cột hiển thị trạng thái phi công đã xác nhận; chỉ khi xanh mới được phép phát hành tài liệu chuyến bay. (nguồn: KS 18/06/2026 chiều 01:26.) |
 
 ---
 
