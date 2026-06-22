@@ -48,6 +48,14 @@ Khi cần tạo bản Word giao người từ ≥1 file `.md` (SRS, Wireframe, B
 ```
 `-SourceList` nhận `@<tệp manifest>` (mỗi dòng 1 path, `#` = chú thích) hoặc chuỗi path ngăn cách dấu phẩy. Cập nhật manifest khi thêm/bớt/đổi thứ tự file.
 
+**Tham số tùy chọn căn chỉnh đầu ra:**
+- `-NoToc` — bỏ mục lục (báo cáo khảo sát thường dùng; tài liệu dài như SRS để mặc định có TOC).
+- `-Font "<tên font>"` — đổi font chữ toàn cục (mặc định `Times New Roman` chuẩn QT02). Override cả `styles.xml` + `theme1.xml` lúc xuất, **giữ Consolas cho code**. Đổi font là lệch chuẩn QT02 — cần BA Lead chấp nhận.
+- `-FontSize <pt>` — đổi cỡ chữ body trong docDefaults (mặc định 0 = giữ 12pt template).
+- `-H1Font "<tên>"` / `-H1Size <pt>` — đổi riêng font/cỡ **Heading 1** (mặc định: font theo `-Font`, cỡ giữ template). Vá đúng style block `Heading1`, không đụng heading khác.
+- `-H2Font "<tên>"` / `-H2Size <pt>` — đổi riêng font/cỡ **Heading 2** (tương tự).
+- Ví dụ: `... -NoToc -Font "Arial" -FontSize 13 -H1Font "Arial" -H1Size 16 -H2Size 14`. QC font tự khớp theo các font đã chọn (`-Font`/`-H1Font`/`-H2Font` đều được phép, kèm Consolas).
+
 ## 4. Checklist QC (script tự kiểm, phải PASS hết)
 - `.md` = 0 · `](` (link markdown) = 0 · **slug tên-file = 0** · không lọt khóa YAML · không mojibake.
 - Gói OPC: entry dùng `/` (**không `\`**) · có `media/logo.png` + `header1.xml` + `footer1.xml` + field TOC.
@@ -61,10 +69,13 @@ Khi cần tạo bản Word giao người từ ≥1 file `.md` (SRS, Wireframe, B
 | 2 | Lọt **stem tên-file** ("3.1-phan-he-quan-ly-kho") | nhãn link chính là tên file (TOC/bảng cấu trúc) | `StripSlugs` chỉ gỡ slug dẫn đầu **số mục/`wf-`** (giữ `end-to-end`, `low-fidelity`, `MO-2026-012`) |
 | 3 | Gói docx hỏng, `GetEntry` lỗi | `ZipFile::CreateFromDirectory` (.NET Framework) ghi entry bằng `\` | Đóng gói thủ công `CreateEntry(rel.Replace('\\','/'))` |
 | 8 | Word lọt **thẻ trích nguồn** `[17062026 §5–§7]` | báo cáo khảo sát gắn thẻ `[DDMMYYYY §...]`/`[MEL …csv]`/`[YCKT …]` cho truy vết (kênh agent) | `StripInternal` e14 gỡ thẻ trích; giữ trong `.md`. QC "no survey source citation" = 0 (BA Lead 18/06/2026) |
+| 9 | QC ASR **false-positive**: "sao **chép nhầm** tệp" (nghiệp vụ) bị rule `chép nhầm` chặn | keyword `chép nhầm` quá rộng — chú thích ASR thật là "chép nhầm **là/thành** X" | Thu hẹp rule: `chép nhầm (?:là\|thành\|→)` ở cả `$kw` (StripAsr) và QC "no ASR note leak" → chỉ bắt đúng chú thích ASR (BA Lead 22/06/2026) |
 | 4 | Logo header mất trong file ra | **pandoc bỏ ảnh** khi copy header từ reference | Hậu xử lý: chèn lại `media/logo.png` + `header1.xml.rels` + `png` content-type |
 | 5 | **Font không đồng bộ** (Heading3-9/Subtitle/TOC ra Aptos) | theme pandoc = `Aptos`; style tham chiếu theme rơi về Aptos dù docDefaults là TNR | **Sửa `theme1.xml` latin major+minor = Times New Roman** (giữ Consolas cho code) |
 | 6 | QC sót | chỉ kiểm rò rỉ, **quên kiểm font** | QC kiểm CẢ font (§4) |
 | 7 | Ghi đè file đã chốt | tên file không có version/ngày | Tên `...-v<ver>-<ngày>.docx`, không ghi đè |
+| 10 | Lọt **trích dẫn ghi âm dạng ngoặc đơn** "(sáng 00:46–01:13)" | e14 chỉ strip dạng ngoặc vuông `[DDMMYYYY HH:MM]`; báo cáo 18/06 dùng dạng ngoặc đơn `(sáng/chiều HH:MM–HH:MM)` nên 54 trích dẫn lọt vào Word | Thêm `StripInternal` e15 gỡ `(sáng\|chiều\|trưa\|tối HH:MM[:SS][–HH:MM])`; QC "no recording timestamp" = 0 (BA Lead 22/06/2026) |
+| 11 | Mục lục không cần cho báo cáo khảo sát | tài liệu ngắn, người đọc không cần TOC | Tham số `-NoToc` bỏ `--toc`; QC "TOC field" thành điều kiện (PASS khi không có TOC nếu `-NoToc`) (BA Lead 22/06/2026) |
 
 ## 6. Tài sản skill
 - `scripts/export-word.ps1` — xuất + transform + pandoc + vá + QC (tên file theo version).

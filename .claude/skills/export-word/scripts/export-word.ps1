@@ -21,6 +21,13 @@ param(
   [Parameter(Mandatory=$true)][string]$OutBase,
   [Parameter(Mandatory=$true)][string]$Version,
   [int]$TocDepth = 3,
+  [switch]$NoToc,
+  [string]$Font = "Times New Roman",
+  [int]$FontSize = 0,
+  [string]$H1Font = "",
+  [int]$H1Size = 0,
+  [string]$H2Font = "",
+  [int]$H2Size = 0,
   [string]$Template = ".claude\templates\word-reference.docx",
   [string]$Pandoc = "C:\Users\VTIT\AppData\Local\Pandoc\pandoc.exe",
   [switch]$Force
@@ -63,7 +70,9 @@ $tmpMd = Join-Path $OutDir ("_combined_{0}.md" -f $OutBase)
 [System.IO.File]::WriteAllText($tmpMd, $sb.ToString(), $utf8)
 
 # ---------- Pandoc (áp template QT02 + mục lục) ----------
-& $Pandoc $tmpMd "--from=markdown-yaml_metadata_block" --reference-doc="$Template" -o $outDocx --toc "--toc-depth=$TocDepth" 2>$null
+$pandocArgs = @($tmpMd, "--from=markdown-yaml_metadata_block", "--reference-doc=$Template", "-o", $outDocx)
+if (-not $NoToc) { $pandocArgs += @("--toc", "--toc-depth=$TocDepth") }
+& $Pandoc @pandocArgs 2>$null
 if ($LASTEXITCODE -ne 0 -or -not (Test-Path $outDocx)) { throw "Pandoc lỗi (exit $LASTEXITCODE)." }
 [System.IO.File]::Delete($tmpMd)
 
@@ -75,6 +84,35 @@ $cte=$zip.GetEntry('[Content_Types].xml'); $sr=New-Object System.IO.StreamReader
 if($ct -notmatch 'Extension="png"'){ $ct=$ct.Replace('</Types>','<Default Extension="png" ContentType="image/png" /></Types>'); $cte.Delete(); $ne=$zip.CreateEntry('[Content_Types].xml'); $sw=New-Object System.IO.StreamWriter($ne.Open(),$utf8); $sw.Write($ct); $sw.Close() }
 if(-not $zip.GetEntry('word/_rels/header1.xml.rels')){ $he=$zip.CreateEntry('word/_rels/header1.xml.rels'); $sw2=New-Object System.IO.StreamWriter($he.Open(),$utf8); $sw2.Write('<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="media/logo.png"/></Relationships>'); $sw2.Close() }
 if($logo -and -not $zip.GetEntry('word/media/logo.png')){ $me=$zip.CreateEntry('word/media/logo.png'); $st=$me.Open(); $st.Write($logo,0,$logo.Length); $st.Close() }
+# ---------- Căn chỉnh font (override template QT02 khi -Font/-FontSize/-HxFont/-HxSize) ----------
+function Set-HeadingStyle([string]$xml,[string]$styleId,[string]$hfont,[int]$hsize){   # vá riêng 1 style heading (cỡ + font), không đụng heading khác
+  $rx=[regex]("(?s)<w:style [^>]*w:styleId=`"$styleId`".*?</w:style>")
+  return $rx.Replace($xml,{ param($m)
+    $blk=$m.Value
+    if($hsize -gt 0){ $hp=$hsize*2
+      $blk=[regex]::Replace($blk,'<w:sz w:val="\d+"',('<w:sz w:val="'+$hp+'"'))
+      $blk=[regex]::Replace($blk,'<w:szCs w:val="\d+"',('<w:szCs w:val="'+$hp+'"')) }
+    if($hfont -ne ''){ $blk=[regex]::Replace($blk,'(w:(?:ascii|eastAsia|hAnsi|cs)=")[^"]*"',('${1}'+$hfont+'"')) }
+    $blk
+  },1)
+}
+if(($Font -ne 'Times New Roman') -or ($FontSize -gt 0) -or ($H1Size -gt 0) -or ($H2Size -gt 0) -or ($H1Font -ne '') -or ($H2Font -ne '')){
+  foreach($part in 'word/styles.xml','word/theme/theme1.xml'){
+    $pe=$zip.GetEntry($part); if(-not $pe){ continue }
+    $psr=New-Object System.IO.StreamReader($pe.Open()); $pc=$psr.ReadToEnd(); $psr.Close()
+    if($Font -ne 'Times New Roman'){ $pc=$pc.Replace('Times New Roman',$Font) }   # đổi font family toàn cục (giữ Consolas cho code)
+    if($part -eq 'word/styles.xml'){
+      if($FontSize -gt 0){                                                         # cỡ body trong docDefaults (half-point)
+        $hp=$FontSize*2
+        $pc=[regex]::Replace($pc,'(<w:rPrDefault>[\s\S]*?<w:sz w:val=")\d+("[\s\S]*?</w:rPrDefault>)',('${1}'+$hp+'${2}'))
+        $pc=[regex]::Replace($pc,'(<w:rPrDefault>[\s\S]*?<w:szCs w:val=")\d+("[\s\S]*?</w:rPrDefault>)',('${1}'+$hp+'${2}'))
+      }
+      if(($H1Size -gt 0) -or ($H1Font -ne '')){ $pc=Set-HeadingStyle $pc 'Heading1' $H1Font $H1Size }   # font/cỡ riêng Heading 1
+      if(($H2Size -gt 0) -or ($H2Font -ne '')){ $pc=Set-HeadingStyle $pc 'Heading2' $H2Font $H2Size }   # font/cỡ riêng Heading 2
+    }
+    $pe.Delete(); $ne2=$zip.CreateEntry($part); $psw=New-Object System.IO.StreamWriter($ne2.Open(),$utf8); $psw.Write($pc); $psw.Close()
+  }
+}
 $zip.Dispose()
 
 # ---------- QC ----------
@@ -82,12 +120,13 @@ function Get-Part($zip,$p){ $e=$zip.GetEntry($p); if(-not $e){return ''}; $sr=Ne
 $z=[System.IO.Compression.ZipFile]::OpenRead($outDocx); $names=$z.Entries.FullName
 $xml=Get-Part $z 'word/document.xml'; $styles=Get-Part $z 'word/styles.xml'; $theme=Get-Part $z 'word/theme/theme1.xml'
 $txt=[System.Net.WebUtility]::HtmlDecode(([regex]::Replace(([regex]::Replace($xml,'</w:p>',"`n")),'<[^>]+>','')))
-$badFonts = ([regex]::Matches($styles,'w:ascii="([^"]+)"') | ForEach-Object { $_.Groups[1].Value } | Sort-Object -Unique) | Where-Object { $_ -ne 'Times New Roman' -and $_ -ne 'Consolas' }
+$allowedFonts = @($Font,$H1Font,$H2Font,'Consolas') | Where-Object { $_ -ne '' }
+$badFonts = ([regex]::Matches($styles,'w:ascii="([^"]+)"') | ForEach-Object { $_.Groups[1].Value } | Sort-Object -Unique) | Where-Object { $allowedFonts -notcontains $_ }
 $qc=[ordered]@{
   'OPC forward-slash (no backslash)' = (-not ($names -match '\\'))
   'logo + header + footer present'   = (($names -contains 'word/media/logo.png') -and ($names -contains 'word/header1.xml') -and ($names -contains 'word/footer1.xml'))
   'PNG content-type'                 = ((Get-Part $z '[Content_Types].xml') -match 'Extension="png"')
-  'TOC field'                        = (([regex]'TOC \\o').Matches($xml).Count -ge 1)
+  'TOC field'                        = ($(if($NoToc){-not (([regex]'TOC \\o').Matches($xml).Count -ge 1)}else{(([regex]'TOC \\o').Matches($xml).Count -ge 1)}))
   'no .md leak'                      = (([regex]'\.md\b').Matches($txt).Count -eq 0)
   'no markdown link ]('             = (([regex]'\]\(').Matches($txt).Count -eq 0)
   'no filename slug'                 = (([regex]'phan-he|wireframe-overview|tien-do-ncc|thiet-bi-iot').Matches($txt).Count -eq 0)

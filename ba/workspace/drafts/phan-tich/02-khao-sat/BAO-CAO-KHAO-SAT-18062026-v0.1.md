@@ -74,13 +74,13 @@ Buổi khảo sát ngày 18/06/2026 gồm hai phiên làm việc liên tục tro
 
 **Kết luận.** Cảnh báo tổ bay gồm ba thành phần — Crew Download (chỉ PIC), Crew CHG (đổi tổ), OFP rỗng tổ bay — và thuật toán matching PIC dựa trên so chuỗi cộng group code; phương án nới giới hạn hai mươi ký tự của Adapter Lido cần được lãnh đạo dự án xem xét.
 
-### 8. Cảnh báo MEL/CDL — đối chiếu ba lớp AMOS → danh mục FOE → OFP (buổi chiều)
+### 8. Cảnh báo MEL/CDL — đối chiếu ba lớp AMOS, danh mục FOE và OFP (buổi chiều)
 
 **Yêu cầu.** Hệ thống phải cảnh báo khi giữa AMOS, danh mục MEL đã lọc của FOE trên Lido, và MEL đang có trong OFP có sự khác biệt về số lượng và mã item (chiều 34:01–35:30).
 
 **Thảo luận và Đề xuất.** FOE duy trì một danh mục MEL chỉ chứa các MEL có ảnh hưởng đến khai thác (ảnh hưởng wind, fly level, fuel factor); danh mục này được upload lên Lido (chiều 34:25–34:59). Từ AMOS, dữ liệu MEL được lọc tại nguồn bằng truy vấn SQL theo trường phân loại (ảnh hưởng performance hay không) trước khi gửi sang Lido (chiều 44:13–44:48). Cảnh báo MEL/CDL hoạt động theo ba lớp: (1) lấy danh sách MEL của tàu từ AMOS cho chuyến đang xét, (2) lọc lại theo danh mục MEL trên Lido của FOE để có shortlist, (3) so sánh shortlist với danh mục MEL trong OFP do điều phái lập (chiều 47:54–48:54). Quy tắc cảnh báo: nếu OFP thiếu MEL so với shortlist thì cảnh báo đỏ; nếu OFP có dư MEL ngoài shortlist (do điều phái thêm tay) thì cũng cảnh báo, đồng thời có thể là do FOE chưa cập nhật danh mục dẫn đến thiếu — trường hợp này điều phái phản hồi để FOE bổ sung (chiều 48:54–49:39, chiều 49:39–50:07). Số lượng MEL và mã MEL phải khớp hai chiều; chỉ khớp số lượng mà sai mã cũng cảnh báo (chiều 50:07–50:38). Để xem riêng MEL theo tàu (không theo chuyến), người dùng truy cập tab "MEL/CDL" trong phân hệ Quản lý tàu bay (chiều 50:38–51:21) [YCKT sheet-04 TOSS-128 đến TOSS-135].
 
-**Kết luận.** Cảnh báo MEL/CDL chạy quy trình ba lớp AMOS → shortlist FOE trên Lido → OFP; cảnh báo thiếu, thừa, sai mã đều được kích hoạt; tra cứu MEL theo tàu bay nằm ở phân hệ Quản lý tàu bay.
+**Kết luận.** Cảnh báo MEL/CDL chạy quy trình ba lớp AMOS rồi shortlist FOE trên Lido rồi OFP; cảnh báo thiếu, thừa, sai mã đều được kích hoạt; tra cứu MEL theo tàu bay nằm ở phân hệ Quản lý tàu bay.
 
 ### 9. Cảnh báo ATC FPL — so khớp Filed ATC và ATC FPL trong OFP, xử lý cập nhật một phần (buổi chiều)
 
@@ -136,9 +136,9 @@ Buổi khảo sát ngày 18/06/2026 gồm hai phiên làm việc liên tục tro
 | 8 | Nguồn DAO chuẩn lấy từ FOEM; trường hợp FOEM chưa sẵn sàng thì sử dụng file DOW cố định qua Adapter làm phương án dự phòng. |
 | 9 | Cảnh báo tài liệu chuyến bay (Fly Doc): chuyến thường yêu cầu NOTAM và Weather; chuyến EDTO yêu cầu thêm Plotting chart và Icing chart; nhận diện qua chuỗi tên file. Thiếu tài liệu chặn Dispatch Release. |
 | 10 | Cảnh báo Crew Download chỉ áp dụng cho PIC, hiển thị qua cột "Crew Download"; chỉ cần PIC đã tải tài liệu là đủ điều kiện. |
-| 11 | Thứ tự cột Monitoring: Pilot Confirm → ATC → MEL/CDL, với cột Crew CHG đặt sau ATC và trước Payload. |
+| 11 | Thứ tự cột Monitoring: Pilot Confirm, kế đến ATC, rồi MEL/CDL, với cột Crew CHG đặt sau ATC và trước Payload. |
 | 12 | Cảnh báo OFP rỗng tổ bay (do AVES lỗi) hiển thị đỏ tại cột tổ bay theo mốc thời gian. |
-| 13 | Cảnh báo MEL/CDL chạy quy trình ba lớp: AMOS → shortlist FOE trên Lido → MEL trong OFP; bắt cả ba trường hợp thiếu, thừa, sai mã. |
+| 13 | Cảnh báo MEL/CDL chạy quy trình ba lớp: AMOS rồi shortlist FOE trên Lido rồi MEL trong OFP; bắt cả ba trường hợp thiếu, thừa, sai mã. |
 | 14 | Cảnh báo ATC FPL phát sinh ngay khi có lệch, không phụ thuộc mốc thời gian. |
 | 15 | Cảnh báo thời tiết theo Minima: vàng khi chạm margin, đỏ khi vi phạm; điều phái được phép sửa Minima trên giao diện điều phái. |
 | 16 | Block Fuel và các cột nhiên liệu hiển thị tối giản: chỉ hiện số khi vượt ngưỡng hoặc có chênh lệch; hover xem nhanh, click xem chi tiết lịch sử cập nhật. |
