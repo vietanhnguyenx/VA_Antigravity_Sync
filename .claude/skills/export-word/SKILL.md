@@ -70,6 +70,7 @@ Khi cần tạo bản Word giao người từ ≥1 file `.md` (SRS, Wireframe, B
 | 2 | Lọt **stem tên-file** ("3.1-phan-he-quan-ly-kho") | nhãn link chính là tên file (TOC/bảng cấu trúc) | `StripSlugs` chỉ gỡ slug dẫn đầu **số mục/`wf-`** (giữ `end-to-end`, `low-fidelity`, `MO-2026-012`) |
 | 3 | Gói docx hỏng, `GetEntry` lỗi | `ZipFile::CreateFromDirectory` (.NET Framework) ghi entry bằng `\` | Đóng gói thủ công `CreateEntry(rel.Replace('\\','/'))` |
 | 8 | Word lọt **thẻ trích nguồn** `[17062026 §5–§7]` | báo cáo khảo sát gắn thẻ `[DDMMYYYY §...]`/`[MEL …csv]`/`[YCKT …]` cho truy vết (kênh agent) | `StripInternal` e14 gỡ thẻ trích; giữ trong `.md`. QC "no survey source citation" = 0 (BA Lead 18/06/2026) |
+| 9 | QC ASR **false-positive**: "sao **chép nhầm** tệp" (nghiệp vụ) bị rule `chép nhầm` chặn | keyword `chép nhầm` quá rộng — chú thích ASR thật là "chép nhầm **là/thành** X" | Thu hẹp rule: `chép nhầm (?:là\|thành\|→)` ở cả `$kw` (StripAsr) và QC "no ASR note leak" → chỉ bắt đúng chú thích ASR (BA Lead 22/06/2026) |
 | 4 | Logo header mất trong file ra | **pandoc bỏ ảnh** khi copy header từ reference | Hậu xử lý: chèn lại `media/logo.png` + `header1.xml.rels` + `png` content-type |
 | 5 | **Font không đồng bộ** (Heading3-9/Subtitle/TOC ra Aptos) | theme pandoc = `Aptos`; style tham chiếu theme rơi về Aptos dù docDefaults là TNR | **Sửa `theme1.xml` latin major+minor = Times New Roman** (giữ Consolas cho code) |
 | 6 | QC sót | chỉ kiểm rò rỉ, **quên kiểm font** | QC kiểm CẢ font (§4) |

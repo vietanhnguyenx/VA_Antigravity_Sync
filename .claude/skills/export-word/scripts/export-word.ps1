@@ -53,7 +53,7 @@ function StripMdTokens($t){ [regex]::Replace($t,'(?:\.{1,2}/)?(?:[\w.\-]+/)*([\w
 function StripSlugs($t){ [regex]::Replace($t,'(?<![A-Za-z0-9./-])(?:(?:wf-)?\d+(?:\.\d+)*-[a-z][a-z0-9-]*|wf-[a-z][a-z0-9-]*)(?![A-Za-z])','') }
 # (d) bỏ chú thích/cảnh báo lỗi nhận dạng giọng nói (ASR) — CHỈ ở .md nội bộ, KHÔNG vào bản giao khách (SKILL §0.0)
 function StripAsr($t){
-  $kw='ASR|đính chính|chép nhầm|lỗi nhận dạng'
+  $kw='ASR|đính chính|chép nhầm (?:là|thành)|lỗi nhận dạng'
   # d1: bỏ TRỌN dòng "Cảnh báo chất lượng ghi âm/nguồn/ASR" / "Cảnh báo ASR" (bullet/blockquote/heading/table row)
   $t=[regex]::Replace($t,'(?im)^[ \t]*(?:>[ \t]*)?[-*>#]*[ \t]*\**Cảnh báo (?:chất lượng (?:ghi âm|nguồn|ASR)|ASR)[^\r\n]*\r?\n?','')
   # d1b: bỏ TRỌN hàng bảng (| ... |) chứa "Cảnh báo ... ASR" hoặc ký hiệu ⚠ kèm ASR hoặc "ASR đọc/phiên"
@@ -169,7 +169,7 @@ $qc=[ordered]@{
   'no markdown link ]('             = (([regex]'\]\(').Matches($txt).Count -eq 0)
   'no filename slug'                 = (([regex]'phan-he|wireframe-overview|tien-do-ncc|thiet-bi-iot').Matches($txt).Count -eq 0)
   'no YAML key leak'                 = (([regex]'document_type:|source_template:|^project:\s*"').Matches($txt).Count -eq 0)
-  'no ASR note leak (§0.0)'          = (([regex]'\bASR\b|đính chính|chép nhầm|lỗi nhận dạng').Matches($txt).Count -eq 0)
+  'no ASR note leak (§0.0)'          = (([regex]'\bASR\b|đính chính|chép nhầm (?:là|thành|→)|lỗi nhận dạng').Matches($txt).Count -eq 0)
   'no internal note leak (§0.0)'     = (([regex]'Lưu ý nội bộ|domain-knowledge|glossary|OID-TOSS|sổ theo dõi điểm chốt|P\d+\s*d\.').Matches($txt).Count -eq 0)
   'no OID code leak (§0.0)'          = (([regex]'\[cần (?:xác nhận|khảo sát)|\b(?:KS|SME|HC)-\d+\b').Matches($txt).Count -eq 0)
   'no transcript process note (§0.0)'= (([regex]'trong transcript|theo timestamp transcript').Matches($txt).Count -eq 0)
