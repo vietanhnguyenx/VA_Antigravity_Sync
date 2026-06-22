@@ -21,6 +21,7 @@ param(
   [Parameter(Mandatory=$true)][string]$OutBase,
   [Parameter(Mandatory=$true)][string]$Version,
   [int]$TocDepth = 3,
+  [switch]$NoToc,
   [string]$Template = ".claude\templates\word-reference.docx",
   [string]$Pandoc = "C:\Users\VTIT\AppData\Local\Pandoc\pandoc.exe",
   [switch]$Force
@@ -118,6 +119,8 @@ function StripInternal($t){
   $t=[regex]::Replace($t,'[ \t]*\[MEL [^\]]*\]','')
   $t=[regex]::Replace($t,'[ \t]*\[YCKT [^\]]*\]','')
   $t=[regex]::Replace($t,'[ \t]*\[Function list [^\]]*\]','')
+  # e15: bỏ trích dẫn ghi âm dạng NGOẶC ĐƠN — "(sáng 00:46–01:13)", "(chiều 53:42–54:15)" (vị trí phút:giây trong bản ghi; truy vết nội bộ MD, KHÔNG vào bản giao khách §0.0)
+  $t=[regex]::Replace($t,'[ \t]*\((?:(?:sáng|chiều|trưa|tối)\s+\d{1,2}:\d{2}(?::\d{2})?(?:\s*[–\-—]\s*\d{1,2}:\d{2}(?::\d{2})?)?\s*,?\s*)+\)','')
   # e11: bỏ backtick pair rỗng còn sót sau khi e8 strip nội dung bên trong `[...]` — "`  `", "` `"
   $t=[regex]::Replace($t,'`[ \t]*`','')
   # e11b: bỏ backtick đơn lẻ (không có cặp) còn sót cuối dòng/sau strip
@@ -140,7 +143,9 @@ $tmpMd = Join-Path $OutDir ("_combined_{0}.md" -f $OutBase)
 [System.IO.File]::WriteAllText($tmpMd, $sb.ToString(), $utf8)
 
 # ---------- Pandoc (áp template QT02 + mục lục) ----------
-& $Pandoc $tmpMd "--from=markdown-yaml_metadata_block" --reference-doc="$Template" -o $outDocx --toc "--toc-depth=$TocDepth" 2>$null
+$pandocArgs = @($tmpMd, "--from=markdown-yaml_metadata_block", "--reference-doc=$Template", "-o", $outDocx)
+if (-not $NoToc) { $pandocArgs += @("--toc", "--toc-depth=$TocDepth") }
+& $Pandoc @pandocArgs 2>$null
 if ($LASTEXITCODE -ne 0 -or -not (Test-Path $outDocx)) { throw "Pandoc lỗi (exit $LASTEXITCODE)." }
 [System.IO.File]::Delete($tmpMd)
 
@@ -164,7 +169,7 @@ $qc=[ordered]@{
   'OPC forward-slash (no backslash)' = (-not ($names -match '\\'))
   'logo + header + footer present'   = (($names -contains 'word/media/logo.png') -and ($names -contains 'word/header1.xml') -and ($names -contains 'word/footer1.xml'))
   'PNG content-type'                 = ((Get-Part $z '[Content_Types].xml') -match 'Extension="png"')
-  'TOC field'                        = (([regex]'TOC \\o').Matches($xml).Count -ge 1)
+  'TOC field'                        = ($(if($NoToc){-not (([regex]'TOC \\o').Matches($xml).Count -ge 1)}else{(([regex]'TOC \\o').Matches($xml).Count -ge 1)}))
   'no .md leak'                      = (([regex]'\.md\b').Matches($txt).Count -eq 0)
   'no markdown link ]('             = (([regex]'\]\(').Matches($txt).Count -eq 0)
   'no filename slug'                 = (([regex]'phan-he|wireframe-overview|tien-do-ncc|thiet-bi-iot').Matches($txt).Count -eq 0)
@@ -174,6 +179,7 @@ $qc=[ordered]@{
   'no OID code leak (§0.0)'          = (([regex]'\[cần (?:xác nhận|khảo sát)|\b(?:KS|SME|HC)-\d+\b').Matches($txt).Count -eq 0)
   'no transcript process note (§0.0)'= (([regex]'trong transcript|theo timestamp transcript').Matches($txt).Count -eq 0)
   'no survey source citation (§0.0)' = (([regex]'\[\d{8}[^\]]*\]|\[MEL [^\]]*\]|\[YCKT [^\]]*\]|\[Function list [^\]]*\]').Matches($txt).Count -eq 0)
+  'no recording timestamp (§0.0)'    = (([regex]'\((?:sáng|chiều|trưa|tối)\s+\d{1,2}:\d{2}').Matches($txt).Count -eq 0)
   'no residual backtick (§0.0)'      = (([regex]'`').Matches($txt).Count -eq 0)
   'no AI phrase: Hai phía (§0.0)'    = (([regex]'Hai phía\s+(?:thảo luận|làm rõ|chia sẻ|nhận định|đề xuất|cho biết)').Matches($txt).Count -eq 0)
   'no AI phrase: arrow in prose (§0.0)' = (([regex]'(?<!\bAMOS\b|\bTOSS\b|OPS\+\+)\s+→\s+(?!\bTOSS\b|\bAMOS\b|OPS\+\+|\bLido\b)').Matches($txt).Count -eq 0)
