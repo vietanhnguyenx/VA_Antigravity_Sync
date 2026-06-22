@@ -22,6 +22,7 @@ param(
   [Parameter(Mandatory=$true)][string]$Version,
   [int]$TocDepth = 3,
   [switch]$NoToc,
+  [switch]$Formal,
   [string]$Font = "Times New Roman",
   [int]$FontSize = 0,
   [int]$TitleSize = 0,
@@ -147,7 +148,11 @@ function StripInternal($t){
   $t=[regex]::Replace($t,'\*\*[ \t]*\*\*','')
   $t
 }
-function Transform($p){ StripInternal (StripAsr (StripSlugs (StripMdTokens (CleanLinks (StripFrontmatter $p))))) }
+function Transform($p){
+  $base = StripSlugs (StripMdTokens (CleanLinks (StripFrontmatter $p)))   # xử lý cấu trúc (link/slug/frontmatter) — luôn áp
+  if($Formal){ return $base }                                             # tài liệu yêu cầu (BRD/SRS): giữ mã BR/OID/mũi tên/backtick
+  StripInternal (StripAsr $base)                                          # báo cáo khảo sát: thêm strip ASR + dấu vết nội bộ (§0.0)
+}
 
 # ---------- Ghép Markdown ----------
 $sb = New-Object System.Text.StringBuilder
@@ -262,6 +267,7 @@ $qc=[ordered]@{
     ))
   'XML well-formed'                  = $true
 }
+if($Formal){ foreach($k in @($qc.Keys)){ if($k -match '§0\.0'){ $qc.Remove($k) } } }   # tài liệu yêu cầu: bỏ QC "văn phong người" (giữ mã BR/OID/mũi tên)
 foreach($p in 'word/document.xml','word/header1.xml','word/footer1.xml','[Content_Types].xml'){ try{ [xml](Get-Part $z $p) | Out-Null }catch{ $qc['XML well-formed']=$false } }
 $z.Dispose()
 Write-Host ""
