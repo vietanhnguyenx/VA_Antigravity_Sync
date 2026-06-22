@@ -60,8 +60,12 @@ Khi cần tạo bản Word giao người từ ≥1 file `.md` (SRS, Wireframe, B
 - `-FontSize <pt>` — đổi cỡ chữ body trong docDefaults (mặc định 0 = giữ 12pt template).
 - `-TitleSize <pt>` / `-TitleAlign "<center|left|right>"` — chỉnh cỡ/căn lề **tiêu đề tài liệu** (style "Title" sẵn có trong template; mặc định 28pt căn giữa). **Tiêu đề render qua title block của pandoc** (`--metadata title`), KHÔNG còn là Heading 1 — dòng `# ` đầu tiên trong nguồn bị bỏ tự động để tránh tiêu đề lặp. Phụ đề là dòng in nghiêng ngay dưới.
 - `-H1Font "<tên>"` / `-H1Size <pt>` / `-H1Bold` / `-H1Align "<center|left|right>"` — đổi riêng font/cỡ/in đậm/căn lề **Heading 1** (= tiêu đề tài liệu, do script render `# $Title`). Vá đúng style block `Heading1`, không đụng heading khác.
-- `-H2Font "<tên>"` / `-H2Size <pt>` / `-H2Bold` / `-H2Align "<...>"` — tương tự cho **Heading 2** (= các mục §I/§II).
-- Ví dụ tiêu đề 18pt căn giữa, mục bold 13pt, thân 13pt: `... -NoToc -FontSize 13 -H1Size 18 -H1Align center -H2Size 13 -H2Bold`. QC font tự khớp theo các font đã chọn (`-Font`/`-H1Font`/`-H2Font` đều được phép, kèm Consolas).
+- `-H2Font` / `-H2Size` / `-H2Bold` / `-H2Align` — **Word Heading2** = mục lớn `## I, II`.
+- `-H3Font` / `-H3Size` / `-H3Bold` / `-H3Align` — **Word Heading3** = mục con `### I.1, I.2`.
+
+> **ÁNH XẠ CẤP (quan trọng — dễ nhầm):** Tiêu đề tài liệu = **Title** (`#`). Mục lớn "I, II" = **Word Heading2** (`##`). Mục con "I.1, I.2" = **Word Heading3** (`###`). Người dùng thường gọi "I, II" là *Heading 1* và "I.1, I.2" là *Heading 2* — nhưng trong Word/markdown chúng là **Heading2/Heading3**. Luôn xác nhận cấp trước khi áp định dạng.
+
+- Ví dụ (chuẩn đang dùng cho báo cáo khảo sát): tiêu đề 18pt căn giữa, mục lớn I/II 16pt bold, mục con I.1/I.2 13pt bold, thân 13pt: `... -NoToc -FontSize 13 -TitleSize 18 -H2Size 16 -H2Bold -H3Size 13 -H3Bold`. QC font tự khớp theo các font đã chọn (kèm Consolas); QC "heading bold đúng thứ tự schema" kiểm `<w:b/>` đặt ngay sau `<w:rFonts/>`.
 
 ## 4. Checklist QC (script tự kiểm, phải PASS hết)
 - `.md` = 0 · `](` (link markdown) = 0 · **slug tên-file = 0** · không lọt khóa YAML · không mojibake.

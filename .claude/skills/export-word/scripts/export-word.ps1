@@ -34,6 +34,10 @@ param(
   [int]$H2Size = 0,
   [switch]$H2Bold,
   [string]$H2Align = "",
+  [string]$H3Font = "",
+  [int]$H3Size = 0,
+  [switch]$H3Bold,
+  [string]$H3Align = "",
   [string]$Template = ".claude\templates\word-reference.docx",
   [string]$Pandoc = "C:\Users\VTIT\AppData\Local\Pandoc\pandoc.exe",
   [switch]$Force
@@ -191,7 +195,7 @@ function Set-HeadingStyle([string]$xml,[string]$styleId,[string]$hfont,[int]$hsi
     $blk
   },1)
 }
-if(($Font -ne 'Times New Roman') -or ($FontSize -gt 0) -or ($TitleSize -gt 0) -or ($TitleAlign -ne '') -or ($H1Size -gt 0) -or ($H2Size -gt 0) -or ($H1Font -ne '') -or ($H2Font -ne '') -or $H1Bold -or $H2Bold -or ($H1Align -ne '') -or ($H2Align -ne '')){
+if(($Font -ne 'Times New Roman') -or ($FontSize -gt 0) -or ($TitleSize -gt 0) -or ($TitleAlign -ne '') -or ($H1Size -gt 0) -or ($H2Size -gt 0) -or ($H3Size -gt 0) -or ($H1Font -ne '') -or ($H2Font -ne '') -or ($H3Font -ne '') -or $H1Bold -or $H2Bold -or $H3Bold -or ($H1Align -ne '') -or ($H2Align -ne '') -or ($H3Align -ne '')){
   foreach($part in 'word/styles.xml','word/theme/theme1.xml'){
     $pe=$zip.GetEntry($part); if(-not $pe){ continue }
     $psr=New-Object System.IO.StreamReader($pe.Open()); $pc=$psr.ReadToEnd(); $psr.Close()
@@ -204,7 +208,8 @@ if(($Font -ne 'Times New Roman') -or ($FontSize -gt 0) -or ($TitleSize -gt 0) -o
       }
       if(($TitleSize -gt 0) -or ($TitleAlign -ne '')){ $pc=Set-HeadingStyle $pc 'Title' '' $TitleSize $false $TitleAlign }   # style Title (tiêu đề tài liệu qua title block pandoc)
       if(($H1Size -gt 0) -or ($H1Font -ne '') -or $H1Bold -or ($H1Align -ne '')){ $pc=Set-HeadingStyle $pc 'Heading1' $H1Font $H1Size ([bool]$H1Bold) $H1Align }   # Heading 1 (nội dung cấp 1 thật)
-      if(($H2Size -gt 0) -or ($H2Font -ne '') -or $H2Bold -or ($H2Align -ne '')){ $pc=Set-HeadingStyle $pc 'Heading2' $H2Font $H2Size ([bool]$H2Bold) $H2Align }   # Heading 2 (= mục §I/§II)
+      if(($H2Size -gt 0) -or ($H2Font -ne '') -or $H2Bold -or ($H2Align -ne '')){ $pc=Set-HeadingStyle $pc 'Heading2' $H2Font $H2Size ([bool]$H2Bold) $H2Align }   # Word Heading2 (= mục lớn I, II)
+      if(($H3Size -gt 0) -or ($H3Font -ne '') -or $H3Bold -or ($H3Align -ne '')){ $pc=Set-HeadingStyle $pc 'Heading3' $H3Font $H3Size ([bool]$H3Bold) $H3Align }   # Word Heading3 (= mục con I.1, I.2)
     }
     $pe.Delete(); $ne2=$zip.CreateEntry($part); $psw=New-Object System.IO.StreamWriter($ne2.Open(),$utf8); $psw.Write($pc); $psw.Close()
   }
@@ -249,7 +254,7 @@ $qc=[ordered]@{
     ))
   'heading bold đúng thứ tự schema'  = ($(
       $ok=$true
-      foreach($pair in @(@($H1Bold,'Heading1'),@($H2Bold,'Heading2'))){
+      foreach($pair in @(@($H1Bold,'Heading1'),@($H2Bold,'Heading2'),@($H3Bold,'Heading3'))){
         if($pair[0]){ $h=[regex]::Match($styles,"(?s)styleId=`"$($pair[1])`".*?</w:style>").Value
           if($h -and ($h -notmatch '(?s)<w:rFonts[^>]*/>\s*<w:b\s*/>')){ $ok=$false } }
       }
