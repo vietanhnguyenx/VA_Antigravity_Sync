@@ -134,12 +134,12 @@
     .logo-container {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
       overflow: hidden;
       white-space: nowrap;
       transition: opacity 0.2s;
       flex-shrink: 0;
-      height: 100%;
+      height: 32px;
     }
 
     .sidebar.collapsed .logo-container {
@@ -427,6 +427,7 @@
       position: relative;
       display: flex;
       flex-direction: column;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     .main-content-scrollable {
@@ -573,7 +574,7 @@
     /* ===== Main Split Panel Layout ===== */
     .admin-panel-split {
       display: flex;
-      gap: 16px;
+      gap: 20px;
       flex: 1;
     }
 
@@ -581,7 +582,7 @@
       flex: 1 1 65%;
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 16px;
       min-width: 0;
     }
 
@@ -857,11 +858,17 @@
 
     /* ===== Placeholder Tab Content (Hidden) ===== */
     .tab-content {
-      display: none;
+      display: none !important;
+      visibility: hidden;
+      position: absolute;
+      pointer-events: none;
     }
 
     .tab-content.active {
-      display: block;
+      display: flex !important;
+      visibility: visible;
+      position: relative;
+      pointer-events: auto;
     }
   </style>
 </head>
@@ -878,7 +885,7 @@
       <div class="sidebar-header">
         <div class="logo-container" id="logoContainer">
           <!-- VNA Lotus Logo SVG -->
-          <svg viewBox="0 0 200 150" width="36" height="27" fill="#D4B26F" style="flex-shrink: 0;">
+          <svg viewBox="0 0 200 150" width="28" height="21" fill="#D4B26F" style="flex-shrink: 0;">
             <path d="M100,10 C101.5,45 118,70 148,82 C125,81 107,70 100,50 C93,70 75,81 52,82 C82,70 98.5,45 100,10 Z" />
             <path d="M100,60 C110,95 152,110 190,102 C150,107 118,92 100,74 C82,92 50,107 10,102 C48,110 90,95 100,60 Z" />
             <path d="M100,82 C108,118 168,128 185,126 C155,128 122,118 100,100 C78,118 45,128 15,126 C32,128 92,118 100,82 Z" />
