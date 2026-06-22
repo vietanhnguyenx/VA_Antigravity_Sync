@@ -332,16 +332,50 @@ Seq | Code | Name | Registrations | Status | Config | Last Updated | Actions
 
 ---
 
+---
+
+## DANH SÁCH TÍNH NĂNG (Từ VNA.TOSS_Function_list_v1.0.xlsx, Tab "Function list", Rows 57–75)
+
+### Module: Quản lý danh mục tàu bay (Aircraft Management)
+
+| STT | Chức năng | Chức năng con | Mô tả |
+|---|---|---|---|
+| 1 | Aircraft List | Aircraft List | Màn hình danh sách tàu bay (Đồng bộ từ Ops++) |
+| 2 | Aircraft List | Create | Thêm mới tàu bay |
+| 3 | Aircraft List | Filter | Lọc danh sách tàu bay |
+| 4 | Aircraft List | Edit | Chỉnh sửa thông tin tàu bay |
+| 5 | Aircraft List | Delete | Xoá tàu bay |
+| 6 | AOG/MNT Schedule | — | Danh sách lịch bảo dưỡng tàu bay |
+| 7 | AOG/MNT Code | — | Mã / Code bảo dưỡng |
+| 8 | MEL, CDL | — | Maintenance Engine Limitation / Configuration Deviation List |
+
+### Các tính năng bổ sung (từ MM-20190626-quy-hoach-toss.md)
+
+| Tính năng | Trạng thái | Ghi chú |
+|---|---|---|
+| **Tab General Info** | Đã ghi nhận | AC Registration, Valid From/To, ICAO/IATA, Ownership, Status |
+| **Tab Aircraft Config** | Đã ghi nhận | Fuel Flow, Capacity, Cargo, Weight |
+| **Tab Attributes** | Đã ghi nhận | 5 Group Attributes |
+| **Tab Audit Log** | Đã ghi nhận | Lịch sử thay đổi với Filter |
+| **Sync từ SMA** | Đã ghi nhận | AC Registration (read-only), Valid From/To (read-only) |
+| **Ownership Logic** | Đã ghi nhận | Ownership Status → Owner field (conditional unlock) |
+| **Export** | Chưa chi tiết | Word/PDF/Excel format chưa định nghĩa |
+| **Import** | Chưa ghi nhận | Nhập tàu bay từ file Excel → cần làm rõ |
+
+---
+
 ## TIẾP THEO (Next Steps)
 
-1. **Confirm:** Trình bày gợi ý cho BA Lead / Stakeholder — xác nhận phạm vi 4 Tab
-2. **Refine:** Bổ sung chi tiết các trường số (units, validation rules) từ VNA.TOSS_Function_list_v1.0.xlsx
-3. **Mockup:** Cập nhật `data-maintenance-mockup.html` → version v2.0 với Tab UI
-4. **SRS:** Decompose yêu cầu chi tiết thành SRS section → Use cases → Acceptance criteria
+1. **Confirm:** Trình bày gợi ý cho BA Lead / Stakeholder — xác nhận phạm vi 4 Tab + danh sách tính năng từ Excel
+2. **Refine:** Bổ sung chi tiết các trường số (units, validation rules, decimal places) từ VNA.TOSS_Function_list_v1.0.xlsx
+3. **Export/Import:** Làm rõ yêu cầu Export (Word/PDF/Excel) và Import (từ file nào, format nào)
+4. **Mockup:** Cập nhật `data-maintenance-mockup.html` → version v2.0 với Tab UI
+5. **SRS:** Decompose yêu cầu chi tiết thành SRS section → Use cases → Acceptance criteria → Test cases
 
 ---
 
 *Báo cáo này dựa trên:*
 - *MM-20190626-quy-hoach-toss.md (cuộc họp 26/06/2019)*
 - *data-maintenance-mockup.html (mockup hiện tại)*
+- *VNA.TOSS_Function_list_v1.0.xlsx (danh sách tính năng, rows 57–75)*
 - *CLAUDE.md §0 (nguyên tắc phân hệ: decompose từ source, không đoán)*
