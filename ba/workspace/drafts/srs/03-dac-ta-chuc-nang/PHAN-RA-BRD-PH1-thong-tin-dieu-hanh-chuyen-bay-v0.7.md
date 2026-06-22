@@ -1,8 +1,8 @@
 ---
 project: "TOSS — Hệ thống Điều hành Khai thác Hãng Hàng không"
 author: "BA Lead"
-version: "0.6"
-date: "2026-06-18"
+version: "0.7"
+date: "2026-06-22"
 status: "Draft"
 document_type: "Functional Decomposition"
 document_id: "FUNC-DEC-PH1"
@@ -194,8 +194,8 @@ document_id: "FUNC-DEC-PH1"
 | FUNC-163 | Phát hiện và cảnh báo thay đổi giờ bay khi lệch ≥ 15 phút so với kế hoạch (ngưỡng OSP — Operational Schedule Performance — đang áp dụng); áp dụng cho cả hai chiều: sớm hơn và muộn hơn. | BR-116 | Khảo sát 11/06 §II.5 — Thảo luận – Đề xuất, Kết luận |
 | FUNC-164 | Phát hiện và cảnh báo thay đổi loại tàu bay (aircraft type). | BR-116 | Khảo sát 11/06 §II.5 |
 | FUNC-165 | Phát hiện và cảnh báo thay đổi tàu bay cụ thể (tail number) trên cùng chuyến. | BR-116 | Khảo sát 11/06 §II.5 |
-| FUNC-166 | Phát hiện và cảnh báo (highlight) khi phát sinh chuyến ferry (chuyến không thương mại, dùng để điều chuyển tàu bay) để điều phái viên xử lý tài liệu riêng. | BR-116 | Khảo sát 11/06 §II.5 |
-| FUNC-167 | Phát hiện và cảnh báo (highlight) khi chuyển từ chuyến thường (regular) sang chuyến VIP (do thay đổi cấp độ phục vụ và yêu cầu tài liệu khác). | BR-116 | Khảo sát 11/06 §II.5 |
+| FUNC-166 | Phát hiện và cảnh báo (làm nổi) khi phát sinh chuyến ferry (chuyến không thương mại, dùng để điều chuyển tàu bay) để điều phái viên xử lý tài liệu riêng. | BR-116 | Khảo sát 11/06 §II.5 |
+| FUNC-167 | Phát hiện và cảnh báo (làm nổi) khi chuyển từ chuyến thường (regular) sang chuyến VIP (do thay đổi cấp độ phục vụ và yêu cầu tài liệu khác). | BR-116 | Khảo sát 11/06 §II.5 |
 | FUNC-168 | Khi chuyển từ chuyến VIP về chuyến thường (downgrade), chỉ ghi nhận, KHÔNG cảnh báo đặc biệt. | BR-116 | Khảo sát 11/06 §II.5 — Kết luận |
 | ~~FUNC-169~~ | **BỎ (đính chính 12/06):** "chuyến Lotang" = lỗi ASR của NOTAM → không có loại chuyến này. Cảnh báo "NOTAM mới phát sinh" thuộc BR-118 (FUNC-178). | ~~BR-116~~ → BR-118 | Đính chính ASR 12/06 (transcript 11/06 d.670) |
 | ~~FUNC-170~~ | **BỎ (đính chính 12/06):** "đánh giá tác động Lotang" = đánh giá ảnh hưởng NOTAM tới chuyến → thuộc BR-118 (FUNC-179). | ~~BR-116~~ → BR-118 | Đính chính ASR 12/06 |
@@ -214,7 +214,7 @@ document_id: "FUNC-DEC-PH1"
 |---|---|---|---|
 | FUNC-174 | Tích hợp / thu nạp NOTAM phục vụ chuyến bay từ nguồn chính thức `[cần xác nhận tên: VNCM / VNCS hoặc đơn vị quản lý bay khác]`. | BR-118 | Khảo sát 11/06 §II.6 — Mức 1 Trích xuất NOTAM, Kết luận |
 | FUNC-175 | Phân loại NOTAM theo ba nhóm cơ bản: NOTAM sân bay, NOTAM vùng trời, NOTAM đường bay. | BR-118 | Khảo sát 11/06 §II.6 — Mức 2 Phân loại NOTAM, Kết luận |
-| FUNC-176 | Đánh giá mức độ ảnh hưởng của từng NOTAM đến chuyến bay cụ thể và highlight các NOTAM có ảnh hưởng trực tiếp tới chuyến cho điều phái viên. | BR-118 | Khảo sát 11/06 §II.6 — Mức 3 Đánh giá mức độ ảnh hưởng |
+| FUNC-176 | Đánh giá mức độ ảnh hưởng của từng NOTAM đến chuyến bay cụ thể và làm nổi các NOTAM có ảnh hưởng trực tiếp tới chuyến cho điều phái viên. | BR-118 | Khảo sát 11/06 §II.6 — Mức 3 Đánh giá mức độ ảnh hưởng |
 | FUNC-177 | Khi phát hiện NOTAM cứu hỏa sân bay (RFFS) phát ra, tạo cảnh báo trực tiếp cho điều phái viên. | BR-118 | Khảo sát 11/06 §II.6 — RFFS, Kết luận |
 | FUNC-178 | Không duy trì bảng tiêu chuẩn cấp cứu hỏa (RFFS) hiện hành của các sân bay riêng trong TOSS cho mục đích cảnh báo cơ bản (cảnh báo căn cứ trực tiếp vào sự xuất hiện của NOTAM cứu hỏa). | BR-118 | Khảo sát 11/06 §II.6 — Kết luận |
 | FUNC-179 | Tiêu chí phân loại chi tiết và quy tắc đánh giá mức độ ảnh hưởng của NOTAM tới chuyến bay cụ thể: (chưa có nguồn — cần SME bổ sung; sẽ làm rõ qua workshop riêng với SME điều phái). | BR-118 | Khảo sát 11/06 §II.6 — Kết luận |
@@ -657,7 +657,218 @@ document_id: "FUNC-DEC-PH1"
 
 ---
 
+## 2.52 Đặc tả cột/cơ chế màn Flight Dispatch — bổ sung từ KS 18/06 (v0.7)
+
+> **Nguồn chính:** `PROPOSAL-18062026-enrichment.md` §3.1 (bảng FUNC-295…319: mô tả + BR cha đề xuất + nguồn timestamp), bám sát biên bản khảo sát 18/06/2026 (`BAO-CAO-KHAO-SAT-18062026-v0.1.md`). Mục này phân rã 25 chức năng mới (FUNC-295 → FUNC-319) cho buổi đào sâu thiết kế màn Monitoring/Flight Dispatch trong phân hệ Điều phái. Phần logic màu/ngưỡng được chép trung thực từ kết luận buổi khảo sát; các điểm còn vướng quyết định được giữ nguyên cờ OID (DEC-/KS-/Q) và **không suy diễn**.
+
+### 2.52.1 Bộ lọc & cá nhân hóa màn Monitoring (FUNC-295, FUNC-296)
+
+| Mã FUNC | Mô tả chức năng (bám nguồn) | BR cha | Nguồn |
+|---|---|---|---|
+| FUNC-295 | Áp dụng **bộ lọc mặc định "chỉ hiện chuyến bất thường"** khi mở màn Monitoring; cung cấp các bộ lọc thay thế ("normal + bất thường", "tất cả"). | BR-102 | `[KS 18062026 sáng 00:46–01:13]` |
+| FUNC-296 | Cho phép **ẩn/hiện cột, ẩn/hiện dòng và lưu cấu hình hiển thị theo từng người dùng** trên màn Monitoring (mở rộng FUNC-104/105 hiện chỉ phủ ẩn/hiện trường). | BR-102 | `[KS 18062026 sáng 01:13–01:38]` · `[YCKT TOSS-179]` |
+
+**FUNC-295 — Tiêu chí chấp nhận (AC):**
+- [ ] **Given** người dùng mở màn Monitoring, **When** màn khởi tạo, **Then** bộ lọc mặc định = "chỉ hiện chuyến bất thường" (chỉ hiển thị các chuyến có ít nhất một cảnh báo).
+- [ ] **Given** đang ở bộ lọc mặc định, **When** người dùng chọn bộ lọc khác ("normal + bất thường" hoặc "tất cả"), **Then** danh sách chuyến hiển thị lại theo bộ lọc đã chọn.
+
+**FUNC-296 — Tiêu chí chấp nhận (AC):**
+- [ ] **Given** màn Monitoring, **When** người dùng ẩn/hiện một cột hoặc ẩn/hiện một dòng, **Then** cấu hình hiển thị được lưu theo từng người dùng (không ảnh hưởng người dùng khác — tham chiếu FUNC-105).
+- [ ] **Given** người dùng đăng nhập lại, **Then** hệ thống khôi phục đúng cấu hình ẩn/hiện cột/dòng đã lưu của người dùng đó.
+
+### 2.52.2 Quy ước hiển thị & tương tác chung (FUNC-297, FUNC-298)
+
+| Mã FUNC | Mô tả chức năng (bám nguồn) | BR cha | Nguồn |
+|---|---|---|---|
+| FUNC-297 | Hiển thị trạng thái cảnh báo theo **quy ước 3 màu (đỏ — vàng — xanh)**; trạng thái bình thường = dấu gạch ngang `(-)` hoặc để trắng; áp dụng đồng nhất trên toàn bộ cột cảnh báo. Màu xanh chỉ dùng khi giá trị đã được so khớp và đạt yêu cầu, không dùng cho trạng thái mặc định. | BR-103 | `[KS 18062026 sáng 26:10–27:37]` |
+| FUNC-298 | Tương tác trên dòng Monitoring: **hover làm sáng nhẹ dòng**; **click làm sáng đậm và mở chi tiết**; không phát âm thanh; cảnh báo lớn được phép **nháy dòng (blink)** để gây chú ý. | BR-103 | `[KS 18062026 sáng 28:37–29:27]` · `[KS 18062026 chiều 53:42–54:15]` |
+
+**FUNC-297 — Tiêu chí chấp nhận (AC):**
+- [ ] **Given** một ô cảnh báo ở trạng thái bình thường (chưa phát sinh bất thường), **Then** ô hiển thị `(-)` hoặc để trắng — không tô màu xanh đậm "ổn".
+- [ ] **Given** một giá trị đã được so khớp và đạt yêu cầu, **Then** ô được phép tô **Xanh**; **Given** mức cảnh báo chấp chới, **Then** ô **Vàng**; **Given** mức cảnh báo nặng nhất, **Then** ô **Đỏ**.
+
+**FUNC-298 — Tiêu chí chấp nhận (AC):**
+- [ ] **Given** con trỏ hover trên một dòng, **Then** dòng sáng nhẹ; **When** click vào dòng, **Then** dòng sáng đậm và mở khung chi tiết.
+- [ ] **Given** một cảnh báo lớn phát sinh, **Then** dòng được phép nháy (blink) và hệ thống **không** phát âm thanh.
+
+### 2.52.3 Mô hình tham số cảnh báo hai mức thời gian (FUNC-299)
+
+| Mã FUNC | Mô tả chức năng (bám nguồn) | BR cha | Nguồn |
+|---|---|---|---|
+| FUNC-299 | **Mô hình tham số cảnh báo hai mức thời gian** dùng chung cho OFP, Payload, DAO, Fly Doc, Tổ bay: mức **vàng** tại 75′ (nội địa) / 90′ (quốc tế); mức **đỏ** tại 60′ (nội địa) / 75′ (quốc tế) trước ETD. Trước mốc vàng: giữ trạng thái bình thường (gạch ngang), không hiển thị cảnh báo. | BR-118 *(đề xuất bổ sung BR "Mô hình tham số cảnh báo" — cần đối chiếu BRD)* | `[KS 18062026 sáng 30:02–30:52]` · `[KS 18062026 chiều 56:30–57:32]` · `[YCKT TOSS-175 / TOSS-177]` |
+
+**FUNC-299 — Tiêu chí chấp nhận (AC):**
+- [ ] **Given** một nhóm thông tin áp dụng mô hình (OFP/Payload/DAO/Fly Doc/Tổ bay) và **chưa** tới mốc vàng, **Then** ô giữ trạng thái bình thường (gạch ngang), không cảnh báo.
+- [ ] **Given** chuyến nội địa, **When** còn 75′ trước ETD, **Then** ô **Vàng**; **When** còn 60′ trước ETD, **Then** ô **Đỏ**.
+- [ ] **Given** chuyến quốc tế, **When** còn 90′ trước ETD, **Then** ô **Vàng**; **When** còn 75′ trước ETD, **Then** ô **Đỏ**.
+- [ ] *Ghi chú nguồn:* việc áp mô hình 75/60 — 90/75 cho nhóm Tổ bay (Crew Download / Crew CHG) "áp dụng chung" nhưng chưa demo case — `[ngoại lệ nhóm Tổ bay chờ — KS-85 / Q10]`.
+
+### 2.52.4 Tab cấu hình ngưỡng Payload & DAO (FUNC-300, FUNC-301, FUNC-302)
+
+| Mã FUNC | Mô tả chức năng (bám nguồn) | BR cha | Nguồn |
+|---|---|---|---|
+| FUNC-300 | **Tab "Ngưỡng Payload"** — khai báo ngưỡng dung sai Payload theo **chặng × loại tàu × ngưỡng âm/dương × thời điểm hiệu lực**. `[vị trí phân hệ chờ chốt — DEC-09]` (KS 18/06 nêu phân hệ Quản lý chặng bay; sheet-04 §16 chưa định danh). | BR PH-chặng bay *(cần đối chiếu BRD — DEC-09)* | `[KS 18062026 sáng 19:01–19:52]` · `[KS 18062026 sáng 45:02–45:35]` · `[YCKT TOSS-173]` |
+| FUNC-301 | **Tab "Ngưỡng DAO"** — khai báo ngưỡng dung sai DAO, **mặc định = 0**; áp dụng quy tắc "lệch là cảnh báo". `[vị trí phân hệ chờ chốt — DEC-09]`. | BR PH-chặng bay *(cần đối chiếu BRD — DEC-09)* | `[KS 18062026 sáng 52:35–53:15]` |
+| FUNC-302 | Lấy **nguồn DAO chuẩn từ FOEM**; nếu FOEM chưa sẵn sàng thì fallback dùng **file DOW cố định** qua Adapter. | BR-120 *(hoặc BR mới về FOEM — cần đối chiếu BRD)* | `[KS 18062026 sáng 46:11–47:21]` · `[YCKT sheet-06 §42]` |
+
+**FUNC-300 — Tiêu chí chấp nhận (AC):**
+- [ ] **Given** màn cấu hình ngưỡng Payload, **When** người có quyền khai báo một dòng ngưỡng, **Then** dòng ngưỡng gắn đủ 4 chiều: chặng × loại tàu × ngưỡng âm/dương × thời điểm hiệu lực.
+- [ ] **Given** CLC gửi estimate payload, **When** lệch so với Payload trong OFP vượt ngưỡng đã khai báo cho chặng × loại tàu tương ứng, **Then** cột Payload trên Monitoring phát cảnh báo và hiển thị số lệch (click xem chi tiết: số OFP, số CLC, thời điểm cập nhật).
+- [ ] *Ghi chú nguồn:* `[vị trí phân hệ chờ chốt — DEC-09]`; ngưỡng màu vàng/đỏ chưa diễn giải riêng `[ngưỡng chờ — KS-78/83]`.
+
+**FUNC-301 — Tiêu chí chấp nhận (AC):**
+- [ ] **Given** tab Ngưỡng DAO, **When** chưa khai báo ngưỡng khác, **Then** ngưỡng mặc định = 0 (mọi lệch DAO đều cảnh báo — "lệch là cảnh báo").
+- [ ] **Given** đã khai báo ngưỡng dung sai > 0, **When** lệch DAO vượt ngưỡng, **Then** cột DAO phát cảnh báo.
+- [ ] *Ghi chú nguồn:* `[vị trí phân hệ chờ chốt — DEC-09]`; phân mức cảnh báo DAO theo độ lớn lệch chưa chốt `[phân mức chờ — KS-83]`.
+
+**FUNC-302 — Tiêu chí chấp nhận (AC):**
+- [ ] **Given** FOEM đã sẵn sàng cung cấp DOW, **Then** hệ thống lấy nguồn DAO chuẩn từ FOEM.
+- [ ] **Given** FOEM chưa sẵn sàng, **Then** hệ thống fallback dùng file DOW cố định qua Adapter.
+- [ ] *Ghi chú nguồn:* vai trò/tần suất cập nhật FOEM còn `[cần SME bổ sung — SME-51]`.
+
+### 2.52.5 Phân loại tài liệu chuyến bay & thiếu tài liệu (FUNC-303, FUNC-304)
+
+| Mã FUNC | Mô tả chức năng (bám nguồn) | BR cha | Nguồn |
+|---|---|---|---|
+| FUNC-303 | Phân loại **tài liệu chuyến bay (Fly Doc)**: chuyến thường yêu cầu NOTAM + Weather; chuyến EDTO bổ sung Plotting chart + Icing chart. Nhận diện qua chuỗi `plotting`/`icing` trong tên file. | BR-112 / BR-222 | `[KS 18062026 chiều 10:49–13:18]` · `[KS 18062026 chiều 15:22–16:01]` |
+| FUNC-304 | **Thiếu tài liệu chặn Dispatch Release** — cảnh báo Fly Doc xác định cụ thể tài liệu nào đang thiếu trước thời điểm release. | BR-112 / BR-222 | `[KS 18062026 chiều 16:57–18:12]` |
+
+**FUNC-303 — Tiêu chí chấp nhận (AC):**
+- [ ] **Given** một chuyến thường, **Then** Fly Doc yêu cầu hiện diện NOTAM + Weather.
+- [ ] **Given** một chuyến EDTO (Extended Diversion Time Operations), **Then** Fly Doc yêu cầu thêm Plotting chart + Icing chart.
+- [ ] **Given** một tệp tài liệu, **When** tên tệp chứa chuỗi `plotting` hoặc `icing`, **Then** hệ thống nhận diện đúng loại chart tương ứng.
+- [ ] *Ghi chú nguồn:* quy ước đặt tên file Plotting/Icing (vị trí chuỗi, hoa/thường) chưa chốt `[quy ước tên file chờ — KS-80 / Q9]`.
+
+**FUNC-304 — Tiêu chí chấp nhận (AC):**
+- [ ] **Given** một chuyến thiếu một trong các tài liệu Fly Doc bắt buộc theo loại chuyến (thường/EDTO), **Then** cột Fly Doc cảnh báo và liệt kê tài liệu còn thiếu.
+- [ ] **Given** Fly Doc còn thiếu tài liệu bắt buộc, **Then** nút Dispatch Release bị chặn (tham chiếu FUNC-315).
+
+### 2.52.6 Nhóm cảnh báo tổ bay — Crew Download, Crew CHG, OFP rỗng tổ bay (FUNC-305, FUNC-306, FUNC-307)
+
+| Mã FUNC | Mô tả chức năng (bám nguồn) | BR cha | Nguồn |
+|---|---|---|---|
+| FUNC-305 | **Cột "Crew Download"** — kiểm tra trạng thái tải tài liệu chuyến bay của tổ bay. Theo KS 18/06: chỉ áp dụng cho PIC; theo sheet-08 §2 ban đầu: áp dụng cho toàn tổ bay. `[phạm vi PIC-only (KS 18/06) vs toàn tổ bay (sheet-08) chờ chốt — Q7]`. | BR-112 *(mở rộng)* | `[KS 18062026 chiều 20:21–20:53]` |
+| FUNC-306 | **Cột "Crew CHG"** — cảnh báo đổi tổ bay giữa OFP cũ và OFP mới; vị trí cột đặt sau ATC, trước Payload. | BR-112 | `[KS 18062026 chiều 01:00:16–01:01:13]` |
+| FUNC-307 | Trường hợp đặc biệt **OFP rỗng tổ bay** (AVES lỗi không trả tổ bay sang OFP) → cảnh báo **đỏ** tại cột tổ bay theo mốc thời gian. | BR-112 | `[KS 18062026 chiều 01:01:13–01:04:39]` |
+
+**FUNC-305 — Tiêu chí chấp nhận (AC):**
+- [ ] *(Khả năng A — KS 18/06, PIC-only)* **Given** một chuyến, **When** PIC chưa tải tài liệu chuyến bay, **Then** cột Crew Download cảnh báo; trạng thái thành viên tổ bay khác không xét.
+- [ ] *(Khả năng B — sheet-08 §2, toàn tổ bay)* **Given** một chuyến, **When** bất kỳ thành viên tổ bay nào chưa tải tài liệu, **Then** cột Crew Download cảnh báo.
+- [ ] *Ghi chú nguồn:* `[phạm vi PIC-only (KS 18/06) vs toàn tổ bay (sheet-08) chờ chốt — Q7]` — không suy diễn, chờ BA Lead chốt một khả năng.
+
+**FUNC-306 — Tiêu chí chấp nhận (AC):**
+- [ ] **Given** OFP mới có tổ bay khác OFP cũ, **Then** cột Crew CHG cảnh báo đổi tổ bay.
+- [ ] **Given** bố cục cột Monitoring, **Then** cột Crew CHG đặt sau ATC và trước Payload.
+- [ ] *Ghi chú nguồn:* vị trí cột cần thẩm định lại với 26 cột của sheet Function list `[vị trí cột chờ — Q6]`.
+
+**FUNC-307 — Tiêu chí chấp nhận (AC):**
+- [ ] **Given** AVES lỗi không trả tổ bay sang OFP (OFP rỗng tổ bay), **Then** cột tổ bay cảnh báo **Đỏ** theo mốc thời gian (mô hình FUNC-299).
+- [ ] *Ghi chú nguồn:* tần suất/cơ chế kích hoạt OFP rỗng tổ bay còn `[cần SME bổ sung — KS-86]`.
+
+### 2.52.7 Cảnh báo MEL/CDL ba lớp & tab MEL/CDL theo tàu (FUNC-308, FUNC-309)
+
+| Mã FUNC | Mô tả chức năng (bám nguồn) | BR cha | Nguồn |
+|---|---|---|---|
+| FUNC-308 | **Cảnh báo MEL/CDL ba lớp** — đối chiếu: (1) AMOS (Master MEL) → list MEL theo tàu/chuyến; (2) lọc theo shortlist FOE trên Lido; (3) so sánh shortlist với MEL trong OFP. Bắt cả ba trường hợp **thiếu, thừa, sai mã** (khớp hai chiều cả số lượng và mã item). | BR-121 *(hoặc BR mới về MEL — cần đối chiếu BRD)* | `[KS 18062026 chiều 34:01–50:38]` · `[YCKT sheet-04 TOSS-128…TOSS-135]` |
+| FUNC-309 | **Tab "MEL/CDL theo tàu"** — tra cứu MEL/CDL theo tàu bay (truy cập riêng, không theo chuyến). `[vị trí phân hệ — DEC-10]` (KS 18/06 nêu phân hệ Quản lý tàu bay). | BR PH-Quản lý tàu bay *(cần đối chiếu BRD — DEC-10)* | `[KS 18062026 chiều 50:38–51:21]` |
+
+**FUNC-308 — Tiêu chí chấp nhận (AC):**
+- [ ] **Given** danh mục MEL từ AMOS, shortlist FOE trên Lido và MEL trong OFP của cùng một chuyến, **When** có khác biệt về số lượng hoặc mã item giữa các lớp, **Then** cột MEL/CDL phát cảnh báo.
+- [ ] **Given** đối chiếu hai chiều, **Then** hệ thống bắt cả ba trường hợp: thiếu mã, thừa mã, sai mã.
+- [ ] *Ghi chú nguồn:* tích hợp AMOS hiện "chờ xem xét tích hợp"; cảnh báo gắn AMOS có thể trễ do tích hợp.
+
+**FUNC-309 — Tiêu chí chấp nhận (AC):**
+- [ ] **Given** người dùng mở tab MEL/CDL theo tàu, **Then** hệ thống hiển thị danh mục MEL/CDL theo tàu bay (không lọc theo chuyến).
+- [ ] *Ghi chú nguồn:* `[vị trí phân hệ — DEC-10]` — phân hệ chứa và quan hệ với màn Monitoring (chuyến) chờ BA Lead xác nhận.
+
+### 2.52.8 Cảnh báo ATC FPL — phát ngay khi lệch & cập nhật một phần (FUNC-310, FUNC-311)
+
+| Mã FUNC | Mô tả chức năng (bám nguồn) | BR cha | Nguồn |
+|---|---|---|---|
+| FUNC-310 | **Cảnh báo ATC FPL phát sinh ngay khi có lệch** giữa ATC FPL trong OFP và Filed ATC (không phụ thuộc mốc thời gian); làm nổi đúng đoạn lệch tương ứng. | BR-118 *(hoặc BR mới ATC — cần đối chiếu BRD)* | `[KS 18062026 chiều 24:50–28:01]` · `[YCKT sheet-04 §303]` |
+| FUNC-311 | Quy tắc xử lý **cập nhật một phần** ATC: **thêm điểm route → cảnh báo**; **chỉ đổi fly level → không cảnh báo**. | BR-118 | `[KS 18062026 chiều 01:17:37–01:18:01]` |
+
+**FUNC-310 — Tiêu chí chấp nhận (AC):**
+- [ ] **Given** ATC FPL trong OFP và Filed ATC qua điện ATC, **When** phát hiện lệch, **Then** cột ATC cảnh báo ngay (không chờ mốc thời gian) và làm nổi đoạn lệch.
+- [ ] *Ghi chú nguồn:* cấu trúc 5 thành phần của file ATC FPL dùng cho thuật toán matching/làm nổi còn `[cần SME bổ sung — SME-50]`.
+
+**FUNC-311 — Tiêu chí chấp nhận (AC):**
+- [ ] **Given** một cập nhật ATC, **When** cập nhật thêm điểm route, **Then** cột ATC cảnh báo.
+- [ ] **Given** một cập nhật ATC, **When** chỉ đổi fly level, **Then** cột ATC không cảnh báo.
+- [ ] *Ghi chú nguồn:* trường hợp thêm điểm KÈM đổi fly level đồng thời còn `[quy tắc kết hợp chờ — KS-84]`.
+
+### 2.52.9 Cảnh báo thời tiết theo Minima & quyền sửa Minima (FUNC-312, FUNC-313)
+
+| Mã FUNC | Mô tả chức năng (bám nguồn) | BR cha | Nguồn |
+|---|---|---|---|
+| FUNC-312 | **Cảnh báo thời tiết theo Minima**: **vàng** khi METAR chạm margin Minima (kèm nháy dòng), **đỏ** khi vi phạm; áp dụng cả cho chuyến đang bay (estimate arrival chạm Minima). | BR-119 | `[KS 18062026 chiều 01:19:00–01:21:01]` · `[YCKT sheet-04 §474]` |
+| FUNC-313 | **Quyền sửa Minima sân bay** giao cho điều phái trên giao diện điều phái; FOE ban hành Minima ban đầu nhưng không sửa trên giao diện này. | BR mới *(phân quyền Minima — cần đối chiếu BRD)* | `[KS 18062026 chiều 01:22:43–01:23:32]` |
+
+**FUNC-312 — Tiêu chí chấp nhận (AC):**
+- [ ] **Given** METAR/TAF của sân bay, **When** chạm margin Minima, **Then** cột Weather **Vàng** kèm nháy dòng; **When** vi phạm Minima, **Then** cột Weather **Đỏ**.
+- [ ] **Given** chuyến đang bay, **When** estimate arrival chạm/vi phạm Minima sân bay đến, **Then** cảnh báo tương ứng được phát.
+
+**FUNC-313 — Tiêu chí chấp nhận (AC):**
+- [ ] **Given** điều phái trên giao diện điều phái, **When** điều chỉnh giá trị Minima sân bay, **Then** hệ thống cho phép sửa và lưu.
+- [ ] **Given** FOE, **Then** FOE ban hành Minima ban đầu nhưng không sửa Minima trên giao diện điều phái này.
+
+### 2.52.10 Cột Pilot Confirm (FUNC-314)
+
+| Mã FUNC | Mô tả chức năng (bám nguồn) | BR cha | Nguồn |
+|---|---|---|---|
+| FUNC-314 | **Cột "Pilot Confirm"** — trạng thái PIC đã xác nhận release; **chỉ khi xanh mới được phép phát hành tài liệu chuyến bay**. | BR-112 *(hoặc BR mới Pilot Confirm — cần đối chiếu BRD)* | `[KS 18062026 chiều 01:26:24–01:26:46]` |
+
+**FUNC-314 — Tiêu chí chấp nhận (AC):**
+- [ ] **Given** PIC chưa xác nhận release, **Then** cột Pilot Confirm chưa **Xanh** và việc phát hành tài liệu chuyến bay bị chặn.
+- [ ] **Given** PIC đã xác nhận release, **Then** cột Pilot Confirm **Xanh** và cho phép phát hành tài liệu chuyến bay (là một điều kiện chặn của FUNC-315).
+
+### 2.52.11 Cơ chế Dispatch Release & khôi phục trạng thái (FUNC-315, FUNC-316)
+
+| Mã FUNC | Mô tả chức năng (bám nguồn) | BR cha | Nguồn |
+|---|---|---|---|
+| FUNC-315 | **Cơ chế bật/tắt nút Dispatch Release** — kiểm tra đa điều kiện: đến giờ + đủ tài liệu + mọi trường so khớp xanh. Tập con cảnh báo chặn release đã chốt gồm **4 nhóm**: (1) tàu khớp; (2) ETD ≤ 30′ (nếu ATD > 30′ phải chạy lại OFP); (3) tổ bay đúng OFP; (4) Pilot Confirm xanh. `[danh mục đầy đủ chờ — KS-79]`. | BR-119 *(hoặc BR mới Dispatch Release — cần đối chiếu BRD)* | `[KS 18062026 sáng 02:06–02:28]` · `[KS 18062026 chiều 01:14:34–01:15:31]` · `[YCKT sheet-04 §305]` |
+| FUNC-316 | **Cơ chế khôi phục về xanh** sau cảnh báo đỏ: (a) khi có OFP mới hoặc dữ liệu cập nhật làm giá trị về dưới ngưỡng; (b) khi CLC tiếp tục gửi điện cập nhật làm dữ liệu khớp lại. `[lưu vết cảnh báo chờ — DEC-08]`. | BR-103 | `[KS 18062026 sáng 37:31–38:10]` |
+
+**FUNC-315 — Tiêu chí chấp nhận (AC):**
+- [ ] **Given** một chuyến, **When** đến giờ release + đủ tài liệu + mọi trường so khớp xanh, **Then** nút Dispatch Release sáng (cho phép phát hành).
+- [ ] **Given** một trong 4 nhóm chặn chưa thỏa — tàu chưa khớp / ETD > 30′ (ATD > 30′ → phải chạy lại OFP) / tổ bay không đúng OFP / Pilot Confirm chưa xanh — **Then** nút Dispatch Release tắt (bị chặn).
+- [ ] *Ghi chú nguồn:* `[danh mục đầy đủ chờ — KS-79]` — buổi 18/06 chỉ chốt 4 nhóm chặn cốt lõi; danh mục đầy đủ "chặn / không chặn" tinh chỉnh sau khai thác — không suy diễn.
+
+**FUNC-316 — Tiêu chí chấp nhận (AC):**
+- [ ] **Given** một ô đang **Đỏ**, **When** có OFP mới hoặc dữ liệu cập nhật làm giá trị về dưới ngưỡng, **Then** ô khôi phục về **Xanh**.
+- [ ] **Given** một ô đang **Đỏ** do lệch dữ liệu CLC, **When** CLC gửi điện cập nhật làm dữ liệu khớp lại, **Then** ô khôi phục về **Xanh**.
+- [ ] *Ghi chú nguồn:* `[lưu vết cảnh báo chờ — DEC-08]` — có lưu vết cảnh báo đã từng phát sinh (audit trail) hay tự động chuyển xanh là đủ, chờ BA Lead chốt — không bake-in.
+
+### 2.52.12 Màn Flight Plan danh sách & ưu tiên nguồn nhiên liệu (FUNC-317, FUNC-318)
+
+| Mã FUNC | Mô tả chức năng (bám nguồn) | BR cha | Nguồn |
+|---|---|---|---|
+| FUNC-317 | **Màn Flight Plan dạng danh sách** song song với Monitoring — dùng chung dữ liệu nhưng khác mục đích (tra cứu + thống kê OFP, không phải cảnh báo). | BR mới *(Màn Flight Plan list — cần đối chiếu BRD)* | `[KS 18062026 chiều 21:20–23:46]` |
+| FUNC-318 | **Ưu tiên Actual Fuel ACARS > QAR**; cho phép **tải tài liệu thủ công** (NOTAM/Weather) khi luồng Lido/AMOS lỗi. | BR-118 *(hoặc BR mới — cần đối chiếu BRD)* | `[KS 18062026 chiều 01:27:43–01:30:23]` · `[YCKT sheet-04 §310 TOSS-228]` |
+
+**FUNC-317 — Tiêu chí chấp nhận (AC):**
+- [ ] **Given** người dùng mở màn Flight Plan dạng danh sách, **Then** màn hiển thị danh sách OFP phục vụ tra cứu + thống kê (dùng chung dữ liệu với Monitoring).
+- [ ] *Ghi chú nguồn:* các cột mặc định/tùy chọn + bộ lọc của màn Flight Plan list chưa làm rõ `[bố cục cột chờ — KS-82]`.
+
+**FUNC-318 — Tiêu chí chấp nhận (AC):**
+- [ ] **Given** có cả Actual Fuel từ ACARS và QAR, **Then** hệ thống ưu tiên dùng nguồn ACARS.
+- [ ] **Given** luồng Lido/AMOS lỗi, **When** người dùng tải tài liệu thủ công (NOTAM/Weather), **Then** hệ thống chấp nhận tài liệu tải thủ công.
+- [ ] *Ghi chú nguồn:* trật tự ưu tiên cần đối chiếu sheet-04 §310 TOSS-228 `[ưu tiên nguồn chờ — Q8]`.
+
+### 2.52.13 Thuật toán matching PIC giữa OFP và AVES (FUNC-319)
+
+| Mã FUNC | Mô tả chức năng (bám nguồn) | BR cha | Nguồn |
+|---|---|---|---|
+| FUNC-319 | **Thuật toán matching PIC** giữa OFP và AVES bằng so chuỗi theo tỷ lệ phần trăm; Adapter ghép group code sau tên crew theo cấu trúc 16 ký tự tên + 4 ký tự group code (tổng 20 ký tự). `[giới hạn 20 ký tự Adapter chờ — DEC-07]`. | BR-112 | `[KS 18062026 chiều 01:07:55–01:09:38]` |
+
+**FUNC-319 — Tiêu chí chấp nhận (AC):**
+- [ ] **Given** tên PIC trong OFP và tên PIC từ AVES, **When** so chuỗi theo tỷ lệ phần trăm, **Then** hệ thống xác định khớp/không khớp PIC để phục vụ cảnh báo tổ bay.
+- [ ] **Given** Adapter ghép group code, **Then** cấu trúc tên crew = 16 ký tự tên + 4 ký tự group code (tổng 20 ký tự — giới hạn API Lido).
+- [ ] *Ghi chú nguồn:* `[giới hạn 20 ký tự Adapter chờ — DEC-07]` 🔴 — phương án nới giới hạn (giữ hiện trạng 16+4 hay sửa cấu trúc FPX gửi ATC) chờ ý kiến lãnh đạo dự án; ảnh hưởng độ chính xác matching PIC — không quyết.
+
 ## 3. Bảng truy vết BR → FUNC
+
+> **Bổ sung v0.7 (KS 18/06):** thêm 25 FUNC-295…319 (xem §2.52) — tổng FUNC PH1: **194 → 219**. BR cha của từng FUNC ghi inline trong §2.52. Các BR đã có nhận thêm FUNC: BR-102, BR-103, BR-112, BR-118, BR-119, BR-120, BR-121. **BR mới / cross-ref cần đối chiếu BRD** (chưa nằm trong BR-101…150): tab Ngưỡng Payload/DAO `[DEC-09]`, tab MEL/CDL theo tàu `[DEC-10]`, phân quyền Minima sân bay, cơ chế Dispatch Release, màn Flight Plan list, ưu tiên nguồn Actual Fuel — tương tự cụm BR-213/224, BR-214/225, BR-309 (PH2) đã nêu ở §6. Bảng dưới là RTM nền (FUNC-101…294); RTM chi tiết FUNC-295…319 hợp nhất sau khi BA Lead chốt vị trí phân hệ.
 
 | BR cha | Số FUNC | Danh sách FUNC con |
 |---|---|---|

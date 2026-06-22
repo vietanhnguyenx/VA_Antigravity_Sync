@@ -21,7 +21,7 @@
 | 12/06 sáng | ✅ v0.1 | — | — | — | ✅ | — | 2026-06-16 |
 | 15/06 | ✅ v0.1 | — | — | — | ✅ | — | 2026-06-16 |
 | **17/06** | ✅ v0.3 | ✅ (Function list + YCKT) | n/a (làm trực tiếp) | ✅ SRS FUNC-277…294 · OID +10 · Glossary v0.20 · WF v0.4 · Mockup v0.6 | ✅ (6 commit) | 0 | 2026-06-18 |
-| **18/06** | ✅ v0.1 | ✅ (YCKT + WF/SRS) | ✅ `PROPOSAL-18062026-enrichment.md` | ⏳ chờ duyệt | — | **12** (§6) + 2 🔴 | 2026-06-22 |
+| **18/06** | ✅ v0.1 | ✅ (YCKT + WF/SRS) | ✅ `PROPOSAL-18062026-enrichment.md` | 🟡 phần không-vướng-QĐ: ✅ OID +15 · ✅ Glossary v0.21 · ✅ SRS PH1 v0.7 (FUNC-295…319, gắn cờ); còn 12 QĐ chờ | (chờ) | **12** (§6) + 2 🔴 | 2026-06-22 |
 
 ---
 
@@ -39,9 +39,9 @@
 
 | Hạng mục | Hiện hành (đã chốt) | Đề xuất thêm (chờ duyệt) |
 |---|---|---|
-| FUNC PH1 | 194 (FUNC tới -294) | +25 (FUNC-295…319, từ 18/06) |
-| OID-TOSS-001 | 142 điểm (133 mở / 5 đang xử lý / 4 chốt) | +15 (DEC-07…10, SME-50/51, KS-78…86) |
-| Glossary | v0.20 | +18 thuật ngữ (18/06) |
+| FUNC PH1 | **219** (FUNC tới -319, v0.7) | — (đã áp dụng FUNC-295…319) |
+| OID-TOSS-001 | **157 điểm** (148 mở / 5 đang xử lý / 4 chốt) | — (đã áp dụng +15) |
+| Glossary | **v0.21** | — (đã áp dụng +14; EDTO đã có sẵn) |
 | Wireframe wf-monitoring | v0.4 (§8 26 cột + §9 đối chiếu) | delta 18/06 (cảnh báo/ngưỡng) |
 | Mockup prototype | v0.6 (Flight Dispatch 26 cột) | — |
 
