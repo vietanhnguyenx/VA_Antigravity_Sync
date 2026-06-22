@@ -1,8 +1,8 @@
 ---
 project: "TOSS — Hệ thống Điều hành Khai thác Hãng Hàng không"
 author: "BA Lead"
-version: "0.20"
-date: "2026-06-18"
+version: "0.21"
+date: "2026-06-22"
 status: "Draft"
 document_type: "Domain Knowledge — Từ điển Thuật ngữ TOSS"
 ---
@@ -91,6 +91,8 @@ document_type: "Domain Knowledge — Từ điển Thuật ngữ TOSS"
 | **Cargo Capacity** | Dung lượng khoang hàng | Thuộc tính kỹ thuật của tàu bay gồm bụng trên, bụng dưới và mũi — một trong các thuộc tính kỹ thuật cần lưu cho TOSS (nguồn: báo cáo khảo sát 09/06/2026 §V — Part 1 ~01:05). |
 | **CFD** *(CAS Fault Data — chờ xác nhận)* | Dữ liệu lỗi CAS | *(Chờ xác nhận với VNA / Ban kỹ thuật.)* Label điện ACARS downlink dữ liệu lỗi từ hệ thống CAS (Crew Alerting System) của tàu bay. Body điện chứa mã lỗi hệ thống hàng không. Thư viện mã lỗi (Airbus/Boeing) và phạm vi tích hợp vào TOSS (liên quan [AMOS](#a)) chưa được cung cấp. *(Nguồn: acars-rcv-analysis.extracted.md §ACARS-03.)* |
 | **CPDLC** *(Controller-Pilot Datalink Communication)* | Liên lạc dữ liệu Kiểm soát viên — Phi công | *(Tham chiếu tiêu chuẩn — ngữ cảnh tích hợp VNA chờ xác nhận.)* Hệ thống nhắn tin dữ liệu hai chiều giữa phi công và kiểm soát viên không lưu, thay thế liên lạc thoại VHF trên đường dài. Trong kho ACARS tháng 03/2026, điện label `ATC` mang nội dung CPDLC (định dạng `CC1VN-AXXX...`). Thuộc nhóm datalink PBCS/FANS — xem `domain-knowledge/datalink-pbcs/`. *(Mức độ VNA tích hợp CPDLC vào TOSS: cần xác nhận với VNA.)* |
+| **Crew CHG (Crew Change)** | Cảnh báo đổi tổ bay | Cảnh báo phát hiện thay đổi tổ bay giữa OFP cũ và OFP mới trên màn Monitoring; vị trí cột sau ATC, trước Payload. (nguồn: KS 18/06/2026 chiều 01:00–01:01.) |
+| **Crew Download** | Trạng thái tải tài liệu của tổ bay | Cột trên màn Monitoring kiểm tra trạng thái PIC đã tải tài liệu chuyến bay; theo trao đổi 18/06 chỉ áp dụng cho PIC (phạm vi đang chờ chốt — OID). (nguồn: KS 18/06/2026 chiều 20:21–20:53.) |
 
 ---
 
@@ -112,6 +114,7 @@ document_type: "Domain Knowledge — Từ điển Thuật ngữ TOSS"
 | **Data Monitoring** | Giám sát dữ liệu | Module giám sát tính đầy đủ và độ chính xác của các nguồn dữ liệu tích hợp ([ACARS](#a), Lido…), kết xuất báo cáo theo ngày/tuần/tháng. Khác với báo cáo nghiệp vụ (nguồn: báo cáo khảo sát 09/06/2026 §V — Part 1 ~00:44–00:47). |
 | **DEP** *(Honeywell OUT/OFF Report — A350 ACARS label)* | Điện báo OUT/OFF Honeywell (A350) | Label điện ACARS báo sự kiện rời bãi đỗ/cất cánh cho đội tàu A350 (avionics Honeywell). Một điện DEP có thể mang OUT Time (`/OT <time>`) hoặc OFF Time (`/OF <time>`) tùy sub-type; trường `FB` ghi nhiên liệu block tại lúc OUT. **Cặp với [ARR](#a)** (label ON/IN của A350). TOSS nhận song song từ địa chỉ [MVA](#m) để ưu tiên. **Phân biệt với [Dispatch Release](#d).** (nguồn: tong-hop-dien-acars.extracted.md hàng 38–41). |
 | **DFD** *(Digital Flight Data downlink — hai biến thể)* | Điện tải dữ liệu chuyến bay | *(Hai biến thể — cần VNA xác nhận spec decode từng loại.)* Label điện ACARS tải dữ liệu chuyến bay từ tàu xuống mặt đất. **Biến thể 1 — A350 MIAM TypeB:** dữ liệu động cơ/sự cố (engine shutdown, fault records, hiệu năng chuyến). **Biến thể 2 — A321 Q-series (liên quan [QAR](#q)):** dữ liệu QAR tổng hợp theo nhóm tham số (Q4/Q5/Q6/Q7/Q8). Cả hai dùng cùng label `DFD`. TOSS cần parser riêng cho từng biến thể. *(Spec decode và biến thể cho loại tàu khác: acars-rcv-analysis.extracted.md §ACARS-02.)* |
+| **DAO (Dry Operating Adjustment)** | Điều chỉnh khô trên DOW | Điều chỉnh trên trọng lượng khai thác khô (DOW), ảnh hưởng tính nhiên liệu và tải; cảnh báo theo nguyên tắc "lệch là cảnh báo" (ngưỡng mặc định 0). Nguồn chuẩn = FOEM. (nguồn: KS 18/06/2026 sáng 53:40–54:38.) |
 
 ---
 
@@ -159,6 +162,8 @@ document_type: "Domain Knowledge — Từ điển Thuật ngữ TOSS"
 | **Fuel Tank Capacity** | Dung lượng bình nhiên liệu | Dung lượng bình nhiên liệu của tàu bay — một trong các thuộc tính kỹ thuật cần lưu cho TOSS (nguồn: báo cáo khảo sát 09/06/2026 §V — Part 1 ~01:04). |
 | **FML** *(ACARS Progress/Fuel Report)* | Điện báo tiến trình chuyến bay | Điện ACARS báo cáo tiến trình chuyến bay (Progress Report) trong giai đoạn bay, mang thông tin đường băng cất cánh và nhiên liệu. Format body: `PRG/TS<time>/<date>/DT<airport>,<runway>,<param>,<fuel>,<burn?>/FN<flight_no>`. TOSS có thể dùng để lấy runway cất cánh thực tế và fuel tại mốc báo cáo. *(Ý nghĩa đầy đủ các trường wind/fuel và cách tích hợp: cần Ban KT làm rõ — nguồn tong-hop-dien-acars.extracted.md, cờ "Cần Ban KT làm rõ".)* |
 | **FOB** *(Fuel On Board)* | Nhiên liệu thực tế trên tàu | Lượng nhiên liệu thực tế trên tàu bay tại thời điểm một sự kiện ACARS được gửi. Xuất hiện trong hầu hết các điện OOOI ([A80](#a), [M49](#m), [DEP](#d)/[ARR](#a), M11/M13/M14). **Đơn vị phụ thuộc avionics:** A320/A321 Rockwell Collins = **LITERS** (điện A80 ghi `/UNT LITERS`); B787/A350 MVA ghi `SI FOB <value>/` — đơn vị chưa xác nhận (OID SME-45). TOSS cần chuẩn hóa về kg khi tổng hợp. Xem [ACARS Fuel Unit](#a). |
+| **Filed ATC** | Điện ATC FPL đã nộp | Bản kế hoạch bay ATC (ATC FPL) đã nộp cho cơ quan kiểm soát không lưu; đối tượng so khớp với ATC FPL trong OFP để sinh cảnh báo sai lệch. (nguồn: KS 18/06/2026 chiều 23:47–24:48.) |
+| **Fly Doc** | Nhóm tài liệu chuyến bay phục vụ cảnh báo | Nhóm tài liệu gồm NOTAM + thời tiết (WX) cho mọi chuyến, bổ sung Plotting chart + Icing chart cho chuyến EDTO; thiếu tài liệu chặn Dispatch Release. (nguồn: KS 18/06/2026 chiều 10:18–13:18.) |
 
 ---
 
@@ -236,6 +241,9 @@ document_type: "Domain Knowledge — Từ điển Thuật ngữ TOSS"
 | **M49** *(B787 Flight Phase Message)* | Điện pha bay B787 | Điện ACARS báo từng pha chuyển tiếp trong chuyến bay của B787 (chuẩn Boeing). Mỗi điện M49 mang một sub-type trong body (trường `01xxxx`): `INIT` → `SDPO` (Power On) → `POES` (ENG Start) → `ESTA` (Taxi Out) → `TATO` (Take Off ready) → `OFF` → `TOIC` (Initial Climb) → `ICCL` → `CLER` (Enroute) → `ERDC` (Descent) → `DCAP` (Approach) → `APFL` (Flare) → `FLRO` (Rollout) → `ON` → `ROTI` (Taxi In) → `IN` → `TISD` (ENG Shutdown). Mỗi M49 kèm time và fuel tại thời điểm chuyển pha. TOSS normalize các sub-type `OUT/OFF/ON/IN` từ M49 để lấy [ACARS OOOI](#a). Chạy song song với M11/M13/M14 — M49 được ưu tiên. (nguồn: tong-hop-dien-acars.extracted.md hàng 6–28). |
 | **M11 / M13 / M14 / M44** *(Boeing B787 OOOI + Door messages)* | Điện OOOI + cửa Boeing (B787) | Nhóm 4 label điện ACARS chuẩn Boeing cho B787: **M11** = OUT Report, **M13** = ON Report *(FIMS hiện đang dùng để bóc tách time và fuel)*, **M14** = IN Report, **M44** = Door event (FIRST DOOR OPEN TIME / LAST DOOR CLOSE TIME). Chạy song song với [M49](#m) — khi có cả hai, ưu tiên M49 cho độ chính xác pha; M11/M13/M14 làm dự phòng. (nguồn: tong-hop-dien-acars.extracted.md hàng 29–37). |
 | **MVA** *(Multi-format Variant Address — luồng ACARS song song)* | Luồng điện ACARS song song MVA | Địa chỉ đích `QU HDQONVN` nhận phiên bản compact của cùng sự kiện OOOI, gửi song song với điện thường (`QU HANASVN`). Format ngắn gọn hơn: `AD<time> <dest>` (OUT/OFF), `AA<on_time>/<in_time>` (ON/IN), `SI FOB <fuel>/`. VNA **ưu tiên lấy OOOI time từ MVA trước** điện thường. Xuất hiện trong cả [A80](#a), M11/M13/M14, [DEP](#d)/[ARR](#a). *(Đơn vị FOB trong MVA: chờ xác nhận — OID SME-45.)* (nguồn: tong-hop-dien-acars.extracted.md hàng 23/30/39/43). |
+| **Matching PIC** | So khớp cơ trưởng OFP ↔ AVES | Thuật toán so khớp tên PIC giữa OFP và AVES bằng so chuỗi theo tỷ lệ phần trăm + ghép group code; cấu trúc 16 ký tự tên + 4 ký tự group code = 20 ký tự (giới hạn Adapter Lido — rủi ro OID DEC-07). (nguồn: KS 18/06/2026 chiều 01:07–01:09.) |
+| **Minima sân bay** | Ngưỡng tối thiểu khai thác sân bay | Tham số tối thiểu (tầm nhìn, trần mây, RVR) làm căn cứ cảnh báo thời tiết; chạm minima → vàng, vi phạm → đỏ. FOE ban hành ban đầu, điều phái được sửa trên giao diện điều phái. (nguồn: KS 18/06/2026 chiều 01:19–01:23.) |
+| **Mô hình cảnh báo hai mức (75/60 — 90/75)** | Hai mốc thời gian cảnh báo | Mức 1 (vàng) tại 75 phút trước ETD chuyến nội địa / 90 phút chuyến quốc tế; mức 2 (đỏ) tại 60 phút nội địa / 75 phút quốc tế. Áp chung cho nhóm OFP, Payload, DAO, Fly Doc, Tổ bay. (nguồn: KS 18/06/2026 sáng 30:02–30:52.) |
 
 ---
 
@@ -246,6 +254,8 @@ document_type: "Domain Knowledge — Từ điển Thuật ngữ TOSS"
 | **NOTAM** (Notice to Airmen / **Notice to Air Missions** — FAA) | Thông báo cho Phi công | Thông tin về sân bay, không phận, hoặc thiết bị ảnh hưởng đến an toàn bay. Dispatcher trong TOSS phải xem xét NOTAM trước khi phát hành Dispatch Release. *Tên gọi: ICAO/truyền thống là "Notice to Airmen"; FAA đã đổi thành "Notice to Air Missions" (xem `aircraft_dispatcher_pts_10`).* **Phân loại 3 nhóm theo phạm vi ảnh hưởng:** (1) NOTAM sân bay — ảnh hưởng hoạt động tại sân bay cụ thể; (2) NOTAM vùng trời (FIR/airspace) — ảnh hưởng quyền bay qua không phận; (3) NOTAM đường bay (route/AWY) — ảnh hưởng tuyến đường bay. Cách phân loại chi tiết và đánh giá mức độ ảnh hưởng tới từng chuyến cần workshop riêng với SME điều phái. NOTAM cứu hỏa (RFFS): khi cấp RFFS sân bay thay đổi → NOTAM phát ra → TOSS cảnh báo; không cần lưu tiêu chuẩn RFFS riêng (nguồn: phỏng vấn Dispatcher 11/06/2026). **Lỗi ASR cần map:** "Lotang", "lô tam", "nô tam" trong transcript = NOTAM (BA Lead xác nhận 12/06) — KHÔNG có "chuyến Lotang"; "cảnh báo NOTAM mới phát sinh + đánh giá ảnh hưởng" gộp tại cảnh báo NOTAM (BR-118). |
 | **NOTOC** (Notification To Captain) | Thông báo cho Cơ trưởng | Văn bản thông báo cho cơ trưởng về **hàng nguy hiểm (Dangerous Goods)** xếp trên tàu bay. Cơ trưởng phải tiếp nhận và **xác nhận đã nhận** (ký trên một bản sao NOTOC); một bản sao phải lưu giữ tại mặt đất, truy cập được suốt thời gian chuyến bay. Cơ sở: ICAO Annex 18 + FOCA GM-INFO Dangerous Goods (xem `dangerous-goods-notoc/`). TOSS sinh/đính kèm NOTOC trong bộ tài liệu chuyến bay khi có DG. |
 | **Ngưỡng release OFP** | Ngưỡng thời gian phát hành OFP | Bộ tham số thời gian trước ETD quy định cửa sổ cho phép release OFP: **quốc nội — sớm nhất 210′, thông thường 75′, muộn nhất 60′ trước ETD; quốc tế — sớm nhất 270′, thông thường 90′, muộn nhất 75′ trước ETD.** TOSS dùng các ngưỡng này để đổi màu cảnh báo (trắng → vàng → đỏ) trên màn Dispatch Monitoring (nguồn: phỏng vấn Dispatcher 15/06/2026 P2 d.~26; đối chiếu Function list). |
+| **Ngưỡng DAO** | Ngưỡng dung sai DAO | Tab khai báo ngưỡng dung sai DAO trong phân hệ Quản lý chặng bay; mặc định = 0 ("lệch là cảnh báo"). (nguồn: KS 18/06/2026 sáng 52:35–53:15.) |
+| **Ngưỡng Payload** | Ngưỡng dung sai tải trọng | Tab khai báo ngưỡng dung sai Payload theo chặng × loại tàu × ngưỡng âm/dương × thời điểm hiệu lực, trong phân hệ Quản lý chặng bay. (nguồn: KS 18/06/2026 sáng 45:02–45:35.) |
 
 ---
 
@@ -264,6 +274,7 @@ document_type: "Domain Knowledge — Từ điển Thuật ngữ TOSS"
 | **OFP Number / OFP Version** | Số hiệu OFP / Phiên bản OFP | Phân biệt hai khái niệm (phỏng vấn 11/06 chiều §II.4): **OFP Number** do Lido sinh cho mỗi lần tạo OFP; **OFP Version** do TOSS gán (R1, R2…) đánh dấu các lần [Dispatch Release](#d)/[Unrelease](#u) — phục vụ nhận biết bản chốt và truy vết. |
 | **OFP Source — ba định dạng PDF / TXT / HTML** | Ba định dạng OFP xuất song song từ Lido | Lido xuất OFP ở ba định dạng song song. TXT dùng để bốc tách NOTAM và giờ, HTML dùng để bốc tách group, PDF dùng để hiển thị. MO Plus mix ba nguồn. TOSS backup phải đẩy đủ ba nguồn (nguồn: báo cáo khảo sát 11/06/2026 buổi chiều §V — dòng 1626–1660). |
 | **OPS++** (Netline Flight Ops++) | Hệ thống khai thác chính của VNA | Hệ thống khai thác / lập lịch bay chính hiện hữu của VNA (nền Netline, đang mua mới để thay FMS cũ). TOSS lấy dữ liệu lịch bay, danh mục & tình trạng tàu bay, lịch bảo dưỡng từ OPS++ (FUNC-511-01; SH-10). TOSS là đầu mối tích hợp [AMOS](#a) và cung cấp dữ liệu MEL/CDL cho OPS++ — OPS++ không tích hợp AMOS riêng (nguồn: KS 17/06/2026 §1; KS 08/06/2026 §V). *(Trong transcript 17/06 ASR ghi "FOIE/FOI/FOEM/FOM" — đều chỉ OPS++; ban đầu nhận định nhầm là "e-FON", BA Lead hiệu chỉnh 18/06/2026.)* |
+| **OFP rỗng tổ bay** | OFP thiếu thông tin tổ bay | Trường hợp đặc biệt khi AVES lỗi không trả tổ bay sang OFP, sinh cảnh báo đỏ tại cột tổ bay theo mốc thời gian. (nguồn: KS 18/06/2026 chiều 01:01–01:04.) |
 
 ---
 
@@ -280,6 +291,8 @@ document_type: "Domain Knowledge — Từ điển Thuật ngữ TOSS"
 | **PIC Confirm** | Xác nhận của PIC | Cột/trạng thái trên màn hình Dispatch: phi công (PIC) xác nhận đã nhận và đọc OFP sau khi Dispatch đã release. Không có quy định cứng về thời điểm confirm. Đây là thông tin bổ sung ngoài **Dispatch Release** và **Pilot Release** — cần thêm cột riêng trên màn Monitoring (nguồn: phỏng vấn Dispatcher 15/06/2026 P2 d.~67). |
 | **POD** | (giữ nguyên — viết tắt nội bộ VNA) | Nguồn bản tin/đánh giá tại các thời điểm cập nhật hằng ngày mà điều phái NOTAM/WX tham khảo (nguồn: FDOP §3.2.2). *(Cần xác nhận tên đầy đủ với VNA — chưa có nguồn.)* |
 | **PER Group** (Aircraft Performance Group) | Nhóm tính năng tàu bay (FOE) | Nhóm thuộc FOE phụ trách tính năng tàu bay; nhận tài liệu Weigh and Balance / Chapter 2 từ Tech Dept khi nhận tàu mới (nguồn: FDOP §3.5 — "Aircarft performance Group (FOE)", "send to PER Group"). *(Cần xác nhận tên chính thức với VNA.)* |
+| **Pilot AXA** | Dầu lấy thêm của phi công | Cột hiển thị lượng nhiên liệu phi công lấy thêm (extra fuel) so với kế hoạch kèm lý do; hover xem nhanh, click xem chi tiết. (nguồn: KS 18/06/2026 chiều 02:18–02:51.) |
+| **Pilot Confirm** | Xác nhận của cơ trưởng | Cột hiển thị trạng thái phi công đã xác nhận; chỉ khi xanh mới được phép phát hành tài liệu chuyến bay. (nguồn: KS 18/06/2026 chiều 01:26.) |
 
 ---
 
@@ -331,6 +344,7 @@ document_type: "Domain Knowledge — Từ điển Thuật ngữ TOSS"
 | **Subfleet** | Phân nhóm con của đội tàu | Phân nhóm con của đội tàu, ví dụ A350-900 vs A350-1000, 787-9 vs 787-10. Một số báo cáo dùng cấp subfleet thay vì cấp loại tàu tổng (nguồn: báo cáo khảo sát 09/06/2026 §V — Part 2 ~01:40–01:43). |
 | **SATCOM** *(Satellite Communications — chờ xác nhận)* | Liên lạc qua vệ tinh | *(Tham chiếu tiêu chuẩn — ngữ cảnh VNA chờ xác nhận.)* Hệ thống liên lạc tàu bay qua vệ tinh (Inmarsat/Iridium), dùng cho đường dài vượt tầm VHF. Trong kho ACARS VNA, label [SMA](#s) khả năng liên quan kênh SATCOM. *(Phạm vi VNA sử dụng SATCOM và tích hợp TOSS: cần xác nhận với VNA.)* |
 | **SMA** *(SATCOM Message ACARS — chờ xác nhận)* | Điện ACARS kênh SATCOM | *(Chờ xác nhận với VNA / Ban kỹ thuật.)* Label điện ACARS xuất hiện trong kho dữ liệu tháng 03/2026. Khả năng liên quan kênh [SATCOM](#s) (Satellite Message) nhưng nội dung điện mẫu chưa được decode. *(Định nghĩa đầy đủ và phạm vi decode: acars-rcv-analysis.extracted.md §ACARS-04.)* |
+| **Shortlist MEL (FOE)** | Danh mục MEL ảnh hưởng khai thác do FOE lọc | Danh mục MEL do FOE lọc từ Master MEL của AMOS, giữ các MEL ảnh hưởng khai thác (wind/fly level/fuel factor); đẩy qua Lido làm tham chiếu; dùng đối chiếu 3 lớp AMOS → shortlist FOE → OFP. (nguồn: KS 18/06/2026 chiều 34:25–35:30.) |
 
 ---
 
@@ -451,6 +465,7 @@ document_type: "Domain Knowledge — Từ điển Thuật ngữ TOSS"
 
 ---
 
+*v0.21 (2026-06-22): Bổ sung 14 thuật ngữ từ buổi KS 18/06 (CLC & Điều phái) — Crew CHG, Crew Download, DAO, Filed ATC, Fly Doc, Matching PIC, Minima sân bay, Mô hình cảnh báo hai mức, Ngưỡng DAO, Ngưỡng Payload, OFP rỗng tổ bay, Pilot AXA, Pilot Confirm, Shortlist MEL (FOE). Bỏ qua Lido Import file/FOEM (đã có); **EDTO bỏ qua — đã có entry sẵn ở section E**. Nguồn: PROPOSAL-18062026 §5. Quyết định: BA Lead 2026-06-22.*
 *v0.20 (2026-06-18): Bổ sung 13 thuật ngữ từ nửa sau buổi KS 17/06 (Quản lý tàu bay / AOG-MNT) — AC subtype, ACARS fuel multiplier, AOG/MNT Schedule, AOG/MNT Code, Engine Water Wash, FN_Carrier, legtype = Z, leg state cancel, Max Ramp Weight (MRW), Ownership status (Own/Wet/Dry Lease), Service order/Work order/Task (AMOS), Standby (Netline), Valid From – Valid To. Bổ sung cảnh báo entry FOE về khả năng trùng/khác FOEM (chờ SME xác nhận). Quyết định: BA Lead 2026-06-18.*
 *v0.19 (2026-06-18): Đổi tên thuật ngữ **Lido ePot → Lido Import file** (BA Lead 18/06/2026). Cập nhật entry (section L) + đồng bộ báo cáo KS 17/06 v0.2, OID KS-58/59, agent data-modeler. Giữ chú thích tên cũ "ePot".*
 *v0.18 (2026-06-18): Hiệu chỉnh định danh hệ thống — **e-FON → OPS++ (Netline Flight Ops++)**: hệ thống ghi nhận trong KS 17/06 (ASR "FOIE/FOI/FOEM/FOM") được xác định lại là OPS++ — hệ khai thác chính hiện hữu của VNA, không phải hệ thống "Thông báo Khai thác Bay Điện tử" tương lai như nhận định ban đầu. Gỡ entry e-FON (section E); bổ sung entry OPS++ (section O) hợp nhất vai trò nguồn dữ liệu + nhận MEL/CDL từ TOSS; entry FON gỡ link e-FON. Cập nhật báo cáo KS 17/06 + OID SME-45. Quyết định: BA Lead 2026-06-18.*
