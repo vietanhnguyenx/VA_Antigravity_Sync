@@ -4,7 +4,7 @@
 
 | File | Dòng | Phân hệ |
 |---|---|---|
-| `PHAN-RA-BRD-PH1-thong-tin-dieu-hanh-chuyen-bay-v0.6.md` | 840 | **PH1** — Thông tin điều hành chuyến bay (v0.6: +FUNC-277…294 cột màn Flight Dispatch đã rõ nguồn) |
+| `PHAN-RA-BRD-PH1-thong-tin-dieu-hanh-chuyen-bay-v0.7.md` | 1050 | **PH1** — Thông tin điều hành chuyến bay (v0.7: +FUNC-295…319 §2.52 từ KS 18/06 — màn Monitoring/Dispatch Release/cảnh báo; gắn cờ chỗ vướng quyết định BA Lead; tổng 219 FUNC) |
 | `PHAN-RA-BRD-PH2-quan-ly-tai-lieu-chuyen-bay-v0.4.md` | 147 FUNC | **PH2** — Quản lý tài liệu chuyến bay (+Khối F: BR-257…BR-261; sync BRD v0.6) |
 | `PHAN-RA-BRD-PH3-quan-ly-bao-cao-toi-uu-khai-thac-v0.3.md` | 414 | **PH3** — Báo cáo & Tối ưu khai thác *(chờ BRD PH3 v0.5 freeze — G2)* |
 | `PHAN-RA-BRD-PH4-quan-ly-danh-muc-v0.4.md` | 141 FUNC | **PH4** — Quản lý danh mục (sync BRD PH4 v0.5: PF Reports→PH3, AMOS sync, Nhóm K→PH2) |
