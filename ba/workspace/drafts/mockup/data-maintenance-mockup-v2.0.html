@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<!--
+  MOCKUP v2.0 — TOSS Flight Fleet Management (Tab-based Details Panel)
+  Cải tiến từ v1.0:
+    • 4 Tab trong Details Panel (General Info / Aircraft Config / Attributes / Audit Log)
+    • Trường dữ liệu mở rộng: Valid From/To, ICAO/IATA, Fuel Flow, Capacity, Weight
+    • Read-only status cho trường SMA (AC Registration, Valid From/To)
+    • Ownership Status → Owner Name conditional logic
+    • Aircraft Config flexible grid (Cabin A/B/C)
+    • Audit Log table với dữ liệu mẫu
+    • Bảng danh sách cập nhật: bỏ "Note", thêm "Config" + "Last Updated"
+    • Layout 50/50 split
+
+  Trực thuộc: ba/workspace/drafts/mockup/data-maintenance-mockup-v2.0.html
+  Based on: Flight-Fleet-UI-Review-v1.0 + Mockup-v2.0-Implementation-Plan
+-->
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TOSS — Flight Fleet Management v2.0</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto:wght@400;500;700&family=Material+Symbols+Outlined" rel="stylesheet">
+  <style>
+    :root {
+      --vna-navy: #002A54;
+      --vna-gold: #D4B26F;
+      --mo-active-bg: #fef3c7;
+      --mo-active-border: #d97706;
+      --mo-active-text: #b45309;
+      --toss-teal: #007b83;
+      --toss-blue: #0284c7;
+      --toss-orange: #f97316;
+      --md-surface: #ffffff;
+      --md-surface-variant: #f8fafc;
+      --md-outline: #cbd5e1;
+      --md-outline-variant: #e2e8f0;
+      --md-text-primary: #1e293b;
+      --md-text-secondary: #64748b;
+      --md-text-muted: #94a3b8;
+      --sidebar-width: 260px;
+      --md-radius: 12px;
+      --md-radius-sm: 8px;
+      --md-elev1: 0 1px 3px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.05);
+      --md-elev2: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.05);
+      --toss-bg-sky: linear-gradient(180deg, #dbe9f6 0%, #e8f1f9 30%, #f4f7fc 100%);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', Roboto, sans-serif; background: var(--md-surface-variant); color: var(--md-text-primary); min-height: 100vh; display: flex; }
+    .material-symbols-outlined { font-family: 'Material Symbols Outlined'; font-size: 22px; vertical-align: middle; line-height: 1; user-select: none; }
+
+    .app-layout { display: flex; width: 100vw; min-height: 100vh; }
+
+    /* ===== Sidebar (Giữ nguyên từ v1.0) ===== */
+    .sidebar { width: var(--sidebar-width); background: var(--md-surface); border-right: 1px solid var(--md-outline-variant); display: flex; flex-direction: column; height: 100vh; position: sticky; top: 0; z-index: 100; flex-shrink: 0; }
+    .sidebar-header { padding: 8px 12px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--md-outline-variant); height: 48px; }
+    .logo-container { display: flex; align-items: center; gap: 8px; overflow: hidden; white-space: nowrap; flex-shrink: 0; }
+    .vna-logo-text { font-size: 13px; font-weight: 700; color: var(--vna-navy); }
+    .vna-logo-sub { font-size: 10px; color: var(--vna-gold); font-weight: 500; display: block; }
+    .sidebar-menu { flex: 1; padding: 16px 0; overflow-y: auto; }
+    .menu-item { display: flex; align-items: center; gap: 12px; padding: 12px 18px; color: var(--md-text-primary); text-decoration: none; font-size: 14px; font-weight: 500; border-left: 4px solid transparent; cursor: pointer; transition: all 0.2s ease; }
+    .menu-item:hover { background: var(--md-surface-variant); }
+    .menu-item.active { background: var(--mo-active-bg); color: var(--mo-active-text); border-left-color: var(--mo-active-border); font-weight: 600; }
+    .menu-item .material-symbols-outlined { color: var(--md-text-secondary); transition: color 0.2s; flex-shrink: 0; }
+    .menu-item.active .material-symbols-outlined { color: var(--mo-active-border); }
+
+    /* ===== Main Content ===== */
+    .main-content { flex: 1; height: 100vh; overflow-y: auto; background: var(--toss-bg-sky); display: flex; flex-direction: column; }
+    .main-content-scrollable { padding: 24px 28px; display: flex; flex-direction: column; gap: 20px; flex: 1; }
+
+    /* ===== Cards & Filter ===== */
+    .m3-card { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.6); border-radius: var(--md-radius); box-shadow: var(--md-elev1); padding: 16px; transition: box-shadow 0.2s; }
+    .m3-card:hover { box-shadow: var(--md-elev2); }
+    .filter-grid { display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-end; }
+    .filter-item { display: flex; flex-direction: column; gap: 4px; flex: 1 1 180px; }
+    .filter-item label { font-size: 11.5px; font-weight: 600; color: var(--md-text-secondary); text-transform: uppercase; }
+    .filter-input, .filter-select { width: 100%; height: 38px; padding: 8px 12px; border: 1px solid var(--md-outline); border-radius: var(--md-radius-sm); font-family: inherit; font-size: 13px; color: var(--md-text-primary); background: var(--md-surface); outline: none; }
+    .filter-input:focus { border-color: var(--vna-navy); box-shadow: 0 0 0 3px rgba(0, 42, 84, 0.1); }
+    .filter-select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2364748b'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 10px center; padding-right: 32px; }
+    .filter-actions { display: flex; gap: 12px; height: 38px; flex: 0 0 auto; margin-left: auto; }
+
+    /* ===== Buttons ===== */
+    .btn { display: inline-flex; align-items: center; gap: 6px; height: 38px; padding: 0 16px; border-radius: var(--md-radius-sm); font-family: inherit; font-size: 13.5px; font-weight: 600; cursor: pointer; border: none; outline: none; transition: all 0.2s; white-space: nowrap; }
+    .btn-teal { background: var(--toss-teal); color: white; }
+    .btn-teal:hover { background: #00646a; box-shadow: 0 4px 12px rgba(0, 123, 131, 0.2); }
+    .btn-clear { background: transparent; color: var(--toss-teal); border: 1.5px solid var(--toss-teal); }
+    .btn-clear:hover { background: rgba(0, 123, 131, 0.05); }
+    .btn-blue { background: var(--toss-blue); color: white; }
+    .btn-blue:hover { background: #026ca3; }
+    .btn-orange { background: var(--toss-orange); color: white; }
+    .btn-orange:hover { background: #e0640d; }
+
+    /* ===== Split Panel Layout (50/50) ===== */
+    .admin-panel-split { display: flex; gap: 20px; flex: 1; }
+    .user-list-section { flex: 1; display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+    .user-details-section { flex: 1; min-width: 0; }
+
+    .user-list-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+    .user-list-title-wrap { display: flex; align-items: center; gap: 12px; }
+    .user-list-title-wrap h2 { font-size: 18px; font-weight: 700; color: var(--vna-navy); }
+    .user-list-actions { display: flex; gap: 10px; }
+
+    /* ===== Table ===== */
+    .table-container { background: white; border-radius: var(--md-radius); border: 1px solid var(--md-outline-variant); overflow-x: auto; box-shadow: var(--md-elev1); }
+    .user-table { width: 100%; border-collapse: collapse; text-align: left; font-size: 13px; }
+    .user-table th { background: #f1f5f9; color: var(--md-text-secondary); font-weight: 600; padding: 10px 12px; border-bottom: 1px solid var(--md-outline-variant); white-space: nowrap; }
+    .user-table td { padding: 10px 12px; border-bottom: 1px solid var(--md-outline-variant); color: var(--md-text-primary); vertical-align: middle; white-space: nowrap; }
+    .user-table tbody tr { cursor: pointer; transition: background 0.15s; }
+    .user-table tbody tr:hover { background: #f8fafc; }
+    .user-table tbody tr.active-row { background: #f0f6ff; }
+
+    .status-badge { display: inline-flex; align-items: center; padding: 4px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; }
+    .status-badge.active { background: #e6fcf5; color: #0ca678; }
+    .status-badge.inactive { background: #f1f5f9; color: #64748b; }
+
+    /* ===== Pagination ===== */
+    .pagination-bar { display: flex; align-items: center; justify-content: space-between; padding: 8px 4px; font-size: 12.5px; color: var(--md-text-secondary); }
+    .records-select { border: 1px solid var(--md-outline); background: white; border-radius: 4px; padding: 4px 8px; font-family: inherit; font-size: 12px; }
+    .pagination-controls { display: flex; align-items: center; gap: 4px; }
+    .page-btn { width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--md-outline-variant); border-radius: 4px; background: white; cursor: pointer; font-weight: 500; color: var(--md-text-primary); transition: all 0.15s; }
+    .page-btn:hover { background: var(--md-surface-variant); }
+    .page-btn.active { background: var(--toss-teal); color: white; border-color: var(--toss-teal); }
+
+    /* ===== Details Panel ===== */
+    .details-card { display: flex; flex-direction: column; gap: 16px; }
+    .details-header { display: flex; align-items: center; gap: 14px; border-bottom: 1px solid var(--md-outline-variant); padding-bottom: 16px; }
+    .details-avatar-wrap { width: 68px; height: 68px; border-radius: 50%; border: 2.5px solid var(--vna-gold); overflow: hidden; flex-shrink: 0; display: flex; align-items: center; justify-content: center; background: #f1f5f9; }
+    .details-title-info { flex: 1; }
+    .details-name { font-size: 16px; font-weight: 700; color: var(--vna-navy); }
+    .details-id { font-size: 12px; color: var(--md-text-secondary); margin-top: 2px; font-weight: 500; }
+
+    /* ===== TAB NAVIGATION (NEW in v2.0) ===== */
+    .tab-nav {
+      display: flex;
+      gap: 0;
+      border-bottom: 2px solid var(--md-outline-variant);
+      margin: 16px 0 0 0;
+      flex-wrap: wrap;
+    }
+
+    .tab-button {
+      flex: 1;
+      padding: 12px 16px;
+      background: transparent;
+      border: none;
+      border-bottom: 3px solid transparent;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--md-text-secondary);
+      transition: all 0.2s ease;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    .tab-button:hover {
+      color: var(--md-text-primary);
+      background: rgba(0, 123, 131, 0.05);
+    }
+
+    .tab-button.active {
+      color: var(--toss-teal);
+      border-bottom-color: var(--toss-teal);
+      background: transparent;
+    }
+
+    /* ===== TAB CONTENT ===== */
+    .tab-content {
+      display: none;
+      padding: 16px 0;
+      animation: fadeIn 0.2s ease-in;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .details-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .detail-row {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .detail-label {
+      color: #64748b;
+      font-weight: 600;
+      font-size: 11.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+
+    .detail-input, .detail-select {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid var(--md-outline);
+      border-radius: var(--md-radius-sm);
+      font-family: inherit;
+      font-size: 13px;
+      color: var(--md-text-primary);
+      background: var(--md-surface);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .detail-input:focus, .detail-select:focus {
+      border-color: var(--toss-teal);
+      box-shadow: 0 0 0 3px rgba(0, 123, 131, 0.1);
+    }
+
+    .detail-input:disabled {
+      background: #f1f5f9;
+      color: #64748b;
+      cursor: not-allowed;
+      border: 1px solid #cbd5e1;
+    }
+
+    .detail-select {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2364748b'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 10px center;
+      padding-right: 32px;
+    }
+
+    .readonly-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 11px;
+      color: #64748b;
+      margin-top: 2px;
+    }
+
+    /* ===== Aircraft Config Grid (NEW) ===== */
+    .config-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 8px;
+    }
+
+    .config-grid .detail-input {
+      width: 100%;
+    }
+
+    /* ===== Audit Log Table (NEW) ===== */
+    .audit-log-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+      max-height: 300px;
+      overflow-y: auto;
+      margin-top: 8px;
+    }
+
+    .audit-log-table th {
+      background: #f1f5f9;
+      padding: 8px 12px;
+      text-align: left;
+      font-weight: 600;
+      color: #64748b;
+      border-bottom: 1px solid var(--md-outline-variant);
+      position: sticky;
+      top: 0;
+    }
+
+    .audit-log-table td {
+      padding: 8px 12px;
+      border-bottom: 1px solid var(--md-outline-variant);
+      color: var(--md-text-primary);
+    }
+
+    .audit-log-table tbody tr:hover {
+      background: #f8fafc;
+    }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 1024px) {
+      .admin-panel-split { flex-direction: column; }
+      .user-details-section { position: static; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app-layout">
+
+    <!-- SIDEBAR -->
+    <nav class="sidebar">
+      <div class="sidebar-header">
+        <div class="logo-container">
+          <svg viewBox="0 0 200 150" width="36" height="27" fill="#D4B26F" style="flex-shrink: 0;">
+            <path d="M100,10 C101.5,45 118,70 148,82 C125,81 107,70 100,50 C93,70 75,81 52,82 C82,70 98.5,45 100,10 Z" />
+          </svg>
+          <div style="flex: 1;">
+            <span class="vna-logo-text">Vietnam Airlines</span>
+            <span class="vna-logo-sub">Data Maintenance</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="sidebar-menu">
+        <a class="menu-item" onclick="switchTab('flight-fleet')">
+          <span class="material-symbols-outlined">airplanemode_on</span>
+          <span>Flight Fleet</span>
+        </a>
+        <a class="menu-item" onclick="switchTab('aircraft')">
+          <span class="material-symbols-outlined">airplanemode_on</span>
+          <span>Aircraft</span>
+        </a>
+        <a class="menu-item" onclick="switchTab('airport')">
+          <span class="material-symbols-outlined">flight_takeoff</span>
+          <span>Airport</span>
+        </a>
+      </div>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+      <div id="flight-fleet" class="main-content-scrollable tab-content active">
+
+        <!-- Filter Bar -->
+        <section class="m3-card filter-grid">
+          <div class="filter-item">
+            <label>Search by Flight Fleet Code</label>
+            <input type="text" class="filter-input" placeholder="Search..." id="filterCode">
+          </div>
+          <div class="filter-item">
+            <label>Search by Name</label>
+            <input type="text" class="filter-input" placeholder="Search..." id="filterName">
+          </div>
+          <div class="filter-item">
+            <label>Status</label>
+            <select class="filter-select" id="filterStatus">
+              <option value="">All Statuses</option>
+              <option value="Active">Active</option>
+              <option value="Inactive">Inactive</option>
+            </select>
+          </div>
+          <div class="filter-actions">
+            <button class="btn btn-clear" onclick="clearFilters()">
+              <span class="material-symbols-outlined">autorenew</span> Clear
+            </button>
+            <button class="btn btn-teal" onclick="applyFilters()">
+              <span class="material-symbols-outlined">search</span> Search
+            </button>
+          </div>
+        </section>
+
+        <!-- Split Panel: List + Details -->
+        <div class="admin-panel-split">
+
+          <!-- LEFT: LIST -->
+          <div class="user-list-section">
+            <div class="user-list-header">
+              <div class="user-list-title-wrap">
+                <h2>Flight fleet list</h2>
+              </div>
+              <div class="user-list-actions">
+                <button class="btn btn-blue" onclick="showToast('Tạo Flight Fleet')">
+                  <span class="material-symbols-outlined">add</span> Create
+                </button>
+              </div>
+            </div>
+
+            <div class="table-container">
+              <table class="user-table" id="fleetTable">
+                <thead>
+                  <tr>
+                    <th>Seq</th>
+                    <th>Code</th>
+                    <th>Name</th>
+                    <th>Registrations</th>
+                    <th>Status</th>
+                    <th>Config</th>
+                    <th>Last Updated</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="fleetTableBody">
+                  <tr class="active-row" onclick="selectFleet(this, 'A320-A321', 'Tàu bay A320 A321')">
+                    <td>1</td>
+                    <td>A320-A321</td>
+                    <td>Tàu bay A320 A321</td>
+                    <td>30</td>
+                    <td><span class="status-badge active">Active</span></td>
+                    <td>3 khoang</td>
+                    <td>20/01/2024 21:30</td>
+                    <td style="text-align: center;">
+                      <button style="background: none; border: none; cursor: pointer; padding: 4px;">
+                        <span class="material-symbols-outlined" style="font-size: 18px; color: #0284c7;">edit</span>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr onclick="selectFleet(this, 'A350', 'Tàu bay A350')">
+                    <td>2</td>
+                    <td>A350</td>
+                    <td>Tàu bay A350</td>
+                    <td>30</td>
+                    <td><span class="status-badge inactive">Inactive</span></td>
+                    <td>2 khoang</td>
+                    <td>15/01/2024 14:22</td>
+                    <td style="text-align: center;">
+                      <button style="background: none; border: none; cursor: pointer; padding: 4px;">
+                        <span class="material-symbols-outlined" style="font-size: 18px; color: #0284c7;">edit</span>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr onclick="selectFleet(this, 'B787', 'Tàu bay B787')">
+                    <td>3</td>
+                    <td>B787</td>
+                    <td>Tàu bay B787</td>
+                    <td>20</td>
+                    <td><span class="status-badge active">Active</span></td>
+                    <td>3 khoang</td>
+                    <td>18/01/2024 11:15</td>
+                    <td style="text-align: center;">
+                      <button style="background: none; border: none; cursor: pointer; padding: 4px;">
+                        <span class="material-symbols-outlined" style="font-size: 18px; color: #0284c7;">edit</span>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="pagination-bar">
+              <div style="display: flex; align-items: center; gap: 6px;">
+                <span>Show</span>
+                <select class="records-select">
+                  <option>10 Records</option>
+                  <option>20 Records</option>
+                </select>
+              </div>
+              <div><span>Total: <strong>80</strong></span></div>
+              <div class="pagination-controls">
+                <button class="page-btn active">1</button>
+                <button class="page-btn">2</button>
+                <button class="page-btn">3</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- RIGHT: DETAILS PANEL (v2.0 with Tabs) -->
+          <div class="user-details-section">
+            <section class="m3-card details-card">
+
+              <!-- Header -->
+              <div class="details-header">
+                <div class="details-avatar-wrap">✈️</div>
+                <div class="details-title-info">
+                  <div class="details-name" id="detailsName">Tàu bay A320 A321</div>
+                  <div class="details-id" id="detailsCode">A320-A321</div>
+                  <span class="status-badge active" id="detailsStatus" style="margin-top: 6px;">Active</span>
+                </div>
+              </div>
+
+              <!-- TAB NAVIGATION (NEW) -->
+              <div class="tab-nav" role="tablist">
+                <button class="tab-button active" role="tab" aria-selected="true" aria-controls="tab-general" onclick="switchDetailsTab(event, 'tab-general')">
+                  📋 Thông tin chung
+                </button>
+                <button class="tab-button" role="tab" aria-selected="false" aria-controls="tab-config" onclick="switchDetailsTab(event, 'tab-config')">
+                  ⚙️ Cấu hình tàu
+                </button>
+                <button class="tab-button" role="tab" aria-selected="false" aria-controls="tab-attributes" onclick="switchDetailsTab(event, 'tab-attributes')">
+                  🏷️ Thuộc tính
+                </button>
+                <button class="tab-button" role="tab" aria-selected="false" aria-controls="tab-audit" onclick="switchDetailsTab(event, 'tab-audit')">
+                  📊 Lịch sử
+                </button>
+              </div>
+
+              <!-- TAB 1: GENERAL INFO -->
+              <div id="tab-general" role="tabpanel" class="tab-content active">
+                <div class="details-grid">
+                  <div class="detail-row">
+                    <label class="detail-label">AC Registration</label>
+                    <input type="text" class="detail-input" value="A320-A321" disabled>
+                    <span class="readonly-badge">🔒 Đồng bộ từ SMA</span>
+                  </div>
+                  <div class="detail-row">
+                    <label class="detail-label">Valid From</label>
+                    <input type="date" class="detail-input" value="2024-01-01" disabled>
+                    <span class="readonly-badge">🔒 Read-only</span>
+                  </div>
+                  <div class="detail-row">
+                    <label class="detail-label">Valid To</label>
+                    <input type="date" class="detail-input" value="2024-12-31">
+                  </div>
+                  <div class="detail-row">
+                    <label class="detail-label">ICAO/IATA Code</label>
+                    <input type="text" class="detail-input" value="A320/A320">
+                  </div>
+                  <div class="detail-row">
+                    <label class="detail-label">Ownership Status</label>
+                    <select class="detail-select" id="ownershipSelect" onchange="toggleOwnerField()">
+                      <option value="Vietnam Airlines">Vietnam Airlines</option>
+                      <option value="Thuê khô">Thuê khô</option>
+                      <option value="Thuê ướt">Thuê ướt</option>
+                    </select>
+                  </div>
+                  <div class="detail-row">
+                    <label class="detail-label">Owner Name</label>
+                    <input type="text" class="detail-input" id="ownerField" value="Vietnam Airlines" disabled>
+                    <span class="readonly-badge" id="ownerHint">Tự động từ Ownership Status</span>
+                  </div>
+                  <div class="detail-row">
+                    <label class="detail-label">Status</label>
+                    <select class="detail-select" id="statusSelect">
+                      <option value="Active">Active</option>
+                      <option value="Inactive">Inactive</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <!-- TAB 2: AIRCRAFT CONFIG -->
+              <div id="tab-config" role="tabpanel" class="tab-content">
+                <div class="details-grid">
+                  <div class="detail-row">
+                    <label class="detail-label">Fuel Flow (kg/h)</label>
+                    <input type="number" class="detail-input" value="1500">
+                  </div>
+                  <div class="detail-row">
+                    <label class="detail-label">APU Fuel Flow (kg/h)</label>
+                    <input type="number" class="detail-input" value="200">
+                  </div>
+                  <div class="detail-row">
+                    <label class="detail-label">Fuel Capacity (kg)</label>
+                    <input type="number" class="detail-input" value="27200">
+                  </div>
+                  <div class="detail-row">
+                    <label class="detail-label">Water Tank (kg)</label>
+                    <input type="number" class="detail-input" value="1500">
+                  </div>
+                  <div class="detail-row">
+                    <label class="detail-label">Cargo Capacity (kg)</label>
+                    <input type="number" class="detail-input" value="6000">
+                  </div>
+                  <div class="detail-row">
+                    <label class="detail-label">Basic Weight (kg)</label>
+                    <input type="number" class="detail-input" value="41413">
+                  </div>
+                  <div class="detail-row">
+                    <label class="detail-label">Max Ramp Weight (kg)</label>
+                    <input type="number" class="detail-input" value="75500">
+                  </div>
+                  <div class="detail-row">
+                    <label class="detail-label">Aircraft Configuration</label>
+                    <div class="config-grid">
+                      <div>
+                        <label class="detail-label" style="font-size: 11px;">Cabin A</label>
+                        <input type="number" class="detail-input" value="8" placeholder="Qty">
+                      </div>
+                      <div>
+                        <label class="detail-label" style="font-size: 11px;">Cabin B</label>
+                        <input type="number" class="detail-input" value="24" placeholder="Qty">
+                      </div>
+                      <div>
+                        <label class="detail-label" style="font-size: 11px;">Cabin C</label>
+                        <input type="number" class="detail-input" value="0" placeholder="Qty">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- TAB 3: ATTRIBUTES -->
+              <div id="tab-attributes" role="tabpanel" class="tab-content">
+                <div class="details-grid">
+                  <div class="detail-row">
+                    <label class="detail-label">Group Attribute 1</label>
+                    <select class="detail-select">
+                      <option value="">-- Chọn --</option>
+                      <option value="Cat A" selected>Category A</option>
+                      <option value="Cat B">Category B</option>
+                      <option value="Cat C">Category C</option>
+                    </select>
+                  </div>
+                  <div class="detail-row">
+                    <label class="detail-label">Group Attribute 2</label>
+                    <select class="detail-select">
+                      <option value="">-- Chọn --</option>
+                      <option value="Cat A">Category A</option>
+                      <option value="Cat B" selected>Category B</option>
+                      <option value="Cat C">Category C</option>
+                    </select>
+                  </div>
+                  <div class="detail-row">
+                    <label class="detail-label">Group Attribute 3</label>
+                    <select class="detail-select">
+                      <option value="">-- Chọn --</option>
+                      <option value="Cat A" selected>Category A</option>
+                      <option value="Cat B">Category B</option>
+                      <option value="Cat C">Category C</option>
+                    </select>
+                  </div>
+                  <div class="detail-row">
+                    <label class="detail-label">Group Attribute 4</label>
+                    <select class="detail-select">
+                      <option value="">-- Chọn --</option>
+                      <option value="Cat A">Category A</option>
+                      <option value="Cat B">Category B</option>
+                      <option value="Cat C">Category C</option>
+                    </select>
+                  </div>
+                  <div class="detail-row">
+                    <label class="detail-label">Group Attribute 5</label>
+                    <select class="detail-select">
+                      <option value="">-- Chọn --</option>
+                      <option value="Cat A">Category A</option>
+                      <option value="Cat B">Category B</option>
+                      <option value="Cat C">Category C</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <!-- TAB 4: AUDIT LOG -->
+              <div id="tab-audit" role="tabpanel" class="tab-content">
+                <table class="audit-log-table">
+                  <thead>
+                    <tr>
+                      <th>Ngày giờ</th>
+                      <th>Người dùng</th>
+                      <th>Trường</th>
+                      <th>Giá trị cũ</th>
+                      <th>Giá trị mới</th>
+                      <th>Ghi chú</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>2026-06-15 10:30</td>
+                      <td>Data Officer</td>
+                      <td>AC Fuel Limit</td>
+                      <td>1500</td>
+                      <td>1600</td>
+                      <td>Điều chỉnh MTOW</td>
+                    </tr>
+                    <tr>
+                      <td>2026-06-10 14:15</td>
+                      <td>Admin</td>
+                      <td>Ownership Status</td>
+                      <td>Vietnam Airlines</td>
+                      <td>Thuê khô</td>
+                      <td>Hợp đồng 6 tháng</td>
+                    </tr>
+                    <tr>
+                      <td>2026-06-05 09:00</td>
+                      <td>Data Officer</td>
+                      <td>Aircraft Config</td>
+                      <td>8,24,0</td>
+                      <td>8,26,0</td>
+                      <td>Tháo bớt ghế</td>
+                    </tr>
+                    <tr>
+                      <td>2026-05-28 16:45</td>
+                      <td>Admin</td>
+                      <td>Status</td>
+                      <td>Active</td>
+                      <td>Inactive</td>
+                      <td>Bảo dưỡng định kỳ</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+            </section>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Placeholder tabs -->
+      <div id="aircraft" class="main-content-scrollable tab-content" style="display: flex; align-items: center; justify-content: center;">
+        <div style="text-align: center; color: var(--md-text-secondary);">
+          <span class="material-symbols-outlined" style="font-size: 64px; display: block; margin-bottom: 16px;">airplanemode_on</span>
+          <p style="font-size: 16px;">Aircraft — Đang phát triển</p>
+        </div>
+      </div>
+
+      <div id="airport" class="main-content-scrollable tab-content" style="display: flex; align-items: center; justify-content: center;">
+        <div style="text-align: center; color: var(--md-text-secondary);">
+          <span class="material-symbols-outlined" style="font-size: 64px; display: block; margin-bottom: 16px;">flight_takeoff</span>
+          <p style="font-size: 16px;">Airport — Đang phát triển</p>
+        </div>
+      </div>
+
+    </main>
+
+  </div>
+
+  <!-- Toast -->
+  <div id="toastNotif" style="position: fixed; bottom: 24px; right: 24px; background: #1e293b; color: white; padding: 12px 20px; border-radius: 8px; box-shadow: 0 10px 15px rgba(0,0,0,0.15); display: flex; align-items: center; gap: 10px; font-size: 13.5px; z-index: 2000; opacity: 0; transform: translateY(100px); transition: all 0.3s;">
+    <span class="material-symbols-outlined" style="color: #10b981; font-size: 20px;">check_circle</span>
+    <span id="toastMessage">Thành công</span>
+  </div>
+
+  <script>
+    // Tab switching (main navigation)
+    function switchTab(tabName) {
+      document.querySelectorAll('.main-content > .tab-content').forEach(tab => {
+        tab.classList.remove('active');
+        tab.style.display = 'none';
+      });
+      const tab = document.getElementById(tabName);
+      if (tab) {
+        tab.classList.add('active');
+        tab.style.display = 'block';
+      }
+    }
+
+    // Details Tab switching (NEW)
+    function switchDetailsTab(event, tabName) {
+      event.preventDefault();
+
+      // Hide all detail tabs
+      document.querySelectorAll('[role="tabpanel"]').forEach(tab => {
+        tab.classList.remove('active');
+      });
+
+      // Show selected tab
+      const tab = document.getElementById(tabName);
+      if (tab) tab.classList.add('active');
+
+      // Update button states
+      document.querySelectorAll('[role="tab"]').forEach(btn => {
+        btn.classList.remove('active');
+        btn.setAttribute('aria-selected', 'false');
+      });
+      event.target.classList.add('active');
+      event.target.setAttribute('aria-selected', 'true');
+    }
+
+    // Select aircraft from table
+    function selectFleet(row, code, name) {
+      document.querySelectorAll('.user-table tbody tr').forEach(r => {
+        r.classList.remove('active-row');
+      });
+      row.classList.add('active-row');
+
+      document.getElementById('detailsCode').textContent = code;
+      document.getElementById('detailsName').textContent = name;
+
+      // Reset to General Info tab
+      switchDetailsTab({ target: document.querySelector('[aria-controls="tab-general"]'), preventDefault: () => {} }, 'tab-general');
+    }
+
+    // Ownership Status logic (NEW)
+    function toggleOwnerField() {
+      const ownership = document.getElementById('ownershipSelect').value;
+      const ownerField = document.getElementById('ownerField');
+      const ownerHint = document.getElementById('ownerHint');
+
+      if (ownership === 'Vietnam Airlines') {
+        ownerField.disabled = true;
+        ownerField.value = 'Vietnam Airlines';
+        ownerHint.textContent = '🔒 Tự động từ Ownership Status';
+      } else {
+        ownerField.disabled = false;
+        ownerField.value = '';
+        ownerHint.textContent = '✎ Nhập tên chủ sở hữu';
+      }
+    }
+
+    // Filter functions
+    function clearFilters() {
+      document.getElementById('filterCode').value = '';
+      document.getElementById('filterName').value = '';
+      document.getElementById('filterStatus').value = '';
+      showToast('Xóa bộ lọc thành công');
+    }
+
+    function applyFilters() {
+      showToast('Áp dụng bộ lọc thành công');
+    }
+
+    // Toast
+    function showToast(message) {
+      const toast = document.getElementById('toastNotif');
+      const msg = document.getElementById('toastMessage');
+      msg.textContent = message;
+      toast.style.opacity = '1';
+      toast.style.transform = 'translateY(0)';
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateY(100px)';
+      }, 2500);
+    }
+  </script>
+
+</body>
+</html>
