@@ -56,9 +56,11 @@ Khi cần tạo bản Word giao người từ ≥1 file `.md` (SRS, Wireframe, B
 
 **Tham số tùy chọn căn chỉnh đầu ra:**
 - `-NoToc` — bỏ mục lục (báo cáo khảo sát thường dùng; tài liệu dài như SRS để mặc định có TOC).
-- `-Font "<tên font>"` — đổi font chữ (mặc định `Times New Roman` chuẩn QT02). Override cả `styles.xml` + `theme1.xml` lúc xuất, **giữ Consolas cho code**. Đổi font là lệch chuẩn QT02 — cần BA Lead chấp nhận.
-- `-FontSize <pt>` — đổi cỡ chữ body trong docDefaults (mặc định 0 = giữ 12pt template; heading giữ tỉ lệ template).
-- Ví dụ: `... -NoToc -Font "Arial" -FontSize 13`. QC font tự khớp theo `-Font` đã chọn (nhãn "FONT = &lt;Font&gt; only").
+- `-Font "<tên font>"` — đổi font chữ toàn cục (mặc định `Times New Roman` chuẩn QT02). Override cả `styles.xml` + `theme1.xml` lúc xuất, **giữ Consolas cho code**. Đổi font là lệch chuẩn QT02 — cần BA Lead chấp nhận.
+- `-FontSize <pt>` — đổi cỡ chữ body trong docDefaults (mặc định 0 = giữ 12pt template).
+- `-H1Font "<tên>"` / `-H1Size <pt>` — đổi riêng font/cỡ **Heading 1** (mặc định: font theo `-Font`, cỡ giữ template). Vá đúng style block `Heading1`, không đụng heading khác.
+- `-H2Font "<tên>"` / `-H2Size <pt>` — đổi riêng font/cỡ **Heading 2** (tương tự).
+- Ví dụ: `... -NoToc -Font "Arial" -FontSize 13 -H1Font "Arial" -H1Size 16 -H2Size 14`. QC font tự khớp theo các font đã chọn (`-Font`/`-H1Font`/`-H2Font` đều được phép, kèm Consolas).
 
 ## 4. Checklist QC (script tự kiểm, phải PASS hết)
 - `.md` = 0 · `](` (link markdown) = 0 · **slug tên-file = 0** · không lọt khóa YAML · không mojibake.
