@@ -22,6 +22,8 @@ param(
   [Parameter(Mandatory=$true)][string]$Version,
   [int]$TocDepth = 3,
   [switch]$NoToc,
+  [string]$Font = "Times New Roman",
+  [int]$FontSize = 0,
   [string]$Template = ".claude\templates\word-reference.docx",
   [string]$Pandoc = "C:\Users\VTIT\AppData\Local\Pandoc\pandoc.exe",
   [switch]$Force
@@ -157,6 +159,20 @@ $cte=$zip.GetEntry('[Content_Types].xml'); $sr=New-Object System.IO.StreamReader
 if($ct -notmatch 'Extension="png"'){ $ct=$ct.Replace('</Types>','<Default Extension="png" ContentType="image/png" /></Types>'); $cte.Delete(); $ne=$zip.CreateEntry('[Content_Types].xml'); $sw=New-Object System.IO.StreamWriter($ne.Open(),$utf8); $sw.Write($ct); $sw.Close() }
 if(-not $zip.GetEntry('word/_rels/header1.xml.rels')){ $he=$zip.CreateEntry('word/_rels/header1.xml.rels'); $sw2=New-Object System.IO.StreamWriter($he.Open(),$utf8); $sw2.Write('<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="media/logo.png"/></Relationships>'); $sw2.Close() }
 if($logo -and -not $zip.GetEntry('word/media/logo.png')){ $me=$zip.CreateEntry('word/media/logo.png'); $st=$me.Open(); $st.Write($logo,0,$logo.Length); $st.Close() }
+# ---------- Căn chỉnh font (override template QT02 khi -Font/-FontSize) ----------
+if(($Font -ne 'Times New Roman') -or ($FontSize -gt 0)){
+  foreach($part in 'word/styles.xml','word/theme/theme1.xml'){
+    $pe=$zip.GetEntry($part); if(-not $pe){ continue }
+    $psr=New-Object System.IO.StreamReader($pe.Open()); $pc=$psr.ReadToEnd(); $psr.Close()
+    if($Font -ne 'Times New Roman'){ $pc=$pc.Replace('Times New Roman',$Font) }   # đổi font family (giữ Consolas cho code)
+    if(($FontSize -gt 0) -and ($part -eq 'word/styles.xml')){                      # đổi cỡ body trong docDefaults (half-point), heading giữ tỉ lệ template
+      $hp=$FontSize*2
+      $pc=[regex]::Replace($pc,'(<w:rPrDefault>[\s\S]*?<w:sz w:val=")\d+("[\s\S]*?</w:rPrDefault>)',('${1}'+$hp+'${2}'))
+      $pc=[regex]::Replace($pc,'(<w:rPrDefault>[\s\S]*?<w:szCs w:val=")\d+("[\s\S]*?</w:rPrDefault>)',('${1}'+$hp+'${2}'))
+    }
+    $pe.Delete(); $ne2=$zip.CreateEntry($part); $psw=New-Object System.IO.StreamWriter($ne2.Open(),$utf8); $psw.Write($pc); $psw.Close()
+  }
+}
 $zip.Dispose()
 
 # ---------- QC ----------
@@ -164,7 +180,7 @@ function Get-Part($zip,$p){ $e=$zip.GetEntry($p); if(-not $e){return ''}; $sr=Ne
 $z=[System.IO.Compression.ZipFile]::OpenRead($outDocx); $names=$z.Entries.FullName
 $xml=Get-Part $z 'word/document.xml'; $styles=Get-Part $z 'word/styles.xml'; $theme=Get-Part $z 'word/theme/theme1.xml'
 $txt=[System.Net.WebUtility]::HtmlDecode(([regex]::Replace(([regex]::Replace($xml,'</w:p>',"`n")),'<[^>]+>','')))
-$badFonts = ([regex]::Matches($styles,'w:ascii="([^"]+)"') | ForEach-Object { $_.Groups[1].Value } | Sort-Object -Unique) | Where-Object { $_ -ne 'Times New Roman' -and $_ -ne 'Consolas' }
+$badFonts = ([regex]::Matches($styles,'w:ascii="([^"]+)"') | ForEach-Object { $_.Groups[1].Value } | Sort-Object -Unique) | Where-Object { $_ -ne $Font -and $_ -ne 'Consolas' }
 $qc=[ordered]@{
   'OPC forward-slash (no backslash)' = (-not ($names -match '\\'))
   'logo + header + footer present'   = (($names -contains 'word/media/logo.png') -and ($names -contains 'word/header1.xml') -and ($names -contains 'word/footer1.xml'))
@@ -189,7 +205,10 @@ $qc=[ordered]@{
   'no non-technical EN: raw/edited content (§0.0)' = (([regex]'\braw content\b|\bedited content\b').Matches($txt).Count -eq 0)
   'no non-technical EN: realtime/batch (§0.0)' = (([regex]'\brealtime\b|\bbatch\b(?!\s+export\s+format)').Matches($txt).Count -eq 0)
   'no non-technical EN: data sample/sub-level (§0.0)' = (([regex]'\bdata sample\b|\bsub-level\b').Matches($txt).Count -eq 0)
-  'FONT = Times New Roman only (+Consolas code)' = (($theme -match 'minorFont[\s\S]*?Times New Roman') -and (([regex]'Aptos|Calibri|Cambria').Matches($styles+$theme).Count -eq 0) -and (-not $badFonts))
+  "FONT = $Font only (+Consolas code)" = ($(
+      $forbidden = @('Aptos','Calibri','Cambria','Times New Roman') | Where-Object { $_ -ne $Font }
+      ($theme -match ('minorFont[\s\S]*?'+[regex]::Escape($Font))) -and (([regex]($forbidden -join '|')).Matches($styles+$theme).Count -eq 0) -and (-not $badFonts)
+    ))
   'XML well-formed'                  = $true
 }
 foreach($p in 'word/document.xml','word/header1.xml','word/footer1.xml','[Content_Types].xml'){ try{ [xml](Get-Part $z $p) | Out-Null }catch{ $qc['XML well-formed']=$false } }

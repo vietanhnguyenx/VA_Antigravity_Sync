@@ -54,6 +54,12 @@ Khi cần tạo bản Word giao người từ ≥1 file `.md` (SRS, Wireframe, B
 ```
 `-SourceList` nhận `@<tệp manifest>` (mỗi dòng 1 path, `#` = chú thích) hoặc chuỗi path ngăn cách dấu phẩy. Cập nhật manifest khi thêm/bớt/đổi thứ tự file.
 
+**Tham số tùy chọn căn chỉnh đầu ra:**
+- `-NoToc` — bỏ mục lục (báo cáo khảo sát thường dùng; tài liệu dài như SRS để mặc định có TOC).
+- `-Font "<tên font>"` — đổi font chữ (mặc định `Times New Roman` chuẩn QT02). Override cả `styles.xml` + `theme1.xml` lúc xuất, **giữ Consolas cho code**. Đổi font là lệch chuẩn QT02 — cần BA Lead chấp nhận.
+- `-FontSize <pt>` — đổi cỡ chữ body trong docDefaults (mặc định 0 = giữ 12pt template; heading giữ tỉ lệ template).
+- Ví dụ: `... -NoToc -Font "Arial" -FontSize 13`. QC font tự khớp theo `-Font` đã chọn (nhãn "FONT = &lt;Font&gt; only").
+
 ## 4. Checklist QC (script tự kiểm, phải PASS hết)
 - `.md` = 0 · `](` (link markdown) = 0 · **slug tên-file = 0** · không lọt khóa YAML · không mojibake.
 - **Chú thích ASR = 0:** không còn "ASR", "đính chính", "chép nhầm", "lỗi nhận dạng", mục "Cảnh báo chất lượng ghi âm" trong `document.xml` (§0.0).
