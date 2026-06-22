@@ -1364,6 +1364,54 @@
                 </table>
               </div>
 
+              <!-- List Aircraft Sub-section -->
+              <div style="border-top: 1px solid #e2e8f0; padding-top: 12px; margin-top: 12px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                  <h3 style="font-size: 13px; font-weight: 700; color: #002A54;">List Aircraft (2)</h3>
+                  <button class="btn btn-blue" style="height: 28px; font-size: 11px; padding: 0 10px;" onclick="showToast('Thêm Aircraft')">
+                    <span class="material-symbols-outlined" style="font-size: 14px;">add</span> Create
+                  </button>
+                </div>
+
+                <!-- Aircraft Table -->
+                <div style="max-height: 200px; overflow-y: auto; border-radius: 6px; border: 1px solid #e2e8f0;">
+                  <table class="user-table" style="font-size: 11px;">
+                    <thead>
+                      <tr>
+                        <th style="padding: 6px 8px; font-size: 10px;">Seq</th>
+                        <th style="padding: 6px 8px; font-size: 10px;">Reg</th>
+                        <th style="padding: 6px 8px; font-size: 10px;">ICAO</th>
+                        <th style="padding: 6px 8px; font-size: 10px;">IATA</th>
+                        <th style="padding: 6px 8px; font-size: 10px;">Status</th>
+                        <th style="padding: 6px 8px; font-size: 10px;">Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td style="padding: 6px 8px;">1</td>
+                        <td style="padding: 6px 8px;">VN123</td>
+                        <td style="padding: 6px 8px;">ICAO321</td>
+                        <td style="padding: 6px 8px;">IATA321</td>
+                        <td style="padding: 6px 8px;"><span class="status-badge inactive">Inactive</span></td>
+                        <td style="padding: 6px 8px; text-align: center;">
+                          <span class="material-symbols-outlined" style="font-size: 14px; color: #0284c7; cursor: pointer;">edit</span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="padding: 6px 8px;">2</td>
+                        <td style="padding: 6px 8px;">VN23</td>
+                        <td style="padding: 6px 8px;">ICAO322</td>
+                        <td style="padding: 6px 8px;">IATA321</td>
+                        <td style="padding: 6px 8px;"><span class="status-badge active">Active</span></td>
+                        <td style="padding: 6px 8px; text-align: center;">
+                          <span class="material-symbols-outlined" style="font-size: 14px; color: #0284c7; cursor: pointer;">edit</span>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
             </section>
           </div>
 
