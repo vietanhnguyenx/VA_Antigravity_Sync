@@ -20,6 +20,8 @@ document_type: "Domain Knowledge — Từ điển Thuật ngữ TOSS"
 | Viết tắt / Thuật ngữ | Tiếng Việt | Mô tả trong TOSS |
 |---|---|---|
 | **ACARS** (Aircraft Communications Addressing and Reporting System) | Hệ thống Liên lạc & Báo cáo Tàu bay | Hệ thống truyền dữ liệu số giữa tàu bay và mặt đất. TOSS nhận dữ liệu ACARS để cập nhật trạng thái chuyến bay thời gian thực. |
+| **AC subtype** | Mã loại tàu chi tiết | Mã phân loại tàu bay chi tiết của một loại tàu (ví dụ 787-9 sub-A/sub-B), được đồng bộ từ OPS++ và có lịch sử thay đổi theo thời gian cho mỗi AC registration. (nguồn: KS 17/06/2026.) |
+| **ACARS fuel multiplier** | Hệ số quy đổi nhiên liệu ACARS | Hệ số nhân quy đổi đơn vị nhiên liệu trong điện ACARS sang kilôgam, khai báo theo khoảng hiệu lực Valid From – Valid To cho từng tàu. Khi sửa hệ số cho khoảng thời gian đã qua cần cân nhắc tính lại báo cáo nhiên liệu đã phát hành (xem OID KS-67). (nguồn: KS 17/06/2026.) |
 | **ATC** (Air Traffic Control) | Kiểm soát Không lưu | Đơn vị điều hành không phận, cấp phép cất/hạ cánh. TOSS không trực tiếp tích hợp ATC nhưng cần lưu thông tin ATC clearance. |
 | **AOC** (Air Operator Certificate) | Giấy phép Khai thác Hàng không | Chứng chỉ cho phép hãng hàng không khai thác thương mại, cấp bởi CAAV. Mọi hoạt động khai thác trong TOSS phải tuân thủ điều kiện AOC. |
 | **AOG** (Aircraft On Ground) | Tàu bay nằm đất | Tình trạng tàu bay không thể khai thác (thường do hỏng hóc kỹ thuật/thiếu vật tư), cần xử lý khẩn để đưa trở lại bay. Ảnh hưởng trực tiếp lịch bay/đội tàu — TOSS cần cảnh báo và hỗ trợ điều hành (đổi tàu, gián đoạn). Nguồn xác nhận thuật ngữ: tài liệu FOCA Dangerous Goods (`dangerous-goods-notoc/`). |
@@ -91,6 +93,7 @@ document_type: "Domain Knowledge — Từ điển Thuật ngữ TOSS"
 | **EFB** (Electronic Flight Bag) | Túi tài liệu điện tử | Thiết bị/hệ thống lưu trữ và hiển thị tài liệu chuyến bay điện tử (kế hoạch bay, thời tiết, NOTAM, AFM, checklist…), thay thế túi tài liệu giấy. Tài liệu tải từ EFB về TOSS lưu tối đa **ba ngày sau khi chuyến bay hạ cánh**, sau đó tự động xóa; tài liệu do TOSS tự sinh vẫn lưu thường (nguồn: họp 09/06). |
 | **EDTO** (Extended Diversion Time Operations) | Khai thác kéo dài thời gian chuyển hướng | Khai thác đường bay có đoạn cách sân bay dự bị quá thời gian chuyển hướng tiêu chuẩn (trước đây ETOPS). Điều phái kiểm tra WX cho EDTO ERA và theo dõi thời điểm vào EDTO (nguồn: FDOP §3.1, §3.3; ICAO Annex 6). |
 | **ENR ALT / EDTO ERA** (En-route Alternate) | Sân bay dự bị trên đường bay | Sân bay tàu bay có thể hạ cánh khi phải chuyển hướng trong giai đoạn bay đường dài (ICAO Annex 2 định nghĩa "En-route alternate"). Điều phái kiểm tra điều kiện ENR ALT khi chuẩn bị kế hoạch bay (nguồn: FDOP §3.1, §3.3). |
+| **Engine Water Wash** | Rửa động cơ | Hạng mục bảo dưỡng rửa động cơ, thường có tác động giảm tiêu hao nhiên liệu, là một yếu tố ảnh hưởng đến Performance Factor của tàu bay. (nguồn: KS 17/06/2026.) |
 | **eAPIS** (Electronic Advance Passenger Information System) | (giữ nguyên — hệ thống Hoa Kỳ) | Hệ thống khai báo thông tin hành khách/tổ bay điện tử của Hải quan & Biên phòng Hoa Kỳ; phải nộp cho chuyến bay đi/đến Mỹ (vd delivery flight từ Boeing) (nguồn: FDOP §3.5). |
 
 ---
@@ -153,6 +156,8 @@ document_type: "Domain Knowledge — Từ điển Thuật ngữ TOSS"
 | Viết tắt / Thuật ngữ | Tiếng Việt | Mô tả trong TOSS |
 |---|---|---|
 | **LC** (Line Check) | Kiểm tra định kỳ đường bay | Hình thức kiểm tra khai thác định kỳ của phi công trên đường bay thực tế. Tàu bay đang được sử dụng cho Line Check ghi nhận trong BCAO là "LC" kèm sân bay (vd "010 LC HAN"). Ảnh hưởng đến số tàu thực sự có sẵn cho khai thác thương mại (nguồn: BCAO_10Jun2025_11Jun2025-v2.docx). |
+| **legtype = Z** | (giữ nguyên — mã loại chặng Netline) | Mã loại chặng (leg type) trong Netline đánh dấu chuyến bảo dưỡng. TOSS lọc các chặng legtype = Z kết hợp danh mục FN_Carrier để dựng lịch bảo dưỡng, loại trừ bản ghi standby và leg state cancel. (nguồn: KS 17/06/2026.) |
+| **leg state cancel** | Trạng thái chặng đã hủy | Trạng thái một chặng bị hủy trong Netline; bị loại trừ khi TOSS lấy danh sách lịch bảo dưỡng. (nguồn: KS 17/06/2026.) |
 | **LF** (Load Factor) | Hệ số sử dụng ghế | Tỷ lệ phần trăm số ghế có khách trên tổng ghế cung ứng, đo theo chiều đi và chiều đến cho mỗi đường bay. Báo cáo trong BCAO theo từng đường trục (vd HAN-SGN-HAN LF trung bình 92%). Là KPI khai thác quan trọng bên cạnh OTP và OSP (nguồn: BCAO_10Jun2025_11Jun2025-v2.docx). |
 | **Loadsheet** (Load & Trim Sheet) | Phiếu Cân bằng Tải | Tài liệu tổng kết khối lượng và cân bằng (mass & balance) của một chuyến bay: DOW, payload, nhiên liệu, các giá trị ZFW / TOW / LW và trọng tâm (CG) / trim. Phải nằm trong giới hạn (MZFW/MTOW/MLW) và được cơ trưởng ký duyệt. Là điểm giao giữa Khai thác Mặt đất (chốt tải) và Khai thác Bay/Dispatch (kiểm tra giới hạn, phát hành). Theo ICAO Annex 6 / EU 965/2012 (Part-CAT). *Lưu ý: FAA gọi tách thành "Load Manifest" + "Weight & Balance Form".* |
 
@@ -187,6 +192,7 @@ document_type: "Domain Knowledge — Từ điển Thuật ngữ TOSS"
 | **Off-block** | Thời điểm rời bãi đỗ | Thời điểm tàu bay bắt đầu di chuyển (tháo chèn). TOSS ghi nhận cho tính Block Time và On-time Performance. |
 | **On-block** | Thời điểm đến bãi đỗ | Thời điểm tàu bay hoàn thành taxiing và gắn chèn. |
 | **On-time Performance (OTP)** | Tỷ lệ Đúng giờ | KPI đo tỷ lệ chuyến bay khởi hành / đến nơi đúng giờ. Dashboard TOSS hiển thị OTP real-time. |
+| **Ownership status (Own / Wet Lease / Dry Lease)** | Tình trạng sở hữu tàu bay | Thuộc tính cho biết tàu thuộc sở hữu (Own — mặc định chủ sở hữu là Vietnam Airlines) hay đi thuê ướt (Wet Lease) / thuê khô (Dry Lease), kèm tên chủ sở hữu và lưu lịch sử thay đổi. (nguồn: KS 17/06/2026.) |
 | **OSP** (Operational Schedule Performance) | Hiệu quả thực hiện lịch khai thác | Chỉ số đo mức độ khai thác bám sát lịch bay đã hoạch định. Liên quan/bổ trợ [OTP](#o). *(Nguồn: BA Lead cung cấp — chưa có trong tài liệu domain-knowledge.)* |
 | **OCD** | (giữ nguyên — tên đơn vị nội bộ VNA) | Đơn vị quản lý điều phái; trong FDOP gắn với cả "Flight schedule and assignment team (OCD)" và "Flight permit team (OCD)" (nguồn: FDOP §3.3, §3.5). **OCD ≠ OCC.** *(Cần xác nhận với VNA: tên đầy đủ và cơ cấu các team trực thuộc.)* |
 | **OFP** (Operational Flight Plan) | Kế hoạch bay (OFP) | Kế hoạch bay khai thác do điều phái lập/phát hành — tài liệu trung tâm của dispatch. Khách hàng dùng "OFP" nguyên dạng (YCKT TOSS-174/223/224/252; mục 27.0 "Quản lý tài liệu OFP, NOTAM, WX, briefing package"). Upload trước ETD: sớm nhất 240 phút, muộn nhất 70 phút (nguồn: FDOP §3.1). |
@@ -237,6 +243,8 @@ document_type: "Domain Knowledge — Từ điển Thuật ngữ TOSS"
 | **Sector** | Chặng bay | Một chặng bay từ sân bay A đến sân bay B. Thông tin sector là đầu vào lập kế hoạch bay (nguồn: FDOP §3.5). |
 | **SID / STAR** | Phương thức khởi hành / đến tiêu chuẩn | SID (Standard Instrument Departure) — phương thức khởi hành tiêu chuẩn; STAR (Standard Terminal Arrival Route) — phương thức đến tiêu chuẩn. Điều phái kiểm tra NOTAM ảnh hưởng SID/STAR (nguồn: FDOP §3.2; FAA `sec-05-acronyms`). |
 | **Slot** | (giữ nguyên "slot") | Khung giờ được cấp cho chuyến bay (cất/hạ cánh hoặc qua không phận). "Cấp slot" = slot allocation. Khách hàng giữ nguyên "slot" (YCKT; FDOP §3.4 — slot BOBCAT). |
+| **Service order / Work order / Task (AMOS)** | Lệnh dịch vụ / lệnh công việc / hạng mục (AMOS) | Các đơn vị công việc bảo dưỡng trong AMOS, hiển thị khi xem chi tiết một kỳ bảo dưỡng (số hiệu task kèm mô tả). Cấu trúc trường cụ thể cần khảo sát thêm với VICO (xem OID KS-63). (nguồn: KS 17/06/2026.) |
+| **Standby (Netline)** | Chuyến dự bị | Chặng đánh dấu legtype = Z nhưng không phải bảo dưỡng thật; phải khai báo trong AOG/MNT Code để lọc khỏi lịch bảo dưỡng. (nguồn: KS 17/06/2026.) |
 | **Station Manager** | Trưởng đại diện sân bay | Người đại diện hãng tại sân bay (vd VIAGS station manager), đầu mối phối hợp phục vụ mặt đất khi có thay đổi sau Dispatch Release (nguồn: FDOP §3.1.3). |
 | **STS/HEAD** | (giữ nguyên — chỉ thị ICAO FPL) | Chỉ thị trạng thái đặc biệt trong mục 18 của ATC FPL (ICAO Doc 4444) đánh dấu chuyến bay nguyên thủ (Head of State) — dùng cho chuyến bay VIP (nguồn: FDOP §3.3). |
 | **SUP** (Supervisor) | Giám sát viên | Vị trí giám sát trong ca trực điều phái; phụ trách chuyến phức tạp, đường dài ≥ 8 giờ, chuyến không có DSP đi kèm (nguồn: FDOP §3.2, §3.3). *(Chức danh nội bộ VNA — cần xác nhận.)* |

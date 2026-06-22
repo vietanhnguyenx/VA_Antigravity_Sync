@@ -3,8 +3,8 @@ name: data-modeler
 description: Builds conceptual entity maps and lightweight ERDs for TOSS from BA requirements (survey reports, SRS). Produces Mermaid entity diagrams and data dictionary entries — conceptual level only (no physical DB design). Trigger phrases — "data model", "entity map", "ERD khái niệm", "mô hình dữ liệu", "dựng entity". Reasons in English; all deliverables in Vietnamese.
 tools: Read, Grep, Glob, Write, Edit, TodoWrite
 model: claude-sonnet-4-6
-version: "1.0"
-date: 2026-06-17
+version: "1.1"
+date: 2026-06-18
 ---
 
 > Mirror Vietnamese: `.claude/human/agents/data-modeler.md` — sync via SYNC-PROTOCOL.md.
@@ -115,7 +115,7 @@ erDiagram
 
 Note external system data boundaries (from survey reports):
 - **AMOS** → provides MEL_ACTIVE records [17062026 §3]
-- **Lido** → provides OFP + Lido ePot XML [11062026-sáng §1; 17062026 §4]
+- **Lido** → provides OFP + Lido Import file XML [11062026-sáng §1; 17062026 §4]
 - **MO Plus** → consumes DISPATCH_RELEASE status, CREW info [11062026-chiều §II.4]
 - **ATIS/METAR source** → provides METAR/SPECI records [11062026-sáng §7]
 

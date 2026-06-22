@@ -12,5 +12,13 @@
 | `GAP-ANALYSIS-PH1-PH2-v0.1.md` | ~320 | Gap Analysis PH1 (32 gap) + PH2 (31 gap) — bảng gap, tổng hợp theo loại, nhóm ưu tiên |
 | `DATA-MODEL-KHAI-NIEM-man-giam-sat-dieu-phai-v0.1.md` | 191 | Mô hình dữ liệu khái niệm — cụm màn hình giám sát điều phái |
 | `subsystem-interface-map-v0.1.md` | 138 | Bản đồ giao diện giữa các phân hệ TOSS |
-| `RTM-template-v0.1.md` | 119 | Mẫu Ma trận Truy vết Yêu cầu (RTM) |
+| `RTM-template-v0.1.md` | 119 | Mẫu Ma trận Truy vết Yêu cầu (RTM) — bản người đọc |
 | `compliance-trace-v0.1.md` | 93 | Ma trận truy vết tuân thủ (ICAO/IATA/CAAV → BR) |
+
+## Tracker máy-đọc & tiến độ (JSON/MD)
+
+| File | Nội dung |
+|---|---|
+| `survey-pipeline-status.md` | **Bảng theo dõi pipeline Khảo sát → Đặc tả** theo từng buổi (báo cáo/đối chiếu/proposal/áp dụng/commit + quyết định chờ + số liệu tích lũy). Workflow `survey-to-spec` tự cập nhật. |
+| `deliverable-status.json` | Tracker pass/fail deliverable (project-coordinator duy trì; JSON theo §8 — model ít mis-edit hơn Markdown). |
+| `RTM-template-v0.1.json` | RTM dạng máy-đọc (nguồn chính); bản `.md` là view người đọc. |

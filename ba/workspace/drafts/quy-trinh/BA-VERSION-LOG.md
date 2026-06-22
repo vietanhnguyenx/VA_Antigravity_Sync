@@ -90,6 +90,17 @@ document_id: "BA-VLOG-001"
 
 ---
 
+## Wireframe (low-fidelity)
+
+| File hiện hành | Version | Ngày | Thay đổi chính |
+|---|---|---|---|
+| `wireframe/PH1/wf-monitoring-overview.md` | 0.4 | 2026-06-18 | **Đồng bộ cơ chế mở chi tiết theo nguồn đã chốt (cờ §8-6).** §4.6 đổi từ "Panel chi tiết slide-out bên phải" → "**mở chi tiết ở tab mới của trình duyệt**, ô được click quyết định tab phụ focus" (bám sheet `[FL-FD]` + `[12062026 §II.1]` + `[FUNC-236/237/238]`); bảng tương tác §5 ("Click [FLT NO]" → "Click ô/dòng → tab mới"); đóng cờ §9-7. §8/§9 giữ nguyên. Bump 0.3 → 0.4. |
+| _(wireframe/PH1/wf-monitoring-overview.md v0.3)_ | 0.3 | 2026-06-18 | **Làm giàu chéo nguồn (YCKT TOSS-175…182 + Báo cáo KS 11/06-sáng/chiều, 12/06-sáng, 15/06 + SRS PH1 FUNC-204…276).** Thêm **§9 — Đối chiếu & bổ sung từ các nguồn liên quan** gồm: **§9.1** bổ sung **6 cột cảnh báo từ YCKT TOSS-180** mà Function list bỏ trống (cabin defect, PAX nối chuyến, loadfactor thấp, thiếu phép bay, TAT không đủ, thiếu điện văn) — kèm đối chiếu với 26 cột hiện có và đề xuất tách/gộp cột; **§9.2** giải/bổ sung quy ước màu 4 trạng thái (Đỏ/Vàng/Xanh/Không màu) áp xuyên suốt + logic màu chi tiết cho 22 cột (REG/FLTNO/ARR/ETD/ETA/Status/OFP DSP/Pilot release/EPLD/EST DOW/BLOCK FUEL/PILOT EXTRA/NOTAM/WX/ZFW-DOW/MEL-CDL/Crew change/VIP) với ngưỡng release 210/75/60 nội địa và 270/90/75 quốc tế từ KS 15/06 §II.2; **§9.3** ánh xạ **32 cột** (26 sheet + 6 bổ sung) ↔ FUNC/BR/YCKT/báo cáo KS — đã có FUNC cho 11 cột, **21 cột cần phân rã FUNC mới**; **§9.4** cập nhật trạng thái 12 cờ §8 — **2 cờ đóng** (§8-2 REG, §8-6 tab mới), **5 cờ một phần giải** (§8-3, §8-4, §8-7, §8-9, §8-11), **5 cờ vẫn mở** (§8-1, §8-5, §8-8, §8-10, §8-12); **phát sinh 7 cờ mới §9-1…§9-7** cần OID; **§9.5** rà soát 6 mâu thuẫn nguồn (sheet vs wireframe §4.6 — tab mới vs panel; sheet vs §3 — 1 bảng vs 3 nhóm; POC vs phỏng vấn về enum LEG STATE; sheet vs khảo sát về phạm vi cảnh báo VIP/Status Head…). Bump version 0.2 → 0.3; date 2026-06-18. §3–§8 cũ giữ nguyên (không xóa). |
+| _(wireframe/PH1/wf-monitoring-overview.md v0.2)_ | 0.2 | 2026-06-18 | **Làm giàu theo sheet nguồn khách hàng.** Thêm **§8 — Đặc tả cột theo sheet "Màn hình Flight Dispatch"** (`VNA-TOSS-Function-list-v1.0.extracted.md`, pull 2026-06-18 version 493) làm source-of-truth: §8.1 tổng quan màn (Module 2 Flight Dispatch, 4 nhóm chức năng, quy ước màu Đỏ/Vàng/Xanh lá/Không màu); **§8.2 bảng đặc tả 26 cột** (DSP Release, REG, FLTNO, DEP, ARR, Date, ETD, ETA, Flight Type, Status, OFP DSP, Pilot release, EPLD, EST DOW, BLOCK FUEL, PILOT EXTRA, NOTAM, WX, ZFW-DOW, MEL/CDL, ATC, TO/LD, Missing Document, Taxi APU, Crew change, VIP) — chép trung thực Color/Hover/Details từ sheet, ô trống ghi *(chưa có)*; §8.3 dải Filter 1→20 ánh xạ theo vị trí cột; §8.4 phân quyền carrier; §8.5 mở chi tiết = **tab mới của trình duyệt** focus đúng tab theo ô click; §8.6 đối chiếu §8 ↔ §3 (3 nhóm) ↔ §7 (POC) ↔ Mockup v0.4 OCC/Dispatch; §8.7 **12 cờ `[cần xác nhận]` mới (§8-1 → §8-12)**; §8.8 ánh xạ 26 cột ↔ BR/FUNC. Bump version 0.1 → 0.2; date 2026-06-18. §3–§7 cũ giữ nguyên (góc nhìn nội bộ — sẽ điều chỉnh sau khi khách hàng xác nhận §8). |
+| _(wireframe/PH1/wf-monitoring-overview.md v0.1)_ | 0.1 | 2026-06-12 | Khởi tạo — 3 nhóm A/B/C, server-push, cảnh báo màu/nhấp nháy theo mốc ACARS; §7 bổ sung tham khảo POC `dsp_monitoring_poc.html` (23 cột, sortable, sidebar/topbar). |
+
+---
+
 ## Tiến độ dự án
 
 | File hiện hành | Version | Ngày | Thay đổi chính |
