@@ -1239,16 +1239,7 @@
                   <button id="deleteBtn" class="btn" style="height: 32px; font-size: 12px; padding: 0 8px; background: transparent; color: #ef4444; border: 1px solid #ef4444;" onclick="showToast('Xóa Flight Fleet')">
                     <span class="material-symbols-outlined" style="font-size: 14px;">delete</span>
                   </button>
-                  <button id="historyBtn" class="btn" style="height: 32px; font-size: 12px; padding: 0 8px; background: transparent; color: #64748b; border: 1px solid #cbd5e1;" onclick="showToast('Xem lịch sử')">
-                    <span class="material-symbols-outlined" style="font-size: 14px;">history</span>
-                  </button>
                 </div>
-              </div>
-
-              <!-- Edit/Save buttons (hidden by default) -->
-              <div id="editActions" style="display: none; padding-bottom: 12px; border-bottom: 1px solid #e2e8f0; text-align: right; gap: 8px;">
-                <button class="btn btn-clear" style="height: 32px; font-size: 12px; padding: 0 16px;" onclick="exitEditMode()">Cancel</button>
-                <button class="btn btn-teal" style="height: 32px; font-size: 12px; padding: 0 16px;" onclick="saveChanges()">Save</button>
               </div>
 
               <!-- Tab Navigation -->
@@ -1296,6 +1287,54 @@
                       <option>Active</option>
                       <option>Inactive</option>
                     </select>
+                  </div>
+                </div>
+
+                <!-- List Aircraft Sub-section (moved to tab-general) -->
+                <div style="border-top: 1px solid #e2e8f0; padding-top: 12px; margin-top: 12px;">
+                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                    <h3 style="font-size: 13px; font-weight: 700; color: #002A54;">List Aircraft (2)</h3>
+                    <button class="btn btn-blue" style="height: 28px; font-size: 11px; padding: 0 10px;" onclick="showToast('Thêm Aircraft')">
+                      <span class="material-symbols-outlined" style="font-size: 14px;">add</span> Create
+                    </button>
+                  </div>
+
+                  <!-- Aircraft Table -->
+                  <div style="max-height: 200px; overflow-y: auto; border-radius: 6px; border: 1px solid #e2e8f0;">
+                    <table class="user-table" style="font-size: 11px;">
+                      <thead>
+                        <tr>
+                          <th style="padding: 6px 8px; font-size: 10px;">Seq</th>
+                          <th style="padding: 6px 8px; font-size: 10px;">Reg</th>
+                          <th style="padding: 6px 8px; font-size: 10px;">ICAO</th>
+                          <th style="padding: 6px 8px; font-size: 10px;">IATA</th>
+                          <th style="padding: 6px 8px; font-size: 10px;">Status</th>
+                          <th style="padding: 6px 8px; font-size: 10px;">Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td style="padding: 6px 8px;">1</td>
+                          <td style="padding: 6px 8px;">VN123</td>
+                          <td style="padding: 6px 8px;">ICAO321</td>
+                          <td style="padding: 6px 8px;">IATA321</td>
+                          <td style="padding: 6px 8px;"><span class="status-badge inactive">Inactive</span></td>
+                          <td style="padding: 6px 8px; text-align: center;">
+                            <span class="material-symbols-outlined" style="font-size: 14px; color: #0284c7; cursor: pointer;" onclick="openEditAircraftDialog('VN123', 'ICAO321', 'IATA321')">edit</span>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td style="padding: 6px 8px;">2</td>
+                          <td style="padding: 6px 8px;">VN23</td>
+                          <td style="padding: 6px 8px;">ICAO322</td>
+                          <td style="padding: 6px 8px;">IATA321</td>
+                          <td style="padding: 6px 8px;"><span class="status-badge active">Active</span></td>
+                          <td style="padding: 6px 8px; text-align: center;">
+                            <span class="material-symbols-outlined" style="font-size: 14px; color: #0284c7; cursor: pointer;" onclick="openEditAircraftDialog('VN23', 'ICAO322', 'IATA321')">edit</span>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
                   </div>
                 </div>
               </div>
@@ -1423,55 +1462,13 @@
                 </table>
               </div>
 
-              <!-- List Aircraft Sub-section -->
-              <div style="border-top: 1px solid #e2e8f0; padding-top: 12px; margin-top: 12px;">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-                  <h3 style="font-size: 13px; font-weight: 700; color: #002A54;">List Aircraft (2)</h3>
-                  <button class="btn btn-blue" style="height: 28px; font-size: 11px; padding: 0 10px;" onclick="showToast('Thêm Aircraft')">
-                    <span class="material-symbols-outlined" style="font-size: 14px;">add</span> Create
-                  </button>
-                </div>
-
-                <!-- Aircraft Table -->
-                <div style="max-height: 200px; overflow-y: auto; border-radius: 6px; border: 1px solid #e2e8f0;">
-                  <table class="user-table" style="font-size: 11px;">
-                    <thead>
-                      <tr>
-                        <th style="padding: 6px 8px; font-size: 10px;">Seq</th>
-                        <th style="padding: 6px 8px; font-size: 10px;">Reg</th>
-                        <th style="padding: 6px 8px; font-size: 10px;">ICAO</th>
-                        <th style="padding: 6px 8px; font-size: 10px;">IATA</th>
-                        <th style="padding: 6px 8px; font-size: 10px;">Status</th>
-                        <th style="padding: 6px 8px; font-size: 10px;">Action</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td style="padding: 6px 8px;">1</td>
-                        <td style="padding: 6px 8px;">VN123</td>
-                        <td style="padding: 6px 8px;">ICAO321</td>
-                        <td style="padding: 6px 8px;">IATA321</td>
-                        <td style="padding: 6px 8px;"><span class="status-badge inactive">Inactive</span></td>
-                        <td style="padding: 6px 8px; text-align: center;">
-                          <span class="material-symbols-outlined" style="font-size: 14px; color: #0284c7; cursor: pointer;">edit</span>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td style="padding: 6px 8px;">2</td>
-                        <td style="padding: 6px 8px;">VN23</td>
-                        <td style="padding: 6px 8px;">ICAO322</td>
-                        <td style="padding: 6px 8px;">IATA321</td>
-                        <td style="padding: 6px 8px;"><span class="status-badge active">Active</span></td>
-                        <td style="padding: 6px 8px; text-align: center;">
-                          <span class="material-symbols-outlined" style="font-size: 14px; color: #0284c7; cursor: pointer;">edit</span>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-
             </section>
+
+            <!-- Save/Cancel buttons (moved to bottom) -->
+            <div id="editActions" style="display: none; padding-top: 12px; text-align: right; gap: 8px;">
+              <button class="btn btn-clear" style="height: 32px; font-size: 12px; padding: 0 16px;" onclick="exitEditMode()">Cancel</button>
+              <button class="btn btn-teal" style="height: 32px; font-size: 12px; padding: 0 16px;" onclick="saveChanges()">Save</button>
+            </div>
           </div>
 
         </div>
@@ -1571,6 +1568,48 @@
       </div>
 
     </main>
+
+    <!-- Edit Aircraft Dialog (Modal Overlay) -->
+    <div id="aircraftDialog" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.3); z-index: 1000; align-items: center; justify-content: center;">
+      <div style="background: white; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); max-width: 500px; width: 90%; padding: 20px;">
+
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; border-bottom: 1px solid #e2e8f0; padding-bottom: 12px;">
+          <h2 style="font-size: 16px; font-weight: 700; color: #002A54;">Edit Aircraft</h2>
+          <span class="material-symbols-outlined" style="cursor: pointer; color: #64748b;" onclick="closeAircraftDialog()">close</span>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 16px;">
+          <div style="display: flex; flex-direction: column; gap: 4px;">
+            <label style="font-size: 11px; font-weight: 600; color: #64748b; text-transform: uppercase;">Registration 🔒</label>
+            <input type="text" id="aircraftReg" style="padding: 8px 10px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 12px;" disabled>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 4px;">
+            <label style="font-size: 11px; font-weight: 600; color: #64748b; text-transform: uppercase;">ICAO Code</label>
+            <input type="text" id="aircraftICAO" style="padding: 8px 10px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 12px;">
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 4px;">
+            <label style="font-size: 11px; font-weight: 600; color: #64748b; text-transform: uppercase;">IATA Code</label>
+            <input type="text" id="aircraftIATA" style="padding: 8px 10px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 12px;">
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 4px;">
+            <label style="font-size: 11px; font-weight: 600; color: #64748b; text-transform: uppercase;">Status</label>
+            <select id="aircraftStatus" style="padding: 8px 10px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 12px;">
+              <option>Active</option>
+              <option>Inactive</option>
+            </select>
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 8px; justify-content: flex-end;">
+          <button class="btn btn-clear" style="height: 32px; font-size: 12px; padding: 0 16px;" onclick="closeAircraftDialog()">Cancel</button>
+          <button class="btn btn-teal" style="height: 32px; font-size: 12px; padding: 0 16px;" onclick="saveAircraftChanges()">Save</button>
+        </div>
+
+      </div>
+    </div>
 
   </div>
 
@@ -1731,6 +1770,31 @@
       inputs.forEach(input => {
         input.disabled = true;
       });
+    });
+
+    // Edit Aircraft Dialog Functions
+    function openEditAircraftDialog(reg, icao, iata) {
+      document.getElementById('aircraftReg').value = reg;
+      document.getElementById('aircraftICAO').value = icao;
+      document.getElementById('aircraftIATA').value = iata;
+      document.getElementById('aircraftDialog').style.display = 'flex';
+    }
+
+    function closeAircraftDialog() {
+      document.getElementById('aircraftDialog').style.display = 'none';
+    }
+
+    function saveAircraftChanges() {
+      showToast('Lưu Aircraft thành công');
+      closeAircraftDialog();
+    }
+
+    // Close dialog when clicking outside
+    document.addEventListener('click', function(event) {
+      const dialog = document.getElementById('aircraftDialog');
+      if (event.target === dialog) {
+        closeAircraftDialog();
+      }
     });
   </script>
 </body>
