@@ -1222,14 +1222,33 @@
           <div class="user-details-section">
             <section class="m3-card details-card" style="padding: 12px;">
 
-              <!-- Header -->
-              <div style="display: flex; align-items: center; gap: 12px; padding-bottom: 12px; border-bottom: 1px solid #e2e8f0;">
-                <div style="font-size: 32px;">✈️</div>
-                <div>
-                  <div class="details-name">Tàu bay A320 A321</div>
-                  <div class="details-id">A320-A321</div>
-                  <span class="status-badge active" style="margin-top: 4px;">Active</span>
+              <!-- Header with Edit/Save buttons -->
+              <div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 12px; border-bottom: 1px solid #e2e8f0;">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                  <div style="font-size: 32px;">✈️</div>
+                  <div>
+                    <div class="details-name">Tàu bay A320 A321</div>
+                    <div class="details-id">A320-A321</div>
+                    <span class="status-badge active" style="margin-top: 4px;">Active</span>
+                  </div>
                 </div>
+                <div id="headerActions" style="display: flex; gap: 8px;">
+                  <button id="editBtn" class="btn btn-blue" style="height: 32px; font-size: 12px; padding: 0 12px;" onclick="enterEditMode()">
+                    <span class="material-symbols-outlined" style="font-size: 14px;">edit</span> Edit
+                  </button>
+                  <button id="deleteBtn" class="btn" style="height: 32px; font-size: 12px; padding: 0 8px; background: transparent; color: #ef4444; border: 1px solid #ef4444;" onclick="showToast('Xóa Flight Fleet')">
+                    <span class="material-symbols-outlined" style="font-size: 14px;">delete</span>
+                  </button>
+                  <button id="historyBtn" class="btn" style="height: 32px; font-size: 12px; padding: 0 8px; background: transparent; color: #64748b; border: 1px solid #cbd5e1;" onclick="showToast('Xem lịch sử')">
+                    <span class="material-symbols-outlined" style="font-size: 14px;">history</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Edit/Save buttons (hidden by default) -->
+              <div id="editActions" style="display: none; padding-bottom: 12px; border-bottom: 1px solid #e2e8f0; text-align: right; gap: 8px;">
+                <button class="btn btn-clear" style="height: 32px; font-size: 12px; padding: 0 16px;" onclick="exitEditMode()">Cancel</button>
+                <button class="btn btn-teal" style="height: 32px; font-size: 12px; padding: 0 16px;" onclick="saveChanges()">Save</button>
               </div>
 
               <!-- Tab Navigation -->
@@ -1647,7 +1666,7 @@
 
     // Ownership Status Logic (NEW in v2.0)
     function toggleOwner() {
-      const ownershipSelect = document.querySelector('.detail-select');
+      const ownershipSelect = document.querySelector('[onchange="toggleOwner()"]');
       const ownerField = document.getElementById('ownerField');
       const val = ownershipSelect.value;
       if (val === 'VNA') {
@@ -1658,6 +1677,61 @@
         ownerField.value = '';
       }
     }
+
+    // View/Edit Mode Toggle (NEW - Pattern 1)
+    function enterEditMode() {
+      // Hide action buttons, show edit/save buttons
+      document.getElementById('headerActions').style.display = 'none';
+      document.getElementById('editActions').style.display = 'flex';
+
+      // Enable all editable inputs (except AC Reg, Valid From)
+      const inputs = document.querySelectorAll('.detail-input, .detail-select');
+      inputs.forEach(input => {
+        // Keep AC Registration & Valid From disabled (read-only from SMA)
+        if (input.placeholder !== 'Cabin A' && input.placeholder !== 'Cabin B' && input.placeholder !== 'Cabin C') {
+          if (!input.value.includes('A320-A321') && !input.value.includes('01/01/2024')) {
+            input.disabled = false;
+          }
+        }
+      });
+
+      showToast('Chế độ chỉnh sửa');
+    }
+
+    function exitEditMode() {
+      // Show action buttons, hide edit/save buttons
+      document.getElementById('headerActions').style.display = 'flex';
+      document.getElementById('editActions').style.display = 'none';
+
+      // Disable all inputs
+      const inputs = document.querySelectorAll('.detail-input, .detail-select');
+      inputs.forEach(input => {
+        input.disabled = true;
+      });
+
+      showToast('Đã hủy chỉnh sửa');
+    }
+
+    function saveChanges() {
+      // Disable inputs again
+      document.getElementById('headerActions').style.display = 'flex';
+      document.getElementById('editActions').style.display = 'none';
+
+      const inputs = document.querySelectorAll('.detail-input, .detail-select');
+      inputs.forEach(input => {
+        input.disabled = true;
+      });
+
+      showToast('Lưu dữ liệu thành công');
+    }
+
+    // Initialize: disable all inputs on page load (View mode by default)
+    window.addEventListener('load', function() {
+      const inputs = document.querySelectorAll('.detail-input, .detail-select');
+      inputs.forEach(input => {
+        input.disabled = true;
+      });
+    });
   </script>
 </body>
 </html>
