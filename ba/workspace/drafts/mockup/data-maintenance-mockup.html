@@ -1229,7 +1229,10 @@
                   <div>
                     <div class="details-name">Tàu bay A320 A321</div>
                     <div class="details-id">A320-A321</div>
-                    <span class="status-badge active" style="margin-top: 4px;">Active</span>
+                    <div style="display: flex; gap: 12px; align-items: center; margin-top: 4px;">
+                      <span class="status-badge active">Active</span>
+                      <span style="font-size: 12px; color: #64748b;"><strong>Qty:</strong> 30</span>
+                    </div>
                   </div>
                 </div>
                 <div id="headerActions" style="display: flex; gap: 8px;">
@@ -1288,6 +1291,12 @@
                       <option>Inactive</option>
                     </select>
                   </div>
+                </div>
+
+                <!-- Save/Cancel buttons (before Aircraft list) -->
+                <div id="editActions" style="display: none; padding: 12px 0; text-align: right; gap: 8px; border-top: 1px solid #e2e8f0; margin-top: 12px;">
+                  <button class="btn btn-clear" style="height: 32px; font-size: 12px; padding: 0 16px;" onclick="exitEditMode()">Cancel</button>
+                  <button class="btn btn-teal" style="height: 32px; font-size: 12px; padding: 0 16px;" onclick="saveChanges()">Save</button>
                 </div>
 
                 <!-- List Aircraft Sub-section (moved to tab-general) -->
@@ -1463,12 +1472,6 @@
               </div>
 
             </section>
-
-            <!-- Save/Cancel buttons (moved to bottom) -->
-            <div id="editActions" style="display: none; padding-top: 12px; text-align: right; gap: 8px;">
-              <button class="btn btn-clear" style="height: 32px; font-size: 12px; padding: 0 16px;" onclick="exitEditMode()">Cancel</button>
-              <button class="btn btn-teal" style="height: 32px; font-size: 12px; padding: 0 16px;" onclick="saveChanges()">Save</button>
-            </div>
           </div>
 
         </div>
