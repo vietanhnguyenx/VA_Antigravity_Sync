@@ -10,7 +10,9 @@ prototype_file: "toss-prototype-v0.4.html"
 
 # Hướng dẫn Thuyết minh Prototype TOSS
 
-Tài liệu này hướng dẫn người trình bày (BA) demo prototype `toss-prototype-v0.4.html` cho khách hàng và stakeholder kỹ thuật. Nội dung gồm: mô tả từng màn hình, các luồng nghiệp vụ thao tác được, và một kịch bản demo xuyên suốt. Mọi vùng giao diện trong prototype đều gắn dẫn chiếu nguồn (`data-src`) về báo cáo khảo sát 08–17/06/2026.
+> ⚠️ **CẢNH BÁO PHIÊN BẢN:** Tài liệu này mô tả bố cục **prototype v0.4** (OCC Dashboard và Flight Dispatch là **hai màn tách riêng**). Prototype hiện hành là **v0.6** đã **gộp OCC + Dispatch thành một màn "Flight Dispatch" 26 cột** (bám sheet "Màn hình Flight Dispatch") + thêm màn Upload Documents. Phần "Màn 1 — OCC Dashboard" và "Màn 2 — Flight Dispatch" dưới đây **đã lỗi thời về bố cục** — cần cập nhật cho v0.6 trước khi dùng demo. Các màn Flight Detail / MEL-CDL và kịch bản nghiệp vụ vẫn còn giá trị.
+
+Tài liệu này hướng dẫn người trình bày (BA) demo prototype TOSS cho khách hàng và stakeholder kỹ thuật. Nội dung gồm: mô tả từng màn hình, các luồng nghiệp vụ thao tác được, và một kịch bản demo xuyên suốt. Mọi vùng giao diện trong prototype đều gắn dẫn chiếu nguồn (`data-src`) về báo cáo khảo sát 08–17/06/2026.
 
 ## Lưu ý trước khi trình bày
 

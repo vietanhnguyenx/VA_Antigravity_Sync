@@ -2,9 +2,10 @@
 
 > Chứa: (1) Phân rã quy trình Flight Dispatcher SOP từ `../01-nguon/main-flight-dispatcher-operating-procedure.md`; (2) Phân tích As-Is OCC/Dispatch. Mỗi mục SOP có cặp **EN (nguyên văn)** + **VI (dịch/phân tích)**.
 
-## As-Is Analysis
+## As-Is Analysis & Sơ đồ tích hợp
 
 - `ASIS-OCC-DISPATCH-v0.1.md` — Phân tích As-Is hệ thống OCC / Dispatch
+- `Ops++-integration-architecture.drawio` — Sơ đồ kiến trúc tích hợp Inbound/Outbound của OPS++ (ISB làm gateway); chuyển từ ảnh khách hàng `Customer_docs/Ops++/Sơ đồ tích hợp Ops++.png` sang drawio editable. Nhãn mũi tên khó đọc gắn `[?]` — cần đối chiếu bản gốc/SME.
 
 ## SOP Dispatcher (Section 3)
 

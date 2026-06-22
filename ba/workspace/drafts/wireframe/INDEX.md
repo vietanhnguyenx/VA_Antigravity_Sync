@@ -18,7 +18,7 @@ document_id: "WF-INDEX-TOSS"
 
 | Phân hệ | File / Thư mục | Phiên bản | Mục tiêu | Nguồn BRD/PHAN-RA |
 |---|---|---|---|---|
-| PH1 — Thông tin điều hành chuyến bay | [`PH1/`](PH1/) (4 wireframe) | 0.1 | Monitoring overview, kiểm tra đầu ca, giám sát trực ban trưởng, giám sát tài liệu | BRD-PH1 v0.6 · PHAN-RA-PH1 v0.5 |
+| PH1 — Thông tin điều hành chuyến bay | [`PH1/`](PH1/) — `wf-monitoring-overview` **v0.4**, `wf-kiem-tra-dau-ca`, `wf-giam-sat-truc-ban-truong`, `wf-giam-sat-tai-lieu` (mỗi file .md + .drawio) | 0.4 (monitoring) / 0.1 (còn lại) | **`wf-monitoring-overview` v0.4 = đặc tả màn Flight Dispatch 26 cột (§8 bám sheet Function list + §9 đối chiếu YCKT/KS/SRS) — input chính của workflow `survey-to-spec`**; kiểm tra đầu ca; giám sát trực ban trưởng; giám sát tài liệu | BRD-PH1 v0.6 · PHAN-RA-PH1 v0.6 |
 | PH2 — Quản lý tài liệu chuyến bay | [`WF-PH2-tai-lieu-chuyen-bay-v0.1.md`](WF-PH2-tai-lieu-chuyen-bay-v0.1.md) | 0.1 | 6 màn: danh sách chuyến bay + tài liệu, soạn/nộp NOTOC, MEL/CDL, Dispatch Release, dashboard tài liệu, Service Order email LIDO | BRD-PH2 v0.6 · PHAN-RA-PH2 v0.4 |
 | PH4 — Quản lý danh mục (Master Data) | [`WF-PH4-quan-ly-danh-muc-v0.1.md`](WF-PH4-quan-ly-danh-muc-v0.1.md) | 0.1 | 5 màn: Aircraft Master, Airport Master + MEL tool, Route Master + Tankering/TAT, Performance Factor, Admin panel nhóm E–J | BRD-PH4 v0.5 · PHAN-RA-PH4 v0.4 |
 
