@@ -890,7 +890,7 @@
 
       <!-- Navigation List (14 Data Maintenance Categories) -->
       <div class="sidebar-menu" data-mat="mat-nav-list">
-        <a class="menu-item active" data-tab="pilot-category" data-tooltip="Pilot Category" onclick="switchTab('pilot-category')">
+        <a class="menu-item" data-tab="pilot-category" data-tooltip="Pilot Category" onclick="switchTab('pilot-category')">
           <span class="material-symbols-outlined">person</span>
           <span class="menu-text">Pilot Category</span>
         </a>
@@ -1059,7 +1059,7 @@
                   </tr>
                 </thead>
                 <tbody id="fleetTableBody">
-                  <tr>
+                  <tr class="active-row">
                     <td>1</td>
                     <td>A320-A321</td>
                     <td>Tàu bay A320 A321</td>
@@ -1123,6 +1123,38 @@
                       </button>
                     </td>
                   </tr>
+                  <tr>
+                    <td>5</td>
+                    <td>A350</td>
+                    <td>Tàu bay A350</td>
+                    <td>30</td>
+                    <td>Dòi bay gồm các máy bay sản xuất từ năm 1980</td>
+                    <td><span class="status-badge inactive">Inactive</span></td>
+                    <td style="text-align: center;">
+                      <button style="background: none; border: none; cursor: pointer; padding: 4px;">
+                        <span class="material-symbols-outlined" style="font-size: 18px; color: #0284c7;">edit</span>
+                      </button>
+                      <button style="background: none; border: none; cursor: pointer; padding: 4px;">
+                        <span class="material-symbols-outlined" style="font-size: 18px; color: #ef4444;">delete</span>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>6</td>
+                    <td>A350</td>
+                    <td>Tàu bay A350</td>
+                    <td>30</td>
+                    <td>Dòi bay gồm các máy bay sản xuất từ năm 1980</td>
+                    <td><span class="status-badge inactive">Inactive</span></td>
+                    <td style="text-align: center;">
+                      <button style="background: none; border: none; cursor: pointer; padding: 4px;">
+                        <span class="material-symbols-outlined" style="font-size: 18px; color: #0284c7;">edit</span>
+                      </button>
+                      <button style="background: none; border: none; cursor: pointer; padding: 4px;">
+                        <span class="material-symbols-outlined" style="font-size: 18px; color: #ef4444;">delete</span>
+                      </button>
+                    </td>
+                  </tr>
                 </tbody>
               </table>
             </div>
@@ -1154,22 +1186,37 @@
             </div>
           </div>
 
-          <!-- RIGHT: Flight Fleet Details -->
+          <!-- RIGHT: Flight Fleet Details & Aircraft List -->
           <div class="user-details-section">
             <section class="m3-card details-card" data-mat="mat-card">
 
-              <div class="details-header">
-                <div class="details-avatar-wrap">
-                  <span style="font-size: 32px; color: #0284c7;">✈️</span>
+              <!-- Fleet Header with Actions -->
+              <div style="display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 1px solid var(--md-outline-variant); padding-bottom: 16px;">
+                <div>
+                  <div style="display: flex; align-items: center; gap: 12px;">
+                    <div style="font-size: 36px;">✈️</div>
+                    <div>
+                      <div class="details-name">Tàu bay A320 A321</div>
+                      <div class="details-id">A320-A321</div>
+                      <span class="status-badge active" style="margin-top: 6px;">Active</span>
+                    </div>
+                  </div>
                 </div>
-                <div class="details-title-info">
-                  <div class="details-name">Tàu bay A320 A321</div>
-                  <div class="details-id">A320-A321</div>
-                  <span class="status-badge active" style="margin-top: 6px;">Active</span>
+                <div style="display: flex; gap: 8px;">
+                  <button class="btn btn-outline-action" onclick="showToast('Sửa Flight Fleet')">
+                    <span class="material-symbols-outlined" style="font-size: 16px;">edit</span>Edit
+                  </button>
+                  <button class="btn btn-outline-action btn-delete" onclick="showToast('Xóa Flight Fleet')">
+                    <span class="material-symbols-outlined" style="font-size: 16px;">delete</span>Delete
+                  </button>
+                  <button class="btn btn-outline-action" onclick="showToast('Xem lịch sử')">
+                    <span class="material-symbols-outlined" style="font-size: 16px;">history</span>History
+                  </button>
                 </div>
               </div>
 
-              <div class="details-grid" style="margin-top: 16px;">
+              <!-- Fleet Details -->
+              <div class="details-grid" style="margin-top: 16px; margin-bottom: 24px;">
                 <div class="detail-row">
                   <span class="detail-label">Flight Fleet Code</span>
                   <span class="detail-val">A320-A321</span>
@@ -1193,6 +1240,83 @@
                 <div class="detail-row">
                   <span class="detail-label">Last updated</span>
                   <span class="detail-val">20/01/2024 21:30</span>
+                </div>
+              </div>
+
+              <!-- List Aircraft Sub-section -->
+              <div style="border-top: 1px solid var(--md-outline-variant); padding-top: 16px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                  <h3 style="font-size: 14px; font-weight: 700; color: var(--vna-navy);">List Aircraft (2)</h3>
+                  <button class="btn btn-blue" style="height: 32px; font-size: 12px; padding: 0 12px;" onclick="showToast('Thêm Aircraft')">
+                    <span class="material-symbols-outlined" style="font-size: 16px;">add</span> Create
+                  </button>
+                </div>
+
+                <!-- Aircraft Table -->
+                <div class="table-container" style="max-height: 280px; overflow-y: auto;">
+                  <table class="user-table">
+                    <thead>
+                      <tr>
+                        <th>Seq</th>
+                        <th>Registration</th>
+                        <th>ICAO Designator</th>
+                        <th>IATA Designator</th>
+                        <th>Note</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>1</td>
+                        <td>VN123</td>
+                        <td>ICAO321</td>
+                        <td>IATA321</td>
+                        <td>IATA321</td>
+                        <td><span class="status-badge inactive">Inactive</span></td>
+                        <td style="text-align: center;">
+                          <button style="background: none; border: none; cursor: pointer; padding: 4px;">
+                            <span class="material-symbols-outlined" style="font-size: 16px; color: #0284c7;">edit</span>
+                          </button>
+                          <button style="background: none; border: none; cursor: pointer; padding: 4px;">
+                            <span class="material-symbols-outlined" style="font-size: 16px; color: #ef4444;">delete</span>
+                          </button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>2</td>
+                        <td>VN23</td>
+                        <td>ICAO322</td>
+                        <td>IATA321</td>
+                        <td>IATA321</td>
+                        <td><span class="status-badge active">Active</span></td>
+                        <td style="text-align: center;">
+                          <button style="background: none; border: none; cursor: pointer; padding: 4px;">
+                            <span class="material-symbols-outlined" style="font-size: 16px; color: #0284c7;">edit</span>
+                          </button>
+                          <button style="background: none; border: none; cursor: pointer; padding: 4px;">
+                            <span class="material-symbols-outlined" style="font-size: 16px; color: #ef4444;">delete</span>
+                          </button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>3</td>
+                        <td>VN23</td>
+                        <td>ICAO323</td>
+                        <td>IATA321</td>
+                        <td>IATA321</td>
+                        <td><span class="status-badge active">Active</span></td>
+                        <td style="text-align: center;">
+                          <button style="background: none; border: none; cursor: pointer; padding: 4px;">
+                            <span class="material-symbols-outlined" style="font-size: 16px; color: #0284c7;">edit</span>
+                          </button>
+                          <button style="background: none; border: none; cursor: pointer; padding: 4px;">
+                            <span class="material-symbols-outlined" style="font-size: 16px; color: #ef4444;">delete</span>
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
               </div>
 
