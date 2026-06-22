@@ -24,6 +24,8 @@ param(
   [switch]$NoToc,
   [string]$Font = "Times New Roman",
   [int]$FontSize = 0,
+  [int]$TitleSize = 0,
+  [string]$TitleAlign = "",
   [string]$H1Font = "",
   [int]$H1Size = 0,
   [switch]$H1Bold,
@@ -145,15 +147,17 @@ function Transform($p){ StripInternal (StripAsr (StripSlugs (StripMdTokens (Clea
 
 # ---------- Ghép Markdown ----------
 $sb = New-Object System.Text.StringBuilder
-[void]$sb.AppendLine("# $Title"); [void]$sb.AppendLine()
+# Tiêu đề render qua title block của pandoc (style "Title" sẵn có) — KHÔNG dùng "# $Title" (Heading 1) nữa
 if ($Subtitle) { [void]$sb.AppendLine("*$Subtitle · v$Version · $today*"); [void]$sb.AppendLine() }
 [void]$sb.AppendLine('---'); [void]$sb.AppendLine()
 foreach($f in $files){ [void]$sb.AppendLine((Transform $f)); [void]$sb.AppendLine(); [void]$sb.AppendLine('---'); [void]$sb.AppendLine() }
 $tmpMd = Join-Path $OutDir ("_combined_{0}.md" -f $OutBase)
-[System.IO.File]::WriteAllText($tmpMd, $sb.ToString(), $utf8)
+# Bỏ dòng tiêu đề H1 ĐẦU TIÊN trong nguồn (đã render qua title block của pandoc → tránh tiêu đề lặp; '##' không bị đụng)
+$combined = ([regex]'(?m)^# [^\r\n]*\r?\n').Replace($sb.ToString(), '', 1)
+[System.IO.File]::WriteAllText($tmpMd, $combined, $utf8)
 
 # ---------- Pandoc (áp template QT02 + mục lục) ----------
-$pandocArgs = @($tmpMd, "--from=markdown-yaml_metadata_block", "--reference-doc=$Template", "-o", $outDocx)
+$pandocArgs = @($tmpMd, "--from=markdown-yaml_metadata_block", "--reference-doc=$Template", "-o", $outDocx, "--metadata", "title=$Title")
 if (-not $NoToc) { $pandocArgs += @("--toc", "--toc-depth=$TocDepth") }
 & $Pandoc @pandocArgs 2>$null
 if ($LASTEXITCODE -ne 0 -or -not (Test-Path $outDocx)) { throw "Pandoc lỗi (exit $LASTEXITCODE)." }
@@ -184,7 +188,7 @@ function Set-HeadingStyle([string]$xml,[string]$styleId,[string]$hfont,[int]$hsi
     $blk
   },1)
 }
-if(($Font -ne 'Times New Roman') -or ($FontSize -gt 0) -or ($H1Size -gt 0) -or ($H2Size -gt 0) -or ($H1Font -ne '') -or ($H2Font -ne '') -or $H1Bold -or $H2Bold -or ($H1Align -ne '') -or ($H2Align -ne '')){
+if(($Font -ne 'Times New Roman') -or ($FontSize -gt 0) -or ($TitleSize -gt 0) -or ($TitleAlign -ne '') -or ($H1Size -gt 0) -or ($H2Size -gt 0) -or ($H1Font -ne '') -or ($H2Font -ne '') -or $H1Bold -or $H2Bold -or ($H1Align -ne '') -or ($H2Align -ne '')){
   foreach($part in 'word/styles.xml','word/theme/theme1.xml'){
     $pe=$zip.GetEntry($part); if(-not $pe){ continue }
     $psr=New-Object System.IO.StreamReader($pe.Open()); $pc=$psr.ReadToEnd(); $psr.Close()
@@ -195,7 +199,8 @@ if(($Font -ne 'Times New Roman') -or ($FontSize -gt 0) -or ($H1Size -gt 0) -or (
         $pc=[regex]::Replace($pc,'(<w:rPrDefault>[\s\S]*?<w:sz w:val=")\d+("[\s\S]*?</w:rPrDefault>)',('${1}'+$hp+'${2}'))
         $pc=[regex]::Replace($pc,'(<w:rPrDefault>[\s\S]*?<w:szCs w:val=")\d+("[\s\S]*?</w:rPrDefault>)',('${1}'+$hp+'${2}'))
       }
-      if(($H1Size -gt 0) -or ($H1Font -ne '') -or $H1Bold -or ($H1Align -ne '')){ $pc=Set-HeadingStyle $pc 'Heading1' $H1Font $H1Size ([bool]$H1Bold) $H1Align }   # Heading 1 (= tiêu đề tài liệu)
+      if(($TitleSize -gt 0) -or ($TitleAlign -ne '')){ $pc=Set-HeadingStyle $pc 'Title' '' $TitleSize $false $TitleAlign }   # style Title (tiêu đề tài liệu qua title block pandoc)
+      if(($H1Size -gt 0) -or ($H1Font -ne '') -or $H1Bold -or ($H1Align -ne '')){ $pc=Set-HeadingStyle $pc 'Heading1' $H1Font $H1Size ([bool]$H1Bold) $H1Align }   # Heading 1 (nội dung cấp 1 thật)
       if(($H2Size -gt 0) -or ($H2Font -ne '') -or $H2Bold -or ($H2Align -ne '')){ $pc=Set-HeadingStyle $pc 'Heading2' $H2Font $H2Size ([bool]$H2Bold) $H2Align }   # Heading 2 (= mục §I/§II)
     }
     $pe.Delete(); $ne2=$zip.CreateEntry($part); $psw=New-Object System.IO.StreamWriter($ne2.Open(),$utf8); $psw.Write($pc); $psw.Close()
@@ -215,6 +220,7 @@ $qc=[ordered]@{
   'logo + header + footer present'   = (($names -contains 'word/media/logo.png') -and ($names -contains 'word/header1.xml') -and ($names -contains 'word/footer1.xml'))
   'PNG content-type'                 = ((Get-Part $z '[Content_Types].xml') -match 'Extension="png"')
   'TOC field'                        = ($(if($NoToc){-not (([regex]'TOC \\o').Matches($xml).Count -ge 1)}else{(([regex]'TOC \\o').Matches($xml).Count -ge 1)}))
+  'title style present'              = (([regex]'<w:pStyle w:val="Title"').Matches($xml).Count -ge 1)
   'no .md leak'                      = (([regex]'\.md\b').Matches($txt).Count -eq 0)
   'no markdown link ]('             = (([regex]'\]\(').Matches($txt).Count -eq 0)
   'no filename slug'                 = (([regex]'phan-he|wireframe-overview|tien-do-ncc|thiet-bi-iot').Matches($txt).Count -eq 0)

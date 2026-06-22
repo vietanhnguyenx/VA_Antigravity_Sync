@@ -58,6 +58,7 @@ Khi cần tạo bản Word giao người từ ≥1 file `.md` (SRS, Wireframe, B
 - `-NoToc` — bỏ mục lục (báo cáo khảo sát thường dùng; tài liệu dài như SRS để mặc định có TOC).
 - `-Font "<tên font>"` — đổi font chữ toàn cục (mặc định `Times New Roman` chuẩn QT02). Override cả `styles.xml` + `theme1.xml` lúc xuất, **giữ Consolas cho code**. Đổi font là lệch chuẩn QT02 — cần BA Lead chấp nhận.
 - `-FontSize <pt>` — đổi cỡ chữ body trong docDefaults (mặc định 0 = giữ 12pt template).
+- `-TitleSize <pt>` / `-TitleAlign "<center|left|right>"` — chỉnh cỡ/căn lề **tiêu đề tài liệu** (style "Title" sẵn có trong template; mặc định 28pt căn giữa). **Tiêu đề render qua title block của pandoc** (`--metadata title`), KHÔNG còn là Heading 1 — dòng `# ` đầu tiên trong nguồn bị bỏ tự động để tránh tiêu đề lặp. Phụ đề là dòng in nghiêng ngay dưới.
 - `-H1Font "<tên>"` / `-H1Size <pt>` / `-H1Bold` / `-H1Align "<center|left|right>"` — đổi riêng font/cỡ/in đậm/căn lề **Heading 1** (= tiêu đề tài liệu, do script render `# $Title`). Vá đúng style block `Heading1`, không đụng heading khác.
 - `-H2Font "<tên>"` / `-H2Size <pt>` / `-H2Bold` / `-H2Align "<...>"` — tương tự cho **Heading 2** (= các mục §I/§II).
 - Ví dụ tiêu đề 18pt căn giữa, mục bold 13pt, thân 13pt: `... -NoToc -FontSize 13 -H1Size 18 -H1Align center -H2Size 13 -H2Bold`. QC font tự khớp theo các font đã chọn (`-Font`/`-H1Font`/`-H2Font` đều được phép, kèm Consolas).
