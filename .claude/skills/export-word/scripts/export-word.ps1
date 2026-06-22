@@ -26,8 +26,12 @@ param(
   [int]$FontSize = 0,
   [string]$H1Font = "",
   [int]$H1Size = 0,
+  [switch]$H1Bold,
+  [string]$H1Align = "",
   [string]$H2Font = "",
   [int]$H2Size = 0,
+  [switch]$H2Bold,
+  [string]$H2Align = "",
   [string]$Template = ".claude\templates\word-reference.docx",
   [string]$Pandoc = "C:\Users\VTIT\AppData\Local\Pandoc\pandoc.exe",
   [switch]$Force
@@ -164,7 +168,7 @@ if($ct -notmatch 'Extension="png"'){ $ct=$ct.Replace('</Types>','<Default Extens
 if(-not $zip.GetEntry('word/_rels/header1.xml.rels')){ $he=$zip.CreateEntry('word/_rels/header1.xml.rels'); $sw2=New-Object System.IO.StreamWriter($he.Open(),$utf8); $sw2.Write('<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="media/logo.png"/></Relationships>'); $sw2.Close() }
 if($logo -and -not $zip.GetEntry('word/media/logo.png')){ $me=$zip.CreateEntry('word/media/logo.png'); $st=$me.Open(); $st.Write($logo,0,$logo.Length); $st.Close() }
 # ---------- Căn chỉnh font (override template QT02 khi -Font/-FontSize/-HxFont/-HxSize) ----------
-function Set-HeadingStyle([string]$xml,[string]$styleId,[string]$hfont,[int]$hsize){   # vá riêng 1 style heading (cỡ + font), không đụng heading khác
+function Set-HeadingStyle([string]$xml,[string]$styleId,[string]$hfont,[int]$hsize,[bool]$bold,[string]$align){   # vá riêng 1 style (cỡ/font/bold/căn lề), không đụng style khác
   $rx=[regex]("(?s)<w:style [^>]*w:styleId=`"$styleId`".*?</w:style>")
   return $rx.Replace($xml,{ param($m)
     $blk=$m.Value
@@ -172,10 +176,15 @@ function Set-HeadingStyle([string]$xml,[string]$styleId,[string]$hfont,[int]$hsi
       $blk=[regex]::Replace($blk,'<w:sz w:val="\d+"',('<w:sz w:val="'+$hp+'"'))
       $blk=[regex]::Replace($blk,'<w:szCs w:val="\d+"',('<w:szCs w:val="'+$hp+'"')) }
     if($hfont -ne ''){ $blk=[regex]::Replace($blk,'(w:(?:ascii|eastAsia|hAnsi|cs)=")[^"]*"',('${1}'+$hfont+'"')) }
+    if($bold -and ($blk -notmatch '<w:b\s*/>')){ $blk=[regex]::Replace($blk,'(<w:rPr>)','${1}<w:b/><w:bCs/>',1) }   # thêm bold vào rPr
+    if($align -ne ''){                                                                                              # đặt căn lề trong pPr
+      if($blk -match '<w:jc [^>]*/>'){ $blk=[regex]::Replace($blk,'<w:jc w:val="[^"]*"',('<w:jc w:val="'+$align+'"')) }
+      else { $blk=[regex]::Replace($blk,'(<w:pPr>)',('${1}<w:jc w:val="'+$align+'"/>'),1) }
+    }
     $blk
   },1)
 }
-if(($Font -ne 'Times New Roman') -or ($FontSize -gt 0) -or ($H1Size -gt 0) -or ($H2Size -gt 0) -or ($H1Font -ne '') -or ($H2Font -ne '')){
+if(($Font -ne 'Times New Roman') -or ($FontSize -gt 0) -or ($H1Size -gt 0) -or ($H2Size -gt 0) -or ($H1Font -ne '') -or ($H2Font -ne '') -or $H1Bold -or $H2Bold -or ($H1Align -ne '') -or ($H2Align -ne '')){
   foreach($part in 'word/styles.xml','word/theme/theme1.xml'){
     $pe=$zip.GetEntry($part); if(-not $pe){ continue }
     $psr=New-Object System.IO.StreamReader($pe.Open()); $pc=$psr.ReadToEnd(); $psr.Close()
@@ -186,8 +195,8 @@ if(($Font -ne 'Times New Roman') -or ($FontSize -gt 0) -or ($H1Size -gt 0) -or (
         $pc=[regex]::Replace($pc,'(<w:rPrDefault>[\s\S]*?<w:sz w:val=")\d+("[\s\S]*?</w:rPrDefault>)',('${1}'+$hp+'${2}'))
         $pc=[regex]::Replace($pc,'(<w:rPrDefault>[\s\S]*?<w:szCs w:val=")\d+("[\s\S]*?</w:rPrDefault>)',('${1}'+$hp+'${2}'))
       }
-      if(($H1Size -gt 0) -or ($H1Font -ne '')){ $pc=Set-HeadingStyle $pc 'Heading1' $H1Font $H1Size }   # font/cỡ riêng Heading 1
-      if(($H2Size -gt 0) -or ($H2Font -ne '')){ $pc=Set-HeadingStyle $pc 'Heading2' $H2Font $H2Size }   # font/cỡ riêng Heading 2
+      if(($H1Size -gt 0) -or ($H1Font -ne '') -or $H1Bold -or ($H1Align -ne '')){ $pc=Set-HeadingStyle $pc 'Heading1' $H1Font $H1Size ([bool]$H1Bold) $H1Align }   # Heading 1 (= tiêu đề tài liệu)
+      if(($H2Size -gt 0) -or ($H2Font -ne '') -or $H2Bold -or ($H2Align -ne '')){ $pc=Set-HeadingStyle $pc 'Heading2' $H2Font $H2Size ([bool]$H2Bold) $H2Align }   # Heading 2 (= mục §I/§II)
     }
     $pe.Delete(); $ne2=$zip.CreateEntry($part); $psw=New-Object System.IO.StreamWriter($ne2.Open(),$utf8); $psw.Write($pc); $psw.Close()
   }
