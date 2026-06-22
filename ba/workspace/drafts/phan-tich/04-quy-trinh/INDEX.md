@@ -11,8 +11,8 @@
 
 | Mục | EN | VI | Nội dung |
 |---|---|---|---|
-| 3.1 | `3.1-end-to-end-process-flow-en.md` | `...-vi.md` | Luồng quy trình end-to-end |
-| 3.2 | `3.2-duty-based-dispatcher-roles-en.md` | `...-vi.md` | Vai trò dispatcher theo ca trực |
-| 3.3 | `3.3-vip-flight-procedure-en.md` | `...-vi.md` | Quy trình chuyến bay VIP |
-| 3.4 | `3.4-uncontrolled-airspace-flights-en.md` | `...-vi.md` | Bay trong vùng trời không kiểm soát |
-| 3.5 | `3.5-aircraft-delivery-procedure-en.md` | `...-vi.md` | Quy trình bàn giao tàu bay |
+| 3.1 | `3.1-end-to-end-process-flow-en.md` | `3.1-end-to-end-process-flow-vi.md` | Luồng quy trình end-to-end |
+| 3.2 | `3.2-duty-based-dispatcher-roles-en.md` | `3.2-duty-based-dispatcher-roles-vi.md` | Vai trò dispatcher theo ca trực |
+| 3.3 | `3.3-vip-flight-procedure-en.md` | `3.3-vip-flight-procedure-vi.md` | Quy trình chuyến bay VIP |
+| 3.4 | `3.4-uncontrolled-airspace-flights-en.md` | `3.4-uncontrolled-airspace-flights-vi.md` | Bay trong vùng trời không kiểm soát |
+| 3.5 | `3.5-aircraft-delivery-procedure-en.md` | `3.5-aircraft-delivery-procedure-vi.md` | Quy trình bàn giao tàu bay |

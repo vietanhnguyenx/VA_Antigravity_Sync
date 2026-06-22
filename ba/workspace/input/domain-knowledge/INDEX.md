@@ -105,6 +105,8 @@ date: "2026-06-15"
 | [toss-glossary-v0.1.md](toss-glossary-v0.1.md) | Bảng thuật ngữ TOSS song ngữ — tra trước khi dịch |
 | [LINKS-SUMMARY.md](LINKS-SUMMARY.md) | Dashboard trạng thái tải toàn bộ bộ tài liệu |
 | [README.md](README.md) | Tổng quan KB |
+| `TOSS - Transformative Operations Support System.pdf` | PDF gốc — tham chiếu khái niệm Transformative Operations Support System (TOSS) liên quan định danh dự án |
+| `aircraft_dispatcher_pts_10.pdf` | PDF gốc — FAA Aircraft Dispatcher Practical Test Standards (PTS) phiên bản 10; bản phân rã MD trong `aircraft_dispatcher_pts_10/` (mục A ở trên) |
 
 ---
 
