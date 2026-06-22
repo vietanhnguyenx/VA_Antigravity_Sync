@@ -247,6 +247,14 @@ $qc=[ordered]@{
       $forbidden = @('Aptos','Calibri','Cambria','Times New Roman') | Where-Object { $allowedFonts -notcontains $_ }
       ($theme -match ('minorFont[\s\S]*?'+[regex]::Escape($Font))) -and (((-not $forbidden) -or (([regex]($forbidden -join '|')).Matches($styles+$theme).Count -eq 0))) -and (-not $badFonts)
     ))
+  'heading bold đúng thứ tự schema'  = ($(
+      $ok=$true
+      foreach($pair in @(@($H1Bold,'Heading1'),@($H2Bold,'Heading2'))){
+        if($pair[0]){ $h=[regex]::Match($styles,"(?s)styleId=`"$($pair[1])`".*?</w:style>").Value
+          if($h -and ($h -notmatch '(?s)<w:rFonts[^>]*/>\s*<w:b\s*/>')){ $ok=$false } }
+      }
+      $ok
+    ))
   'XML well-formed'                  = $true
 }
 foreach($p in 'word/document.xml','word/header1.xml','word/footer1.xml','[Content_Types].xml'){ try{ [xml](Get-Part $z $p) | Out-Null }catch{ $qc['XML well-formed']=$false } }
