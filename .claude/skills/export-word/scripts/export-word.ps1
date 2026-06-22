@@ -180,7 +180,10 @@ function Set-HeadingStyle([string]$xml,[string]$styleId,[string]$hfont,[int]$hsi
       $blk=[regex]::Replace($blk,'<w:sz w:val="\d+"',('<w:sz w:val="'+$hp+'"'))
       $blk=[regex]::Replace($blk,'<w:szCs w:val="\d+"',('<w:szCs w:val="'+$hp+'"')) }
     if($hfont -ne ''){ $blk=[regex]::Replace($blk,'(w:(?:ascii|eastAsia|hAnsi|cs)=")[^"]*"',('${1}'+$hfont+'"')) }
-    if($bold -and ($blk -notmatch '<w:b\s*/>')){ $blk=[regex]::Replace($blk,'(<w:rPr>)','${1}<w:b/><w:bCs/>',1) }   # thêm bold vào rPr
+    if($bold -and ($blk -notmatch '<w:b\s*/>')){   # thêm bold ĐÚNG thứ tự schema CT_RPr (sau rFonts; nếu không có rFonts thì ngay sau <w:rPr>)
+      if($blk -match '<w:rFonts[^>]*/>'){ $blk=[regex]::Replace($blk,'(<w:rFonts[^>]*/>)','${1}<w:b/><w:bCs/>',1) }
+      else { $blk=[regex]::Replace($blk,'(<w:rPr>)','${1}<w:b/><w:bCs/>',1) }
+    }
     if($align -ne ''){                                                                                              # đặt căn lề trong pPr
       if($blk -match '<w:jc [^>]*/>'){ $blk=[regex]::Replace($blk,'<w:jc w:val="[^"]*"',('<w:jc w:val="'+$align+'"')) }
       else { $blk=[regex]::Replace($blk,'(<w:pPr>)',('${1}<w:jc w:val="'+$align+'"/>'),1) }

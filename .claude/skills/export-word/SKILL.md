@@ -86,6 +86,7 @@ Khi cần tạo bản Word giao người từ ≥1 file `.md` (SRS, Wireframe, B
 | 7 | Ghi đè file đã chốt | tên file không có version/ngày | Tên `...-v<ver>-<ngày>.docx`, không ghi đè |
 | 10 | Lọt **trích dẫn ghi âm dạng ngoặc đơn** "(sáng 00:46–01:13)" | e14 chỉ strip dạng ngoặc vuông `[DDMMYYYY HH:MM]`; báo cáo 18/06 dùng dạng ngoặc đơn `(sáng/chiều HH:MM–HH:MM)` nên 54 trích dẫn lọt vào Word | Thêm `StripInternal` e15 gỡ `(sáng\|chiều\|trưa\|tối HH:MM[:SS][–HH:MM])`; QC "no recording timestamp" = 0 (BA Lead 22/06/2026) |
 | 11 | Mục lục không cần cho báo cáo khảo sát | tài liệu ngắn, người đọc không cần TOC | Tham số `-NoToc` bỏ `--toc`; QC "TOC field" thành điều kiện (PASS khi không có TOC nếu `-NoToc`) (BA Lead 22/06/2026) |
+| 12 | **Bold heading KHÔNG render** dù `<w:b/>` đã có trong style | chèn `<w:b/>` vào **đầu `<w:rPr>` (trước `<w:rFonts>`)** — sai thứ tự schema CT_RPr (bắt buộc rFonts→b→bCs→color→sz) → Word **lặng lẽ bỏ qua** | Chèn `<w:b/><w:bCs/>` **NGAY SAU `<w:rFonts/>`** (nếu không có rFonts thì sau `<w:rPr>`). Lưu ý chung: mọi phần tử chèn vào `rPr`/`pPr` phải đúng thứ tự schema, nếu không Word âm thầm bỏ qua (BA Lead 22/06/2026) |
 
 ## 6. Tài sản skill
 - `scripts/export-word.ps1` — xuất + transform + pandoc + vá + QC (tên file theo version).
