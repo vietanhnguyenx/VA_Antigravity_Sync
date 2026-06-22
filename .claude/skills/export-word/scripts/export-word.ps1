@@ -122,6 +122,19 @@ function StripInternal($t){
   $t=[regex]::Replace($t,'[ \t]*\[cần (?:xác nhận|khảo sát)[^\]]*\]','')
   $t=[regex]::Replace($t,'[ \t]*\[(?:SME|KS|HC|QĐ|DL)-\d+[^\]]*\]','')
   $t=[regex]::Replace($t,'[ \t]*\[Boeing[^\]]*KS[^\]]*\]','')
+  # e16: bỏ MỌI chú thích trỏ OID dạng ngoặc (in nghiêng/thường) — "*(xem OID: KS-17)*", "*(Định nghĩa… — xem OID: KS-XX.)*", "(OID: KS-11)", và "OID SME-09" trần
+  $t=[regex]::Replace($t,'[ \t]*\*\([^)]*\bOID\b[^)]*\)\*','')
+  $t=[regex]::Replace($t,'[ \t]*\([^)]*\bxem OID:[^)]*\)','')
+  $t=[regex]::Replace($t,'[ \t]*\(?(?:tham chiếu[ \t]+)?OID[ :]+(?:KS|SME|HC|QĐ|DL)-\d+[^)\r\n]*\)?','')
+  # e17: bỏ đường dẫn/tên file nội bộ trong backtick — `ba/workspace/…`, `.claude/…`, `toss-glossary-v0.1.md`…
+  $t=[regex]::Replace($t,'`[^`]*(?:ba/workspace|ba/sync|\.claude|domain-knowledge)[^`]*`','')
+  $t=[regex]::Replace($t,'[ \t]*\(?`[^`]*\.md`\)?','')   # backtick tên file .md (nội bộ) + ngoặc bao quanh nếu có
+  # e18: bỏ TRỌN phụ lục truy vết nguồn nội bộ — "## NN. Tài liệu nguồn (References)" (khung) và "## §x — Nguồn tài liệu đã đọc" (PH) — bảng/danh sách file nội bộ, không thuộc bản giao khách
+  $t=[regex]::Replace($t,'(?ms)^## [^\r\n]*(?:Tài liệu nguồn \(References\)|Nguồn tài liệu(?:[ \t]+đã đọc)?)[^\r\n]*\r?\n.*?(?=^## |\Z)','')
+  # e19: bỏ TRỌN dòng tóm tắt trạng thái liệt kê NHIỀU mã OID (≥4) — sau khi e16 đã gỡ ref đơn, chỉ còn dòng tóm tắt điểm mở mới có cụm dày mã KS/SME; (bắt theo cấu trúc, tránh lệ thuộc normalize tiếng Việt)
+  $t=[regex]::Replace($t,'(?im)^[^\r\n]*(?:\b(?:KS|SME|HC|BA)-\d+\b[^\r\n]*){4,}\r?\n?','')
+  # e20: bỏ TRỌN dòng tham chiếu plain-text trỏ TÊN FILE nội bộ (không backtick, không heading) — "Glossary: toss-glossary-v0.1", "…: SO-THEO-DOI-DIEM-CHOT-v0.1", "BAO-CAO-KHAO-SAT-…"
+  $t=[regex]::Replace($t,'(?im)^[^\r\n]*(?:toss-glossary|SO-THEO-DOI|BAO-CAO-KHAO-SAT|BA-VERSION-LOG|PHAN-TACH-PHAM-VI|BRD-TOSS-\d)[^\r\n]*\r?\n?','')
   # e9: bỏ ghi chú quy trình về transcript trong ngoặc đơn — "(... trong transcript)", "(khoảng xx:xx theo timestamp transcript)"
   $t=[regex]::Replace($t,'[ \t]*\([^)]{0,120}trong transcript[^)]{0,120}\)','')
   $t=[regex]::Replace($t,'[ \t]*\([^)]{0,80}theo timestamp transcript[^)]{0,80}\)','')
@@ -149,9 +162,8 @@ function StripInternal($t){
   $t
 }
 function Transform($p){
-  $base = StripSlugs (StripMdTokens (CleanLinks (StripFrontmatter $p)))   # xử lý cấu trúc (link/slug/frontmatter) — luôn áp
-  if($Formal){ return $base }                                             # tài liệu yêu cầu (BRD/SRS): giữ mã BR/OID/mũi tên/backtick
-  StripInternal (StripAsr $base)                                          # báo cáo khảo sát: thêm strip ASR + dấu vết nội bộ (§0.0)
+  # Luôn áp: xử lý cấu trúc + gỡ ASR + gỡ dấu vết nội bộ (OID/cờ/glossary…) — văn phong người cho MỌI bản giao
+  StripInternal (StripAsr (StripSlugs (StripMdTokens (CleanLinks (StripFrontmatter $p)))))
 }
 
 # ---------- Ghép Markdown ----------
@@ -267,7 +279,7 @@ $qc=[ordered]@{
     ))
   'XML well-formed'                  = $true
 }
-if($Formal){ foreach($k in @($qc.Keys)){ if($k -match '§0\.0'){ $qc.Remove($k) } } }   # tài liệu yêu cầu: bỏ QC "văn phong người" (giữ mã BR/OID/mũi tên)
+if($Formal){ foreach($k in @($qc.Keys)){ if($k -match 'arrow in prose|non-technical EN|residual backtick'){ $qc.Remove($k) } } }   # tài liệu yêu cầu: chỉ nới QC mũi tên/tiếng Anh/backtick (mã BR, ví dụ "VNA893 → A893" là nội dung hợp lệ); VẪN giữ QC gỡ OID/nội bộ/ASR
 foreach($p in 'word/document.xml','word/header1.xml','word/footer1.xml','[Content_Types].xml'){ try{ [xml](Get-Part $z $p) | Out-Null }catch{ $qc['XML well-formed']=$false } }
 $z.Dispose()
 Write-Host ""

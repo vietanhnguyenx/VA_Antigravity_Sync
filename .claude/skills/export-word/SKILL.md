@@ -55,7 +55,7 @@ Khi cần tạo bản Word giao người từ ≥1 file `.md` (SRS, Wireframe, B
 `-SourceList` nhận `@<tệp manifest>` (mỗi dòng 1 path, `#` = chú thích) hoặc chuỗi path ngăn cách dấu phẩy. Cập nhật manifest khi thêm/bớt/đổi thứ tự file.
 
 **Tham số tùy chọn căn chỉnh đầu ra:**
-- `-Formal` — **tài liệu yêu cầu (BRD/SRS)**: bỏ qua biến đổi + QC "văn phong người" (§0.0) vì mã BR/OID (`KS-xx`, `SME-xx`), mũi tên `Must→Should`, backtick là **nội dung hợp lệ**, không phải dấu vết nội bộ. Vẫn giữ xử lý cấu trúc (link/slug/frontmatter/font/OPC/TOC). KHÔNG dùng cho báo cáo khảo sát giao khách (cần giữ §0.0 để strip ASR/dấu vết).
+- `-Formal` — **tài liệu yêu cầu (BRD/SRS)**: VẪN áp văn phong người (strip ASR + dấu vết nội bộ: ref OID `*(xem OID: KS-xx)*`, đường dẫn/tên file nội bộ, phụ lục "Tài liệu nguồn/Nguồn tài liệu đã đọc", dòng tóm tắt liệt kê ≥4 mã OID — rule e16–e20), nhưng **nới QC** mũi tên/tiếng Anh/backtick vì mã BR, ví dụ "VNA893 → A893", thuật ngữ kỹ thuật là **nội dung hợp lệ** của BRD. Giữ nội dung yêu cầu (mã BR, định nghĩa) nguyên vẹn.
 - `-NoToc` — bỏ mục lục (báo cáo khảo sát thường dùng; tài liệu dài như SRS/BRD để mặc định có TOC).
 - `-Font "<tên font>"` — đổi font chữ toàn cục (mặc định `Times New Roman` chuẩn QT02). Override cả `styles.xml` + `theme1.xml` lúc xuất, **giữ Consolas cho code**. Đổi font là lệch chuẩn QT02 — cần BA Lead chấp nhận.
 - `-FontSize <pt>` — đổi cỡ chữ body trong docDefaults (mặc định 0 = giữ 12pt template).
