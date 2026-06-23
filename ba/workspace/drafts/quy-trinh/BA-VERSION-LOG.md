@@ -139,4 +139,13 @@ document_id: "BA-VLOG-001"
 
 ---
 
-_Cập nhật: 2026-06-17_
+## Phân tích đối chiếu (Khảo sát ↔ BRD)
+
+| File hiện hành | Version | Ngày | Thay đổi chính |
+|---|---|---|---|
+| `phan-tich/02-khao-sat/DOI-CHIEU-KS-BRD-1719-2026-06-23-v0.2.md` | 0.2 | 2026-06-23 | **Đối chiếu lại tích hợp OPS++ theo sheet "Thông tin tích hợp" v77 + phạm vi BA Lead chốt 23/06.** Thêm **§2bis (A/B/C)** áp phạm vi mới: chỉ luồng "Thông qua TOSS" (19 luồng = 17 in + 2 out) tính GAP; 9 luồng "Trực tiếp" LIDO/AMOS ↔ NetOps++ tách §2bis.B (NGOÀI scope, không sinh BR). Trong scope: 0 COVERED / 12 PARTIAL / 4 GAP; 8 luồng còn Missing triển khai (LDM, SSIM, Crew connection, Gate info, Flight data ACDM, NOTAM-qua-TOSS, Cargo, ACH). §2bis.C nêu 10 yêu cầu mới từ sheet v77 (Crew Assignment 02:00/26 + cảnh báo <1000 + retry 23:59; PTM 5'/48h; PNL T-30 1 lần; ADL 1/ngày; Gate API như VIAGS; Cargo quét view + rules + DB; FMM TOSS tự sinh; SSIM forward 2 chiều Sabre…). §3.B lọc lại + bổ sung BR-567/568/569/570 cho Crew Assignment / Gate VIAGS / Cargo / SSIM (tổng đề xuất 14 BR PH5 mới). §4 thêm D-11 (ngưỡng tổ bay <1000) và D-12 (API VIAGS). Bump 0.1 → 0.2. Xóa file v0.1 cũ. |
+| _(phan-tich/02-khao-sat/DOI-CHIEU-KS-BRD-1719-2026-06-23.md)_ | 0.1 | 2026-06-23 | Khởi tạo — đối chiếu 3 báo cáo KS (17/06+18/06+19/06) với BRD v0.12 (PH1 v0.7, PH2 v0.6, PH4 v0.5, PH5 v0.5). 43 chủ đề: 12 COVERED / 20 PARTIAL / 11 GAP. §2.3 đối chiếu 24 luồng OPS++ vs BR-528/530 (chưa phân biệt scope TOSS vs trực tiếp). §3 đề xuất 30 BR mới (A: 10 BR MEL/AOG-MNT; B: 10 BR tích hợp PH5; C: 13 BR điều phái/CLC). §4 nêu 10 điểm cần BA Lead quyết (D-1…D-10). |
+
+---
+
+_Cập nhật: 2026-06-23_

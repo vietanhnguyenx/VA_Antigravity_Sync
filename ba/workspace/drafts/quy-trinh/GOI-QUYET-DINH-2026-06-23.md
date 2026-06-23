@@ -21,7 +21,7 @@ document_type: "Gói quyết định ưu tiên — BA Lead xử lý"
 
 | # | Quyết định | Vì sao gấp | Lựa chọn |
 |---|---|---|---|
-| **DEC-16 🔴** | **Nguồn cấp MEL/CDL cho OPS++:** khảo sát 17/06 chốt TOSS làm hub (AMOS → TOSS → OPS++), nhưng bảng "Thông tin tích hợp" (23/06) ghi MEL Item + Ground Event **"kết nối trực tiếp AMOS–NetOps++"**. | Mâu thuẫn nguồn, ảnh hưởng kiến trúc tích hợp + phạm vi TOSS. **Cần hỏi VNA** (xem §C). | (a) Trực tiếp AMOS→NetOps++ · (b) Qua TOSS · (c) Cả hai cho mục đích khác nhau |
+| **DEC-16 ✅ ĐÃ CHỐT (23/06)** | ~~Nguồn cấp MEL/CDL cho OPS++ — nghi mâu thuẫn 17/06 (TOSS hub) vs bảng 23/06 (trực tiếp AMOS)~~ | **Đã giải quyết bằng làm rõ phạm vi.** | **KHÔNG mâu thuẫn:** bảng mô tả đấu nối vào OPS++; phạm vi TOSS = dòng "Thông qua TOSS". MEL/Ground Event là "Trực tiếp" AMOS→NetOps++ → ngoài scope TOSS. Việc TOSS cảnh báo MEL/CDL (17/06) là giám sát NỘI BỘ, tách biệt. → Không cần hỏi VNA (§C bỏ). |
 | **DEC-15** | **Hình thức 33 khoảng trống** từ đối chiếu (BR-193…207 PH1, BR-262 PH2, BR-460…465 PH4, BR-556…566 PH5): đưa vào **BRD (BR atomic)** hay **SRS/tài liệu tích hợp riêng**? | Quyết hình thức trước khi agent đặc tả → định hình toàn bộ việc lấp GAP (P2). | (a) BR atomic trong BRD · (b) Đẩy sang SRS/tài liệu tích hợp · (c) BRD cho yêu cầu, SRS cho chi tiết kỹ thuật |
 | **DEC-23** | Tách BR-528a (data-contract gộp) thành **BR atomic cho từng luồng/điện** (ASM/ACH/SSIM/MVT/MVA/DIV/LDM…)? | Tiền đề để đặc tả 24 luồng rõ ràng + truy vết. | (a) Tách atomic · (b) Giữ gộp + bảng phụ lục |
 | **DEC-24** | Cấu trúc thư mục **SFTP Temp/Pickup/Archive + VPN + ISB** đưa vào BRD dạng **functional** hay **NFR**, hay chỉ ở tài liệu thiết kế tích hợp? | Liên quan trực tiếp việc dựng SFTP trước 01/07. | (a) Functional BR · (b) NFR · (c) Chỉ tài liệu thiết kế |
@@ -37,7 +37,7 @@ document_type: "Gói quyết định ưu tiên — BA Lead xử lý"
 
 ---
 
-## C. Câu hỏi soạn sẵn gửi VNA (cho DEC-16)
+## C. Câu hỏi gửi VNA cho DEC-16 — ~~CẦN HỎI~~ → **KHÔNG CẦN NỮA** (DEC-16 đã chốt 23/06 bằng làm rõ phạm vi: MEL/Ground Event là "Trực tiếp", ngoài scope TOSS; cảnh báo MEL/CDL của TOSS là giám sát nội bộ tách biệt). Giữ lại nội dung dưới chỉ để tham khảo.
 
 > **Về luồng dữ liệu MEL/CDL và Ground Event sang OPS++:**
 > Bảng "Thông tin tích hợp" (cập nhật 23/06) ghi mục **MEL Item** và **Ground Event** là *"kết nối trực tiếp AMOS – NetOps++"*. Tuy nhiên khảo sát ngày 17/06 thống nhất TOSS đóng vai trò tổng hợp và phát cảnh báo MEL/CDL ba lớp (AMOS → shortlist FOE trên Lido → MEL trong OFP) rồi chuyển sang OPS++.
