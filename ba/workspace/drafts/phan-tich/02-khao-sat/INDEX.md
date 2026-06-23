@@ -14,6 +14,7 @@
 | `BAO-CAO-KHAO-SAT-17062026-v0.3.md` | 334 | 17/06/2026 — Quản lý Tàu bay, MEL/CDL & Tích hợp AMOS (v0.3, phủ trọn buổi: Master MEL / MEL Active / cảnh báo điều phái / Lido Import file / khảo sát DB AMOS + Aircraft list đồng bộ OPS++ / AOG-MNT Schedule / AOG-MNT Code / Performance Factor) |
 | `BAO-CAO-KHAO-SAT-18062026-v0.1.md` | 180 | 18/06/2026 — CLC & Điều phái (v0.1): màn Monitoring/bộ lọc, nút Dispatch Release đa điều kiện, mô hình cảnh báo 2 mức, tải trọng ZFW/DAO (FOEM), Fly Doc/EDTO, MEL 3 lớp, ATC FPL, minima sân bay, matching PIC, tích hợp Adapter Lido |
 | `BAO-CAO-KHAO-SAT-19062026-v0.1.md` | 173 | 19/06/2026 — Tích hợp TOSS ↔ NetLine/OPS++ (v0.1): danh mục 24 luồng inbound/outbound, phương thức SFTP + cấu trúc thư mục Temp/Pickup/Archive, VPN, ISB + data duplicate, mốc 24/06 (cấu hình VPN) & 01/07 (hoàn thành SFTP), lộ trình go-live OPS++ + cutover ~03/2027. |
+| `BAO-CAO-KHAO-SAT-23062026-v0.1.md` | 236 | 23/06/2026 — Tích hợp TOSS ↔ NetLine/OPS++ (tiếp 19/06, v0.1): 12 chủ đề — vai trò ISB là adapter NetLine, NetOps KHÔNG yêu cầu TOSS lưu trữ (TOSS lưu phục vụ nghiệp vụ TOSS), phân định "Thông qua TOSS" vs "Trực tiếp", chi tiết MVT/MVA/DIV/LDM (kênh kép SITA+email chung), FMM tự sinh, SSIM/PTM/PNL/ADL/Pax/Crew/Cargo/Gate/NOTAM, mô hình kênh "có/không hiệu lực", chiến lược DB nội bộ giống NetLine Classic + Clone DB. §III 16 thống nhất · §IV 15 cần làm rõ (gồm cụm ASR nhiễu nặng) · §V 14 thuật ngữ. |
 
 ## Phân tích đối chiếu
 
