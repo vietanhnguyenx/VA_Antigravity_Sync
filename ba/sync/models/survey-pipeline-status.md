@@ -23,6 +23,7 @@
 | **17/06** | ✅ v0.3 | ✅ (Function list + YCKT) | n/a (làm trực tiếp) | ✅ SRS FUNC-277…294 · OID +10 · Glossary v0.20 · WF v0.4 · Mockup v0.6 | ✅ (6 commit) | 0 | 2026-06-18 |
 | **18/06** | ✅ v0.1 | ✅ (YCKT + WF/SRS) | ✅ `PROPOSAL-18062026-enrichment.md` | 🟡 phần không-vướng-QĐ: ✅ OID +15 · ✅ Glossary v0.21 · ✅ SRS PH1 v0.7 (FUNC-295…319, gắn cờ); còn 12 QĐ chờ | (chờ) | **12** (§6) + 2 🔴 | 2026-06-22 |
 | **19/06** | ✅ v0.1 | ✅ (Ops++ extracted + drawio + YCKT + đối chiếu BRD `DOI-CHIEU-KS-BRD-1719-2026-06-23.md`) | — (đối chiếu thay proposal) | ✅ Glossary v0.22 (MVT/MVA/DIV/LDM) · ✅ kết nối Google Sheet "Thông tin tích hợp" live (24 luồng) · ✅ OID v0.17 (+10 DEC, +2 SME, +6 KS) · 🟡 báo cáo cập nhật SFTP/FMM | ✅ | **10** (DEC-15…DEC-24) + 1 🔴 (DEC-16 mâu thuẫn nguồn MEL/CDL) | 2026-06-23 |
+| **23/06** | ✅ v0.1 | ✅ (sheet "Thông tin tích hợp" v77 + đối chiếu phạm vi bảng OID v0.18) | — (đi sâu chi tiết từng luồng — không cần proposal riêng) | 🟡 OID v0.19 (+14 KS-93…KS-106 từ §IV; DEC-17 → 🟡; KS-87/KS-90 cập nhật tần suất từ sheet v77) · 🟡 Glossary §V chờ BA Lead confirm (13 đề xuất: ISB/PTM/PNL/ADL/FMM/Fuel Report/NetLine Classic/Clone DB/Event-Based/Request-Based/VIAGS Flight Status API/Crew Connection/HDQONVN) | ✅ | (liên quan DEC-15, DEC-17, DEC-23 — chưa phát sinh DEC mới) | 2026-06-23 |
 
 > **Lần đối chiếu KS↔BRD (17–19/06) hoàn tất 23/06/2026** — xem `ba/workspace/drafts/phan-tich/02-khao-sat/DOI-CHIEU-KS-BRD-1719-2026-06-23.md` (43 chủ đề: 12 COVERED / 20 PARTIAL / 11 GAP; đề xuất 33 BR mới: 10 cho PH1, 1 cho PH2, 12 cho PH4, 10 cho PH5; 10 điểm BA Lead cần quyết D-1…D-10 đã đẩy thành DEC-15…DEC-24 trong OID v0.17).
 
@@ -55,7 +56,7 @@
 | Hạng mục | Hiện hành (đã chốt) | Đề xuất thêm (chờ duyệt) |
 |---|---|---|
 | FUNC PH1 | **219** (FUNC tới -319, v0.7) | — (đã áp dụng FUNC-295…319) |
-| OID-TOSS-001 | **179 điểm** v0.17 (168 mở / 7 đang xử lý / 4 chốt) | — (đã áp dụng +18: 10 DEC + 2 SME + 6 KS từ KS 19/06 + đối chiếu) |
+| OID-TOSS-001 | **193 điểm** v0.19 (180 mở / 8 đang xử lý / 5 chốt) | — (đã áp dụng +14 KS-93…KS-106 từ KS 23/06 §IV; DEC-17 chuyển 🟡; KS-87/KS-90 cập nhật) |
 | Glossary | **v0.22** (MVT/MVA/DIV/LDM) | — |
 | BR đề xuất từ đối chiếu | — | **33 BR** (PH1: BR-193…207; PH2: BR-262; PH4: BR-460…465; PH5: BR-556…566) — chờ DEC-15 |
 | Wireframe wf-monitoring | v0.4 (§8 26 cột + §9 đối chiếu) | delta 18/06 (cảnh báo/ngưỡng) |
@@ -72,4 +73,4 @@
 
 ---
 
-*Cập nhật bởi: workflow survey-to-spec (phase Status) + BA. Lần cập nhật gần nhất: 2026-06-23.*
+*Cập nhật bởi: workflow survey-to-spec (phase Status) + BA. Lần cập nhật gần nhất: 2026-06-23 (hậu xử lý KS 23/06).*
