@@ -49,7 +49,8 @@ Khi cần tạo bản Word giao người từ ≥1 file `.md` (SRS, Wireframe, B
 `-SourceList` nhận `@<tệp manifest>` (mỗi dòng 1 path, `#` = chú thích) hoặc chuỗi path ngăn cách dấu phẩy. Cập nhật manifest khi thêm/bớt/đổi thứ tự file.
 
 **Tham số tùy chọn căn chỉnh đầu ra:**
-- `-NoToc` — bỏ mục lục (báo cáo khảo sát thường dùng; tài liệu dài như SRS để mặc định có TOC).
+- `-Formal` — **tài liệu yêu cầu (BRD/SRS)**: VẪN áp văn phong người (strip ASR + dấu vết nội bộ: ref OID `*(xem OID: KS-xx)*`, đường dẫn/tên file nội bộ, phụ lục "Tài liệu nguồn/Nguồn tài liệu đã đọc", dòng tóm tắt liệt kê ≥4 mã OID — rule e16–e20), nhưng **nới QC** mũi tên/tiếng Anh/backtick vì mã BR, ví dụ "VNA893 → A893", thuật ngữ kỹ thuật là **nội dung hợp lệ** của BRD. Giữ nội dung yêu cầu (mã BR, định nghĩa) nguyên vẹn.
+- `-NoToc` — bỏ mục lục (báo cáo khảo sát thường dùng; tài liệu dài như SRS/BRD để mặc định có TOC).
 - `-Font "<tên font>"` — đổi font chữ toàn cục (mặc định `Times New Roman` chuẩn QT02). Override cả `styles.xml` + `theme1.xml` lúc xuất, **giữ Consolas cho code**. Đổi font là lệch chuẩn QT02 — cần BA Lead chấp nhận.
 - `-FontSize <pt>` — đổi cỡ chữ body trong docDefaults (mặc định 0 = giữ 12pt template).
 - `-TitleSize <pt>` / `-TitleAlign "<center|left|right>"` — chỉnh cỡ/căn lề **tiêu đề tài liệu** (style "Title" sẵn có trong template; mặc định 28pt căn giữa). **Tiêu đề render qua title block của pandoc** (`--metadata title`), KHÔNG còn là Heading 1 — dòng `# ` đầu tiên trong nguồn bị bỏ tự động để tránh tiêu đề lặp. Phụ đề là dòng in nghiêng ngay dưới.

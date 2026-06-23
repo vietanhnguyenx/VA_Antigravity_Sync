@@ -22,6 +22,7 @@ param(
   [Parameter(Mandatory=$true)][string]$Version,
   [int]$TocDepth = 3,
   [switch]$NoToc,
+  [switch]$Formal,
   [string]$Font = "Times New Roman",
   [int]$FontSize = 0,
   [int]$TitleSize = 0,
@@ -157,6 +158,7 @@ $qc=[ordered]@{
   'FONT = Times New Roman only (+Consolas code)' = (($theme -match 'minorFont[\s\S]*?Times New Roman') -and (([regex]'Aptos|Calibri|Cambria').Matches($styles+$theme).Count -eq 0) -and (-not $badFonts))
   'XML well-formed'                  = $true
 }
+if($Formal){ foreach($k in @($qc.Keys)){ if($k -match 'arrow in prose|non-technical EN|residual backtick'){ $qc.Remove($k) } } }   # tài liệu yêu cầu: chỉ nới QC mũi tên/tiếng Anh/backtick (mã BR, ví dụ "VNA893 → A893" là nội dung hợp lệ); VẪN giữ QC gỡ OID/nội bộ/ASR
 foreach($p in 'word/document.xml','word/header1.xml','word/footer1.xml','[Content_Types].xml'){ try{ [xml](Get-Part $z $p) | Out-Null }catch{ $qc['XML well-formed']=$false } }
 $z.Dispose()
 Write-Host ""
