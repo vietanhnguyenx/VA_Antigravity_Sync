@@ -11,6 +11,7 @@
 | File | Dòng | Mô tả |
 |---|---|---|
 | `SO-THEO-DOI-DIEM-CHOT-v0.1.md` | 203 | Sổ theo dõi điểm cần chốt & câu hỏi mở (OID) — cập nhật sau mỗi buổi họp |
+| `GOI-QUYET-DINH-2026-06-23.md` | 60 | Gói quyết định ưu tiên trình BA Lead (từ đối chiếu KS↔BRD) — chọn các DEC gating tích hợp + 🔴 rủi ro, kèm câu hỏi soạn sẵn gửi VNA (DEC-16) |
 | `SOP-BAO-CAO-KHAO-SAT-v0.1.md` | 77 | SOP lập báo cáo khảo sát Discovery — trỏ từ skill `survey-report` |
 | `SOP-GHI-CHEP-DU-AN-v0.1.md` | 171 | SOP ghi chép: Markdown phân lớp, Cornell ghi meeting, Mermaid luồng nghiệp vụ |
 | `SOP-THAM-CHIEU-DOMAIN-KNOWLEDGE-v0.1.md` | 54 | Vòng lặp tra KB đúng điểm, không đọc nền; cập nhật dần khi có mẹo mới |

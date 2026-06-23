@@ -13,6 +13,13 @@
 | `BAO-CAO-KHAO-SAT-15062026-v0.1.md` | 173 | 15/06/2026 — Màn hình Flight Dispatch & quy trình OFP Release (v0.2, A-CDM / cảnh báo màu / phân quyền) |
 | `BAO-CAO-KHAO-SAT-17062026-v0.3.md` | 334 | 17/06/2026 — Quản lý Tàu bay, MEL/CDL & Tích hợp AMOS (v0.3, phủ trọn buổi: Master MEL / MEL Active / cảnh báo điều phái / Lido Import file / khảo sát DB AMOS + Aircraft list đồng bộ OPS++ / AOG-MNT Schedule / AOG-MNT Code / Performance Factor) |
 | `BAO-CAO-KHAO-SAT-18062026-v0.1.md` | 180 | 18/06/2026 — CLC & Điều phái (v0.1): màn Monitoring/bộ lọc, nút Dispatch Release đa điều kiện, mô hình cảnh báo 2 mức, tải trọng ZFW/DAO (FOEM), Fly Doc/EDTO, MEL 3 lớp, ATC FPL, minima sân bay, matching PIC, tích hợp Adapter Lido |
+| `BAO-CAO-KHAO-SAT-19062026-v0.1.md` | 173 | 19/06/2026 — Tích hợp TOSS ↔ NetLine/OPS++ (v0.1): danh mục 24 luồng inbound/outbound, phương thức SFTP + cấu trúc thư mục Temp/Pickup/Archive, VPN, ISB + data duplicate, mốc 24/06 (cấu hình VPN) & 01/07 (hoàn thành SFTP), lộ trình go-live OPS++ + cutover ~03/2027. |
+
+## Phân tích đối chiếu
+
+| File | Nội dung |
+|---|---|
+| `DOI-CHIEU-KS-BRD-1719-2026-06-23.md` | Đối chiếu (gap analysis) 3 báo cáo khảo sát 17/06+18/06+19/06 với BRD v0.12 (PH1 v0.7, PH2 v0.6, PH4 v0.5, PH5 v0.5). 43 chủ đề đối chiếu: 12 COVERED / 20 PARTIAL / 11 GAP. Đối chiếu chi tiết 24 luồng OPS++ vs BR-528/530. §3 đề xuất 30 BR mới (chỉ đề xuất, không sửa BRD — §0). §4 nêu 10 điểm cần BA Lead quyết. |
 
 ## Đầu ra workflow (đề xuất — chờ duyệt)
 

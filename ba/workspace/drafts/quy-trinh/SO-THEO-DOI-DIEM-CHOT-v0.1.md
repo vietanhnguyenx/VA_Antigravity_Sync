@@ -1,8 +1,8 @@
 ﻿---
 project: "TOSS — Hệ thống Điều hành Khai thác Hãng Hàng không"
 author: "BA Lead"
-version: "0.15"
-date: "2026-06-17"
+version: "0.17"
+date: "2026-06-23"
 status: "Draft"
 document_type: "Sổ theo dõi Điểm cần chốt & Câu hỏi mở (Open Items & Decisions Register)"
 document_id: "OID-TOSS-001"
@@ -35,6 +35,20 @@ document_id: "OID-TOSS-001"
 | DEC-08 | **Cơ chế lưu vết cảnh báo đã từng phát sinh** — khi điều phái chưa thao tác nhưng CLC gửi điện cập nhật làm dữ liệu khớp lại: có lưu lịch sử "đã từng cảnh báo" để theo dõi hay tự động chuyển xanh là đủ? | KS 18/06 sáng 37:31–38:10 | BA Lead + điều phái | 🔴 Mở | |
 | DEC-09 | 🔴 **Vị trí tab "Ngưỡng Payload" và "Ngưỡng DAO"** — đặt trong phân hệ Quản lý chặng bay (PH4) theo lời CLC, hay phân hệ Quản trị hệ thống (PH5) vì là tham số cấu hình? | KS 18/06 sáng 45:02–53:15 | BA Lead + workshop danh mục | 🔴 Mở | |
 | DEC-10 | **Vị trí tab "MEL/CDL theo tàu"** trong phân hệ Quản lý tàu bay — xác nhận phân hệ chứa và quan hệ với màn Monitoring (theo chuyến). | KS 18/06 chiều 50:38–51:21 | BA Lead + workshop danh mục | 🔴 Mở | |
+| DEC-11 | **BR cha cho phân quyền sửa Minima sân bay** — điều phái sửa trên giao diện điều phái, FOE ban hành ban đầu không sửa; cần xác định BR cha (chưa nằm trong BR-101…150) và đối chiếu BRD. | `PHAN-RA-BRD-PH1-v0.7 §2.52.9` (FUNC-313); KS 18/06 chiều 01:22:43–01:23:32 | BA Lead + đối chiếu BRD | 🔴 Mở | |
+| DEC-12 | **BR cha cho cơ chế Dispatch Release** (FUNC-315/316) — bật/tắt nút release đa điều kiện + khôi phục trạng thái; xác định BR cha (chưa nằm trong BR-101…150) và đối chiếu BRD. Tập con cảnh báo chặn (KS-79) là phạm vi nghiệp vụ, không thay thế quyết định BR cha. | `PHAN-RA-BRD-PH1-v0.7 §2.52.11`; KS 18/06 sáng 02:06–02:28; KS 18/06 chiều 01:14:34–01:15:31 | BA Lead + đối chiếu BRD | 🔴 Mở | |
+| DEC-13 | **BR cha cho màn Flight Plan dạng danh sách** (FUNC-317) — màn song song với Monitoring, dùng chung dữ liệu nhưng khác mục đích (tra cứu + thống kê OFP); xác định BR cha (chưa nằm trong BR-101…150) và đối chiếu BRD. | `PHAN-RA-BRD-PH1-v0.7 §2.52.12`; KS 18/06 chiều 21:20–23:46 | BA Lead + đối chiếu BRD | 🔴 Mở | |
+| DEC-14 | **BR cha + thứ tự ưu tiên nguồn Actual Fuel** (FUNC-318) — ACARS > QAR + cho phép tải tài liệu thủ công khi luồng Lido/AMOS lỗi; trật tự ưu tiên cần đối chiếu sheet-04 §310 TOSS-228 (cờ inline `[ưu tiên nguồn chờ — Q8]`); xác định BR cha (BR-118 hay BR mới). | `PHAN-RA-BRD-PH1-v0.7 §2.52.12`; KS 18/06 chiều 01:27:43–01:30:23; YCKT sheet-04 §310 TOSS-228 | BA Lead + đối chiếu BRD | 🔴 Mở | |
+| DEC-15 | **Phạm vi BR cho 11 GAP nghiêm trọng trong 24 luồng OPS++** — bổ sung BR atomic cho từng luồng (đề xuất BR-557…566) hay giữ ở mức data contract chung BR-528a/530 và đẩy chi tiết sang SRS/Tài liệu tích hợp. | DOI-CHIEU-KS-BRD-1719 §4 (D-1); §3.B (28 luồng inbound+outbound, 11 GAP/PARTIAL nghiêm trọng) | BA Lead | 🔴 Mở | |
+| DEC-16 | 🔴 **Mâu thuẫn nguồn cấp MEL/CDL cho OPS++** — (i) Báo cáo 17/06 chốt TOSS là hub forward AMOS → OPS++ cho MEL/CDL; (ii) bảng tích hợp (pull 23/06) ghi MEL Item và Ground Event là kết nối trực tiếp AMOS ↔ NetOps++, không qua TOSS. Cần BA Lead chốt với VNA. | DOI-CHIEU-KS-BRD-1719 §4 (D-2); KS 17/06 §II.1, §III.1; bảng tích hợp dòng 20–21 | BA Lead + VNA | 🔴 Mở (rủi ro) | |
+| DEC-17 | **Phạm vi "xử lý dữ liệu nội bộ TOSS sau khi nhận từ OPS++"** — VNA tuyên bố không thuộc scope dự án tích hợp NetLine; cần BA Lead chốt: phần xử lý này thuộc phạm vi BRD TOSS (cần BR) hay tách dự án riêng. | DOI-CHIEU-KS-BRD-1719 §4 (D-3); KS 19/06 §III.14, §IV-9 | BA Lead + VNA (họp tổng kết giai đoạn) | 🔴 Mở | |
+| DEC-18 | **Hạ ưu tiên BR-127 từ Could → Must** — BR-127 (cảnh báo "đã filed ATC FPL hay chưa") hiện ở Could; KS 18/06 §III.14 yêu cầu cảnh báo 5 thành phần ATC FPL ngay khi có lệch — mức nghiệp vụ Must. Cần BA Lead review lại ưu tiên. | DOI-CHIEU-KS-BRD-1719 §4 (D-4); KS 18/06 §III.14 | BA Lead | 🔴 Mở | |
+| DEC-19 | **Khung 2 mức thời gian thống nhất vs khung OFP 3 mức (210/75/60 và 270/90/75)** tại BR-163 — chọn (a) giữ song song hai khung, (b) thống nhất khung 2 mức cho tất cả, hay (c) khung 3 mức cho OFP + khung 2 mức cho các nhóm còn lại. | DOI-CHIEU-KS-BRD-1719 §4 (D-5); BR-163; KS 18/06 §III.5 | BA Lead | 🔴 Mở | |
+| DEC-20 | **Cutover NetLine cũ → OPS++ năm chính xác** — KS 19/06 ghi "khoảng tháng 3" nhưng năm chưa rõ; ước tính 03/2027. Cần BA Lead xác nhận với anh Nam (VNA) để chốt mốc trong BRD/roadmap. (Đồng thời là §IV-7 báo cáo 19/06.) | DOI-CHIEU-KS-BRD-1719 §4 (D-6); KS 19/06 §III.13, §IV-7 | BA Lead + anh Nam (VNA) | 🔴 Mở | |
+| DEC-21 | **Năm nhóm cố định AOG/MNT Code (AOC/Định kỳ/Line check kỹ thuật/Bảo quản/Standby) trong source code** vs khả năng mở rộng — KS 17/06 §III.24 chốt 5 nhóm cứng; cần BA Lead xác nhận có chấp nhận dài hạn hay cần codeset mở rộng được. | DOI-CHIEU-KS-BRD-1719 §4 (D-7); KS 17/06 §II.8, §III.23, §III.24 | BA Lead + VNA | 🔴 Mở | |
+| DEC-22 | **Quy ước đặt tên file Plotting chart / Icing chart** — KS 18/06 §IV-5 để mở: chuỗi "plotting"/"icing" ở vị trí nào, phân biệt hoa thường? Ảnh hưởng BR-262 đề xuất. | DOI-CHIEU-KS-BRD-1719 §4 (D-8); KS 18/06 §III.9, §IV-5 | BA Lead + workshop điều phái | 🔴 Mở (trùng KS-80 — cần đồng bộ hoặc đóng KS-80) | |
+| DEC-23 | **Phạm vi tham gia của ASM/ACH/SSIM/SITA trong các BR PH5** — BR-528a hiện gộp "Netline, SSIM/ASM/SSM" làm một; bảng tích hợp 23/06 cho thấy ASM (Đã có) và ACH (Missing) là outbound qua TOSS riêng biệt với SSIM (inbound qua TOSS). Cần BA Lead quyết tách BR-528a thành các BR atomic ASM/ACH/SSIM riêng (đề xuất BR-566). | DOI-CHIEU-KS-BRD-1719 §4 (D-9); bảng tích hợp Inbound dòng 6 + Outbound dòng 3–4 | BA Lead | 🔴 Mở | |
+| DEC-24 | **BR cho cấu trúc thư mục SFTP Temp/Pickup/Archive** là BR functional hay NFR/kỹ thuật — Đề xuất BR-560 ở §3.B; tính chất kỹ thuật mạnh — có thể chỉ cần ghi vào tài liệu thiết kế tích hợp thay vì BRD. BA Lead quyết mức tài liệu phù hợp. | DOI-CHIEU-KS-BRD-1719 §4 (D-10); KS 19/06 §III.6 | BA Lead | 🔴 Mở | |
 
 ## B. Thuật ngữ & hệ thống cần SME xác nhận (SME)
 
@@ -91,6 +105,8 @@ document_id: "OID-TOSS-001"
 | SME-49 | **Enum LEG STATE** màn Flight Dispatch (GRD/BRD/OUT/ENR/IN/ARR) — xác nhận danh sách đầy đủ, định nghĩa từng trạng thái và quy tắc chuyển (theo mốc ACARS OUT/OFF/ON/IN). Sheet ghi "tạm thời" | wf-monitoring §8-7; Function list "Màn hình Flight Dispatch" | SME điều phái VNA | 🔴 Mở | |
 | SME-50 | **Cấu trúc 5 thành phần trong file ATC FPL** dùng cho thuật toán so khớp và làm nổi cập nhật một phần — từng thành phần là gì, quy tắc bóc tách. | KS 18/06 chiều 30:48–31:18 | SME điều phái + SME ATC | 🔴 Mở | |
 | SME-51 | **Tên đầy đủ + vai trò của FOEM (Flight Ops Engineering)** — phân biệt với FOE; cấu trúc bảng DOW cấp ra; tần suất cập nhật. | KS 18/06 sáng 46:11–47:21 | SME khai thác | 🔴 Mở | |
+| SME-52 | **Hệ thống "Schedule Manager"** sinh tệp lịch bay 3 lần/ngày — tên đầy đủ chính xác (bản ghi 19/06 nghe chưa rõ), vai trò trong luồng SSIM/ASM, quan hệ với Sabre. | KS 19/06 §IV-5 | Bạn An (VNA) | 🔴 Mở | |
+| SME-53 | **Bốn nhóm thông tin hành khách từ Amadeus PSS** — số thứ tự chính xác trong bảng làm việc chung (bản ghi nhắc các số "10, 11, 7, 8, 9" nhưng không thống nhất giữa "số 11/số 789" và "số 10/số 5"). | KS 19/06 §IV-8 | Đối chiếu với bảng làm việc của bạn An | 🔴 Mở | |
 
 ## C. Vấn đề nghiệp vụ cần làm rõ qua khảo sát (KS)
 
@@ -182,6 +198,12 @@ document_id: "OID-TOSS-001"
 | KS-84 | **Quy tắc cảnh báo route ATC khi thêm điểm KÈM đổi fly level** — cảnh báo theo điểm, theo fly level, hay cả hai. | KS 18/06 chiều 01:17:37–01:18:01 | Workshop điều phái | 🔴 Mở | |
 | KS-85 | **Mô hình hai mức 75′/60′ và 90′/75′ áp cho nhóm Tổ bay** — xác nhận có ngoại lệ cho Crew Download/Crew CHG không (18/06 nói "áp dụng chung" chưa demo case). | KS 18/06 sáng 42:40–43:03 | Workshop điều phái | 🔴 Mở | |
 | KS-86 | **Cơ chế kích hoạt OFP rỗng tổ bay** — tần suất AVES lỗi, nhật ký log, có thông báo riêng cho ADM/IT không. | KS 18/06 chiều 01:01:13–01:04:39 | SME tích hợp AVES | 🔴 Mở | |
+| KS-87 | **Danh mục đầy đủ + mã hoá từng luồng trong 17 inbound + 2 outbound** kèm tên hệ thống nguồn, loại dữ liệu, mẫu điện đại diện — buổi 19/06 chỉ liệt kê các nhóm chính, chưa đủ triển khai. | KS 19/06 §IV-1 | Bạn An (VNA) cung cấp bảng Excel hoàn chỉnh trước thứ ba 24/06 | 🟡 Đang xử lý | **23/06: Bảng "Thông tin tích hợp" (Google Sheet live, pull 23/06) đã cung cấp 24 luồng inbound/outbound kèm nguồn, phương thức, tần suất, trạng thái — phủ phần lớn. Một số ô còn "Làm rõ" (thời điểm gửi, tần suất nhiều luồng) → còn mở một phần.** |
+| KS-88 | **Định dạng dữ liệu Lufthansa Systems yêu cầu cho từng luồng** (kể cả mẫu điện FMM mà TOSS phải tự sinh) — cần định dạng chuẩn để TOSS sinh đúng tệp và truyền qua SFTP. | KS 19/06 §IV-2 | VNA làm việc với LHS, gửi tài liệu định dạng cho Viettel | 🔴 Mở | |
+| KS-89 | **Cấu trúc thư mục chuẩn (folder structure) cho từng đầu dữ liệu** kèm quy tắc đặt tên thư mục, quy tắc đặt tên tệp, mã hoá ký tự — tiền đề cấu hình máy chủ SFTP. | KS 19/06 §IV-3, §III.6 | Lấy tài liệu kiến nghị của NetOps | 🔴 Mở | |
+| KS-90 | **Mốc thời gian gửi và đồng bộ dữ liệu cho từng luồng inbound/outbound**, kèm thời gian lưu trữ trên SFTP và thời điểm xoá tệp — quyết định kiến trúc lưu trữ và lịch chạy tác vụ TOSS. | KS 19/06 §IV-4 | VNA làm việc tiếp với LHS | 🟡 Đang xử lý | **23/06: bảng tích hợp có cột Frequency một phần; nhiều ô vẫn "Làm rõ".** |
+| KS-91 | **Phương án outbound cuối cùng từ OPS++** qua ISB hay phối hợp ISB cùng data duplicate — ảnh hưởng kiến trúc thu nạp dữ liệu phía TOSS; VNA chưa chốt. | KS 19/06 §IV-6, §II.2 | VNA chốt sau khi làm rõ với LHS | 🔴 Mở | (liên quan DEC-15) |
+| KS-92 | **Khoảng trống tích hợp 11/24 luồng OPS++ chưa có BR atomic** — đặc biệt FMM (Fuel Monitoring Message) & Fuel Report do TOSS tự sinh = GAP hoàn toàn; MVT/MVA/LDM/DIV outbound/Crew connection/ASM/ACH/NOTAM outbound/Flight data ACDM outbound đều chỉ có BR-528a/530 chung. | DOI-CHIEU-KS-BRD-1719 §3.B (đề xuất BR-557…566); bảng tích hợp 24 luồng pull 23/06 | BA Lead duyệt (DEC-15) + workshop tích hợp | 🔴 Mở | |
 
 ## D. Tham số/ngưỡng & mô hình dữ liệu chưa có nguồn (DL)
 
@@ -227,12 +249,12 @@ document_id: "OID-TOSS-001"
 
 | Nhóm | Tổng | 🔴 Mở | 🟡 Đang xử lý | 🟢 Đã chốt |
 |---|---|---|---|---|
-| A. Quyết định BA Lead (QĐ) | 11 | 11 | 0 | 0 |
-| B. Thuật ngữ/hệ thống (SME) | 51 | 46 | 1 | 4 (gồm 2 "Đã gộp" + 2 "Đã chốt") |
-| C. Nghiệp vụ-khảo sát (KS) | 86 | 83 | 3 | 0 |
+| A. Quyết định BA Lead (QĐ) | 25 | 25 | 0 | 0 |
+| B. Thuật ngữ/hệ thống (SME) | 53 | 48 | 1 | 4 (gồm 2 "Đã gộp" + 2 "Đã chốt") |
+| C. Nghiệp vụ-khảo sát (KS) | 92 | 87 | 5 | 0 |
 | D. Tham số/dữ liệu (DL) | 5 | 5 | 0 | 0 |
 | E. Hành chính/hạ tầng (HC) | 4 | 3 | 1 | 0 |
-| **Tổng** | **157** | **148** | **5** | **4** |
+| **Tổng** | **179** | **168** | **7** | **4** |
 
 > Cập nhật sau khi regenerate 5 báo cáo khảo sát (rà 2026-06-16): +4 SME (SME-38…41: pgepoid, Vasco+HT 30-31, take-off/wet weight, "quả đấy dầu"/"anh Ngọt") và +11 KS (KS-44…54: SITA điện văn bổ sung, môi trường kiểm thử, BackPACK RPA, FMS thay thế, 4 KPI OTP/OSP, retention theo loại tài liệu, luồng thủ công ANABS, định dạng dữ liệu VIP, multi-session, lịch sử OFP sát giờ, cảnh báo tab Flight Release "bên ngoài"). SME-09 cập nhật chú thích ASR "ANABS/ANABIOS". Tổng 109 điểm sau 2026-06-16 (103 Mở / 5 Đang xử lý / 1 Đã chốt).
 >
@@ -271,6 +293,10 @@ document_id: "OID-TOSS-001"
 - Glossary: `ba/workspace/input/domain-knowledge/toss-glossary-v0.1.md`
 
 ---
+
+*OID-TOSS-001 v0.17 — 2026-06-23. Rà sau buổi KS 19/06 (tích hợp TOSS↔OPS++) + đối chiếu KS↔BRD (file `DOI-CHIEU-KS-BRD-1719-2026-06-23.md`): **+10 DEC (DEC-15…DEC-24)** ánh xạ 10 điểm BA Lead cần quyết của §4 đối chiếu — DEC-15 phạm vi BR cho 11 GAP nghiêm trọng; **DEC-16 🔴 rủi ro** (mâu thuẫn nguồn cấp MEL/CDL: 17/06 chốt TOSS làm hub vs bảng tích hợp 23/06 ghi trực tiếp AMOS–NetOps++); DEC-17 phạm vi xử lý nội bộ TOSS sau OPS++; DEC-18 hạ ưu tiên BR-127 Could→Must; DEC-19 khung 2 mức vs 3 mức cho OFP; DEC-20 năm cutover (trùng nhóm IV-7 19/06); DEC-21 năm nhóm cố định AOG/MNT Code; DEC-22 quy ước tên file Plotting/Icing (trùng KS-80); DEC-23 tách BR-528a thành ASM/ACH/SSIM atomic; DEC-24 SFTP thư mục functional hay NFR. **+2 SME (SME-52, SME-53)** — SME-52 "Schedule Manager" (IV-5 19/06); SME-53 4 nhóm số thứ tự Amadeus PSS (IV-8 19/06). **+6 KS (KS-87…KS-92)** — KS-87 🟡 danh mục 24 luồng (đã có dữ liệu một phần từ bảng tích hợp 23/06, còn ô "Làm rõ"); KS-88 định dạng LHS từng luồng (IV-2); KS-89 cấu trúc thư mục SFTP (IV-3, đồng bộ DEC-24); KS-90 🟡 mốc gửi/đồng bộ (IV-4 — có một phần từ bảng tích hợp); KS-91 phương án outbound ISB/duplicate (IV-6, liên quan DEC-15); KS-92 khoảng trống tích hợp 11/24 luồng chưa có BR atomic (đặc biệt FMM & Fuel Report TOSS tự sinh = GAP hoàn toàn). Ghi chú: IV-7 (năm cutover) và IV-9 (ranh giới scope TOSS nội bộ) trùng DEC-20/DEC-17 — không tạo entry mới; IV-1/IV-4 đã có dữ liệu một phần từ bảng tích hợp live nên gắn 🟡 + ghi chú thay vì 🔴. Tổng 179 điểm (168 Mở / 7 Đang xử lý / 4 Đã chốt). Nguồn: `DOI-CHIEU-KS-BRD-1719-2026-06-23.md`, `BAO-CAO-KHAO-SAT-19062026-v0.1.md` §IV, `TOSS-Thong-tin-tich-hop-OpsPlus.extracted.md`.*
+
+*OID-TOSS-001 v0.16 — 2026-06-22. Ghi nhận tồn đọng sau khi hoàn tất PHAN-RA-BRD-PH1 v0.7 (bổ sung 25 FUNC-295…319 từ KS 18/06). Thêm 4 DEC mới về BR cha chưa nằm trong BR-101…150 (cần đối chiếu BRD — thẩm quyền BA Lead): **DEC-11** phân quyền sửa Minima sân bay (FUNC-313); **DEC-12** cơ chế Dispatch Release (FUNC-315/316); **DEC-13** màn Flight Plan dạng danh sách (FUNC-317); **DEC-14** thứ tự ưu tiên nguồn Actual Fuel (FUNC-318, gắn cờ `[Q8]` trong FUNC). Ghi chú: DEC-09 (tab Ngưỡng Payload/DAO — FUNC-300/301) và DEC-10 (tab MEL/CDL theo tàu — FUNC-309) đã có từ v0.15 (rà 22/06). Các nhánh KS phụ trợ đã có từ trước: KS-78/79/82/83 (ngưỡng Pilot AXA, tập cảnh báo chặn release, đặc tả màn Flight Plan list, phân mức DAO), SME-49/50/51 (LEG STATE, 5 thành phần ATC FPL, FOEM), DEC-07 (Adapter Lido 20 ký tự), DEC-08 (lưu vết cảnh báo). RTM chi tiết FUNC-295…319 chưa hợp nhất vào §3 — chờ BA Lead chốt vị trí phân hệ (DEC-09/10/11/12/13/14) rồi mới hợp nhất. Tổng 161 điểm (152 Mở / 5 Đang xử lý / 4 Đã chốt). Nguồn: `ba/workspace/drafts/srs/03-dac-ta-chuc-nang/PHAN-RA-BRD-PH1-thong-tin-dieu-hanh-chuyen-bay-v0.7.md` §2.52, §3 (dòng tổng kết "Bổ sung v0.7").*
 
 *OID-TOSS-001 v0.14 — 2026-06-17. Ghi nhận điểm treo **G2** từ VALIDATION-BRD-v0.10 (CONDITIONAL PASS): (a) cập nhật **DEC-06** — bổ sung chỉ tiêu Time-bound cho OBJ-001/002/008/009 (workshop SME VNA), trạng thái → "🔴 Mở (chặn freeze BRD PH1/PH3/PH5)"; (b) cập nhật **KS-48** — bổ sung "+ ngưỡng cảnh báo cụ thể (OBJ-003)", trạng thái → "🔴 Mở (chặn freeze BRD PH1/PH3/PH5)"; (c) **G2-FREEZE mới** trong nhóm A — entry tổng hợp điểm treo freeze BRD PH1/PH3/PH5 chờ workshop SME VNA chốt DEC-06+KS-48; sau workshop bump khung v0.12; PH2+PH4 không chờ. Tổng 113 điểm (105 Mở / 5 Đang xử lý / 3 Đã chốt).*
 
