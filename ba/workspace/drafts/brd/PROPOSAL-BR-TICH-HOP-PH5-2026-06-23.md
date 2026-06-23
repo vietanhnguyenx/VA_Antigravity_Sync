@@ -5,7 +5,7 @@ version: "0.1"
 date: "2026-06-23"
 status: "Draft — Proposal"
 document_type: "Đề xuất BR tích hợp PH5 (chờ DEC-15)"
-parent: "BRD-TOSS-PH5-quan-tri-he-thong-v0.5.md"
+parent: "BRD-TOSS-PH5-quan-tri-he-thong-v0.6.md"
 ---
 
 # Đề xuất BR atomic cho tích hợp OPS++ — Phân hệ PH5 (chờ DEC-15)
@@ -37,7 +37,7 @@ parent: "BRD-TOSS-PH5-quan-tri-he-thong-v0.5.md"
 
 ### 1.3. Dải mã BR đề xuất
 
-- Mã hiện hành cao nhất trong PH5 v0.5: **BR-555** (theo `BRD-TOSS-PH5-quan-tri-he-thong-v0.5.md` + INDEX).
+- Mã hiện hành cao nhất trong PH5 v0.5: **BR-555** (theo `BRD-TOSS-PH5-quan-tri-he-thong-v0.6.md` + INDEX).
 - Dải đề xuất: **BR-556 → BR-572 (17 BR mới)** — không trùng BR đã có.
 - Phương án DEC-15 = "đưa vào BRD": các BR dưới đây sẽ được chèn vào nhóm E (Tích hợp hệ thống ngoài & API Gateway) trong PH5, ngay sau BR-528a…h / BR-530a…g.
 
@@ -210,7 +210,7 @@ Các BR dưới đây áp dụng cho **toàn bộ 19 luồng "Thông qua TOSS"**
 - Báo cáo Khảo sát 19/06: `ba/workspace/drafts/phan-tich/02-khao-sat/BAO-CAO-KHAO-SAT-19062026-v0.1.md`
 - Báo cáo Khảo sát 23/06: `ba/workspace/drafts/phan-tich/02-khao-sat/BAO-CAO-KHAO-SAT-23062026-v0.1.md` (§II.1–§II.12)
 - Bảng "Thông tin tích hợp" v77 (pull 23/06/2026): `ba/workspace/drafts/phan-tich/01-nguon/TOSS-Thong-tin-tich-hop-OpsPlus.extracted.md`
-- BRD PH5 v0.5 (file gốc, KHÔNG sửa): `ba/workspace/drafts/brd/BRD-TOSS-PH5-quan-tri-he-thong-v0.5.md`
+- BRD PH5 v0.5 (file gốc, KHÔNG sửa): `ba/workspace/drafts/brd/BRD-TOSS-PH5-quan-tri-he-thong-v0.6.md`
 - INDEX BRD: `ba/workspace/drafts/brd/INDEX.md`
 
 ---
