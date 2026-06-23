@@ -59,6 +59,12 @@ date: "2026-06-15"
 |---|---|---|
 | [iata-definitions-links.md](iata-definitions/iata-definitions-links.md) | 18 tài liệu định nghĩa IATA | PDF đã tải: `iata-definitions/_pdf/` |
 
+### sita-messaging — Điện văn chuyển động tàu bay SITA / Type B (có PDF local)
+
+| Tài liệu | Chủ đề | Ghi chú |
+|---|---|---|
+| [sita-messaging-links.md](sita-messaging/sita-messaging-links.md) | 2 tài liệu MVT/MVA/DIV + Type B (OAG, IATA whitepaper) | Làm rõ điện SITA khảo sát 19/06 (MVT, MVA, divert); PDF + `.extracted.md` trong `sita-messaging/` |
+
 ### vnaocc-proposal-decomposed — Đề xuất kỹ thuật TOSS (VNA phân rã)
 
 | Folder | Chủ đề | Ghi chú |
