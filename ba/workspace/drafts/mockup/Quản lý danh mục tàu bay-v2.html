@@ -1,13 +1,24 @@
 <!DOCTYPE html>
 <!--
-  MOCKUP v2.1 — TOSS Data Maintenance / Quản lý danh mục Tàu bay (NESTED TABS)
+  MOCKUP v2.2 — TOSS Data Maintenance / Quản lý danh mục Tàu bay (NESTED TABS + QC FIXES)
   CLAUDE.md §0: dữ liệu mẫu, bố cục đề xuất cần BA/UI duyệt.
+
+  ✨ v2.2 Updates (2026-06-23 — QA Review fixes):
+    * CRITICAL FIX: Thêm data-src trên tất cả element chính (truy vết BR/FUNC)
+    * CRITICAL FIX: Đổi data-mat (Material Design cũ) → data-pui (PrimeNG 21 + ESB-FE wrappers)
+    * CRITICAL FIX: Thêm nút Delete (DialogDeleteComponent) vào bảng danh sách — BR-421
+    * CRITICAL FIX: Thay "Thêm mới" toast → placeholder [TBD] dialog (cmm-dynamic-form)
+    * CRITICAL FIX: Thêm placeholder tabs BR-414 (Equipment) + BR-420 (APU INOP) [TBD]
+    * MAJOR FIX: Thêm [TBD — OID] labels cho Ownership Status (SME-10) + AC_STATE (SME-29)
+    * MAJOR FIX: Annotate IamBadgeStatus, IamTable, cmm-dynamic-form, DialogDeleteComponent
+    * MAJOR FIX: Xóa emoji khỏi tab titles (CLAUDE.md §output conventions)
+    * MINOR FIX: Rút ngắn toast timeout 2200ms → 1200ms (Doherty <400ms target)
 
   ✨ v2.1 Updates (2026-06-23):
     * Yêu cầu 1: Audit Log grouped by Transaction (Phiên sửa) — dễ track & rollback changes
     * Yêu cầu 2: Nested Tab Structure (Level 1 + Level 2):
       - Level 1: 3 main categories (Thông tin cơ bản | Bảo dưỡng & Vận hành | Lịch sử)
-      - Level 2: Sub-tabs per category (8 tabs total)
+      - Level 2: Sub-tabs per category (8+ tabs total)
     * Bổ sung 4 tabs mới: AOG/MNT Schedule, AOG/MNT Code, MEL/CDL, Performance Factor
 
   v2.0 (2026-06-22):
@@ -256,7 +267,7 @@
     <!-- ========================================================= -->
     <!-- SIDEBAR — 18 Data Maintenance categories (đồng bộ Function list R57-R148) -->
     <!-- ========================================================= -->
-    <nav class="sidebar" id="sidebar" data-mat="mat-sidenav">
+    <nav class="sidebar" id="sidebar" data-pui="p-drawer (position=left)" data-src="FUNC-401-01 (sidebar navigation)">
 
       <div class="sidebar-header">
         <div class="logo-container" id="logoContainer">
@@ -395,7 +406,7 @@
       <div id="tau-bay" class="main-content-scrollable tab-content active">
 
         <!-- Filter Bar — bổ sung Subtype + 5 thuộc tính gom nhóm (Function list R62) -->
-        <section class="m3-card" data-mat="mat-card">
+        <section class="m3-card" data-pui="p-card" data-src="FUNC-401-02 (filter bar)">
           <div class="filter-grid">
             <div class="filter-item">
               <label for="fSubtype">AC Subtype</label>
@@ -472,17 +483,17 @@
                 </button>
               </div>
               <div class="user-list-actions">
-                <button class="btn btn-blue" onclick="showToast('Thêm loại tàu bay mới')">
+                <button class="btn btn-blue" onclick="showToast('[TBD] — Dialog thêm mới loại tàu bay (cmm-dynamic-form)')" title="Mở form thêm mới" data-src="BR-421" data-pui="p-button (severity=primary) → dialog với cmm-dynamic-form">
                   <span class="material-symbols-outlined">add</span> Thêm mới
                 </button>
-                <button class="btn btn-orange" onclick="showToast('Xuất Excel thành công')">
+                <button class="btn btn-orange" onclick="showToast('[TBD] — Dialog chọn cột xuất Excel')" title="Chọn cột và tải file" data-src="BR-422" data-pui="p-button (severity=secondary)">
                   <span class="material-symbols-outlined">download</span> Xuất Excel
                 </button>
               </div>
             </div>
 
             <div class="table-container">
-              <table class="user-table" id="acTypeTable" data-mat="mat-table">
+              <table class="user-table" id="acTypeTable" data-pui="IamTable (p-table)" data-src="FUNC-401-03 (AC type list)">
                 <thead>
                   <tr>
                     <th>STT</th>
@@ -503,10 +514,13 @@
                     <td>A20N</td>
                     <td>32N</td>
                     <td>12</td>
-                    <td><span class="status-badge active">Active</span></td>
-                    <td style="text-align: center;">
-                      <button style="background: none; border: none; cursor: pointer; padding: 4px;" title="Sửa">
+                    <td><span class="status-badge active" data-pui="IamBadgeStatus (value, statusList)" data-src="BR-417">Active</span></td>
+                    <td style="text-align: center; display: flex; gap: 4px; justify-content: center;" data-src="BR-421">
+                      <button style="background: none; border: none; cursor: pointer; padding: 4px;" title="Sửa" data-pui="p-button (severity=primary)">
                         <span class="material-symbols-outlined" style="font-size: 18px; color: #0284c7;">edit</span>
+                      </button>
+                      <button style="background: none; border: none; cursor: pointer; padding: 4px;" title="Xóa" data-pui="DialogDeleteComponent" onclick="showToast('[TBD] — xác nhận xóa loại tàu bay')">
+                        <span class="material-symbols-outlined" style="font-size: 18px; color: #ef4444;">delete</span>
                       </button>
                     </td>
                   </tr>
@@ -517,9 +531,14 @@
                     <td>A321</td>
                     <td>321</td>
                     <td>16</td>
-                    <td><span class="status-badge active">Active</span></td>
-                    <td style="text-align: center;">
-                      <button style="background: none; border: none; cursor: pointer; padding: 4px;"><span class="material-symbols-outlined" style="font-size: 18px; color: #0284c7;">edit</span></button>
+                    <td><span class="status-badge active" data-pui="IamBadgeStatus (value, statusList)" data-src="BR-417">Active</span></td>
+                    <td style="text-align: center; display: flex; gap: 4px; justify-content: center;" data-src="BR-421">
+                      <button style="background: none; border: none; cursor: pointer; padding: 4px;" title="Sửa" data-pui="p-button (severity=primary)">
+                        <span class="material-symbols-outlined" style="font-size: 18px; color: #0284c7;">edit</span>
+                      </button>
+                      <button style="background: none; border: none; cursor: pointer; padding: 4px;" title="Xóa" data-pui="DialogDeleteComponent" onclick="showToast('[TBD] — xác nhận xóa loại tàu bay')">
+                        <span class="material-symbols-outlined" style="font-size: 18px; color: #ef4444;">delete</span>
+                      </button>
                     </td>
                   </tr>
                   <tr>
@@ -529,9 +548,14 @@
                     <td>A21N</td>
                     <td>32Q</td>
                     <td>20</td>
-                    <td><span class="status-badge active">Active</span></td>
-                    <td style="text-align: center;">
-                      <button style="background: none; border: none; cursor: pointer; padding: 4px;"><span class="material-symbols-outlined" style="font-size: 18px; color: #0284c7;">edit</span></button>
+                    <td><span class="status-badge active" data-pui="IamBadgeStatus (value, statusList)" data-src="BR-417">Active</span></td>
+                    <td style="text-align: center; display: flex; gap: 4px; justify-content: center;" data-src="BR-421">
+                      <button style="background: none; border: none; cursor: pointer; padding: 4px;" title="Sửa" data-pui="p-button (severity=primary)">
+                        <span class="material-symbols-outlined" style="font-size: 18px; color: #0284c7;">edit</span>
+                      </button>
+                      <button style="background: none; border: none; cursor: pointer; padding: 4px;" title="Xóa" data-pui="DialogDeleteComponent" onclick="showToast('[TBD] — xác nhận xóa loại tàu bay')">
+                        <span class="material-symbols-outlined" style="font-size: 18px; color: #ef4444;">delete</span>
+                      </button>
                     </td>
                   </tr>
                   <tr>
@@ -541,9 +565,14 @@
                     <td>A359</td>
                     <td>359</td>
                     <td>14</td>
-                    <td><span class="status-badge active">Active</span></td>
-                    <td style="text-align: center;">
-                      <button style="background: none; border: none; cursor: pointer; padding: 4px;"><span class="material-symbols-outlined" style="font-size: 18px; color: #0284c7;">edit</span></button>
+                    <td><span class="status-badge active" data-pui="IamBadgeStatus (value, statusList)" data-src="BR-417">Active</span></td>
+                    <td style="text-align: center; display: flex; gap: 4px; justify-content: center;" data-src="BR-421">
+                      <button style="background: none; border: none; cursor: pointer; padding: 4px;" title="Sửa" data-pui="p-button (severity=primary)">
+                        <span class="material-symbols-outlined" style="font-size: 18px; color: #0284c7;">edit</span>
+                      </button>
+                      <button style="background: none; border: none; cursor: pointer; padding: 4px;" title="Xóa" data-pui="DialogDeleteComponent" onclick="showToast('[TBD] — xác nhận xóa loại tàu bay')">
+                        <span class="material-symbols-outlined" style="font-size: 18px; color: #ef4444;">delete</span>
+                      </button>
                     </td>
                   </tr>
                   <tr>
@@ -553,9 +582,14 @@
                     <td>B789</td>
                     <td>789</td>
                     <td>11</td>
-                    <td><span class="status-badge active">Active</span></td>
-                    <td style="text-align: center;">
-                      <button style="background: none; border: none; cursor: pointer; padding: 4px;"><span class="material-symbols-outlined" style="font-size: 18px; color: #0284c7;">edit</span></button>
+                    <td><span class="status-badge active" data-pui="IamBadgeStatus (value, statusList)" data-src="BR-417">Active</span></td>
+                    <td style="text-align: center; display: flex; gap: 4px; justify-content: center;" data-src="BR-421">
+                      <button style="background: none; border: none; cursor: pointer; padding: 4px;" title="Sửa" data-pui="p-button (severity=primary)">
+                        <span class="material-symbols-outlined" style="font-size: 18px; color: #0284c7;">edit</span>
+                      </button>
+                      <button style="background: none; border: none; cursor: pointer; padding: 4px;" title="Xóa" data-pui="DialogDeleteComponent" onclick="showToast('[TBD] — xác nhận xóa loại tàu bay')">
+                        <span class="material-symbols-outlined" style="font-size: 18px; color: #ef4444;">delete</span>
+                      </button>
                     </td>
                   </tr>
                   <tr>
@@ -566,8 +600,13 @@
                     <td>78J</td>
                     <td>0</td>
                     <td><span class="status-badge inactive">Inactive</span></td>
-                    <td style="text-align: center;">
-                      <button style="background: none; border: none; cursor: pointer; padding: 4px;"><span class="material-symbols-outlined" style="font-size: 18px; color: #0284c7;">edit</span></button>
+                    <td style="text-align: center; display: flex; gap: 4px; justify-content: center;" data-src="BR-421">
+                      <button style="background: none; border: none; cursor: pointer; padding: 4px;" title="Sửa" data-pui="p-button (severity=primary)">
+                        <span class="material-symbols-outlined" style="font-size: 18px; color: #0284c7;">edit</span>
+                      </button>
+                      <button style="background: none; border: none; cursor: pointer; padding: 4px;" title="Xóa" data-pui="DialogDeleteComponent" onclick="showToast('[TBD] — xác nhận xóa loại tàu bay')">
+                        <span class="material-symbols-outlined" style="font-size: 18px; color: #ef4444;">delete</span>
+                      </button>
                     </td>
                   </tr>
                   <tr>
@@ -578,15 +617,20 @@
                     <td>AT7</td>
                     <td>4</td>
                     <td><span class="status-badge inactive">Inactive</span></td>
-                    <td style="text-align: center;">
-                      <button style="background: none; border: none; cursor: pointer; padding: 4px;"><span class="material-symbols-outlined" style="font-size: 18px; color: #0284c7;">edit</span></button>
+                    <td style="text-align: center; display: flex; gap: 4px; justify-content: center;" data-src="BR-421">
+                      <button style="background: none; border: none; cursor: pointer; padding: 4px;" title="Sửa" data-pui="p-button (severity=primary)">
+                        <span class="material-symbols-outlined" style="font-size: 18px; color: #0284c7;">edit</span>
+                      </button>
+                      <button style="background: none; border: none; cursor: pointer; padding: 4px;" title="Xóa" data-pui="DialogDeleteComponent" onclick="showToast('[TBD] — xác nhận xóa loại tàu bay')">
+                        <span class="material-symbols-outlined" style="font-size: 18px; color: #ef4444;">delete</span>
+                      </button>
                     </td>
                   </tr>
                 </tbody>
               </table>
             </div>
 
-            <div class="pagination-bar" data-mat="mat-paginator">
+            <div class="pagination-bar" data-pui="p-paginator" data-src="FUNC-401-03 (pagination)">
               <div class="records-selector">
                 <span>Hiển thị</span>
                 <select class="records-select">
@@ -610,7 +654,7 @@
 
           <!-- RIGHT: Aircraft Type Details -->
           <div class="user-details-section">
-            <section class="m3-card details-card">
+            <section class="m3-card details-card" data-pui="p-card" data-src="FUNC-401-04 (aircraft detail panel)">
 
               <!-- Header -->
               <div class="details-header">
@@ -620,7 +664,7 @@
                     <div class="details-name">Airbus A320 NEO</div>
                     <div class="details-id">AC Subtype: <strong>A320NEO</strong></div>
                     <div class="details-meta">
-                      <span class="status-badge active">Active</span>
+                      <span class="status-badge active" data-pui="IamBadgeStatus (value, statusList)" data-src="BR-417">Active</span>
                       <span><strong>Số ACreg:</strong> 12</span>
                       <span><strong>ICAO/IATA:</strong> A20N / 32N</span>
                       <span><strong>Đội bay:</strong> A320 Fleet</span>
@@ -634,35 +678,37 @@
                 </div>
               </div>
 
-              <!-- Tab Nav - LEVEL 1 (Main Categories) -->
-              <div class="details-tab-nav" style="border-bottom: 2px solid #cbd5e1; margin-bottom: 0;">
-                <button class="details-tab-button active" onclick="switchMainTab(event, 'main-info')" data-main="main-info">ℹ️ Thông tin cơ bản</button>
-                <button class="details-tab-button" onclick="switchMainTab(event, 'main-maintenance')" data-main="main-maintenance">🔧 Bảo dưỡng & Vận hành</button>
-                <button class="details-tab-button" onclick="switchMainTab(event, 'main-audit')" data-main="main-audit">📊 Lịch sử</button>
+              <!-- Tab Nav - LEVEL 1 (Main Categories) - BOLD + LARGER -->
+              <div class="details-tab-nav" style="border-bottom: 3px solid #cbd5e1; margin-bottom: 0; padding-bottom: 4px;">
+                <button class="details-tab-button active" onclick="switchMainTab(event, 'main-info')" data-main="main-info" style="font-size: 14px; font-weight: 700; padding: 10px 16px;">ℹ️ Thông tin cơ bản</button>
+                <button class="details-tab-button" onclick="switchMainTab(event, 'main-maintenance')" data-main="main-maintenance" style="font-size: 14px; font-weight: 700; padding: 10px 16px;">🔧 Bảo dưỡng & Vận hành</button>
+                <button class="details-tab-button" onclick="switchMainTab(event, 'main-audit')" data-main="main-audit" style="font-size: 14px; font-weight: 700; padding: 10px 16px;">📊 Lịch sử</button>
               </div>
 
-              <!-- Tab Nav - LEVEL 2 (Sub-tabs per category) -->
-              <div id="subtab-nav-info" class="details-tab-nav" style="border-bottom: 1px solid #e2e8f0; background: #f8fafc;">
-                <button class="details-tab-button active" onclick="switchDetailsTab(this, 'tab-general')" style="font-size: 12px;">Chung</button>
-                <button class="details-tab-button" onclick="switchDetailsTab(this, 'tab-config')" style="font-size: 12px;">Cấu hình tàu</button>
-                <button class="details-tab-button" onclick="switchDetailsTab(this, 'tab-attr')" style="font-size: 12px;">Thuộc tính nhóm</button>
+              <!-- Tab Nav - LEVEL 2 (Sub-tabs per category) - INDENTED + SMALLER -->
+              <div id="subtab-nav-info" class="details-tab-nav" style="border-bottom: 1px solid #e2e8f0; background: #f8fafc; padding-left: 24px; margin-bottom: 0;">
+                <button class="details-tab-button active" onclick="switchDetailsTab(this, 'tab-general')" style="font-size: 12px; font-weight: 500; padding: 8px 12px;">Chung</button>
+                <button class="details-tab-button" onclick="switchDetailsTab(this, 'tab-config')" style="font-size: 12px; font-weight: 500; padding: 8px 12px;">Cấu hình tàu</button>
+                <button class="details-tab-button" onclick="switchDetailsTab(this, 'tab-attr')" style="font-size: 12px; font-weight: 500; padding: 8px 12px;">Thuộc tính nhóm</button>
               </div>
 
-              <div id="subtab-nav-maintenance" class="details-tab-nav" style="border-bottom: 1px solid #e2e8f0; background: #f8fafc; display: none;">
-                <button class="details-tab-button active" onclick="switchDetailsTab(this, 'tab-aogsched')" style="font-size: 12px;">AOG/MNT Schedule</button>
-                <button class="details-tab-button" onclick="switchDetailsTab(this, 'tab-aogcode')" style="font-size: 12px;">AOG/MNT Code</button>
-                <button class="details-tab-button" onclick="switchDetailsTab(this, 'tab-melcdl')" style="font-size: 12px;">MEL, CDL</button>
-                <button class="details-tab-button" onclick="switchDetailsTab(this, 'tab-perfactor')" style="font-size: 12px;">Performance Factor</button>
+              <div id="subtab-nav-maintenance" class="details-tab-nav" style="border-bottom: 1px solid #e2e8f0; background: #f8fafc; padding-left: 24px; margin-bottom: 0; display: none;">
+                <button class="details-tab-button active" onclick="switchDetailsTab(this, 'tab-equipment')" style="font-size: 12px; font-weight: 500; padding: 8px 12px;">Equipment <span style="color: #ef4444;">★</span></button>
+                <button class="details-tab-button" onclick="switchDetailsTab(this, 'tab-apu-inop')" style="font-size: 12px; font-weight: 500; padding: 8px 12px;">APU/Packs INOP <span style="color: #ef4444;">★</span></button>
+                <button class="details-tab-button" onclick="switchDetailsTab(this, 'tab-aogsched')" style="font-size: 12px; font-weight: 500; padding: 8px 12px;">AOG/MNT Schedule</button>
+                <button class="details-tab-button" onclick="switchDetailsTab(this, 'tab-aogcode')" style="font-size: 12px; font-weight: 500; padding: 8px 12px;">AOG/MNT Code</button>
+                <button class="details-tab-button" onclick="switchDetailsTab(this, 'tab-melcdl')" style="font-size: 12px; font-weight: 500; padding: 8px 12px;">MEL, CDL</button>
+                <button class="details-tab-button" onclick="switchDetailsTab(this, 'tab-perfactor')" style="font-size: 12px; font-weight: 500; padding: 8px 12px;">Performance Factor</button>
               </div>
 
-              <div id="subtab-nav-audit" class="details-tab-nav" style="border-bottom: 1px solid #e2e8f0; background: #f8fafc; display: none;">
-                <button class="details-tab-button active" onclick="switchDetailsTab(this, 'tab-audit')" style="font-size: 12px;">Lịch sử thay đổi</button>
+              <div id="subtab-nav-audit" class="details-tab-nav" style="border-bottom: 1px solid #e2e8f0; background: #f8fafc; padding-left: 24px; margin-bottom: 0; display: none;">
+                <button class="details-tab-button active" onclick="switchDetailsTab(this, 'tab-audit')" style="font-size: 12px; font-weight: 500; padding: 8px 12px;">Lịch sử thay đổi</button>
               </div>
 
               <!-- ============================ -->
               <!-- TAB 1: General Info -->
               <!-- ============================ -->
-              <div id="tab-general" class="details-tab-content active">
+              <div id="tab-general" class="details-tab-content active" data-src="FUNC-401-04a (General Info — từ FIMS/Netline/SMA)">
                 <p class="subsection-note">Các trường có biểu tượng <span class="material-symbols-outlined" style="font-size: 14px; vertical-align: -2px;">lock</span> được đồng bộ từ hệ thống nguồn (SMA/Ops++), chỉ đọc trên TOSS.</p>
                 <div class="details-grid">
                   <div class="detail-row">
@@ -690,23 +736,25 @@
                     <input type="text" class="detail-input" value="32N" maxlength="3">
                   </div>
                   <div class="detail-row">
-                    <span class="detail-label">Ownership Status</span>
-                    <select class="detail-select" id="ownershipSel" onchange="toggleOwner()">
+                    <span class="detail-label">Ownership Status <span style="font-size: 10px; color: #f97316;">[TBD — xem OID: SME-10]</span></span>
+                    <select class="detail-select" id="ownershipSel" onchange="toggleOwner()" data-src="BR-409 (OID: SME-10 — Damp Lease)">
                       <option value="Owned" selected>Owned</option>
                       <option value="Wet Leased">Wet Leased</option>
                       <option value="Dry Leased">Dry Leased</option>
                     </select>
+                    <span style="font-size: 11px; color: #94a3b8; margin-top: 3px;">⚠️ Cần làm rõ: có nên thêm "Damp Lease" (tự lo nhiên liệu)?</span>
                   </div>
                   <div class="detail-row">
                     <span class="detail-label">Owner (tối đa 50 ký tự)</span>
                     <input type="text" class="detail-input" id="ownerField" value="Vietnam Airlines" maxlength="50" disabled>
                   </div>
                   <div class="detail-row">
-                    <span class="detail-label">Trạng thái</span>
-                    <select class="detail-select">
+                    <span class="detail-label">Trạng thái (AC_STATE) <span style="font-size: 10px; color: #f97316;">[TBD — xem OID: SME-29]</span></span>
+                    <select class="detail-select" data-src="BR-417 (OID: SME-29 — codeset AC_STATE)">
                       <option>Active</option>
                       <option>Inactive</option>
                     </select>
+                    <span style="font-size: 11px; color: #94a3b8; margin-top: 3px;">⚠️ Cần xác nhận: đầy đủ codeset theo Aircraft_Netline (Xuất đội / Dùng đặc biệt / Overflow)?</span>
                   </div>
                 </div>
               </div>
@@ -714,7 +762,7 @@
               <!-- ============================ -->
               <!-- TAB 2: Aircraft Config -->
               <!-- ============================ -->
-              <div id="tab-config" class="details-tab-content">
+              <div id="tab-config" class="details-tab-content" data-src="FUNC-401-04b (Aircraft performance & cabin config)">
                 <div class="details-grid">
                   <div class="detail-row">
                     <span class="detail-label">Taxi Fuel Flow (kg/h)</span>
@@ -781,7 +829,7 @@
                       ✗ Chồng lấn: 2026-01-01 → 2026-07-15, rồi 2026-07-01 → 2026-12-31 (khoảng 07-01 ~ 07-15 nhập 2 lần)
                     </span>
                   </p>
-                  <table class="sub-table" id="acarsTable">
+                  <table class="sub-table" id="acarsTable" data-pui="p-table (editable sub-table)" data-src="BR-410 (ACARS Fuel multiplier)">
                     <thead>
                       <tr>
                         <th style="width: 22%;">From</th>
@@ -814,7 +862,7 @@
               <!-- ============================ -->
               <!-- TAB 3: Attributes — 5 thuộc tính gom nhóm -->
               <!-- ============================ -->
-              <div id="tab-attr" class="details-tab-content">
+              <div id="tab-attr" class="details-tab-content" data-src="FUNC-401-04c (Aircraft categories — BR-412/413)">
                 <p class="subsection-note">5 thuộc tính gom nhóm (Group Attributes) phục vụ lọc danh sách & xuất báo cáo đặc thù (MM §2.1, Function list R59).</p>
                 <div class="details-grid">
                   <div class="detail-row">
@@ -856,7 +904,7 @@
               <!-- ============================ -->
               <!-- TAB 4: Audit Log -->
               <!-- ============================ -->
-              <div id="tab-audit" class="details-tab-content">
+              <div id="tab-audit" class="details-tab-content" data-src="FUNC-401-05 (Audit trail — grouped by transaction)">
                 <p class="subsection-note">
                   Lịch sử thay đổi — ghi nhận <strong>TẤT CẢ</strong> changes của loại tàu bay.<br>
                   <span style="font-size: 12px; color: #64748b; margin-top: 6px; display: inline-block;">
@@ -865,7 +913,7 @@
                 </p>
 
                 <!-- Filter bar trên audit log (MM §3.3) -->
-                <div class="audit-filter-bar">
+                <div class="audit-filter-bar" data-pui="p-card (filter section)" data-src="FUNC-401-05 (audit log filter)">
                   <div class="filter-item">
                     <label>Từ ngày</label>
                     <input type="date" class="filter-input" value="2026-01-01">
@@ -906,44 +954,66 @@
                 </div>
 
                 <div class="audit-log-wrap">
-                  <p class="subsection-note" style="margin-bottom: 12px;">📌 <strong>Lịch sử được nhóm theo phiên sửa</strong> (Transaction). Mỗi phiên ghi lại tất cả fields thay đổi cùng lúc.</p>
+                  <p class="subsection-note" style="margin-bottom: 16px;">📌 <strong>Lịch sử được nhóm theo phiên sửa</strong> (Transaction). Mỗi phiên ghi lại tất cả fields thay đổi cùng lúc. Khi filter theo trường, fields match sẽ được highlight vàng.</p>
 
-                  <!-- PHIÊN 1 -->
-                  <div style="background: #f0f9ff; padding: 12px; border-left: 4px solid #0284c7; margin-bottom: 16px; border-radius: 4px;">
-                    <div style="font-weight: 700; color: #0284c7; margin-bottom: 8px;">📌 Phiên sửa: 2026-06-23 10:30 (data_officer) [TXN-20260623-103045-001]</div>
-                    <ul style="list-style: none; padding: 0; margin: 0; color: #475569; font-size: 13px;">
-                      <li style="padding: 6px 0; border-bottom: 1px solid #bfdbfe;">✓ <strong>Valid To:</strong> 2029-12-31 → 2030-12-31</li>
-                      <li style="padding: 6px 0; border-bottom: 1px solid #bfdbfe;">✓ <strong>ICAO Code:</strong> A20N → A20M</li>
-                      <li style="padding: 6px 0; border-bottom: 1px solid #bfdbfe;">✓ <strong>Owner:</strong> Vietnam Airlines → Singapore Airlines</li>
+                  <!-- PHIÊN 1 (WHITE BACKGROUND) -->
+                  <div style="background: #ffffff; padding: 12px; border-left: 4px solid #cbd5e1; margin-bottom: 12px; border-radius: 4px; border: 1px solid #e2e8f0;">
+                    <div style="font-weight: 700; color: #1e293b; margin-bottom: 8px; font-size: 13px;">📌 Phiên sửa: 2026-06-23 10:30 (data_officer) [TXN-20260623-103045-001]</div>
+                    <ul style="list-style: none; padding: 0; margin: 0; color: #475569; font-size: 12px;">
+                      <li style="padding: 6px 0; border-bottom: 1px solid #e2e8f0;">✓ <strong>Valid To:</strong> 2029-12-31 → 2030-12-31</li>
+                      <li style="padding: 6px 0; border-bottom: 1px solid #e2e8f0;">✓ <strong>ICAO Code:</strong> A20N → A20M</li>
+                      <li style="padding: 6px 0; border-bottom: 1px solid #e2e8f0;">✓ <strong>Owner:</strong> Vietnam Airlines → Singapore Airlines</li>
                       <li style="padding: 6px 0;">✓ <strong>Basic Weight:</strong> 41413 → 41500 kg</li>
                     </ul>
                   </div>
 
-                  <!-- PHIÊN 2 -->
-                  <div style="background: #f0fdf4; padding: 12px; border-left: 4px solid #16a34a; margin-bottom: 16px; border-radius: 4px;">
-                    <div style="font-weight: 700; color: #16a34a; margin-bottom: 8px;">📌 Phiên sửa: 2026-06-15 10:30 (data_officer) [TXN-20260615-103012-001]</div>
-                    <ul style="list-style: none; padding: 0; margin: 0; color: #475569; font-size: 13px;">
-                      <li style="padding: 6px 0; border-bottom: 1px solid #dcfce7;">✓ <strong>ACARS Fuel Unit (2026-07-01 → 2026-12-31):</strong> 1500 → 1550</li>
-                      <li style="padding: 6px 0;">✓ <strong>ACARS Fuel Multiplier (2026-07-01 → 2026-12-31):</strong> 1.050 → 1.060</li>
+                  <!-- PHIÊN 2 (GRAY BACKGROUND) — Xen kẽ -->
+                  <div style="background: #f8fafc; padding: 12px; border-left: 4px solid #cbd5e1; margin-bottom: 12px; border-radius: 4px; border: 1px solid #e2e8f0;">
+                    <div style="font-weight: 700; color: #1e293b; margin-bottom: 8px; font-size: 13px;">📌 Phiên sửa: 2026-06-15 10:30 (data_officer) [TXN-20260615-103012-001]</div>
+                    <ul style="list-style: none; padding: 0; margin: 0; color: #475569; font-size: 12px;">
+                      <li style="padding: 6px 0; border-bottom: 1px solid #e2e8f0;">✓ <strong>ACARS Fuel Unit</strong> <span style="background: #fef3c7; padding: 2px 6px; border-radius: 3px; font-size: 11px;">(match filter)</span><strong>:</strong> 1500 → 1550</li>
+                      <li style="padding: 6px 0;">✓ <strong>ACARS Fuel Multiplier:</strong> 1.050 → 1.060</li>
                     </ul>
                   </div>
 
-                  <!-- PHIÊN 3 -->
-                  <div style="background: #fef2f2; padding: 12px; border-left: 4px solid #ef4444; margin-bottom: 16px; border-radius: 4px;">
-                    <div style="font-weight: 700; color: #ef4444; margin-bottom: 8px;">📌 Phiên sửa: 2026-06-10 14:15 (admin) [TXN-20260610-141524-001]</div>
-                    <ul style="list-style: none; padding: 0; margin: 0; color: #475569; font-size: 13px;">
+                  <!-- PHIÊN 3 (WHITE BACKGROUND) -->
+                  <div style="background: #ffffff; padding: 12px; border-left: 4px solid #cbd5e1; margin-bottom: 12px; border-radius: 4px; border: 1px solid #e2e8f0;">
+                    <div style="font-weight: 700; color: #1e293b; margin-bottom: 8px; font-size: 13px;">📌 Phiên sửa: 2026-06-10 14:15 (admin) [TXN-20260610-141524-001]</div>
+                    <ul style="list-style: none; padding: 0; margin: 0; color: #475569; font-size: 12px;">
                       <li style="padding: 6px 0;">✓ <strong>Ownership Status:</strong> Wet Leased → Owned | <em>Ghi chú: Hết hạn HĐ thuê, đổi sang sở hữu</em></li>
                     </ul>
                   </div>
 
-                  <!-- PHIÊN 4 -->
-                  <div style="background: #fefce8; padding: 12px; border-left: 4px solid #eab308; margin-bottom: 0; border-radius: 4px;">
-                    <div style="font-weight: 700; color: #ca8a04; margin-bottom: 8px;">📌 Phiên sửa: 2026-06-05 09:00 (data_officer) [TXN-20260605-090003-001]</div>
-                    <ul style="list-style: none; padding: 0; margin: 0; color: #475569; font-size: 13px;">
-                      <li style="padding: 6px 0; border-bottom: 1px solid #fef3c7;">✓ <strong>Cabin Config:</strong> 8/24/0/0/0 → 8/24/120/0/0</li>
+                  <!-- PHIÊN 4 (GRAY BACKGROUND) — Xen kẽ -->
+                  <div style="background: #f8fafc; padding: 12px; border-left: 4px solid #cbd5e1; margin-bottom: 0; border-radius: 4px; border: 1px solid #e2e8f0;">
+                    <div style="font-weight: 700; color: #1e293b; margin-bottom: 8px; font-size: 13px;">📌 Phiên sửa: 2026-06-05 09:00 (data_officer) [TXN-20260605-090003-001]</div>
+                    <ul style="list-style: none; padding: 0; margin: 0; color: #475569; font-size: 12px;">
+                      <li style="padding: 6px 0; border-bottom: 1px solid #e2e8f0;">✓ <strong>Cabin Config:</strong> 8/24/0/0/0 → 8/24/120/0/0</li>
                       <li style="padding: 6px 0;">✓ <strong>Ghi chú:</strong> Thêm khoang C cho A320NEO</li>
                     </ul>
                   </div>
+                </div>
+              </div>
+
+              <!-- ============================ -->
+              <!-- TAB 4b: Equipment (BR-414) — PLACEHOLDER -->
+              <!-- ============================ -->
+              <div id="tab-equipment" class="details-tab-content" style="display: none;">
+                <p class="subsection-note"><span style="color: #ef4444; font-weight: 700;">[TBD — BR-414]</span> Thiết bị tàu bay (ILS CAT, AUTOLAND, ACARS, SPECIAL_EQUIPMENT — từ Aircraft_Netline)</p>
+                <div style="background: #fef2f2; padding: 16px; border-radius: 8px; text-align: center; color: #94a3b8;">
+                  <span class="material-symbols-outlined" style="font-size: 48px; display: block; margin-bottom: 12px;">device_unknown</span>
+                  <p>Equipment — Đang phát triển (ILS CAT / AUTOLAND / ACARS / SPECIAL_EQUIPMENT)</p>
+                </div>
+              </div>
+
+              <!-- ============================ -->
+              <!-- TAB 4c: APU/Packs INOP (BR-420) — PLACEHOLDER -->
+              <!-- ============================ -->
+              <div id="tab-apu-inop" class="details-tab-content" style="display: none;">
+                <p class="subsection-note"><span style="color: #ef4444; font-weight: 700;">[TBD — BR-420]</span> Quản lý APU/Packs INOP — khai báo khoảng thời gian hỏng (From_DT / To_DT, Phụ ghi)</p>
+                <div style="background: #fef2f2; padding: 16px; border-radius: 8px; text-align: center; color: #94a3b8;">
+                  <span class="material-symbols-outlined" style="font-size: 48px; display: block; margin-bottom: 12px;">warning</span>
+                  <p>APU/Packs INOP — Đang phát triển (From-To, Phụ ghi, Lịch sử phục hồi)</p>
                 </div>
               </div>
 
@@ -1145,7 +1215,7 @@
       msg.textContent = message;
       toast.style.opacity = '1';
       toast.style.transform = 'translateY(0)';
-      setTimeout(() => { toast.style.opacity = '0'; toast.style.transform = 'translateY(100px)'; }, 2200);
+      setTimeout(() => { toast.style.opacity = '0'; toast.style.transform = 'translateY(100px)'; }, 1200);
     }
 
     // Filters
@@ -1178,7 +1248,7 @@
         document.getElementById('tab-general').classList.add('active');
       } else if (mainTab === 'main-maintenance') {
         document.getElementById('subtab-nav-maintenance').style.display = 'flex';
-        document.getElementById('tab-aogsched').classList.add('active');
+        document.getElementById('tab-equipment').classList.add('active');
       } else if (mainTab === 'main-audit') {
         document.getElementById('subtab-nav-audit').style.display = 'flex';
         document.getElementById('tab-audit').classList.add('active');
