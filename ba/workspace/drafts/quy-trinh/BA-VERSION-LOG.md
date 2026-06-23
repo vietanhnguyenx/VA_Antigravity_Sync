@@ -67,7 +67,9 @@ document_id: "BA-VLOG-001"
 
 | File hiện hành | Version | Ngày | Thay đổi chính |
 |---|---|---|---|
-| `PHAN-RA-BRD-PH1-thong-tin-dieu-hanh-chuyen-bay-v0.5.md` | 0.5 | 2026-06-16 | Bổ sung GAP 1+2 — Diversion Report extract + báo cáo KTKTB/NOTOC |
+| `PHAN-RA-BRD-PH1-thong-tin-dieu-hanh-chuyen-bay-v0.7.md` | 0.7 | 2026-06-22 | **Khảo sát 18/06.** Thêm **25 FUNC (FUNC-295…319)** ở **§2.52** — đặc tả cột/cơ chế màn Flight Dispatch (Monitoring/Dispatch Release/cảnh báo) từ KS 18/06; BR cha ghi inline (BR-102, BR-103, BR-112, BR-118, BR-119, BR-120, BR-121 nhận thêm FUNC). **Tổng FUNC PH1: 194 → 219.** Gắn cờ các chỗ vướng **quyết định BA Lead / chưa nằm trong BR-101…150**: tab Ngưỡng Payload/DAO `[DEC-09]`, tab MEL/CDL theo tàu `[DEC-10]`, phân quyền Minima sân bay, cơ chế Dispatch Release, màn Flight Plan list, ưu tiên nguồn Actual Fuel. RTM chi tiết FUNC-295…319 chờ BA Lead chốt vị trí phân hệ. Bump 0.6 → 0.7; date 2026-06-22. |
+| _(PHAN-RA-BRD-PH1-thong-tin-dieu-hanh-chuyen-bay-v0.6)_ | 0.6 | 2026-06-18 | Bổ sung **FUNC-277…294 (§2.51)** — phân rã chi tiết các cột màn Flight Dispatch (Flight monitoring) đã rõ nguồn từ `wf-monitoring-overview.md` §8 (sheet Function list `[FL-FD]`) + §9 (đối chiếu YCKT TOSS-175…182 + báo cáo KS 11/06, 12/06, 15/06): DSP Release, OFP DSP, Pilot release, Flight Type, BLOCK FUEL, PILOT EXTRA, NOTAM, WX, MEL/CDL, Missing Document. Mỗi FUNC kèm **AC** chép trung thực logic màu/ngưỡng. Các cột còn vướng cờ OID (ATC, TO/LD, Taxi APU, EPLD, EST DOW, ZFW-DOW, 6 cột TOSS-180, Filter 1–20, tooltip hover) chưa phân rã FUNC. **Tổng FUNC: 176 → 194.** |
+| _(PHAN-RA-BRD-PH1-thong-tin-dieu-hanh-chuyen-bay-v0.5)_ | 0.5 | 2026-06-16 | Bổ sung GAP 1+2 — Diversion Report extract + báo cáo KTKTB/NOTOC |
 | `PHAN-RA-BRD-PH2-quan-ly-tai-lieu-chuyen-bay-v0.4.md` | 0.4 | 2026-06-17 | **Cập nhật theo BRD PH2 v0.6 (VALIDATION Agent 3).** Bổ sung **Khối F mới** — phân rã 5 BR chuyển từ PH1/PH4: BR-257 (dashboard tài liệu + luồng phê duyệt request/confirm/reject), BR-258 (quản lý phần mềm + tính năng máy bay), BR-259 (SkyOffice master → auto push MO/MO Plus/VNA Library), BR-260 (Service Order tự động email LIDO — BR canonical thay BR-247 cũ), BR-261 (quản lý công việc Phòng KTKTB). Thêm **16 FUNC mới (FUNC-332…FUNC-347)**. Ghi chú thay đổi ngữ cảnh: BR-247 cũ đã xóa khỏi BRD (không có FUNC v0.3 trỏ BR-247); BR-215 và BR-234 hạ Must→Should (ưu tiên áp dụng theo BR cha, FUNC giữ nguyên); BR-235 sandbox NOTOC + BR-242/243/244 MEL + BR-219/220 bot/IAM chờ phân rã ở bản sau (đã ghi chú cross-ref PH4/PH5). Đổi tham chiếu BRD cha sang `BRD-TOSS-PH2-tai-lieu-chuyen-bay-v0.6.md`. Tổng FUNC: **131 → 147**. Giữ nguyên FUNC-201…FUNC-331 của v0.3 (chưa remap BR cũ ↔ BR mới — gắn cờ ở §3 cho BA Lead chốt). Bump version 0.3 → 0.4; date 2026-06-17. |
 | _(PHAN-RA-BRD-PH2-quan-ly-tai-lieu-chuyen-bay-v0.3)_ | 0.3 | 2026-06-12 | Bổ sung FUNC tài liệu chuyến bay |
 | `PHAN-RA-BRD-PH3-quan-ly-bao-cao-toi-uu-khai-thac-v0.3.md` | 0.3 | 2026-06-12 | Bổ sung FUNC báo cáo khai thác |
@@ -137,4 +139,13 @@ document_id: "BA-VLOG-001"
 
 ---
 
-_Cập nhật: 2026-06-17_
+## Phân tích đối chiếu (Khảo sát ↔ BRD)
+
+| File hiện hành | Version | Ngày | Thay đổi chính |
+|---|---|---|---|
+| `phan-tich/02-khao-sat/DOI-CHIEU-KS-BRD-1719-2026-06-23-v0.2.md` | 0.2 | 2026-06-23 | **Đối chiếu lại tích hợp OPS++ theo sheet "Thông tin tích hợp" v77 + phạm vi BA Lead chốt 23/06.** Thêm **§2bis (A/B/C)** áp phạm vi mới: chỉ luồng "Thông qua TOSS" (19 luồng = 17 in + 2 out) tính GAP; 9 luồng "Trực tiếp" LIDO/AMOS ↔ NetOps++ tách §2bis.B (NGOÀI scope, không sinh BR). Trong scope: 0 COVERED / 12 PARTIAL / 4 GAP; 8 luồng còn Missing triển khai (LDM, SSIM, Crew connection, Gate info, Flight data ACDM, NOTAM-qua-TOSS, Cargo, ACH). §2bis.C nêu 10 yêu cầu mới từ sheet v77 (Crew Assignment 02:00/26 + cảnh báo <1000 + retry 23:59; PTM 5'/48h; PNL T-30 1 lần; ADL 1/ngày; Gate API như VIAGS; Cargo quét view + rules + DB; FMM TOSS tự sinh; SSIM forward 2 chiều Sabre…). §3.B lọc lại + bổ sung BR-567/568/569/570 cho Crew Assignment / Gate VIAGS / Cargo / SSIM (tổng đề xuất 14 BR PH5 mới). §4 thêm D-11 (ngưỡng tổ bay <1000) và D-12 (API VIAGS). Bump 0.1 → 0.2. Xóa file v0.1 cũ. |
+| _(phan-tich/02-khao-sat/DOI-CHIEU-KS-BRD-1719-2026-06-23.md)_ | 0.1 | 2026-06-23 | Khởi tạo — đối chiếu 3 báo cáo KS (17/06+18/06+19/06) với BRD v0.12 (PH1 v0.7, PH2 v0.6, PH4 v0.5, PH5 v0.5). 43 chủ đề: 12 COVERED / 20 PARTIAL / 11 GAP. §2.3 đối chiếu 24 luồng OPS++ vs BR-528/530 (chưa phân biệt scope TOSS vs trực tiếp). §3 đề xuất 30 BR mới (A: 10 BR MEL/AOG-MNT; B: 10 BR tích hợp PH5; C: 13 BR điều phái/CLC). §4 nêu 10 điểm cần BA Lead quyết (D-1…D-10). |
+
+---
+
+_Cập nhật: 2026-06-23_
