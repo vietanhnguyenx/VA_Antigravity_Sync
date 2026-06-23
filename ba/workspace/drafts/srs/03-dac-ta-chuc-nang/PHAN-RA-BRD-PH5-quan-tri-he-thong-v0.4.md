@@ -1,8 +1,8 @@
 ﻿---
 project: "TOSS — Hệ thống Điều hành Khai thác Hãng Hàng không"
 author: "BA Lead"
-version: "0.3"
-date: "2026-06-12"
+version: "0.4"
+date: "2026-06-23"
 status: "Draft"
 document_type: "Functional Decomposition"
 document_id: "FUNC-DEC-PH5"
@@ -234,7 +234,7 @@ document_id: "FUNC-DEC-PH5"
 | FUNC-519-01 | Tích hợp với **AMOS** để nhận NAIL `[cần xác nhận viết tắt]` và CDL (Configuration Deviation List) mới phát sinh kèm khoảng hiệu lực (active period), làm nguồn cho cảnh báo NAIL/CDL ảnh hưởng chuyến bay (xem BR-121). Phương thức tích hợp (API/event/poll) `[cần xác nhận]`. | Functional | BR-519 | Khảo sát 11/06 sáng §II.10 |
 | FUNC-519-02 | Tích hợp với **QAR/QAI** (Quick Access Recorder / Quick Access Information) của Tổng công ty qua **API** để thống kê tự động Standard Taxi Time theo sân bay phục vụ BR-418 và phân tích Post-Flight. | Functional | BR-519 | Khảo sát 11/06 sáng §II.14 |
 | FUNC-519-03 | Tích hợp với **QAR/QAI** qua **Database View** của Tổng công ty (phương án thay thế song song với API ở FUNC-519-02) để thống kê Standard Taxi Time và phân tích Post-Flight. | Functional | BR-519 | Khảo sát 11/06 sáng §II.14 |
-| FUNC-519-04 | Tích hợp trực tiếp **ACARS** (không qua Mission Watch `[cần xác nhận tên hệ thống]`) để lấy các mốc thời gian thực tế OUT/OFF/ON/IN, làm nguồn dữ liệu cập nhật real-time cho màn hình Monitoring tổng quan (xem BR-125) và làm trigger cho quy tắc raise/clear cảnh báo theo từng mốc phase. | Functional | BR-519 | Khảo sát 11/06 chiều §II.6 |
+| FUNC-519-04 | Tích hợp trực tiếp **ACARS** (không qua Mission Watch `[cần xác nhận tên hệ thống]`) để lấy các mốc thời gian thực tế OUT/OFF/ON/IN, làm nguồn dữ liệu cập nhật real-time cho màn hình Monitoring tổng quan (xem BR-125) và làm trigger cho quy tắc raise/clear cảnh báo theo từng mốc phase. Danh mục label điện ACARS được nhận diện cho 4 mốc OOOI theo đội tàu: (a) **OUT** — ACARS `DEP` (Honeywell A350), `A80 OUTRP` (Rockwell Collins A320/A321), `M11` (Boeing OUT Report B787), `MVA` (biến thể ưu tiên của OUT/OFF/ON/IN report); (b) **OFF** — biến thể OFF tương ứng của các bộ trên cùng `MVA`; (c) **ON** — ACARS `ARR` (A350), `A80 ONRP` (A320/A321), `M13` (Boeing ON Report B787), `MVA`; (d) **IN** — ACARS `ARR` (A350), `A80 INRP` (A320/A321), `M14` (Boeing IN Report B787), `MVA`. Quy tắc parse các điện này tham chiếu cách FIMS hiện đang bóc tách (ghi nhận thực tế tại nguồn N2 dòng "Boeing ON Report (M13)"). | Functional | BR-519 | Khảo sát 11/06 chiều §II.6; phân tích điện ACARS thu tháng 03/2026 [§3, §4.1, §4.2]; bảng tổng hợp điện ACARS [dòng 15, 22, 26, 28, 29, 30, 32, 33, 34, 35, 39, 41, 42, 44] |
 | FUNC-519-05 | Tích hợp với **A-CDM** để biết chuyến bay đã được phục vụ đến giai đoạn nào tại sân (boarding, đóng cửa, push-back, taxi-out, take-off), bổ sung cho màn hình Monitoring overview của điều phái. | Functional | BR-519 | Khảo sát 11/06 chiều §II.6 |
 | FUNC-519-06 | Tích hợp với **AIJS** `[cần xác nhận tên đầy đủ — hệ thống trung gian nội bộ VNA đang nhận diện và đính file Weather Multi-Flight vào nhiều chuyến]` để phối hợp/thay thế luồng đính file thời tiết đa chuyến hiện hành (phục vụ BR-220). Phương thức và phạm vi tích hợp `[cần xác nhận]`. | Functional | BR-519 | Khảo sát 11/06 chiều §II.9 |
 | FUNC-519-07 | Tích hợp với nguồn **Logitech/GDTN** `[cần xác nhận tên chính xác — ASR có thể đọc sai thuật ngữ nội bộ VNA]` để lấy log tổ bay upload/truy cập tài liệu, phục vụ hiển thị cho điều phái biết tổ bay đã vào xem/tải tài liệu hay chưa (bổ trợ BR-222). | Functional | BR-519 | Khảo sát 11/06 chiều §II.12 |

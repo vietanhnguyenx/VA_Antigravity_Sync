@@ -1,8 +1,8 @@
 ---
 project: "TOSS — Hệ thống Điều hành Khai thác Hãng Hàng không"
 author: "BA Lead"
-version: "0.7"
-date: "2026-06-22"
+version: "0.8"
+date: "2026-06-23"
 status: "Draft"
 document_type: "Functional Decomposition"
 document_id: "FUNC-DEC-PH1"
@@ -54,8 +54,8 @@ document_id: "FUNC-DEC-PH1"
 
 | Mã FUNC | Mô tả chức năng (bám nguồn) | BR cha | Nguồn |
 |---|---|---|---|
-| FUNC-101 | Hiển thị danh sách chuyến bay dạng trực quan với các thuộc tính định danh chuyến: số hiệu chuyến bay, chặng bay. | BR-101 | Đề xuất §II.1 — Thông tin chuyến bay (gạch đầu dòng "Hội tụ đầy đủ thông tin") |
-| FUNC-102 | Hiển thị bộ ba mốc thời gian của từng chuyến bay: giờ kế hoạch (STD/STA), giờ dự kiến (ETD/ETA), giờ thực tế (ATD/ATA). | BR-101 | Đề xuất §II.1 — Thông tin chuyến bay |
+| FUNC-101 | Hiển thị danh sách chuyến bay dạng trực quan với các thuộc tính định danh chuyến: số hiệu chuyến bay, **Flight Routing** dạng chuỗi sân bay theo thứ tự stage (origin → en-route stop → destination) cho chuyến đa chặng cùng số hiệu (mẫu `GD_VN1237 [Flight Routing]`). | BR-101 | Đề xuất §II.1 — Thông tin chuyến bay; Rà soát nguồn 23/06 §II.1 |
+| FUNC-102 | Hiển thị bộ ba mốc thời gian của từng chuyến bay: giờ kế hoạch (STD/STA), giờ dự kiến (ETD/ETA), giờ thực tế (ATD/ATA). Đối với mỗi loại sự kiện chuyến (Off-block / Take-off / Landing / In-block), lưu trữ song song **ba trạng thái Scheduled / Estimated / Actual** — tổng cộng 12 mốc, ánh xạ vào bộ 16 mốc A-CDM (xem FUNC-280 nhóm BR-180) (mẫu `OFP-SGN-SFO-RECLEARANCE [OFF BLOCK / TAKE OFF / LANDING / IN BLOCK]`). | BR-101 | Đề xuất §II.1 — Thông tin chuyến bay; Rà soát nguồn 23/06 §II.4 |
 | FUNC-103 | Trên cùng dòng chuyến bay, hiển thị các thuộc tính liên quan đi kèm: tàu bay, cấu hình cabin, thời tiết, NOTAM, tổ bay, hành khách, hàng hóa, doanh thu, chi phí. | BR-101 | Đề xuất §II.1 — Thông tin chuyến bay |
 
 ### 2.2 BR-102 — Cá nhân hóa giao diện theo phiên người dùng
@@ -98,7 +98,7 @@ document_id: "FUNC-DEC-PH1"
 
 | Mã FUNC | Mô tả chức năng (bám nguồn) | BR cha | Nguồn |
 |---|---|---|---|
-| FUNC-115 | Hiển thị thông tin định danh tàu bay: loại tàu bay, số đăng ký, mã ICAO/IATA, thời điểm hiệu lực của các chứng chỉ khai thác. | BR-107 | Đề xuất §II.1 — Thông tin định danh |
+| FUNC-115 | Hiển thị thông tin định danh tàu bay: loại tàu bay, số đăng ký, mã ICAO/IATA, thời điểm hiệu lực của các chứng chỉ khai thác. Bảng tình trạng đội tàu khai thác trong ngày bổ sung **mã lý do nghỉ tàu** chuẩn (BQ — bảo quản, MNT — maintenance, A06/A02 CHECK, Y8…) — mẫu `BCAO [Số tàu bay đang khai thác]`. | BR-107 | Đề xuất §II.1 — Thông tin định danh; Rà soát nguồn 23/06 §II.6 |
 | FUNC-116 | Theo dõi lịch khai thác của từng tàu bay: lịch sử bay gần nhất và kế hoạch khai thác sắp tới. | BR-107 | Đề xuất §II.1 — Lịch khai thác |
 | FUNC-117 | Quản lý và lưu trữ lịch sử cập nhật chỉ số hiệu suất (PF — Performance Factor) cho từng tàu bay phục vụ lập kế hoạch bay và tối ưu nạp dầu. | BR-107 | Đề xuất §II.1 — Chỉ số hiệu suất (Performance Factor) |
 | FUNC-118 | Hiển thị các danh mục MEL/CDL hiện có và các hỏng hóc (defects) của tàu bay; phân tích ảnh hưởng trực tiếp của chúng đến khả năng khai thác chuyến bay. | BR-107 | Đề xuất §II.1 — Tình trạng kỹ thuật |
@@ -119,19 +119,19 @@ document_id: "FUNC-DEC-PH1"
 
 | Mã FUNC | Mô tả chức năng (bám nguồn) | BR cha | Nguồn |
 |---|---|---|---|
-| FUNC-126 | Hiển thị realtime số lượng khách mở bán, khách booking và khách thực tế theo từng hạng ghế (Adult / Child / Infant). | BR-109 | Đề xuất §II.1 — Dữ liệu hành khách |
-| FUNC-127 | Hiển thị realtime các nhóm khách đặc biệt: VIP, CIP, khách nối chuyến. | BR-109 | Đề xuất §II.1 — Dữ liệu hành khách |
-| FUNC-128 | Hiển thị thông tin Payload (tải trọng): trọng lượng hành khách, hành lý, hàng hóa, trọng lượng khô (DOW — Dry Operating Weight), danh mục thiết bị chất xếp (ULD — Unit Load Device). | BR-109 | Đề xuất §II.1 — Quản trị Payload |
+| FUNC-126 | Hiển thị realtime số lượng khách mở bán, khách booking và khách thực tế theo từng hạng ghế (Adult / Child / Infant). Bổ sung: (a) hạng **Premium Economy (PE)** với cờ **CHD (Child)** và ticket reference **TKNE** (mẫu `PM_VN1237 [PE LIST]`); (b) ba số đếm theo chặng cho mỗi sân bay trên Flight Routing — **Embarking / Through on same Flight / Disembarking** (mẫu `GD_VN1237 [NUMBER OF PASSENGERS ON THIS STAGE]`); (c) cờ **SOC (Seat Occupied by Cargo)** và **BLKD (Blocked seats)** (mẫu `LOADSHEET_VN1237 [PASSENGER/CABIN BAG]`); (d) **danh sách hành khách chi tiết** kèm Seat, Gender (M/F/C), Name, Nationality và Document No cho chuyến quốc tế (mẫu `PM_VN1237 [bảng danh sách]`); (e) **Seat Map theo cabin J/W/Y** dạng sơ đồ ghế (mẫu `PM_VN1237 [J-CHART]`). | BR-109 | Đề xuất §II.1 — Dữ liệu hành khách; Rà soát nguồn 23/06 §II.1, §II.2, §II.3 |
+| FUNC-127 | Hiển thị realtime các nhóm khách đặc biệt: VIP, CIP, khách nối chuyến. Mở rộng: (a) **mã loại VIP/CIP chuẩn IATA/VN** (CCIP, MM, PE, GLD, PLA, SLV, TTN…) với bảng giá trị (mẫu `PM_VN1237 [VIP LIST] [CIP LIST] [PE LIST]`); (b) **Frequent Flyer Tier** của VN — PLA (Platinum) / GLD (Gold) / SLV (Silver) / TTN (Titan) — song song với **SkyTeam tier** ELITE / ELITE PLUS (mẫu `PM_VN1822 [FREQUENT FLYER SEATING INFORMATION] [SKYTEAM FREQUENT FLYER SEATING INFORMATION]`); (c) **cấp VIP A / A2 / A3** + mã chức danh (BT TWD/PHO CTN/UVBCT…) và VIP Khác (mẫu `BCAO [Vip A]`); (d) **mã WCHR (Wheelchair) + sub-code WCHS/WCHC/CTCE/CTCM** cho khách yêu cầu xe lăn (mẫu `PM_VN1237 [WHEELCHAIR LIST]`); (e) **danh sách ghế trống (VACANT SEATS) và ghế khóa (BLOCKED SEATS)** theo cabin J/W/Y và theo sân bay (mẫu `PM_VN1822 [VACANT SEATS] [BLOCKED SEATS]`). | BR-109 | Đề xuất §II.1 — Dữ liệu hành khách; Rà soát nguồn 23/06 §II.3, §II.6 |
+| FUNC-128 | Hiển thị thông tin Payload (tải trọng): trọng lượng hành khách, hành lý, hàng hóa, trọng lượng khô (DOW — Dry Operating Weight), danh mục thiết bị chất xếp (ULD — Unit Load Device). Bổ sung **phân bổ Cargo theo Compartment 1..5 + khoang bulk 0** trên Load Sheet (vd `2883 1/0 2/625 3/1461 4/787 5/10 0/0` — mẫu `LOADSHEET_VN1237 [LOAD IN COMPARTMENTS]`) và **trục phân loại Quốc nội / Quốc tế (QN/QT)** cho khách + hàng hóa trên dashboard tổng hợp ngày (mẫu `BCAO [Số liệu khai thác]`). | BR-109 | Đề xuất §II.1 — Quản trị Payload; Rà soát nguồn 23/06 §II.2, §II.6 |
 | FUNC-129 | Hiển thị lịch sử các lần thay đổi tải trọng của chuyến bay. | BR-109 | Đề xuất §II.1 — Quản trị Payload |
-| FUNC-130 | Cập nhật thông tin dịch vụ và hàng hóa đặc biệt của chuyến bay: suất ăn, phục vụ hành khách, hàng hóa nguy hiểm (NOTOC — Notification to Captain), hàng hóa đặc biệt và các hạn chế dịch vụ kèm theo. | BR-109 | Đề xuất §II.1 — Dịch vụ và Hàng hóa đặc biệt |
+| FUNC-130 | Cập nhật thông tin dịch vụ và hàng hóa đặc biệt của chuyến bay: suất ăn, phục vụ hành khách, hàng hóa nguy hiểm (NOTOC — Notification to Captain), hàng hóa đặc biệt và các hạn chế dịch vụ kèm theo. Suất ăn đặc biệt sử dụng **bộ mã meal code chuẩn IATA** (AVML — Asian Vegetarian, VGML — Vegan, CHML — Child Meal, …) gán theo ghế (mẫu `PM_VN1237 [SPECIAL MEAL LIST]`). | BR-109 | Đề xuất §II.1 — Dịch vụ và Hàng hóa đặc biệt; Rà soát nguồn 23/06 §II.3 |
 
 ### 2.10 BR-110 — Đường bay, thời gian, nhiên liệu và quỹ đạo bay
 
 | Mã FUNC | Mô tả chức năng (bám nguồn) | BR cha | Nguồn |
 |---|---|---|---|
-| FUNC-131 | Hiển thị các thông tin khuyến nghị tối ưu cho chuyến bay: nạp dầu hộ (Tankering), thời gian lăn bánh (Taxi Out), chỉ số chi phí (Cost Index — CI), các sân bay dự bị (Alternate Airports). | BR-110 | Đề xuất §II.1 — Khuyến nghị tối ưu |
+| FUNC-131 | Hiển thị các thông tin khuyến nghị tối ưu cho chuyến bay: nạp dầu hộ (Tankering), thời gian lăn bánh (Taxi Out), chỉ số chi phí (Cost Index — CI), các sân bay dự bị (Alternate Airports). Bổ sung: (a) **Tankering** kèm trường **DISPATCH NOTES** (free-text điều phái) và **chi phí dầu mang thêm theo USD/TON** (mẫu `OFP-SGN-SFO-RECLEARANCE [DISPATCH NOTES]`); (b) **ba nhóm Alternate phân biệt rõ** — Takeoff Alternate (có thể NOT REQD), En-route Alternate (danh sách sân bay dự bị trên đường bay), Destination Alternate — kèm cờ **UNSUITABLE** đánh dấu sân bay không phù hợp (mẫu `OFP-SGN-SFO-RECLEARANCE [TAKEOFF ALTN / ENROUTE ALTN / DESTINATION ALTN]`). | BR-110 | Đề xuất §II.1 — Khuyến nghị tối ưu; Rà soát nguồn 23/06 §II.4 |
 | FUNC-132 | Cập nhật thông tin NOTAM và thời tiết được bóc tách tự động từ các nguồn tích hợp và tài liệu chuyến bay. | BR-110 | Đề xuất §II.1 — Dữ liệu môi trường |
-| FUNC-133 | Theo dõi và hiển thị các mức nhiên liệu của chuyến bay: nhiên liệu kế hoạch, nhiên liệu phi công yêu cầu (Fuel Order), nhiên liệu trên Load Sheet, các mức nhiên liệu dự phòng / extra. | BR-110 | Đề xuất §II.1 — Quản trị nhiên liệu |
+| FUNC-133 | Theo dõi và hiển thị các mức nhiên liệu của chuyến bay: nhiên liệu kế hoạch, nhiên liệu phi công yêu cầu (Fuel Order), nhiên liệu trên Load Sheet, các mức nhiên liệu dự phòng / extra. Bóc tách OFP theo **11 thành phần fuel chuẩn ICAO**: Trip / Contingency (RCF) / Destination Alternate / Final Reserve / EDTO Additional / RCFP Additional / Takeoff / Taxi / Block / Possible Extra / PIC Extra — cùng tổng Total (mẫu `OFP-SGN-SFO-RECLEARANCE [FUEL ANALYSIS]`). Trường **TAXI FUEL** và **TAXI WGT (giá trị thực và MAX)** lưu kèm trên Load Sheet phục vụ đối soát (mẫu `LOADSHEET_VN1237 [TAXI FUEL / TAXI WGT]`). | BR-110 | Đề xuất §II.1 — Quản trị nhiên liệu; Rà soát nguồn 23/06 §II.2, §II.4 |
 | FUNC-134 | Hiển thị phương thức cất cánh (SID — Standard Instrument Departure) và phương thức tiếp cận (STAR — Standard Terminal Arrival Route) theo kế hoạch và thực tế. | BR-110 | Đề xuất §II.1 — Quỹ đạo bay |
 
 ### 2.11 BR-111 — Cột mốc khai thác sân bay phục vụ OTP
@@ -224,9 +224,9 @@ document_id: "FUNC-DEC-PH1"
 | Mã FUNC | Mô tả chức năng (bám nguồn) | BR cha | Nguồn |
 |---|---|---|---|
 | FUNC-180 | Tích hợp / thu nạp bản tin thời tiết METAR và SPECI cho các sân bay khai thác. | BR-119 | Khảo sát 11/06 §II.7 — Bản tin METAR và SPECI, Kết luận |
-| FUNC-181 | Parse (bóc tách) bản tin METAR và SPECI để decode các trường thông số phục vụ đối chiếu ngưỡng cảnh báo. | BR-119 | Khảo sát 11/06 §II.7 — Yêu cầu kỹ thuật |
+| FUNC-181 | Parse (bóc tách) bản tin METAR và SPECI để decode các trường thông số phục vụ đối chiếu ngưỡng cảnh báo. Đối với sự kiện chuyến (đặc biệt là Divert hoặc dựng bối cảnh khởi hành), áp **quy tắc lấy 3 bản tin METAR/SPECI liên tiếp ngay trước ATD** (Actual Time of Departure) — mẫu `DIVERSION_REPORT-HVN678 [§3.2]`. | BR-119 | Khảo sát 11/06 §II.7 — Yêu cầu kỹ thuật; Rà soát nguồn 23/06 §II.5 |
 | FUNC-182 | Cảnh báo thời tiết sân bay (cất cánh / hạ cánh) dựa trên ba thông số: tầm nhìn (Visibility), trần mây (Cloud Ceiling), mưa dông (TSRA — Thunderstorm + Rain). | BR-119 | Khảo sát 11/06 §II.7 — Kết luận |
-| FUNC-183 | So sánh giá trị quan trắc của ba thông số trên với ngưỡng thời tiết tối thiểu của sân bay (VMA `[cần xác nhận viết tắt]`) cộng thêm một biên an toàn (margin — chặt hơn ngưỡng tối thiểu) để cảnh báo sớm. | BR-119 | Khảo sát 11/06 §II.7 — Thảo luận – Đề xuất, Kết luận |
+| FUNC-183 | So sánh giá trị quan trắc của ba thông số trên với ngưỡng thời tiết tối thiểu của sân bay (VMA `[cần xác nhận viết tắt]`) cộng thêm một biên an toàn (margin — chặt hơn ngưỡng tối thiểu) để cảnh báo sớm. Hệ thống lưu **minima tiếp cận theo từng đường cất hạ cánh (Runway)** theo định dạng chuẩn `R{RVR}/V{Visibility}` (vd `RWY25: R1.3/V1.6` — mẫu `DIVERSION_REPORT-HVN678 [APP RWY Minima]`) và **bảng minima theo phương thức tiếp cận** kèm thời gian hiệu lực (vd `CAT2 100/365`, `CIRC LOC@16L 1000/4013` — mẫu `OFP-SGN-SFO-RECLEARANCE [MINIMA]`). | BR-119 | Khảo sát 11/06 §II.7; Rà soát nguồn 23/06 §II.4, §II.5 |
 | FUNC-184 | Ưu tiên nguồn METAR / SPECI nội địa từ cơ quan khí tượng hàng không Việt Nam `[cần xác nhận tên đơn vị]` làm nguồn chính thức (official) cho sân bay nội địa. | BR-119 | Khảo sát 11/06 §II.7 — Nguồn dữ liệu thời tiết, Kết luận |
 | FUNC-185 | Ưu tiên gói thời tiết trong Lido làm nguồn official cho sân bay quốc tế. | BR-119 | Khảo sát 11/06 §II.7 — Nguồn dữ liệu thời tiết, Kết luận |
 | FUNC-186 | Các nguồn thời tiết khác (Sunweather, "Phi Công 11" `[cần xác nhận tên]`, UA PASMOS `[cần xác nhận]`) chỉ dùng tham khảo, KHÔNG dùng làm căn cứ cảnh báo chính thức. | BR-119 | Khảo sát 11/06 §II.7 — Kết luận |
@@ -246,7 +246,7 @@ document_id: "FUNC-DEC-PH1"
 
 | Mã FUNC | Mô tả chức năng (bám nguồn) | BR cha | Nguồn |
 |---|---|---|---|
-| FUNC-193 | Tích hợp / thu nạp NAIL `[cần xác nhận viết tắt]` và CDL (Configuration Deviation List) từ hệ thống bảo dưỡng kỹ thuật (AMOS `[cần xác nhận]`) — khi AMOS phát một NAIL/CDL mới active, TOSS lấy về kèm khoảng hiệu lực (active period: thời điểm raise và thời điểm release). | BR-121 | Khảo sát 11/06 sáng §II.10 — Thảo luận – Đề xuất + Kết luận |
+| FUNC-193 | Tích hợp / thu nạp NAIL `[cần xác nhận viết tắt]` và CDL (Configuration Deviation List) từ hệ thống bảo dưỡng kỹ thuật (AMOS `[cần xác nhận]`) — khi AMOS phát một NAIL/CDL mới active, TOSS lấy về kèm khoảng hiệu lực (active period: thời điểm raise và thời điểm release). Tập trường chuẩn cho mỗi MEL/CDL item bao gồm: **deviation_code** (mã ATA-XX-XX-XX, vd `21-50-07AX1`), **description** (tên thiết bị/hệ thống), **remark** (lưu ý điều phái), và **penalty** — gồm `p_fuel` (% tăng tiêu thụ, vd `FUEL CONSUMPTION INCREASED BY 0.5%`), `p_weight` (kg giảm OEI en-route limiting weight, vd `REDUCE THE OEI EN-ROUTE PERFORMANCE LIMITING WEIGHT BY 810 KG`), `p_tow`, `p_lw`, `p_altitude` (giới hạn FL) — mẫu `OFP-SGN-SFO-RECLEARANCE [MEL/CDL ITEMS DESCRIPTION REMARK]`. | BR-121 | Khảo sát 11/06 sáng §II.10; Rà soát nguồn 23/06 §II.4 |
 | FUNC-194 | Quy tắc cảnh báo theo thời điểm: (a) chuyến đã cất cánh trước khi NAIL raise → KHÔNG cảnh báo; (b) chuyến rơi vào khoảng hiệu lực NAIL và chưa khai thác → cảnh báo (kể cả khi tại thời điểm đó chưa bị ảnh hưởng, vì thay đổi tải có thể dẫn tới chạy lại OFP vướng NAIL); (c) chuyến sau khoảng hiệu lực NAIL (khi NAIL kéo dài sang ngày khác) → KHÔNG cảnh báo. | BR-121 | Khảo sát 11/06 sáng §II.10 — Thảo luận – Đề xuất + Kết luận |
 | FUNC-195 | Khi NAIL ảnh hưởng quay tàu (rotation), hỗ trợ điều phái viên thao tác **chuyển kế hoạch khai thác giữa các tàu bay** (input cho thao tác trên Lido) `[ASR "chuyển nát" — cần xác nhận thuật ngữ]`. | BR-121 | Khảo sát 11/06 sáng §II.10 — Thảo luận – Đề xuất + Kết luận |
 | FUNC-196 | Mô hình master NAIL → sub-NAIL (NAIL gốc có thời hạn ví dụ 6 tháng, bẻ ra các sub-NAIL active theo) và ranh giới giữa TOSS (cảnh báo) vs Lido (đã tính NAIL vào dầu — nếu Lido đã tính thì có thể không cần cảnh báo bổ sung): (chưa có nguồn — cần SME bổ sung). | BR-121 | Khảo sát 11/06 sáng §II.10 — Thảo luận – Đề xuất + Kết luận (cờ "cần làm rõ") |
@@ -331,8 +331,8 @@ document_id: "FUNC-DEC-PH1"
 
 | Mã FUNC | Mô tả chức năng (bám nguồn) | BR cha | Nguồn |
 |---|---|---|---|
-| FUNC-228 | Quản lý / khai báo tàu bay hỏng APU (AC APU INOP) với các trường: số đăng ký tàu bay (AC REG), thời điểm bắt đầu hiệu lực (From date time), thời điểm kết thúc hiệu lực (To date time — có thể chưa xác định). | BR-131 | YCKT sheet-04 dòng 167 (TOSS-126/127) — "AC APU INOP" |
-| FUNC-229 | Duy trì danh mục sân bay theo khả năng cung cấp thiết bị điện/khí mặt đất: GPU (Ground Power Unit), ASU (Air Starter Unit), ACU (Air Conditioning Unit) — Available (Y/N) cho từng sân bay. | BR-131 | YCKT sheet-04 dòng 167; sheet-04 dòng 367–368 (GPU/ASU Available Y/N theo sân bay) |
+| FUNC-228 | Quản lý / khai báo tàu bay hỏng APU (AC APU INOP) với các trường: số đăng ký tàu bay (AC REG), thời điểm bắt đầu hiệu lực (From date time), thời điểm kết thúc hiệu lực (To date time — có thể chưa xác định). Bổ sung: **chuỗi chặng bị ảnh hưởng** (danh sách chuyến trong ngày của tàu APU INOP/PACK YẾU — vd `A321-A396 chuỗi chuyến HAN-SGN-HAN-DAD…`), **danh sách thiết bị mặt đất cần** (GPU/ASU/ACU) và **trạng thái sửa chữa** — mẫu `BCAO [Kiểm soát nhiệt độ CABIN]`. | BR-131 | YCKT sheet-04 dòng 167; Rà soát nguồn 23/06 §II.6 |
+| FUNC-229 | Duy trì danh mục sân bay theo khả năng cung cấp thiết bị điện/khí mặt đất: GPU (Ground Power Unit), ASU (Air Starter Unit), ACU (Air Conditioning Unit) — Available (Y/N) cho từng sân bay. Bổ sung trường **ngày hỏng từ (From date)** và **ghi chú (Remark)** cho từng kết hợp sân bay × thiết bị (Y/N) — mẫu `BCAO [Sân bay không có xe hỗ trợ tàu hỏng APU]`. | BR-131 | YCKT sheet-04 dòng 167; sheet-04 dòng 367–368; Rà soát nguồn 23/06 §II.6 |
 | FUNC-230 | Đối chiếu các tàu bay APU INOP trong khoảng hiệu lực với lịch khai thác đến các sân bay không cung cấp GPU/ASU/ACU; sinh cảnh báo "tàu bay hỏng APU có lịch bay đến sân bay không cung cấp điện khí mặt đất". | BR-131 | YCKT sheet-08 #10 — "Cảnh báo tàu bay hỏng APU có lịch bay đến các sân bay không cung cấp điện khí mặt đất"; YCKT sheet-04 dòng 167 |
 
 ### 2.32 BR-132 — Bật/tắt cảnh báo hai cấp (mặc định hệ thống + cá nhân user)

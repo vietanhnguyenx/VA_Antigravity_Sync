@@ -1,18 +1,18 @@
 ---
 project: "TOSS — Hệ thống Điều hành Khai thác Hãng Hàng không"
 author: "BA Lead"
-version: "0.4"
-date: "2026-06-17"
+version: "0.5"
+date: "2026-06-23"
 status: "Draft"
 document_type: "Functional Decomposition"
 document_id: "FUNC-DEC-PH2"
-brd_version: "0.6"
-parent: "BRD-TOSS-PH2-tai-lieu-chuyen-bay-v0.6.md"
+brd_version: "0.7"
+parent: "BRD-TOSS-PH2-tai-lieu-chuyen-bay-v0.7.md"
 ---
 
-# Phân rã Yêu cầu nghiệp vụ → Yêu cầu chức năng — Phân hệ 2: Quản lý tài liệu chuyến bay (v0.4)
+# Phân rã Yêu cầu nghiệp vụ → Yêu cầu chức năng — Phân hệ 2: Quản lý tài liệu chuyến bay (v0.5)
 
-> **Nguồn cha:** `BRD-TOSS-PH2-tai-lieu-chuyen-bay-v0.6.md` (BR-201 … BR-261) — Khung tổng: `BRD-TOSS-001-khung-v0.11.md` (§7.2).
+> **Nguồn cha:** `BRD-TOSS-PH2-tai-lieu-chuyen-bay-v0.7.md` (BR-201 … BR-261) — Khung tổng: `BRD-TOSS-001-khung-v0.11.md` (§7.2).
 >
 > **Ghi chú v0.4 (2026-06-17):** Cập nhật theo BRD PH2 v0.6 (VALIDATION Agent 3):
 > - **Bổ sung Khối F (mới)** — phân rã 5 BR chuyển từ PH1/PH4 sang PH2 v0.5+v0.6: **BR-257** (dashboard tài liệu chuyến bay + luồng phê duyệt request/confirm/reject — từ PH1 BR-112), **BR-258** (quản lý phần mềm + tính năng máy bay — từ PH4 BR-470), **BR-259** (SkyOffice master → auto push MO/MO Plus/VNA Library — từ PH4 BR-471), **BR-260** (Service Order tự động từ email LIDO — từ PH4 BR-472, BR canonical thay cho BR-247 PH2 cũ), **BR-261** (quản lý công việc Phòng KTKTB — từ PH4 BR-473). Thêm 16 FUNC mới (FUNC-332…FUNC-347).
@@ -20,7 +20,7 @@ parent: "BRD-TOSS-PH2-tai-lieu-chuyen-bay-v0.6.md"
 >   - **BR-247 cũ (PH2 v0.4 — Service Order tự động):** đã xóa khỏi BRD PH2 v0.5 do trùng BR-260 canonical. Trong tài liệu phân rã này không có FUNC nào của v0.3 trỏ BR-247 (v0.3 chỉ phân rã đến BR-231) nên không có FUNC bị ảnh hưởng. Khi BR Service Order được tiêu thụ tại FUNC, mã BR cha = **BR-260** (xem mục §1 Khối F).
 >   - **BR-235 (chế độ test/sandbox NOTOC):** chưa có FUNC phân rã trong v0.3 (nằm ngoài dải BR-201…BR-231 của v0.3). Khi triển khai phân rã ở bản sau, FUNC sẽ ghi chú "(cơ chế đồng bộ PROD→TEST: xem PH5 BR-542)" theo chú thích mới của BRD v0.6.
 >   - **BR-234 (mobile NOTOC) hạ Must → Should; BR-215 (lịch sử OFP sát giờ) hạ Must → Should.** Tài liệu phân rã này không có cột "Ưu tiên" ở mức FUNC; mức ưu tiên áp dụng theo BR cha tại BRD PH2 v0.6 và không thay đổi nội dung FUNC. FUNC-259/260/261 (BR-215) giữ nguyên mô tả.
-> - **Đổi tham chiếu BRD cha** sang `BRD-TOSS-PH2-tai-lieu-chuyen-bay-v0.6.md`. Bump version 0.3 → 0.4; date 2026-06-17.
+> - **Đổi tham chiếu BRD cha** sang `BRD-TOSS-PH2-tai-lieu-chuyen-bay-v0.7.md`. Bump version 0.3 → 0.4; date 2026-06-17.
 > - **Lưu ý dải BR cha:** v0.3 phân rã BR-201…BR-231 theo bộ mã BRD PH2 phiên bản đầu (trước khi đánh số lại trong BRD v0.4–v0.6). Bản v0.4 này **không remap lại** các FUNC-201…FUNC-331 đã có (theo nguyên tắc CLAUDE.md §0 — không suy diễn ngoài chỉ thị); chỉ **bổ sung Khối F mới** ánh xạ chính xác sang BR-257…BR-261 của BRD PH2 v0.6. Việc remap đầy đủ BR cũ ↔ BR mới do BA Lead chốt ở bản sau (gắn cờ ở §3).
 >
 > **Ghi chú v0.3 (2026-06-12):** Bổ sung phân rã cho 9 BR mới của BRD v0.3 — BR-223 … BR-231 (9 BR). Thêm FUNC-299 … FUNC-331 (31 FUNC). Chi tiết xem `BA-VERSION-LOG.md`.
@@ -104,10 +104,10 @@ parent: "BRD-TOSS-PH2-tai-lieu-chuyen-bay-v0.6.md"
 
 | Mã FUNC | Mô tả chức năng | BR cha | Nguồn |
 |---|---|---|---|
-| FUNC-228 | Tự động tích hợp và gắn kết Load Sheet (LS) từ PSS/DCS vào từng chuyến bay tương ứng. | BR-207 | Đề xuất §II.2 — "Hợp nhất dữ liệu thương mại" |
+| FUNC-228 | Tự động tích hợp và gắn kết Load Sheet (LS) từ PSS/DCS vào từng chuyến bay tương ứng. Tập trường bóc tách từ LS phải bao gồm: (a) header LS — **EDNO (Edition Number)**, người **Checked by**, người **Approved by** (mẫu `LOADSHEET_VN1237 [header]`); (b) **Prepared By** + số điện thoại liên hệ (mẫu `LOADSHEET_VN1237 [PREPARED BY CONG/VU CHI CONG 00 84 0902225966]`); (c) **lý do LS revision** dạng free-text (vd `LS2 DUE TO PLUS 01PC CREW.` — mẫu `LOADSHEET_VN1237 [LS2 DUE TO]`); (d) **cờ NOTOC YES/NO** trên LS — liên kết với NOTOC số hóa (mẫu `LOADSHEET_VN1237 [NOTOC]`); (e) **breakdown tải theo Compartment** 1..5 + bulk khoang 0 (mẫu `LOADSHEET_VN1237 [LOAD IN COMPARTMENTS]`); (f) **breakdown tải theo loại tại từng điểm đến**: Cargo (C), Mail (M), Baggage (B), Other (O), Total (T) (mẫu `LOADSHEET_VN1237 [PQC line]`); (g) **dòng LMC theo định dạng điện LDM** — bóc tách thành tập trường con PAX (ADL/CHD/INF), JMP, CRW, PAD, PER cùng cargo theo compartment (mẫu `LOADSHEET_VN1237 [LMC line]`). | BR-207 | Đề xuất §II.2 — "Hợp nhất dữ liệu thương mại"; Rà soát nguồn 23/06 §II.2 |
 | FUNC-229 | Tự động tích hợp và gắn kết Tổng khai báo (GD — General Declaration) từ PSS/DCS vào từng chuyến bay tương ứng. | BR-207 | Đề xuất §II.2 — "Hợp nhất dữ liệu thương mại" |
 | FUNC-230 | Tự động tích hợp và gắn kết Manifest hành khách (PM — Passenger Manifest) từ PSS/DCS vào từng chuyến bay tương ứng. | BR-207 | Đề xuất §II.2 — "Hợp nhất dữ liệu thương mại" |
-| FUNC-231 | Tự động tích hợp và gắn kết NOTOC (Notification to Captain — hàng hóa đặc biệt) từ PSS/DCS vào từng chuyến bay tương ứng. | BR-207 | Đề xuất §II.2 — "Hợp nhất dữ liệu thương mại" |
+| FUNC-231 | Tự động tích hợp và gắn kết NOTOC (Notification to Captain — hàng hóa đặc biệt) từ PSS/DCS vào từng chuyến bay tương ứng. Danh mục hàng hóa đặc biệt bao gồm **danh sách hành khách mang Battery Lithium** (mẫu `PM_VN1237 [BATTERY LITHIUM LIST]`) — liên kết với cờ NOTOC YES/NO trên Load Sheet (xem FUNC-228). | BR-207 | Đề xuất §II.2 — "Hợp nhất dữ liệu thương mại"; Rà soát nguồn 23/06 §II.3 |
 | FUNC-232 | Tự động tích hợp và gắn kết Cargo/Mail Manifest từ PSS/DCS vào từng chuyến bay tương ứng. | BR-207 | Đề xuất §II.2 — "Hợp nhất dữ liệu thương mại" |
 | FUNC-233 | Tự động bóc tách và lưu trữ các trường dữ liệu quan trọng từ các file tài liệu thương mại được thu nạp, phục vụ tìm kiếm và báo cáo nhanh. | BR-207 | Đề xuất §II.2 — "Bóc tách dữ liệu thông minh" |
 
@@ -185,7 +185,7 @@ parent: "BRD-TOSS-PH2-tai-lieu-chuyen-bay-v0.6.md"
 
 | Mã FUNC | Mô tả chức năng | BR cha | Nguồn |
 |---|---|---|---|
-| FUNC-262 | Cho phép người dùng nhập số lượng hành khách theo từng nhóm: Người lớn (Adult), Trẻ em (Child), Trẻ sơ sinh (Infant). | BR-216 | Đề xuất §II.2 — "Tính toán trọng lượng hành khách & hành lý" |
+| FUNC-262 | Cho phép người dùng nhập số lượng hành khách theo từng nhóm: Người lớn (Adult), Trẻ em (Child), Trẻ sơ sinh (Infant). Bổ sung: (a) hạng **Premium Economy (PE)** song song với Adult/Child/Infant + cờ **CHD (Child)** + ticket reference **TKNE** (mẫu `PM_VN1237 [PE LIST]`); (b) cờ **SOC (Seat Occupied by Cargo)** và **BLKD (Blocked seats)** ghi nhận trên PAX (mẫu `LOADSHEET_VN1237 [PASSENGER/CABIN BAG]`); (c) **Seat Map theo cabin J/W/Y** dạng sơ đồ ghế (mẫu `PM_VN1237 [J-CHART]`). | BR-216 | Đề xuất §II.2 — "Tính toán trọng lượng hành khách & hành lý"; Rà soát nguồn 23/06 §II.2, §II.3 |
 | FUNC-263 | Cho phép người dùng nhập số lượng hành lý. | BR-216 | Đề xuất §II.2 — "Tính toán trọng lượng hành khách & hành lý" |
 | FUNC-264 | Tự động tính toán trọng lượng hành khách và hành lý dựa trên cấu hình tham số chuẩn. | BR-216 | Đề xuất §II.2 — "Tính toán trọng lượng hành khách & hành lý" |
 | FUNC-265 | Cho phép nhập trọng lượng hàng hóa và mail ước tính, đưa vào bảng tính tải trọng chuyến bay. | BR-216 | Đề xuất §II.2 — "Quản lý hàng hóa và bưu kiện" |
@@ -198,10 +198,10 @@ parent: "BRD-TOSS-PH2-tai-lieu-chuyen-bay-v0.6.md"
 
 | Mã FUNC | Mô tả chức năng | BR cha | Nguồn |
 |---|---|---|---|
-| FUNC-270 | Hiển thị đồng thời chỉ số trọng lượng khô (DOW — Dry Operating Weight) từ kế hoạch bay (OFP). | BR-217 | Đề xuất §II.2 — "Đối soát an toàn với OFP" |
-| FUNC-271 | Hiển thị đồng thời chỉ số ZFW từ kế hoạch bay (OFP) để so sánh với ZFW thực tế tính toán được. | BR-217 | Đề xuất §II.2 — "Đối soát an toàn với OFP" |
-| FUNC-272 | Tự động so sánh ZFW trên OFP với ZFW ước tính thực tế và tính Delta. | BR-217 | Đề xuất §II.2 — "Đối soát an toàn với OFP" |
-| FUNC-273 | Hiển thị cảnh báo khi có sai lệch (Delta) giữa ZFW trên OFP và ZFW ước tính thực tế. *(Ngưỡng Delta cụ thể: chưa có nguồn — cần SME bổ sung)* | BR-217 | Đề xuất §II.2 — "Đối soát an toàn với OFP" |
+| FUNC-270 | Hiển thị đồng thời chỉ số trọng lượng khô (DOW — Dry Operating Weight) từ kế hoạch bay (OFP). Đối với cân bằng tải, hiển thị thêm tập trường **BALANCE** chuẩn từ Load Sheet: **DOI** (Dry Operating Index), **LIZFW / LITOW / LILAW** (Load Index tại ZFW / TOW / LAW) và **MACZFW / MACTOW / MACLAW** (% chord trung bình khí động tương ứng) — mẫu `LOADSHEET_VN1237 [BALANCE AND SEATING CONDITIONS]`. | BR-217 | Đề xuất §II.2 — "Đối soát an toàn với OFP"; Rà soát nguồn 23/06 §II.2 |
+| FUNC-271 | Hiển thị đồng thời chỉ số ZFW từ kế hoạch bay (OFP) để so sánh với ZFW thực tế tính toán được. Mở rộng: (a) **ZFW** ba giá trị Actual / MAX / ADJ (mẫu `LOADSHEET_VN1237 [ZERO FUEL WEIGHT ACTUAL]: 61788 MAX 71500 ADJ`); (b) **TOW (Take-off Weight)** ba giá trị Actual / MAX / ADJ (mẫu `LOADSHEET_VN1237 [TAKE OFF WEIGHT ACTUAL]: 70842 MAX 89000 ADJ`); (c) **LDW (Landing Weight)** ba giá trị Actual / MAX + cờ L + ADJ (mẫu `LOADSHEET_VN1237 [LANDING WEIGHT ACTUAL]: 65949 MAX 75500 L ADJ`). | BR-217 | Đề xuất §II.2 — "Đối soát an toàn với OFP"; Rà soát nguồn 23/06 §II.2 |
+| FUNC-272 | Tự động so sánh ZFW trên OFP với ZFW ước tính thực tế và tính Delta. Phạm vi đối soát mở rộng để bao quát toàn bộ bộ trọng lượng: **ZFW, TOW, LDW** — đều so sánh Actual ↔ OFP và tính Delta tương ứng. Tham chiếu thêm trường **UNDERLOAD BEFORE LMC** và **LMC TOTAL** trên LS (mẫu `LOADSHEET_VN1237 [UNDERLOAD BEFORE LMC]`) để theo dõi tải còn thừa trước khi áp Last-Minute Change. | BR-217 | Đề xuất §II.2 — "Đối soát an toàn với OFP"; Rà soát nguồn 23/06 §II.2 |
+| FUNC-273 | Hiển thị cảnh báo khi có sai lệch (Delta) giữa ZFW (và mở rộng TOW/LDW) trên OFP và giá trị ước tính thực tế. *(Ngưỡng Delta cụ thể: chưa có nguồn — cần SME bổ sung)* | BR-217 | Đề xuất §II.2 — "Đối soát an toàn với OFP"; Rà soát nguồn 23/06 §II.2 |
 | FUNC-274 | Hỗ trợ đồng bộ tự động dữ liệu tải trọng song song với việc cho phép nhập thủ công khi cần thiết. | BR-217 | Đề xuất §II.2 — "Cơ chế cập nhật và Lưu trữ lịch sử" |
 | FUNC-275 | Ghi nhận lịch sử cập nhật chi tiết mọi thay đổi trong bảng tính tải trọng (người thay đổi, thời điểm thay đổi). | BR-217 | Đề xuất §II.2 — "Cơ chế cập nhật và Lưu trữ lịch sử" |
 

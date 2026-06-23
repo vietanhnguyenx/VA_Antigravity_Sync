@@ -1,8 +1,8 @@
 ---
 project: "TOSS — Hệ thống Điều hành Khai thác Hãng Hàng không"
 author: "BA Lead"
-version: "0.5"
-date: "2026-06-17"
+version: "0.6"
+date: "2026-06-23"
 status: "Draft"
 document_type: "BRD"
 document_id: "BRD-TOSS-PH5"
@@ -19,7 +19,7 @@ parent: "BRD-TOSS-001-khung-v0.10.md"
 >
 > **Quản lý điểm cần xác nhận:** mọi cờ `[cần xác nhận]` đã được chuyển về sổ cái duy nhất **OID-TOSS-001** (`ba/workspace/drafts/quy-trinh/SO-THEO-DOI-DIEM-CHOT-v0.1.md`). Trong tài liệu này chỉ giữ chú thích trỏ về OID dưới dạng `*(xem OID: <mã>)*` ở cuối mô tả BR liên quan.
 >
-> **Quy ước MoSCoW, ràng buộc, bên liên quan:** tham chiếu BRD khung §3, §6, §9. Phân rã FUNC: xem `../srs/03-dac-ta-chuc-nang/PHAN-RA-BRD-PH5-quan-tri-he-thong-v0.3.md` (cập nhật theo v0.4 BR mới — BR-528/BR-530 tách atomic).
+> **Quy ước MoSCoW, ràng buộc, bên liên quan:** tham chiếu BRD khung §3, §6, §9. Phân rã FUNC: xem `../srs/03-dac-ta-chuc-nang/PHAN-RA-BRD-PH5-quan-tri-he-thong-v0.4.md` (cập nhật theo v0.4 BR mới — BR-528/BR-530 tách atomic).
 
 ---
 
@@ -80,14 +80,14 @@ parent: "BRD-TOSS-001-khung-v0.10.md"
 | BR-527 | Hệ thống phải hỗ trợ cơ chế tích hợp **chủ động theo sự kiện** (event-based / push) ngay khi nguồn phát sinh dữ liệu, kết hợp với cơ chế ảnh chụp dữ liệu định kỳ (poll/snapshot) cho các nguồn không hỗ trợ push. Cấu hình tần suất/hình thức thu thập theo từng nguồn. *(xem OID: KS-01)* | Functional | Must | Đề xuất §I; Khảo sát 09/06/2026 §II.9 (chốt mục 12); YCKT V3 TOSS-107 (sheet-04 #131) |
 | BR-528a | Hệ thống phải duy trì data contract với nhóm **Lập lịch & điều phái** — Netline/Flight Ops++ (lịch bay, slot, thay đổi lịch) và Flight Scheduling chuẩn SSIM/ASM/SSM (export lịch bay phát hành ra ngoài, import thay đổi lịch từ thương mại): chuẩn API/file, ánh xạ trường, cơ chế retry và alert khi link down. PH1 tiêu thụ lịch bay đã chuẩn hóa qua PH5. *(xem OID: SME-14)* | Functional | Must | YCKT sheet-06 (Netline, SSIM/ASM/SSM); Đề xuất §I; Khảo sát 08/06/2026 §II.3 |
 | BR-528b | Hệ thống phải duy trì data contract với nhóm **Tổ bay & khai thác nội bộ** — AVES (danh sách tổ bay, trip pairing, qualification) và MO Plus (Dispatch Release/Confirm, đẩy tài liệu chuyến bay phiên bản cuối): chuẩn API/message, ánh xạ trường, retry và alert. PH1 (Dispatch Release) và PH2 (tài liệu chuyến bay) tiêu thụ dữ liệu đã chuẩn hóa. *(xem OID: SME-22)* | Functional | Must | YCKT sheet-06 (AVES, MO Plus); Đề xuất §I; Khảo sát 11/06/2026 buổi chiều §II.4 |
-| BR-528c | Hệ thống phải duy trì data contract với nhóm **Lập kế hoạch bay** — Lido Flight 4D / Adapter Lido / Lido mPilot (OFP gốc, chart, fuel computation, đường bay đề xuất): chuẩn file/API, ánh xạ trường OFP và metadata, cơ chế retry và alert. PH1 (Dispatch) và PH2 (tài liệu chuyến bay) tiêu thụ OFP đã chuẩn hóa. *(xem OID: SME-23)* | Functional | Must | YCKT sheet-06 (Lido Flight); Đề xuất §I |
+| BR-528c | Hệ thống phải duy trì data contract với nhóm **Lập kế hoạch bay** — Lido Flight 4D / Adapter Lido / Lido mPilot (OFP gốc, chart, fuel computation, đường bay đề xuất): chuẩn file/API, ánh xạ trường OFP và metadata, cơ chế retry và alert. PH1 (Dispatch) và PH2 (tài liệu chuyến bay) tiêu thụ OFP đã chuẩn hóa. TOSS kết nối **trực tiếp tới Lido** để lấy OFP phục vụ chức năng nội bộ (Dispatch Release/Un-Release/Confirm — PH1, gán phiên bản R1/R2… và đẩy MO Plus — PH2, báo cáo OFP vs thực tế — PH3), không phụ thuộc đường relay qua OPS++. *(xem OID: SME-23)* | Functional | Must | YCKT sheet-06 (Lido Flight); Đề xuất §I; bảng Thông tin tích hợp OpsPlus v77 [Inbound dòng 19 — OFP] |
 | BR-528d | Hệ thống phải duy trì data contract với nhóm **Bảo dưỡng kỹ thuật** — AMOS/MRO (MEL, CDL, AOG, defect, maintenance schedule), TIMS, eTechlog, FOEM/DOW: chuẩn API/file, ánh xạ trường khoảng hiệu lực MEL/NAIL/CDL và DOW theo phiên bản, retry và alert. PH4 (Master Data) và PH1 (Dispatch) tiêu thụ dữ liệu đã chuẩn hóa. *(xem OID: SME-14)* | Functional | Must | YCKT sheet-06 (AMOS, TIMS, eTechlog, FOEM/DOW); Đề xuất §I |
 | BR-528e | Hệ thống phải duy trì data contract với nhóm **Thương mại & đặt chỗ** — Amadeus PSS 1A (đặt chỗ hành khách), DCS (check-in, boarding, load data PAX/Bag): chuẩn API/message, ánh xạ trường PAX/Bag/Cargo và trạng thái boarding, retry và alert. PH1 (load) và PH3 (báo cáo PAX) tiêu thụ dữ liệu đã chuẩn hóa. *(xem OID: SME-26)* | Functional | Must | YCKT sheet-06 (Amadeus PSS, DCS); Đề xuất §I |
 | BR-528f | Hệ thống phải duy trì data contract với nhóm **Mặt đất & sân đỗ** — VMS/VIAGS (parking, ground service), A-CDM (16 mốc thời gian turnaround), RPS (chi phí ground service): chuẩn API/message, ánh xạ trường 16 mốc A-CDM và parking/ground service request, retry và alert. PH1 (Monitoring real-time) tiêu thụ dữ liệu đã chuẩn hóa. *(xem OID: SME-22)* | Functional | Must | YCKT sheet-06 (VMS/VIAGS, A-CDM, RPS); Đề xuất §I |
 | BR-528g | Hệ thống phải duy trì data contract với nhóm **Tuân thủ & môi trường** — ANCM (noise abatement), NetZero/ETS (carbon emission, EU ETS, CORSIA), Cargo Spot (cargo manifest): chuẩn API/file, ánh xạ trường khí thải/cargo, retry và alert. PH3 (báo cáo môi trường, NOTOC) tiêu thụ dữ liệu đã chuẩn hóa. *(xem OID: SME-26)* | Functional | Should | YCKT sheet-06 (ANCM, NetZero, ETS, Cargo Spot); Đề xuất §I |
 | BR-528h | Hệ thống phải duy trì data contract với nhóm **Giám sát vị trí** — FlightRadar24 (vị trí tàu bay real-time), ADS-B (surveillance out/in qua vệ tinh/mặt đất): chuẩn API/feed, ánh xạ trường tọa độ/độ cao/tốc độ, retry và alert. PH1 (Monitoring real-time) tiêu thụ dữ liệu đã chuẩn hóa. *(xem OID: SME-23)* | Functional | Should | YCKT sheet-06 (FlightRadar24, Flight Watch); Đề xuất §I |
 | BR-529 | Hệ thống phải bảo đảm cam kết phát triển thêm tối thiểu 10 giao tiếp dữ liệu giữa các hệ thống trong thời gian cung cấp dịch vụ mà không phát sinh chi phí. | NFR | Must | YCKT V3 TOSS-064 (sheet-04 #80) |
-| BR-530a | Hệ thống phải tích hợp luồng dữ liệu inbound từ **AMOS** đồng bộ hiện trạng MEL, CDL, AOG, defect, NAIL phát sinh kèm khoảng hiệu lực và giá trị Techlog uplift FOB vào TOSS: chuẩn API/message, ánh xạ trường, retry và alert khi link down. PH4 (Master Data MEL/CDL) và PH1 (Dispatch) tiêu thụ. *(xem OID: SME-14)* | Functional | Must | Khảo sát 11/06/2026 buổi sáng §II.10 |
+| BR-530a | Hệ thống phải tích hợp luồng dữ liệu inbound từ **AMOS** đồng bộ hiện trạng MEL, CDL, AOG, defect, NAIL phát sinh kèm khoảng hiệu lực, giá trị Techlog uplift FOB và **lịch ground event / maintenance schedule** (xuống hangar, A/B/C-check) phục vụ PH4 cập nhật trạng thái khả dụng tàu bay vào TOSS: chuẩn API/message, ánh xạ trường, retry và alert khi link down. PH4 (Master Data MEL/CDL, trạng thái khả dụng tàu bay) và PH1 (Dispatch, cảnh báo tàu bay không khả dụng cho chuyến bay được phân) tiêu thụ. *(xem OID: SME-14)* | Functional | Must | Khảo sát 11/06/2026 buổi sáng §II.10; bảng Thông tin tích hợp OpsPlus v77 [Inbound dòng 20 — Ground Event] |
 | BR-530b | Hệ thống phải tích hợp luồng dữ liệu inbound từ **QAR/QAI** (Cassiopee Alpha — Analyzed QAR) qua API hoặc Database View của Tổng công ty: chuẩn API/View, ánh xạ trường Standard Taxi Time và phân tích Post-Flight, retry và alert. PH3 (Data Monitoring, Time analytics) tiêu thụ. *(xem OID: SME-22)* | Functional | Should | Khảo sát 11/06/2026 buổi sáng §II.14 |
 | BR-530c | Hệ thống phải tích hợp luồng dữ liệu inbound từ **ACARS** trực tiếp làm nguồn mốc thời gian thực tế OUT/OFF/ON/IN, Phase Trigger và điện văn ACARS cho màn Monitoring real-time: chuẩn message AMHS/AFTN/SITA TEXT, ánh xạ trường OOOI events, retry và alert. PH1 (Monitoring real-time, Phase Trigger) tiêu thụ. *(xem OID: SME-23)* | Functional | Must | Khảo sát 11/06/2026 buổi sáng §II.10; Khảo sát 11/06/2026 buổi chiều §II.6 |
 | BR-530d | Hệ thống phải tích hợp luồng dữ liệu inbound từ **A-CDM** nhận 16 mốc thời gian turnaround từ sân bay (boarding, đóng cửa, push-back…) để biết chuyến đã phục vụ đến giai đoạn nào tại sân: chuẩn API/message, ánh xạ 16 mốc, retry và alert. PH1 (Monitoring, Flight Detail) tiêu thụ. *(xem OID: SME-22)* | Functional | Must | Khảo sát 11/06/2026 buổi chiều §II.9 |
@@ -137,4 +137,4 @@ parent: "BRD-TOSS-001-khung-v0.10.md"
 
 ---
 
-*BRD-TOSS-PH5 v0.5 — 2026-06-17. Tổng 68 BR, tổ chức thành 8 nhóm A–H. Lịch sử version: BA-VERSION-LOG.md.*
+*BRD-TOSS-PH5 v0.6 — 2026-06-23. Tổng 68 BR, tổ chức thành 8 nhóm A–H. Lịch sử version: BA-VERSION-LOG.md.*
