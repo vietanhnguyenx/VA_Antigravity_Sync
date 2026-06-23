@@ -34,10 +34,10 @@ document_type: "Gói câu hỏi tích hợp gửi VNA / Lufthansa Systems"
 ## D. Trách nhiệm & tham số nghiệp vụ
 15. **Trách nhiệm tính Crew Connection** (tổ bay nối chuyến) thuộc TOSS hay NetLine. `[OID KS-99]`
 16. **Tần suất quét cập nhật Crew Assignment** sau lần quét khởi tạo (02:00 ngày 26 hàng tháng). `[OID KS-98]`
-17. **Đơn vị của ngưỡng cảnh báo "tổ bay < 1000"** trong logic Crew Assignment (số chuyến / số thiết bị / số người). `[OID D-11]`
+17. ~~Đơn vị của ngưỡng cảnh báo "tổ bay < 1000" trong logic Crew Assignment~~ → **ĐÃ RÕ (BA Lead 23/06): đơn vị là SỐ CHUYẾN BAY** — nếu số chuyến bay có dữ liệu tổ bay trong tháng kế tiếp dưới 1000 thì coi là chưa có dữ liệu và sinh cảnh báo. `[OID D-11 — đã chốt]`
 18. **Spec endpoint API trạng thái chuyến (Flight Status) của VIAGS** để TOSS lấy Gate Info. `[OID D-12]`
 19. **Trạng thái Flight Data (ACDM)** đang pending — xác nhận phạm vi và thời điểm cung cấp. `[OID KS-103]`
 
 ## E. Phạm vi (xác nhận lại)
-20. Xác nhận **phạm vi TOSS = các luồng "Phương thức = Thông qua TOSS"**; các luồng "Trực tiếp" (LIDO/AMOS → NetOps++) do đối tác tự đấu nối, ngoài phạm vi TOSS. `[BA Lead chốt 23/06 — DEC-16]`
+20. ~~Xác nhận phạm vi TOSS = các luồng "Phương thức = Thông qua TOSS"~~ → **ĐÃ XÁC NHẬN (VNA/BA Lead 23/06): ĐÚNG** — các luồng "Trực tiếp" (LIDO/AMOS → NetOps++) do đối tác tự đấu nối, **nằm NGOÀI phạm vi TOSS kết nối với OPS++**. `[DEC-16 — đã chốt]`
 21. **Ranh giới phần TOSS xử lý dữ liệu nội bộ** sau khi nhận từ OPS++ — thuộc gói dự án nào (TOSS không yêu cầu lưu trữ thay NetOps đã rõ; còn lại scope BR). `[OID DEC-17]`
