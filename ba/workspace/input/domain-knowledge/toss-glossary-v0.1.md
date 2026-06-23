@@ -1,7 +1,7 @@
 ---
 project: "TOSS — Hệ thống Điều hành Khai thác Hãng Hàng không"
 author: "BA Lead"
-version: "0.23"
+version: "0.24"
 date: "2026-06-23"
 status: "Draft"
 document_type: "Domain Knowledge — Từ điển Thuật ngữ TOSS"
@@ -225,6 +225,7 @@ document_type: "Domain Knowledge — Từ điển Thuật ngữ TOSS"
 | Viết tắt / Thuật ngữ | Tiếng Việt | Mô tả trong TOSS |
 |---|---|---|
 | **MEL** (Minimum Equipment List) | Danh sách Thiết bị Tối thiểu | Tài liệu quy định thiết bị nào được phép hỏng mà tàu bay vẫn được phép bay, với điều kiện nào. TOSS theo dõi MEL dispatch trong module Bảo dưỡng. |
+| **Mã item MEL/CDL** *(numbering — tài liệu Boeing B787 MEL R10)* | Quy ước đánh số item MEL/CDL | Tài liệu MEL Boeing đánh số dạng `<section>.XX-XX-XX.X`: **số section đầu = `2` cho [MEL](#m), `3` cho [CDL](#c)**; cụm `XX-XX-XX` giữa = **MEL/CDL Item Number theo ATA** (chương–mục–đề mục, ví dụ `21-31-06`) — trùng `deviation_code` trong dữ liệu [MEL-78A/B/C]; `.X` cuối = số trang trong item. MEL (Section 2) = thiết bị được phép hỏng có điều kiện; CDL (Section 3) = bộ phận ngoài được phép thiếu. Mã này là khoá đối chiếu xuyên ba lớp [AMOS](#a) ↔ [Shortlist MEL (FOE)](#s)/Lido ↔ MEL trong OFP. (nguồn: hình quy ước trong tài liệu MEL B787 R10 — `Customer_docs/MEL/#MEL_R10…efb/Images/0-00-01-00_FAA.fm_3178.jpg` (MEL) & `…_1675354.jpg` (CDL).) |
 | **MRO** (Maintenance, Repair & Overhaul) | Bảo dưỡng, Sửa chữa & Đại tu | Đơn vị cung cấp dịch vụ bảo dưỡng tàu bay. TOSS không quản lý MRO trực tiếp nhưng tích hợp kế hoạch với CAMO. |
 | **METAR** (Meteorological Aerodrome Report) | Bản tin quan trắc khí tượng sân bay | Bản tin thời tiết quan trắc thực tế tại sân bay, phát hành định kỳ (30–60 phút). Cặp với [TAF](#t) (dự báo) và [SPECI](#s) (bản tin đặc biệt khi thời tiết biến động). Điều phái chuyên trách NOTAM/WX theo dõi METAR/TAF/SIGMET (nguồn: FDOP §3.2.2; FAA `sec-05-acronyms`). **TOSS cần tích hợp và parse METAR + SPECI để cảnh báo tự động các thông số: tầm nhìn, trần mây, TSRA** so với ngưỡng VMA của từng sân bay (nguồn: phỏng vấn Dispatcher 11/06/2026). |
 | **MOC** (Maintenance Operations Control) | Trung tâm Kiểm soát Khai thác Bảo dưỡng | Đơn vị kiểm soát khai thác bảo dưỡng — nguồn cung cấp thông tin hỏng hóc MEL/CDL cho điều phái (nguồn: FDOP §3.1, §3.2). |
@@ -481,6 +482,7 @@ document_type: "Domain Knowledge — Từ điển Thuật ngữ TOSS"
 
 ---
 
+*v0.24 (2026-06-23): Bổ sung entry **Mã item MEL/CDL (numbering)** — quy ước đánh số `<section>.XX-XX-XX.X` (section 2 = MEL, 3 = CDL; `XX-XX-XX` = item theo ATA = deviation_code; `.X` = trang). Nguồn: 2 hình quy ước trong tài liệu MEL B787 R10 (`Customer_docs/MEL/#MEL_R10…efb/Images/0-00-01-00_FAA.fm_3178.jpg` & `_1675354.jpg`). Quyết định: BA Lead 2026-06-23.*
 *v0.23 (2026-06-23): Bổ sung 12 thuật ngữ tích hợp từ buổi KS 23/06 (tiếp 19/06) — ISB (trục tích hợp NetLine, tên đầy đủ chờ xác nhận), PTM/PNL/ADL (bộ điện danh sách khách Amadeus + tần suất), FMM (Fuel Monitoring Message — TOSS tự sinh), Fuel Report, NetLine Classic, Clone DB, Event-Based output, Request-Based output, Crew Connection, HDQONVN (địa chỉ SITA VNA). Cập nhật entry OPS++ (cloud-hosted LHS, không DB nội bộ, tích hợp qua ISB) và VIAGS (API Flight Status lấy Gate). Nguồn: KS 23/06 + bảng "Thông tin tích hợp" VNA (v77). Quyết định: BA Lead 2026-06-23.*
 *v0.22 (2026-06-23): Bổ sung 4 thuật ngữ điện văn SITA Type B từ buổi KS 19/06 (tích hợp TOSS↔OPS++) — MVT (Aircraft Movement Message), MVA (SITA — Movement Advice), DIV/điện divert (Diversion Message), LDM (Load Distribution Message). Gắn cờ phân biệt **MVA (SITA — Movement Advice)** với **MVA (ACARS — Multi-format Variant Address)** đã có (khác hệ). Nguồn: KS 19/06; bảng "Thông tin tích hợp" VNA (Google Sheet live); OAG MVT/MVA/DIV + IATA Type B Whitepaper (domain-knowledge/sita-messaging/). Quyết định: BA Lead 2026-06-23.*
 *v0.21 (2026-06-22): Bổ sung 14 thuật ngữ từ buổi KS 18/06 (CLC & Điều phái) — Crew CHG, Crew Download, DAO, Filed ATC, Fly Doc, Matching PIC, Minima sân bay, Mô hình cảnh báo hai mức, Ngưỡng DAO, Ngưỡng Payload, OFP rỗng tổ bay, Pilot AXA, Pilot Confirm, Shortlist MEL (FOE). Bỏ qua Lido Import file/FOEM (đã có); **EDTO bỏ qua — đã có entry sẵn ở section E**. Nguồn: PROPOSAL-18062026 §5. Quyết định: BA Lead 2026-06-22.*
