@@ -215,7 +215,7 @@
     .subsection-note { font-size: 11.5px; color: var(--md-text-secondary); margin-bottom: 8px; font-style: italic; }
 
     /* ===== Flexible Cabin Config ===== */
-    .cabin-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; }
+    .cabin-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
     .cabin-cell { display: flex; flex-direction: column; gap: 4px; }
     .cabin-cell label { font-size: 10.5px; font-weight: 600; color: var(--md-text-secondary); text-transform: uppercase; }
 
@@ -266,6 +266,12 @@
     .section-edit-btn:hover { background: rgba(0, 90, 156, 0.05); border-color: var(--toss-primary-light); }
     .section-edit-btn:focus { outline-color: var(--toss-primary); }
     .section-edit-btn .material-symbols-outlined { font-size: 16px; }
+
+    /* ===== Hide ICAO/IATA columns in table ===== */
+    .user-table th:nth-child(4), .user-table th:nth-child(5),
+    .user-table td:nth-child(4), .user-table td:nth-child(5) {
+      display: none;
+    }
   </style>
 </head>
 <body>
@@ -430,8 +436,8 @@
               <input type="text" id="fSubtype" class="filter-input" placeholder="VD: A320NEO">
             </div>
             <div class="filter-item">
-              <label for="fName">Tên loại tàu</label>
-              <input type="text" id="fName" class="filter-input" placeholder="Tìm theo tên loại tàu bay">
+              <label for="fACreg">AC Registration (ACreg)</label>
+              <input type="text" id="fACreg" class="filter-input" placeholder="Tìm theo số ACreg">
             </div>
             <div class="filter-item">
               <label for="fCat1">Category 1</label>
@@ -500,9 +506,6 @@
                 </button>
               </div>
               <div class="user-list-actions">
-                <button class="btn btn-blue" onclick="showToast('Thêm loại tàu bay mới')">
-                  <span class="material-symbols-outlined">add</span> Thêm mới
-                </button>
                 <button class="btn btn-orange" onclick="showToast('Xuất Excel thành công')">
                   <span class="material-symbols-outlined">download</span> Xuất Excel
                 </button>
@@ -650,8 +653,6 @@
                     <div class="details-meta">
                       <span class="status-badge active">Active</span>
                       <span><strong>Số ACreg:</strong> 12</span>
-                      <span><strong>ICAO/IATA:</strong> A20N / 32N</span>
-                      <span><strong>Đội bay:</strong> A320 Fleet</span>
                     </div>
                   </div>
                 </div>
@@ -785,13 +786,11 @@
                       <span class="material-symbols-outlined">edit</span> Sửa
                     </button>
                   </div>
-                  <p class="subsection-note">Khai báo tối đa 5 khoang. Khoang không tồn tại trên loại tàu này → nhập <strong>0</strong>.</p>
+                  <p class="subsection-note">Khai báo tối đa 3 khoang. Khoang không tồn tại trên loại tàu này → nhập <strong>0</strong>.</p>
                   <div class="cabin-grid">
                     <div class="cabin-cell"><label>Cabin A</label><input type="number" class="detail-input" value="8" min="0"></div>
                     <div class="cabin-cell"><label>Cabin B</label><input type="number" class="detail-input" value="24" min="0"></div>
                     <div class="cabin-cell"><label>Cabin C</label><input type="number" class="detail-input" value="120" min="0"></div>
-                    <div class="cabin-cell"><label>Cabin D</label><input type="number" class="detail-input" value="0" min="0"></div>
-                    <div class="cabin-cell"><label>Cabin E</label><input type="number" class="detail-input" value="0" min="0"></div>
                   </div>
                 </div>
 
@@ -1222,7 +1221,7 @@
 
     // Filters
     function clearFilters() {
-      ['fSubtype','fName','fCat1','fCat2','fCat3','fCat4','fCat5','fStatus'].forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
+      ['fSubtype','fACreg','fCat1','fCat2','fCat3','fCat4','fCat5','fStatus'].forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
       showToast('Đã xoá bộ lọc');
     }
     function applyFilters() { showToast('Đã áp dụng bộ lọc'); }
@@ -1274,9 +1273,14 @@
       event.stopPropagation();
       const tab = document.getElementById(tabId);
 
-      // Enable all fields in this tab
+      // Enable all editable fields in this tab (except locked fields like AC Subtype, Tên loại tàu, Valid From)
+      const lockedLabels = ['AC Subtype', 'Tên loại tàu', 'Valid From'];
       tab.querySelectorAll('.detail-input, .detail-select, .sub-table input, .cabin-cell input').forEach(el => {
-        if (!el.hasAttribute('disabled') || el.getAttribute('disabled') === 'false') {
+        // Check if this field is locked
+        const labelEl = el.parentElement.querySelector('.detail-label');
+        const isLocked = labelEl && lockedLabels.some(l => labelEl.textContent.includes(l));
+
+        if (!isLocked) {
           el.disabled = false;
         }
       });
