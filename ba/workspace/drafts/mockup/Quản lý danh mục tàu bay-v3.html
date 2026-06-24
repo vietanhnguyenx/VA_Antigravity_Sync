@@ -257,15 +257,6 @@
     .tab-content { display: none !important; visibility: hidden; position: absolute; pointer-events: none; }
     .tab-content.active { display: flex !important; visibility: visible; position: relative; pointer-events: auto; }
 
-    /* ===== Tab Edit Icon Styling ===== */
-    .tab-edit-icon { display: inline-flex; align-items: center; justify-content: center; background: var(--toss-primary); color: white; padding: 4px 8px; border-radius: 6px; cursor: pointer; font-size: 14px; margin-left: 12px; transition: all 0.2s; user-select: none; }
-    .tab-edit-icon:hover { background: var(--toss-primary-light); }
-    .tab-edit-icon:focus { outline: 2px solid var(--toss-primary); outline-offset: 1px; }
-
-    /* Edit mode indicator on tab */
-    .details-tab-button.editing { border-bottom: 3px solid var(--toss-warn); background: rgba(217, 119, 6, 0.05); }
-    .details-tab-button.editing::after { content: '●'; color: var(--toss-warn); font-size: 8px; margin-left: 4px; animation: pulse 2s infinite; }
-    @keyframes pulse { 0%, 100% { opacity: 0.8; } 50% { opacity: 1; } }
 
     /* Field hint text */
     .field-hint { font-size: 11px; color: var(--md-text-secondary); font-style: italic; margin-top: 3px; display: block; }
@@ -686,6 +677,12 @@
               <!-- TAB 1: General Info -->
               <!-- ============================ -->
               <div id="tab-general" class="details-tab-content active">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                  <h3 style="font-size: 13px; font-weight: 700; color: var(--vna-navy);">Thông tin chung (General Info)</h3>
+                  <button class="section-edit-btn" title="Sửa thông tin chung" onclick="enterSectionEditMode(event, 'tab-general', 'general-info')">
+                    <span class="material-symbols-outlined">edit</span> Sửa
+                  </button>
+                </div>
                 <p class="subsection-note">Các trường có biểu tượng <span class="material-symbols-outlined" style="font-size: 14px; vertical-align: -2px;">lock</span> được đồng bộ từ hệ thống nguồn (SMA/Ops++), chỉ đọc trên TOSS.</p>
                 <div class="details-grid">
                   <div class="detail-row">
@@ -739,6 +736,12 @@
               <!-- TAB 2: Aircraft Config -->
               <!-- ============================ -->
               <div id="tab-config" class="details-tab-content">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                  <h3 style="font-size: 13px; font-weight: 700; color: var(--vna-navy);">Tham số kỹ thuật (Aircraft Config)</h3>
+                  <button class="section-edit-btn" title="Sửa tham số kỹ thuật" onclick="enterSectionEditMode(event, 'tab-config', 'aircraft-params')">
+                    <span class="material-symbols-outlined">edit</span> Sửa
+                  </button>
+                </div>
                 <div class="details-grid">
                   <div class="detail-row">
                     <span class="detail-label">Taxi Fuel Flow (kg/h)</span>
@@ -794,11 +797,16 @@
 
                 <!-- ACARS Fuel Unit / Multiplier — cặp From-To nối tiếp theo MM §2.3 -->
                 <div class="subsection">
-                  <div class="subsection-head">
+                  <div class="subsection-head" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
                     <h3><span class="material-symbols-outlined">local_gas_station</span> ACARS Fuel Unit & Fuel Multiplier</h3>
-                    <button class="add-row-btn" onclick="addAcarsRow()">
-                      <span class="material-symbols-outlined">add</span> Thêm khoảng hiệu lực
-                    </button>
+                    <div style="display: flex; gap: 8px;">
+                      <button class="section-edit-btn" title="Sửa ACARS Fuel Unit & Multiplier" onclick="enterSectionEditMode(event, 'tab-config', 'acars-fuel')">
+                        <span class="material-symbols-outlined">edit</span> Sửa
+                      </button>
+                      <button class="add-row-btn" onclick="addAcarsRow()">
+                        <span class="material-symbols-outlined">add</span> Thêm khoảng hiệu lực
+                      </button>
+                    </div>
                   </div>
                   <p class="subsection-note">
                     Khai báo theo cặp, các khoảng <strong>From – To</strong> phải <strong>nối tiếp</strong> theo thời gian thực tế (không chồng lấn, không hở).<br>
@@ -842,6 +850,12 @@
               <!-- TAB 3: Attributes — 5 thuộc tính gom nhóm -->
               <!-- ============================ -->
               <div id="tab-attr" class="details-tab-content">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                  <h3 style="font-size: 13px; font-weight: 700; color: var(--vna-navy);">Thuộc tính nhóm (Group Attributes)</h3>
+                  <button class="section-edit-btn" title="Sửa thuộc tính nhóm" onclick="enterSectionEditMode(event, 'tab-attr', 'group-attr')">
+                    <span class="material-symbols-outlined">edit</span> Sửa
+                  </button>
+                </div>
                 <p class="subsection-note">5 thuộc tính gom nhóm (Group Attributes) phục vụ lọc danh sách & xuất báo cáo đặc thù (MM §2.1, Function list R59).</p>
                 <div class="details-grid">
                   <div class="detail-row">
@@ -884,6 +898,12 @@
               <!-- TAB 4: Audit Log -->
               <!-- ============================ -->
               <div id="tab-audit" class="details-tab-content">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                  <h3 style="font-size: 13px; font-weight: 700; color: var(--vna-navy);">Lịch sử thay đổi</h3>
+                  <button class="section-edit-btn" disabled title="Lịch sử chỉ đọc" style="opacity: 0.5; cursor: not-allowed;">
+                    <span class="material-symbols-outlined">lock</span> Chỉ đọc
+                  </button>
+                </div>
                 <p class="subsection-note">
                   Lịch sử thay đổi — ghi nhận <strong>TẤT CẢ</strong> changes của loại tàu bay.<br>
                   <span style="font-size: 12px; color: #64748b; margin-top: 6px; display: inline-block;">
@@ -1223,7 +1243,7 @@
       btn.style.background = 'rgba(0,0,0,0.15)';
     }
 
-    // Detail tabs - with per-tab edit icon visibility
+    // Detail tabs - switch content only
     function switchDetailsTab(btn, tabId) {
       // Switch tab content
       document.querySelectorAll('.details-tab-content').forEach(t => t.classList.remove('active'));
@@ -1236,42 +1256,6 @@
       });
       btn.classList.add('active');
       btn.setAttribute('aria-selected', 'true');
-
-      // Hide all edit icons, show only for active tab
-      document.querySelectorAll('.tab-edit-icon').forEach(icon => icon.style.display = 'none');
-      const activeIcon = btn.querySelector('.tab-edit-icon');
-      if (activeIcon) activeIcon.style.display = 'inline-flex';
-    }
-
-    // Per-tab edit mode
-    function enterTabEditMode(event, tabId) {
-      event.stopPropagation(); // Prevent tab switch
-      const tab = document.getElementById(tabId);
-
-      // Mark this tab as editing (visual indicator)
-      document.querySelectorAll('.details-tab-button').forEach(b => b.classList.remove('editing'));
-      const tabBtn = document.querySelector(`[aria-controls="${tabId}"]`);
-      if (tabBtn) tabBtn.classList.add('editing');
-
-      // Enable only fields in this tab
-      tab.querySelectorAll('.detail-input, .detail-select, .sub-table input').forEach(el => {
-        if (!el.hasAttribute('disabled') || el.getAttribute('disabled') === 'false') {
-          el.disabled = false;
-        }
-      });
-
-      // Disable fields in other tabs
-      document.querySelectorAll('.details-tab-content').forEach(t => {
-        if (t.id !== tabId) {
-          t.querySelectorAll('.detail-input, .detail-select, .sub-table input').forEach(el => {
-            el.disabled = true;
-          });
-        }
-      });
-
-      // Show save/cancel buttons for this tab
-      showTabActionBar(tabId);
-      window.__currentEditingTab = tabId;
     }
 
     function showTabActionBar(tabId) {
@@ -1283,6 +1267,26 @@
     function getTabName(tabId) {
       const names = {'tab-general': 'Chung', 'tab-config': 'Cấu hình tàu', 'tab-attr': 'Thuộc tính nhóm'};
       return names[tabId] || 'Tab này';
+    }
+
+    // Section-level edit mode (Option 2B: Text + Icon buttons)
+    function enterSectionEditMode(event, tabId, sectionId) {
+      event.stopPropagation();
+      const tab = document.getElementById(tabId);
+
+      // Enable all fields in this tab
+      tab.querySelectorAll('.detail-input, .detail-select, .sub-table input, .cabin-cell input').forEach(el => {
+        if (!el.hasAttribute('disabled') || el.getAttribute('disabled') === 'false') {
+          el.disabled = false;
+        }
+      });
+
+      // Show save/cancel buttons
+      showTabActionBar(tabId);
+      window.__currentEditingTab = tabId;
+      window.__currentEditingSection = sectionId;
+
+      showToast(`Đang sửa: ${sectionId}`);
     }
 
     // Ownership Status logic (MM §2.5; Function list R59)
