@@ -269,6 +269,12 @@
 
     /* Field hint text */
     .field-hint { font-size: 11px; color: var(--md-text-secondary); font-style: italic; margin-top: 3px; display: block; }
+
+    /* ===== Section-Level Edit Button (Option 2B: Text + Icon) ===== */
+    .section-edit-btn { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; background: white; border: 1px solid var(--md-outline); border-radius: 6px; color: var(--toss-primary); font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.2s ease; outline: 3px solid transparent; outline-offset: 1px; }
+    .section-edit-btn:hover { background: rgba(0, 90, 156, 0.05); border-color: var(--toss-primary-light); }
+    .section-edit-btn:focus { outline-color: var(--toss-primary); }
+    .section-edit-btn .material-symbols-outlined { font-size: 16px; }
   </style>
 </head>
 <body>
@@ -416,12 +422,12 @@
 
       <div id="tau-bay" class="main-content-scrollable tab-content active">
 
-        <!-- Main Header Tabs (5 tabs) — Clone từ Quản lý thiết bị -->
-        <div style="display: flex; gap: 0; background: #006b75; padding: 0; margin-bottom: 20px; border-radius: 0; overflow: hidden;">
-          <button class="details-tab-button active" style="font-size: 13px; font-weight: 600; flex: 1; padding: 14px 16px; border: none; text-align: center; background: transparent; color: white; cursor: pointer; transition: all 0.2s; border-right: 1px solid rgba(255,255,255,0.2);" onclick="switchMainTab(this, 'tau-bay')">📋 Danh sách loại tàu bay</button>
-          <button class="details-tab-button" style="font-size: 13px; font-weight: 600; flex: 1; padding: 14px 16px; border: none; text-align: center; background: transparent; color: rgba(255,255,255,0.9); cursor: pointer; transition: all 0.2s; border-right: 1px solid rgba(255,255,255,0.2);" onclick="switchMainTab(this, 'aog-schedule')">📅 AOG/MNT Schedule</button>
-          <button class="details-tab-button" style="font-size: 13px; font-weight: 600; flex: 1; padding: 14px 16px; border: none; text-align: center; background: transparent; color: rgba(255,255,255,0.9); cursor: pointer; transition: all 0.2s; border-right: 1px solid rgba(255,255,255,0.2);" onclick="switchMainTab(this, 'aog-code')">🔧 AOG/MNT Code</button>
-          <button class="details-tab-button" style="font-size: 13px; font-weight: 600; flex: 1; padding: 14px 16px; border: none; text-align: center; background: transparent; color: rgba(255,255,255,0.9); cursor: pointer; transition: all 0.2s; border-right: 1px solid rgba(255,255,255,0.2);" onclick="switchMainTab(this, 'mel-cdl')">⚠️ MEL, CDL</button>
+        <!-- Main Header Tabs (5 tabs) — Refined design (reference: Quản lý thiết bị) -->
+        <div style="display: flex; gap: 0; background: #006b75; padding: 0; margin-bottom: 20px; border-radius: 0; overflow: hidden; border: 1px solid rgba(0,0,0,0.1); box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+          <button class="details-tab-button active" style="font-size: 13px; font-weight: 600; flex: 1; padding: 14px 16px; border: none; text-align: center; background: transparent; color: white; cursor: pointer; transition: all 0.2s; border-right: 1px solid rgba(0,0,0,0.1);" onclick="switchMainTab(this, 'tau-bay')">📋 Danh sách loại tàu bay</button>
+          <button class="details-tab-button" style="font-size: 13px; font-weight: 600; flex: 1; padding: 14px 16px; border: none; text-align: center; background: transparent; color: rgba(255,255,255,0.9); cursor: pointer; transition: all 0.2s; border-right: 1px solid rgba(0,0,0,0.1);" onclick="switchMainTab(this, 'aog-schedule')">📅 AOG/MNT Schedule</button>
+          <button class="details-tab-button" style="font-size: 13px; font-weight: 600; flex: 1; padding: 14px 16px; border: none; text-align: center; background: transparent; color: rgba(255,255,255,0.9); cursor: pointer; transition: all 0.2s; border-right: 1px solid rgba(0,0,0,0.1);" onclick="switchMainTab(this, 'aog-code')">🔧 AOG/MNT Code</button>
+          <button class="details-tab-button" style="font-size: 13px; font-weight: 600; flex: 1; padding: 14px 16px; border: none; text-align: center; background: transparent; color: rgba(255,255,255,0.9); cursor: pointer; transition: all 0.2s; border-right: 1px solid rgba(0,0,0,0.1);" onclick="switchMainTab(this, 'mel-cdl')">⚠️ MEL, CDL</button>
           <button class="details-tab-button" style="font-size: 13px; font-weight: 600; flex: 1; padding: 14px 16px; border: none; text-align: center; background: transparent; color: rgba(255,255,255,0.9); cursor: pointer; transition: all 0.2s;" onclick="switchMainTab(this, 'performance-factor')">⏱️ Performance Factor</button>
         </div>
 
@@ -660,19 +666,19 @@
                 </div>
               </div>
 
-              <!-- Tab Nav - Per-Tab Edit Icons -->
+              <!-- Tab Nav - Section-Level Edit (removed inline icons) -->
               <div class="details-tab-nav" role="tablist">
                 <button class="details-tab-button active" role="tab" aria-selected="true" aria-controls="tab-general" onclick="switchDetailsTab(this, 'tab-general')">
-                  Chung <span class="tab-edit-icon" style="display: inline-flex;" title="Sửa" aria-label="Sửa thông tin Chung" onclick="enterTabEditMode(event, 'tab-general')">✏️</span>
+                  Chung
                 </button>
                 <button class="details-tab-button" role="tab" aria-selected="false" aria-controls="tab-config" onclick="switchDetailsTab(this, 'tab-config')">
-                  Cấu hình tàu <span class="tab-edit-icon" style="display: none;" title="Sửa" aria-label="Sửa cấu hình tàu" onclick="enterTabEditMode(event, 'tab-config')">✏️</span>
+                  Cấu hình tàu
                 </button>
                 <button class="details-tab-button" role="tab" aria-selected="false" aria-controls="tab-attr" onclick="switchDetailsTab(this, 'tab-attr')">
-                  Thuộc tính nhóm <span class="tab-edit-icon" style="display: none;" title="Sửa" aria-label="Sửa thuộc tính nhóm" onclick="enterTabEditMode(event, 'tab-attr')">✏️</span>
+                  Thuộc tính nhóm
                 </button>
                 <button class="details-tab-button" role="tab" aria-selected="false" aria-controls="tab-audit" onclick="switchDetailsTab(this, 'tab-audit')">
-                  Lịch sử thay đổi <span class="tab-edit-icon" style="display: none;" title="Sửa" aria-label="Xem lịch sử thay đổi" onclick="enterTabEditMode(event, 'tab-audit')">✏️</span>
+                  Lịch sử thay đổi
                 </button>
               </div>
 
@@ -770,8 +776,11 @@
 
                 <!-- Cabin Config — linh hoạt theo MM §2.4: tối đa N khoang, khoang không có nhập 0 -->
                 <div class="subsection">
-                  <div class="subsection-head">
+                  <div class="subsection-head" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
                     <h3><span class="material-symbols-outlined">view_column</span> Cấu hình khoang tàu (Cabin Config)</h3>
+                    <button class="section-edit-btn" title="Sửa cấu hình khoang tàu" onclick="enterSectionEditMode(event, 'tab-config', 'cabin-config')">
+                      <span class="material-symbols-outlined">edit</span> Sửa
+                    </button>
                   </div>
                   <p class="subsection-note">Khai báo tối đa 5 khoang. Khoang không tồn tại trên loại tàu này → nhập <strong>0</strong>.</p>
                   <div class="cabin-grid">
