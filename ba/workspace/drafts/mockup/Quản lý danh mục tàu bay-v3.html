@@ -227,8 +227,8 @@
     .field-pill { display: inline-block; padding: 2px 6px; background: #e0f2fe; color: #075985; border-radius: 4px; font-size: 10.5px; font-weight: 600; }
 
     /* ===== Edit-mode action bar (sticky in card) ===== */
-    .edit-action-bar { display: none; align-items: center; justify-content: flex-end; gap: 10px; padding: 10px 14px; margin: 12px -14px -14px -14px; background: #fffbeb; border-top: 1px solid #fde68a; border-radius: 0 0 var(--md-radius) var(--md-radius); }
-    .edit-action-bar.visible { display: flex; }
+    .edit-action-bar { display: none !important; align-items: center; justify-content: flex-end; gap: 10px; padding: 10px 14px; margin: 12px -14px -14px -14px; background: #fffbeb; border-top: 1px solid #fde68a; border-radius: 0 0 var(--md-radius) var(--md-radius); }
+    .edit-action-bar.visible { display: flex !important; }
     .edit-action-bar .hint { margin-right: auto; font-size: 11.5px; color: #92400e; font-weight: 600; display: flex; align-items: center; gap: 6px; }
 
     /* ===== Responsive ===== */
@@ -240,6 +240,9 @@
 
     .tab-content { display: none !important; visibility: hidden; position: absolute; pointer-events: none; }
     .tab-content.active { display: flex !important; visibility: visible; position: relative; pointer-events: auto; }
+
+    /* ===== Tab Edit Icon Styling ===== */
+    .tab-edit-icon { display: inline-flex; align-items: center; justify-content: center; background: #007b83; color: white; padding: 4px 8px; border-radius: 6px; cursor: pointer; font-size: 14px; margin-left: 12px; transition: background 0.2s, opacity 0.2s; user-select: none; }
   </style>
 </head>
 <body>
@@ -386,6 +389,15 @@
     <main class="main-content">
 
       <div id="tau-bay" class="main-content-scrollable tab-content active">
+
+        <!-- Main Header Tabs (5 tabs) — Clone từ Quản lý thiết bị -->
+        <div style="display: flex; gap: 0; background: #006b75; padding: 0; margin-bottom: 20px; border-radius: 0; overflow: hidden;">
+          <button class="details-tab-button active" style="font-size: 13px; font-weight: 600; flex: 1; padding: 14px 16px; border: none; text-align: center; background: transparent; color: white; cursor: pointer; transition: all 0.2s; border-right: 1px solid rgba(255,255,255,0.2);" onclick="switchMainTab(this, 'tau-bay')">📋 Danh sách loại tàu bay</button>
+          <button class="details-tab-button" style="font-size: 13px; font-weight: 600; flex: 1; padding: 14px 16px; border: none; text-align: center; background: transparent; color: rgba(255,255,255,0.9); cursor: pointer; transition: all 0.2s; border-right: 1px solid rgba(255,255,255,0.2);" onclick="switchMainTab(this, 'aog-schedule')">📅 AOG/MNT Schedule</button>
+          <button class="details-tab-button" style="font-size: 13px; font-weight: 600; flex: 1; padding: 14px 16px; border: none; text-align: center; background: transparent; color: rgba(255,255,255,0.9); cursor: pointer; transition: all 0.2s; border-right: 1px solid rgba(255,255,255,0.2);" onclick="switchMainTab(this, 'aog-code')">🔧 AOG/MNT Code</button>
+          <button class="details-tab-button" style="font-size: 13px; font-weight: 600; flex: 1; padding: 14px 16px; border: none; text-align: center; background: transparent; color: rgba(255,255,255,0.9); cursor: pointer; transition: all 0.2s; border-right: 1px solid rgba(255,255,255,0.2);" onclick="switchMainTab(this, 'mel-cdl')">⚠️ MEL, CDL</button>
+          <button class="details-tab-button" style="font-size: 13px; font-weight: 600; flex: 1; padding: 14px 16px; border: none; text-align: center; background: transparent; color: rgba(255,255,255,0.9); cursor: pointer; transition: all 0.2s;" onclick="switchMainTab(this, 'performance-factor')">⏱️ Performance Factor</button>
+        </div>
 
         <!-- Filter Bar — bổ sung Subtype + 5 thuộc tính gom nhóm (Function list R62) -->
         <section class="m3-card" data-mat="mat-card">
@@ -620,19 +632,22 @@
                     </div>
                   </div>
                 </div>
-                <div id="headerActions" style="display: flex; gap: 8px;">
-                  <button id="editBtn" class="btn btn-blue" style="height: 32px; font-size: 12px; padding: 0 12px;" onclick="enterEditMode()">
-                    <span class="material-symbols-outlined" style="font-size: 14px;">edit</span> Sửa
-                  </button>
-                </div>
               </div>
 
-              <!-- Tab Nav -->
+              <!-- Tab Nav - Per-Tab Edit Icons -->
               <div class="details-tab-nav">
-                <button class="details-tab-button active" onclick="switchDetailsTab(this, 'tab-general')">Chung</button>
-                <button class="details-tab-button" onclick="switchDetailsTab(this, 'tab-config')">Cấu hình tàu</button>
-                <button class="details-tab-button" onclick="switchDetailsTab(this, 'tab-attr')">Thuộc tính nhóm</button>
-                <button class="details-tab-button" onclick="switchDetailsTab(this, 'tab-audit')">Lịch sử thay đổi</button>
+                <button class="details-tab-button active" onclick="switchDetailsTab(this, 'tab-general')">
+                  Chung <span class="tab-edit-icon" style="display: inline-flex;" title="Sửa" onclick="enterTabEditMode(event, 'tab-general')">✏️</span>
+                </button>
+                <button class="details-tab-button" onclick="switchDetailsTab(this, 'tab-config')">
+                  Cấu hình tàu <span class="tab-edit-icon" style="display: none;" title="Sửa" onclick="enterTabEditMode(event, 'tab-config')">✏️</span>
+                </button>
+                <button class="details-tab-button" onclick="switchDetailsTab(this, 'tab-attr')">
+                  Thuộc tính nhóm <span class="tab-edit-icon" style="display: none;" title="Sửa" onclick="enterTabEditMode(event, 'tab-attr')">✏️</span>
+                </button>
+                <button class="details-tab-button" onclick="switchDetailsTab(this, 'tab-audit')">
+                  Lịch sử thay đổi <span class="tab-edit-icon" style="display: none;" title="Sửa" onclick="enterTabEditMode(event, 'tab-audit')">✏️</span>
+                </button>
               </div>
 
               <!-- ============================ -->
@@ -887,6 +902,7 @@
                       <tr>
                         <th>Ngày giờ</th>
                         <th>Người thực hiện</th>
+                        <th>Tab</th>
                         <th>Trường</th>
                         <th>Giá trị cũ</th>
                         <th>Giá trị mới</th>
@@ -894,49 +910,93 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>2026-06-20 09:12</td>
-                        <td>sys_sync</td>
-                        <td><span class="field-pill">AC Subtype</span></td>
+                      <!-- Phiên 1: 2026-06-23 10:30 | Chung -->
+                      <tr style="border-top: 2px solid #cbd5e1;">
+                        <td>2026-06-23 10:30</td>
+                        <td>data_officer</td>
+                        <td><span class="field-pill">Chung</span></td>
+                        <td><span class="field-pill">IATA Code</span></td>
+                        <td>32N</td>
+                        <td>32Q</td>
                         <td>—</td>
-                        <td>A320NEO</td>
-                        <td>Đồng bộ từ Ops++</td>
                       </tr>
-                      <tr>
+                      <tr style="border-top: 1px solid #e2e8f0;">
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><span class="field-pill">ICAO Code</span></td>
+                        <td>A20N</td>
+                        <td>A20M</td>
+                        <td>—</td>
+                      </tr>
+
+                      <!-- Phiên 2: 2026-06-23 10:30 | Cấu hình tàu -->
+                      <tr style="border-top: 2px solid #cbd5e1;">
+                        <td>2026-06-23 10:30</td>
+                        <td>data_officer</td>
+                        <td><span class="field-pill">Cấu hình tàu</span></td>
+                        <td><span class="field-pill">APU Fuel Flow</span></td>
+                        <td>200</td>
+                        <td>210</td>
+                        <td>—</td>
+                      </tr>
+                      <tr style="border-top: 1px solid #e2e8f0;">
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><span class="field-pill">Taxi Fuel Flow</span></td>
+                        <td>1500</td>
+                        <td>1550</td>
+                        <td>—</td>
+                      </tr>
+
+                      <!-- Phiên 3: 2026-06-15 10:30 | Cấu hình tàu (ACARS) -->
+                      <tr style="border-top: 2px solid #cbd5e1;">
                         <td>2026-06-15 10:30</td>
                         <td>data_officer</td>
+                        <td><span class="field-pill">Cấu hình tàu</span></td>
                         <td><span class="field-pill">ACARS Fuel Unit</span></td>
                         <td>1500</td>
                         <td>1550</td>
                         <td>Khoảng 2026-07-01 → 2026-12-31</td>
                       </tr>
-                      <tr>
-                        <td>2026-06-15 10:30</td>
-                        <td>data_officer</td>
+                      <tr style="border-top: 1px solid #e2e8f0;">
+                        <td></td>
+                        <td></td>
+                        <td></td>
                         <td><span class="field-pill">ACARS Fuel Multiplier</span></td>
                         <td>1.050</td>
                         <td>1.060</td>
                         <td>Khoảng 2026-07-01 → 2026-12-31</td>
                       </tr>
-                      <tr>
+
+                      <!-- Phiên 4: 2026-06-10 14:15 | Chung (Ownership) -->
+                      <tr style="border-top: 2px solid #cbd5e1;">
                         <td>2026-06-10 14:15</td>
                         <td>admin</td>
+                        <td><span class="field-pill">Chung</span></td>
                         <td><span class="field-pill">Ownership Status</span></td>
                         <td>Wet Leased</td>
                         <td>Owned</td>
                         <td>Hết hạn HĐ thuê, đổi sang sở hữu</td>
                       </tr>
-                      <tr>
+
+                      <!-- Phiên 5: 2026-06-05 09:00 | Cấu hình tàu (Cabin) -->
+                      <tr style="border-top: 2px solid #cbd5e1;">
                         <td>2026-06-05 09:00</td>
                         <td>data_officer</td>
+                        <td><span class="field-pill">Cấu hình tàu</span></td>
                         <td><span class="field-pill">Cabin Config</span></td>
                         <td>8 / 24 / 0 / 0 / 0</td>
                         <td>8 / 24 / 120 / 0 / 0</td>
                         <td>Thêm khoang C cho A320NEO</td>
                       </tr>
-                      <tr>
+
+                      <!-- Phiên 6: 2026-05-28 16:45 | Cấu hình tàu (Weight) -->
+                      <tr style="border-top: 2px solid #cbd5e1;">
                         <td>2026-05-28 16:45</td>
                         <td>data_officer</td>
+                        <td><span class="field-pill">Cấu hình tàu</span></td>
                         <td><span class="field-pill">Basic Weight</span></td>
                         <td>41 200</td>
                         <td>41 413</td>
@@ -947,9 +1007,9 @@
                 </div>
               </div>
 
-              <!-- Edit-mode action bar — áp dụng cho cả 4 tab khi đang Sửa -->
-              <div id="editActionBar" class="edit-action-bar">
-                <span class="hint"><span class="material-symbols-outlined" style="font-size: 16px;">edit_note</span> Đang ở chế độ Sửa — thay đổi áp dụng cho cả 4 tab.</span>
+              <!-- Edit-mode action bar — per-tab edit -->
+              <div id="editActionBar" class="edit-action-bar" style="display: none;">
+                <span class="hint"><span class="material-symbols-outlined" style="font-size: 16px;">edit_note</span> Đang sửa: Chung</span>
                 <button class="btn btn-clear" onclick="exitEditMode()">Huỷ</button>
                 <button class="btn btn-teal" onclick="saveChanges()">Lưu</button>
               </div>
@@ -1112,12 +1172,72 @@
     function applyFilters() { showToast('Đã áp dụng bộ lọc'); }
     function refreshTable() { showToast('Đã làm mới danh sách'); }
 
-    // Detail tabs
+    // Main tabs (5 header tabs)
+    function switchMainTab(btn, tabId) {
+      document.querySelectorAll('.main-content .tab-content').forEach(t => {
+        t.style.display = t.id === tabId ? 'flex' : 'none';
+      });
+
+      // Update button state
+      document.querySelectorAll('.main-content > div > div:first-child > button').forEach(b => {
+        b.style.color = 'rgba(255,255,255,0.9)';
+        b.style.background = 'transparent';
+      });
+      btn.style.color = 'white';
+      btn.style.background = 'rgba(0,0,0,0.15)';
+    }
+
+    // Detail tabs - with per-tab edit icon visibility
     function switchDetailsTab(btn, tabId) {
+      // Switch tab content
       document.querySelectorAll('.details-tab-content').forEach(t => t.classList.remove('active'));
       document.getElementById(tabId).classList.add('active');
+
+      // Switch tab button active state
       document.querySelectorAll('.details-tab-button').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
+
+      // Hide all edit icons, show only for active tab
+      document.querySelectorAll('.tab-edit-icon').forEach(icon => icon.style.display = 'none');
+      const activeIcon = btn.querySelector('.tab-edit-icon');
+      if (activeIcon) activeIcon.style.display = 'inline';
+    }
+
+    // Per-tab edit mode
+    function enterTabEditMode(event, tabId) {
+      event.stopPropagation(); // Prevent tab switch
+      const tab = document.getElementById(tabId);
+
+      // Enable only fields in this tab
+      tab.querySelectorAll('.detail-input, .detail-select, .sub-table input').forEach(el => {
+        if (!el.hasAttribute('disabled') || el.getAttribute('disabled') === 'false') {
+          el.disabled = false;
+        }
+      });
+
+      // Disable fields in other tabs
+      document.querySelectorAll('.details-tab-content').forEach(t => {
+        if (t.id !== tabId) {
+          t.querySelectorAll('.detail-input, .detail-select, .sub-table input').forEach(el => {
+            el.disabled = true;
+          });
+        }
+      });
+
+      // Show save/cancel buttons for this tab
+      showTabActionBar(tabId);
+      window.__currentEditingTab = tabId;
+    }
+
+    function showTabActionBar(tabId) {
+      document.getElementById('editActionBar').style.display = 'flex';
+      const hint = document.querySelector('.edit-action-bar .hint');
+      hint.textContent = '✎ Đang sửa: ' + getTabName(tabId);
+    }
+
+    function getTabName(tabId) {
+      const names = {'tab-general': 'Chung', 'tab-config': 'Cấu hình tàu', 'tab-attr': 'Thuộc tính nhóm'};
+      return names[tabId] || 'Tab này';
     }
 
     // Ownership Status logic (MM §2.5; Function list R59)
