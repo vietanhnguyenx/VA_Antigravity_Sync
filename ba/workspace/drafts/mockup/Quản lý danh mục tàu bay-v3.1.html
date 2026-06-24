@@ -652,7 +652,6 @@
                     <div class="details-id">AC Subtype: <strong>A320NEO</strong></div>
                     <div class="details-meta">
                       <span class="status-badge active">Active</span>
-                      <span><strong>Số ACreg:</strong> 12</span>
                     </div>
                   </div>
                 </div>
@@ -855,7 +854,9 @@
                     <span class="material-symbols-outlined">edit</span> Sửa
                   </button>
                 </div>
-                <p class="subsection-note">5 thuộc tính gom nhóm (Group Attributes) phục vụ lọc danh sách & xuất báo cáo đặc thù (MM §2.1, Function list R59).</p>
+                <p class="subsection-note">
+                  <strong>Nghiệp vụ:</strong> 6 thuộc tính gom nhóm để phân loại loại tàu bay cho các hoạt động lợi dụng, báo cáo, và phân tích. Các giá trị này giúp hệ thống TOSS xác định nhóm tàu bay (A320, A321, A350, B787, ATR) để hỗ trợ quyết định trong lịch trình bay, phân công phi hành, và kế hoạch bảo dưỡng. Chỉnh sửa khi cấu hình tàu bay thay đổi hoặc khi cần gán tàu bay vào hạng mục mới.
+                </p>
                 <div class="details-grid">
                   <div class="detail-row">
                     <span class="detail-label">Aircraft Category 1</span>
@@ -888,6 +889,17 @@
                     <select class="detail-select">
                       <option>320</option><option>32B</option><option>32D</option>
                       <option>32N</option><option>350</option><option>787</option>
+                    </select>
+                  </div>
+                  <div class="detail-row">
+                    <span class="detail-label">Aircraft Fleet</span>
+                    <select class="detail-select">
+                      <option value="">Chọn fleet</option>
+                      <option>A320</option>
+                      <option>A321</option>
+                      <option>A350</option>
+                      <option>B787</option>
+                      <option>ATR</option>
                     </select>
                   </div>
                 </div>
@@ -1273,8 +1285,8 @@
       event.stopPropagation();
       const tab = document.getElementById(tabId);
 
-      // Enable all editable fields in this tab (except locked fields like AC Subtype, Tên loại tàu, Valid From)
-      const lockedLabels = ['AC Subtype', 'Tên loại tàu', 'Valid From'];
+      // Enable all editable fields in this tab (except locked fields like AC Subtype, Valid From)
+      const lockedLabels = ['AC Subtype', 'Valid From'];
       tab.querySelectorAll('.detail-input, .detail-select, .sub-table input, .cabin-cell input').forEach(el => {
         // Check if this field is locked
         const labelEl = el.parentElement.querySelector('.detail-label');
