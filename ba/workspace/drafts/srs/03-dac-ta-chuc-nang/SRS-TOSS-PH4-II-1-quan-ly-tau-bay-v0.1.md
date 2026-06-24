@@ -1,9 +1,9 @@
 ---
 project: "TOSS — Hệ thống Điều hành Khai thác Hãng Hàng không"
 author: "BA Team"
-version: "0.1"
+version: "0.2"
 date: "2026-06-24"
-status: "Draft"
+status: "Review"
 document_type: "SRS"
 ---
 
@@ -25,6 +25,23 @@ document_type: "SRS"
 | **Q2** | **Aircraft Type Name KHÔNG khoá.** Trường `Aircraft Type Name` (Tên loại tàu bay) được phép chỉnh sửa. | Khi vào chế độ Edit của cụm Thông tin chung, trường này mở khoá; không hiển thị biểu tượng khoá. |
 | **Q3** | **Cấu hình khoang: tối đa 3 cabin.** Chỉ ba khoang `A`, `B`, `C` được khai báo; không có Cabin D/E… | Nhập `0` cho khoang không tồn tại; phân hệ KHÔNG cho phép thêm khoang động. |
 | **Q4** | **Validate ACARS Fuel: hiển thị Warning, KHÔNG reject.** Khi khoảng `From–To` của các bản ghi ACARS Fuel có khoảng trống (gap) hoặc chồng lấn (overlap), hệ thống hiển thị cảnh báo và **vẫn cho phép lưu**. | Người dùng có quyền bỏ qua cảnh báo và lưu; cảnh báo được ghi vào Audit log kèm cờ `acars_warning_acknowledged = true`. |
+
+---
+
+## Các quyết định bổ sung (CH-01 đến CH-10) — 24/06/2026
+
+| Mã | Nội dung quyết định | Tác động |
+| :---: | :---- | :---- |
+| **CH-01** | **AC Subtype đồng bộ từ Ops++.** Hệ thống nguồn là Ops++ (Vietnam Airlines Ops system). Khi phát hiện AC Subtype mới/thay đổi từ Ops++, TOSS ghi nhận giá trị từ Ops++ — AC Subtype luôn read-only, không cho user chỉnh sửa. | Nếu user sửa cục bộ trong TOSS rồi Ops++ đồng bộ giá trị mới, giá trị từ Ops++ thắng (override). |
+| **CH-02** | **Valid To cho phép ngày quá khứ.** Trường `Valid To` có thể set giá trị `< today`, để ghi nhận sự kiện tàu ngừng sử dụng hồi tố (ví dụ: retired hôm qua, hôm nay mới cập nhật). | Ràng buộc duy nhất: `Valid To ≥ Valid From`. Không bắt buộc `Valid To ≥ today`. |
+| **CH-03** | **Weight cross-field validation: REJECT.** Ràng buộc: `Basic Weight ≤ Max Ramp Weight ≤ MTOW`. Nếu vi phạm → lỗi VL006, **chặn lưu**. | Không cho phép warning — vi phạm là lỗi bắt buộc sửa. |
+| **CH-04** | **Ownership Status thay đổi: xoá Owner.** Khi chuyển từ `Owned` → `Wet/Dry Leased`, trường `Owner` (hiện = "Vietnam Airlines") bị xoá → user phải nhập tên chủ sở hữu thực tế. | Ngược lại, chuyển `Wet/Dry Leased` → `Owned` → auto-fill `Owner = "Vietnam Airlines"`. |
+| **CH-05** | **Concurrent edit: Last-Write-Wins (LWW).** Khi 2 user sửa 1 section cùng lúc, không có locking. Thằng nào save sau cùng, dữ liệu đó ghi vào DB (dữ liệu user trước bị ghi đè). | Hệ thống không phát hiện/báo conflict. Audit log ghi cả 2 lần save. User cần quy ước tránh concurrent edit. |
+| **CH-06** | **Cabin Config: check tổng cap.** Tổng `Cabin A + B + C` phải ≤ cap của loại tàu (ví dụ A320 ≤ 200 ghế). Nếu vượt → lỗi VL006. | Cap được định nghĩa per aircraft type trong bảng master data. |
+| **CH-07** | **Audit log: lưu IP + User-Agent + thiết bị.** Mỗi bản ghi audit ghi thêm: `IP_Address`, `User_Agent` (browser/OS), `Device` (desktop/mobile). Bảng ACARS Fuel: ghi rõ thao tác `Add Row` / `Delete Row`. | Dữ liệu này không hiển thị trên UI, chỉ lưu trên DB (phục vụ compliance/forensic). |
+| **CH-08** | **Edit quyền: per-section permission.** Nút `Edit` của từng section phụ thuộc quyền chi tiết: `Edit Aircraft > General Info`, `Edit Aircraft > Aircraft Config`, `Edit Aircraft > Group Attributes` (không có quyền chung `Edit Aircraft`). | User A có `Edit Aircraft > General Info` → thấy nút Edit ở cụm Thông tin chung; không thấy ở cụm Cấu hình tàu. |
+| **CH-09** | **Soft delete: KHÔNG cho phép xóa tàu bay (nút Delete ẩn).** Bỏ nút `Delete` trên màn hình chi tiết. Lý do: tàu bay đồng bộ từ Ops++, xóa cục bộ gây xung đột reconciliation. | Để ngừng dùng tàu: dùng `Valid To` (set ngày kết thúc). Audit log không ghi Delete, chỉ ghi thay đổi `Valid To`. |
+| **CH-10** | **Excel export: kèm Aircraft Type trong tên file.** Tên file: `TOSS_Aircraft_History_<AC_Subtype>_<ddmmyyyy>.xlsx` (ví dụ: `TOSS_Aircraft_History_A320NEO_24062026.xlsx`). | Giúp dễ phân biệt khi export audit log của nhiều tàu cùng ngày. |
 
 ---
 
@@ -450,26 +467,7 @@ Notes:        (trống)
 
 ---
 
-## 8. Câu hỏi / Nội dung cần làm rõ
-
-*Theo §0 CLAUDE.md, các điểm sau chưa được khẳng định trong tài liệu nguồn / mockup; cần human quyết định trước khi đặc tả tiếp.*
-
-| Mã | Câu hỏi | Lý do |
-| :---: | :---- | :---- |
-| CH-01 | Khi `AC Subtype` được đồng bộ từ hệ thống nguồn, hệ thống nguồn là gì (ví dụ Sabre, Netline, SAP)? Tần suất đồng bộ? Hành vi xử lý khi đồng bộ phát hiện xung đột với dữ liệu đã được người dùng sửa cục bộ trong TOSS? | Mockup chỉ cho thấy biểu tượng khoá; chưa có thông tin về nguồn dữ liệu và policy reconciliation |
-| CH-02 | `Valid To` có bắt buộc phải `≥ today` không, hay chỉ cần `≥ Valid From` (cho phép set ngày kết thúc trong quá khứ để chấm dứt sử dụng hồi tố)? | Spec nguồn chỉ ghi "Sửa được"; chưa nêu ràng buộc thời gian |
-| CH-03 | Các tham số kỹ thuật (`Basic Weight`, `Max Ramp Weight`, `MTOW`) có ràng buộc nghiệp vụ chéo không (ví dụ `MTOW ≤ Max Ramp Weight`)? Vi phạm thì WARNING hay REJECT? | Mockup chỉ liệt kê các trường; chưa nêu ràng buộc |
-| CH-04 | Khi `Ownership Status` đổi từ `Owned` sang `Wet/Dry Leased`, trường `Owner` (đang là `Vietnam Airlines`) có được tự động xoá để người dùng nhập tên chủ thực tế, hay giữ giá trị cũ? | Spec nguồn chỉ mô tả chiều `Owned` → auto-fill |
-| CH-05 | Có cần cơ chế khoá đồng thời (optimistic/pessimistic lock) khi 2 người dùng cùng sửa 1 section không? Hành vi khi conflict? | Section-level edit (Q1) không loại trừ tình huống 2 người sửa 2 section cùng lúc — cần xác nhận quy tắc |
-| CH-06 | Phạm vi giá trị hợp lệ cho `Cabin A/B/C` (0–999) — có cần ràng buộc tổng `Cabin A + B + C ≤ MTOW-derived seat capacity` hay theo loại tàu cụ thể? | Mockup không nêu cap; số `999` đang là giả định kỹ thuật để tránh tràn |
-| CH-07 | Audit log có cần lưu IP / User-Agent của người thực hiện không? Có cần ghi rõ thao tác `Add Row` / `Delete Row` trong bảng ACARS Fuel (đang gộp dưới `Field = ACARS Fuel Unit`)? | Phục vụ yêu cầu compliance/forensic chưa rõ ở tài liệu nguồn |
-| CH-08 | Nút `Edit` ở mỗi section hiển thị có phụ thuộc quyền chi tiết (per-section permission) hay chỉ phụ thuộc quyền chung `Edit Aircraft`? | Mockup chỉ có một nút `Edit Aircraft`; section-level (Q1) làm phát sinh câu hỏi về phân quyền chi tiết |
-| CH-09 | Khi xoá mềm xong, bản ghi có còn truy cập được qua URL trực tiếp `/aircraft-types/{id}` không (để xem audit log cũ), hay redirect về `Not found`? | Quy tắc 5 ở mục 5 cho phép xem audit log của bản ghi đã xoá; cần xác nhận URL truy cập |
-| CH-10 | Tên file Excel xuất audit log: `TOSS_Aircraft_History_<ddmmyyyy>.xlsx` — có cần kèm `AC Subtype` (ví dụ `TOSS_Aircraft_History_A320NEO_24062026.xlsx`) để dễ phân biệt khi xuất nhiều bản ghi không? | Quy ước đặt tên cần thống nhất với phân hệ Báo cáo |
-
----
-
-## 9. Tham chiếu
+## 8. Tham chiếu
 
 - **Mockup nguồn:** `ba/workspace/drafts/mockup/Aircraft Catalog Management-v3.1-en.html` (v3.1, EN)
 - **BRD nguồn:** `ba/workspace/drafts/srs/03-dac-ta-chuc-nang/PHAN-RA-BRD-PH4-quan-ly-danh-muc-v0.5.md` (PH4 — Quản lý danh mục)
@@ -479,4 +477,4 @@ Notes:        (trống)
 
 ---
 
-*SRS — II.1 Quản lý tàu bay — v0.1 — 2026-06-24. Trạng thái: Draft. Phạm vi: section II.1 trong cấu trúc SRS TOSS v1.1, chờ tích hợp vào tài liệu tổng hợp.*
+*SRS — II.1 Quản lý tàu bay — v0.2 — 2026-06-24. Trạng thái: Review (với BA Lead đã chốt 10 quyết định bổ sung CH-01→CH-10). Phạm vi: section II.1 trong cấu trúc SRS TOSS v1.1, chờ tích hợp vào tài liệu tổng hợp.*
