@@ -136,4 +136,4 @@ Nhận định chung: Mockup phiên bản 0.1 đã phủ được bố cục 22 
 
 ---
 
-*Báo cáo v0.2 — Draft. Bước tiếp: (a) cập nhật OID theo các ngưỡng cảnh báo, PIC Confirm, phạm vi A-CDM và attribution ca trực vừa thống nhất; (b) bổ sung cột PIC Confirm và ngưỡng phút vào đặc tả Màn hình Flight Dispatch (PH1) và mockup v0.2; (c) xác nhận lại các mục cần làm rõ ở §IV.*
+*Báo cáo v0.2 — Draft. Bước tiếp: (a) cập nhật OID theo các ngưỡng cảnh báo, PIC Confirm và phạm vi A-CDM vừa thống nhất; (b) bổ sung cột PIC Confirm và ngưỡng phút vào đặc tả Màn hình Flight Dispatch (PH1) và mockup v0.2; (c) xác nhận lại các mục cần làm rõ ở §IV.*
