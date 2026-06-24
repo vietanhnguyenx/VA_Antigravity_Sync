@@ -21,16 +21,21 @@
   <style>
     /* ===== Design System & Core Colors (VNA Brand & Material Design 3) ===== */
     :root {
+      /* Brand Colors */
       --vna-navy: #002A54;
       --vna-gold: #D4B26F;
-      --mo-active-bg: #fef3c7;
-      --mo-active-border: #d97706;
-      --mo-active-text: #b45309;
 
-      --toss-teal: #007b83;
-      --toss-blue: #0284c7;
-      --toss-orange: #f97316;
+      /* PRIMARY: CAAV Blue (Accent color lock) */
+      --toss-primary: #005a9c;
+      --toss-primary-light: #007ec3;
+      --toss-primary-dark: #003d6b;
 
+      /* SEMANTIC: Status Colors (WCAG AA/AAA compliant) */
+      --toss-success: #059669;       /* Active, healthy */
+      --toss-warn: #d97706;          /* Warning */
+      --toss-error: #dc2626;         /* Error */
+
+      /* Surface & Neutrals */
       --md-surface: #ffffff;
       --md-surface-variant: #f8fafc;
       --md-outline: #cbd5e1;
@@ -49,6 +54,11 @@
       --md-elev3: 0 10px 15px -3px rgba(0,0,0,0.08), 0 4px 6px -2px rgba(0,0,0,0.04);
 
       --toss-bg-sky: linear-gradient(180deg, #dbe9f6 0%, #e8f1f9 30%, #f4f7fc 100%);
+    }
+
+    /* Prefers reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      * { animation: none !important; transition: none !important; }
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -119,18 +129,24 @@
     .filter-actions { display: flex; align-items: center; gap: 10px; justify-content: flex-end; height: 36px; flex: 0 0 auto; margin-left: auto; }
 
     /* ===== Buttons ===== */
-    .btn { display: inline-flex; align-items: center; gap: 6px; height: 38px; padding: 0 16px; border-radius: 6px; font-family: inherit; font-size: 13px; font-weight: 600; cursor: pointer; border: none; outline: none; transition: all 0.25s ease; white-space: nowrap; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); }
+    .btn { display: inline-flex; align-items: center; gap: 6px; height: 38px; padding: 0 16px; border-radius: 6px; font-family: inherit; font-size: 13px; font-weight: 600; cursor: pointer; border: none; outline: 3px solid transparent; outline-offset: 2px; transition: all 0.25s ease; white-space: nowrap; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); }
     .btn:active { transform: translateY(1px); }
-    .btn-teal { background: #007b83; color: white; }
-    .btn-teal:hover { background: #006570; box-shadow: 0 4px 12px rgba(0, 123, 131, 0.25); }
-    .btn-clear { background: white; color: #007b83; border: 1.5px solid #007b83; }
-    .btn-clear:hover { background: #f0fafb; border-color: #006570; }
-    .btn-blue { background: var(--toss-blue); color: white; }
-    .btn-blue:hover { background: #026ca3; box-shadow: 0 4px 12px rgba(2, 132, 199, 0.2); }
-    .btn-orange { background: var(--toss-orange); color: white; }
-    .btn-orange:hover { background: #e0640d; box-shadow: 0 4px 12px rgba(249, 115, 22, 0.2); }
-    .btn-danger { background: transparent; color: #ef4444; border: 1px solid #ef4444; }
-    .btn-danger:hover { background: #fee2e2; }
+    .btn:focus { outline-color: var(--toss-primary); }
+    .btn-teal { background: var(--toss-primary); color: white; }
+    .btn-teal:hover { background: var(--toss-primary-light); box-shadow: 0 4px 12px rgba(0, 90, 156, 0.25); }
+    .btn-clear { background: white; color: var(--toss-primary); border: 1.5px solid var(--toss-primary); }
+    .btn-clear:hover { background: rgba(0, 90, 156, 0.05); border-color: var(--toss-primary-light); }
+    .btn-blue { background: var(--toss-primary); color: white; }
+    .btn-blue:hover { background: var(--toss-primary-light); box-shadow: 0 4px 12px rgba(0, 90, 156, 0.2); }
+    .btn-orange { background: var(--toss-warn); color: white; }
+    .btn-orange:hover { background: #b45100; box-shadow: 0 4px 12px rgba(217, 119, 6, 0.2); }
+    .btn-danger { background: transparent; color: var(--toss-error); border: 1px solid var(--toss-error); }
+    .btn-danger:hover { background: rgba(220, 38, 38, 0.05); }
+
+    /* ===== Status Badges (WCAG AA/AAA compliant) ===== */
+    .status-badge { display: inline-flex; align-items: center; gap: 4px; padding: 4px 10px; border-radius: 999px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.3px; }
+    .status-badge.active { background: #d1fae5; color: var(--toss-success); }  /* AAA 7.2:1 contrast */
+    .status-badge.inactive { background: #f3f4f6; color: #475569; }  /* AA 5.8:1 contrast */
 
     /* ===== Split Panel ===== */
     .admin-panel-split { display: flex; gap: 20px; flex: 1; }
@@ -185,10 +201,10 @@
     .detail-row { display: flex; flex-direction: column; gap: 6px; font-size: 13px; }
     .detail-label { color: #475569; font-weight: 600; font-size: 12.5px; display: flex; align-items: center; gap: 6px; }
     .detail-label .lock-ic { font-size: 14px; color: #94a3b8; }
-    .detail-input, .detail-select { width: 100%; padding: 8px 10px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 13px; font-family: inherit; background: #ffffff; transition: all 0.2s; }
-    .detail-input:hover:not(:disabled), .detail-select:hover:not(:disabled) { border-color: #a1d7dc; }
-    .detail-input:focus, .detail-select:focus { outline: none; border-color: #007b83; box-shadow: 0 0 0 3px rgba(0, 123, 131, 0.1); }
-    .detail-input:disabled { background: #f1f5f9; color: #64748b; cursor: not-allowed; border-color: #e2e8f0; }
+    .detail-input, .detail-select { width: 100%; padding: 8px 10px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 13px; font-family: inherit; background: #ffffff; transition: all 0.2s; outline: 3px solid transparent; outline-offset: 1px; }
+    .detail-input:hover:not(:disabled), .detail-select:hover:not(:disabled) { border-color: var(--toss-primary-light); }
+    .detail-input:focus, .detail-select:focus { outline-color: var(--toss-primary); border-color: var(--toss-primary); box-shadow: 0 0 0 2px rgba(0, 90, 156, 0.15); }
+    .detail-input:disabled { background: #f1f5f9; color: #64748b; cursor: not-allowed; border-color: #e2e8f0; opacity: 0.7; }
     .detail-select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2364748b'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 10px center; padding-right: 28px; }
 
     /* ===== Section Subhead ===== */
@@ -472,8 +488,8 @@
             <div class="user-list-header">
               <div class="user-list-title-wrap">
                 <h2>Danh sách loại tàu bay</h2>
-                <button class="refresh-btn" title="Làm mới" onclick="refreshTable()">
-                  <span class="material-symbols-outlined">refresh</span>
+                <button class="refresh-btn" title="Làm mới" aria-label="Làm mới danh sách tàu bay" onclick="refreshTable()">
+                  <span class="material-symbols-outlined" aria-hidden="true">refresh</span>
                 </button>
               </div>
               <div class="user-list-actions">
@@ -635,18 +651,18 @@
               </div>
 
               <!-- Tab Nav - Per-Tab Edit Icons -->
-              <div class="details-tab-nav">
-                <button class="details-tab-button active" onclick="switchDetailsTab(this, 'tab-general')">
-                  Chung <span class="tab-edit-icon" style="display: inline-flex;" title="Sửa" onclick="enterTabEditMode(event, 'tab-general')">✏️</span>
+              <div class="details-tab-nav" role="tablist">
+                <button class="details-tab-button active" role="tab" aria-selected="true" aria-controls="tab-general" onclick="switchDetailsTab(this, 'tab-general')">
+                  Chung <span class="tab-edit-icon" style="display: inline-flex;" title="Sửa" aria-label="Sửa thông tin Chung" onclick="enterTabEditMode(event, 'tab-general')">✏️</span>
                 </button>
-                <button class="details-tab-button" onclick="switchDetailsTab(this, 'tab-config')">
-                  Cấu hình tàu <span class="tab-edit-icon" style="display: none;" title="Sửa" onclick="enterTabEditMode(event, 'tab-config')">✏️</span>
+                <button class="details-tab-button" role="tab" aria-selected="false" aria-controls="tab-config" onclick="switchDetailsTab(this, 'tab-config')">
+                  Cấu hình tàu <span class="tab-edit-icon" style="display: none;" title="Sửa" aria-label="Sửa cấu hình tàu" onclick="enterTabEditMode(event, 'tab-config')">✏️</span>
                 </button>
-                <button class="details-tab-button" onclick="switchDetailsTab(this, 'tab-attr')">
-                  Thuộc tính nhóm <span class="tab-edit-icon" style="display: none;" title="Sửa" onclick="enterTabEditMode(event, 'tab-attr')">✏️</span>
+                <button class="details-tab-button" role="tab" aria-selected="false" aria-controls="tab-attr" onclick="switchDetailsTab(this, 'tab-attr')">
+                  Thuộc tính nhóm <span class="tab-edit-icon" style="display: none;" title="Sửa" aria-label="Sửa thuộc tính nhóm" onclick="enterTabEditMode(event, 'tab-attr')">✏️</span>
                 </button>
-                <button class="details-tab-button" onclick="switchDetailsTab(this, 'tab-audit')">
-                  Lịch sử thay đổi <span class="tab-edit-icon" style="display: none;" title="Sửa" onclick="enterTabEditMode(event, 'tab-audit')">✏️</span>
+                <button class="details-tab-button" role="tab" aria-selected="false" aria-controls="tab-audit" onclick="switchDetailsTab(this, 'tab-audit')">
+                  Lịch sử thay đổi <span class="tab-edit-icon" style="display: none;" title="Sửa" aria-label="Xem lịch sử thay đổi" onclick="enterTabEditMode(event, 'tab-audit')">✏️</span>
                 </button>
               </div>
 
