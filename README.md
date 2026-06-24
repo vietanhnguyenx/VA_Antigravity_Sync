@@ -80,8 +80,9 @@ ba-interviewer ─► business-analyst ─► srs-writer / data-modeler / ─►
 | [`meeting-synthesize`](.claude/skills/meeting-synthesize/) | Sửa lỗi ASR + tổng hợp biên bản từ bản ghi âm |
 | [`gen-mockup`](.claude/skills/gen-mockup/) | Dựng mockup/prototype HTML tự chứa (Angular Material 3, dark mode) |
 | [`export-word`](.claude/skills/export-word/) | Xuất `.md` → Word **QT02.BM.04** (TNR, logo+footer, mục lục, QC tự kiểm) |
-| [`crawl-pdf`](.claude/skills/crawl-pdf/) | Crawl/tải PDF + phân rã PDF/Office → MD (pymupdf4llm/markitdown); pull Google Sheet/Drive live |
+| [`crawl-pdf`](.claude/skills/crawl-pdf/) | Crawl/tải PDF + phân rã PDF/Office → MD (pymupdf4llm/markitdown); **phân rã bản trích lớn theo section** (`split-md-by-section.py`); pull/ghi Google Sheet/Drive live |
 | [`term-check`](.claude/skills/term-check/) | Tra/kiểm thuật ngữ hàng không trong glossary + domain-knowledge |
+| [`qa-tracking`](.claude/skills/qa-tracking/) | Q&A làm rõ với VNA: rút điểm mở OID → bảng yêu cầu làm rõ 9 cột (nhóm phân hệ + phân loại nghiệp vụ/ASR) → đẩy Google Sheet → đồng bộ phản hồi về OID |
 
 **Workflows** (`.claude/workflows/` — điều phối đa agent):
 
@@ -109,7 +110,8 @@ ba-interviewer ─► business-analyst ─► srs-writer / data-modeler / ─►
 ## 6. Xử lý nguồn khách hàng & kết nối live
 
 - **Customer_docs → tự rã MD:** agent extract DOCX/XLSX/PPTX/PDF mới trong `ba/workspace/input/Customer_docs/` → `phan-tich/01-nguon/*.extracted.md` + cập nhật INDEX + TIMELINE (CLAUDE.md §8).
-- **Google Drive/Sheets live:** pull tài liệu đang ở Drive/Sheets về `.md` qua Service Account (YCKT-VTIT, Function list…) — `crawl-pdf/scripts/gsheet-to-md.py` / `gdrive-to-md.py`; re-pull khi nguồn đổi (`--check`/`reconcile`).
+- **Bản trích LỚN (>800 dòng):** phân rã theo section cấp 1 → `<tên>_parts/sec-NN-*.md` + INDEX nối nội dung (`crawl-pdf/scripts/split-md-by-section.py`); tra theo section, không nạp cả file (§0.5). `01-nguon/` tổ chức theo nhóm nguồn (INDEX) + bản thuyết minh vai trò (THUYET-MINH-NGUON).
+- **Google Drive/Sheets live:** pull tài liệu đang ở Drive/Sheets về `.md` qua Service Account (YCKT-VTIT, Function list…) — `crawl-pdf/scripts/gsheet-to-md.py` / `gdrive-to-md.py`; **ghi ngược lên Sheet** qua `gsheet-write.py` (cần SA quyền Editor); re-pull khi nguồn đổi (`--check`/`reconcile`).
 - **Function list "Màn hình Flight Dispatch"** là source-of-truth khách hàng đang base xây màn Flight Dispatch → đối chiếu & làm giàu wireframe/mockup thường xuyên.
 
 ---
