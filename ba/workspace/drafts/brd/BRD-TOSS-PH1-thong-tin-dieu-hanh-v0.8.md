@@ -145,7 +145,7 @@ parent: "BRD-TOSS-001-khung-v0.10.md"
 | Mã | Mô tả yêu cầu nghiệp vụ (mức cao) | Loại | Ưu tiên (MoSCoW) | Nguồn |
 |---|---|---|---|---|
 | BR-190 | Hệ thống phải cấp quyền thực hiện Release OFP theo từng người dùng, do admin kích hoạt; hệ thống ghi lại đầy đủ thông tin người đã thực hiện Release để phục vụ kiểm tra (audit) về sau. | Functional | Must | KS 15/06 §II.3 |
-| BR-191 | Hệ thống phải yêu cầu mỗi ca trực đăng nhập bằng tài khoản riêng để ghi nhận đúng người thực hiện thao tác. Đối với tài khoản bot dùng để tự động upload OFP (hiện được đề cập với tên AOS), phải đặt tên tài khoản theo vai trò (ví dụ `Dispatch_Auto`) hoặc tạo nhiều bot riêng biệt cho từng ca để hệ thống phân biệt được ca nào đã thực hiện thao tác. Tên đầy đủ và nghĩa của AOS *(xem OID: KS-43)*. | Functional | Must | KS 15/06 §II.3 |
+| BR-191 | Hệ thống phải yêu cầu mỗi ca trực đăng nhập bằng tài khoản riêng để ghi nhận đúng người thực hiện thao tác. | Functional | Must | KS 15/06 §II.3 |
 | BR-192 | Hệ thống phải xác định cơ chế ghi nhận attribution cho từng phiên bản OFP khi bàn giao ca: khi ca trước upload OFP phiên bản gốc và ca sau lấy bản đó làm cơ sở, chỉnh sửa rồi upload thành phiên bản mới, hệ thống cần phản ánh đúng người làm bản gốc thay vì chỉ ghi tên ca sau. Cơ chế cụ thể cần làm rõ *(xem OID: KS-42)*. | Functional | Should | KS 15/06 §II.3 |
 
 ---

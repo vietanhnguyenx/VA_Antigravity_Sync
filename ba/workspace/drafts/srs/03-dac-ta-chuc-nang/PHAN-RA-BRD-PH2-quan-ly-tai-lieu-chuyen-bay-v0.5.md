@@ -466,7 +466,7 @@ Các điểm sau cần BA Lead/SME bổ sung nguồn hoặc xác nhận thêm tr
 - **Phạm vi tích hợp TOSS ↔ MO Plus** (Dispatch Release ↔ Captain's Release, reset Confirm Release sau Unrelease, hiển thị "latest by filename" cho weather, lịch sử download tài liệu tổ bay, cảnh báo lỗi đẩy OFP, thao tác Attach file): vẫn thuộc nhóm "phạm vi cần làm rõ thêm" với chủ sở hữu MO Plus — trỏ về **OID KS-08** (xem `SO-THEO-DOI-DIEM-CHOT-v0.1.md`).
 - **BR-235 (chế độ test/sandbox NOTOC):** chưa được phân rã trong tài liệu này. Khi triển khai phân rã ở bản sau, FUNC cần ghi chú "cơ chế đồng bộ dữ liệu PROD→TEST: xem PH5 BR-542" và "sandbox UI riêng cho NOTOC trên PH2" theo chú thích BRD v0.6.
 - **BR-242/243/244 (công cụ MEL Boeing+Airbus, revision/compare, áp SB hotfix):** chưa được phân rã trong tài liệu này. Khi phân rã, FUNC cần ghi chú "(xem PH4 BR-425/426 — MEL master data owner; PH2 tiêu thụ trong luồng tài liệu chuyến bay.)" theo chú thích BRD v0.6.
-- **BR-219/220 (bot AOS / tài khoản ca riêng):** chưa được phân rã trong tài liệu này. Khi phân rã, FUNC cần ghi chú "(quy tắc đặt tên tài khoản bot / cơ chế IAM tài khoản ca: xem PH5 BR-513.)" theo chú thích BRD v0.6.
+- **BR-220 (tài khoản ca riêng):** chưa được phân rã trong tài liệu này. Khi phân rã, FUNC cần ghi chú "(cơ chế IAM tài khoản ca: xem PH5 BR-513.)" theo chú thích BRD v0.6.
 
 ---
 
