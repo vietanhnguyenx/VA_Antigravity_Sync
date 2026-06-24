@@ -4,7 +4,17 @@
 
 **Mô tả:** Chức năng quản lý toàn bộ thông tin loại tàu bay (Aircraft Subtype) mà Vietnam Airlines khai thác, bao gồm: đặc tả kỹ thuật, cấu hình khoang, bảng nhiên liệu ACARS, nhóm phân loại, và lịch sử thay đổi.
 
-**Khác biệt so với chuẩn FIMS:** Không có chức năng **"Thêm mới loại tàu bay"** vì dữ liệu được đồng bộ tự động từ Ops++ (CH-01). Chức năng **"Xoá loại tàu bay"** cũng bị ẩn (CH-09) để tránh xung đột đồng bộ; thay vào đó, sử dụng trường `Valid To` để ngừng sử dụng.
+**Khác biệt so với chuẩn TOSS:** Không có chức năng **"Thêm mới loại tàu bay"** vì dữ liệu được đồng bộ tự động từ Ops++ (CH-01). Chức năng **"Xoá loại tàu bay"** cũng bị ẩn (CH-09) để tránh xung đột đồng bộ; thay vào đó, sử dụng trường `Valid To` để ngừng sử dụng.
+
+**Glossary viết tắt (lần đầu tiên trong tài liệu):**
+- **ACARS** — Aircraft Addressing and Reporting System (hệ thống truyền thông máy bay)
+- **ICAO** — International Civil Aviation Organization (tổ chức hàng không quốc tế)
+- **IATA** — International Air Transport Association (hiệp hội vận tải hàng không quốc tế)
+- **MTOW** — Maximum Take-Off Weight (trọng lượng cất cánh tối đa)
+- **APU** — Auxiliary Power Unit (đơn vị cấp nguồn phụ)
+- **ACreg** — Aircraft Registration (số đăng ký tàu bay)
+- **UTC** — Coordinated Universal Time (giờ phối hợp quốc tế)
+- **TOSS** — Transformative Operations Support System (hệ thống điều hành khai thác)
 
 ---
 
@@ -135,7 +145,7 @@
 
 ### Mô tả chi tiết màn hình
 
-*[Để tiết kiệm không gian, chi tiết các tab 2.1–2.4 được mô tả dưới đây]*
+Chi tiết từng tab (2.1–2.4) được mô tả tại các mục dưới đây.
 
 ---
 
@@ -267,7 +277,7 @@
 | 1 | Date From | DateInput | `filter.date_from` | Lọc từ ngày, format `dd/mm/yyyy`. Mặc định trống |
 | 2 | Date To | DateInput | `filter.date_to` | Lọc đến ngày, format `dd/mm/yyyy`. Mặc định trống. Validate: `≥ Date From` |
 | 3 | Changed By | Dropdown | `filter.changed_by` | Lọc theo người thực hiện. Giá trị: `All` / danh sách user đã thao tác trên bản ghi |
-| 4 | Changed Field | Dropdown | `filter.changed_field` | Lọc theo trường thay đổi. Giá trị: `All` / `Aircraft Type Name` / `ICAO Code` / `Valid To` / `Owner` / ... (danh sách động — chỉ liệt kê field thực sự có thay đổi, loại bỏ field khoá) |
+| 4 | Changed Field | Dropdown | `filter.changed_field` | Lọc theo trường thay đổi của bản ghi này. Giá trị: `All` / `Aircraft Type Name` / `ICAO Code` / `Valid To` / `Owner` / ... (danh sách động per-record — chỉ liệt kê field thực sự có thay đổi, loại bỏ field khoá) |
 | 5 | Nút Search | Button | | Click: reload bảng audit log theo bộ lọc |
 | 6 | Nút Download Excel | Button | | Click: xuất audit log theo bộ lọc ra file `.xlsx`. **CH-10:** Tên file: `TOSS_Aircraft_History_<AC_Subtype>_<ddmmyyyy>.xlsx` (ví dụ: `TOSS_Aircraft_History_A320NEO_24062026.xlsx`) |
 
@@ -407,7 +417,6 @@ Notes:        (trống)
 | TB020 | `❌ Error: <message>` | API trả lỗi đã biết |
 | TB021 | `❌ An unexpected error occurred` | Lỗi không xác định (5xx, timeout) |
 | TB022 | `No aircraft types found matching your filters` | API danh sách trả rỗng |
-| TB023 | `Reason is required` | Bỏ trống `Reason` ở popup xoá (không áp dụng vì xoá bị ẩn — CH-09) |
 | AUTH-403 | Redirect → trang `Access Denied` | Không có quyền truy cập module |
 
 ---
@@ -453,4 +462,4 @@ Danh sách User Stories chia từng chức năng chi tiết, sẵn sàng để p
 
 ---
 
-*II.1 Quản lý tàu bay — Đặc tả Chi tiết (SRS Format) — v0.5 — 2026-06-24. Cấu trúc và format theo VNA.TOSS_SRS_Data Maintenance. Sơ đồ luồng hệ thống dạng ảnh PNG (3 chức năng) + 14 User Stories có Acceptance Criteria + tất cả 10 quyết định (Q1–Q4, CH-01–CH-10) tích hợp đầy đủ. Review BA-reviewer PASS C2/C3/H1-H6/M1-M6/L1-L3.*
+*II.1 Quản lý tàu bay — Đặc tả Chi tiết (SRS Format) — v0.6 — 2026-06-24. Cấu trúc và format theo VNA.TOSS_SRS_Data Maintenance. Sơ đồ luồng hệ thống dạng ảnh PNG (3 chức năng) + 14 User Stories có AC + Glossary + tất cả 10 quyết định (Q1–Q4, CH-01–CH-10) tích hợp. FINAL: Ready for BA Lead review.*
