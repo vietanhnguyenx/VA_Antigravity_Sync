@@ -86,12 +86,18 @@ function StripAsr($t){
   $t=[regex]::Replace($t,"[ \t]*\((?:[^()]*?)(?:$kw)(?:[^()]*?)\)",'')
   # d6: bỏ ngoặc vuông [...] chứa 'ASR' (cờ cần-xác-nhận liên quan ASR)
   $t=[regex]::Replace($t,'[ \t]*\[[^\]]*ASR[^\]]*\]','')
-  # d7: bỏ ghi chú ASR dạng văn bản thuần (không ngoặc) — từ 'đính chính'/'lỗi nhận dạng' tới hết ô bảng (|) hoặc hết dòng
-  $t=[regex]::Replace($t,'(?:[ \t]*[—–-])?[ \t]*(?:đính chính|lỗi nhận dạng)[^|\r\n]*','')
+  # d7: bỏ ghi chú ASR dạng văn bản thuần — 'lỗi nhận dạng' hoặc 'đính chính ASR/ghi âm' (KHÔNG đụng 'đính chính' nghiệp vụ, vd "anh Hùng đính chính DIV…")
+  $t=[regex]::Replace($t,'(?:[ \t]*[—–-])?[ \t]*(?:lỗi nhận dạng|đính chính (?:ASR|ghi âm|nhận dạng))[^|\r\n]*','')
   # d8: bỏ cụm ASR inline trong câu chạy — "phỏng âm ASR là ...", "ASR phiên/đọc/đôi/ghi ..."
   $t=[regex]::Replace($t,'[ \t]*(?:phỏng âm ASR[^,.\|\r\n]*|ASR (?:phiên|đọc|đôi|ghi)[^,.\|\r\n]*)','')
+  # d8b: bỏ ghi chú "(do )?(bản ghi )?ASR không rõ/không nghe rõ/nghe nhầm…" tới hết mệnh đề (dấu , ; . | hoặc xuống dòng)
+  $t=[regex]::Replace($t,'[ \t]*(?:do[ \t]+)?(?:bản ghi[ \t]+)?ASR (?:không rõ|không nghe rõ|nghe nhầm|nhầm|đọc nhầm)[^,;.\|\r\n]*','')
   # d9: bỏ TRỌN dòng italic (*...*) là changelog/footer chứa từ khoá quy trình nội bộ
   $t=[regex]::Replace($t,'(?im)^[ \t]*\*[^\r\n]*(?:transcript ASR|Option B|regenerate from|lập trực tiếp từ transcript|SKILL \.claude)[^\r\n]*\*[ \t]*\r?\n?','')
+  # d10: bỏ TRỌN dòng (bullet/blockquote/numbered/table-row) đồng thời chứa 'ASR' VÀ từ chỉ chất lượng nguồn (nhiễu/chất lượng/giải mã/ghi nhầm/đọc nhầm) — ghi chú/danh sách đoạn ASR nội bộ
+  $t=[regex]::Replace($t,'(?im)^(?=[^\r\n]*\bASR\b)(?=[^\r\n]*(?:nhiễu|chất lượng|giải mã|ghi nhầm|đọc nhầm|hiệu đính))[^\r\n]*\r?\n?','')
+  # d11: bỏ TRỌN dòng đánh dấu "chỉ dùng nội bộ" / "KHÔNG xuất hiện trong bản Word" (marker mục nội bộ §V)
+  $t=[regex]::Replace($t,'(?im)^[ \t]*(?:>[ \t]*)?[-*>#]*[ \t]*\**[^\r\n]*(?:Chỉ dùng nội bộ|KHÔNG xuất hiện trong bản Word)[^\r\n]*\r?\n?','')
   $t
 }
 # (e) bỏ dấu vết NỘI BỘ khác (suy diễn/đối chiếu/truy vết) — CHỈ ở .md, KHÔNG vào bản giao khách (SKILL §0.0)
@@ -250,7 +256,7 @@ $qc=[ordered]@{
   'no markdown link ]('             = (([regex]'\]\(').Matches($txt).Count -eq 0)
   'no filename slug'                 = (([regex]'phan-he|wireframe-overview|tien-do-ncc|thiet-bi-iot').Matches($txt).Count -eq 0)
   'no YAML key leak'                 = (([regex]'document_type:|source_template:|^project:\s*"').Matches($txt).Count -eq 0)
-  'no ASR note leak (§0.0)'          = (([regex]'\bASR\b|đính chính|chép nhầm (?:là|thành|→)|lỗi nhận dạng').Matches($txt).Count -eq 0)
+  'no ASR note leak (§0.0)'          = (([regex]'\bASR\b|đính chính (?:ASR|ghi âm|nhận dạng)|chép nhầm (?:là|thành|→)|lỗi nhận dạng').Matches($txt).Count -eq 0)
   'no internal note leak (§0.0)'     = (([regex]'Lưu ý nội bộ|domain-knowledge|glossary|OID-TOSS|sổ theo dõi điểm chốt|P\d+\s*d\.').Matches($txt).Count -eq 0)
   'no OID code leak (§0.0)'          = (([regex]'\[cần (?:xác nhận|khảo sát)|\b(?:KS|SME|HC)-\d+\b').Matches($txt).Count -eq 0)
   'no transcript process note (§0.0)'= (([regex]'trong transcript|theo timestamp transcript').Matches($txt).Count -eq 0)
