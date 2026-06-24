@@ -46,7 +46,7 @@ parent: "BRD-TOSS-001-khung-v0.10.md"
 | BR-510 | Hệ thống phải hỗ trợ Single Sign-On (SSO) và tích hợp xác thực với LDAP/Active Directory của Tổng công ty. | Functional | Must | Đề xuất §II.5; YCKT V3 TOSS-022 (sheet-04 #29); YCKT V3 TOSS-106 (sheet-04 #130); YCKT sheet-06 #41 (AD/LDAP) |
 | BR-511 | Hệ thống phải kiểm soát phiên làm việc theo thời gian thực: timeout phiên, danh sách phiên đang hoạt động, hủy phiên từ xa khi cần. | Functional | Must | Đề xuất §II.5 |
 | BR-512 | Hệ thống phải ghi nhật ký (audit log) chi tiết các hành vi: đăng nhập/đăng xuất, thay đổi phân quyền, truy cập và thay đổi dữ liệu nghiệp vụ trọng yếu (release/un-release OFP, sửa danh mục, sửa BCAO…); ghi rõ người thực hiện, thời điểm, hành động, đối tượng. | Functional | Must | Đề xuất §II.5; Khảo sát 15/06/2026 §II.3 (admin cấp quyền release kèm audit đầy đủ) |
-| BR-513 | Hệ thống phải có cơ chế ghi nhận attribution chính xác cho từng phiên bản OFP khi bàn giao ca, để phản ánh đúng người upload bản gốc và người chỉnh sửa bản kế tiếp; tài khoản bot tự động (ví dụ AOS) phải được đặt tên theo vai trò ca trực để phân biệt được ca nào đã thao tác. *(xem OID: KS-42)* | Functional | Must | Khảo sát 15/06/2026 §II.3 |
+| BR-513 | Hệ thống phải có cơ chế ghi nhận attribution chính xác cho từng phiên bản OFP khi bàn giao ca, để phản ánh đúng người upload bản gốc và người chỉnh sửa bản kế tiếp. *(xem OID: KS-42)* | Functional | Must | Khảo sát 15/06/2026 §II.3 |
 
 ### C. Cây menu & điều hướng
 

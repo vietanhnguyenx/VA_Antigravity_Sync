@@ -159,7 +159,7 @@ document_id: "OID-TOSS-001"
 | KS-40 | **Nguồn dự phòng parking stand** khi thiếu A-CDM (cụm nghe như "VR" — `[cần xác nhận]`) | KS 15/06 §II.1 | SME điều phái | 🔴 Mở | |
 | KS-41 | **Cột PIC confirm** — có ngưỡng nhắc/cảnh báo nếu Pilot chưa confirm sát giờ không (không quy định cứng thời điểm) | KS 15/06 §II.2 | SME điều phái | 🔴 Mở | |
 | KS-42 | **Attribution khi bàn giao ca** — version OFP mới do ca sau up mang tên ai; cơ chế ghi nhận đúng người thực hiện từng version | KS 15/06 §II.3 | Nội bộ + SME | 🔴 Mở | |
-| KS-43 | **Nghĩa viết tắt nghe trong ghi âm 15/06**: OAP / OSP / OMP / AOS — `[cần xác nhận]` (có thể chuyển nhóm SME) | KS 15/06 §IV | SME điều phái | 🔴 Mở | |
+| KS-43 | **Nghĩa viết tắt nghe trong ghi âm 15/06**: OAP / OSP / OMP — `[cần xác nhận]` (có thể chuyển nhóm SME) | KS 15/06 §IV | SME điều phái | 🔴 Mở | |
 | KS-44 | **Điện văn bổ sung gửi SITA** (ngoài điện chuyển động chuyến bay) — TOSS có xử lý đầy đủ hay không | KS 08/06 §IV.5 | Workshop điện văn ACARS/SITA | 🔴 Mở | |
 | KS-45 | **Môi trường kiểm thử** — đi thẳng vào tài nguyên thật hay phải có môi trường riêng tách bạch | KS 08/06 §IV.6 | Workshop hạ tầng/CĐS-CN | 🔴 Mở | |
 | KS-46 | **BackPACK + pgepoid** — có hỗ trợ RPA/tự đọc dữ liệu được không (đang nhập tay) | KS 08/06 §IV.8 | SME kỹ thuật + Hãng sản xuất tàu bay | 🔴 Mở | |
