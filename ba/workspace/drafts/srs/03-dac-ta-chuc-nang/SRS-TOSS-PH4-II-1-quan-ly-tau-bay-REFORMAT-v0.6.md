@@ -65,16 +65,16 @@
 
 | STT | Tên | Loại control | Mapping DB/API | Mô tả |
 | :----: | ----- | ----- | ----- | ----- |
-| 1 | AC Subtype | Textbox | `filter.ac_subtype` | Lọc gần đúng theo mã loại tàu bay. Maxlength 20. Placeholder `e.g., A320NEO` |
-| 2 | AC Registration (ACreg) | Textbox | `filter.registration_count` | Lọc theo số đăng ký (số ACreg). Validate: số nguyên `≥ 0`, maxlength 5 ký tự. Tìm kiếm số chính xác. Placeholder `e.g., 12`. Nếu nhập ký tự không phải số (0-9) → hiển thị lỗi inline `VL006 — Invalid format` |
-| 3 | Aircraft Category 1 | Dropdown | `filter.category_1` | Lọc theo phân loại cấp 1 (ví dụ `A320NEO`, `A321 CEO`). Giá trị từ master data. Mặc định `All` |
-| 4 | Aircraft Category 2 | Dropdown | `filter.category_2` | Lọc theo phân loại cấp 2. Giá trị từ master data. Mặc định `All` |
-| 5 | Aircraft Category 3 | Dropdown | `filter.category_3` | Lọc theo phân loại cấp 3. Giá trị từ master data. Mặc định `All` |
-| 6 | Aircraft Category 4 | Dropdown | `filter.category_4` | Lọc theo phân loại cấp 4. Giá trị từ master data. Mặc định `All` |
-| 7 | Aircraft Category 5 | Dropdown | `filter.category_5` | Lọc theo phân loại cấp 5 (ví dụ `320`, `32N`). Giá trị từ master data. Mặc định `All` |
-| 8 | Status | Dropdown | `filter.is_active` | Lọc theo trạng thái. Giá trị: `All` / `Active` / `Inactive`. Mặc định `All` |
-| 9 | Nút Search | Button | | Click: gửi request lọc; hiển thị toast tạm `Applying filters…`; reload bảng và đặt phân trang về trang 1 |
-| 10 | Nút Clear Filters | Button | | Click: reset toàn bộ trường lọc về mặc định, reload danh sách không filter |
+| 1 | AC Subtype | Textbox | `filter.ac_subtype` | **Placeholder:** "search AC subtype" · **Mặc định vào màn hình:** "chọn all" · **Maxlength:** 20 · **TRIM spaces:** đầu cuối · **Paste:**  chỉ lấy 20 ký tự đầu · **Vượt quá ô nhập:** hiển thị "…" tooltip · **Event (out focus/enter):** gọi API trả danh sách · **Lọc:** gần đúng theo mã loại tàu bay |
+| 2 | AC Registration (ACreg) | Textbox | `filter.registration_count` | **Placeholder:** "search AC Registration (ACreg)" · **Mặc định vào màn hình:** "chọn all" · **Maxlength:** 5 · **TRIM spaces:** đầu cuối · **Paste:** chỉ lấy 5 ký tự đầu · **Vượt quá ô nhập:** hiển thị "…" tooltip · **Event (out focus/enter):** gọi API trả danh sách · **Validate:** số chính xác; nếu ký tự không phải số (0-9) → inline `VL006 — Invalid format` |
+| 3 | Aircraft Category 1 | Dropdown | `filter.category_1` | **Mặc định:** "chọn All" · **Dữ liệu:** đổ từ Ops++ (call API hiển thị danh sách) · **Chỉ chọn 1 giá trị** · Lọc theo phân loại cấp 1 (ví dụ `A320NEO`, `A321 CEO`) |
+| 4 | Aircraft Category 2 | Dropdown | `filter.category_2` | **Giá trị:** từ master data · **Mặc định:** All · Lọc theo phân loại cấp 2 |
+| 5 | Aircraft Category 3 | Dropdown | `filter.category_3` | **Giá trị:** từ master data · **Mặc định:** All · Lọc theo phân loại cấp 3 |
+| 6 | Aircraft Category 4 | Dropdown | `filter.category_4` | **Giá trị:** từ master data · **Mặc định:** All · Lọc theo phân loại cấp 4 |
+| 7 | Aircraft Category 5 | Dropdown | `filter.category_5` | **Giá trị:** từ master data · **Mặc định:** All · Lọc theo phân loại cấp 5 (ví dụ `320`, `32N`) |
+| 8 | Status | Dropdown | `filter.is_active` | **Giá trị:** `All` / `Active` / `Inactive` · **Mặc định:** All · Lọc theo trạng thái |
+| 9 | Nút Search | Button | | **Click:** gửi request lọc → hiển thị toast tạm "Applying filters…" → reload bảng và đặt phân trang về trang 1 |
+| 10 | Nút Clear Filters | Button | | **Click:** reset toàn bộ trường lọc về mặc định → reload danh sách không filter |
 | 11 | No. | Textview | — | STT tăng dần theo dòng trong trang hiện tại |
 | 12 | Registration Count | Textview | `registration_count` | Số lượng tàu bay (ACreg) đã đăng ký thuộc loại tàu bay này. Rỗng/lỗi: hiển thị `N/A` |
 | 13 | AC Subtype | Textview (link) | `ac_subtype` | Mã loại tàu bay; in đậm, có thể click để mở màn hình chi tiết (mục 2). Rỗng/lỗi: `N/A` |
