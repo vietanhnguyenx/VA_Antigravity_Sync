@@ -1270,9 +1270,15 @@
     }
 
     function showTabActionBar(tabId) {
-      document.getElementById('editActionBar').style.display = 'flex';
+      const actionBar = document.getElementById('editActionBar');
+      actionBar.classList.add('visible');
       const hint = document.querySelector('.edit-action-bar .hint');
       hint.textContent = '✎ Đang sửa: ' + getTabName(tabId);
+    }
+
+    function hideTabActionBar() {
+      const actionBar = document.getElementById('editActionBar');
+      actionBar.classList.remove('visible');
     }
 
     function getTabName(tabId) {
@@ -1325,7 +1331,7 @@
       document.getElementById('headerActions').style.display = 'none';
       document.getElementById('editActionBar').classList.add('visible');
       document.querySelectorAll('.details-tab-content .detail-input, .details-tab-content .detail-select').forEach(el => {
-        const lockedLabels = ['AC Subtype', 'Tên loại tàu', 'Valid From'];
+        const lockedLabels = ['AC Subtype', 'Valid From'];
         const labelEl = el.parentElement.querySelector('.detail-label');
         const isLocked = labelEl && lockedLabels.some(l => labelEl.textContent.includes(l));
         if (!isLocked) el.disabled = false;
@@ -1337,16 +1343,14 @@
     }
     function exitEditMode() {
       window.__isEditing = false;
-      document.getElementById('headerActions').style.display = 'flex';
-      document.getElementById('editActionBar').classList.remove('visible');
+      hideTabActionBar();
       document.querySelectorAll('.details-tab-content .detail-input, .details-tab-content .detail-select').forEach(el => el.disabled = true);
       document.querySelectorAll('.sub-table input').forEach(el => el.disabled = true);
       showToast('Đã huỷ chỉnh sửa');
     }
     function saveChanges() {
       window.__isEditing = false;
-      document.getElementById('headerActions').style.display = 'flex';
-      document.getElementById('editActionBar').classList.remove('visible');
+      hideTabActionBar();
       document.querySelectorAll('.details-tab-content .detail-input, .details-tab-content .detail-select').forEach(el => el.disabled = true);
       document.querySelectorAll('.sub-table input').forEach(el => el.disabled = true);
       showToast('Lưu thay đổi thành công');
