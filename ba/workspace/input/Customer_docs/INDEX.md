@@ -67,6 +67,7 @@ date: "2026-06-16"
 | `Form/BCAO_10Jun2025_11Jun2025-v2.docx` | Mẫu Báo cáo điều hành ngày khai thác (BCAO) — 2 phần (thực hiện hôm trước + kế hoạch hôm nay) | [BCAO_10Jun2025_11Jun2025-v2.extracted.md](../../drafts/phan-tich/01-nguon/BCAO_10Jun2025_11Jun2025-v2.extracted.md) | ✅ Đã extract — chưa phân tích cấu trúc biểu mẫu |
 | `Form/DIVERSION REPORT-HVN678-KULSGN-11JUN2026.docx` | Báo cáo chệch hướng HVN678 KUL→SGN 11/06/2026 (thunderstorm; TAF/METAR/crew decision) | [DIVERSION_REPORT-HVN678-KULSGN-11JUN2026.extracted.md](../../drafts/phan-tich/01-nguon/DIVERSION_REPORT-HVN678-KULSGN-11JUN2026.extracted.md) | ✅ Đã extract — chưa phân tích nghiệp vụ Diversion |
 | `Form/DIVERSION REPORT-HVN678-KULSGN-11JUN2026 - comments.docx` | Bản có bình luận của báo cáo chệch hướng HVN678 | [DIVERSION_REPORT-HVN678-KULSGN-11JUN2026_-_comments.extracted.md](../../drafts/phan-tich/01-nguon/DIVERSION_REPORT-HVN678-KULSGN-11JUN2026_-_comments.extracted.md) | ✅ Đã extract — dùng để đối chiếu bình luận reviewer |
+| `OFP/SGN-SFO-RECLEARANCE-NEW LAYOUT.txt` | OFP reclearance layout mới — HVN1999 SGN→SFO A359 (Flight Brief: route/FL/EDTO alternates/fuel breakdown/SPECIAL OPS/MINIMA) | [OFP-SGN-SFO-RECLEARANCE.extracted.md](../../drafts/phan-tich/01-nguon/OFP-SGN-SFO-RECLEARANCE.extracted.md) | ✅ Đã extract (nội dung trùng bản extract sẵn có) + đã rà soát fold vào BRD/SRS PH1/PH2 (BR-202/110c/110e, FUNC-131/133); SPECIAL OPS/MIN DIV FUEL/MINIMA per-runway → OID |
 
 ---
 
