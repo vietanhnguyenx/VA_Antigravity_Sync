@@ -258,7 +258,17 @@
     .tab-content.active { display: flex !important; visibility: visible; position: relative; pointer-events: auto; }
 
     /* ===== Tab Edit Icon Styling ===== */
-    .tab-edit-icon { display: inline-flex; align-items: center; justify-content: center; background: #007b83; color: white; padding: 4px 8px; border-radius: 6px; cursor: pointer; font-size: 14px; margin-left: 12px; transition: background 0.2s, opacity 0.2s; user-select: none; }
+    .tab-edit-icon { display: inline-flex; align-items: center; justify-content: center; background: var(--toss-primary); color: white; padding: 4px 8px; border-radius: 6px; cursor: pointer; font-size: 14px; margin-left: 12px; transition: all 0.2s; user-select: none; }
+    .tab-edit-icon:hover { background: var(--toss-primary-light); }
+    .tab-edit-icon:focus { outline: 2px solid var(--toss-primary); outline-offset: 1px; }
+
+    /* Edit mode indicator on tab */
+    .details-tab-button.editing { border-bottom: 3px solid var(--toss-warn); background: rgba(217, 119, 6, 0.05); }
+    .details-tab-button.editing::after { content: '●'; color: var(--toss-warn); font-size: 8px; margin-left: 4px; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 0.8; } 50% { opacity: 1; } }
+
+    /* Field hint text */
+    .field-hint { font-size: 11px; color: var(--md-text-secondary); font-style: italic; margin-top: 3px; display: block; }
   </style>
 </head>
 <body>
@@ -706,7 +716,8 @@
                   </div>
                   <div class="detail-row">
                     <span class="detail-label">Owner (tối đa 50 ký tự)</span>
-                    <input type="text" class="detail-input" id="ownerField" value="Vietnam Airlines" maxlength="50" disabled>
+                    <input type="text" class="detail-input" id="ownerField" value="Vietnam Airlines" maxlength="50" disabled aria-describedby="ownerHint">
+                    <span class="field-hint" id="ownerHint">Tự động điền "Vietnam Airlines" nếu chọn "Owned" ở trên</span>
                   </div>
                   <div class="detail-row">
                     <span class="detail-label">Trạng thái</span>
@@ -1209,20 +1220,29 @@
       document.querySelectorAll('.details-tab-content').forEach(t => t.classList.remove('active'));
       document.getElementById(tabId).classList.add('active');
 
-      // Switch tab button active state
-      document.querySelectorAll('.details-tab-button').forEach(b => b.classList.remove('active'));
+      // Switch tab button active state + aria-selected
+      document.querySelectorAll('.details-tab-button').forEach(b => {
+        b.classList.remove('active');
+        b.setAttribute('aria-selected', 'false');
+      });
       btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
 
       // Hide all edit icons, show only for active tab
       document.querySelectorAll('.tab-edit-icon').forEach(icon => icon.style.display = 'none');
       const activeIcon = btn.querySelector('.tab-edit-icon');
-      if (activeIcon) activeIcon.style.display = 'inline';
+      if (activeIcon) activeIcon.style.display = 'inline-flex';
     }
 
     // Per-tab edit mode
     function enterTabEditMode(event, tabId) {
       event.stopPropagation(); // Prevent tab switch
       const tab = document.getElementById(tabId);
+
+      // Mark this tab as editing (visual indicator)
+      document.querySelectorAll('.details-tab-button').forEach(b => b.classList.remove('editing'));
+      const tabBtn = document.querySelector(`[aria-controls="${tabId}"]`);
+      if (tabBtn) tabBtn.classList.add('editing');
 
       // Enable only fields in this tab
       tab.querySelectorAll('.detail-input, .detail-select, .sub-table input').forEach(el => {
