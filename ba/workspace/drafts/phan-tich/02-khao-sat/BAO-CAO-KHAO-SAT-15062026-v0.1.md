@@ -94,26 +94,23 @@ Các bên đã thống nhất bộ ngưỡng thời gian, mã màu và quy tắc
 
 2. **Nguồn dự phòng cho parking stand:** Khi dữ liệu A-CDM không có, hệ thống sẽ dùng nguồn nào thay thế? Trong ghi âm nghe như "VR" nhưng chưa xác nhận được tên chính xác. `[cần xác nhận]`
 
-3. **Nghĩa các viết tắt:** OAP, OSP và OMP (xuất hiện ở phần 2 và phần 3) cùng AOS (phần 3) chưa xác nhận được nghĩa đầy đủ qua ghi âm. `[cần xác nhận]`
+3. **Nghĩa các viết tắt:** OAP, OSP và OMP (xuất hiện ở phần 2) chưa xác nhận được nghĩa đầy đủ qua ghi âm. `[cần xác nhận]`
 
-4. **Cơ chế attribution khi bàn giao ca:** Khi ca sau upload một phiên bản OFP mới dựa trên bản của ca trước, hệ thống cần ghi nhận thông tin tác giả như thế nào để phản ánh đúng người thực hiện từng phiên bản?
+4. **Ngưỡng cảnh báo PIC Confirm:** Hệ thống có cần gửi nhắc nhở hoặc cảnh báo khi phi công chưa xác nhận nhận OFP trong khoảng thời gian sát giờ bay không?
 
-5. **Ngưỡng cảnh báo PIC Confirm:** Hệ thống có cần gửi nhắc nhở hoặc cảnh báo khi phi công chưa xác nhận nhận OFP trong khoảng thời gian sát giờ bay không?
+5. **Các điểm chưa thể hiện trong mockup v0.1:** Một số chức năng đã được mô tả trong Function list nhưng chưa có trong prototype, bao gồm suffix D/Z cho chuyến ARR Divert, lưu cấu hình cột và tìm kiếm, tích hợp cảnh báo MEL/CDL từ AMOS, cảnh báo taxi time so với FON, time-window ZFW và phân quyền theo carrier. Các mục này cần được đưa vào vòng cập nhật mockup và đặc tả trong bước tiếp theo.
 
-6. **Các điểm chưa thể hiện trong mockup v0.1:** Một số chức năng đã được mô tả trong Function list nhưng chưa có trong prototype, bao gồm suffix D/Z cho chuyến ARR Divert, lưu cấu hình cột và tìm kiếm, tích hợp cảnh báo MEL/CDL từ AMOS, cảnh báo taxi time so với FON, time-window ZFW và phân quyền theo carrier. Các mục này cần được đưa vào vòng cập nhật mockup và đặc tả trong bước tiếp theo.
-
-7. **Các đoạn ghi âm chất lượng thấp:** Một số đoạn trong phần 1 (chi tiết mốc A-CDM) và phần 3 (cấu hình hệ thống) bị nhiễu, cần đối chiếu lại trực tiếp với người tham dự khi chốt số liệu.
+6. **Các đoạn ghi âm chất lượng thấp:** Một số đoạn trong phần 1 (chi tiết mốc A-CDM) bị nhiễu, cần đối chiếu lại trực tiếp với người tham dự khi chốt số liệu.
 
 ---
 
 ## V. Thuật ngữ đề xuất bổ sung
 
-Dưới đây là ba thuật ngữ phát sinh từ ngữ cảnh cụ thể của buổi 15/06 đề xuất bổ sung vào từ điển thuật ngữ dự án:
+Dưới đây là hai thuật ngữ phát sinh từ ngữ cảnh cụ thể của buổi 15/06 đề xuất bổ sung vào từ điển thuật ngữ dự án:
 
 | Thuật ngữ | Mô tả | Ghi chú |
 |---|---|---|
 | **PIC Confirm** | Trạng thái phi công xác nhận đã nhận và đọc OFP sau khi Dispatch thực hiện release. Không có ràng buộc cứng về thời điểm xác nhận. | Cần bổ sung cột riêng trên lưới giám sát (xem §VI) |
-| **AOS** | Tài khoản bot dùng để tự động upload OFP vào hệ thống, cần đặt tên theo vai trò ca trực để phân biệt. | Nghĩa đầy đủ chờ xác nhận (§IV mục 3) |
 | **Ngưỡng release OFP** | Bộ tham số thời gian trước ETD xác định cửa sổ được phép release OFP: nội địa 210/75/60 phút, quốc tế 270/90/75 phút. | Xác nhận qua buổi 15/06 và đối chiếu với Function list |
 
 ---
