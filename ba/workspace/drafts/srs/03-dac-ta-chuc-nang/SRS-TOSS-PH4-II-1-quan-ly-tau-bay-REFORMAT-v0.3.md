@@ -17,30 +17,11 @@
 
 ### Sơ đồ luồng hệ thống
 
-```
-[Người dùng]
-    |
-    ↓
-[Mở module Data Maintenance → Aircraft Fleet]
-    |
-    ↓ (Tiền điều kiện: đã đăng nhập, có quyền)
-    |
-    ↓
-[Hệ thống call API GET /api/aircraft-types?page=1&pageSize=10]
-    |
-    ↓
-[Hiển thị bảng danh sách (STT, Số ACreg, AC Subtype, Aircraft Type Name, Status, Actions)]
-    |
-    ├→ (Tuỳ chọn) Người dùng nhập/chọn bộ lọc → nhấn Search
-    |   ├→ Hệ thống reload dữ liệu theo filter, đặt lại trang 1
-    |   └→ Hiển thị kết quả mới
-    |
-    ├→ (Tuỳ chọn) Người dùng click vào 1 dòng → chuyển sang Xem chi tiết (chức năng 2)
-    |
-    ├→ (Tuỳ chọn) Người dùng nhấn Clear Filters → reset bộ lọc, reload danh sách
-    |
-    └→ (Lỗi) API timeout/lỗi → hiển thị toast Error, giữ nguyên màn hình
-```
+![Danh sách loại tàu bay - Sơ đồ luồng hệ thống](../../mockup/diagram-1-danh-sach.png)
+
+*Sơ đồ trên mô tả các bước chính của luồng xử lý khi người dùng truy cập màn hình danh sách tàu bay:*
+- *Bước 1-4: Chuỗi actions tuần tự từ khi người dùng mở module đến khi hệ thống gọi API và hiển thị bảng*
+- *Bước 5: Người dùng có thể tương tác qua 3 đường khác nhau (optional filter, click vào dòng, hoặc gặp lỗi)*
 
 ### Mô tả luồng xử lý
 
@@ -108,30 +89,18 @@
 | **Tên chức năng** | Xem chi tiết loại tàu bay |
 | :---- | :---- |
 | **Mục đích** | Cho phép người dùng xem đầy đủ thông tin của một loại tàu bay, được tổ chức trong 4 tab: *Thông tin chung* — *Cấu hình tàu* — *Thuộc tính nhóm* — *Lịch sử thay đổi*; đồng thời là điểm vào cho thao tác sửa (mục 3) |
-| **Trigger** | (a) Từ danh sách (mục 1) → click vào một bản ghi; hoặc (b) truy cập URL trực tiếp `/aircraft-types/{id}` |
-| **Tiền điều kiện** | Người dùng đăng nhập thành công và được phân quyền `View Aircraft Catalog`; bản ghi loại tàu bay với `id` truyền vào tồn tại trong hệ thống và chưa bị soft-delete |
+| **Trigger** | **(a)** Từ danh sách (mục 1) → click vào một bản ghi; hoặc **(b)** truy cập URL trực tiếp `/aircraft-types/{id}` |
+| **Tiền điều kiện** | Người dùng đăng nhập thành công và được phân quyền `View Aircraft Catalog`; bản ghi loại tàu bay với `id` truyền vào tồn tại trong hệ thống |
 | **Hậu điều kiện** | Hiển thị màn hình chi tiết với tab 1 (*Thông tin chung*) là mặc định; dữ liệu 4 tab được load theo nguyên tắc lazy (gọi API riêng khi mở từng tab) |
 
 ### Sơ đồ luồng hệ thống
 
-```
-[Người dùng click vào 1 bản ghi hoặc truy cập URL /aircraft-types/{id}]
-    |
-    ↓ (Tiền điều kiện: đã đăng nhập, có quyền, bản ghi tồn tại)
-    |
-    ↓
-[Hệ thống call API GET /api/aircraft-types/{id}]
-    |
-    ↓
-[Hiển thị header (AC Subtype + Aircraft Type Name) + 4 tab]
-[Tab 1 (Thông tin chung) active mặc định]
-    |
-    ├→ (Tuỳ chọn) Người dùng click nút Edit tại section → chuyển sang chế độ sửa (mục 3)
-    |
-    ├→ (Tuỳ chọn) Người dùng chuyển sang Tab 2/3/4 → gọi API riêng, hiển thị dữ liệu tab đó
-    |
-    └→ (Lỗi) ID không tồn tại hoặc bản ghi đã xoá → hiển thị "Aircraft type not found" + nút "Back to list"
-```
+![Xem chi tiết loại tàu bay - Sơ đồ luồng hệ thống](../../mockup/diagram-2-xem-chi-tiet.png)
+
+*Sơ đồ trên mô tả các bước khi người dùng truy cập màn hình chi tiết:*
+- *Bước 1-3: Chuỗi kiểm tra quyền và gọi API lấy dữ liệu*
+- *Bước 4: Hiển thị header và 4 tab (Tab 1 mặc định)*
+- *Bước 5: Người dùng có 3 lựa chọn (Edit section, Switch tab, hoặc gặp lỗi)*
 
 ### Mô tả luồng xử lý
 
@@ -165,10 +134,10 @@
 
 | STT | Tên | Loại control | Mapping DB/API | Khoá? | Mô tả |
 | :----: | ----- | ----- | ----- | :---: | ----- |
-| 1 | AC Subtype | Textview | `ac_subtype` | ✅ Có | Mã loại tàu bay (ví dụ `A320NEO`). Đồng bộ từ Ops++ (CH-01). Biểu tượng khoá hiển thị |
+| 1 | AC Subtype | Textview | `ac_subtype` | ✅ Có | Mã loại tàu bay (ví dụ `A320NEO`). Đồng bộ từ Ops++ (CH-01). Biểu tượng khoá hiển thị, không cho phép thao tác sửa |
 | 2 | Aircraft Type Name | Textview (xem) / Textbox (sửa) | `aircraft_type_name` | ❌ Không (Q2) | Tên loại tàu bay (ví dụ `Airbus A320 NEO`). Maxlength 100. **Bắt buộc** khi lưu |
 | 3 | Valid From | Textview (date) | `valid_from` | ✅ Có | Ngày bắt đầu hiệu lực, format `dd/mm/yyyy`. Đồng bộ từ Ops++ |
-| 4 | Valid To | Textview (xem) / DateInput (sửa) | `valid_to` | ❌ Không | Ngày kết thúc hiệu lực, format `dd/mm/yyyy`. Khi sửa phải `≥ Valid From`. Cho phép ngày quá khứ (CH-02) |
+| 4 | Valid To | Textview (xem) / DateInput (sửa) | `valid_to` | ❌ Không | Ngày kết thúc hiệu lực, format `dd/mm/yyyy`. Khi sửa phải `≥ Valid From`. Cho phép ngày quá khứ (CH-02). Không cho phép nhập ngày trùng với Valid From |
 | 5 | ICAO Code | Textview / Textbox | `icao_code` | ❌ Không | Mã ICAO (ví dụ `A20N`). Maxlength 4. Validate: 3–4 ký tự, gồm chữ in hoa và số. Phải duy nhất trong hệ thống (VL007 nếu trùng) |
 | 6 | IATA Code | Textview / Textbox | `iata_code` | ❌ Không | Mã IATA (ví dụ `32N`). Maxlength 3. Validate: 2–3 ký tự, gồm chữ in hoa và số. Phải duy nhất (VL007 nếu trùng) |
 | 7 | Ownership Status | Textview / Dropdown | `ownership_status` | ❌ Không | Giá trị: `Owned` / `Wet Leased` / `Dry Leased`. Khi đổi giá trị → ảnh hưởng logic trường `Owner` (STT 8) — CH-04 |
