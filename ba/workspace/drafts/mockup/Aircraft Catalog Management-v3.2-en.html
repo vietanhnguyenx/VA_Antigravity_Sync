@@ -473,23 +473,23 @@
 
         <!-- Main Header Tabs — Redesigned: pill-on-navy -->
         <nav class="main-nav-bar" id="mainNavBar" role="tablist">
-          <button class="mnav-btn active" role="tab" aria-selected="true" onclick="switchMainTab(this, 'tau-bay')">
+          <button class="mnav-btn active" role="tab" aria-selected="true" onclick="switchMainTab(this, 'inner-catalog')">
             <span class="material-symbols-outlined mnav-ic">airplanemode_active</span>
             Aircraft Catalog
           </button>
-          <button class="mnav-btn" role="tab" aria-selected="false" onclick="switchMainTab(this, 'aog-schedule')">
+          <button class="mnav-btn" role="tab" aria-selected="false" onclick="switchMainTab(this, 'inner-aog-schedule')">
             <span class="material-symbols-outlined mnav-ic">event_busy</span>
             AOG / Schedule
           </button>
-          <button class="mnav-btn" role="tab" aria-selected="false" onclick="switchMainTab(this, 'aog-code')">
+          <button class="mnav-btn" role="tab" aria-selected="false" onclick="switchMainTab(this, 'inner-aog-code')">
             <span class="material-symbols-outlined mnav-ic">build_circle</span>
             AOG / Codes
           </button>
-          <button class="mnav-btn" role="tab" aria-selected="false" onclick="switchMainTab(this, 'mel-cdl')">
+          <button class="mnav-btn" role="tab" aria-selected="false" onclick="switchMainTab(this, 'inner-mel-cdl')">
             <span class="material-symbols-outlined mnav-ic">checklist</span>
             MEL / CDL
           </button>
-          <button class="mnav-btn" role="tab" aria-selected="false" onclick="switchMainTab(this, 'performance-factor')">
+          <button class="mnav-btn" role="tab" aria-selected="false" onclick="switchMainTab(this, 'inner-performance-factor')">
             <span class="material-symbols-outlined mnav-ic">speed</span>
             Performance Factors
           </button>
@@ -1128,49 +1128,57 @@
           </div>
 
         </div>
-      </div>
+        </div><!-- /inner-catalog -->
 
-      <!-- ===== Main Nav Placeholder Tabs (4 tabs not yet built) ===== -->
-      <div id="aog-schedule" class="main-content-scrollable tab-content" style="align-items: center; justify-content: center;">
-        <div style="background: rgba(255,255,255,0.82); backdrop-filter: blur(14px); border: 1px solid rgba(255,255,255,0.85); border-radius: 16px; padding: 36px 48px; display: flex; flex-direction: column; align-items: center; gap: 14px; box-shadow: 0 4px 18px rgba(0,42,84,0.09); max-width: 480px; text-align: center;">
-          <span class="material-symbols-outlined" style="font-size: 44px; color: #005a9c; background: #e8f1fb; border-radius: 50%; padding: 14px; display: flex;">event_busy</span>
-          <div>
-            <p style="font-size: 15px; font-weight: 700; color: #002A54; margin-bottom: 6px;">AOG / Maintenance Schedule</p>
-            <p style="font-size: 13px; color: #64748b; line-height: 1.5;">Màn hình này đang được phát triển và sẽ sớm ra mắt.</p>
+        <!-- ===== INNER PANEL: AOG / Schedule ===== -->
+        <div id="inner-aog-schedule" class="mnav-content mnav-placeholder">
+          <div style="background: rgba(255,255,255,0.82); backdrop-filter: blur(14px); border: 1px solid rgba(255,255,255,0.85); border-radius: 16px; padding: 36px 48px; display: flex; flex-direction: column; align-items: center; gap: 14px; box-shadow: 0 4px 18px rgba(0,42,84,0.09); max-width: 480px; text-align: center;">
+            <span class="material-symbols-outlined" style="font-size: 44px; color: #005a9c; background: #e8f1fb; border-radius: 50%; padding: 14px; display: flex;">event_busy</span>
+            <div>
+              <p style="font-size: 15px; font-weight: 700; color: #002A54; margin-bottom: 6px;">AOG / Maintenance Schedule</p>
+              <p style="font-size: 13px; color: #64748b; line-height: 1.5;">Màn hình này đang được phát triển và sẽ sớm ra mắt.</p>
+            </div>
+            <span style="display: inline-flex; align-items: center; gap: 5px; font-size: 11.5px; font-weight: 600; color: #d97706; background: #fef9ed; border: 1px solid #fde68a; border-radius: 6px; padding: 4px 12px;"><span class="material-symbols-outlined" style="font-size: 15px;">construction</span> Under Development</span>
           </div>
-          <span style="display: inline-flex; align-items: center; gap: 5px; font-size: 11.5px; font-weight: 600; color: #d97706; background: #fef9ed; border: 1px solid #fde68a; border-radius: 6px; padding: 4px 12px;"><span class="material-symbols-outlined" style="font-size: 15px;">construction</span> Under Development</span>
         </div>
-      </div>
-      <div id="aog-code" class="main-content-scrollable tab-content" style="align-items: center; justify-content: center;">
-        <div style="background: rgba(255,255,255,0.82); backdrop-filter: blur(14px); border: 1px solid rgba(255,255,255,0.85); border-radius: 16px; padding: 36px 48px; display: flex; flex-direction: column; align-items: center; gap: 14px; box-shadow: 0 4px 18px rgba(0,42,84,0.09); max-width: 480px; text-align: center;">
-          <span class="material-symbols-outlined" style="font-size: 44px; color: #005a9c; background: #e8f1fb; border-radius: 50%; padding: 14px; display: flex;">build_circle</span>
-          <div>
-            <p style="font-size: 15px; font-weight: 700; color: #002A54; margin-bottom: 6px;">AOG / Maintenance Codes</p>
-            <p style="font-size: 13px; color: #64748b; line-height: 1.5;">Màn hình này đang được phát triển và sẽ sớm ra mắt.</p>
+
+        <!-- ===== INNER PANEL: AOG / Codes ===== -->
+        <div id="inner-aog-code" class="mnav-content mnav-placeholder">
+          <div style="background: rgba(255,255,255,0.82); backdrop-filter: blur(14px); border: 1px solid rgba(255,255,255,0.85); border-radius: 16px; padding: 36px 48px; display: flex; flex-direction: column; align-items: center; gap: 14px; box-shadow: 0 4px 18px rgba(0,42,84,0.09); max-width: 480px; text-align: center;">
+            <span class="material-symbols-outlined" style="font-size: 44px; color: #005a9c; background: #e8f1fb; border-radius: 50%; padding: 14px; display: flex;">build_circle</span>
+            <div>
+              <p style="font-size: 15px; font-weight: 700; color: #002A54; margin-bottom: 6px;">AOG / Maintenance Codes</p>
+              <p style="font-size: 13px; color: #64748b; line-height: 1.5;">Màn hình này đang được phát triển và sẽ sớm ra mắt.</p>
+            </div>
+            <span style="display: inline-flex; align-items: center; gap: 5px; font-size: 11.5px; font-weight: 600; color: #d97706; background: #fef9ed; border: 1px solid #fde68a; border-radius: 6px; padding: 4px 12px;"><span class="material-symbols-outlined" style="font-size: 15px;">construction</span> Under Development</span>
           </div>
-          <span style="display: inline-flex; align-items: center; gap: 5px; font-size: 11.5px; font-weight: 600; color: #d97706; background: #fef9ed; border: 1px solid #fde68a; border-radius: 6px; padding: 4px 12px;"><span class="material-symbols-outlined" style="font-size: 15px;">construction</span> Under Development</span>
         </div>
-      </div>
-      <div id="mel-cdl" class="main-content-scrollable tab-content" style="align-items: center; justify-content: center;">
-        <div style="background: rgba(255,255,255,0.82); backdrop-filter: blur(14px); border: 1px solid rgba(255,255,255,0.85); border-radius: 16px; padding: 36px 48px; display: flex; flex-direction: column; align-items: center; gap: 14px; box-shadow: 0 4px 18px rgba(0,42,84,0.09); max-width: 480px; text-align: center;">
-          <span class="material-symbols-outlined" style="font-size: 44px; color: #005a9c; background: #e8f1fb; border-radius: 50%; padding: 14px; display: flex;">checklist</span>
-          <div>
-            <p style="font-size: 15px; font-weight: 700; color: #002A54; margin-bottom: 6px;">MEL / CDL</p>
-            <p style="font-size: 13px; color: #64748b; line-height: 1.5;">Màn hình này đang được phát triển và sẽ sớm ra mắt.</p>
+
+        <!-- ===== INNER PANEL: MEL / CDL ===== -->
+        <div id="inner-mel-cdl" class="mnav-content mnav-placeholder">
+          <div style="background: rgba(255,255,255,0.82); backdrop-filter: blur(14px); border: 1px solid rgba(255,255,255,0.85); border-radius: 16px; padding: 36px 48px; display: flex; flex-direction: column; align-items: center; gap: 14px; box-shadow: 0 4px 18px rgba(0,42,84,0.09); max-width: 480px; text-align: center;">
+            <span class="material-symbols-outlined" style="font-size: 44px; color: #005a9c; background: #e8f1fb; border-radius: 50%; padding: 14px; display: flex;">checklist</span>
+            <div>
+              <p style="font-size: 15px; font-weight: 700; color: #002A54; margin-bottom: 6px;">MEL / CDL</p>
+              <p style="font-size: 13px; color: #64748b; line-height: 1.5;">Màn hình này đang được phát triển và sẽ sớm ra mắt.</p>
+            </div>
+            <span style="display: inline-flex; align-items: center; gap: 5px; font-size: 11.5px; font-weight: 600; color: #d97706; background: #fef9ed; border: 1px solid #fde68a; border-radius: 6px; padding: 4px 12px;"><span class="material-symbols-outlined" style="font-size: 15px;">construction</span> Under Development</span>
           </div>
-          <span style="display: inline-flex; align-items: center; gap: 5px; font-size: 11.5px; font-weight: 600; color: #d97706; background: #fef9ed; border: 1px solid #fde68a; border-radius: 6px; padding: 4px 12px;"><span class="material-symbols-outlined" style="font-size: 15px;">construction</span> Under Development</span>
         </div>
-      </div>
-      <div id="performance-factor" class="main-content-scrollable tab-content" style="align-items: center; justify-content: center;">
-        <div style="background: rgba(255,255,255,0.82); backdrop-filter: blur(14px); border: 1px solid rgba(255,255,255,0.85); border-radius: 16px; padding: 36px 48px; display: flex; flex-direction: column; align-items: center; gap: 14px; box-shadow: 0 4px 18px rgba(0,42,84,0.09); max-width: 480px; text-align: center;">
-          <span class="material-symbols-outlined" style="font-size: 44px; color: #005a9c; background: #e8f1fb; border-radius: 50%; padding: 14px; display: flex;">speed</span>
-          <div>
-            <p style="font-size: 15px; font-weight: 700; color: #002A54; margin-bottom: 6px;">Performance Factors</p>
-            <p style="font-size: 13px; color: #64748b; line-height: 1.5;">Màn hình này đang được phát triển và sẽ sớm ra mắt.</p>
+
+        <!-- ===== INNER PANEL: Performance Factors ===== -->
+        <div id="inner-performance-factor" class="mnav-content mnav-placeholder">
+          <div style="background: rgba(255,255,255,0.82); backdrop-filter: blur(14px); border: 1px solid rgba(255,255,255,0.85); border-radius: 16px; padding: 36px 48px; display: flex; flex-direction: column; align-items: center; gap: 14px; box-shadow: 0 4px 18px rgba(0,42,84,0.09); max-width: 480px; text-align: center;">
+            <span class="material-symbols-outlined" style="font-size: 44px; color: #005a9c; background: #e8f1fb; border-radius: 50%; padding: 14px; display: flex;">speed</span>
+            <div>
+              <p style="font-size: 15px; font-weight: 700; color: #002A54; margin-bottom: 6px;">Performance Factors</p>
+              <p style="font-size: 13px; color: #64748b; line-height: 1.5;">Màn hình này đang được phát triển và sẽ sớm ra mắt.</p>
+            </div>
+            <span style="display: inline-flex; align-items: center; gap: 5px; font-size: 11.5px; font-weight: 600; color: #d97706; background: #fef9ed; border: 1px solid #fde68a; border-radius: 6px; padding: 4px 12px;"><span class="material-symbols-outlined" style="font-size: 15px;">construction</span> Under Development</span>
           </div>
-          <span style="display: inline-flex; align-items: center; gap: 5px; font-size: 11.5px; font-weight: 600; color: #d97706; background: #fef9ed; border: 1px solid #fde68a; border-radius: 6px; padding: 4px 12px;"><span class="material-symbols-outlined" style="font-size: 15px;">construction</span> Under Development</span>
         </div>
-      </div>
+
+      </div><!-- /tau-bay -->
       <div id="san-bay" class="main-content-scrollable tab-content" style="display: flex; align-items: center; justify-content: center;">
         <div style="text-align: center; color: var(--md-text-secondary);">
           <span class="material-symbols-outlined" style="font-size: 64px; display: block; margin-bottom: 16px;">flight_takeoff</span>
@@ -1298,10 +1306,9 @@
     function applyFilters() { showToast('Filters applied'); }
     function refreshTable() { showToast('List refreshed'); }
 
-    // Main tabs (5 header tabs)
-    // NOTE: CSS uses display:none/flex !important — must toggle .active class, NOT inline style
+    // Main tabs (5 header tabs) — toggle INNER panels within #tau-bay; nav bar always stays
     function switchMainTab(btn, tabId) {
-      document.querySelectorAll('.main-content .tab-content').forEach(t => {
+      document.querySelectorAll('#tau-bay .mnav-content').forEach(t => {
         t.classList.toggle('active', t.id === tabId);
       });
       document.querySelectorAll('#mainNavBar .mnav-btn').forEach(b => {
