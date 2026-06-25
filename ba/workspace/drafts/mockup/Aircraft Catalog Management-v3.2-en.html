@@ -311,6 +311,26 @@
     .field-pill { display: inline-flex; align-items: center; padding: 3px 8px; background: #dbeafe; color: #1d4ed8; border-radius: 4px; font-size: 10.5px; font-weight: 600; }
     .section-pill { display: inline-flex; align-items: center; padding: 3px 8px; background: #d1fae5; color: #065f46; border-radius: 4px; font-size: 10.5px; font-weight: 600; }
 
+    /* Datetime Picker (DTP — ACARS table) */
+    .dtp-cell { cursor: pointer !important; }
+    .dtp-cell:disabled { cursor: not-allowed !important; }
+    .dtp-popup-root { display: none; position: fixed; z-index: 999; background: white; border: 1px solid #e2e8f0; border-radius: 12px; box-shadow: 0 8px 32px rgba(0,42,84,0.18); flex-direction: column; }
+    .dtp-popup-root.open { display: flex; }
+    .dtp-body-wrap { display: flex; }
+    .dtp-time-section { padding: 14px 14px 10px 12px; border-left: 1px solid #f1f5f9; display: flex; gap: 6px; }
+    .dtp-time-col { display: flex; flex-direction: column; align-items: center; }
+    .dtp-time-label { font-size: 9.5px; font-weight: 700; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
+    .dtp-time-list { height: 192px; overflow-y: auto; display: flex; flex-direction: column; gap: 1px; scrollbar-width: thin; scrollbar-color: #e2e8f0 transparent; }
+    .dtp-time-item { padding: 6px 14px; border-radius: 6px; font-size: 13px; font-weight: 500; cursor: pointer; color: #334155; text-align: center; min-width: 44px; transition: background 0.1s; }
+    .dtp-time-item:hover { background: #f1f5f9; }
+    .dtp-time-item.active { background: #005a9c; color: white; font-weight: 700; }
+    .dtp-popup-footer { display: flex; justify-content: space-between; align-items: center; padding: 8px 14px; border-top: 1px solid #e2e8f0; }
+    .dtp-action-btn { background: none; border: none; font-size: 12.5px; font-weight: 600; cursor: pointer; padding: 5px 10px; border-radius: 6px; }
+    .dtp-action-btn.dtp-clear { color: #64748b; }
+    .dtp-action-btn.dtp-clear:hover { background: #f1f5f9; }
+    .dtp-action-btn.dtp-today { color: #d97706; }
+    .dtp-action-btn.dtp-today:hover { background: #fef9ed; }
+
     /* Date Range Picker */
     .drp-wrap { position: relative; }
     .drp-input-row { position: relative; display: flex; align-items: center; }
@@ -919,15 +939,15 @@
                     </thead>
                     <tbody id="acarsBody">
                       <tr>
-                        <td><input type="datetime-local" value="2026-01-01T00:00"></td>
-                        <td><input type="datetime-local" value="2026-06-30T23:59"></td>
+                        <td><input type="text" class="dtp-cell" value="01/01/2026 12:00 AM" readonly onclick="if(!this.disabled)openDtp(this)"></td>
+                        <td><input type="text" class="dtp-cell" value="06/30/2026 11:59 PM" readonly onclick="if(!this.disabled)openDtp(this)"></td>
                         <td><input type="number" step="0.01" value="1500"></td>
                         <td><input type="number" step="0.001" value="1.050"></td>
                         <td style="text-align: center;"><button class="row-action" onclick="removeRow(this)" title="Delete"><span class="material-symbols-outlined" style="color: #ef4444;">delete</span></button></td>
                       </tr>
                       <tr>
-                        <td><input type="datetime-local" value="2026-07-01T00:00"></td>
-                        <td><input type="datetime-local" value="2026-12-31T23:59"></td>
+                        <td><input type="text" class="dtp-cell" value="07/01/2026 12:00 AM" readonly onclick="if(!this.disabled)openDtp(this)"></td>
+                        <td><input type="text" class="dtp-cell" value="12/31/2026 11:59 PM" readonly onclick="if(!this.disabled)openDtp(this)"></td>
                         <td><input type="number" step="0.01" value="1550"></td>
                         <td><input type="number" step="0.001" value="1.060"></td>
                         <td style="text-align: center;"><button class="row-action" onclick="removeRow(this)" title="Delete"><span class="material-symbols-outlined" style="color: #ef4444;">delete</span></button></td>
@@ -1645,8 +1665,8 @@
       const tbody = document.getElementById('acarsBody');
       const tr = document.createElement('tr');
       tr.innerHTML = `
-        <td><input type="datetime-local"></td>
-        <td><input type="datetime-local"></td>
+        <td><input type="text" class="dtp-cell" placeholder="DD/MM/YYYY HH:MM AM" readonly onclick="if(!this.disabled)openDtp(this)"></td>
+        <td><input type="text" class="dtp-cell" placeholder="DD/MM/YYYY HH:MM AM" readonly onclick="if(!this.disabled)openDtp(this)"></td>
         <td><input type="number" step="0.01" placeholder="E.g., 1600"></td>
         <td><input type="number" step="0.001" placeholder="E.g., 1.070"></td>
         <td style="text-align: center;"><button class="row-action" onclick="removeRow(this)" title="Delete"><span class="material-symbols-outlined" style="color: #ef4444;">delete</span></button></td>`;
@@ -1664,6 +1684,109 @@
       document.querySelectorAll('.details-tab-content .detail-input, .details-tab-content .detail-select').forEach(el => el.disabled = true);
       document.querySelectorAll('.sub-table input').forEach(el => el.disabled = true);
     });
+  // ===== Datetime Picker (DTP) for ACARS =====
+  (function() {
+    var _M=['January','February','March','April','May','June','July','August','September','October','November','December'];
+    var _D=['Su','Mo','Tu','We','Th','Fr','Sa'];
+    var _inp=null;
+    var _s={date:null,hour:12,minute:0,period:'AM',vm:new Date(2026,0,1)};
+    function _pad(n){return n<10?'0'+n:''+n;}
+    function _fmt(s){
+      if(!s.date)return '';
+      var d=s.date;
+      return _pad(d.getDate())+'/'+_pad(d.getMonth()+1)+'/'+d.getFullYear()+' '+_pad(s.hour)+':'+_pad(s.minute)+' '+s.period;
+    }
+    function _parse(str){
+      var s={date:null,hour:12,minute:0,period:'AM',vm:new Date(2026,0,1)};
+      if(!str)return s;
+      var m=str.match(/^(\d{2})\/(\d{2})\/(\d{4})\s+(\d{2}):(\d{2})\s+(AM|PM)$/);
+      if(m){s.date=new Date(+m[3],+m[2]-1,+m[1]);s.hour=+m[4];s.minute=+m[5];s.period=m[6];s.vm=new Date(+m[3],+m[2]-1,1);}
+      return s;
+    }
+    function _cal(){
+      var y=_s.vm.getFullYear(),mo=_s.vm.getMonth();
+      var first=new Date(y,mo,1).getDay(),dim=new Date(y,mo+1,0).getDate();
+      var today=new Date();today.setHours(0,0,0,0);
+      var h='<div style="padding:14px 12px 10px 14px;min-width:218px;">';
+      h+='<div class="drp-nav"><button class="drp-nav-btn" onclick="dtpNav(-1)">&#8249;</button>';
+      h+='<div class="drp-month-title">'+_M[mo]+' '+y+'</div>';
+      h+='<button class="drp-nav-btn" onclick="dtpNav(1)">&#8250;</button></div>';
+      h+='<div class="drp-grid" style="width:196px;">';
+      _D.forEach(function(d){h+='<div class="drp-dow">'+d+'</div>';});
+      for(var i=0;i<first;i++){h+='<div></div>';}
+      for(var day=1;day<=dim;day++){
+        var dt=new Date(y,mo,day);
+        var cls='drp-day';
+        if(_s.date&&dt.getTime()===_s.date.getTime())cls+=' range-start range-end';
+        if(dt.getTime()===today.getTime())cls+=' today';
+        h+='<div class="'+cls+'" onclick="dtpPickDay('+dt.getTime()+')">'+day+'</div>';
+      }
+      h+='</div></div>';
+      return h;
+    }
+    function _time(){
+      var h='<div class="dtp-time-section">';
+      h+='<div class="dtp-time-col"><div class="dtp-time-label">HH</div><div class="dtp-time-list" id="dtpHrL">';
+      for(var hr=1;hr<=12;hr++){h+='<div class="dtp-time-item'+(hr===_s.hour?' active':'')+'" onclick="dtpSetH('+hr+')">'+_pad(hr)+'</div>';}
+      h+='</div></div><div class="dtp-time-col"><div class="dtp-time-label">MM</div><div class="dtp-time-list" id="dtpMnL">';
+      for(var mn=0;mn<=59;mn++){h+='<div class="dtp-time-item'+(mn===_s.minute?' active':'')+'" onclick="dtpSetM('+mn+')">'+_pad(mn)+'</div>';}
+      h+='</div></div><div class="dtp-time-col"><div class="dtp-time-label">—</div><div class="dtp-time-list" id="dtpPdL">';
+      ['AM','PM'].forEach(function(p){h+='<div class="dtp-time-item'+(p===_s.period?' active':'')+'" onclick="dtpSetP(\''+p+'\')">'+p+'</div>';});
+      h+='</div></div></div>';
+      return h;
+    }
+    function _render(){
+      var b=document.getElementById('dtpBody');
+      if(!b)return;
+      b.innerHTML=_cal()+_time();
+      ['dtpHrL','dtpMnL','dtpPdL'].forEach(function(id){
+        var el=document.getElementById(id);
+        if(!el)return;
+        var a=el.querySelector('.active');
+        if(a){el.scrollTop=Math.max(0,a.offsetTop-60);}
+      });
+    }
+    function _pos(inp){
+      var p=document.getElementById('dtpPopup');
+      var r=inp.getBoundingClientRect();
+      var top=r.bottom+4,left=r.left;
+      if(top+290>window.innerHeight)top=r.top-290-4;
+      if(left+440>window.innerWidth)left=window.innerWidth-444;
+      p.style.top=top+'px';p.style.left=Math.max(4,left)+'px';
+    }
+    window.openDtp=function(inp){
+      _inp=inp;_s=_parse(inp.value);
+      var p=document.getElementById('dtpPopup');
+      if(!p)return;
+      _render();_pos(inp);p.classList.add('open');
+    };
+    window.dtpNav=function(d){_s.vm=new Date(_s.vm.getFullYear(),_s.vm.getMonth()+d,1);_render();};
+    window.dtpPickDay=function(ts){_s.date=new Date(ts);if(_inp)_inp.value=_fmt(_s);_render();};
+    window.dtpSetH=function(h){_s.hour=h;if(_inp)_inp.value=_fmt(_s);_render();};
+    window.dtpSetM=function(m){_s.minute=m;if(_inp)_inp.value=_fmt(_s);_render();};
+    window.dtpSetP=function(p){_s.period=p;if(_inp)_inp.value=_fmt(_s);_render();};
+    window.dtpClear=function(){if(_inp)_inp.value='';document.getElementById('dtpPopup').classList.remove('open');};
+    window.dtpSetToday=function(){
+      var t=new Date();t.setHours(0,0,0,0);
+      _s.date=t;_s.vm=new Date(t.getFullYear(),t.getMonth(),1);
+      if(_inp)_inp.value=_fmt(_s);_render();
+    };
+    document.addEventListener('click',function(e){
+      var p=document.getElementById('dtpPopup');
+      if(!p||!p.classList.contains('open'))return;
+      if(e.target.closest('#dtpPopup')||(_inp&&e.target===_inp))return;
+      p.classList.remove('open');
+    });
+  })();
   </script>
+
+  <!-- Shared Datetime Picker Popup -->
+  <div id="dtpPopup" class="dtp-popup-root">
+    <div class="dtp-body-wrap" id="dtpBody"></div>
+    <div class="dtp-popup-footer">
+      <button class="dtp-action-btn dtp-clear" onclick="dtpClear()">Clear</button>
+      <button class="dtp-action-btn dtp-today" onclick="dtpSetToday()">Today</button>
+    </div>
+  </div>
 </body>
 </html>
