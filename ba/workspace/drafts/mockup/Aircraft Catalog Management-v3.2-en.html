@@ -294,7 +294,8 @@
     .audit-log-table tr.session-sub td .cell-inner { padding: 4px 12px; }
     .audit-log-table tr.session-sub td:first-child .cell-inner,
     .audit-log-table tr.session-sub td:nth-child(2) .cell-inner,
-    .audit-log-table tr.session-sub td:nth-child(3) .cell-inner { opacity: 0; pointer-events: none; }
+    .audit-log-table tr.session-sub td:nth-child(3) .cell-inner,
+    .audit-log-table tr.session-sub td:nth-child(4) .cell-inner { opacity: 0; pointer-events: none; }
     /* Alternating session backgrounds */
     .audit-log-table tr.sess-odd td { background: #ffffff; }
     .audit-log-table tr.sess-even td { background: #f0f6ff; }
@@ -310,6 +311,10 @@
     /* Pills */
     .field-pill { display: inline-flex; align-items: center; padding: 3px 8px; background: #dbeafe; color: #1d4ed8; border-radius: 4px; font-size: 10.5px; font-weight: 600; }
     .section-pill { display: inline-flex; align-items: center; padding: 3px 8px; background: #d1fae5; color: #065f46; border-radius: 4px; font-size: 10.5px; font-weight: 600; }
+    .action-pill { display: inline-flex; align-items: center; padding: 3px 8px; border-radius: 4px; font-size: 10.5px; font-weight: 600; white-space: nowrap; }
+    .action-pill.modify { background: #e0f2fe; color: #0369a1; }
+    .action-pill.add    { background: #d1fae5; color: #065f46; }
+    .action-pill.delete { background: #fee2e2; color: #b91c1c; }
 
     /* Datetime Picker (DTP — ACARS table) */
     .dtp-cell { cursor: pointer !important; }
@@ -1028,7 +1033,7 @@
                   </div>
                 </div>
                 <p class="subsection-note">
-                  Change History — records ALL changes to aircraft type. Search by date range, account, change type, or section to find specific modifications.
+                  Change History — records ALL changes to aircraft type. Search by date range, account, action, or section to find specific modifications.
                 </p>
 
                 <!-- Search & Filter bar for Change History -->
@@ -1054,7 +1059,7 @@
                     <div id="accountSuggestions" style="display: none;"></div>
                   </div>
                   <div class="filter-item">
-                    <label>Change Type</label>
+                    <label>Action</label>
                     <select class="filter-input filter-select">
                       <option value="">All</option>
                       <option value="add">Add</option>
@@ -1090,6 +1095,7 @@
                         <th>Date/Time</th>
                         <th>Changed By</th>
                         <th>Section</th>
+                        <th>Action</th>
                         <th>Field</th>
                         <th>Old Value</th>
                         <th>New Value</th>
@@ -1101,6 +1107,7 @@
                         <td><div class="cell-inner"><span class="cell-dt">2026-06-23&nbsp;10:30</span></div></td>
                         <td><div class="cell-inner"><span class="cell-account">data_officer</span></div></td>
                         <td><div class="cell-inner"><span class="section-pill">General Information</span></div></td>
+                        <td><div class="cell-inner"><span class="action-pill modify">Modify</span></div></td>
                         <td><div class="cell-inner"><span class="field-pill">IATA Code</span></div></td>
                         <td><div class="cell-inner"><span class="cell-val old">32N</span></div></td>
                         <td><div class="cell-inner"><span class="cell-val new">32Q</span></div></td>
@@ -1109,6 +1116,7 @@
                         <td><div class="cell-inner"><span class="cell-dt">2026-06-23&nbsp;10:30</span></div></td>
                         <td><div class="cell-inner"><span class="cell-account">data_officer</span></div></td>
                         <td><div class="cell-inner"><span class="section-pill">General Information</span></div></td>
+                        <td><div class="cell-inner"><span class="action-pill modify">Modify</span></div></td>
                         <td><div class="cell-inner"><span class="field-pill">ICAO Code</span></div></td>
                         <td><div class="cell-inner"><span class="cell-val old">A20N</span></div></td>
                         <td><div class="cell-inner"><span class="cell-val new">A20M</span></div></td>
@@ -1119,6 +1127,7 @@
                         <td><div class="cell-inner"><span class="cell-dt">2026-06-23&nbsp;10:30</span></div></td>
                         <td><div class="cell-inner"><span class="cell-account">data_officer</span></div></td>
                         <td><div class="cell-inner"><span class="section-pill">Technical Parameters</span></div></td>
+                        <td><div class="cell-inner"><span class="action-pill modify">Modify</span></div></td>
                         <td><div class="cell-inner"><span class="field-pill">APU Fuel Flow</span></div></td>
                         <td><div class="cell-inner"><span class="cell-val old">200</span></div></td>
                         <td><div class="cell-inner"><span class="cell-val new">210</span></div></td>
@@ -1127,26 +1136,29 @@
                         <td><div class="cell-inner"><span class="cell-dt">2026-06-23&nbsp;10:30</span></div></td>
                         <td><div class="cell-inner"><span class="cell-account">data_officer</span></div></td>
                         <td><div class="cell-inner"><span class="section-pill">Technical Parameters</span></div></td>
+                        <td><div class="cell-inner"><span class="action-pill modify">Modify</span></div></td>
                         <td><div class="cell-inner"><span class="field-pill">Taxi Fuel Flow</span></div></td>
                         <td><div class="cell-inner"><span class="cell-val old">1 500</span></div></td>
                         <td><div class="cell-inner"><span class="cell-val new">1 550</span></div></td>
                       </tr>
 
-                      <!-- Session 3 (odd) — ACARS Fuel -->
+                      <!-- Session 3 (odd) — ACARS Fuel: Add new period row -->
                       <tr class="session-start sess-odd">
                         <td><div class="cell-inner"><span class="cell-dt">2026-06-15&nbsp;10:30</span></div></td>
                         <td><div class="cell-inner"><span class="cell-account">data_officer</span></div></td>
                         <td><div class="cell-inner"><span class="section-pill">ACARS Fuel</span></div></td>
-                        <td><div class="cell-inner"><span class="field-pill">ACARS Fuel Limit</span></div></td>
-                        <td><div class="cell-inner"><span class="cell-val old">1 500</span></div></td>
+                        <td><div class="cell-inner"><span class="action-pill add">Add</span></div></td>
+                        <td><div class="cell-inner"><span class="field-pill">Fuel Limit</span><br><span style="font-size:10px;color:#94a3b8;padding-left:2px;">07/01 – 12/31/2026</span></div></td>
+                        <td><div class="cell-inner"><span class="cell-val" style="color:#94a3b8;">—</span></div></td>
                         <td><div class="cell-inner"><span class="cell-val new">1 550</span></div></td>
                       </tr>
                       <tr class="session-sub sess-odd">
                         <td><div class="cell-inner"><span class="cell-dt">2026-06-15&nbsp;10:30</span></div></td>
                         <td><div class="cell-inner"><span class="cell-account">data_officer</span></div></td>
                         <td><div class="cell-inner"><span class="section-pill">ACARS Fuel</span></div></td>
-                        <td><div class="cell-inner"><span class="field-pill">ACARS Fuel Multiplier</span></div></td>
-                        <td><div class="cell-inner"><span class="cell-val old">1.050</span></div></td>
+                        <td><div class="cell-inner"><span class="action-pill add">Add</span></div></td>
+                        <td><div class="cell-inner"><span class="field-pill">Fuel Multiplier</span><br><span style="font-size:10px;color:#94a3b8;padding-left:2px;">07/01 – 12/31/2026</span></div></td>
+                        <td><div class="cell-inner"><span class="cell-val" style="color:#94a3b8;">—</span></div></td>
                         <td><div class="cell-inner"><span class="cell-val new">1.060</span></div></td>
                       </tr>
 
@@ -1155,6 +1167,7 @@
                         <td><div class="cell-inner"><span class="cell-dt">2026-06-10&nbsp;14:15</span></div></td>
                         <td><div class="cell-inner"><span class="cell-account">admin</span></div></td>
                         <td><div class="cell-inner"><span class="section-pill">General Information</span></div></td>
+                        <td><div class="cell-inner"><span class="action-pill modify">Modify</span></div></td>
                         <td><div class="cell-inner"><span class="field-pill">Ownership Status</span></div></td>
                         <td><div class="cell-inner"><span class="cell-val old">Wet Leased</span></div></td>
                         <td><div class="cell-inner"><span class="cell-val new">Owned</span></div></td>
@@ -1165,6 +1178,7 @@
                         <td><div class="cell-inner"><span class="cell-dt">2026-06-05&nbsp;09:00</span></div></td>
                         <td><div class="cell-inner"><span class="cell-account">data_officer</span></div></td>
                         <td><div class="cell-inner"><span class="section-pill">Cabin Configuration</span></div></td>
+                        <td><div class="cell-inner"><span class="action-pill modify">Modify</span></div></td>
                         <td><div class="cell-inner"><span class="field-pill">Cabin Layout</span></div></td>
                         <td><div class="cell-inner"><span class="cell-val old">8 / 24 / 0 / 0 / 0</span></div></td>
                         <td><div class="cell-inner"><span class="cell-val new">8 / 24 / 120 / 0 / 0</span></div></td>
@@ -1175,6 +1189,7 @@
                         <td><div class="cell-inner"><span class="cell-dt">2026-05-28&nbsp;16:45</span></div></td>
                         <td><div class="cell-inner"><span class="cell-account">data_officer</span></div></td>
                         <td><div class="cell-inner"><span class="section-pill">Technical Parameters</span></div></td>
+                        <td><div class="cell-inner"><span class="action-pill modify">Modify</span></div></td>
                         <td><div class="cell-inner"><span class="field-pill">Basic Operating Weight</span></div></td>
                         <td><div class="cell-inner"><span class="cell-val old">41 200</span></div></td>
                         <td><div class="cell-inner"><span class="cell-val new">41 413</span></div></td>
