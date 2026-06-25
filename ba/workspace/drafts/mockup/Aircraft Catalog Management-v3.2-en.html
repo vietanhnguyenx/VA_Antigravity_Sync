@@ -282,7 +282,8 @@
 
     /* ===== Audit Log ===== */
     .audit-filter-bar { display: flex; flex-wrap: wrap; gap: 10px; align-items: flex-end; padding: 10px; background: #f8fafc; border: 1px solid var(--md-outline-variant); border-radius: 8px; margin-bottom: 12px; }
-    .audit-filter-bar .filter-item { flex: 1 1 130px; }
+    .audit-filter-bar .filter-item { flex: 1 1 130px; position: relative; }
+    #accountSuggestions { position: absolute; top: 100%; left: 0; right: 0; background: white; border: 1px solid #cbd5e1; border-top: none; border-radius: 0 0 6px 6px; max-height: 120px; overflow-y: auto; z-index: 10; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
     .audit-log-table { width: 100%; border-collapse: collapse; font-size: 11.5px; }
     .audit-log-table th { background: #f1f5f9; padding: 8px 10px; font-weight: 600; color: #64748b; border-bottom: 1px solid #e2e8f0; position: sticky; top: 0; text-align: left; font-size: 11px; }
     .audit-log-table td { padding: 8px 10px; border-bottom: 1px solid #e2e8f0; vertical-align: top; }
@@ -956,13 +957,10 @@
                   </div>
                 </div>
                 <p class="subsection-note">
-                  Change History — records ALL changes to aircraft type.<br>
-                  <span style="font-size: 12px; color: #64748b; margin-top: 6px; display: inline-block;">
-                    Filter dropdown lists 6 frequently changed fields (AC Subtype, ACARS Fuel Limit, ACARS Fuel Multiplier, Cabin Config, Ownership Status, Basic Operating Weight) for quick search. To view changes of other fields (Valid To, ICAO, IATA, Owner, Status...) → select Filter "All" or search manually.
-                  </span>
+                  Change History — records ALL changes to aircraft type. Search by date range, account, change type, or section to find specific modifications.
                 </p>
 
-                <!-- Filter bar on audit log (MM §3.3) -->
+                <!-- Search & Filter bar for Change History -->
                 <div class="audit-filter-bar">
                   <div class="filter-item">
                     <label>From Date</label>
@@ -973,32 +971,36 @@
                     <input type="date" class="filter-input" value="2026-06-22">
                   </div>
                   <div class="filter-item">
-                    <label>Changed By</label>
+                    <label>Account</label>
+                    <input type="text" class="filter-input" placeholder="Search account..." id="accountSearch" oninput="showAccountSuggestions()">
+                    <div id="accountSuggestions" style="display: none;"></div>
+                  </div>
+                  <div class="filter-item">
+                    <label>Change Type</label>
                     <select class="filter-input filter-select">
                       <option value="">All</option>
-                      <option>data_officer</option>
-                      <option>admin</option>
-                      <option>sys_sync</option>
+                      <option value="add">Add</option>
+                      <option value="modify">Modify</option>
+                      <option value="delete">Delete</option>
                     </select>
                   </div>
                   <div class="filter-item">
-                    <label>Changed Field</label>
+                    <label>Section</label>
                     <select class="filter-input filter-select">
                       <option value="">All</option>
-                      <option>AC Subtype</option>
-                      <option>ACARS Fuel Limit</option>
-                      <option>ACARS Fuel Multiplier</option>
+                      <option>General Information</option>
+                      <option>Technical Parameters</option>
                       <option>Cabin Configuration</option>
-                      <option>Ownership Status</option>
-                      <option>Basic Operating Weight</option>
+                      <option>ACARS Fuel Limit & Fuel Multiplier</option>
+                      <option>Group Attributes</option>
                     </select>
                   </div>
                   <div class="filter-actions">
-                    <button class="btn btn-clear" style="height: 36px;" onclick="showToast('Audit filters cleared')">
-                      <span class="material-symbols-outlined">autorenew</span> Clear
+                    <button class="btn btn-clear" style="height: 36px;" onclick="showToast('Search cleared')">
+                      <span class="material-symbols-outlined">autorenew</span> Clear Search
                     </button>
-                    <button class="btn btn-teal" style="height: 36px;" onclick="showToast('Audit filters applied')">
-                      <span class="material-symbols-outlined">search</span> Filter
+                    <button class="btn btn-teal" style="height: 36px;" onclick="showToast('Search applied')">
+                      <span class="material-symbols-outlined">search</span> Search
                     </button>
                   </div>
                 </div>
@@ -1009,23 +1011,21 @@
                       <tr>
                         <th>Date/Time</th>
                         <th>Changed By</th>
-                        <th>Tab</th>
+                        <th>Section</th>
                         <th>Field</th>
                         <th>Old Value</th>
                         <th>New Value</th>
-                        <th>Notes</th>
                       </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="auditLogBody">
                       <!-- Session 1: 2026-06-23 10:30 | General Info -->
                       <tr style="border-top: 2px solid #cbd5e1;">
                         <td>2026-06-23 10:30</td>
                         <td>data_officer</td>
-                        <td><span class="field-pill">General</span></td>
+                        <td><span class="field-pill">General Information</span></td>
                         <td><span class="field-pill">IATA Code</span></td>
                         <td>32N</td>
                         <td>32Q</td>
-                        <td>—</td>
                       </tr>
                       <tr style="border-top: 1px solid #e2e8f0;">
                         <td></td>
@@ -1034,18 +1034,16 @@
                         <td><span class="field-pill">ICAO Code</span></td>
                         <td>A20N</td>
                         <td>A20M</td>
-                        <td>—</td>
                       </tr>
 
-                      <!-- Session 2: 2026-06-23 10:30 | Aircraft Config -->
+                      <!-- Session 2: 2026-06-23 10:30 | Technical Parameters -->
                       <tr style="border-top: 2px solid #cbd5e1;">
                         <td>2026-06-23 10:30</td>
                         <td>data_officer</td>
-                        <td><span class="field-pill">Aircraft Config</span></td>
+                        <td><span class="field-pill">Technical Parameters</span></td>
                         <td><span class="field-pill">APU Fuel Flow</span></td>
                         <td>200</td>
                         <td>210</td>
-                        <td>—</td>
                       </tr>
                       <tr style="border-top: 1px solid #e2e8f0;">
                         <td></td>
@@ -1054,18 +1052,16 @@
                         <td><span class="field-pill">Taxi Fuel Flow</span></td>
                         <td>1500</td>
                         <td>1550</td>
-                        <td>—</td>
                       </tr>
 
-                      <!-- Session 3: 2026-06-15 10:30 | Aircraft Config (ACARS) -->
+                      <!-- Session 3: 2026-06-15 10:30 | ACARS Fuel -->
                       <tr style="border-top: 2px solid #cbd5e1;">
                         <td>2026-06-15 10:30</td>
                         <td>data_officer</td>
-                        <td><span class="field-pill">Aircraft Config</span></td>
+                        <td><span class="field-pill">ACARS Fuel Limit & Fuel Multiplier</span></td>
                         <td><span class="field-pill">ACARS Fuel Limit</span></td>
                         <td>1500</td>
                         <td>1550</td>
-                        <td>Period 2026-07-01 → 2026-12-31</td>
                       </tr>
                       <tr style="border-top: 1px solid #e2e8f0;">
                         <td></td>
@@ -1074,43 +1070,61 @@
                         <td><span class="field-pill">ACARS Fuel Multiplier</span></td>
                         <td>1.050</td>
                         <td>1.060</td>
-                        <td>Period 2026-07-01 → 2026-12-31</td>
                       </tr>
 
-                      <!-- Session 4: 2026-06-10 14:15 | General (Ownership) -->
+                      <!-- Session 4: 2026-06-10 14:15 | General Information -->
                       <tr style="border-top: 2px solid #cbd5e1;">
                         <td>2026-06-10 14:15</td>
                         <td>admin</td>
-                        <td><span class="field-pill">General</span></td>
+                        <td><span class="field-pill">General Information</span></td>
                         <td><span class="field-pill">Ownership Status</span></td>
                         <td>Wet Leased</td>
                         <td>Owned</td>
-                        <td>Lease contract expired, changed to owned</td>
                       </tr>
 
-                      <!-- Session 5: 2026-06-05 09:00 | Aircraft Config (Cabin) -->
+                      <!-- Session 5: 2026-06-05 09:00 | Cabin Configuration -->
                       <tr style="border-top: 2px solid #cbd5e1;">
                         <td>2026-06-05 09:00</td>
                         <td>data_officer</td>
-                        <td><span class="field-pill">Aircraft Config</span></td>
+                        <td><span class="field-pill">Cabin Configuration</span></td>
                         <td><span class="field-pill">Cabin Configuration</span></td>
                         <td>8 / 24 / 0 / 0 / 0</td>
                         <td>8 / 24 / 120 / 0 / 0</td>
-                        <td>Added Cabin C for A320NEO</td>
                       </tr>
 
-                      <!-- Session 6: 2026-05-28 16:45 | Aircraft Config (Weight) -->
+                      <!-- Session 6: 2026-05-28 16:45 | Technical Parameters -->
                       <tr style="border-top: 2px solid #cbd5e1;">
                         <td>2026-05-28 16:45</td>
                         <td>data_officer</td>
-                        <td><span class="field-pill">Aircraft Config</span></td>
+                        <td><span class="field-pill">Technical Parameters</span></td>
                         <td><span class="field-pill">Basic Operating Weight</span></td>
                         <td>41 200</td>
                         <td>41 413</td>
-                        <td>Re-measured after maintenance</td>
                       </tr>
                     </tbody>
                   </table>
+                </div>
+
+                <!-- Pagination for Change History -->
+                <div class="pagination-bar" style="padding: 8px 4px; font-size: 12.5px;">
+                  <div class="records-selector">
+                    <span>Show</span>
+                    <select class="records-select">
+                      <option>10 rows</option>
+                      <option>20 rows</option>
+                      <option>50 rows</option>
+                    </select>
+                  </div>
+                  <div class="pagination-info">
+                    <span>Total: <strong>6</strong></span>
+                  </div>
+                  <div class="pagination-controls">
+                    <button class="page-btn disabled"><span class="material-symbols-outlined">keyboard_double_arrow_left</span></button>
+                    <button class="page-btn disabled"><span class="material-symbols-outlined">chevron_left</span></button>
+                    <button class="page-btn active">1</button>
+                    <button class="page-btn disabled"><span class="material-symbols-outlined">chevron_right</span></button>
+                    <button class="page-btn disabled"><span class="material-symbols-outlined">keyboard_double_arrow_right</span></button>
+                  </div>
                 </div>
               </div>
 
@@ -1425,6 +1439,34 @@
       document.querySelectorAll('.details-tab-content .detail-input, .details-tab-content .detail-select').forEach(el => el.disabled = true);
       document.querySelectorAll('.sub-table input').forEach(el => el.disabled = true);
       showToast('Changes saved successfully');
+    }
+
+    // Account search suggestions for Change History
+    const accounts = ['data_officer', 'admin', 'sys_sync'];
+    function showAccountSuggestions() {
+      const input = document.getElementById('accountSearch');
+      const suggestions = document.getElementById('accountSuggestions');
+      const searchTerm = input.value.toLowerCase();
+
+      if (searchTerm.length === 0) {
+        suggestions.style.display = 'none';
+        return;
+      }
+
+      const filtered = accounts.filter(acc => acc.toLowerCase().includes(searchTerm)).slice(0, 3);
+      if (filtered.length > 0) {
+        suggestions.style.display = 'block';
+        suggestions.innerHTML = filtered.map(acc =>
+          `<div style="padding: 4px 8px; font-size: 11.5px; color: #64748b; cursor: pointer; border-bottom: 1px solid #e2e8f0;" onclick="selectAccount('${acc}')">${acc}</div>`
+        ).join('');
+      } else {
+        suggestions.style.display = 'none';
+      }
+    }
+
+    function selectAccount(account) {
+      document.getElementById('accountSearch').value = account;
+      document.getElementById('accountSuggestions').style.display = 'none';
     }
 
     // ACARS table row ops
