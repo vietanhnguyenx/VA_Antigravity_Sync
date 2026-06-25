@@ -150,7 +150,7 @@
 
     /* ===== Split Panel ===== */
     .admin-panel-split { display: flex; gap: 20px; flex: 1; }
-    .user-list-section { flex: 1; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+    .user-list-section { flex: 0 0 42%; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
     .user-details-section { flex: 1; min-width: 0; }
     .user-list-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px; }
     .user-list-title-wrap { display: flex; align-items: center; gap: 12px; }
@@ -423,13 +423,13 @@
 
       <div id="tau-bay" class="main-content-scrollable tab-content active">
 
-        <!-- Main Header Tabs (5 tabs) — Refined design (reference: Equipment Management) -->
-        <div style="display: flex; gap: 0; background: #006b75; padding: 0; margin-bottom: 20px; border-radius: 0; overflow: hidden; border: 1px solid rgba(0,0,0,0.1); box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
-          <button class="details-tab-button active" style="font-size: 13px; font-weight: 600; flex: 1; padding: 14px 16px; border: none; text-align: center; background: transparent; color: white; cursor: pointer; transition: all 0.2s; border-right: 1px solid rgba(0,0,0,0.1);" onclick="switchMainTab(this, 'tau-bay')">📋 Aircraft Type Catalog</button>
-          <button class="details-tab-button" style="font-size: 13px; font-weight: 600; flex: 1; padding: 14px 16px; border: none; text-align: center; background: transparent; color: rgba(255,255,255,0.9); cursor: pointer; transition: all 0.2s; border-right: 1px solid rgba(0,0,0,0.1);" onclick="switchMainTab(this, 'aog-schedule')">📅 AOG/Maintenance Schedule</button>
-          <button class="details-tab-button" style="font-size: 13px; font-weight: 600; flex: 1; padding: 14px 16px; border: none; text-align: center; background: transparent; color: rgba(255,255,255,0.9); cursor: pointer; transition: all 0.2s; border-right: 1px solid rgba(0,0,0,0.1);" onclick="switchMainTab(this, 'aog-code')">🔧 AOG/Maintenance Codes</button>
-          <button class="details-tab-button" style="font-size: 13px; font-weight: 600; flex: 1; padding: 14px 16px; border: none; text-align: center; background: transparent; color: rgba(255,255,255,0.9); cursor: pointer; transition: all 0.2s; border-right: 1px solid rgba(0,0,0,0.1);" onclick="switchMainTab(this, 'mel-cdl')">⚠️ MEL, CDL</button>
-          <button class="details-tab-button" style="font-size: 13px; font-weight: 600; flex: 1; padding: 14px 16px; border: none; text-align: center; background: transparent; color: rgba(255,255,255,0.9); cursor: pointer; transition: all 0.2s;" onclick="switchMainTab(this, 'performance-factor')">⏱️ Performance Factors</button>
+        <!-- Main Header Tabs (5 tabs) — Premium Compact Design -->
+        <div style="display: flex; gap: 0; background: linear-gradient(180deg, #005a7a 0%, #004d67 100%); padding: 0; margin-bottom: 20px; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 8px rgba(0, 42, 84, 0.12), 0 4px 12px rgba(0, 42, 84, 0.08); border: 1px solid rgba(255, 255, 255, 0.1);">
+          <button class="details-tab-button active" style="font-size: 12.5px; font-weight: 600; flex: 1; padding: 12px 14px; border: none; text-align: center; background: transparent; color: white; cursor: pointer; transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); border-right: 1px solid rgba(255, 255, 255, 0.08); letter-spacing: 0.3px;" onclick="switchMainTab(this, 'tau-bay')"><span class="material-symbols-outlined" style="font-size: 18px; vertical-align: middle; margin-right: 6px;">inventory_2</span>Catalog</button>
+          <button class="details-tab-button" style="font-size: 12.5px; font-weight: 600; flex: 1; padding: 12px 14px; border: none; text-align: center; background: transparent; color: rgba(255, 255, 255, 0.85); cursor: pointer; transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); border-right: 1px solid rgba(255, 255, 255, 0.08); letter-spacing: 0.3px;" onclick="switchMainTab(this, 'aog-schedule')"><span class="material-symbols-outlined" style="font-size: 18px; vertical-align: middle; margin-right: 6px;">event_repeat</span>Schedule</button>
+          <button class="details-tab-button" style="font-size: 12.5px; font-weight: 600; flex: 1; padding: 12px 14px; border: none; text-align: center; background: transparent; color: rgba(255, 255, 255, 0.85); cursor: pointer; transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); border-right: 1px solid rgba(255, 255, 255, 0.08); letter-spacing: 0.3px;" onclick="switchMainTab(this, 'aog-code')"><span class="material-symbols-outlined" style="font-size: 18px; vertical-align: middle; margin-right: 6px;">qr_code</span>Codes</button>
+          <button class="details-tab-button" style="font-size: 12.5px; font-weight: 600; flex: 1; padding: 12px 14px; border: none; text-align: center; background: transparent; color: rgba(255, 255, 255, 0.85); cursor: pointer; transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); border-right: 1px solid rgba(255, 255, 255, 0.08); letter-spacing: 0.3px;" onclick="switchMainTab(this, 'mel-cdl')"><span class="material-symbols-outlined" style="font-size: 18px; vertical-align: middle; margin-right: 6px;">rule_folder</span>MEL/CDL</button>
+          <button class="details-tab-button" style="font-size: 12.5px; font-weight: 600; flex: 1; padding: 12px 14px; border: none; text-align: center; background: transparent; color: rgba(255, 255, 255, 0.85); cursor: pointer; transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); letter-spacing: 0.3px;" onclick="switchMainTab(this, 'performance-factor')"><span class="material-symbols-outlined" style="font-size: 18px; vertical-align: middle; margin-right: 6px;">trending_up</span>Factors</button>
         </div>
 
         <!-- Filter Bar — added Subtype + 5 grouping attributes (Function list R62) -->
@@ -527,7 +527,6 @@
                     <th>ICAO Code</th>
                     <th>IATA Code</th>
                     <th>Status</th>
-                    <th>Actions</th>
                   </tr>
                 </thead>
                 <tbody id="acTypeTableBody">
@@ -539,11 +538,6 @@
                     <td>A20N</td>
                     <td>32N</td>
                     <td><span class="status-badge active">Active</span></td>
-                    <td style="text-align: center;">
-                      <button style="background: none; border: none; cursor: pointer; padding: 4px;" title="Edit">
-                        <span class="material-symbols-outlined" style="font-size: 18px; color: #0284c7;">edit</span>
-                      </button>
-                    </td>
                   </tr>
                   <tr>
                     <td>2</td>
@@ -553,9 +547,6 @@
                     <td>A321</td>
                     <td>321</td>
                     <td><span class="status-badge active">Active</span></td>
-                    <td style="text-align: center;">
-                      <button style="background: none; border: none; cursor: pointer; padding: 4px;"><span class="material-symbols-outlined" style="font-size: 18px; color: #0284c7;">edit</span></button>
-                    </td>
                   </tr>
                   <tr>
                     <td>3</td>
@@ -565,9 +556,6 @@
                     <td>A21N</td>
                     <td>32Q</td>
                     <td><span class="status-badge active">Active</span></td>
-                    <td style="text-align: center;">
-                      <button style="background: none; border: none; cursor: pointer; padding: 4px;"><span class="material-symbols-outlined" style="font-size: 18px; color: #0284c7;">edit</span></button>
-                    </td>
                   </tr>
                   <tr>
                     <td>4</td>
@@ -577,9 +565,6 @@
                     <td>A359</td>
                     <td>359</td>
                     <td><span class="status-badge active">Active</span></td>
-                    <td style="text-align: center;">
-                      <button style="background: none; border: none; cursor: pointer; padding: 4px;"><span class="material-symbols-outlined" style="font-size: 18px; color: #0284c7;">edit</span></button>
-                    </td>
                   </tr>
                   <tr>
                     <td>5</td>
@@ -589,9 +574,6 @@
                     <td>B789</td>
                     <td>789</td>
                     <td><span class="status-badge active">Active</span></td>
-                    <td style="text-align: center;">
-                      <button style="background: none; border: none; cursor: pointer; padding: 4px;"><span class="material-symbols-outlined" style="font-size: 18px; color: #0284c7;">edit</span></button>
-                    </td>
                   </tr>
                   <tr>
                     <td>6</td>
@@ -601,9 +583,6 @@
                     <td>B78X</td>
                     <td>78J</td>
                     <td><span class="status-badge inactive">Inactive</span></td>
-                    <td style="text-align: center;">
-                      <button style="background: none; border: none; cursor: pointer; padding: 4px;"><span class="material-symbols-outlined" style="font-size: 18px; color: #0284c7;">edit</span></button>
-                    </td>
                   </tr>
                   <tr>
                     <td>7</td>
@@ -613,9 +592,6 @@
                     <td>AT75</td>
                     <td>AT7</td>
                     <td><span class="status-badge inactive">Inactive</span></td>
-                    <td style="text-align: center;">
-                      <button style="background: none; border: none; cursor: pointer; padding: 4px;"><span class="material-symbols-outlined" style="font-size: 18px; color: #0284c7;">edit</span></button>
-                    </td>
                   </tr>
                 </tbody>
               </table>
