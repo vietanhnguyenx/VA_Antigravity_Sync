@@ -304,8 +304,7 @@
     .cell-dt { font-size: 11px; color: #475569; white-space: nowrap; }
     .cell-account { font-weight: 600; font-size: 11.5px; color: #334155; }
     .cell-val { font-size: 12px; color: #1e293b; }
-    .cell-val.old { color: #dc2626; text-decoration: line-through; text-decoration-color: #fca5a5; }
-    .cell-val.new { color: #059669; font-weight: 600; }
+    .cell-val.old { text-decoration: line-through; }
     .audit-log-wrap { max-height: 400px; overflow-y: auto; border: 1px solid var(--md-outline-variant); border-radius: 8px; }
 
     /* Pills */
@@ -1162,8 +1161,28 @@
                         <td><div class="cell-inner"><span class="cell-val new">1.060</span></div></td>
                       </tr>
 
-                      <!-- Session 4 (even) — General Information -->
+                      <!-- Session 4 (even) — ACARS Fuel Delete -->
                       <tr class="session-start sess-even">
+                        <td><div class="cell-inner"><span class="cell-dt">2026-06-14&nbsp;09:05</span></div></td>
+                        <td><div class="cell-inner"><span class="cell-account">data_officer</span></div></td>
+                        <td><div class="cell-inner"><span class="section-pill">ACARS Fuel</span></div></td>
+                        <td><div class="cell-inner"><span class="action-pill delete">Delete</span></div></td>
+                        <td><div class="cell-inner"><span class="field-pill">Fuel Limit</span><br><span style="font-size:10px;color:#94a3b8;padding-left:2px;">07/01 – 12/31/2026</span></div></td>
+                        <td><div class="cell-inner"><span class="cell-val old">1 520</span></div></td>
+                        <td><div class="cell-inner"><span class="cell-val" style="color:#94a3b8;">—</span></div></td>
+                      </tr>
+                      <tr class="session-sub sess-even">
+                        <td><div class="cell-inner"><span class="cell-dt">2026-06-14&nbsp;09:05</span></div></td>
+                        <td><div class="cell-inner"><span class="cell-account">data_officer</span></div></td>
+                        <td><div class="cell-inner"><span class="section-pill">ACARS Fuel</span></div></td>
+                        <td><div class="cell-inner"><span class="action-pill delete">Delete</span></div></td>
+                        <td><div class="cell-inner"><span class="field-pill">Fuel Multiplier</span><br><span style="font-size:10px;color:#94a3b8;padding-left:2px;">07/01 – 12/31/2026</span></div></td>
+                        <td><div class="cell-inner"><span class="cell-val old">1.055</span></div></td>
+                        <td><div class="cell-inner"><span class="cell-val" style="color:#94a3b8;">—</span></div></td>
+                      </tr>
+
+                      <!-- Session 5 (odd) — General Information -->
+                      <tr class="session-start sess-odd">
                         <td><div class="cell-inner"><span class="cell-dt">2026-06-10&nbsp;14:15</span></div></td>
                         <td><div class="cell-inner"><span class="cell-account">admin</span></div></td>
                         <td><div class="cell-inner"><span class="section-pill">General Information</span></div></td>
@@ -1173,8 +1192,8 @@
                         <td><div class="cell-inner"><span class="cell-val new">Owned</span></div></td>
                       </tr>
 
-                      <!-- Session 5 (odd) — Cabin Configuration -->
-                      <tr class="session-start sess-odd">
+                      <!-- Session 6 (even) — Cabin Configuration -->
+                      <tr class="session-start sess-even">
                         <td><div class="cell-inner"><span class="cell-dt">2026-06-05&nbsp;09:00</span></div></td>
                         <td><div class="cell-inner"><span class="cell-account">data_officer</span></div></td>
                         <td><div class="cell-inner"><span class="section-pill">Cabin Configuration</span></div></td>
@@ -1184,8 +1203,8 @@
                         <td><div class="cell-inner"><span class="cell-val new">8 / 24 / 120 / 0 / 0</span></div></td>
                       </tr>
 
-                      <!-- Session 6 (even) — Technical Parameters -->
-                      <tr class="session-start sess-even">
+                      <!-- Session 7 (odd) — Technical Parameters -->
+                      <tr class="session-start sess-odd">
                         <td><div class="cell-inner"><span class="cell-dt">2026-05-28&nbsp;16:45</span></div></td>
                         <td><div class="cell-inner"><span class="cell-account">data_officer</span></div></td>
                         <td><div class="cell-inner"><span class="section-pill">Technical Parameters</span></div></td>
@@ -1209,7 +1228,7 @@
                     </select>
                   </div>
                   <div class="pagination-info">
-                    <span>Total: <strong>6</strong></span>
+                    <span>Total: <strong>8</strong></span>
                   </div>
                   <div class="pagination-controls">
                     <button class="page-btn disabled"><span class="material-symbols-outlined">keyboard_double_arrow_left</span></button>
