@@ -11,6 +11,8 @@
 | `TOBE-PH5-quan-tri-he-thong-v0.1.md` | ~270 | **To-Be PH5** — vòng đời IAM/RBAC (3 sơ đồ: flowchart+state+sequence SSO), thu nạp movement thay FMS, bản đồ tích hợp ~40 hệ thống (8 nhóm), Unrelease↔MO Plus; 9 nhóm chờ workshop |
 | `GAP-ANALYSIS-PH1-PH2-v0.1.md` | ~320 | Gap Analysis PH1 (32 gap) + PH2 (31 gap) — bảng gap, tổng hợp theo loại, nhóm ưu tiên |
 | `DATA-MODEL-KHAI-NIEM-man-giam-sat-dieu-phai-v0.2.md` | 432 | Mô hình dữ liệu khái niệm v0.2 — làm giàu từ Netline/FIMS/MEL-78/OFP/Loadsheet/PM; 19 thực thể (+4 mới: CAU_HINH_TAU, MASTER_MEL, OFP_PHIEN_BAN, DANH_SACH_KHACH); 6 quan hệ mới; 7 điểm cần xác nhận |
+| `MO-HINH-TICH-HOP-TOSS-HE-THONG-NGOAI-v0.1.md` | 296 | **Mô hình tích hợp TOSS ↔ hệ thống ngoài v0.1** — sơ đồ ngữ cảnh (11 hệ thống ngoài, 19 luồng in + 2 out), bảng danh mục 19 luồng atomic + 9 luồng trực tiếp ngữ cảnh, 4 sequence diagram (OFP/Lido, MVT/MVA/SITA, PTM/Amadeus, ASM/ACH outbound), 14 điểm cần xác nhận. **Kèm bản draw.io** (`.drawio`, 14 node/15 edge). Nguồn: sheet v77 · BR-556…BR-581. |
+| `MO-HINH-TICH-HOP-TOSS-HE-THONG-NGOAI-v0.1.drawio` | — | Bản **draw.io (XML)** của sơ đồ ngữ cảnh tích hợp — chỉnh sửa được trên diagrams.net (song song bản Mermaid trong file .md cùng tên). |
 | `subsystem-interface-map-v0.1.md` | 138 | Bản đồ giao diện giữa các phân hệ TOSS |
 | `RTM-template-v0.1.md` | 119 | Mẫu Ma trận Truy vết Yêu cầu (RTM) — bản người đọc |
 | `compliance-trace-v0.1.md` | 93 | Ma trận truy vết tuân thủ (ICAO/IATA/CAAV → BR) |
