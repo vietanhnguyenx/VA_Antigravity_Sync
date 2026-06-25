@@ -3,10 +3,12 @@
   "permissions": {
     "allow": [
       "Bash(python3)",
-      "Read(//c/Users/anhnlv/AppData/Local/Temp/**)"
+      "Read(//c/Users/anhnlv/AppData/Local/Temp/**)",
+      "PowerShell(python C:\\\\Users\\\\anhnlv\\\\AppData\\\\Local\\\\Temp\\\\fix_srs.py)"
     ],
     "additionalDirectories": [
-      "c:\\Users\\anhnlv\\Downloads"
+      "c:\\Users\\anhnlv\\Downloads",
+      "C:\\Users\\anhnlv\\AppData\\Local\\Temp"
     ]
   },
   "hooks": {
