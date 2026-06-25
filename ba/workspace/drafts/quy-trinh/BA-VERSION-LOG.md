@@ -127,6 +127,13 @@ document_id: "BA-VLOG-001"
 | `toss-glossary-v0.1.md` | 0.14 | 2026-06-17 | Bổ sung 17 entry ACARS từ phân tích kho 03/2026: A80, ARR(ACARS), DEP(ACARS), M49, M11/M13/M14/M44, MVA, FML, FOB (đã rõ); ADS-B/ADS-C, ARINC 618, CFD, CPDLC, DFD, ENG, QAR, SATCOM, SMA, TT5/TT6 (chờ xác nhận). Cập nhật ACARS Fuel Unit (A320=LITERS) + ACARS OOOI (3 label theo avionics). |
 | _(toss-glossary-v0.1.md v0.13)_ | 0.13 | 2026-06-16 | 31 entry từ báo cáo khảo sát 08–12/06 |
 
+## Mô hình dữ liệu khái niệm (ba/sync/models)
+
+| File hiện hành | Version | Ngày | Thay đổi chính |
+|---|---|---|---|
+| `DATA-MODEL-KHAI-NIEM-man-giam-sat-dieu-phai-v0.2.md` | 0.2 | 2026-06-25 | Làm giàu từ 9 nguồn mới (Netline/FIMS/MEL-78A/B/C/OFP/LOADSHEET/PM + BRD-PH4 v0.6/PH2 v0.7/PH1 v0.8): TAU_BAY +14 trường (owner/lessor, ILS, ACARS, logical_no, AP_restriction, valid_since/until…); +4 thực thể mới (CAU_HINH_TAU, MASTER_MEL 29 trường penalty, OFP_PHIEN_BAN 25 trường fuel/route/minima, DANH_SACH_KHACH); TAI_TRONG +18 trường W&B (5 khoang, MAC/LI/STAB/LMC); MEL_CDL đổi thành MEL_ITEM_ACTIVE + liên kết MASTER_MEL; +6 quan hệ mới; 7 điểm cần xác nhận (MTOW xung đột Netline↔FIMS, MEL Shortlist FOE, PM cá nhân vs tổng hợp…). Giữ v0.1 song song (không xóa — task điều phối sẽ quyết định). |
+| _(DATA-MODEL-KHAI-NIEM-man-giam-sat-dieu-phai-v0.1)_ | 0.1 | 2026-06-12 | Khởi tạo — 15 thực thể, nguồn FOS sheet-09 + Đề xuất §II.1. |
+
 ## Mô hình quy trình To-Be (ba/sync/models)
 
 | File hiện hành | Version | Ngày | Thay đổi chính |
@@ -153,7 +160,8 @@ document_id: "BA-VLOG-001"
 | `srs/03-dac-ta-chuc-nang/PHAN-RA-BRD-PH2-quan-ly-tai-lieu-chuyen-bay-v0.5.md` | 0.5 | 2026-06-23 | Fold "đã clear" vào FUNC-228/231/262/270/271/272/273 (LS integration: EDNO/NOTOC/compartment/LMC; battery lithium; pax PE/CHD/seat map; BALANCE DOI/LI/MAC; ZFW/TOW/LDW Actual-MAX-ADJ; đối soát mở rộng+UNDERLOAD; cảnh báo Delta). Xóa file v0.4. |
 | `srs/03-dac-ta-chuc-nang/PHAN-RA-BRD-PH4-quan-ly-danh-muc-v0.5.md` | 0.5 | 2026-06-23 | Fold "đã clear" vào FUNC-403-01/405-01/405-02/407-01/407-02/407-06/416-02/422-01/424-01..04/426-01/427-04/427-06 (Netline user/serial date, ICAO designator FIMS, bộ trường penalty Master MEL, perf_type↔78A/B/C, page-level+ngày hiệu lực, cấu hình ghế FIMS). Cập nhật brd_version v0.6. Xóa file v0.4. |
 | `srs/03-dac-ta-chuc-nang/PHAN-RA-BRD-PH5-quan-tri-he-thong-v0.4.md` | 0.4 | 2026-06-23 | Fold "đã clear" vào FUNC-519-04 (danh mục label điện ACARS nhận diện OUT/OFF/ON/IN theo đội tàu: A350 DEP/ARR; A320/A321 A80 OUTRP/ONRP/INRP; B787 M11/M13/M14; MVA biến thể ưu tiên). Cập nhật brd_version v0.6. Xóa file v0.3. |
+| `models/DATA-MODEL-KHAI-NIEM-man-giam-sat-dieu-phai-v0.2.md` | 0.2 | 2026-06-24 | Rà soát + bổ sung ERD khái niệm: 15→19 thực thể (+4: CAU_HINH_TAU, MASTER_MEL, OFP_PHIEN_BAN, DANH_SACH_KHACH), làm giàu TAU_BAY/MEL_CDL→MEL_ITEM_ACTIVE/TAI_TRONG từ Netline/FIMS/MEL-78A-B-C/OFP/Loadsheet/PM + BRD/SRS đã fold; +6 quan hệ; 7 điểm `[cần xác nhận]` (xung đột MTOW VNA336 83000/93000 = KS-30). Xóa file v0.1. |
 
 ---
 
-_Cập nhật: 2026-06-23_
+_Cập nhật: 2026-06-25_
