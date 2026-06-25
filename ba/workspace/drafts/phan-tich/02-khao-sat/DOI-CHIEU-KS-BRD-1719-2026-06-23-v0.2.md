@@ -273,10 +273,10 @@ Trong đó, đối chiếu chi tiết **28 luồng OPS++** (bảng Google Sheet 
 ## §5. Tham chiếu
 
 - BRD khung: `ba/workspace/drafts/brd/BRD-TOSS-001-khung-v0.12.md`
-- BRD PH1 v0.7: `ba/workspace/drafts/brd/BRD-TOSS-PH1-thong-tin-dieu-hanh-v0.7.md` (BR-101…BR-192 — 75 BR)
-- BRD PH2 v0.6: `ba/workspace/drafts/brd/BRD-TOSS-PH2-tai-lieu-chuyen-bay-v0.6.md` (BR-201…BR-261 — 59 BR)
-- BRD PH4 v0.5: `ba/workspace/drafts/brd/BRD-TOSS-PH4-quan-ly-danh-muc-v0.5.md` (BR-401…BR-459 — 69 BR)
-- BRD PH5 v0.5: `ba/workspace/drafts/brd/BRD-TOSS-PH5-quan-tri-he-thong-v0.5.md` (BR-501…BR-555, gồm 528a–h và 530a–g — 68 BR)
+- BRD PH1 v0.7: `ba/workspace/drafts/brd/BRD-TOSS-PH1-thong-tin-dieu-hanh-v0.8.md` (BR-101…BR-192 — 75 BR)
+- BRD PH2 v0.6: `ba/workspace/drafts/brd/BRD-TOSS-PH2-tai-lieu-chuyen-bay-v0.7.md` (BR-201…BR-261 — 59 BR)
+- BRD PH4 v0.5: `ba/workspace/drafts/brd/BRD-TOSS-PH4-quan-ly-danh-muc-v0.6.md` (BR-401…BR-459 — 69 BR)
+- BRD PH5 v0.5: `ba/workspace/drafts/brd/BRD-TOSS-PH5-quan-tri-he-thong-v0.6.md` (BR-501…BR-555, gồm 528a–h và 530a–g — 68 BR)
 - Báo cáo Khảo sát 17/06: `ba/workspace/drafts/phan-tich/02-khao-sat/BAO-CAO-KHAO-SAT-17062026-v0.3.md`
 - Báo cáo Khảo sát 18/06: `ba/workspace/drafts/phan-tich/02-khao-sat/BAO-CAO-KHAO-SAT-18062026-v0.1.md`
 - Báo cáo Khảo sát 19/06: `ba/workspace/drafts/phan-tich/02-khao-sat/BAO-CAO-KHAO-SAT-19062026-v0.1.md`

@@ -5,13 +5,13 @@ version: "0.1"
 date: "2026-06-17"
 status: "Draft"
 document_type: "Wireframe"
-parent_brd: "BRD-TOSS-PH4-quan-ly-danh-muc-v0.5.md"
-parent_phanra: "PHAN-RA-BRD-PH4-quan-ly-danh-muc-v0.4.md"
+parent_brd: "BRD-TOSS-PH4-quan-ly-danh-muc-v0.6.md"
+parent_phanra: "PHAN-RA-BRD-PH4-quan-ly-danh-muc-v0.5.md"
 ---
 
 # Wireframe — Phân hệ 4: Quản lý danh mục (Master Data) (v0.1)
 
-> **Tài liệu wireframe nháp theo workflow P4 (Co-evolution Hybrid).** Mỗi màn hình bám sát BR/FUNC đã ghi nhận tại [BRD-TOSS-PH4 v0.5](../brd/BRD-TOSS-PH4-quan-ly-danh-muc-v0.5.md) và [PHAN-RA-BRD-PH4 v0.4](../srs/03-dac-ta-chuc-nang/PHAN-RA-BRD-PH4-quan-ly-danh-muc-v0.4.md). Các phần ghi `*(layout cần xác nhận sau khi có entity map)*` chờ mô hình dữ liệu khái niệm (sync/models/) hoàn thiện.
+> **Tài liệu wireframe nháp theo workflow P4 (Co-evolution Hybrid).** Mỗi màn hình bám sát BR/FUNC đã ghi nhận tại [BRD-TOSS-PH4 v0.5](../brd/BRD-TOSS-PH4-quan-ly-danh-muc-v0.6.md) và [PHAN-RA-BRD-PH4 v0.4](../srs/03-dac-ta-chuc-nang/PHAN-RA-BRD-PH4-quan-ly-danh-muc-v0.5.md). Các phần ghi `*(layout cần xác nhận sau khi có entity map)*` chờ mô hình dữ liệu khái niệm (sync/models/) hoàn thiện.
 >
 > **Phạm vi v0.1:** 5 màn hình UX trọng yếu (WF-PH4-01 … WF-PH4-05) đại diện cho 10 nhóm A–J của BRD PH4 v0.5. Các màn hình còn lại sẽ bổ sung ở v0.2 trở đi sau khi BA Lead duyệt khung trình bày.
 >
