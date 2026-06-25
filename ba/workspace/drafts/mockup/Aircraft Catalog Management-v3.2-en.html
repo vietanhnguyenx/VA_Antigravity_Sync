@@ -744,8 +744,8 @@
                     <input type="date" class="detail-input" value="2024-01-01" disabled>
                   </div>
                   <div class="detail-row">
-                    <span class="detail-label">Valid To</span>
-                    <input type="date" class="detail-input" value="2029-12-31">
+                    <span class="detail-label">Valid To <span class="material-symbols-outlined lock-ic">lock</span></span>
+                    <input type="date" class="detail-input" value="2029-12-31" disabled>
                   </div>
                   <div class="detail-row">
                     <span class="detail-label">ICAO Code</span>
@@ -1359,7 +1359,7 @@
       const tab = document.getElementById(tabId);
 
       // Enable all editable fields in this tab (except locked fields like AC Subtype, Valid From)
-      const lockedLabels = ['AC Subtype', 'Valid From'];
+      const lockedLabels = ['AC Subtype', 'Valid From', 'Valid To'];
       tab.querySelectorAll('.detail-input, .detail-select, .sub-table input, .cabin-cell input').forEach(el => {
         // Check if this field is locked
         const labelEl = el.parentElement.querySelector('.detail-label');
@@ -1405,7 +1405,7 @@
       document.getElementById('headerActions').style.display = 'none';
       document.getElementById('editActionBar').classList.add('visible');
       document.querySelectorAll('.details-tab-content .detail-input, .details-tab-content .detail-select').forEach(el => {
-        const lockedLabels = ['AC Subtype', 'Valid From'];
+        const lockedLabels = ['AC Subtype', 'Valid From', 'Valid To'];
         const labelEl = el.parentElement.querySelector('.detail-label');
         const isLocked = labelEl && lockedLabels.some(l => labelEl.textContent.includes(l));
         if (!isLocked) el.disabled = false;
