@@ -9,6 +9,7 @@
 | File | Dòng | Nội dung |
 |---|---|---|
 | [`mo-hinh-du-lieu/DATA-MODEL-KHAI-NIEM-man-giam-sat-dieu-phai-v0.2.md`](mo-hinh-du-lieu/DATA-MODEL-KHAI-NIEM-man-giam-sat-dieu-phai-v0.2.md) | 432 | Mô hình dữ liệu khái niệm (ERD) v0.2 — làm giàu từ Netline/FIMS/MEL-78/OFP/Loadsheet/PM; 19 thực thể (+4 mới: CAU_HINH_TAU, MASTER_MEL, OFP_PHIEN_BAN, DANH_SACH_KHACH); 6 quan hệ mới; 7 điểm cần xác nhận |
+| [`mo-hinh-du-lieu/DATA-MODEL-KHAI-NIEM-man-giam-sat-dieu-phai-v0.2.drawio`](mo-hinh-du-lieu/DATA-MODEL-KHAI-NIEM-man-giam-sat-dieu-phai-v0.2.drawio) | — | Bản **draw.io (XML)** của ERD — 19 entity box (thuộc tính + PK/FK) + 21 quan hệ crow's-foot, màu theo nhóm domain. Hand-author (Human xem/sửa, song song Mermaid). |
 
 ## 2. Tích hợp hệ thống — `tich-hop/`
 

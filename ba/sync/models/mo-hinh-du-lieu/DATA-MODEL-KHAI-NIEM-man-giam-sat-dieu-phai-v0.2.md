@@ -20,6 +20,8 @@ document_id: "DM-TOSS-DSP-MON"
 
 ## 1. Sơ đồ thực thể (ERD khái niệm)
 
+> 📐 **Bản draw.io (Human xem/sửa):** [`DATA-MODEL-KHAI-NIEM-man-giam-sat-dieu-phai-v0.2.drawio`](DATA-MODEL-KHAI-NIEM-man-giam-sat-dieu-phai-v0.2.drawio) — 19 entity box (thuộc tính + PK/FK) + quan hệ crow's-foot, mở trên [diagrams.net](https://app.diagrams.net). Bản Mermaid bên dưới là nguồn chuẩn cho agent.
+
 ```mermaid
 erDiagram
     %% ── Lõi chuyến bay ──────────────────────────────────
