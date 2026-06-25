@@ -284,12 +284,63 @@
     .audit-filter-bar { display: flex; flex-wrap: wrap; gap: 10px; align-items: flex-end; padding: 10px; background: #f8fafc; border: 1px solid var(--md-outline-variant); border-radius: 8px; margin-bottom: 12px; }
     .audit-filter-bar .filter-item { flex: 1 1 130px; position: relative; }
     #accountSuggestions { position: absolute; top: 100%; left: 0; right: 0; background: white; border: 1px solid #cbd5e1; border-top: none; border-radius: 0 0 6px 6px; max-height: 120px; overflow-y: auto; z-index: 10; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+
+    /* Audit table redesign */
     .audit-log-table { width: 100%; border-collapse: collapse; font-size: 11.5px; }
-    .audit-log-table th { background: #f1f5f9; padding: 8px 10px; font-weight: 600; color: #64748b; border-bottom: 1px solid #e2e8f0; position: sticky; top: 0; text-align: left; font-size: 11px; }
-    .audit-log-table td { padding: 8px 10px; border-bottom: 1px solid #e2e8f0; vertical-align: top; }
-    .audit-log-table tbody tr:hover { background: #f8fafc; }
-    .audit-log-wrap { max-height: 360px; overflow-y: auto; border: 1px solid var(--md-outline-variant); border-radius: 8px; }
-    .field-pill { display: inline-block; padding: 2px 6px; background: #e0f2fe; color: #075985; border-radius: 4px; font-size: 10.5px; font-weight: 600; }
+    .audit-log-table th { background: #f1f5f9; padding: 9px 12px; font-weight: 600; color: #64748b; border-bottom: 2px solid #e2e8f0; position: sticky; top: 0; text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: 0.4px; }
+    .audit-log-table td { padding: 0; vertical-align: middle; }
+    .audit-log-table tr.session-start td { border-top: 2px solid #e2e8f0; }
+    .audit-log-table tr.session-start td .cell-inner { padding: 9px 12px; font-weight: 500; }
+    .audit-log-table tr.session-sub td .cell-inner { padding: 4px 12px; }
+    .audit-log-table tr.session-sub td:first-child .cell-inner,
+    .audit-log-table tr.session-sub td:nth-child(2) .cell-inner,
+    .audit-log-table tr.session-sub td:nth-child(3) .cell-inner { opacity: 0; pointer-events: none; }
+    /* Alternating session backgrounds */
+    .audit-log-table tr.sess-odd td { background: #ffffff; }
+    .audit-log-table tr.sess-even td { background: #f0f6ff; }
+    .audit-log-table tr.sess-odd td:hover, .audit-log-table tr.sess-even td:hover { filter: brightness(0.97); }
+    /* Date/time + account column — muted on sub rows */
+    .cell-dt { font-size: 11px; color: #475569; white-space: nowrap; }
+    .cell-account { font-weight: 600; font-size: 11.5px; color: #334155; }
+    .cell-val { font-size: 12px; color: #1e293b; }
+    .cell-val.old { color: #dc2626; text-decoration: line-through; text-decoration-color: #fca5a5; }
+    .cell-val.new { color: #059669; font-weight: 600; }
+    .audit-log-wrap { max-height: 400px; overflow-y: auto; border: 1px solid var(--md-outline-variant); border-radius: 8px; }
+
+    /* Pills */
+    .field-pill { display: inline-flex; align-items: center; padding: 3px 8px; background: #dbeafe; color: #1d4ed8; border-radius: 4px; font-size: 10.5px; font-weight: 600; }
+    .section-pill { display: inline-flex; align-items: center; padding: 3px 8px; background: #d1fae5; color: #065f46; border-radius: 4px; font-size: 10.5px; font-weight: 600; }
+
+    /* Date Range Picker */
+    .drp-wrap { position: relative; }
+    .drp-input-row { position: relative; display: flex; align-items: center; }
+    .drp-input-row .filter-input { padding-right: 34px; cursor: pointer; caret-color: transparent; }
+    .drp-icon { position: absolute; right: 9px; font-size: 17px; color: #64748b; cursor: pointer; pointer-events: none; }
+    .drp-popup { display: none; position: absolute; top: calc(100% + 6px); left: 0; z-index: 200; background: white; border: 1px solid #e2e8f0; border-radius: 12px; box-shadow: 0 8px 28px rgba(0,42,84,0.14); padding: 16px; width: 540px; }
+    .drp-popup.open { display: block; }
+    .drp-months { display: flex; gap: 24px; }
+    .drp-month { flex: 1; }
+    .drp-month-title { text-align: center; font-size: 13px; font-weight: 700; color: #002A54; margin-bottom: 8px; }
+    .drp-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; }
+    .drp-dow { text-align: center; font-size: 10.5px; font-weight: 600; color: #94a3b8; padding: 2px 0; }
+    .drp-day { text-align: center; font-size: 11.5px; padding: 5px 2px; cursor: pointer; border-radius: 50%; transition: background 0.15s; color: #334155; }
+    .drp-day:hover { background: #e8f1fb; color: #002A54; }
+    .drp-day.in-range { background: #dbeafe; border-radius: 0; color: #1d4ed8; }
+    .drp-day.range-start, .drp-day.range-end { background: #005a9c; color: white; border-radius: 50%; font-weight: 700; }
+    .drp-day.range-start { border-radius: 50% 0 0 50%; }
+    .drp-day.range-end { border-radius: 0 50% 50% 0; }
+    .drp-day.other-month { color: #cbd5e1; }
+    .drp-day.today { font-weight: 700; color: #005a9c; }
+    .drp-nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+    .drp-nav-btn { background: none; border: 1px solid #e2e8f0; border-radius: 6px; padding: 3px 8px; cursor: pointer; color: #64748b; font-size: 16px; line-height: 1; }
+    .drp-nav-btn:hover { background: #f1f5f9; }
+    .drp-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 12px; padding-top: 10px; border-top: 1px solid #e2e8f0; }
+    .drp-footer-btn { background: none; border: none; font-size: 12.5px; font-weight: 600; cursor: pointer; padding: 4px 8px; border-radius: 4px; }
+    .drp-footer-btn.today { color: #d97706; }
+    .drp-footer-btn.today:hover { background: #fef9ed; }
+    .drp-footer-btn.clear { color: #64748b; }
+    .drp-footer-btn.clear:hover { background: #f1f5f9; }
+    .drp-range-display { font-size: 11.5px; color: #64748b; }
 
     /* ===== Edit-mode action bar (sticky in card) ===== */
     .edit-action-bar { display: none !important; align-items: center; justify-content: flex-end; gap: 10px; padding: 10px 14px; margin: 12px -14px -14px -14px; background: #fffbeb; border-top: 1px solid #fde68a; border-radius: 0 0 var(--md-radius) var(--md-radius); }
@@ -962,13 +1013,20 @@
 
                 <!-- Search & Filter bar for Change History -->
                 <div class="audit-filter-bar">
-                  <div class="filter-item">
-                    <label>From Date</label>
-                    <input type="date" class="filter-input" value="2026-01-01">
-                  </div>
-                  <div class="filter-item">
-                    <label>To Date</label>
-                    <input type="date" class="filter-input" value="2026-06-22">
+                  <div class="filter-item drp-wrap" style="flex: 1 1 200px;">
+                    <label>Date Range</label>
+                    <div class="drp-input-row">
+                      <input type="text" class="filter-input" id="drpInput" placeholder="Select date range" readonly onclick="toggleDatePicker()">
+                      <span class="material-symbols-outlined drp-icon">calendar_month</span>
+                    </div>
+                    <div class="drp-popup" id="drpPopup">
+                      <div class="drp-months" id="drpMonths"></div>
+                      <div class="drp-footer">
+                        <button class="drp-footer-btn clear" onclick="clearDateRange()">Clear</button>
+                        <span class="drp-range-display" id="drpRangeDisplay"></span>
+                        <button class="drp-footer-btn today" onclick="selectToday()">Today</button>
+                      </div>
+                    </div>
                   </div>
                   <div class="filter-item">
                     <label>Account</label>
