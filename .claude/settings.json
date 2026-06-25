@@ -4,6 +4,9 @@
     "allow": [
       "Bash(python3)",
       "Read(//c/Users/anhnlv/AppData/Local/Temp/**)"
+    ],
+    "additionalDirectories": [
+      "c:\\Users\\anhnlv\\Downloads"
     ]
   },
   "hooks": {
