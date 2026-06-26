@@ -10,7 +10,8 @@
       "PowerShell(rclone --version 2>$null)",
       "PowerShell(age --version 2>$null)",
       "PowerShell(winget --version)",
-      "PowerShell(winget install --id Tailscale.Tailscale -e --silent --accept-package-agreements --accept-source-agreements)"
+      "PowerShell(winget install --id Tailscale.Tailscale -e --silent --accept-package-agreements --accept-source-agreements)",
+      "PowerShell(winget install --id Syncthing.Syncthing -e --silent --accept-package-agreements --accept-source-agreements)"
     ],
     "additionalDirectories": [
       "c:\\Users\\anhnlv\\Downloads",
