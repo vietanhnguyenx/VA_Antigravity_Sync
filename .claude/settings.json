@@ -4,7 +4,13 @@
     "allow": [
       "Bash(python3)",
       "Read(//c/Users/anhnlv/AppData/Local/Temp/**)",
-      "PowerShell(python C:\\\\Users\\\\anhnlv\\\\AppData\\\\Local\\\\Temp\\\\fix_srs.py)"
+      "PowerShell(python C:\\\\Users\\\\anhnlv\\\\AppData\\\\Local\\\\Temp\\\\fix_srs.py)",
+      "PowerShell(tailscale --version 2>$null)",
+      "PowerShell(syncthing --version 2>$null)",
+      "PowerShell(rclone --version 2>$null)",
+      "PowerShell(age --version 2>$null)",
+      "PowerShell(winget --version)",
+      "PowerShell(winget install --id Tailscale.Tailscale -e --silent --accept-package-agreements --accept-source-agreements)"
     ],
     "additionalDirectories": [
       "c:\\Users\\anhnlv\\Downloads",
