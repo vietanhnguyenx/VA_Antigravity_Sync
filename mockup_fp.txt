@@ -1,0 +1,51 @@
+TITLE: Flight Plans - DSP
+BUTTON: Flight Monitoring
+BUTTON: Flight Plans
+BUTTON: Common Docs
+BUTTON: Hide
+BUTTON: 
+BUTTON: 
+BUTTON: 
+BUTTON: 
+BUTTON: Table Setting
+BUTTON: 
+BUTTON: All Revision
+BUTTON: Last Revision
+BUTTON: Search
+BUTTON: Clear Filter
+TH: Identity
+TH: Flight Info
+TH: Release
+TH: Fuel
+TH: Weight &amp; Time
+TH: -
+TH: AC REG
+TH: FLT NO
+TH: DEP
+TH: ARR
+TH: DATE
+TH: ETD (Z)
+TH: ETA (Z)
+TH: TYPE
+TH: STATUS
+TH: OFP REV
+TH: DISPATCHER
+TH: DSP REL
+TH: PIL REL
+TH: PIL REV
+TH: BLOCK FUEL
+TH: FUEL ORDER
+TH: TRIP FUEL
+TH: TRIP TIME
+TH: CONT %
+TH: DEST ALTN
+TH: ALTN FUEL
+TH: TAXI TIME
+TH: TAXI FUEL
+TH: POSS EXTRA
+TH: DOW
+TH: PLD
+TH: TOW
+TH: ACTION
+BUTTON: &#x2715;
+BUTTON: View Briefing Sheet

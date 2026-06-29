@@ -1,0 +1,11 @@
+Row 02:  | EDD (dd/MM/yyyy) | FLIGHT | ACREG | ACTYPE | ETD | DEP | ARR | LS Rev n Upload | GD Rev n Upload | PM Rev n Upload | Notoc Cargo Rev n Upload | Notoc Bag Rev n Upload | LS Ack
+Row 03:  | 23/06/2026 | VN7273 | VNA339 | A321 | 00:00:00 | HAN | THD | R01 22/06 23:45 | R01 22/06 23:45 | R01 22/06 23:45 | R01 22/06 23:45 | R01 22/06 23:45 | R01 22/06 23:55
+Row 06:  | EDD | Ngày (UTC) |  |  |  |  |  |  |  |  |  |  | 
+Row 07:  | FLIGHT | Số hiệu chuyến bay |  |  |  |  |  |  |  |  |  |  | 
+Row 08:  | ACREG | Đăng ký máy bay |  |  |  |  |  |  |  |  |  |  | 
+Row 09:  | ACTYPE | Loại máy bay |  |  |  |  |  |  |  |  |  |  | 
+Row 10:  | ETD | Giờ bay dự kiến (UTC) |  |  |  |  |  |  |  |  |  |  | 
+Row 11:  | DEP | Điểm đi |  |  |  |  |  |  |  |  |  |  | 
+Row 12:  | ARR | Điểm đến |  |  |  |  |  |  |  |  |  |  | 
+Row 13:  | LS/GD/PM/Notoc Cgo/Notoc Bag |  | Version tài liệu cập nhật và thời gian cập nhật (tính theo giờ UTC) |  |  |  |  |  |  |  |  |  | 
+Row 14:  | Ack LS/GD/PM/Notoc Cgo/Notoc Bag |  | Tình trạng Accept tài liệu và thời gian accept của Capt (tính theo giờ UTC) |  |  |  |  |  |  |  |  |  | 

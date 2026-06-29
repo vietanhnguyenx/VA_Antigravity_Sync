@@ -1,0 +1,38 @@
+TITLE: Flight Load Control — Documents
+BUTTON: Flight Monitoring
+BUTTON: FLC Documents
+BUTTON: Fuel Order
+BUTTON: Common Docs
+BUTTON: Hide
+BUTTON: 
+BUTTON: 
+BUTTON: 
+BUTTON: 
+BUTTON: Table Setting
+BUTTON: 
+BUTTON: Search
+BUTTON: Clear Filter
+TH: Identity
+TH: Flight Info
+TH: Primary Docs (LS · GD · PM)
+TH: NOTOC
+TH: FLIGHT
+TH: ACREG
+TH: ACTYPE
+TH: EDD
+TH: ETD
+TH: DEP
+TH: ARR
+TH: LS
+TH: GD
+TH: PM
+TH: NOTOC CGO
+TH: NOTOC BAG
+BUTTON: 
+BUTTON: &#x2715;
+BUTTON: Cancel
+BUTTON: Upload
+BUTTON: ${hasFile ? 'Upload new rev' : 'Upload'}
+BUTTON: View
+BUTTON: Download
+BUTTON: History
