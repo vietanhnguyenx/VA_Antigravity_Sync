@@ -1,0 +1,100 @@
+compliance-trace-v0.1.md:33 -> | Dispatch Release phải có chữ ký Dispatcher và Cơ trưởng | *(chưa có)* | *(chưa có)* | CAAV-TT03 | 
+compliance-trace-v0.1.md:35 -> | Cập nhật NOTAM trước mỗi chuyến | *(chưa có)* | *(chưa có)* | ICAO-A6 | §4.2.5 | Dispatcher chịu t
+DATA-MODEL-KHAI-NIEM-man-giam-sat-dieu-phai-v0.1.md:49 -> datetime atd "ACARS OUT/OFF"
+DATA-MODEL-KHAI-NIEM-man-giam-sat-dieu-phai-v0.1.md:50 -> datetime ata "ACARS ON/IN"
+DATA-MODEL-KHAI-NIEM-man-giam-sat-dieu-phai-v0.1.md:80 -> string doc_type "OFP/LS/GD/PM/NOTOC/Cargo/Mail"
+DATA-MODEL-KHAI-NIEM-man-giam-sat-dieu-phai-v0.1.md:82 -> string ofp_number "Lido"
+DATA-MODEL-KHAI-NIEM-man-giam-sat-dieu-phai-v0.1.md:83 -> string ofp_version "TOSS R1,R2…"
+DATA-MODEL-KHAI-NIEM-man-giam-sat-dieu-phai-v0.1.md:135 -> string acars_trigger "OFF/ON/IN"
+DATA-MODEL-KHAI-NIEM-man-giam-sat-dieu-phai-v0.1.md:139 -> string nguon "ACARS OOOI / A-CDM"
+DATA-MODEL-KHAI-NIEM-man-giam-sat-dieu-phai-v0.1.md:154 -> string vai_tro "Dispatcher/Trực ban trưởng/Cán bộ tài liệu"
+DATA-MODEL-KHAI-NIEM-man-giam-sat-dieu-phai-v0.1.md:170 -> | **TAI_LIEU_CHUYEN** (Document) | Trạng thái tài liệu, OFP version, release | BR-112, 113 (cán bộ t
+DATA-MODEL-KHAI-NIEM-man-giam-sat-dieu-phai-v0.1.md:174 -> | **CANH_BAO** (Alert) | Cảnh báo màu/nhấp nháy, raise/clear theo mốc ACARS | BR-114, 125 |
+DATA-MODEL-KHAI-NIEM-man-giam-sat-dieu-phai-v0.1.md:175 -> | **MOC_KHAI_THAC** (ACARS OOOI / A-CDM) | Mốc thời gian thực tế, ETA, trạng thái bay | BR-125 |
+DATA-MODEL-KHAI-NIEM-man-giam-sat-dieu-phai-v0.1.md:178 -> ## 3. Điểm `[cần xác nhận]` ảnh hưởng data model (đồng bộ OID)
+DATA-MODEL-KHAI-NIEM-man-giam-sat-dieu-phai-v0.1.md:184 -> - **TAI_LIEU_CHUYEN.ofp_rev_color** — POC dùng 3 màu (🟢 đã release / 🟡 bản trước đã release / 🔴 chưa
+DATA-MODEL-KHAI-NIEM-man-giam-sat-dieu-phai-v0.1.md:189 -> - **Cập nhật co-evolution (từ POC dsp_monitoring, 2026-06-12):** bổ sung enum ứng viên `leg_state`; 
+DATA-MODEL-KHAI-NIEM-man-giam-sat-dieu-phai-v0.1.md:190 -> - Các mốc A-CDM/ACARS gom trong `MOC_KHAI_THAC` (xem glossary v0.8: A-CDM Milestone Times, ACARS OOO
+deliverable-status.json:46 -> "title": "To-Be Process Model — PH1 OCC/Dispatch",
+deliverable-status.json:49 -> "path": "ba/sync/models/TOBE-PH1-OCC-DISPATCH-v0.1.md",
+deliverable-status.json:59 -> "source": "(nguồn: ba/sync/models/TOBE-PH1-OCC-DISPATCH-v0.1.md:4-6)"
+deliverable-status.json:74 -> "OID upload OFP còn mở (nguồn: tien_do/DANH-GIA-TIEN-DO-v0.1-2026-06-17.md §2)"
+deliverable-status.json:108 -> "Chưa workshop xác nhận với SME VNA (M2/M3/M4/M5 — Master Data nhóm Batch 2)"
+GAP-ANALYSIS-PH1-PH2-v0.1.md:9 -> source_asis: "ba/workspace/drafts/phan-tich/04-quy-trinh/ASIS-OCC-DISPATCH-v0.1.md"
+GAP-ANALYSIS-PH1-PH2-v0.1.md:16 -> > **Nguyên tắc (CLAUDE.md §0):** Tài liệu này chỉ mô tả những gì đã được ghi nhận trong nguồn (ASIS-
+GAP-ANALYSIS-PH1-PH2-v0.1.md:32 -> > Nguồn As-Is: ASIS-OCC-DISPATCH-v0.1.md. Nguồn To-Be: BRD-TOSS-PH1 (BR-101…BR-150).
+GAP-ANALYSIS-PH1-PH2-v0.1.md:36 -> | GAP-PH1-001 | Xem tổng hợp thông tin chuyến bay | OCC/Dispatcher mở đồng thời 5–7 hệ thống (Ops++,
+GAP-ANALYSIS-PH1-PH2-v0.1.md:42 -> | GAP-PH1-007 | Tích hợp và phân tích NOTAM | Dispatcher tra web nguồn bên ngoài thủ công `[Cần xác 
+GAP-ANALYSIS-PH1-PH2-v0.1.md:43 -> | GAP-PH1-008 | Tích hợp và cảnh báo thời tiết | Dispatcher tra WNI thủ công `[Cần xác nhận As-Is]` 
+GAP-ANALYSIS-PH1-PH2-v0.1.md:44 -> | GAP-PH1-009 | Kiểm tra MEL/CDL và NAIL ảnh hưởng chuyến | Tra Ops++/AMOS riêng; không có cảnh báo 
+GAP-ANALYSIS-PH1-PH2-v0.1.md:45 -> | GAP-PH1-010 | Đối soát lệch tải OFP vs thực tế | `[Chưa rõ quy trình As-Is — cần làm rõ với VNA]` 
+GAP-ANALYSIS-PH1-PH2-v0.1.md:48 -> | GAP-PH1-013 | Cảnh báo PAX time | Không có cảnh báo tự động từ OFP | TOSS sinh cảnh báo PAX time t
+GAP-ANALYSIS-PH1-PH2-v0.1.md:49 -> | GAP-PH1-014 | Cảnh báo chuyến không thường lệ thiếu STS/HEAD | Không có cơ chế cảnh báo tự động; b
+GAP-ANALYSIS-PH1-PH2-v0.1.md:50 -> | GAP-PH1-015 | Cảnh báo đã filed ATC FPL | Không có cảnh báo tự động | TOSS sinh cảnh báo "đã filed
+GAP-ANALYSIS-PH1-PH2-v0.1.md:61 -> | GAP-PH1-026 | Quản lý hồ sơ và tình trạng tàu bay thời gian thực | Tra AMOS/Ops++ riêng | TOSS quả
+GAP-ANALYSIS-PH1-PH2-v0.1.md:73 -> > Nguồn As-Is: ASIS-OCC-DISPATCH-v0.1.md (§2 — tài liệu chuyến bay). Nguồn To-Be: BRD-TOSS-PH2 (BR-2
+GAP-ANALYSIS-PH1-PH2-v0.1.md:77 -> | GAP-PH2-001 | Tổng hợp tài liệu chuyến bay (OFP/NOTAM/WX) | Dispatcher lấy OFP từ Lido thủ công; N
+GAP-ANALYSIS-PH1-PH2-v0.1.md:78 -> | GAP-PH2-002 | Quản lý phiên bản OFP | Không rõ cơ chế quản lý phiên bản `[Cần xác nhận As-Is]` | T
+GAP-ANALYSIS-PH1-PH2-v0.1.md:79 -> | GAP-PH2-003 | Xem nhanh thông tin điều phái từ OFP | Phải mở file OFP đầy đủ để tra từng trường | 
+GAP-ANALYSIS-PH1-PH2-v0.1.md:89 -> | GAP-PH2-013 | Dispatch Release của điều phái | Dispatch Release thủ công hoặc chưa số hóa đồng bộ 
+GAP-ANALYSIS-PH1-PH2-v0.1.md:90 -> | GAP-PH2-014 | Đồng bộ trạng thái DR sang MO Plus | Chưa có kết nối tự động TOSS → MO Plus | TOSS đ
+GAP-ANALYSIS-PH1-PH2-v0.1.md:91 -> | GAP-PH2-015 | Ghi nhận lịch sử làm lại OFP sát giờ | Không có lưu vết lý do làm lại OFP `[Cần xác 
+GAP-ANALYSIS-PH1-PH2-v0.1.md:93 -> | GAP-PH2-017 | Đối soát an toàn ZFW | Không có đối soát tự động DOW/ZFW | TOSS đối soát ZFW: so sán
+GAP-ANALYSIS-PH1-PH2-v0.1.md:94 -> | GAP-PH2-018 | Chức năng Unrelease OFP | Không có cơ chế Unrelease có kiểm soát | TOSS cung cấp Unr
+GAP-ANALYSIS-PH1-PH2-v0.1.md:95 -> | GAP-PH2-019 | Chức năng dự phòng khi Lido lỗi | Khi Lido lỗi, điều phái không có quy trình backup 
+GAP-ANALYSIS-PH1-PH2-v0.1.md:97 -> | GAP-PH2-021 | Sửa thông số OFP trước khi đẩy MO Plus | Sửa thủ công trên file gốc `[Cần xác nhận A
+GAP-ANALYSIS-PH1-PH2-v0.1.md:99 -> | GAP-PH2-023 | Cảnh báo lệch ATC FPL vs điện ATC đã filed | Không có đối soát tự động | TOSS sinh c
+GAP-ANALYSIS-PH1-PH2-v0.1.md:100 -> | GAP-PH2-024 | Cảnh báo phiên bản OFP mới khác bản cũ ở các trường then chốt | Không có đối soát ph
+GAP-ANALYSIS-PH1-PH2-v0.1.md:101 -> | GAP-PH2-025 | Số hóa và lưu EOFP (OFP thực tế sau chuyến) | Không có số hóa EOFP tập trung | TOSS 
+GAP-ANALYSIS-PH1-PH2-v0.1.md:102 -> | GAP-PH2-026 | Số hóa và lưu trường ATC FPL | Không có lưu trữ số hóa ATC FPL | TOSS số hóa và lưu:
+GAP-ANALYSIS-PH1-PH2-v0.1.md:104 -> | GAP-PH2-028 | Số hóa và lưu EDTO Critical Point | Không có lưu trữ số hóa | TOSS số hóa và lưu EDT
+GAP-ANALYSIS-PH1-PH2-v0.1.md:105 -> | GAP-PH2-029 | Số hóa và lưu ACARS CDA | Không có lưu trữ số hóa ACARS CDA | TOSS số hóa và lưu ACA
+GAP-ANALYSIS-PH1-PH2-v0.1.md:106 -> | GAP-PH2-030 | Chức năng Attach file trực tiếp lên MO Plus | Không có thao tác riêng ngoài adapter 
+GAP-ANALYSIS-PH1-PH2-v0.1.md:107 -> | GAP-PH2-031 | Giám sát và cảnh báo luồng tự động Lido 4D | Không có giám sát luồng tự động | TOSS 
+GAP-ANALYSIS-PH1-PH2-v0.1.md:119 -> | Thay thế thủ công | 4 | GAP-PH1-001 (tổng hợp thông tin chuyến), GAP-PH1-003 (kiểm tra đầu ca), GA
+GAP-ANALYSIS-PH1-PH2-v0.1.md:132 -> | Tích hợp mới | 3 | GAP-PH2-001 (OFP/NOTAM/WX từ Lido), GAP-PH2-007 (LS/NOTOC từ PSS/DCS), GAP-PH2-
+GAP-ANALYSIS-PH1-PH2-v0.1.md:163 -> | GAP-PH2-013 | Dispatch Release số hóa | BR-213 | Cao |
+GAP-ANALYSIS-PH1-PH2-v0.1.md:164 -> | GAP-PH2-014 | Đồng bộ TOSS ↔ MO Plus | BR-214 | Cao |
+GAP-ANALYSIS-PH1-PH2-v0.1.md:165 -> | GAP-PH2-001 | Tự động đồng bộ OFP/NOTAM/WX | BR-201 | Cao |
+GAP-ANALYSIS-PH1-PH2-v0.1.md:175 -> | GAP-PH1-010 | Cảnh báo lệch tải OFP vs CLC | BR-120 | Cao |
+GAP-ANALYSIS-PH1-PH2-v0.1.md:189 -> | GAP-PH2-018 | Unrelease OFP | BR-218 | Cao |
+GAP-ANALYSIS-PH1-PH2-v0.1.md:190 -> | GAP-PH2-019 | Dự phòng khi Lido lỗi | BR-219 | Cao |
+GAP-ANALYSIS-PH1-PH2-v0.1.md:191 -> | GAP-PH2-021 | Sửa thông số OFP | BR-221 | Cao |
+GAP-ANALYSIS-PH1-PH2-v0.1.md:197 -> | GAP-PH2-025–029 | Số hóa EOFP, ATC FPL, RCL, EDTO, ACARS CDA | BR-225…229 | Thấp–Trung bình |
+GAP-ANALYSIS-PH1-PH2-v0.1.md:199 -> | GAP-PH2-009, 012, 015 | Truy vết xác nhận, chính sách lưu trữ, lịch sử làm lại OFP | BR-209, 212, 
+GAP-ANALYSIS-PH1-PH2-v0.1.md:207 -> | GA-01 | Phân tích As-Is dựa trên ASIS-OCC-DISPATCH-v0.1.md vốn được suy diễn từ tài liệu đề xuất k
+GAP-ANALYSIS-PH1-PH2-v0.1.md:208 -> | GA-02 | TOSS PH1 đóng vai trò "view + cảnh báo"; không thực hiện chức năng nghiệp vụ chuyên dụng c
+GAP-ANALYSIS-PH1-PH2-v0.1.md:209 -> | GA-03 | Các gap gắn cờ `[Cần xác nhận As-Is]` cần được xác nhận qua phỏng vấn Dispatcher/OCC trước
+GAP-ANALYSIS-PH1-PH2-v0.1.md:212 -> | GA-06 | Phương án triển khai sửa thông số OFP (PA1 vs PA2, GAP-PH2-021) cần quyết định sau phân tí
+GAP-ANALYSIS-PH1-PH2-v0.1.md:214 -> | GA-08 | Số liệu đo lường As-Is (thời gian soạn Dispatch Release, % OTP hiện tại…) chưa thu thập đư
+GAP-ANALYSIS-PH1-PH2-v0.1.md:218 -> *GAP-ANALYSIS-PH1-PH2 v0.1 — 2026-06-17. Nguồn: ASIS-OCC-DISPATCH-v0.1.md, BRD-TOSS-PH1 (BR-101…150)
+INDEX.md:7 -> | `TOBE-PH1-OCC-DISPATCH-v0.1.md` | ~200 | **To-Be PH1** — luồng Dispatcher/OCC, vòng đời cảnh báo, 
+INDEX.md:8 -> | `TOBE-PH2-tai-lieu-chuyen-bay-v0.1.md` | ~380 | **To-Be PH2** — Dispatch Release↔Captain's Release
+INDEX.md:10 -> | `TOBE-PH4-quan-ly-danh-muc-v0.1.md` | ~410 | **To-Be PH4** — Aircraft Master (đồng bộ Netline/FIMS
+RTM-template-v0.1.md:14 -> > **Cập nhật đồng bộ** mỗi khi SRS hoặc BRD thay đổi. Người duy trì: Senior BA được phân công.
+subsystem-interface-map-v0.1.md:12 -> > Mô tả các điểm giao tiếp (interface) giữa 7 phân hệ TOSS: dữ liệu chia sẻ, sự kiện trigger, và luồ
+subsystem-interface-map-v0.1.md:29 -> │  OCC/Dispatch   │       │  Crew Scheduling  │       │  Maintenance   │
+subsystem-interface-map-v0.1.md:78 -> | Cập nhật trạng thái MEL | MEL item status + dispatch conditions | 3.3 → 3.1 | Per change | Dispatc
+subsystem-interface-map-v0.1.md:122 -> | ACARS | Real-time data feed | 3.1 | ACARS protocol | Nhận vị trí và trạng thái chuyến bay |
+subsystem-interface-map-v0.1.md:123 -> | Flight Planning System | API pull | 3.1 | REST/SOAP | Nhận Flight Plan đã approved |
+subsystem-interface-map-v0.1.md:126 -> | CAAV Reporting Portal | API push | 3.5 | TBD | Báo cáo sự cố bắt buộc |
+subsystem-interface-map-v0.1.md:134 -> | IQ-01 | Giao thức tích hợp ACARS cụ thể? (ARINC 618, 619?) | 3.1 | SH-08 (Tech Lead) |
+subsystem-interface-map-v0.1.md:135 -> | IQ-02 | CAMO System là hệ thống nào? API có sẵn không? | 3.3 | SH-05 + SH-08 |
+subsystem-interface-map-v0.1.md:138 -> | IQ-05 | Real-time data từ ACARS có delay tối đa bao nhiêu? | 3.1 | SH-08 |
+survey-pipeline-status.md:25 -> | **19/06** | ✅ v0.1 | ✅ (Ops++ extracted + drawio + YCKT + đối chiếu BRD `DOI-CHIEU-KS-BRD-1719-202
+survey-pipeline-status.md:26 -> | **23/06** | ✅ v0.1 | ✅ (sheet "Thông tin tích hợp" v77 + đối chiếu phạm vi bảng OID v0.18) | — (đi
+survey-pipeline-status.md:35 -> - 🔴 **DEC-07 / Q3** — Adapter Lido giới hạn 20 ký tự tên crew (16 tên + 4 group code) → ảnh hưởng ma
+survey-pipeline-status.md:41 -> - 🔴 **DEC-16 / D-2** — Mâu thuẫn nguồn cấp MEL/CDL cho OPS++: KS 17/06 chốt TOSS là hub forward AMOS
+survey-pipeline-status.md:42 -> - **DEC-15 / D-1** — Phạm vi BR cho 11 GAP nghiêm trọng trong 24 luồng OPS++: BR atomic (BR-557…566)
+survey-pipeline-status.md:43 -> - **DEC-17 / D-3** — Phạm vi "TOSS xử lý dữ liệu nội bộ sau khi nhận từ OPS++" — VNA nói không thuộc
+survey-pipeline-status.md:44 -> - **DEC-18 / D-4** — Hạ BR-127 từ Could → Must (ATC FPL 5 thành phần).
+survey-pipeline-status.md:45 -> - **DEC-19 / D-5** — Khung 2 mức (75/60, 90/75) vs khung OFP 3 mức (210/75/60, 270/90/75) tại BR-163
+survey-pipeline-status.md:46 -> - **DEC-20 / D-6** — Năm cutover NetLine cũ → OPS++ (~03/2027 ước tính).
+survey-pipeline-status.md:63 -> | Mockup prototype | v0.6 (Flight Dispatch 26 cột) | — |
+survey-pipeline-status.md:72 -> 5. Yêu cầu VNA: bảng Excel hoàn chỉnh 24 luồng trước thứ ba 24/06 (KS-87) + định dạng LHS từng luồng
+TOBE-PH1-OCC-DISPATCH-v0.1.md:9 -> source_asis: "ba/workspace/drafts/phan-tich/04-quy-trinh/ASIS-OCC-DISPATCH-v0.1.md"
+TOBE-PH1-OCC-DISPATCH-v0.1.md:16 -> > **Nguyên tắc (CLAUDE.md §0):** Sơ đồ này chỉ mô tả những gì đã được ghi nhận trong các nguồn BRD-T
+TOBE-PH1-OCC-DISPATCH-v0.1.md:25 -> | Actor chính | Điều phái viên (Dispatcher), Trực ban OCC, Trực ban Trưởng |
+TOBE-PH1-OCC-DISPATCH-v0.1.md:26 -> | Ranh giới hệ thống | TOSS PH1 (view + cảnh báo); Lido/Netline/AMOS/MO Plus là hệ thống chuyên dụng
+TOBE-PH1-OCC-DISPATCH-v0.1.md:33 -> ## 2. Sơ đồ To-Be — Luồng chính Điều phái viên (Dispatcher)
+TOBE-PH1-OCC-DISPATCH-v0.1.md:43 -> C1 --> C2[[Thao tác nghiệp vụ tại\nhệ thống chuyên dụng\nLido / MO Plus / AMOS]]
