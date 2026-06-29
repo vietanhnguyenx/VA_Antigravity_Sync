@@ -1,0 +1,165 @@
+Row   1 | A=Mã jira | B=Module | C=Chức năng | D=Feature | E=Type | F=Priority | G=Function list
+Row   2 | A= | B=System Admin | C=User | D=Danh sách người dùng | E=New | F=1.0 | G=
+Row   3 | A= | B= | C=User | D=Job đồng bộ danh sách người dùng LDAP | E=New | F=1.0 | G=
+Row   4 | A= | B= | C=User | D=Kết xuất danh sách | E=New | F=1.0 | G=
+Row   5 | A= | B= | C=User | D=Thêm người dùng Local | E=New | F=1.0 | G=
+Row   6 | A= | B= | C=User | D=Thêm người dùng LDap | E=New | F=1.0 | G=
+Row   7 | A= | B= | C=User | D=Xem chi tiết thông tin người dùng | E=New | F=1.0 | G=
+Row   8 | A= | B= | C=User | D=Xem chi tiết phân quyền người dùng | E=New | F=1.0 | G=
+Row   9 | A= | B= | C=User | D=Sửa người dùng LDap | E=New | F=1.0 | G=
+Row  10 | A= | B= | C=User | D=Sửa người dùng Local | E=New | F=1.0 | G=
+Row  11 | A= | B= | C=User | D=Thêm role cho người dùng | E=New | F=1.0 | G=
+Row  12 | A= | B= | C=User | D=Bật/tắt trạng thái người dùng | E=New | F=1.0 | G=
+Row  13 | A= | B= | C=User | D=Xóa người dùng | E=New | F=1.0 | G=
+Row  14 | A= | B= | C=User | D=Lấy lại mật khẩu người dùng Local | E=New | F=1.0 | G=
+Row  15 | A= | B= | C=User | D=Xem Lịch sử cập nhật người dùng (Update) | E=New | F=1.0 | G=
+Row  16 | A= | B= | C=User | D=Xem Lịch sử truy cập người dùng (Access) | E=New | F=1.0 | G=
+Row  17 | A= | B= | C=User | D=Phân quyền | E=New | F=1.0 | G=
+Row  18 | A= | B=System Admin | C=Roles | D=Danh sách vai trò | E=New | F=1.0 | G=
+Row  19 | A= | B= | C=Roles | D=Thêm vai trò | E=New | F=1.0 | G=
+Row  20 | A= | B= | C=Roles | D=Thêm quyền chức năng cho vai trò | E=New | F=1.0 | G=
+Row  21 | A= | B= | C=Roles | D=Xem vai trò | E=New | F=1.0 | G=
+Row  22 | A= | B= | C=Roles | D=Xem vai trò/ Tab user list | E=New | F=1.0 | G=
+Row  23 | A= | B= | C=Roles | D=Sửa vai trò | E=New | F=1.0 | G=
+Row  24 | A= | B= | C=Roles | D=Xóa vai trò | E=New | F=1.0 | G=
+Row  25 | A= | B= | C=Roles | D=Khôi phục vai trò | E=New | F=1.0 | G=
+Row  26 | A= | B= | C=Roles | D=Bật/tắt hoạt động vai trò | E=New | F=1.0 | G=
+Row  27 | A= | B= | C=Roles | D=Phân quyền | E=New | F=1.0 | G=
+Row  28 | A= | B=System Admin | C=User Group | D=Danh sách nhóm người dùng | E=New | F=1.0 | G=
+Row  29 | A= | B= | C=User Group | D=Thêm mới nhóm người dùng | E=New | F=1.0 | G=
+Row  30 | A= | B= | C=User Group | D=Thêm mới quyền cho nhóm người dùng | E=New | F=1.0 | G=
+Row  31 | A= | B= | C=User Group | D=Hiển thị danh sách quyền | E=New | F=1.0 | G=
+Row  32 | A= | B= | C=User Group | D=Sửa nhóm người dùng | E=New | F=1.0 | G=
+Row  33 | A= | B= | C=User Group | D=Hiển thị danh sách quyền hệ thống | E=New | F=1.0 | G=
+Row  34 | A= | B= | C=User Group | D=Xóa nhóm người dùng | E=New | F=1.0 | G=
+Row  35 | A= | B= | C=User Group | D=Xem chi tiết nhóm người dùng | E=New | F=1.0 | G=
+Row  36 | A= | B= | C=User Group | D=Xem chi tiết danh sách người dùng cho nhóm người dùng | E=New | F=1.0 | G=
+Row  37 | A= | B= | C=User Group | D=Xem chi tiết quyền của nhóm người dùng | E=New | F=1.0 | G=
+Row  38 | A= | B= | C=User Group | D=Kết xuất danh sách | E=New | F=1.0 | G=
+Row  39 | A= | B= | C=User Group | D=Xem lịch sử cập nhật nhóm người dùng | E=New | F=1.0 | G=
+Row  40 | A= | B= | C=User Group | D=Phân quyền | E=New | F=1.0 | G=
+Row  41 | A= | B=Data Maintenance | C=Country Category | D=Xem danh sách quốc gia | E=New | F= | G=
+Row  42 | A= | B= | C=Country Category | D=Xem chi tiết quốc gia | E=New | F= | G=
+Row  43 | A= | B= | C=Country Category | D=Tìm kiếm quốc gia | E=New | F= | G=
+Row  44 | A= | B= | C=Country Category | D=Tạo mới quốc gia | E=New | F= | G=
+Row  45 | A= | B= | C=Country Category | D=Cập nhật quốc gia | E=New | F= | G=
+Row  46 | A= | B= | C=Country Category | D=Xóa  quốc gia | E=New | F= | G=
+Row  47 | A= | B= | C=Country Category | D=Kết xuất  quốc gia | E=New | F= | G=
+Row  48 | A= | B= | C=Country Category | D=Phân quyền | E=New | F= | G=
+Row  49 | A= | B= | C=FIR Category | D=Danh sách FIR | E=New | F= | G=
+Row  50 | A= | B= | C=FIR Category | D=Tìm kiếm FIR | E=New | F= | G=
+Row  51 | A= | B= | C=FIR Category | D=Kết xuất FIR | E=New | F= | G=
+Row  52 | A= | B= | C=FIR Category | D=Thêm mới FIR | E=New | F= | G=
+Row  53 | A= | B= | C=FIR Category | D=Sửa FIR | E=New | F= | G=
+Row  54 | A= | B= | C=FIR Category | D=Xóa FIR | E=New | F= | G=
+Row  55 | A= | B= | C=FIR Category | D=Xem chi tiết FIR | E=New | F= | G=
+Row  56 | A= | B= | C=FIR Category | D=Phân quyền | E=New | F= | G=
+Row  57 | A= | B=Data Maintenance | C=Carrier | D=Danh sách carrier | E=New | F= | G=
+Row  58 | A= | B= | C=Carrier | D=Tìm kiếm carrier | E=New | F= | G=
+Row  59 | A= | B= | C=Carrier | D=Thêm mới carrier | E=New | F= | G=
+Row  60 | A= | B= | C=Carrier | D=Sửa carrier | E=New | F= | G=
+Row  61 | A= | B= | C=Carrier | D=Xóa carrier | E=New | F= | G=
+Row  62 | A= | B= | C=Carrier | D=Xem chi tiết carrier | E=New | F= | G=
+Row  63 | A= | B= | C=Carrier | D=Xem lịch sử | E=New | F= | G=
+Row  64 | A= | B= | C=Carrier | D=Phân quyền  | E=New | F= | G=
+Row  65 | A= | B=Data Maintenance | C=Pilot Category | D=Danh sách phi công | E=New | F= | G=
+Row  66 | A= | B= | C=Pilot Category | D=Xuất danh sách phi công | E=New | F= | G=
+Row  67 | A= | B= | C=Pilot Category | D=Xem chi tiết phi công | E=New | F= | G=
+Row  68 | A= | B= | C=Pilot Category | D=Sửa thông tin phi công | E=New | F= | G=
+Row  69 | A= | B= | C=Pilot Category | D=API Đồng bộ danh sách phi công AVES | E=New | F= | G=
+Row  70 | A= | B= | C=Pilot Category | D=API Đồng bộ thông tin phi công AVES | E=New | F= | G=
+Row  71 | A= | B= | C=Pilot Category | D=API lịch bay phi công | E=New | F= | G=
+Row  72 | A= | B= | C=Pilot Category | D=API Kiểm tra trạng thái đồng bộ dữ liệu AVES | E=New | F= | G=
+Row  73 | A= | B= | C=Pilot Category | D=API Tra cứu lịch sử đồng bộ dữ liệu AVES | E=New | F= | G=
+Row  74 | A= | B= | C=Pilot Category | D=Xem thông tin Flight Itineraries phi công | E=New | F= | G=
+Row  75 | A= | B= | C=Pilot Category | D=Xem lịch sử phi công | E=New | F= | G=
+Row  76 | A= | B= | C=Pilot Category | D=Phân quyền  | E=New | F= | G=
+Row  77 | A= | B=Data Maintenance | C=Cabin crew Category | D=chưa có history | E=New | F= | G=
+Row  78 | A= | B= | C=Cabin crew Category | D=Danh sách tiếp viên | E=New | F= | G=
+Row  79 | A= | B= | C=Cabin crew Category | D=Xuất danh sách tiếp viên | E=New | F= | G=
+Row  80 | A= | B= | C=Cabin crew Category | D=Tìm kiếm tiếp viên | E=New | F= | G=
+Row  81 | A= | B= | C=Cabin crew Category | D=Xem chi tiết tiếp viên | E=New | F= | G=
+Row  82 | A= | B= | C=Cabin crew Category | D=Sửa thông tin tiếp viên | E=New | F= | G=
+Row  83 | A= | B= | C=Cabin crew Category | D=API Đồng bộ danh sách TV AVES | E=New | F= | G=
+Row  84 | A= | B= | C=Cabin crew Category | D=API Đồng bộ thông tin TV AVES | E=New | F= | G=
+Row  85 | A= | B= | C=Cabin crew Category | D=API lịch bay TV  | E=New | F= | G=
+Row  86 | A= | B= | C=Cabin crew Category | D=API Kiểm tra trạng thái đồng bộ dữ liệu AVES | E=New | F= | G=
+Row  87 | A= | B= | C=Cabin crew Category | D=API Tra cứu lịch sử đồng bộ dữ liệu AVES | E=New | F= | G=
+Row  88 | A= | B= | C=Cabin crew Category | D=Xem thông tin Flight Itineraries tiếp viên | E=New | F= | G=
+Row  89 | A= | B= | C=Cabin crew Category | D=Xem lịch sử tiếp viên | E=New | F= | G=
+Row  90 | A= | B= | C=Cabin crew Category | D=Phân quyền  | E=New | F= | G=
+Row  91 | A= | B=Data Maintenance | C=ULD Category(Type) | D=Xem danh sách loại ULD | E=New | F= | G=
+Row  92 | A= | B= | C=ULD Category(Type) | D=Thêm mới loại ULD | E=New | F= | G=
+Row  93 | A= | B= | C=ULD Category(Type) | D=Sửa loại ULD | E=New | F= | G=
+Row  94 | A= | B= | C=ULD Category(Type) | D=Xem chi tiết loại ULD | E=New | F= | G=
+Row  95 | A= | B= | C=ULD Category(Type) | D=Tìm kiếm loại ULD | E=New | F= | G=
+Row  96 | A= | B= | C=ULD Category(Type) | D=Kết xuất loại ULD | E=New | F= | G=
+Row  97 | A= | B= | C=ULD Category(Type) | D=Xoá loại ULD | E=New | F= | G=
+Row  98 | A= | B= | C=ULD Category(Type) | D=Phân quyền | E=New | F= | G=
+Row  99 | A= | B=Data Maintenance | C=ULD | D=Xem danh sách ULD | E=New | F= | G=
+Row 100 | A= | B= | C=ULD | D=Thêm mới ULD | E=New | F= | G=
+Row 101 | A= | B= | C=ULD | D=Sửa ULD | E=New | F= | G=
+Row 102 | A= | B= | C=ULD | D=Xem chi tiết  ULD | E=New | F= | G=
+Row 103 | A= | B= | C=ULD | D=Tìm kiếm ULD | E=New | F= | G=
+Row 104 | A= | B= | C=ULD | D=Kết xuất | E=New | F= | G=
+Row 105 | A= | B= | C=ULD | D=Xoá ULD | E=New | F= | G=
+Row 106 | A= | B= | C=ULD | D=Phân quyền | E=New | F= | G=
+Row 107 | A= | B=Data Maintenance | C=Flight routes | D=Xem danh sách | E=New | F= | G=
+Row 108 | A= | B= | C=Flight routes | D=Tìm kiếm | E=New | F= | G=
+Row 109 | A= | B= | C=Flight routes | D=Thêm mới | E=New | F= | G=
+Row 110 | A= | B= | C=Flight routes | D=Sửa | E=New | F= | G=
+Row 111 | A= | B= | C=Flight routes | D=Xóa | E=New | F= | G=
+Row 112 | A= | B= | C=Flight routes | D=Phân quyền | E=New | F= | G=
+Row 113 | A= | B=Data Maintenance | C=AC Subtype | D=Xem danh sách | E=New | F= | G=
+Row 114 | A= | B= | C=AC Subtype | D=Tìm kiếm | E=New | F= | G=
+Row 115 | A= | B= | C=AC Subtype | D=Thêm mới | E=New | F= | G=
+Row 116 | A= | B= | C=AC Subtype | D=Sửa | E=New | F= | G=
+Row 117 | A= | B= | C=AC Subtype | D=Xóa | E=New | F= | G=
+Row 118 | A= | B= | C=AC Subtype | D=Export | E=New | F= | G=
+Row 119 | A= | B= | C=AC Subtype | D=Phân quyền | E=New | F= | G=
+Row 120 | A= | B=Data Maintenance | C=Flight Fleet | D=Danh sách | E=New | F= | G=
+Row 121 | A= | B= | C=Flight Fleet | D=Thêm đội bay | E=New | F= | G=
+Row 122 | A= | B= | C=Flight Fleet | D=Sửa đội bay | E=New | F= | G=
+Row 123 | A= | B= | C=Flight Fleet | D=Xóa đội bay | E=New | F= | G=
+Row 124 | A= | B= | C=Flight Fleet | D=Xem chi tiết đội bay | E=New | F= | G=
+Row 125 | A= | B= | C=Flight Fleet | D=Xem lich sử đội bay | E=New | F= | G=
+Row 126 | A= | B= | C=Flight Fleet | D=Thêm tàu bay | E=New | F= | G=
+Row 127 | A= | B= | C=Flight Fleet | D=Xóa tàu bay | E=New | F= | G=
+Row 128 | A= | B=Login | C=Login | D=Chọn ngôn ngữ | E=New | F= | G=
+Row 129 | A= | B= | C=Login | D=Thông tin user đăng nhập | E=New | F= | G=
+Row 130 | A= | B= | C=Login | D=View Thông tin user | E=New | F= | G=
+Row 131 | A= | B= | C=Login | D=Logout | E=New | F= | G=
+Row 132 | A= | B= | C=Login | D=Thay đổi pass | E=New | F= | G=
+Row 133 | A= | B= | C=Login | D=Background hệ thống "FIMS" | E=New | F= | G=
+Row 134 | A= | B= | C=Login | D=Chọn luồng đăng nhập | E=New | F= | G=
+Row 135 | A= | B= | C=Login | D=Chỉ nhập Local User (username/pass) | E=New | F= | G=
+Row 136 | A= | B= | C=Login | D=Đăng nhập tk LDAP | E=New | F= | G=
+Row 137 | A= | B= | C=Login | D=Đăng nhập tk VIAGS | E=New | F= | G=
+Row 138 | A= | B= | C=Login | D=Đăng nhập tk Vasco | E=New | F= | G=
+Row 139 | A= | B= | C=Login | D=Ghi log đăng nhập thành công/thất bại | E=New | F= | G=
+Row 140 | A= | B= | C=Login | D=Xử lý mã hóa, token, session | E=New | F= | G=
+Row 141 | A= | B= | C=Login | D=Xử lý captcha  khi nhập sai MK quá 5 lần | E=New | F= | G=
+Row 142 | A= | B= | C=Login | D=Xử lý khóa tài khoản tạm thời khi sai pass quá 10 lần | E=New | F= | G=
+Row 143 | A= | B= | C=Login | D=Xử lý "Ghi nhớ đăng nhập" (mã hóa & lưu token dài hạn, an toàn) | E=New | F= | G=
+Row 144 | A= | B= | C=Login | D=Quên thông tin đăng nhập | E=New | F= | G=
+Row 145 | A= | B=Home | C=Chọn phân hệ | D=Chọn phân hệ Systerm Admin | E=New | F= | G=
+Row 146 | A= | B= | C= | D=Chọn phân hệ Data Maintenance | E=New | F= | G=
+Row 147 | A= | B= | C= | D=Chọn phân hệ Data Source Monitoring | E=New | F= | G=
+Row 148 | A= | B= | C= | D=Chọn phân hệ TOSS | E=New | F= | G=
+Row 149 | A= | B=Data Maintenance | C=Quản lý tàu bay | D=Xem danh sách tàu bay | E=New | F= | G=
+Row 150 | A= | B= | C=Quản lý tàu bay | D=Xem chi tiết tàu bay | E=New | F= | G=
+Row 151 | A= | B= | C=Quản lý tàu bay | D=Tìm kiếm tàu bay | E=New | F= | G=
+Row 152 | A= | B= | C=Quản lý tàu bay | D=Làm mới danh sách tàu bay | E=New | F= | G=
+Row 153 | A= | B= | C=Quản lý tàu bay | D=Xuất danh sách tàu bay | E=New | F= | G=
+Row 154 | A= | B= | C=Quản lý tàu bay | D=Chỉnh sửa tab General Information | E=New | F= | G=
+Row 155 | A= | B= | C=Quản lý tàu bay | D=Chỉnh sửa Technical Parameters -  tab Aircraft Configuration | E=New | F= | G=
+Row 156 | A= | B= | C=Quản lý tàu bay | D=Chỉnh sửa Cabin Configuration -  tab Aircraft Configuration | E=New | F= | G=
+Row 157 | A= | B= | C=Quản lý tàu bay | D=Chỉnh sửa ACARS Fuel Limit & Fuel Multiplier -  tab Aircraft Configuration | E=New | F= | G=
+Row 158 | A= | B= | C=Quản lý tàu bay | D=Thêm mới  ACARS Fuel Limit & Fuel Multiplier -  tab Aircraft Configuration | E=New | F= | G=
+Row 159 | A= | B= | C=Quản lý tàu bay | D=Xóa ACARS Fuel Limit & Fuel Multiplier -  tab Aircraft Configuration | E=New | F= | G=
+Row 160 | A= | B= | C=Quản lý tàu bay | D=Chỉnh sửa tab Group Attributes | E=New | F= | G=
+Row 161 | A= | B= | C=Quản lý tàu bay | D=Xem lịch sử thay đổi  | E=New | F= | G=
+Row 162 | A= | B= | C=Quản lý tàu bay | D=Tìm kiếm lịch sử thay đổi | E=New | F= | G=
+Row 163 | A= | B= | C=Quản lý tàu bay | D=Xuất danh sách lịch sử thay đổi | E=New | F= | G=
+Row 164 | A= | B= | C=Quản lý tàu bay | D=API đồng bộ danh sách tàu bay từ Netline ops++ | E=New | F= | G=
+Row 165 | A= | B= | C=Quản lý tàu bay | D=Phân quyền | E=New | F= | G=
