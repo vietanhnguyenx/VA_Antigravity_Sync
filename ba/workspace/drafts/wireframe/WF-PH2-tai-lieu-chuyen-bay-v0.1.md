@@ -5,15 +5,15 @@ version: "0.1"
 date: "2026-06-17"
 status: "Draft"
 document_type: "Wireframe"
-parent_brd: "BRD-TOSS-PH2-tai-lieu-chuyen-bay-v0.6.md"
-parent_phanra: "PHAN-RA-BRD-PH2-quan-ly-tai-lieu-chuyen-bay-v0.4.md"
+parent_brd: "BRD-TOSS-PH2-tai-lieu-chuyen-bay-v0.7.md"
+parent_phanra: "PHAN-RA-BRD-PH2-quan-ly-tai-lieu-chuyen-bay-v0.5.md"
 ---
 
 # Wireframe low-fidelity — Phân hệ 2: Quản lý tài liệu chuyến bay (v0.1)
 
 > **Nguồn cha:**
-> - BRD: `BRD-TOSS-PH2-tai-lieu-chuyen-bay-v0.6.md` (BR-201…BR-261, 6 khối A–F).
-> - Phân rã FUNC: `PHAN-RA-BRD-PH2-quan-ly-tai-lieu-chuyen-bay-v0.4.md` (FUNC-201…FUNC-347).
+> - BRD: `BRD-TOSS-PH2-tai-lieu-chuyen-bay-v0.7.md` (BR-201…BR-261, 6 khối A–F).
+> - Phân rã FUNC: `PHAN-RA-BRD-PH2-quan-ly-tai-lieu-chuyen-bay-v0.5.md` (FUNC-201…FUNC-347).
 >
 > **Nguyên tắc (CLAUDE.md §0 + Workflow P4):**
 > - Chỉ vẽ wireframe các màn hình có nguồn BR/FUNC rõ ràng; không tự bịa thêm màn hình hay tính năng.
