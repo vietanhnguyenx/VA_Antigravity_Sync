@@ -1,0 +1,1184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Plans - DSP</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --bg-base:      #0B0E1A;
+            --bg-sidebar:   #0E1220;
+            --bg-surface:   #121728;
+            --bg-elevated:  #1A2035;
+            --bg-hover:     #151C30;
+
+            --text-primary:  #E2E8F8;
+            --text-secondary:#8892B0;
+            --text-muted:    #4A5370;
+
+            --cyan:        #06D4FF;
+            --cyan-dim:    rgba(6, 212, 255, 0.12);
+            --cyan-border: rgba(6, 212, 255, 0.28);
+
+            --green:       #1DD68C;
+            --green-dim:   rgba(29, 214, 140, 0.18);
+
+            --orange:      #F59E0B;
+            --orange-dim:  rgba(245, 158, 11, 0.18);
+
+            --red:         #FF4757;
+            --red-dim:     rgba(255, 71, 87, 0.14);
+
+            --blue:        #3B9EFF;
+            --blue-dim:    rgba(59, 158, 255, 0.16);
+
+            --border:       #1C2236;
+            --border-light: #232C44;
+
+            --gold:         #C9A84C;
+
+            --r-sm: 4px;
+            --r-md: 6px;
+            --r-lg: 10px;
+            --r-xl: 14px;
+            --r-full: 9999px;
+        }
+
+        html, body {
+            height: 100%;
+            overflow: hidden;
+            font-family: 'Segoe UI', -apple-system, system-ui, sans-serif;
+            background: var(--bg-base);
+            color: var(--text-primary);
+            font-size: 13px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ========= CUSTOM SCROLLBAR (theme-matched) ========= */
+        /* Firefox */
+        * {
+            scrollbar-width: thin;
+            scrollbar-color: #2A3450 transparent;
+        }
+        /* WebKit / Chromium / Edge */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+            background: transparent;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2A3450;
+            border-radius: 8px;
+            border: 2px solid transparent;
+            background-clip: padding-box;
+            transition: background .15s;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(6, 212, 255, 0.45);
+            background-clip: padding-box;
+            border: 2px solid transparent;
+        }
+        ::-webkit-scrollbar-thumb:active {
+            background: var(--cyan);
+            background-clip: padding-box;
+            border: 2px solid transparent;
+        }
+        ::-webkit-scrollbar-corner { background: transparent; }
+        /* Bigger area in table because it has both axes */
+        .table-wrap::-webkit-scrollbar { width: 10px; height: 10px; }
+        .table-wrap::-webkit-scrollbar-thumb {
+            background: #2A3450;
+            border: 3px solid transparent;
+            background-clip: padding-box;
+        }
+        .table-wrap::-webkit-scrollbar-thumb:hover {
+            background: rgba(6, 212, 255, 0.4);
+            background-clip: padding-box;
+        }
+
+        /* ========= APP SHELL ========= */
+        .app { display: flex; height: 100vh; width: 100vw; overflow: hidden; }
+
+        /* ========= SIDEBAR ========= */
+        .sidebar {
+            width: 210px; min-width: 210px;
+            background: var(--bg-sidebar);
+            border-right: 1px solid var(--border);
+            display: flex; flex-direction: column;
+            transition: width .22s ease, min-width .22s ease;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        .sidebar.collapsed { width: 48px; min-width: 48px; cursor: pointer; }
+        .sidebar.collapsed * { pointer-events: none; }
+
+        /* Logo */
+        .sidebar-logo {
+            display: flex; align-items: center; gap: 10px;
+            padding: 13px 12px;
+            border-bottom: 1px solid var(--border);
+            min-height: 56px; white-space: nowrap;
+        }
+        .sidebar.collapsed .sidebar-logo { justify-content: center; padding: 13px 0; }
+        .logo-lotus { flex-shrink: 0; width: 30px; height: 30px; }
+        .logo-texts { display: flex; flex-direction: column; gap: 1px; }
+        .logo-name { font-size: 10px; font-weight: 800; color: var(--text-primary); letter-spacing: .06em; text-transform: uppercase; }
+        .logo-sub  { font-size: 9px;  font-weight: 500; color: var(--text-muted); letter-spacing: .04em; }
+        .sidebar.collapsed .logo-texts { display: none; }
+
+        /* Nav */
+        .sidebar-nav { flex: 1; padding: 8px 0; overflow-y: auto; }
+        .nav-item {
+            display: flex; align-items: center; gap: 10px;
+            padding: 9px 14px; cursor: pointer; white-space: nowrap;
+            color: var(--text-secondary); border: none; background: none;
+            width: 100%; text-align: left;
+            border-left: 2px solid transparent;
+            transition: all .16s ease;
+        }
+        .nav-item:hover { background: var(--bg-elevated); color: var(--text-primary); }
+        .nav-item.active {
+            background: rgba(6, 212, 255, .13);
+            color: var(--cyan);
+            border-left-color: transparent;
+            border-radius: 8px;
+            margin: 0 8px;
+            width: calc(100% - 16px);
+        }
+        .sidebar.collapsed .nav-item.active {
+            background: none; margin: 0; width: 100%; border-radius: 0;
+        }
+        .sidebar.collapsed .nav-item.active .nav-icon {
+            background: rgba(6, 212, 255, .15); border-radius: 8px;
+        }
+        .nav-icon { width: 18px; height: 18px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+        .nav-label { font-size: 12px; font-weight: 500; }
+        .sidebar.collapsed .nav-label { display: none; }
+        .sidebar.collapsed .nav-item { justify-content: center; padding: 10px 0; }
+
+        /* ========= SIDEBAR BOTTOM ========= */
+        .sb-bottom {
+            border-top: 1px solid var(--border);
+            padding: 8px 0 6px;
+            flex-shrink: 0;
+        }
+
+        /* "< Hide" pill button — expanded only */
+        .sb-hide-wrap { padding: 4px 12px 8px; }
+        .sidebar.collapsed .sb-hide-wrap { display: none; }
+        .sb-hide-pill {
+            display: flex; align-items: center; justify-content: center; gap: 6px;
+            width: 100%; height: 30px;
+            background: none;
+            border: 1px solid var(--border-light);
+            border-radius: var(--r-full);
+            color: var(--text-secondary); font-size: 11px; font-weight: 500;
+            cursor: pointer; white-space: nowrap;
+            transition: all .15s;
+        }
+        .sb-hide-pill:hover { color: var(--text-primary); border-color: var(--cyan-border); }
+
+        /* Icon row: gear + moon */
+        .sb-icons {
+            display: flex; align-items: center;
+            padding: 2px 14px; gap: 4px;
+        }
+        .sidebar.collapsed .sb-icons {
+            flex-direction: column;
+            padding: 4px 0; align-items: center; gap: 2px;
+        }
+
+        /* User row */
+        .sb-user {
+            display: flex; align-items: center;
+            padding: 4px 10px 2px; gap: 6px;
+        }
+        .sidebar.collapsed .sb-user {
+            flex-direction: column; padding: 4px 0 2px; align-items: center; gap: 4px;
+        }
+        .sb-avatar-wrap {
+            display: flex; align-items: center; gap: 8px;
+            flex: 1; min-width: 0;
+        }
+        .sidebar.collapsed .sb-avatar-wrap { flex: none; }
+
+        /* Avatar with online dot */
+        .sb-avatar-container { position: relative; flex-shrink: 0; }
+        .sb-avatar {
+            width: 28px; height: 28px; border-radius: 50%;
+            background: linear-gradient(135deg, var(--cyan) 0%, #0055CC 100%);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 11px; font-weight: 800; color: #fff;
+        }
+        .sb-online-dot {
+            position: absolute; bottom: -1px; right: -1px;
+            width: 8px; height: 8px; border-radius: 50%;
+            background: var(--green);
+            border: 1.5px solid var(--bg-sidebar);
+        }
+        .sb-user-detail { min-width: 0; flex: 1; }
+        .sb-user-name  { font-size: 11px; font-weight: 600; color: var(--text-primary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .sb-user-email { font-size: 9px; color: var(--text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .sidebar.collapsed .sb-user-detail { display: none; }
+
+        /* Shared icon button */
+        .sb-icon-btn {
+            width: 28px; height: 28px;
+            display: flex; align-items: center; justify-content: center;
+            background: none; border: none; cursor: pointer;
+            color: var(--text-muted); border-radius: var(--r-md);
+            flex-shrink: 0; transition: all .15s;
+        }
+        .sb-icon-btn:hover { color: var(--text-primary); background: var(--bg-elevated); }
+
+        /* ">>" expand button — collapsed only */
+        .sb-expand-btn {
+            display: none;
+            width: 100%; padding: 5px 0 2px;
+            background: none; border: none; cursor: pointer;
+            color: var(--text-muted);
+            align-items: center; justify-content: center;
+            transition: color .15s;
+        }
+        .sb-expand-btn:hover { color: var(--text-primary); }
+        .sidebar.collapsed .sb-expand-btn { display: flex; }
+
+        /* ========= MAIN ========= */
+        .main { flex: 1; min-width: 0; display: flex; flex-direction: column; overflow: hidden; }
+
+        /* ========= TOPBAR ========= */
+        .topbar {
+            display: flex; align-items: center;
+            padding: 0 20px; gap: 16px;
+            background: var(--bg-sidebar);
+            border-bottom: 1px solid var(--border);
+            height: 52px; flex-shrink: 0;
+        }
+        .topbar-title {
+            font-size: 16px; font-weight: 700;
+            color: var(--cyan); letter-spacing: .07em; text-transform: uppercase;
+        }
+        .topbar-right { margin-left: auto; display: flex; align-items: center; gap: 10px; }
+        .op-date { font-size: 11px; color: var(--text-secondary); }
+        .op-date b { color: var(--text-primary); font-weight: 600; }
+        .op-time { font-size: 12px; font-weight: 700; color: var(--cyan); font-variant-numeric: tabular-nums; }
+
+        /* ========= FILTER BAR ========= */
+        .filter-bar {
+            background: var(--bg-base);
+            border-bottom: 1px solid var(--border);
+            flex-shrink: 0;
+        }
+
+        /* Always-visible top strip: icon + label + Table Setting + chevron */
+        .filter-strip {
+            display: flex; align-items: center; gap: 8px;
+            padding: 0 20px; height: 38px;
+        }
+        .filter-strip-right { margin-left: auto; display: flex; align-items: center; gap: 6px; }
+
+        /* Collapsible inputs area */
+        .filter-inputs {
+            overflow: hidden;
+            max-height: 52px;        /* tall enough for one row of inputs */
+            opacity: 1;
+            transition: max-height .22s ease, opacity .18s ease, padding .22s ease;
+        }
+        .filter-inputs.collapsed {
+            max-height: 0;
+            opacity: 0;
+        }
+        .filter-inputs-row {
+            display: flex; align-items: center; flex-wrap: wrap;
+            gap: 6px; padding: 0 20px 8px;
+        }
+
+        .fi { color: var(--text-muted); display: flex; align-items: center; flex-shrink: 0; }
+        .filter-lbl { font-size: 12px; font-weight: 600; color: var(--text-secondary); flex-shrink: 0; }
+
+        .f-input, .f-select {
+            height: 30px;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-light);
+            border-radius: var(--r-md);
+            color: var(--text-primary);
+            font-size: 11px; font-family: inherit;
+            padding: 0 8px; outline: none;
+            transition: border-color .15s;
+        }
+        .f-input { width: 100px; }
+        .f-input:focus, .f-select:focus, .f-input:hover, .f-select:hover { border-color: var(--cyan-border); }
+        .f-select { padding-right: 20px; cursor: pointer; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' fill='none' stroke='%236B7494' stroke-width='1.5'%3E%3Cpath d='M1 1l4 4 4-4'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 6px center; }
+        .f-select option { background: #1A2035; }
+        .f-date { width: 118px; }
+        .f-date::-webkit-calendar-picker-indicator { filter: invert(.4); cursor: pointer; }
+
+        /* Revision toggle */
+        .rev-toggle {
+            display: flex; height: 30px;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-light);
+            border-radius: var(--r-md);
+            overflow: hidden; flex-shrink: 0;
+        }
+        .rev-btn {
+            padding: 0 11px; font-size: 11px; font-weight: 500;
+            cursor: pointer; border: none; background: none;
+            color: var(--text-muted); white-space: nowrap;
+            transition: all .15s;
+        }
+        .rev-btn.active { background: var(--cyan); color: #0B0E1A; font-weight: 700; }
+
+        /* Action buttons */
+        .btn-search {
+            display: flex; align-items: center; gap: 5px;
+            height: 30px; padding: 0 14px;
+            background: var(--cyan); border: none;
+            border-radius: var(--r-md);
+            color: #0B0E1A; font-size: 11px; font-weight: 700;
+            cursor: pointer; white-space: nowrap; flex-shrink: 0;
+            transition: opacity .15s;
+        }
+        .btn-search:hover { opacity: .85; }
+
+        .btn-clear {
+            display: flex; align-items: center; gap: 4px;
+            height: 30px; padding: 0 8px;
+            background: none; border: none;
+            color: var(--text-secondary); font-size: 11px; font-weight: 500;
+            cursor: pointer; white-space: nowrap; flex-shrink: 0;
+            transition: color .15s;
+        }
+        .btn-clear:hover { color: var(--text-primary); }
+
+        .btn-tbl-setting {
+            display: flex; align-items: center; gap: 6px;
+            height: 30px; padding: 0 12px;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-light);
+            border-radius: var(--r-md);
+            color: var(--text-secondary); font-size: 11px; font-weight: 500;
+            cursor: pointer; white-space: nowrap; flex-shrink: 0;
+            margin-left: auto;
+            transition: all .15s;
+        }
+        .btn-tbl-setting:hover { color: var(--text-primary); border-color: var(--cyan-border); }
+
+        .collapse-btn {
+            width: 24px; height: 24px;
+            display: flex; align-items: center; justify-content: center;
+            background: none; border: none;
+            color: var(--text-muted); cursor: pointer;
+            flex-shrink: 0; transition: color .15s;
+        }
+        .collapse-btn:hover { color: var(--text-primary); }
+        .collapse-btn svg { transition: transform .2s; }
+        .collapse-btn.flipped svg { transform: rotate(180deg); }
+
+        /* ========= TABLE ========= */
+        .table-wrap { flex: 1; overflow: auto; position: relative; }
+
+        table { width: max-content; min-width: 100%; border-collapse: collapse; white-space: nowrap; }
+
+        /* Group header row (top) */
+        thead .group-row th {
+            background: #0D1020;
+            color: var(--text-muted);
+            font-size: 9px; font-weight: 700;
+            letter-spacing: .1em; text-transform: uppercase;
+            padding: 4px 10px; text-align: center;
+            position: sticky; top: 0; z-index: 9;
+            border-bottom: 1px solid var(--border);
+        }
+        thead .group-row th:first-child { text-align: left; padding-left: 14px; }
+
+        /* Column header row */
+        thead .col-row th {
+            background: var(--bg-sidebar);
+            color: var(--text-muted);
+            font-size: 10px; font-weight: 600;
+            letter-spacing: .04em; text-transform: uppercase;
+            padding: 7px 10px; text-align: center;
+            position: sticky; /* top set by JS */ z-index: 10;
+            border-bottom: 1px solid var(--border);
+            user-select: none; cursor: pointer; white-space: nowrap;
+        }
+        thead .col-row th:hover { color: var(--cyan); }
+        thead .col-row th.th-l { text-align: left; }
+        thead .col-row th.sort-asc::after  { content: ' \25B2'; font-size: 8px; }
+        thead .col-row th.sort-desc::after { content: ' \25BC'; font-size: 8px; }
+
+        /* Tooltip via data-tip */
+        [data-tip] { position: relative; }
+        [data-tip]::before {
+            content: attr(data-tip);
+            position: absolute; bottom: calc(100% + 6px);
+            left: 50%; transform: translateX(-50%);
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-light);
+            color: var(--text-primary);
+            padding: 5px 9px; border-radius: var(--r-sm);
+            font-size: 10px; font-weight: 400; line-height: 1.5;
+            width: max-content; max-width: 200px;
+            opacity: 0; pointer-events: none; z-index: 100;
+            transition: opacity .18s;
+        }
+        [data-tip]:hover::before { opacity: 1; }
+
+        /* Sticky columns */
+        .sc1 { position: sticky; left: 0;   z-index: 6; background: var(--bg-sidebar); }
+        .sc2 { position: sticky; left: 80px; z-index: 6; background: var(--bg-sidebar); }
+        thead .sc1, thead .sc2 { z-index: 11 !important; }
+        tbody tr:hover td.sc1,
+        tbody tr:hover td.sc2 { background: var(--bg-hover); }
+
+        /* Body rows */
+        tbody td {
+            padding: 5px 10px; text-align: center;
+            border-bottom: 1px solid var(--border);
+            font-size: 11px; vertical-align: middle;
+            color: var(--text-primary);
+        }
+        tbody td.td-l { text-align: left; }
+        tbody tr { transition: background .12s; cursor: pointer; }
+        tbody tr:hover { background: var(--bg-hover); }
+
+        /* ========= CELL TYPES ========= */
+        .cell-reg  { font-weight: 700; color: var(--cyan); }
+        .cell-flt  { font-weight: 600; }
+        .cell-dim  { color: var(--text-secondary); }
+        .cell-mono { font-family: 'Consolas', 'Courier New', monospace; font-size: 11px; }
+        .cell-num  { font-family: 'Consolas', 'Courier New', monospace; font-size: 11px; }
+        .cell-dash { color: var(--text-muted); }
+
+        /* Type chip */
+        .chip-v {
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 20px; height: 20px;
+            border: 1.5px solid var(--orange);
+            border-radius: 3px;
+            font-size: 10px; font-weight: 800; color: var(--orange);
+        }
+        .chip-j { font-size: 11px; font-weight: 600; color: var(--text-primary); }
+
+        /* Status pill (solid filled) */
+        .s-pill {
+            display: inline-flex; align-items: center;
+            padding: 2px 10px; border-radius: var(--r-full);
+            font-size: 10px; font-weight: 700; letter-spacing: .06em;
+        }
+        .s-PLN { background: #252C42; color: #8892B0; }
+        .s-REL { background: var(--green-dim); color: var(--green); }
+        .s-REV { background: var(--orange-dim); color: var(--orange); }
+        .s-CXL { background: var(--red-dim); color: var(--red); }
+
+        /* OFP / Pilot revision badge */
+        .rb { font-family: 'Consolas', monospace; font-size: 10px; font-weight: 700; }
+        .rb-cur { color: var(--cyan); }
+        .rb-ok  { color: var(--green); }
+        .rb-old { color: var(--red); }
+        .rb-nil { color: var(--text-muted); }
+
+        /* Poss Extra */
+        .ex-pos  { color: var(--green); font-weight: 600; font-family: monospace; }
+        .ex-neg  { color: var(--red);   font-weight: 600; font-family: monospace; }
+        .ex-zero { color: var(--text-muted); font-family: monospace; }
+
+        /* Dispatcher */
+        .cell-dsp { font-size: 11px; color: var(--text-secondary); }
+
+        /* View button */
+        .btn-view {
+            display: inline-flex; align-items: center; gap: 4px;
+            padding: 3px 9px;
+            border: 1px solid var(--cyan-border);
+            border-radius: var(--r-sm);
+            background: none; color: var(--cyan);
+            font-size: 10px; font-weight: 600;
+            cursor: pointer; white-space: nowrap;
+            transition: background .14s;
+        }
+        .btn-view:hover { background: var(--cyan-dim); }
+
+        /* ========= STATUS BAR ========= */
+        .statusbar {
+            display: flex; align-items: center; gap: 16px;
+            padding: 0 20px; height: 27px;
+            background: var(--bg-sidebar);
+            border-top: 1px solid var(--border);
+            font-size: 10px; color: var(--text-muted);
+            flex-shrink: 0;
+        }
+        .live-wrap { display: flex; align-items: center; gap: 5px; font-weight: 500; color: var(--text-secondary); }
+        .live-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--green); }
+        @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
+        .live-dot { animation: blink 2.2s ease infinite; }
+        .sb-right { margin-left: auto; }
+
+        /* ========= MODAL ========= */
+        dialog {
+            margin: auto; padding: 0;
+            border: 1px solid var(--border-light);
+            border-radius: var(--r-xl);
+            background: var(--bg-surface);
+            color: var(--text-primary);
+            width: min(580px, 95vw);
+            box-shadow: 0 24px 80px rgba(0,0,0,.65);
+        }
+        dialog::backdrop { background: rgba(0,0,0,.72); backdrop-filter: blur(4px); }
+        .m-head {
+            display: flex; align-items: flex-start; justify-content: space-between;
+            padding: 16px 20px; border-bottom: 1px solid var(--border);
+        }
+        .m-title { font-size: 14px; font-weight: 700; }
+        .m-sub   { font-size: 11px; color: var(--text-secondary); margin-top: 2px; }
+        .m-close {
+            width: 26px; height: 26px;
+            display: flex; align-items: center; justify-content: center;
+            background: none; border: none; color: var(--text-muted);
+            cursor: pointer; font-size: 15px;
+            border-radius: var(--r-sm); transition: all .14s;
+        }
+        .m-close:hover { background: var(--bg-elevated); color: var(--text-primary); }
+        .m-body { padding: 20px; }
+        .m-section-title {
+            font-size: 10px; font-weight: 700;
+            text-transform: uppercase; letter-spacing: .1em;
+            color: var(--text-muted); margin-bottom: 10px;
+        }
+        .m-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+        .m-item {}
+        .m-label { font-size: 10px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: .06em; margin-bottom: 3px; }
+        .m-val   { font-size: 12px; font-weight: 600; color: var(--text-primary); }
+        .m-val.cyan  { color: var(--cyan); }
+        .m-val.green { color: var(--green); }
+        .m-val.red   { color: var(--red); }
+        .m-val.orange{ color: var(--orange); }
+        .m-divider { height: 1px; background: var(--border); margin: 4px 0 16px; }
+    </style>
+</head>
+<body>
+<div class="app">
+
+    <!-- ============ SIDEBAR ============ -->
+    <aside class="sidebar" id="sidebar">
+
+        <!-- Logo -->
+        <div class="sidebar-logo">
+            <svg class="logo-lotus" viewBox="0 0 44 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="pg" x1="22" y1="4" x2="22" y2="43" gradientUnits="userSpaceOnUse">
+                        <stop offset="0%" stop-color="#F0C84A"/>
+                        <stop offset="100%" stop-color="#A8751A"/>
+                    </linearGradient>
+                </defs>
+                <!-- 7 fan petals — darkest outer → brightest center -->
+                <!-- far-left -->
+                <path d="M22 43C9 43 1 33 2 19C10 27 16 36 22 43Z" fill="url(#pg)" opacity=".55"/>
+                <!-- left-outer -->
+                <path d="M22 43C8 40 4 27 8 12C15 24 19 35 22 43Z" fill="url(#pg)" opacity=".72"/>
+                <!-- left-inner -->
+                <path d="M22 43C13 37 10 23 15 7C20 22 21 34 22 43Z" fill="url(#pg)" opacity=".88"/>
+                <!-- center (tallest, fully opaque) -->
+                <path d="M22 43C16 32 15 18 22 3C29 18 28 32 22 43Z" fill="url(#pg)"/>
+                <!-- right-inner -->
+                <path d="M22 43C31 37 34 23 29 7C24 22 23 34 22 43Z" fill="url(#pg)" opacity=".88"/>
+                <!-- right-outer -->
+                <path d="M22 43C36 40 40 27 36 12C29 24 25 35 22 43Z" fill="url(#pg)" opacity=".72"/>
+                <!-- far-right -->
+                <path d="M22 43C35 43 43 33 42 19C34 27 28 36 22 43Z" fill="url(#pg)" opacity=".55"/>
+                <!-- highlight shimmer on center -->
+                <path d="M22 43C19 34 18 22 22 8C24 18 24 32 22 43Z" fill="#FFF5C0" opacity=".18"/>
+            </svg>
+            <div class="logo-texts">
+                <span class="logo-name">Vietnam Airlines</span>
+                <span class="logo-sub">Dispatch System</span>
+            </div>
+        </div>
+
+        <!-- Nav -->
+        <nav class="sidebar-nav">
+            <button class="nav-item" onclick="location.href='dsp_monitoring_poc_mockup_v1.html'">
+                <span class="nav-icon">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="2" y="3" width="20" height="14" rx="2"/>
+                        <line x1="8" y1="21" x2="16" y2="21"/>
+                        <line x1="12" y1="17" x2="12" y2="21"/>
+                    </svg>
+                </span>
+                <span class="nav-label">Flight Monitoring</span>
+            </button>
+            <button class="nav-item active">
+                <span class="nav-icon">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                        <polyline points="14,2 14,8 20,8"/>
+                        <line x1="16" y1="13" x2="8" y2="13"/>
+                        <line x1="16" y1="17" x2="8" y2="17"/>
+                        <line x1="10" y1="9"  x2="8" y2="9"/>
+                    </svg>
+                </span>
+                <span class="nav-label">Flight Plans</span>
+            </button>
+            <button class="nav-item">
+                <span class="nav-icon">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                        <polyline points="22,6 12,13 2,6"/>
+                    </svg>
+                </span>
+                <span class="nav-label">Common Docs</span>
+            </button>
+        </nav>
+
+        <!-- Bottom -->
+        <div class="sb-bottom">
+
+            <!-- "< Hide" pill (expanded only) -->
+            <div class="sb-hide-wrap">
+                <button class="sb-hide-pill" id="hideBtn">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <polyline points="15,18 9,12 15,6"/>
+                    </svg>
+                    Hide
+                </button>
+            </div>
+
+            <!-- Gear + Moon icons row -->
+            <div class="sb-icons">
+                <button class="sb-icon-btn" title="Settings">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="3"/>
+                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                    </svg>
+                </button>
+                <button class="sb-icon-btn" title="Toggle theme">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- User row: avatar + name/email + logout -->
+            <div class="sb-user">
+                <div class="sb-avatar-wrap">
+                    <div class="sb-avatar-container">
+                        <div class="sb-avatar">A</div>
+                        <span class="sb-online-dot"></span>
+                    </div>
+                    <div class="sb-user-detail">
+                        <div class="sb-user-name">Admin</div>
+                        <div class="sb-user-email">admin@viettel.com</div>
+                    </div>
+                </div>
+                <button class="sb-icon-btn" title="Logout">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                        <polyline points="16,17 21,12 16,7"/>
+                        <line x1="21" y1="12" x2="9" y2="12"/>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- ">>" expand button (collapsed only) -->
+            <button class="sb-expand-btn" id="expandBtn">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <polyline points="13,17 18,12 13,7"/>
+                    <polyline points="6,17 11,12 6,7"/>
+                </svg>
+            </button>
+
+        </div>
+    </aside>
+
+    <!-- ============ MAIN PANEL ============ -->
+    <div class="main">
+
+        <!-- TOPBAR -->
+        <header class="topbar">
+            <div class="topbar-title">Flight Plans</div>
+            <div class="topbar-right">
+                <span class="op-date">Operating Date: <b>24/06/2026</b></span>
+                <span class="op-time" id="clock">--:--:--Z</span>
+            </div>
+        </header>
+
+        <!-- FILTER BAR -->
+        <div class="filter-bar">
+
+            <!-- Always-visible strip: label + Table Setting + chevron -->
+            <div class="filter-strip">
+                <span class="fi">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <polygon points="22,3 2,3 10,12.46 10,19 14,21 14,12.46"/>
+                    </svg>
+                </span>
+                <span class="filter-lbl">Filter</span>
+                <div class="filter-strip-right">
+                    <button class="btn-tbl-setting">
+                        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="8" y1="6"  x2="21" y2="6"/>
+                            <line x1="8" y1="12" x2="21" y2="12"/>
+                            <line x1="8" y1="18" x2="21" y2="18"/>
+                            <line x1="3" y1="6"  x2="3.01" y2="6"/>
+                            <line x1="3" y1="12" x2="3.01" y2="12"/>
+                            <line x1="3" y1="18" x2="3.01" y2="18"/>
+                        </svg>
+                        Table Setting
+                    </button>
+                    <button class="collapse-btn" id="collapseBtn" onclick="toggleFilter()">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                            <polyline points="18,15 12,9 6,15"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Collapsible inputs -->
+            <div class="filter-inputs" id="filterInputs">
+                <div class="filter-inputs-row">
+                    <input type="date" class="f-input f-date" id="fFromDate" value="2026-06-24" title="From Date">
+                    <input type="date" class="f-input f-date" id="fToDate"   value="2026-06-24" title="To Date">
+                    <input type="text" class="f-input" id="fFltNo" placeholder="FLT NO" style="width:88px">
+                    <input type="text" class="f-input" id="fReg"   placeholder="REG"    style="width:88px">
+
+                    <select class="f-select" id="fDep" style="width:92px">
+                        <option value="">DEP</option>
+                        <option value="SGN">SGN (VVTS)</option>
+                        <option value="HAN">HAN (VVNB)</option>
+                        <option value="DAD">DAD (VVDN)</option>
+                        <option value="PQC">PQC (VVPQ)</option>
+                        <option value="CXR">CXR (VVCR)</option>
+                    </select>
+
+                    <select class="f-select" id="fArr" style="width:92px">
+                        <option value="">ARR</option>
+                        <option value="SGN">SGN (VVTS)</option>
+                        <option value="HAN">HAN (VVNB)</option>
+                        <option value="DAD">DAD (VVDN)</option>
+                        <option value="PQC">PQC (VVPQ)</option>
+                        <option value="HKG">HKG (VHHH)</option>
+                        <option value="ICN">ICN (RKSI)</option>
+                    </select>
+
+                    <select class="f-select" id="fDsp" style="width:120px">
+                        <option value="">Dispatcher</option>
+                        <option>DAO V. ANAM</option>
+                        <option>NGUYEN T. BINH</option>
+                        <option>TRAN V. CUONG</option>
+                        <option>LE T. DUNG</option>
+                        <option>PHAM V. EM</option>
+                    </select>
+
+                    <div class="rev-toggle">
+                        <button class="rev-btn" id="btnRevAll"  onclick="setRevMode('all')">All Revision</button>
+                        <button class="rev-btn active" id="btnRevLast" onclick="setRevMode('last')">Last Revision</button>
+                    </div>
+
+                    <button class="btn-search" onclick="applyFilter()">
+                        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                            <circle cx="11" cy="11" r="8"/>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                        </svg>
+                        Search
+                    </button>
+
+                    <button class="btn-clear" onclick="clearFilter()">
+                        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="1,4 1,10 7,10"/>
+                            <path d="M3.51 15a9 9 0 1 0 .49-4"/>
+                        </svg>
+                        Clear Filter
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- TABLE AREA -->
+        <div class="table-wrap" id="tableWrap">
+            <table id="mainTable">
+                <thead>
+                    <!-- Group header -->
+                    <tr class="group-row" id="groupRow">
+                        <th colspan="2" class="sc1 td-l" style="left:0; padding-left:14px;">Identity</th>
+                        <th colspan="7">Flight Info</th>
+                        <th colspan="5">Release</th>
+                        <th colspan="9">Fuel</th>
+                        <th colspan="4">Weight &amp; Time</th>
+                        <th colspan="1">-</th>
+                    </tr>
+                    <!-- Column header -->
+                    <tr class="col-row" id="colRow">
+                        <th class="sc1 th-l" style="left:0; min-width:80px; padding-left:14px;">AC REG</th>
+                        <th class="sc2 th-l" style="min-width:78px;">FLT NO</th>
+                        <th style="min-width:52px;">DEP</th>
+                        <th style="min-width:52px;">ARR</th>
+                        <th style="min-width:64px;">DATE</th>
+                        <th style="min-width:68px;">ETD (Z)</th>
+                        <th style="min-width:68px;">ETA (Z)</th>
+                        <th style="min-width:48px;">TYPE</th>
+                        <th style="min-width:80px;">STATUS</th>
+                        <th style="min-width:74px;" data-tip="OFP Revision number">OFP REV</th>
+                        <th style="min-width:110px;">DISPATCHER</th>
+                        <th style="min-width:88px;" data-tip="DSP Release Time (UTC)">DSP REL</th>
+                        <th style="min-width:88px;" data-tip="Pilot Release Time (UTC)">PIL REL</th>
+                        <th style="min-width:72px;" data-tip="Pilot Release Revision">PIL REV</th>
+                        <th style="min-width:84px;" data-tip="OFP Block Fuel (kg)">BLOCK FUEL</th>
+                        <th style="min-width:84px;" data-tip="Fuel Order (kg)">FUEL ORDER</th>
+                        <th style="min-width:78px;" data-tip="Trip Fuel (kg)">TRIP FUEL</th>
+                        <th style="min-width:70px;" data-tip="Trip Time (HH:MM)">TRIP TIME</th>
+                        <th style="min-width:56px;" data-tip="Contingency percentage">CONT %</th>
+                        <th style="min-width:72px;" data-tip="Destination Alternate airport">DEST ALTN</th>
+                        <th style="min-width:82px;" data-tip="Dest Alternate Fuel (kg)">ALTN FUEL</th>
+                        <th style="min-width:68px;" data-tip="Taxi-out Time (HH:MM)">TAXI TIME</th>
+                        <th style="min-width:74px;" data-tip="Taxi Fuel (kg)">TAXI FUEL</th>
+                        <th style="min-width:84px;" data-tip="Possible Extra fuel (kg)">POSS EXTRA</th>
+                        <th style="min-width:74px;" data-tip="Dry Operating Weight (kg)">DOW</th>
+                        <th style="min-width:72px;" data-tip="Payload (kg)">PLD</th>
+                        <th style="min-width:76px;" data-tip="Take-Off Weight (kg)">TOW</th>
+                        <th style="min-width:116px; padding-right:16px;">ACTION</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody"></tbody>
+            </table>
+        </div>
+
+        <!-- STATUS BAR -->
+        <div class="statusbar">
+            <div class="live-wrap">
+                <div class="live-dot"></div>
+                <span>Live</span>
+            </div>
+            <span>Showing: <b id="cntShow" style="color:var(--text-primary)">0</b> / <span id="cntTotal">0</span> flight plans</span>
+            <span class="sb-right">TOSS POC - Flight Plans v1.0 (UTC)</span>
+        </div>
+
+    </div><!-- end .main -->
+</div><!-- end .app -->
+
+<!-- ============ BRIEFING SHEET MODAL ============ -->
+<dialog id="briefModal">
+    <div class="m-head">
+        <div>
+            <div class="m-title">Briefing Sheet</div>
+            <div class="m-sub" id="mSub">--</div>
+        </div>
+        <button class="m-close" onclick="document.getElementById('briefModal').close()">&#x2715;</button>
+    </div>
+    <div class="m-body" id="mBody"><!-- filled by JS --></div>
+</dialog>
+
+<script>
+/* =========================================================
+   CLOCK
+   ========================================================= */
+function updateClock() {
+    const n = new Date();
+    const pad = v => String(v).padStart(2,'0');
+    document.getElementById('clock').textContent =
+        pad(n.getUTCHours()) + ':' + pad(n.getUTCMinutes()) + ':' + pad(n.getUTCSeconds()) + 'Z';
+}
+updateClock(); setInterval(updateClock, 1000);
+
+/* =========================================================
+   SIDEBAR HIDE
+   ========================================================= */
+function toggleSidebar() {
+    document.getElementById('sidebar').classList.toggle('collapsed');
+    setTimeout(fixStickyOffsets, 260);
+}
+document.getElementById('hideBtn').addEventListener('click', function(e) {
+    e.stopPropagation();
+    toggleSidebar();
+});
+document.getElementById('expandBtn').addEventListener('click', toggleSidebar);
+
+/* Click anywhere on collapsed sidebar to expand */
+document.getElementById('sidebar').addEventListener('click', function(e) {
+    if (this.classList.contains('collapsed')) {
+        e.stopPropagation();
+        toggleSidebar();
+    }
+});
+
+/* =========================================================
+   STICKY HEADER OFFSET (group row + col row)
+   ========================================================= */
+function fixStickyHeaders() {
+    const groupRow = document.getElementById('groupRow');
+    const colRow   = document.getElementById('colRow');
+    if (!groupRow || !colRow) return;
+    const gh = groupRow.offsetHeight;
+    Array.from(colRow.cells).forEach(c => c.style.top = gh + 'px');
+}
+
+/* sticky column left offsets based on actual widths */
+function fixStickyOffsets() {
+    const firstCols = document.querySelectorAll('.sc1');
+    const secondCols = document.querySelectorAll('.sc2');
+    // get width from first cell of sc1
+    const firstCell = document.querySelector('tbody .sc1') || document.querySelector('thead .sc1');
+    if (!firstCell) return;
+    const w1 = firstCell.offsetWidth;
+    secondCols.forEach(c => c.style.left = w1 + 'px');
+}
+
+/* =========================================================
+   FILTER COLLAPSE
+   ========================================================= */
+let filterVisible = true;
+function toggleFilter() {
+    filterVisible = !filterVisible;
+    document.getElementById('filterInputs').classList.toggle('collapsed', !filterVisible);
+    document.getElementById('collapseBtn').classList.toggle('flipped',    !filterVisible);
+}
+
+/* =========================================================
+   REVISION MODE
+   ========================================================= */
+let revMode = 'last';
+function setRevMode(mode) {
+    revMode = mode;
+    document.getElementById('btnRevAll').classList.toggle('active',  mode === 'all');
+    document.getElementById('btnRevLast').classList.toggle('active', mode === 'last');
+    renderTable(currentData());
+}
+
+/* =========================================================
+   DATA
+   ========================================================= */
+const SAMPLE = [
+    // reg,      flt,    dep,   arr,   acType, date,     etd,    eta,    type, status,  ofpRev, dspRel,  pilRel,  pilRev, blkFuel, fuelOrd, tripFuel, tripTime, cont, destAltn, altnFuel, taxiTime, taxiFuel, possExtra, dow,    pld,    tow,     disp
+    ['VN-A123', 'VN120', 'SGN', 'HAN', 'A321', '24 Jun', '00:30','02:15','J','REL', 'R02','23:45','23:55','R02', 8500, 8800, 6200, '01:45', '5%', 'VVDN', 1050, '0:25',  450,  +180, 42150, 18500, 62800, 'DAO V. ANAM'],
+    ['VN-A321', 'VN220', 'HAN', 'SGN', 'A321', '24 Jun', '01:00','02:50','V','REL', 'R02','00:10','00:22','R02', 8700, 9000, 6400, '01:48', '5%', 'VVTS', 1100, '0:22',  420,  +210, 42300, 17800, 63100, 'NGUYEN T. BINH'],
+    ['VN-B456', 'VN340', 'SGN', 'DAD', 'B787', '24 Jun', '03:15','04:20','J','REL', 'R02','02:55','03:05','R02', 4800, 5000, 3500, '01:05', '3%', 'VVNB', 780,  '0:18',  310,    +90, 48200, 22100, 72500, 'TRAN V. CUONG'],
+    ['VN-A144', 'VN456', 'DAD', 'HAN', 'A321', '24 Jun', '04:45','05:55','J','REV', 'R01','04:10','04:28','R01', 5200, 5400, 3800, '01:10', '5%', 'VVTS', 820,  '0:20',  340,   -150, 42050, 16900, 61200, 'LE T. DUNG'],
+    ['VN-A588', 'VN568', 'SGN', 'HKG', 'A321', '24 Jun', '06:00','08:45','J','REL', 'R02','05:30','05:48','R02',14200,14800,10500, '02:45', '5%', 'VHHX',1850,  '0:25',  450,  +320, 42400, 20200, 74800, 'PHAM V. EM'],
+    ['VN-B787', 'VN608', 'HAN', 'ICN', 'B787', '24 Jun', '07:30','11:50','V','PLN', null, null,   null,   null, 22500,23000,16800, '04:20', '3%', 'RKPC',2400,  '0:30',  580,     0, 51000, 28500, 99800, 'DAO V. ANAM'],
+    ['VN-A381', 'VN720', 'SGN', 'HAN', 'A320', '24 Jun', '09:10','10:55','J','REL', 'R02','08:40','08:55','R02', 8300, 8600, 6100, '01:45', '5%', 'VVDN',1020,  '0:22',  400,  +160, 40800, 17200, 61000, 'NGUYEN T. BINH'],
+    ['VN-B190', 'VN832', 'HAN', 'PQC', 'B787', '24 Jun', '10:20','11:50','J','REL', 'R02','09:55','10:10','R02', 6800, 7100, 5000, '01:30', '3%', 'VVTS', 950,  '0:28',  500,  +100, 48800, 19500, 72800, 'TRAN V. CUONG'],
+    ['VN-A777', 'VN944', 'SGN', 'CXR', 'A321', '24 Jun', '11:45','13:00','J','REL', 'R02','11:20','11:32','R02', 5600, 5800, 4100, '01:15', '5%', 'VVPQ', 880,  '0:20',  360,   +70, 41900, 16800, 60800, 'LE T. DUNG'],
+    ['VN-B350', 'VN052', 'HAN', 'SGN', 'A350', '24 Jun', '13:00','14:52','J','REV', 'R01','12:25','12:44','R02', 9200, 9600, 6800, '01:52', '5%', 'VVDN',1080,  '0:26',  460,  -200, 46200, 20800, 74800, 'PHAM V. EM'],
+    ['VN-A201', 'VN164', 'SGN', 'NRT', 'A321', '24 Jun', '14:10','19:20','J','PLN', null, null,   null,   null, 30500,31200,22800, '05:10', '5%', 'RJAA',3200,  '0:28',  520,     0, 42600, 24500, 93000, 'DAO V. ANAM'],
+    ['VN-A332', 'VN278', 'HAN', 'DAD', 'A330', '24 Jun', '15:30','16:42','V','CXL', 'R02','14:55','15:10','R02', 4900, 5100, 3600, '01:12', '3%', 'VVTS', 800,  '0:18',  320,  +140, 44500, 18200, 65000, 'NGUYEN T. BINH'],
+    ['VN-A099', 'VN386', 'SGN', 'PQC', 'A321', '24 Jun', '16:00','17:30','J','REL', 'R02','15:32','15:48','R02', 6100, 6300, 4500, '01:28', '5%', 'VVDN', 920,  '0:22',  400,  +120, 42200, 17600, 62200, 'TRAN V. CUONG'],
+    ['VN-A211', 'VN492', 'DAD', 'SGN', 'A321', '24 Jun', '16:20','17:25','J','REL', 'R02','15:55','16:08','R02', 4700, 4900, 3400, '01:05', '3%', 'VVNB', 760,  '0:18',  310,   +80, 41800, 16400, 60200, 'LE T. DUNG'],
+    ['VN-B211', 'VN550', 'SGN', 'BKK', 'B787', '24 Jun', '16:45','18:30','J','REL', 'R02','16:10','16:28','R02',10800,11200, 8200, '01:45', '5%', 'VTBD',1600,  '0:26',  480,  +240, 49100, 24800, 80600, 'PHAM V. EM'],
+    ['VN-A088', 'VN604', 'HAN', 'SGN', 'A320', '24 Jun', '17:10','19:02','J','REV', 'R01','16:40','16:58','R01', 8400, 8700, 6200, '01:48', '5%', 'VVDN',1030,  '0:22',  400,  -180, 40900, 17500, 62000, 'DAO V. ANAM'],
+    ['VN-A455', 'VN716', 'SGN', 'HAN', 'A321', '24 Jun', '17:30','19:15','V','REL', 'R02','17:00','17:14','R02', 8600, 9000, 6300, '01:45', '5%', 'VVDN',1040,  '0:25',  440,  +280, 42500, 19800, 64400, 'NGUYEN T. BINH'],
+    ['VN-B322', 'VN790', 'HAN', 'PVG', 'B787', '24 Jun', '18:00','21:30','J','REL', 'R02','17:25','17:40','R02',17200,17800,12800, '03:30', '3%', 'ZSPD',2100,  '0:28',  520,  +150, 50200, 26400, 91800, 'TRAN V. CUONG'],
+    ['VN-A566', 'VN840', 'SGN', 'CXR', 'A321', '24 Jun', '18:20','19:35','J','PLN', null, null,   null,   null, 5700, 5900, 4200, '01:15', '5%', 'VVPQ', 890,  '0:20',  360,     0, 42100, 16200, 60700, 'LE T. DUNG'],
+    ['VN-A630', 'VN858', 'HAN', 'DAD', 'A321', '24 Jun', '18:40','19:52','J','REL', 'R02','18:10','18:22','R02', 4800, 5000, 3500, '01:12', '3%', 'VVTS', 790,  '0:18',  310,  +110, 42050, 17100, 61500, 'PHAM V. EM'],
+    ['VN-B410', 'VN910', 'SGN', 'KUL', 'B787', '24 Jun', '19:10','21:50','J','REL', 'R02','18:38','18:55','R02',11500,11900, 8700, '02:40', '5%', 'WSSS',1700,  '0:26',  490,  +200, 49300, 25200, 82400, 'DAO V. ANAM'],
+    ['VN-A722', 'VN974', 'HAN', 'SGN', 'A321', '24 Jun', '19:30','21:20','J','REL', 'R02','19:00','19:12','R02', 8550, 8900, 6250, '01:48', '5%', 'VVDN',1040,  '0:24',  430,   +90, 42200, 17900, 62700, 'NGUYEN T. BINH'],
+    ['VN-A801', 'VN026', 'SGN', 'HAN', 'A321', '24 Jun', '20:00','21:45','V','PLN', null, null,   null,   null, 8600, 8900, 6300, '01:45', '5%', 'VVDN',1050,  '0:25',  450,     0, 42400, 20500, 65000, 'TRAN V. CUONG'],
+    ['VN-B533', 'VN042', 'HAN', 'SIN', 'B787', '24 Jun', '20:15','23:00','J','REL', 'R02','19:42','19:58','R02',12800,13200, 9600, '02:45', '3%', 'WMKK',1800,  '0:28',  510,  +260, 49800, 27600, 87600, 'LE T. DUNG'],
+    ['VN-A312', 'VN076', 'SGN', 'BMV', 'A321', '24 Jun', '20:45','21:45','J','REL', 'R02','20:18','20:30','R02', 4200, 4400, 3050, '01:00', '5%', 'VVDN', 720,  '0:18',  300,   +60, 41700, 15800, 59400, 'PHAM V. EM'],
+    ['VN-A944', 'VN108', 'HAN', 'PQC', 'A320', '24 Jun', '21:00','22:35','J','REV', 'R01','20:28','20:45','R02', 6700, 6900, 4900, '01:32', '5%', 'VVTS', 940,  '0:22',  390,  -120, 40700, 16900, 60500, 'DAO V. ANAM'],
+    ['VN-B620', 'VN122', 'SGN', 'HKG', 'B787', '24 Jun', '21:30','00:15','J','REL', 'R02','20:58','21:12','R02',14500,15000,10800, '02:45', '3%', 'VHHX',1900,  '0:26',  480,  +300, 49500, 26800, 88500, 'NGUYEN T. BINH'],
+    ['VN-A155', 'VN136', 'HAN', 'SGN', 'A321', '24 Jun', '22:00','23:48','J','REL', 'R02','21:30','21:44','R02', 8650, 9000, 6350, '01:48', '5%', 'VVDN',1060,  '0:24',  440,  +130, 42100, 18300, 63200, 'TRAN V. CUONG'],
+    ['VN-A267', 'VN154', 'SGN', 'DAD', 'A321', '24 Jun', '22:30','23:35','J','PLN', null, null,   null,   null, 4800, 5000, 3500, '01:05', '3%', 'VVNB', 780,  '0:18',  310,     0, 42000, 16100, 60000, 'LE T. DUNG'],
+    ['VN-B701', 'VN172', 'HAN', 'FRA', 'B787', '24 Jun', '23:00','05:20','J','REL', 'R02','22:22','22:40','R02',62500,63500,47200, '11:20', '5%', 'EDDF',5800,  '0:30',  620,  +450, 51200, 31800,145800, 'PHAM V. EM'],
+    ['VN-A388', 'VN188', 'SGN', 'HAN', 'A320', '24 Jun', '23:30','01:18','J','REL', 'R02','23:00','23:14','R02', 8200, 8500, 6000, '01:45', '5%', 'VVDN',1010,  '0:22',  390,   +70, 40600, 17000, 60200, 'DAO V. ANAM'],
+];
+
+/* each row can have multiple revisions for "All Revision" mode */
+const ALL_REVISIONS = SAMPLE.flatMap(row => {
+    const revisions = [];
+    if (row[11]) {  // has been released - add a previous R01 revision too
+        const prev = [...row];
+        prev[10] = 'R01'; // ofpRev
+        prev[14] = Math.round(row[14] * 0.97); // slightly different block fuel
+        revisions.push(prev);
+    }
+    revisions.push(row);
+    return revisions;
+});
+
+let currentFilter = { flt:'', reg:'', dep:'', arr:'', dsp:'' };
+
+function currentData() {
+    const base = revMode === 'last' ? SAMPLE : ALL_REVISIONS;
+    return base.filter(r => {
+        if (currentFilter.flt && !r[1].includes(currentFilter.flt.toUpperCase())) return false;
+        if (currentFilter.reg && !r[0].includes(currentFilter.reg.toUpperCase())) return false;
+        if (currentFilter.dep && r[2] !== currentFilter.dep) return false;
+        if (currentFilter.arr && r[3] !== currentFilter.arr) return false;
+        if (currentFilter.dsp && r[27] !== currentFilter.dsp) return false;
+        return true;
+    });
+}
+
+function applyFilter() {
+    currentFilter = {
+        flt: document.getElementById('fFltNo').value.trim(),
+        reg: document.getElementById('fReg').value.trim(),
+        dep: document.getElementById('fDep').value,
+        arr: document.getElementById('fArr').value,
+        dsp: document.getElementById('fDsp').value,
+    };
+    renderTable(currentData());
+}
+function clearFilter() {
+    ['fFltNo','fReg'].forEach(id => document.getElementById(id).value = '');
+    ['fDep','fArr','fDsp'].forEach(id => document.getElementById(id).value = '');
+    currentFilter = { flt:'', reg:'', dep:'', arr:'', dsp:'' };
+    renderTable(currentData());
+}
+
+/* =========================================================
+   RENDER
+   ========================================================= */
+const fmt = n => (n == null || n === 0 && n !== false) ? n : Number(n).toLocaleString();
+
+function statusPill(s) {
+    if (!s) return `<span class="cell-dash">---</span>`;
+    return `<span class="s-pill s-${s}">${s}</span>`;
+}
+function typeChip(t) {
+    return t === 'V' ? `<span class="chip-v">V</span>` : `<span class="chip-j">J</span>`;
+}
+function revBadge(r, isCurrent) {
+    if (!r) return `<span class="rb rb-nil">---</span>`;
+    const cls = isCurrent ? 'rb-cur' : 'rb-ok';
+    return `<span class="rb ${cls}">${r}</span>`;
+}
+function extraCell(e) {
+    if (e === 0 || e == null) return `<span class="ex-zero">+0</span>`;
+    return e > 0
+        ? `<span class="ex-pos">+${fmt(e)}</span>`
+        : `<span class="ex-neg">${fmt(e)}</span>`;
+}
+function timeCell(t) {
+    return t ? `<span class="cell-mono">${t}Z</span>` : `<span class="cell-dash">---</span>`;
+}
+
+function renderTable(data) {
+    const tbody = document.getElementById('tbody');
+    tbody.innerHTML = '';
+    data.forEach((r, i) => {
+        const [reg,flt,dep,arr,,date,etd,eta,type,status,ofpRev,dspRel,pilRel,pilRev,
+               blkFuel,fuelOrd,tripFuel,tripTime,cont,destAltn,altnFuel,
+               taxiTime,taxiFuel,possExtra,dow,pld,tow,disp] = r;
+        const isCurrent = ofpRev === 'R02';
+        const pilRevCur = pilRev === 'R02';
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+            <td class="sc1 td-l" style="padding-left:14px;"><span class="cell-reg">${reg}</span></td>
+            <td class="sc2 td-l"><span class="cell-flt">${flt}</span></td>
+            <td class="cell-dim">${dep}</td>
+            <td class="cell-dim">${arr}</td>
+            <td class="cell-dim" style="font-size:10px;">${date}</td>
+            <td class="cell-mono">${etd}</td>
+            <td class="cell-mono">${eta}</td>
+            <td>${typeChip(type)}</td>
+            <td>${statusPill(status)}</td>
+            <td>${revBadge(ofpRev, isCurrent)}</td>
+            <td class="cell-dsp">${disp}</td>
+            <td>${timeCell(dspRel)}</td>
+            <td>${timeCell(pilRel)}</td>
+            <td>${revBadge(pilRev, pilRevCur)}</td>
+            <td class="cell-num">${blkFuel != null ? fmt(blkFuel) : '<span class="cell-dash">---</span>'}</td>
+            <td class="cell-num">${fuelOrd != null ? fmt(fuelOrd) : '<span class="cell-dash">---</span>'}</td>
+            <td class="cell-num">${tripFuel != null ? fmt(tripFuel) : '<span class="cell-dash">---</span>'}</td>
+            <td class="cell-mono">${tripTime || '<span class="cell-dash">---</span>'}</td>
+            <td class="cell-dim">${cont || '<span class="cell-dash">---</span>'}</td>
+            <td class="cell-dim">${destAltn || '<span class="cell-dash">---</span>'}</td>
+            <td class="cell-num">${altnFuel != null ? fmt(altnFuel) : '<span class="cell-dash">---</span>'}</td>
+            <td class="cell-mono">${taxiTime || '<span class="cell-dash">---</span>'}</td>
+            <td class="cell-num">${taxiFuel != null ? fmt(taxiFuel) : '<span class="cell-dash">---</span>'}</td>
+            <td>${possExtra != null ? extraCell(possExtra) : '<span class="cell-dash">---</span>'}</td>
+            <td class="cell-num">${dow != null ? fmt(dow) : '<span class="cell-dash">---</span>'}</td>
+            <td class="cell-num">${pld != null ? fmt(pld) : '<span class="cell-dash">---</span>'}</td>
+            <td class="cell-num">${tow != null ? fmt(tow) : '<span class="cell-dash">---</span>'}</td>
+            <td style="padding-right:16px;"><button class="btn-view" onclick="openBrief(${i}, event)">View Briefing Sheet</button></td>
+        `;
+        tbody.appendChild(tr);
+    });
+    document.getElementById('cntShow').textContent  = data.length;
+    document.getElementById('cntTotal').textContent = data.length;
+    setTimeout(() => { fixStickyHeaders(); fixStickyOffsets(); }, 0);
+    /* store for modal use */
+    window._currentRows = data;
+}
+
+/* =========================================================
+   MODAL
+   ========================================================= */
+function openBrief(idx, e) {
+    e && e.stopPropagation();
+    const r = window._currentRows[idx];
+    if (!r) return;
+    const [reg,flt,dep,arr,acType,date,etd,eta,type,status,ofpRev,dspRel,pilRel,pilRev,
+           blkFuel,fuelOrd,tripFuel,tripTime,cont,destAltn,altnFuel,
+           taxiTime,taxiFuel,possExtra,dow,pld,tow,disp] = r;
+
+    document.getElementById('mSub').textContent = `${flt} - ${reg} | ${dep} -> ${arr} | ${date}`;
+
+    const statusColor = { REL:'green', REV:'orange', PLN:'', CXL:'red' };
+    const extraFmt = possExtra != null
+        ? `<span class="m-val ${possExtra >= 0 ? 'green' : 'red'}">${possExtra >= 0 ? '+' : ''}${fmt(possExtra)} kg</span>`
+        : '<span class="m-val">---</span>';
+
+    document.getElementById('mBody').innerHTML = `
+        <p class="m-section-title">General</p>
+        <div class="m-grid">
+            <div class="m-item"><div class="m-label">AC Registration</div><div class="m-val cyan">${reg}</div></div>
+            <div class="m-item"><div class="m-label">Flight Number</div><div class="m-val">${flt}</div></div>
+            <div class="m-item"><div class="m-label">Route</div><div class="m-val">${dep} -> ${arr}</div></div>
+            <div class="m-item"><div class="m-label">ETD / ETA (UTC)</div><div class="m-val">${etd}Z / ${eta}Z</div></div>
+            <div class="m-item"><div class="m-label">Aircraft Type</div><div class="m-val">${acType}</div></div>
+            <div class="m-item"><div class="m-label">Status</div><div class="m-val ${statusColor[status]||''}">${status || '---'}</div></div>
+        </div>
+        <div class="m-divider"></div>
+        <p class="m-section-title">Release</p>
+        <div class="m-grid">
+            <div class="m-item"><div class="m-label">OFP Revision</div><div class="m-val cyan">${ofpRev || '---'}</div></div>
+            <div class="m-item"><div class="m-label">Pilot Rev.</div><div class="m-val">${pilRev || '---'}</div></div>
+            <div class="m-item"><div class="m-label">DSP Release Time</div><div class="m-val">${dspRel ? dspRel+'Z' : '---'}</div></div>
+            <div class="m-item"><div class="m-label">Pilot Release Time</div><div class="m-val">${pilRel ? pilRel+'Z' : '---'}</div></div>
+            <div class="m-item" style="grid-column:span 2;"><div class="m-label">Dispatcher</div><div class="m-val">${disp}</div></div>
+        </div>
+        <div class="m-divider"></div>
+        <p class="m-section-title">Fuel (kg)</p>
+        <div class="m-grid">
+            <div class="m-item"><div class="m-label">Block Fuel</div><div class="m-val">${blkFuel != null ? fmt(blkFuel) : '---'}</div></div>
+            <div class="m-item"><div class="m-label">Fuel Order</div><div class="m-val">${fuelOrd != null ? fmt(fuelOrd) : '---'}</div></div>
+            <div class="m-item"><div class="m-label">Trip Fuel</div><div class="m-val">${tripFuel != null ? fmt(tripFuel) : '---'}</div></div>
+            <div class="m-item"><div class="m-label">Trip Time</div><div class="m-val">${tripTime || '---'}</div></div>
+            <div class="m-item"><div class="m-label">Contingency</div><div class="m-val">${cont || '---'}</div></div>
+            <div class="m-item"><div class="m-label">Dest. Alternate</div><div class="m-val">${destAltn || '---'}</div></div>
+            <div class="m-item"><div class="m-label">Altn Fuel</div><div class="m-val">${altnFuel != null ? fmt(altnFuel) : '---'}</div></div>
+            <div class="m-item"><div class="m-label">Taxi Fuel / Time</div><div class="m-val">${taxiFuel != null ? fmt(taxiFuel) : '---'} kg / ${taxiTime || '---'}</div></div>
+            <div class="m-item" style="grid-column:span 2;"><div class="m-label">Poss. Extra</div>${extraFmt}</div>
+        </div>
+        <div class="m-divider"></div>
+        <p class="m-section-title">Weight (kg)</p>
+        <div class="m-grid">
+            <div class="m-item"><div class="m-label">DOW</div><div class="m-val">${dow != null ? fmt(dow) : '---'}</div></div>
+            <div class="m-item"><div class="m-label">Payload</div><div class="m-val">${pld != null ? fmt(pld) : '---'}</div></div>
+            <div class="m-item" style="grid-column:span 2;"><div class="m-label">Take-Off Weight (TOW)</div><div class="m-val cyan">${tow != null ? fmt(tow) : '---'}</div></div>
+        </div>
+    `;
+    document.getElementById('briefModal').showModal();
+}
+
+/* =========================================================
+   INIT
+   ========================================================= */
+window.addEventListener('DOMContentLoaded', () => {
+    renderTable(currentData());
+});
+window.addEventListener('resize', () => {
+    fixStickyHeaders();
+    fixStickyOffsets();
+});
+</script>
+</body>
+</html>
