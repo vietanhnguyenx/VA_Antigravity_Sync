@@ -1,0 +1,1546 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BCAO 10JUN-11JUN/2025 — Vietnam Airlines OCC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+/* ─── SCREEN CHROME ─────────────────────────────────────── */
+@media screen {
+  body {
+    background: #374151;
+    margin: 0;
+    padding: 24px 0;
+    font-family: 'IBM Plex Sans', sans-serif;
+  }
+
+  .screen-controls {
+    position: fixed;
+    top: 12px;
+    right: 20px;
+    z-index: 999;
+    display: flex;
+    gap: 8px;
+  }
+
+  .ctrl-btn {
+    background: #1f2937;
+    color: #e5e7eb;
+    border: 1px solid #374151;
+    padding: 6px 14px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    cursor: pointer;
+    border-radius: 3px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .ctrl-btn:hover { background: #374151; }
+  .ctrl-btn.primary { background: #003F87; border-color: #003F87; color: #fff; }
+  .ctrl-btn.primary:hover { background: #002a5c; }
+
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    background: #fff;
+    margin: 0 auto 16px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.35);
+    position: relative;
+    overflow: hidden;
+  }
+}
+
+/* ─── PAGE / PRINT ──────────────────────────────────────── */
+@page {
+  size: A4 portrait;
+  margin: 15mm;
+}
+
+@media print {
+  body { background: none; margin: 0; padding: 0; }
+  .screen-controls { display: none !important; }
+  .page {
+    width: 100%;
+    min-height: auto;
+    margin: 0;
+    box-shadow: none;
+    page-break-after: always;
+  }
+  .page:last-child { page-break-after: auto; }
+  canvas { max-width: 100% !important; }
+}
+
+/* ─── TOKENS ────────────────────────────────────────────── */
+:root {
+  --blue:   #003F87;
+  --blue-l: #0055b3;
+  --gold:   #FCB813;
+  --red:    #E30613;
+  --black:  #111827;
+  --gray1:  #374151;
+  --gray2:  #6b7280;
+  --gray3:  #9ca3af;
+  --bg-th:  #f0f0f0;
+  --border: #d1d5db;
+  --mono:   'IBM Plex Mono', monospace;
+  --sans:   'IBM Plex Sans', sans-serif;
+}
+
+/* ─── PAGE INNER ─────────────────────────────────────────── */
+.page-inner {
+  padding: 15mm;
+  height: 267mm; /* 297 - 30mm margins */
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  position: relative;
+}
+
+/* ─── HEADER / FOOTER ────────────────────────────────────── */
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 6pt;
+  border-bottom: 0.5pt solid var(--border);
+  margin-bottom: 10pt;
+  flex-shrink: 0;
+}
+
+.ph-left {
+  display: flex;
+  align-items: center;
+  gap: 8pt;
+}
+
+.vna-logo-box {
+  width: 32pt;
+  height: 22pt;
+  background: var(--blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.vna-logo-box svg { width: 22pt; height: 14pt; }
+
+.ph-title-block {}
+
+.ph-title {
+  font-family: var(--mono);
+  font-size: 8pt;
+  font-weight: 600;
+  color: var(--blue);
+  letter-spacing: 0.06em;
+  line-height: 1.2;
+}
+
+.ph-sub {
+  font-family: var(--mono);
+  font-size: 7pt;
+  color: var(--gray2);
+  letter-spacing: 0.04em;
+}
+
+.ph-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2pt;
+}
+
+.page-num {
+  font-family: var(--mono);
+  font-size: 8pt;
+  color: var(--gray2);
+}
+
+.page-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 5pt;
+  border-top: 0.5pt solid var(--border);
+  margin-top: auto;
+  flex-shrink: 0;
+}
+
+.pf-text {
+  font-family: var(--mono);
+  font-size: 6.5pt;
+  color: var(--gray3);
+}
+
+/* ─── SECTION HEADINGS ───────────────────────────────────── */
+.sec-h1 {
+  font-family: var(--sans);
+  font-size: 14pt;
+  font-weight: 700;
+  color: var(--blue);
+  letter-spacing: -0.01em;
+  margin-bottom: 4pt;
+}
+
+.sec-h2 {
+  font-family: var(--sans);
+  font-size: 10pt;
+  font-weight: 600;
+  color: var(--black);
+  border-left: 3pt solid var(--blue);
+  padding-left: 6pt;
+  margin: 8pt 0 4pt;
+  line-height: 1.2;
+}
+
+.sec-h3 {
+  font-family: var(--mono);
+  font-size: 8pt;
+  font-weight: 600;
+  color: var(--gray1);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin: 6pt 0 3pt;
+  padding-bottom: 2pt;
+  border-bottom: 0.5pt solid var(--border);
+}
+
+.body-text {
+  font-size: 9pt;
+  color: var(--black);
+  line-height: 1.5;
+  margin-bottom: 4pt;
+}
+
+/* ─── KPI BOXES (cover page) ─────────────────────────────── */
+.kpi-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6pt;
+  margin: 8pt 0;
+}
+
+.kpi-box {
+  border: 0.5pt solid var(--border);
+  padding: 7pt 9pt;
+}
+
+.kpi-box-label {
+  font-family: var(--mono);
+  font-size: 7pt;
+  color: var(--gray2);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 2pt;
+}
+
+.kpi-box-val {
+  font-family: var(--mono);
+  font-size: 18pt;
+  font-weight: 700;
+  color: var(--blue);
+  line-height: 1;
+}
+
+.kpi-box-val.red { color: var(--red); }
+.kpi-box-val.gold { color: #b58900; }
+
+.kpi-box-sub {
+  font-family: var(--mono);
+  font-size: 7pt;
+  color: var(--gray2);
+  margin-top: 2pt;
+}
+
+.kpi-box-delta {
+  font-family: var(--mono);
+  font-size: 7.5pt;
+  margin-top: 3pt;
+}
+
+.delta-neg { color: var(--red); }
+.delta-pos { color: #166534; }
+
+/* ─── TABLES ─────────────────────────────────────────────── */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 4pt 0;
+}
+
+.data-table th {
+  font-family: var(--mono);
+  font-size: 7.5pt;
+  color: var(--gray1);
+  background: var(--bg-th);
+  padding: 3pt 5pt;
+  border: 0.5pt solid var(--border);
+  text-align: left;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+.data-table td {
+  font-family: var(--mono);
+  font-size: 8pt;
+  padding: 3pt 5pt;
+  border: 0.5pt solid var(--border);
+  color: var(--black);
+  vertical-align: top;
+}
+
+.data-table tr:nth-child(even) td { background: #f9fafb; }
+
+.td-code { color: var(--blue-l); font-weight: 500; }
+.td-reg { color: #b45309; font-weight: 500; }
+.td-red { color: var(--red); font-weight: 600; }
+.td-gold { color: #92400e; }
+.td-gray { color: var(--gray2); }
+.td-wrap { white-space: normal; font-size: 7.5pt; }
+
+/* ─── INLINE BAR ─────────────────────────────────────────── */
+.inline-bar-row {
+  display: flex;
+  align-items: center;
+  gap: 6pt;
+  margin: 2pt 0;
+}
+
+.ibl { font-size: 8.5pt; min-width: 140pt; color: var(--black); font-family: var(--mono); }
+.ib-wrap { flex: 1; height: 7pt; background: #e5e7eb; border-radius: 1pt; }
+.ib-fill { height: 100%; border-radius: 1pt; }
+.ib-pct { font-family: var(--mono); font-size: 8.5pt; font-weight: 600; min-width: 32pt; text-align: right; }
+
+/* ─── GAUGE MINI ─────────────────────────────────────────── */
+.gauge-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 5pt;
+  margin: 5pt 0;
+}
+
+.gauge-cell {
+  text-align: center;
+  padding: 5pt;
+  border: 0.5pt solid var(--border);
+}
+
+.gauge-label {
+  font-family: var(--mono);
+  font-size: 7pt;
+  color: var(--gray2);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  margin-bottom: 3pt;
+}
+
+.gauge-value {
+  font-family: var(--mono);
+  font-size: 16pt;
+  font-weight: 700;
+  color: var(--red);
+  line-height: 1;
+}
+
+.gauge-target {
+  font-family: var(--mono);
+  font-size: 7pt;
+  color: var(--gray2);
+  margin-top: 2pt;
+}
+
+.gauge-delta {
+  font-family: var(--mono);
+  font-size: 7.5pt;
+  color: var(--red);
+  margin-top: 1pt;
+}
+
+/* ─── 2-COL LAYOUT ───────────────────────────────────────── */
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8pt;
+}
+
+.three-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 8pt;
+}
+
+/* ─── CHART PANEL ────────────────────────────────────────── */
+.chart-panel {
+  border: 0.5pt solid var(--border);
+  padding: 6pt;
+}
+
+.chart-panel-title {
+  font-family: var(--mono);
+  font-size: 7.5pt;
+  color: var(--gray2);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  margin-bottom: 4pt;
+  padding-bottom: 3pt;
+  border-bottom: 0.5pt solid var(--border);
+}
+
+/* ─── NOTAM TIMELINE ─────────────────────────────────────── */
+.notam-timeline {
+  position: relative;
+  padding-left: 12pt;
+  margin: 4pt 0;
+}
+
+.ntl-line {
+  position: absolute;
+  left: 4pt;
+  top: 4pt;
+  bottom: 4pt;
+  width: 0.5pt;
+  background: var(--border);
+}
+
+.ntl-item {
+  position: relative;
+  margin-bottom: 6pt;
+  padding-left: 8pt;
+}
+
+.ntl-dot {
+  position: absolute;
+  left: -10pt;
+  top: 3pt;
+  width: 5pt;
+  height: 5pt;
+  border-radius: 50%;
+  background: var(--blue);
+}
+
+.ntl-dot.red { background: var(--red); }
+.ntl-dot.gold { background: var(--gold); }
+
+.ntl-id {
+  font-family: var(--mono);
+  font-size: 7.5pt;
+  font-weight: 600;
+  color: var(--blue-l);
+}
+
+.ntl-text {
+  font-size: 8pt;
+  color: var(--black);
+  line-height: 1.4;
+}
+
+.ntl-validity {
+  font-family: var(--mono);
+  font-size: 7pt;
+  color: var(--gray2);
+}
+
+/* ─── BQDB TAG ───────────────────────────────────────────── */
+.tag-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3pt;
+  margin: 3pt 0;
+}
+
+.tag {
+  font-family: var(--mono);
+  font-size: 7.5pt;
+  padding: 1pt 4pt;
+  border: 0.5pt solid var(--border);
+  color: var(--gray1);
+  background: #f9fafb;
+}
+
+/* ─── ALERT BOX ──────────────────────────────────────────── */
+.alert-box {
+  border-left: 3pt solid var(--red);
+  background: #fef2f2;
+  padding: 5pt 7pt;
+  margin: 5pt 0;
+}
+
+.alert-box.gold {
+  border-color: var(--gold);
+  background: #fffbeb;
+}
+
+.alert-title {
+  font-family: var(--mono);
+  font-size: 8pt;
+  font-weight: 600;
+  color: var(--red);
+  margin-bottom: 2pt;
+}
+
+.alert-title.gold { color: #92400e; }
+
+.alert-text {
+  font-size: 8.5pt;
+  color: var(--black);
+  line-height: 1.4;
+}
+
+/* ─── COVER PAGE ─────────────────────────────────────────── */
+.cover-stripe {
+  background: var(--blue);
+  margin: -15mm -15mm 0;
+  padding: 14mm 15mm 10mm;
+  color: #fff;
+}
+
+.cover-eyebrow {
+  font-family: var(--mono);
+  font-size: 8pt;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.65;
+  margin-bottom: 4pt;
+}
+
+.cover-h1 {
+  font-family: var(--sans);
+  font-size: 22pt;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #fff;
+  line-height: 1.1;
+  margin-bottom: 3pt;
+}
+
+.cover-h2 {
+  font-family: var(--mono);
+  font-size: 10pt;
+  opacity: 0.75;
+  margin-bottom: 6pt;
+}
+
+.cover-meta-row {
+  display: flex;
+  gap: 16pt;
+  margin-top: 8pt;
+  padding-top: 6pt;
+  border-top: 0.5pt solid rgba(255,255,255,0.25);
+}
+
+.cover-meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 1pt;
+}
+
+.cover-meta-label {
+  font-family: var(--mono);
+  font-size: 6.5pt;
+  opacity: 0.55;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.cover-meta-val {
+  font-family: var(--mono);
+  font-size: 9pt;
+  font-weight: 600;
+  color: var(--gold);
+}
+
+/* weather list inline */
+.wx-inline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3pt;
+  margin: 3pt 0;
+}
+
+.wx-chip {
+  font-family: var(--mono);
+  font-size: 7.5pt;
+  padding: 1pt 4pt;
+  border: 0.5pt solid #d97706;
+  color: #92400e;
+  background: #fffbeb;
+  border-radius: 1pt;
+}
+
+.wx-chip.tsra-heavy {
+  border-color: var(--red);
+  color: var(--red);
+  background: #fef2f2;
+}
+
+/* LF chart inside table */
+.lf-bar {
+  display: inline-block;
+  height: 6pt;
+  border-radius: 1pt;
+  vertical-align: middle;
+}
+
+</style>
+</head>
+<body>
+
+<!-- ═══ SCREEN CONTROLS ══════════════════════════════════════════════════ -->
+<div class="screen-controls">
+  <a href="../dashboard-bcao-dieu-phoi-truong/index.html" class="ctrl-btn">← Dashboard</a>
+  <button class="ctrl-btn primary" onclick="window.print()">In / Lưu PDF</button>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════════ -->
+<!-- TRANG 1: BÌA + EXECUTIVE SUMMARY ═════════════════════════════════ -->
+<!-- ══════════════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-inner">
+    <!-- Cover stripe -->
+    <div class="cover-stripe">
+      <div style="display:flex;align-items:flex-start;justify-content:space-between">
+        <div>
+          <div class="cover-eyebrow">Vietnam Airlines · OCC · Báo cáo khai thác ngày</div>
+          <div class="cover-h1">BCAO<br>10JUN–11JUN/2025</div>
+          <div class="cover-h2">Báo Cáo Ngày Khai Thác · Tổng hợp T-1 và T hôm nay</div>
+        </div>
+        <!-- VNA Logo placeholder -->
+        <div style="text-align:right">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:22pt;font-weight:700;color:var(--gold);letter-spacing:-.02em">VNA</div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:7pt;opacity:.5;letter-spacing:.1em">VIETNAM AIRLINES</div>
+        </div>
+      </div>
+      <div class="cover-meta-row">
+        <div class="cover-meta-item"><span class="cover-meta-label">Phát hành</span><span class="cover-meta-val">06:00 LT 11/06/2025</span></div>
+        <div class="cover-meta-item"><span class="cover-meta-label">Đơn vị</span><span class="cover-meta-val">OCC — Trực khai thác</span></div>
+        <div class="cover-meta-item"><span class="cover-meta-label">Phiên bản</span><span class="cover-meta-val">REV 01</span></div>
+        <div class="cover-meta-item"><span class="cover-meta-label">Trạng thái</span><span class="cover-meta-val">CHÍNH THỨC</span></div>
+      </div>
+    </div>
+
+    <!-- ALERT: Áp thấp nhiệt đới -->
+    <div class="alert-box" style="margin-top:10pt">
+      <div class="alert-title">ÁP THẤP NHIỆT ĐỚI 01W — CẢNH BÁO ĐANG THEO DÕI</div>
+      <div class="alert-text">Di chuyển hướng Tây Tây Bắc tốc độ 10km/h. Cách sân bay VVDN (Đà Nẵng) <strong>200Nm</strong>. TSRA rải rộng Miền Trung suốt ngày (VVDN, VVCA, VVPB cả ngày). Miền Nam có 8 sân báo TSRA. Cần theo dõi liên tục và cập nhật TAF mỗi 3h.</div>
+    </div>
+
+    <!-- EXECUTIVE KPI -->
+    <div class="sec-h2" style="margin-top:8pt">Tóm tắt chỉ số khai thác</div>
+
+    <div class="gauge-row">
+      <div class="gauge-cell">
+        <div class="gauge-label">OTP Đi (T-1)</div>
+        <div class="gauge-value">55.6%</div>
+        <div class="gauge-target">MT: 81%</div>
+        <div class="gauge-delta">▼ -25.4pp</div>
+      </div>
+      <div class="gauge-cell">
+        <div class="gauge-label">OTP Đến (T-1)</div>
+        <div class="gauge-value">45.8%</div>
+        <div class="gauge-target">MT: 77%</div>
+        <div class="gauge-delta">▼ -29.2pp</div>
+      </div>
+      <div class="gauge-cell">
+        <div class="gauge-label">OSP Đi (T-1)</div>
+        <div class="gauge-value" style="font-size:14pt">23.7%</div>
+        <div class="gauge-target">MT: 43%</div>
+        <div class="gauge-delta">▼ -19.3pp</div>
+      </div>
+      <div class="gauge-cell">
+        <div class="gauge-label">AOG 11JUN</div>
+        <div class="gauge-value">10</div>
+        <div class="gauge-target">HAN:7 · SGN:3</div>
+        <div class="gauge-delta" style="color:#92400e">Theo dõi liên tục</div>
+      </div>
+    </div>
+
+    <div class="kpi-row">
+      <div class="kpi-box">
+        <div class="kpi-box-label">Tổng chuyến T-1 (10JUN)</div>
+        <div class="kpi-box-val">468</div>
+        <div class="kpi-box-sub">VN:437 · 0V:16 · BL:15</div>
+      </div>
+      <div class="kpi-box">
+        <div class="kpi-box-label">Tổng chuyến T (11JUN)</div>
+        <div class="kpi-box-val">504</div>
+        <div class="kpi-box-sub">VN:469 · 0V:16 · BL:19</div>
+        <div class="kpi-box-delta delta-pos">▲ +36 vs T-1</div>
+      </div>
+      <div class="kpi-box">
+        <div class="kpi-box-label">Tàu khai thác / Tổng</div>
+        <div class="kpi-box-val gold">77/98</div>
+        <div class="kpi-box-sub">APU INOP: A396/601/616</div>
+      </div>
+    </div>
+
+    <!-- MINI CHART: delay causes -->
+    <div class="two-col" style="margin-top:6pt">
+      <div>
+        <div class="sec-h3">Nguyên nhân delay T-1</div>
+        <div class="inline-bar-row">
+          <span class="ibl">Ảnh hưởng chặng trước</span>
+          <div class="ib-wrap"><div class="ib-fill" style="width:100%;background:var(--red)"></div></div>
+          <span class="ib-pct" style="color:var(--red)">37.7%</span>
+        </div>
+        <div class="inline-bar-row">
+          <span class="ibl">Traffic</span>
+          <div class="ib-wrap"><div class="ib-fill" style="width:7.2%;background:#d97706"></div></div>
+          <span class="ib-pct" style="color:#92400e">2.7%</span>
+        </div>
+        <div class="inline-bar-row">
+          <span class="ibl">Thời tiết</span>
+          <div class="ib-wrap"><div class="ib-fill" style="width:2.9%;background:#3b82f6"></div></div>
+          <span class="ib-pct" style="color:#1d4ed8">1.1%</span>
+        </div>
+        <div class="inline-bar-row">
+          <span class="ibl">Kỹ thuật</span>
+          <div class="ib-wrap"><div class="ib-fill" style="width:1.9%;background:#7c3aed"></div></div>
+          <span class="ib-pct" style="color:#7c3aed">0.7%</span>
+        </div>
+        <div class="inline-bar-row">
+          <span class="ibl">Nguyên nhân khác</span>
+          <div class="ib-wrap"><div class="ib-fill" style="width:1.9%;background:#9ca3af"></div></div>
+          <span class="ib-pct" style="color:#6b7280">0.7%</span>
+        </div>
+      </div>
+      <div>
+        <div class="sec-h3">Sự kiện T-1 nổi bật</div>
+        <div class="body-text" style="font-size:8pt">
+          <strong>Kỹ thuật:</strong> A321-VNA618 N/S HAN/SGN khắc phục ENG1 FUEL FILTER — Ảnh hưởng VN267 Dla/0040. A321-VNA390/HKG — ENG2 REVERSE FAULT, VN593 Dla/5h30, kéo delay 4 cặp HAN.<br><br>
+          <strong>Thời tiết SGN (1630-1835LT):</strong> ATFM áp dụng — 5 chuyến divert (VCA/CXR/DLI), 10 chuyến bay chờ 20-45p, hơn 40 chuyến delay &gt;15p.
+        </div>
+      </div>
+    </div>
+
+    <div class="page-footer">
+      <span class="pf-text">BCAO 10JUN-11JUN/2025 — Vietnam Airlines OCC — TÀI LIỆU NỘI BỘ</span>
+      <span class="pf-text">Trang 1 / 7</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════════ -->
+<!-- TRANG 2: T-1 SỐ LIỆU + OTP/OSP + LF ═════════════════════════════ -->
+<!-- ══════════════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-inner">
+    <div class="page-header">
+      <div class="ph-left">
+        <div class="vna-logo-box">
+          <svg viewBox="0 0 22 14" fill="none"><rect width="22" height="14" fill="#003F87"/><text x="2" y="10.5" font-family="IBM Plex Sans" font-size="7" font-weight="700" fill="#FCB813">VNA</text></svg>
+        </div>
+        <div class="ph-title-block">
+          <div class="ph-title">BCAO 10JUN-11JUN/2025</div>
+          <div class="ph-sub">§1 Tình hình khai thác T-1 (10 JUN 2025)</div>
+        </div>
+      </div>
+      <div class="ph-right">
+        <span class="page-num">Trang 2 / 7</span>
+      </div>
+    </div>
+
+    <!-- 1.1 Số liệu -->
+    <div class="sec-h2">§1.1 Số liệu khai thác T-1</div>
+
+    <div class="three-col">
+      <div>
+        <div class="sec-h3">Chuyến bay</div>
+        <table class="data-table">
+          <tbody>
+            <tr><td class="td-gray">Tổng VNA Group</td><td class="td-code" style="font-weight:700">468</td></tr>
+            <tr><td class="td-gray">VN</td><td>437</td></tr>
+            <tr><td class="td-gray">0V (Pacific)</td><td>16</td></tr>
+            <tr><td class="td-gray">BL (Bamboo)</td><td>15</td></tr>
+            <tr><td class="td-gray">Ferry</td><td>2 (VN)</td></tr>
+            <tr><td class="td-gray">Khách QN</td><td>3.415*</td></tr>
+            <tr><td class="td-gray">Khách QT</td><td>125</td></tr>
+          </tbody>
+        </table>
+        <div style="font-family:var(--mono);font-size:6.5pt;color:var(--gray3);margin-top:2pt">*Dữ liệu gốc: 3415 (tổng hợp)</div>
+      </div>
+      <div>
+        <div class="sec-h3">Tàu bay</div>
+        <table class="data-table">
+          <tbody>
+            <tr><td class="td-gray">Khai thác / Tổng</td><td class="td-code" style="font-weight:700">78 / 98</td></tr>
+            <tr><td class="td-gray">A350</td><td>10/14</td></tr>
+            <tr><td class="td-gray">B787</td><td>16/17</td></tr>
+            <tr><td class="td-gray">A321</td><td>45/59</td></tr>
+            <tr><td class="td-gray">A320</td><td>3/3</td></tr>
+            <tr><td class="td-gray">ATR72</td><td>4/5</td></tr>
+            <tr><td class="td-gray">Dự bị tất cả</td><td class="td-red">0 tàu</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <div class="sec-h3">OTP / OSP</div>
+        <table class="data-table">
+          <tbody>
+            <tr><td class="td-gray">OTP Đi</td><td class="td-red">55.6% <span style="font-size:7pt">(MT 81%)</span></td></tr>
+            <tr><td class="td-gray">Delta OTP Đi</td><td class="td-red">▼ -25.4%</td></tr>
+            <tr><td class="td-gray">OTP Đến</td><td class="td-red">45.8% <span style="font-size:7pt">(MT 77%)</span></td></tr>
+            <tr><td class="td-gray">Delta OTP Đến</td><td class="td-red">▼ -29.2%</td></tr>
+            <tr><td class="td-gray">OSP Đi</td><td class="td-red">23.7% <span style="font-size:7pt">(MT 43%)</span></td></tr>
+            <tr><td class="td-gray">OSP Đến</td><td class="td-red">20.8% <span style="font-size:7pt">(MT 46%)</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 1.2 LF đường trục -->
+    <div class="sec-h2">§1.2 LF Vận chuyển toàn mạng — Đường trục T-1</div>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Đường trục</th>
+          <th>Số CB Đi/Đến</th>
+          <th>LF Đi (%)</th>
+          <th>LF Đến (%)</th>
+          <th>LF Trung bình (%)</th>
+          <th>Biểu đồ (Đi / Đến)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="td-code">HAN-SGN-HAN</td>
+          <td>27 / 25</td>
+          <td style="color:#166534;font-weight:600">88%</td>
+          <td style="color:#166534;font-weight:600">97%</td>
+          <td style="color:#166534;font-weight:600">92.5%</td>
+          <td>
+            <div style="display:flex;flex-direction:column;gap:2pt">
+              <div><span style="font-family:var(--mono);font-size:6pt;color:var(--gray2)">Đi </span><span class="lf-bar" style="width:88pt;background:#166534"></span></div>
+              <div><span style="font-family:var(--mono);font-size:6pt;color:var(--gray2)">Đến</span><span class="lf-bar" style="width:97pt;background:#15803d"></span></div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-code">HAN-DAD-HAN</td>
+          <td>24 / 24</td>
+          <td style="color:#92400e;font-weight:600">83%</td>
+          <td style="color:#92400e;font-weight:600">86%</td>
+          <td style="color:#92400e;font-weight:600">84.5%</td>
+          <td>
+            <div style="display:flex;flex-direction:column;gap:2pt">
+              <div><span style="font-family:var(--mono);font-size:6pt;color:var(--gray2)">Đi </span><span class="lf-bar" style="width:83pt;background:#d97706"></span></div>
+              <div><span style="font-family:var(--mono);font-size:6pt;color:var(--gray2)">Đến</span><span class="lf-bar" style="width:86pt;background:#d97706"></span></div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="td-code">SGN-DAD-SGN</td>
+          <td>20 / 18</td>
+          <td style="color:#d97706;font-weight:600">70%</td>
+          <td style="color:#92400e;font-weight:600">86%</td>
+          <td style="color:#d97706;font-weight:600">78%</td>
+          <td>
+            <div style="display:flex;flex-direction:column;gap:2pt">
+              <div><span style="font-family:var(--mono);font-size:6pt;color:var(--gray2)">Đi </span><span class="lf-bar" style="width:70pt;background:#f59e0b"></span></div>
+              <div><span style="font-family:var(--mono);font-size:6pt;color:var(--gray2)">Đến</span><span class="lf-bar" style="width:86pt;background:#d97706"></span></div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- 1.3 Bất thường -->
+    <div class="sec-h2">§1.3 Bất thường T-1</div>
+    <div class="two-col">
+      <div>
+        <div class="sec-h3">Kỹ thuật</div>
+        <div class="body-text" style="font-size:8pt">
+          <strong>A321-VNA618/HAN:</strong> N/S khắc phục ENG1 FUEL FILTER → đổi tàu VN267 HAN-SGN Dla/0040.<br>
+          <strong>A321-VNA390/HKG:</strong> ENG2 REVERSE FAULT + ENG2 OIL QTY XX trong taxi-out → PAPAS hỗ trợ → VN593 HKG-HAN Dla/5h30 → kéo 4 cặp chuyến HAN (VN1545/44, VN187/88, VN7559/58, VN193/7093) Dla/0045-0115.
+        </div>
+        <div class="sec-h3">Bất thường khác</div>
+        <div class="body-text" style="font-size:8pt">
+          A321-VNA606/SGN: Thay lốp mòn → VN7100/7101 SGN//DAD Dla/0037.<br>
+          A321-VNA397/SGN: Thay lốp mòn → VN7829/7828 Dla/0027.<br>
+          Traffic HAN/DAD/SGN: hơn 60 chuyến delay &gt;15p.
+        </div>
+      </div>
+      <div>
+        <div class="sec-h3">Thời tiết T-1</div>
+        <div class="body-text" style="font-size:8pt">
+          <strong>DLI:</strong> mưa mù tầm nhìn thấp — VN1380 bay chờ 25p → ảnh hưởng VN1381 và 4 cặp nội địa.<br>
+          <strong>VCS:</strong> mưa lớn 1300-1330LT — VN1859 bay chờ 34p → VN1858/1885/1884.<br>
+          <strong>SGN:</strong> mưa dông 1630-1700LT &amp; 1751-1835LT — ATFM áp dụng:
+        </div>
+        <div class="body-text" style="font-size:8pt">
+          <span style="color:var(--red)">5 chuyến divert:</span> VN503 div VCA, VN630 div VCA, VN273 div CXR, VN1267 div CXR, VN7405 div DLI.<br>
+          <span style="color:#92400e">10 chuyến bay chờ 20-45p.</span><br>
+          <span style="color:var(--gray1)">&gt;40 chuyến delay &gt;15p (trực tiếp/gián tiếp).</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Nguyên nhân delay chart inline -->
+    <div class="chart-panel">
+      <div class="chart-panel-title">Phân tích nguyên nhân delay — % trên tổng số chuyến T-1</div>
+      <canvas id="chartDelayT1" height="55"></canvas>
+    </div>
+
+    <div class="page-footer">
+      <span class="pf-text">BCAO 10JUN-11JUN/2025 — Vietnam Airlines OCC — TÀI LIỆU NỘI BỘ</span>
+      <span class="pf-text">Trang 2 / 7</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════════ -->
+<!-- TRANG 3: T-1 VIP + FERRY + ĐÁNH GIÁ ══════════════════════════════ -->
+<!-- ══════════════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-inner">
+    <div class="page-header">
+      <div class="ph-left">
+        <div class="vna-logo-box"><svg viewBox="0 0 22 14" fill="none"><rect width="22" height="14" fill="#003F87"/><text x="2" y="10.5" font-family="IBM Plex Sans" font-size="7" font-weight="700" fill="#FCB813">VNA</text></svg></div>
+        <div class="ph-title-block"><div class="ph-title">BCAO 10JUN-11JUN/2025</div><div class="ph-sub">§1 T-1 — VIP · Ferry · Đánh giá</div></div>
+      </div>
+      <div class="ph-right"><span class="page-num">Trang 3 / 7</span></div>
+    </div>
+
+    <div class="sec-h2">§1.2 Chuyến bay cần lưu ý T-1 (10JUN)</div>
+
+    <div class="sec-h3">VIP A</div>
+    <table class="data-table">
+      <thead><tr><th>Cấp</th><th>Chuyến</th><th>Route</th><th>STD–STA (LT)</th><th>A/C REG</th><th>Ghi chú</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><span style="font-family:var(--mono);font-size:7.5pt;padding:1pt 3pt;background:#fffbeb;border:0.5pt solid var(--gold);color:#92400e">VIP A3</span></td>
+          <td class="td-code">VN1</td>
+          <td>NCE → ORY</td>
+          <td>0800 – 0920 LT<br><span style="color:#1d4ed8">Act: 0837 – 0956LT</span></td>
+          <td class="td-reg">B787-VNA868</td>
+          <td class="td-wrap td-gray">Thực tế trễ 37p so STD</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="sec-h3" style="margin-top:7pt">VIP Khác</div>
+    <table class="data-table">
+      <thead><tr><th>Chuyến</th><th>Route</th><th>STD–STA</th><th>Khách</th><th>Chức vụ</th></tr></thead>
+      <tbody>
+        <tr><td class="td-code">VN1591</td><td>HAN→VDH</td><td>0845–0950</td><td>DO VAN CHIEN</td><td class="td-gray">BT TWD</td></tr>
+        <tr><td class="td-code">VN1200</td><td>VCA→HAN</td><td>0935–1150</td><td>VO THI ANH XUAN</td><td class="td-gray">PHO CTN</td></tr>
+        <tr><td class="td-code">VN218</td><td>SGN→HAN</td><td>1800–2005</td><td>NGUYEN THIEN NHAN</td><td class="td-gray">NGUYEN UVBCT</td></tr>
+      </tbody>
+    </table>
+
+    <div class="sec-h3" style="margin-top:7pt">Ferry / Đặc biệt</div>
+    <table class="data-table">
+      <thead><tr><th>STT</th><th>A/C REG</th><th>Callsign</th><th>Loại</th><th>DEP</th><th>ARR</th><th>ETD</th><th>ETA</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td class="td-reg">VNA621</td><td class="td-code">VN9749</td><td>P (Ferry)</td><td>CXR</td><td>DAD</td><td>04:10</td><td>05:20</td></tr>
+        <tr><td>2</td><td class="td-reg">VNA868</td><td class="td-code">VN1</td><td>P (Ferry)</td><td>ORY</td><td>NCE</td><td>05:40</td><td>07:00</td></tr>
+      </tbody>
+    </table>
+
+    <!-- Đánh giá tổng hợp -->
+    <div class="sec-h2" style="margin-top:8pt">§1.4 Đánh giá tình hình khai thác T-1</div>
+
+    <div class="alert-box" style="margin-bottom:7pt">
+      <div class="alert-title">OTP/OSP CRITICAL — Thấp nghiêm trọng dưới MT</div>
+      <div class="alert-text">
+        Nguyên nhân chủ yếu là <strong>knock-on effect (37.7%)</strong> — ảnh hưởng chặng trước tích lũy từ sự cố kỹ thuật VNA390 tại HKG (Dla/5h30) và thời tiết xấu tại SGN chiều muộn. Traffic HAN/DAD/SGN kết hợp thêm &gt;60 chuyến delay. OTP đến chỉ đạt 45.8% — thấp nhất trong chu kỳ, cần họp đánh giá nguyên nhân gốc và kế hoạch phục hồi.
+      </div>
+    </div>
+
+    <div class="chart-panel">
+      <div class="chart-panel-title">So sánh OTP/OSP vs. Monthly Target (MT) — T-1 10JUN</div>
+      <canvas id="chartOTPCompare" height="80"></canvas>
+    </div>
+
+    <div class="page-footer">
+      <span class="pf-text">BCAO 10JUN-11JUN/2025 — Vietnam Airlines OCC — TÀI LIỆU NỘI BỘ</span>
+      <span class="pf-text">Trang 3 / 7</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════════ -->
+<!-- TRANG 4: T (11JUN) — SỐ LIỆU + FLEET + LF ═══════════════════════ -->
+<!-- ══════════════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-inner">
+    <div class="page-header">
+      <div class="ph-left">
+        <div class="vna-logo-box"><svg viewBox="0 0 22 14" fill="none"><rect width="22" height="14" fill="#003F87"/><text x="2" y="10.5" font-family="IBM Plex Sans" font-size="7" font-weight="700" fill="#FCB813">VNA</text></svg></div>
+        <div class="ph-title-block"><div class="ph-title">BCAO 10JUN-11JUN/2025</div><div class="ph-sub">§2 Tình hình khai thác hôm nay (11 JUN 2025)</div></div>
+      </div>
+      <div class="ph-right"><span class="page-num">Trang 4 / 7</span></div>
+    </div>
+
+    <div class="sec-h2">§2.1 Số liệu khai thác — 11JUN</div>
+
+    <div class="three-col">
+      <div>
+        <div class="sec-h3">Chuyến bay</div>
+        <table class="data-table">
+          <tbody>
+            <tr><td class="td-gray">Tổng VNA Group</td><td class="td-code" style="font-weight:700">504</td></tr>
+            <tr><td class="td-gray">VN</td><td>469</td></tr>
+            <tr><td class="td-gray">0V</td><td>16</td></tr>
+            <tr><td class="td-gray">BL</td><td>19</td></tr>
+            <tr><td class="td-gray">Khách QN</td><td>367</td></tr>
+            <tr><td class="td-gray">Khách QT</td><td>135</td></tr>
+            <tr><td class="td-gray">Ferry</td><td>2 (VN)</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <div class="sec-h3">Fleet 11JUN</div>
+        <table class="data-table">
+          <tbody>
+            <tr><td class="td-gray">Khai thác / Tổng</td><td class="td-code" style="font-weight:700">77 / 98</td></tr>
+            <tr><td class="td-gray">A350</td><td>10/14 <span style="font-size:7pt;color:var(--gray2)">(2BQ 1MNT 1LC)</span></td></tr>
+            <tr><td class="td-gray">B787</td><td>16/17 <span style="font-size:7pt;color:var(--gray2)">(1 A01 CHECK)</span></td></tr>
+            <tr><td class="td-gray">A321</td><td>44/59 <span style="font-size:7pt;color:var(--gray2)">(11BQ 2MNT 1C 1E19)</span></td></tr>
+            <tr><td class="td-gray">A320</td><td>3/3</td></tr>
+            <tr><td class="td-gray">ATR72</td><td>4/5 <span style="font-size:7pt;color:var(--gray2)">(1 Y8/SGN)</span></td></tr>
+            <tr><td class="td-gray">Dự bị</td><td class="td-red">0 tàu (tất cả fleet)</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <div class="sec-h3">APU/PACK Monitor</div>
+        <table class="data-table">
+          <tbody>
+            <tr><td class="td-gray">APU INOP (cần ASU+ACU+GPU)</td><td class="td-red">A396, A601, A616</td></tr>
+            <tr><td class="td-gray">APU GEN INOP</td><td class="td-gold">A601 (ADD B2720)</td></tr>
+            <tr><td class="td-gray">PACK YẾU</td><td class="td-gold">A604 (PACK#2 15°C)</td></tr>
+            <tr><td class="td-gray">APU BAD SMELL</td><td>NIL</td></tr>
+            <tr><td class="td-gray">PACK INOP</td><td>NIL</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- LF 11JUN -->
+    <div class="sec-h2">§2.1.2 LF Đường trục 11JUN</div>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Đường trục</th><th>CB Đi/Đến</th><th>LF Đi</th><th>LF Đến</th><th>LF TB</th><th>vs T-1</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="td-code">HAN-SGN-HAN</td>
+          <td>28 / 28</td>
+          <td style="color:#166534;font-weight:600">91%</td>
+          <td style="color:#166534;font-weight:600">93%</td>
+          <td style="color:#166534;font-weight:600">92%</td>
+          <td class="td-gray">▼ Đi -3pp / ▲ Đến +0pp (92.5→92)</td>
+        </tr>
+        <tr>
+          <td class="td-code">HAN-DAD-HAN</td>
+          <td>24 / 24</td>
+          <td style="color:#166534;font-weight:600">92%</td>
+          <td style="color:#d97706;font-weight:600">74%</td>
+          <td style="color:#92400e;font-weight:600">83%</td>
+          <td class="td-gray">▲ Đi +9pp / ▼ Đến -12pp</td>
+        </tr>
+        <tr>
+          <td class="td-code">SGN-DAD-SGN</td>
+          <td>20 / 21</td>
+          <td style="color:#d97706;font-weight:600">74%</td>
+          <td style="color:#d97706;font-weight:600">76%</td>
+          <td style="color:#d97706;font-weight:600">75%</td>
+          <td class="td-gray">▲ +4pp / ▼ -10pp (78→75)</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- LF chart -->
+    <div class="chart-panel" style="margin-top:6pt">
+      <div class="chart-panel-title">LF đường trục 11JUN — So sánh Đi vs Đến (grouped bar)</div>
+      <canvas id="chartLFT" height="70"></canvas>
+    </div>
+
+    <!-- VIP 11JUN -->
+    <div class="sec-h2" style="margin-top:6pt">§2.2 VIP — 11JUN</div>
+    <table class="data-table">
+      <thead><tr><th>Cấp</th><th>Chuyến</th><th>Route</th><th>STD–STA (LT)</th><th>A/C REG</th><th>Khách</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><span style="font-family:var(--mono);font-size:7pt;padding:1pt 3pt;background:#fffbeb;border:0.5pt solid var(--gold);color:#92400e">VIP A2</span></td>
+          <td class="td-code">VN1201</td><td>HAN→VCA</td><td>0645–0900</td><td class="td-reg">A350-VNA893</td>
+          <td class="td-wrap">TRAN LUU QUANG/BT TWĐ · BUI THI MINH HOAI/UVBCT</td>
+        </tr>
+        <tr>
+          <td><span style="font-family:var(--mono);font-size:7pt;padding:1pt 3pt;background:#f0f9ff;border:0.5pt solid #93c5fd;color:#1d4ed8">VIP</span></td>
+          <td class="td-code">VN207</td><td>HAN→SGN</td><td>0700–0910</td><td class="td-reg">—</td>
+          <td class="td-wrap">NGUYEN THI KIM NGAN/NGUYEN CTQH</td>
+        </tr>
+        <tr>
+          <td><span style="font-family:var(--mono);font-size:7pt;padding:1pt 3pt;background:#f0f9ff;border:0.5pt solid #93c5fd;color:#1d4ed8">VIP</span></td>
+          <td class="td-code">VN1200</td><td>VCA→HAN</td><td>0935–1150</td><td class="td-reg">—</td>
+          <td class="td-wrap">NGUYEN DUC HAI/P.CTQH</td>
+        </tr>
+        <tr>
+          <td><span style="font-family:var(--mono);font-size:7pt;padding:1pt 3pt;background:#fffbeb;border:0.5pt solid var(--gold);color:#92400e">VIP A2</span></td>
+          <td class="td-code">VN1202</td><td>VCA→HAN</td><td>1405–1620</td><td class="td-reg">B787-VNA866</td>
+          <td class="td-wrap">TRAN LUU QUANG/BT TWĐ</td>
+        </tr>
+        <tr>
+          <td><span style="font-family:var(--mono);font-size:7pt;padding:1pt 3pt;background:#fffbeb;border:0.5pt solid var(--gold);color:#92400e">VIP A3</span></td>
+          <td class="td-code">VN1</td><td>ORY→ARN</td><td>1530–1755</td><td class="td-reg">B787-VNA868</td>
+          <td class="td-wrap">— (TAF LFPO/ESSA đính kèm)</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="page-footer">
+      <span class="pf-text">BCAO 10JUN-11JUN/2025 — Vietnam Airlines OCC — TÀI LIỆU NỘI BỘ</span>
+      <span class="pf-text">Trang 4 / 7</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════════ -->
+<!-- TRANG 5: THỜI TIẾT + NOTAM ════════════════════════════════════════ -->
+<!-- ══════════════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-inner">
+    <div class="page-header">
+      <div class="ph-left">
+        <div class="vna-logo-box"><svg viewBox="0 0 22 14" fill="none"><rect width="22" height="14" fill="#003F87"/><text x="2" y="10.5" font-family="IBM Plex Sans" font-size="7" font-weight="700" fill="#FCB813">VNA</text></svg></div>
+        <div class="ph-title-block"><div class="ph-title">BCAO 10JUN-11JUN/2025</div><div class="ph-sub">§2 Thời tiết TAF · NOTAM · APU/PACK</div></div>
+      </div>
+      <div class="ph-right"><span class="page-num">Trang 5 / 7</span></div>
+    </div>
+
+    <div class="alert-box" style="margin-bottom:6pt">
+      <div class="alert-title">ÁP THẤP NHIỆT ĐỚI 01W — Theo TAF 0600LT 11JUN2025</div>
+      <div class="alert-text">Di chuyển Tây Tây Bắc 10km/h. Cách VVDN (Đà Nẵng) 200Nm. <strong>VVDN và VVPB: TSRA suốt cả ngày.</strong> Nhiều sân bay Miền Nam có TSRA giờ cao điểm. BKK: TSRA.</div>
+    </div>
+
+    <div class="sec-h2">§2.2.7 Thời tiết TAF — 11JUN2025</div>
+    <div class="three-col">
+      <div>
+        <div class="sec-h3">Miền Bắc</div>
+        <table class="data-table">
+          <tbody>
+            <tr><td class="td-code">VVCI</td><td class="td-wrap">2100–0700+LT TSRA</td></tr>
+            <tr><td class="td-code">VVDH</td><td class="td-wrap">0700–1000 · 1300–1600LT TSRA</td></tr>
+            <tr><td class="td-code">VVNB</td><td class="td-wrap">0300+–0700+LT TSRA</td></tr>
+            <tr><td class="td-code">VVVD</td><td class="td-wrap">2100–0700+LT TSRA</td></tr>
+            <tr><td class="td-code">VVVH</td><td class="td-wrap">1600–1900LT; 0100+–0700+LT TSRA</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <div class="sec-h3">Miền Trung</div>
+        <table class="data-table">
+          <tbody>
+            <tr><td class="td-code">VVCA</td><td class="td-wrap">0700–1600LT TSRA</td></tr>
+            <tr><td class="td-code" style="color:var(--red)">VVDN</td><td class="td-wrap td-red">0700–0700+LT TSRA (CẢNH BÁO · 01W)</td></tr>
+            <tr><td class="td-code" style="color:var(--red)">VVPB</td><td class="td-wrap td-red">0700–0700+LT TSRA (Cả ngày)</td></tr>
+          </tbody>
+        </table>
+        <div style="margin-top:5pt">
+          <div class="sec-h3">Quốc tế</div>
+          <div class="body-text" style="font-size:7.5pt">SFO LHR CDG FRA SYD MEL HND NRT KIX ICN PUS PVG TPE HYD KHH HKG CAN PKX DEL BOM SIN KUL CGK PNH SAI MNL VTE: <span style="color:#166534">Đủ điều kiện khai thác.</span><br>BKK: <span style="color:#92400e">TSRA.</span></div>
+        </div>
+      </div>
+      <div>
+        <div class="sec-h3">Miền Nam</div>
+        <table class="data-table">
+          <tbody>
+            <tr><td class="td-code">VVBM</td><td class="td-wrap">1300–1800LT</td></tr>
+            <tr><td class="td-code">VVCM</td><td class="td-wrap">0800–1400LT</td></tr>
+            <tr><td class="td-code">VVCS</td><td class="td-wrap">0700–1600LT</td></tr>
+            <tr><td class="td-code">VVCT</td><td class="td-wrap">0800–1500LT</td></tr>
+            <tr><td class="td-code">VVDL</td><td class="td-wrap">1100–1700LT</td></tr>
+            <tr><td class="td-code">VVPQ</td><td class="td-wrap">0700–1400LT</td></tr>
+            <tr><td class="td-code">VVRG</td><td class="td-wrap">0700–1600LT</td></tr>
+            <tr><td class="td-code">VVTS</td><td class="td-wrap">0900–2000LT</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- NOTAM -->
+    <div class="sec-h2">§2.2.8 NOTAM Hiệu Lực</div>
+    <div class="notam-timeline">
+      <div class="ntl-line"></div>
+      <div class="ntl-item">
+        <div class="ntl-dot"></div>
+        <div class="ntl-id">C0099/C0025 — Domestic</div>
+        <div class="ntl-validity">17APR2025 – 09JUL2025 · 1630–2200Z hàng ngày</div>
+        <div class="ntl-text"><strong>VINH (VII)</strong> — Tạm thời không khai thác và làm sân dự bị trong khung giờ 1630-2200Z hàng ngày.</div>
+      </div>
+      <div class="ntl-item">
+        <div class="ntl-dot"></div>
+        <div class="ntl-id">A0918/25 — Domestic</div>
+        <div class="ntl-validity">22APR2025 – 21JUN2025 · 1630–2200 UTC hàng ngày</div>
+        <div class="ntl-text"><strong>PQC (Phú Quốc)</strong> — Đóng cửa 1630-2200 UTC hàng ngày.</div>
+      </div>
+      <div class="ntl-item">
+        <div class="ntl-dot red"></div>
+        <div class="ntl-id">A1650/25 — Domestic</div>
+        <div class="ntl-validity">11–12JUN2025 · 0200–0400 UTC</div>
+        <div class="ntl-text"><strong>VVDN (Đà Nẵng)</strong> — Không tiếp thu máy bay trong khung 0200-0400 UTC ngày 11-12JUN. <em>Lưu ý VIP A3 VN1.</em></div>
+      </div>
+      <div class="ntl-item">
+        <div class="ntl-dot red"></div>
+        <div class="ntl-id">A0232 — Domestic</div>
+        <div class="ntl-validity">11–12JUN2025 · 0200–0400 UTC</div>
+        <div class="ntl-text"><strong>VVCA (Cà Mau)</strong> — Không tiếp thu máy bay trong khung 0200-0400 UTC ngày 11-12JUN.</div>
+      </div>
+      <div class="ntl-item">
+        <div class="ntl-dot gold"></div>
+        <div class="ntl-id">FIR UTSD D0478/25 — International</div>
+        <div class="ntl-validity">0000UTC 31MAY2025 – 2359UTC 30JUN2025</div>
+        <div class="ntl-text">Ảnh hưởng đường bay <strong>M875</strong> — tuyến VN-EU-VN. Hiệu lực đến hết ngày 30JUN2025.</div>
+      </div>
+    </div>
+
+    <!-- TAF VIP routes -->
+    <div class="alert-box gold" style="margin-top:6pt">
+      <div class="alert-title gold">TAF VIP A3 VN1 ORY-ARN (11JUN)</div>
+      <div class="alert-text" style="font-family:'IBM Plex Mono',monospace;font-size:7.5pt;line-height:1.6">
+        TAF LFPO 102300Z 1100/1206 03005KT CAVOK BECMG 1110/1112 09010KT=<br>
+        TAF ESSA 102330Z 1100/1124 14005KT 9999 SCT015 BKN040 PROB40 1100/1106 2000 -RA BR BKN008 TEMPO 1106/1118 4000 SHRA BKN012 BKN030CB BECMG 1114/1116 32010KT PROB40 1118/1121 BKN008=
+      </div>
+    </div>
+
+    <div class="page-footer">
+      <span class="pf-text">BCAO 10JUN-11JUN/2025 — Vietnam Airlines OCC — TÀI LIỆU NỘI BỘ</span>
+      <span class="pf-text">Trang 5 / 7</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════════ -->
+<!-- TRANG 6: PHỤ LỤC KỸ THUẬT — AOG + WORK ORDERS ═══════════════════ -->
+<!-- ══════════════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-inner">
+    <div class="page-header">
+      <div class="ph-left">
+        <div class="vna-logo-box"><svg viewBox="0 0 22 14" fill="none"><rect width="22" height="14" fill="#003F87"/><text x="2" y="10.5" font-family="IBM Plex Sans" font-size="7" font-weight="700" fill="#FCB813">VNA</text></svg></div>
+        <div class="ph-title-block"><div class="ph-title">BCAO 10JUN-11JUN/2025</div><div class="ph-sub">Phụ lục kỹ thuật — AOG · Work Orders</div></div>
+      </div>
+      <div class="ph-right"><span class="page-num">Trang 6 / 7</span></div>
+    </div>
+
+    <div class="sec-h2">1. Danh sách AOG — 06:00 11/06/2025</div>
+    <table class="data-table" style="font-size:7.5pt">
+      <thead>
+        <tr>
+          <th>REG</th><th>Vị trí</th><th>Nội dung công việc</th><th>EST RTS</th><th>Tình trạng</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="td-reg">A893</td><td>HAN</td><td class="td-wrap">RH AILERON EHA FAULT</td><td style="color:#92400e">11H 11/06</td><td><span style="font-family:var(--mono);font-size:7pt;padding:1pt 3pt;background:#fffbeb;border:0.5pt solid #d97706;color:#92400e">Hôm nay</span></td></tr>
+        <tr><td class="td-reg">A887</td><td>HAN</td><td class="td-wrap">A03-A06+C01+Y03+INSTALL ENG1+RTS</td><td style="color:#92400e">17H 11/06</td><td><span style="font-family:var(--mono);font-size:7pt;padding:1pt 3pt;background:#fffbeb;border:0.5pt solid #d97706;color:#92400e">Hôm nay</span></td></tr>
+        <tr><td class="td-reg">A863</td><td>SGN</td><td class="td-wrap">A07</td><td style="color:#92400e">22H 11/06</td><td><span style="font-family:var(--mono);font-size:7pt;padding:1pt 3pt;background:#fffbeb;border:0.5pt solid #d97706;color:#92400e">Hôm nay</span></td></tr>
+        <tr style="background:#fef2f2"><td class="td-reg">A865</td><td>SGN</td><td class="td-wrap">A09</td><td class="td-red">23H 10/06</td><td><span style="font-family:var(--mono);font-size:7pt;padding:1pt 3pt;background:#fef2f2;border:0.5pt solid var(--red);color:var(--red)">QUÁ HẠN</span></td></tr>
+        <tr style="background:#fef2f2"><td class="td-reg">A324</td><td>HAN</td><td class="td-wrap">EO-2021-2058/2059</td><td class="td-red">20H 10/06</td><td><span style="font-family:var(--mono);font-size:7pt;padding:1pt 3pt;background:#fef2f2;border:0.5pt solid var(--red);color:var(--red)">QUÁ HẠN</span></td></tr>
+        <tr><td class="td-reg">A501</td><td>HAN</td><td class="td-wrap">INSTALL ENG1,2+EA14-EA16+RTS</td><td>20H 14/06</td><td><span style="font-family:var(--mono);font-size:7pt;color:var(--gray2)">+3 ngày</span></td></tr>
+        <tr><td class="td-reg">A613</td><td>HAN</td><td class="td-wrap">C01+Y01</td><td>20H 17/06</td><td><span style="font-family:var(--mono);font-size:7pt;color:var(--gray2)">+6 ngày</span></td></tr>
+        <tr><td class="td-reg">B219</td><td>SGN</td><td class="td-wrap">A04 C01 Y01 Y02 Y04 Y08 + SWAP LH MLG RTS</td><td>20H 20/06</td><td><span style="font-family:var(--mono);font-size:7pt;color:var(--gray2)">+9 ngày</span></td></tr>
+        <tr><td class="td-reg">A886</td><td>HAN</td><td class="td-wrap">INSTALL ENG1,2+A03+A04+A05+A06+C01+RTS</td><td>23H 30/06</td><td><span style="font-family:var(--mono);font-size:7pt;color:var(--gray2)">+19 ngày</span></td></tr>
+        <tr><td class="td-reg">A508</td><td>HAN</td><td class="td-wrap">EVENTS+ENGCHG×2+C01+C03+Y01+Y06+EA22-EA02</td><td>20H 15/07</td><td><span style="font-family:var(--mono);font-size:7pt;color:var(--gray2)">+34 ngày</span></td></tr>
+      </tbody>
+    </table>
+
+    <div class="sec-h2" style="margin-top:8pt">3. Work Orders — 11JUN/2025</div>
+    <div class="two-col">
+      <table class="data-table" style="font-size:7.5pt">
+        <thead><tr><th>REG</th><th>Vị trí</th><th>Nội dung</th><th>Thời gian</th></tr></thead>
+        <tbody>
+          <tr><td class="td-reg">A888</td><td>HAN</td><td class="td-wrap">EHA-ELEV RPL</td><td>12:00–19:00</td></tr>
+          <tr><td class="td-reg">A892</td><td>HAN</td><td class="td-wrap">SPLR FCRM RPL</td><td>08:00–18:00</td></tr>
+          <tr><td class="td-reg">A898</td><td>HAN</td><td class="td-wrap">INSPECT FUEL NOZZLE MANIFOLD ENG#1</td><td>22:00–07:00+</td></tr>
+          <tr><td class="td-reg">A862</td><td>HAN</td><td class="td-wrap">INSPECT CARGO SIDEWALL</td><td>20:10–04:10+</td></tr>
+          <tr><td class="td-reg">A601</td><td>HAN</td><td class="td-wrap">EA01</td><td>20:00–06:00+</td></tr>
+          <tr><td class="td-reg">A608</td><td>HAN</td><td class="td-wrap">RAT TEST</td><td>21:15–07:15+</td></tr>
+          <tr><td class="td-reg">A353</td><td>HAN</td><td class="td-wrap">B2263 RUD TRIM #1 FAULT</td><td>00:30–07:30 12/06</td></tr>
+        </tbody>
+      </table>
+      <table class="data-table" style="font-size:7.5pt">
+        <thead><tr><th>REG</th><th>Vị trí</th><th>Nội dung</th><th>Thời gian</th></tr></thead>
+        <tbody>
+          <tr><td class="td-reg">A356</td><td>HAN</td><td class="td-wrap">REPLACE C.N.A + T/S APU</td><td>20:00–06:00+</td></tr>
+          <tr><td class="td-reg">A507</td><td>HAN</td><td class="td-wrap">B664 AIR BLEED (RE-OPEN)</td><td>23:30–06:00+</td></tr>
+          <tr><td class="td-reg">A864</td><td>SGN</td><td class="td-wrap">INSP RDC HARNESS</td><td>14:30–22:30</td></tr>
+          <tr><td class="td-reg">A879</td><td>SGN</td><td class="td-wrap">CARGO SIDEWALL DECOMP PANEL INSP</td><td>22:30–05:30+</td></tr>
+          <tr><td class="td-reg">A397</td><td>SGN</td><td class="td-wrap">BSI HPT BLADES ENG#2</td><td>21:00–07:00+</td></tr>
+          <tr><td class="td-reg">A621</td><td>SGN</td><td class="td-wrap">ENG#1 CLEANING</td><td>20:00–06:00+</td></tr>
+          <tr><td class="td-reg">A625</td><td>SGN</td><td class="td-wrap">YELLOW ENG PUMP IND WRONG + APU STATUS</td><td>01:00–07:00 12/06</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="page-footer">
+      <span class="pf-text">BCAO 10JUN-11JUN/2025 — Vietnam Airlines OCC — TÀI LIỆU NỘI BỘ</span>
+      <span class="pf-text">Trang 6 / 7</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════════ -->
+<!-- TRANG 7: ADD · BQDB · NTC · OCC LƯU Ý ════════════════════════════ -->
+<!-- ══════════════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-inner">
+    <div class="page-header">
+      <div class="ph-left">
+        <div class="vna-logo-box"><svg viewBox="0 0 22 14" fill="none"><rect width="22" height="14" fill="#003F87"/><text x="2" y="10.5" font-family="IBM Plex Sans" font-size="7" font-weight="700" fill="#FCB813">VNA</text></svg></div>
+        <div class="ph-title-block"><div class="ph-title">BCAO 10JUN-11JUN/2025</div><div class="ph-sub">Phụ lục kỹ thuật — ADD · BQDB · NTC · OCC Lưu ý</div></div>
+      </div>
+      <div class="ph-right"><span class="page-num">Trang 7 / 7</span></div>
+    </div>
+
+    <div class="sec-h2">4. ADD — Deadline ưu tiên (≤ 14JUN)</div>
+    <table class="data-table" style="font-size:7pt">
+      <thead><tr><th>REG</th><th>ADD #</th><th>CAT</th><th>Nội dung (tóm tắt)</th><th>MEL Ref</th><th>Deadline</th><th>OPS Limit</th></tr></thead>
+      <tbody>
+        <tr style="background:#fef2f2">
+          <td class="td-reg">A392</td><td class="td-code">B1591</td>
+          <td><span style="font-family:var(--mono);font-size:7pt;padding:1pt 3pt;background:#fef2f2;border:0.5pt solid var(--red);color:var(--red)">C</span></td>
+          <td class="td-wrap">ANTI ICE ENG2 VALVE DEACT OPEN POS — Spare Order</td><td class="td-code">30-21-01C R05/25</td>
+          <td class="td-red">14/05/25 <strong>QUÁ HẠN</strong></td><td class="td-wrap td-gray">—</td>
+        </tr>
+        <tr style="background:#fffbeb">
+          <td class="td-reg">A603</td><td class="td-code">B872</td>
+          <td><span style="font-family:var(--mono);font-size:7pt;padding:1pt 3pt;background:#fffbeb;border:0.5pt solid #d97706;color:#92400e">C</span></td>
+          <td class="td-wrap">CAPT SEAT ELEC ADJ INOP (VERT FULLY INOP)</td><td class="td-code">25-11-05A R3/25</td>
+          <td style="color:#92400e;font-weight:600">13/06/25</td><td class="td-wrap td-gray">(O) Procedures applied</td>
+        </tr>
+        <tr style="background:#fffbeb">
+          <td class="td-reg">A898</td><td class="td-code">B1190</td>
+          <td><span style="font-family:var(--mono);font-size:7pt;padding:1pt 3pt;background:#fffbeb;border:0.5pt solid #d97706;color:#92400e">C</span></td>
+          <td class="td-wrap">CABIN HANDSET COVER DOOR 2R/3L BROKEN</td><td class="td-code">44-15-02A R03/35</td>
+          <td style="color:#92400e;font-weight:600">12/06/25</td><td class="td-wrap td-gray">(O) See MEL item</td>
+        </tr>
+        <tr style="background:#fffbeb">
+          <td class="td-reg">A862</td><td class="td-code">B1372</td>
+          <td><span style="font-family:var(--mono);font-size:7pt;padding:1pt 3pt;background:#fffbeb;border:0.5pt solid #d97706;color:#92400e">C</span></td>
+          <td class="td-wrap">CABIN AIR CPRSR R1 STS MSG</td><td class="td-code">21-51-01-02 R9</td>
+          <td style="color:#92400e;font-weight:600">13/06/25</td><td class="td-wrap td-gray">—</td>
+        </tr>
+        <tr style="background:#fffbeb">
+          <td class="td-reg">A353</td><td class="td-code">B2263</td>
+          <td><span style="font-family:var(--mono);font-size:7pt;padding:1pt 3pt;background:#fffbeb;border:0.5pt solid #d97706;color:#92400e">C</span></td>
+          <td class="td-wrap">RUD TRIM #1 FAULT</td><td class="td-code">27-22-01A R19JUN24</td>
+          <td style="color:#92400e;font-weight:600">14/06/25</td><td class="td-wrap td-gray">MAX LAND CAT3 SINGLE</td>
+        </tr>
+        <tr style="background:#fffbeb">
+          <td class="td-reg">A324</td><td class="td-code">B1584</td>
+          <td><span style="font-family:var(--mono);font-size:7pt;padding:1pt 3pt;background:#fffbeb;border:0.5pt solid #d97706;color:#92400e">C</span></td>
+          <td class="td-wrap">ENG#2 REVERSER FAULT</td><td class="td-code">78-30-01A R03/25</td>
+          <td style="color:#92400e;font-weight:600">14/06/25</td><td class="td-wrap td-gray">—</td>
+        </tr>
+        <tr>
+          <td class="td-reg">A603</td><td class="td-code">B789</td>
+          <td><span style="font-family:var(--mono);font-size:7pt;padding:1pt 3pt;background:#fef2f2;border:0.5pt solid var(--red);color:var(--red)">A</span></td>
+          <td class="td-wrap">ENG2 FIRE LOOP A FAULT — ENG LOOP B OK, test before ea. flt</td><td class="td-code">26-12-02A R06/24</td>
+          <td>20/06/25</td><td class="td-wrap td-gray">Loop B operative, test before each flt</td>
+        </tr>
+        <tr>
+          <td class="td-reg">A325</td><td class="td-code">B1897</td>
+          <td><span style="font-family:var(--mono);font-size:7pt;padding:1pt 3pt;background:#fffbeb;border:0.5pt solid #d97706;color:#92400e">C</span></td>
+          <td class="td-wrap">MAIN WHEEL BRAKE #4 INOP — Deactivated</td><td class="td-code">32-42-01A R03/25</td>
+          <td>16/06/25</td><td class="td-wrap td-gray">RWY ≥45m, AUTO/BRK INOP</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- BQDB + NTC side by side -->
+    <div class="two-col" style="margin-top:7pt">
+      <div>
+        <div class="sec-h2" style="margin-top:0">5. BQDB</div>
+        <div class="sec-h3">A321 — 11 tàu</div>
+        <div class="body-text" style="font-size:8pt">HAN (10): </div>
+        <div class="tag-group">
+          <span class="tag">A501</span><span class="tag">A503</span><span class="tag">A505</span><span class="tag">A506</span><span class="tag">A510</span>
+          <span class="tag">A511</span><span class="tag">A617</span><span class="tag">A620</span><span class="tag">A622</span><span class="tag">A623</span><span class="tag">A624</span>
+        </div>
+        <div class="body-text" style="font-size:8pt;margin-top:3pt">SGN (1): </div>
+        <div class="tag-group"><span class="tag">A509</span></div>
+        <div class="sec-h3" style="margin-top:5pt">A350 — 2 tàu (HAN)</div>
+        <div class="tag-group">
+          <span class="tag" style="border-color:var(--blue-l);color:var(--blue-l)">A886</span>
+          <span class="tag" style="border-color:var(--blue-l);color:var(--blue-l)">A895</span>
+        </div>
+        <div class="body-text" style="font-size:7.5pt;margin-top:3pt;color:var(--gray2)">Chỉ khai thác nội địa 03 ngày / 07 FC sau tháo BQDB. Không xếp bay quốc tế.</div>
+      </div>
+      <div>
+        <div class="sec-h2" style="margin-top:0">6. NTC (Note to Crew)</div>
+        <table class="data-table" style="font-size:7.5pt">
+          <thead><tr><th>Fleet</th><th>REG</th><th>WO / Nội dung</th><th>STS</th></tr></thead>
+          <tbody>
+            <tr><td>A321</td><td class="td-reg">A621</td><td class="td-wrap">WO 7435234: ENG1 OFF IDLE STALL ISSUE</td><td style="color:#d97706">Open</td></tr>
+            <tr><td>B787</td><td class="td-reg">A865</td><td class="td-wrap">WO 7435577: APU START IN FLIGHT</td><td style="color:#d97706">Open</td></tr>
+            <tr><td>A350</td><td class="td-reg">A888</td><td class="td-wrap">WO 7434346: ENG1 (21052) OIL QTY INDICATION</td><td style="color:#d97706">Open</td></tr>
+            <tr><td>A350</td><td class="td-reg">A889</td><td class="td-wrap">WO 7436758: ENG#2 (21034) OIL QTY INDICATION</td><td style="color:#d97706">Open</td></tr>
+            <tr><td>A350</td><td class="td-reg">A890</td><td class="td-wrap">WO 7434362: APU START IN FLIGHT</td><td style="color:#d97706">Open</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- OCC Lưu ý -->
+    <div class="sec-h2" style="margin-top:6pt">7. OCC Lưu ý khai thác</div>
+    <table class="data-table" style="font-size:7.5pt">
+      <thead><tr><th>Đối tượng</th><th>Nội dung lưu ý</th></tr></thead>
+      <tbody>
+        <tr><td class="td-code">ALL A321 NEO</td><td class="td-wrap">Bố trí downtime thực hiện Weekly check tối thiểu 6h tại HAN/SGN. Có thể N/S tại SB lẻ nếu chưa đến hạn.</td></tr>
+        <tr><td class="td-code">ALL FLEETS</td><td class="td-wrap">Chỉ khai thác nội địa trong 03 ngày hoặc 07 FC sau tháo BQDB. Không xếp bay quốc tế.</td></tr>
+        <tr><td class="td-code">A321 / HPH</td><td class="td-wrap">Không xếp một tàu A321 N/S HPH trong hai đêm liên tục (phát sinh hỏng hóc khó xử lý).</td></tr>
+        <tr><td class="td-code">A321 NEO / KHH</td><td class="td-wrap">Bố trí A321CEO cho CB dừng đêm tại KHH từ 26/03 đến khi có thông báo mới.</td></tr>
+        <tr><td class="td-code">B787 / APU INOP</td><td class="td-wrap">Hạn chế tối đa bay đến sân không có NVKT khi APU hỏng (cần alan key đóng/mở Panel bảng điện).</td></tr>
+        <tr><td class="td-code">A873</td><td class="td-wrap">GE cho phép bay 50 FC từ sau VN307 NRT-SGN ngày 04/06, sau đó kiểm tra lại.</td></tr>
+        <tr><td class="td-code">A507</td><td class="td-wrap">Xếp lịch khai thác nội địa tại sân có CRS B hết ngày 11/06 để theo dõi ELAC 2 FAULT.</td></tr>
+        <tr><td class="td-code">A615</td><td class="td-wrap">Khai thác tại sân đủ xe điện + xe khí hết ngày 10/06 để theo dõi APU AUTO SHUTDOWN.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="page-footer">
+      <span class="pf-text">BCAO 10JUN-11JUN/2025 — Vietnam Airlines OCC — TÀI LIỆU NỘI BỘ — Hết tài liệu</span>
+      <span class="pf-text">Trang 7 / 7</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ CHART SCRIPTS ══════════════════════════════════════════════════ -->
+<script>
+Chart.defaults.font.family = 'IBM Plex Mono';
+Chart.defaults.color = '#374151';
+
+// ─── DELAY T-1 ────────────────────────────────────────────
+const ctxDT1 = document.getElementById('chartDelayT1').getContext('2d');
+new Chart(ctxDT1, {
+  type: 'bar',
+  data: {
+    labels: ['Ảnh hưởng chặng trước (Knock-on)', 'Traffic', 'Thời tiết', 'Kỹ thuật', 'Nguyên nhân khác'],
+    datasets: [{
+      data: [37.7, 2.7, 1.1, 0.7, 0.7],
+      backgroundColor: ['#E30613', '#d97706', '#3b82f6', '#7c3aed', '#9ca3af'],
+      borderWidth: 0,
+      borderRadius: 2
+    }]
+  },
+  options: {
+    indexAxis: 'y',
+    responsive: true,
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        callbacks: { label: ctx => `${ctx.raw}%` }
+      }
+    },
+    scales: {
+      x: {
+        ticks: { callback: v => v + '%', font: { size: 8 } },
+        grid: { color: '#e5e7eb' }
+      },
+      y: {
+        ticks: { font: { size: 8 } },
+        grid: { display: false }
+      }
+    }
+  }
+});
+
+// ─── OTP COMPARE ──────────────────────────────────────────
+const ctxOTP = document.getElementById('chartOTPCompare').getContext('2d');
+new Chart(ctxOTP, {
+  type: 'bar',
+  data: {
+    labels: ['OTP Đi', 'OTP Đến', 'OSP Đi', 'OSP Đến'],
+    datasets: [
+      {
+        label: 'Thực tế',
+        data: [55.6, 45.8, 23.7, 20.8],
+        backgroundColor: 'rgba(227,6,19,0.7)',
+        borderColor: '#E30613',
+        borderWidth: 1,
+        borderRadius: 2
+      },
+      {
+        label: 'Monthly Target (MT)',
+        data: [81, 77, 43, 46],
+        backgroundColor: 'rgba(0,63,135,0.25)',
+        borderColor: '#003F87',
+        borderWidth: 1,
+        borderRadius: 2
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: {
+        labels: { font: { size: 9 }, boxWidth: 12, boxHeight: 5 }
+      },
+      tooltip: {
+        callbacks: { label: ctx => `${ctx.dataset.label}: ${ctx.raw}%` }
+      }
+    },
+    scales: {
+      x: { ticks: { font: { size: 9 } }, grid: { color: '#e5e7eb' } },
+      y: {
+        min: 0, max: 100,
+        ticks: { callback: v => v + '%', font: { size: 9 } },
+        grid: { color: '#e5e7eb' }
+      }
+    }
+  }
+});
+
+// ─── LF T (11JUN) ─────────────────────────────────────────
+const ctxLFT = document.getElementById('chartLFT').getContext('2d');
+new Chart(ctxLFT, {
+  type: 'bar',
+  data: {
+    labels: ['HAN-SGN', 'HAN-DAD', 'SGN-DAD'],
+    datasets: [
+      {
+        label: 'LF Đi',
+        data: [91, 92, 74],
+        backgroundColor: 'rgba(0,63,135,0.75)',
+        borderColor: '#003F87',
+        borderWidth: 1,
+        borderRadius: 2
+      },
+      {
+        label: 'LF Đến',
+        data: [93, 74, 76],
+        backgroundColor: 'rgba(217,119,6,0.65)',
+        borderColor: '#d97706',
+        borderWidth: 1,
+        borderRadius: 2
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: {
+        labels: { font: { size: 9 }, boxWidth: 12, boxHeight: 5 }
+      }
+    },
+    scales: {
+      x: { ticks: { font: { size: 9 } }, grid: { color: '#e5e7eb' } },
+      y: {
+        min: 50, max: 100,
+        ticks: { callback: v => v + '%', font: { size: 9 } },
+        grid: { color: '#e5e7eb' }
+      }
+    }
+  }
+});
+</script>
+</body>
+</html>

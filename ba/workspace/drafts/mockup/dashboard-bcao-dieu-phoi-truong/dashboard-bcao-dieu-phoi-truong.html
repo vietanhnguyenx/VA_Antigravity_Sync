@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BCAO Dashboard — TOSS OCC</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+    --bg-base:      #0B0E1A;
+    --bg-sidebar:   #0E1220;
+    --bg-surface:   #121728;
+    --bg-elevated:  #1A2035;
+    --bg-hover:     #151C30;
+    --text-primary:  #E2E8F8;
+    --text-secondary:#8892B0;
+    --text-muted:    #4A5370;
+    --cyan:        #06D4FF;
+    --cyan-dim:    rgba(6,212,255,0.12);
+    --cyan-border: rgba(6,212,255,0.28);
+    --green:       #1DD68C;
+    --green-dim:   rgba(29,214,140,0.18);
+    --orange:      #F59E0B;
+    --orange-dim:  rgba(245,158,11,0.18);
+    --red:         #FF4757;
+    --red-dim:     rgba(255,71,87,0.14);
+    --blue:        #3B9EFF;
+    --blue-dim:    rgba(59,158,255,0.16);
+    --gold:        #C9A84C;
+    --gold-dim:    rgba(201,168,76,0.16);
+    --border:       #1C2236;
+    --border-light: #232C44;
+    --r-sm:4px; --r-md:6px; --r-lg:10px; --r-xl:14px; --r-full:9999px;
+}
+
+html, body { height:100%; overflow:hidden; font-family:'Segoe UI',-apple-system,system-ui,sans-serif; background:var(--bg-base); color:var(--text-primary); font-size:13px; -webkit-font-smoothing:antialiased; }
+
+/* SCROLLBAR */
+* { scrollbar-width:thin; scrollbar-color:#2A3450 transparent; }
+::-webkit-scrollbar { width:8px; height:8px; background:transparent; }
+::-webkit-scrollbar-track { background:transparent; }
+::-webkit-scrollbar-thumb { background:#2A3450; border-radius:8px; border:2px solid transparent; background-clip:padding-box; }
+::-webkit-scrollbar-thumb:hover { background:rgba(6,212,255,0.45); background-clip:padding-box; border:2px solid transparent; }
+::-webkit-scrollbar-thumb:active { background:var(--cyan); background-clip:padding-box; border:2px solid transparent; }
+::-webkit-scrollbar-corner { background:transparent; }
+
+/* SHELL */
+.app { display:flex; height:100vh; width:100vw; overflow:hidden; }
+
+/* SIDEBAR */
+.sidebar { width:210px; min-width:210px; background:var(--bg-sidebar); border-right:1px solid var(--border); display:flex; flex-direction:column; transition:width .22s ease,min-width .22s ease; overflow:hidden; flex-shrink:0; }
+.sidebar.collapsed { width:48px; min-width:48px; }
+.sidebar-logo { display:flex; align-items:center; gap:10px; padding:13px 12px; border-bottom:1px solid var(--border); min-height:56px; white-space:nowrap; }
+.sidebar.collapsed .sidebar-logo { justify-content:center; padding:13px 0; }
+.logo-lotus { flex-shrink:0; width:30px; height:30px; }
+.logo-texts { display:flex; flex-direction:column; gap:1px; }
+.logo-name { font-size:10px; font-weight:800; color:var(--text-primary); letter-spacing:.06em; text-transform:uppercase; }
+.logo-sub  { font-size:9px; font-weight:500; color:var(--text-muted); letter-spacing:.04em; }
+.sidebar.collapsed .logo-texts { display:none; }
+.sidebar-nav { flex:1; padding:8px 0; overflow-y:auto; }
+.nav-item { display:flex; align-items:center; gap:10px; padding:9px 14px; cursor:pointer; white-space:nowrap; color:var(--text-secondary); border:none; background:none; width:100%; text-align:left; border-left:2px solid transparent; transition:all .16s ease; }
+.nav-item:hover { background:var(--bg-elevated); color:var(--text-primary); }
+.nav-item.active { background:rgba(6,212,255,.13); color:var(--cyan); border-left-color:transparent; border-radius:8px; margin:0 8px; width:calc(100% - 16px); }
+.sidebar.collapsed .nav-item.active { background:none; margin:0; width:100%; border-radius:0; }
+.sidebar.collapsed .nav-item.active .nav-icon { background:rgba(6,212,255,.15); border-radius:8px; }
+.nav-icon { width:18px; height:18px; flex-shrink:0; display:flex; align-items:center; justify-content:center; }
+.nav-label { font-size:12px; font-weight:500; }
+.sidebar.collapsed .nav-label { display:none; }
+.sidebar.collapsed .nav-item { justify-content:center; padding:10px 0; }
+.sb-bottom { border-top:1px solid var(--border); padding:8px 0 6px; flex-shrink:0; }
+.sb-hide-wrap { padding:4px 12px 8px; }
+.sidebar.collapsed .sb-hide-wrap { display:none; }
+.sb-hide-pill { display:flex; align-items:center; justify-content:center; gap:6px; width:100%; height:30px; background:none; border:1px solid var(--border-light); border-radius:var(--r-full); color:var(--text-secondary); font-size:11px; font-weight:500; cursor:pointer; white-space:nowrap; transition:all .15s; }
+.sb-hide-pill:hover { color:var(--text-primary); border-color:var(--cyan-border); }
+.sb-expand-btn { display:none; width:100%; padding:5px 0 2px; background:none; border:none; cursor:pointer; color:var(--text-muted); align-items:center; justify-content:center; transition:color .15s; }
+.sb-expand-btn:hover { color:var(--text-primary); }
+.sidebar.collapsed .sb-expand-btn { display:flex; }
+.sb-user { display:flex; align-items:center; padding:4px 10px 2px; gap:6px; }
+.sidebar.collapsed .sb-user { flex-direction:column; padding:4px 0 2px; align-items:center; gap:4px; }
+.sb-avatar-wrap { display:flex; align-items:center; gap:8px; flex:1; min-width:0; }
+.sidebar.collapsed .sb-avatar-wrap { flex:none; }
+.sb-avatar-container { position:relative; flex-shrink:0; }
+.sb-avatar { width:28px; height:28px; border-radius:50%; background:linear-gradient(135deg,var(--cyan) 0%,#0055CC 100%); display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:800; color:#fff; }
+.sb-online-dot { position:absolute; bottom:-1px; right:-1px; width:8px; height:8px; border-radius:50%; background:var(--green); border:1.5px solid var(--bg-sidebar); }
+.sb-user-detail { min-width:0; flex:1; }
+.sb-user-name  { font-size:11px; font-weight:600; color:var(--text-primary); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.sb-user-email { font-size:9px; color:var(--text-muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.sidebar.collapsed .sb-user-detail { display:none; }
+
+/* MAIN */
+.main { flex:1; min-width:0; display:flex; flex-direction:column; overflow:hidden; }
+
+/* TOPBAR */
+.topbar { display:flex; align-items:center; padding:0 20px; gap:12px; background:var(--bg-sidebar); border-bottom:1px solid var(--border); height:52px; flex-shrink:0; }
+.topbar-title { font-size:15px; font-weight:700; color:var(--cyan); letter-spacing:.07em; text-transform:uppercase; }
+.topbar-sub { font-size:11px; color:var(--text-muted); letter-spacing:.04em; text-transform:uppercase; padding-left:12px; border-left:1px solid var(--border); }
+.topbar-right { margin-left:auto; display:flex; align-items:center; gap:10px; }
+.op-time { font-size:12px; font-weight:700; color:var(--cyan); font-variant-numeric:tabular-nums; letter-spacing:.02em; }
+.op-date { font-size:11px; color:var(--text-secondary); }
+.op-date b { color:var(--text-primary); font-weight:600; }
+.day-toggle { display:flex; height:28px; background:var(--bg-surface); border:1px solid var(--border-light); border-radius:var(--r-md); overflow:hidden; }
+.day-btn { padding:0 12px; font-size:11px; font-weight:500; cursor:pointer; border:none; background:none; color:var(--text-muted); white-space:nowrap; transition:all .15s; }
+.day-btn.active { background:var(--cyan); color:#0B0E1A; font-weight:700; }
+.btn-action { display:flex; align-items:center; gap:5px; height:28px; padding:0 12px; background:var(--bg-surface); border:1px solid var(--border-light); border-radius:var(--r-md); color:var(--text-secondary); font-size:11px; font-weight:500; cursor:pointer; white-space:nowrap; transition:all .15s; text-decoration:none; }
+.btn-action:hover { color:var(--text-primary); border-color:var(--cyan-border); }
+.btn-action.primary { background:var(--cyan-dim); color:var(--cyan); border-color:var(--cyan-border); font-weight:700; }
+.btn-action.primary:hover { background:rgba(6,212,255,.2); }
+
+/* ALERT BAR */
+.alert-bar { display:flex; align-items:center; gap:10px; padding:0 20px; height:32px; background:rgba(255,71,87,0.08); border-bottom:1px solid rgba(255,71,87,0.25); flex-shrink:0; }
+.alert-badge { display:inline-flex; align-items:center; gap:5px; padding:2px 8px; border-radius:var(--r-full); background:var(--red-dim); color:var(--red); font-size:10px; font-weight:700; letter-spacing:.06em; white-space:nowrap; }
+.blink-dot { width:5px; height:5px; border-radius:50%; background:var(--red); animation:blink 1.8s ease infinite; }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:.25} }
+
+/* KPI STRIP */
+.kpi-strip { display:grid; grid-template-columns:repeat(7,1fr); border-bottom:1px solid var(--border); background:var(--bg-surface); flex-shrink:0; }
+.kpi-cell { padding:10px 14px; border-right:1px solid var(--border); min-width:0; }
+.kpi-cell:last-child { border-right:none; }
+.kpi-label { font-size:9px; font-weight:700; letter-spacing:.09em; text-transform:uppercase; color:var(--text-muted); margin-bottom:4px; white-space:nowrap; }
+.kpi-val { font-size:22px; font-weight:700; line-height:1; font-variant-numeric:tabular-nums; color:var(--text-primary); }
+.kpi-val.red { color:var(--red); }
+.kpi-val.orange { color:var(--orange); }
+.kpi-val.green { color:var(--green); }
+.kpi-val.cyan { color:var(--cyan); }
+.kpi-sub { font-size:10px; color:var(--text-muted); margin-top:3px; font-variant-numeric:tabular-nums; }
+.kpi-delta { display:flex; align-items:center; gap:3px; font-size:10px; font-weight:600; margin-top:2px; font-variant-numeric:tabular-nums; }
+.delta-neg { color:var(--red); }
+.delta-pos { color:var(--green); }
+.delta-warn { color:var(--orange); }
+
+/* CONTENT */
+.content-area { flex:1; overflow:hidden; display:flex; min-height:0; }
+.scroll-content { flex:1; overflow-y:auto; min-width:0; }
+
+/* GRID */
+.dash-grid { display:grid; grid-template-columns:320px 1fr 288px; gap:0; }
+.col-left { border-right:1px solid var(--border); display:flex; flex-direction:column; }
+.col-mid  { border-right:1px solid var(--border); display:flex; flex-direction:column; }
+.col-right { display:flex; flex-direction:column; }
+
+/* WIDGET */
+.widget { border-bottom:1px solid var(--border); }
+.widget:last-child { border-bottom:none; }
+.widget-head { display:flex; align-items:center; justify-content:space-between; padding:7px 14px; background:var(--bg-sidebar); border-bottom:1px solid var(--border); }
+.widget-title { font-size:10px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--text-muted); }
+
+/* CHIP */
+.chip { display:inline-flex; align-items:center; gap:4px; padding:2px 8px; border-radius:var(--r-full); font-size:10px; font-weight:700; letter-spacing:.04em; white-space:nowrap; }
+.chip-red    { background:var(--red-dim);    color:var(--red); }
+.chip-orange { background:var(--orange-dim); color:var(--orange); }
+.chip-green  { background:var(--green-dim);  color:var(--green); }
+.chip-cyan   { background:var(--cyan-dim);   color:var(--cyan); }
+.chip-blue   { background:var(--blue-dim);   color:var(--blue); }
+.chip-gold   { background:var(--gold-dim);   color:var(--gold); }
+
+/* OTP */
+.otp-grid { display:grid; grid-template-columns:1fr 1fr; }
+.otp-cell { padding:10px 14px; border-right:1px solid var(--border); }
+.otp-cell:last-child { border-right:none; }
+.otp-lbl { font-size:9px; font-weight:700; color:var(--text-muted); letter-spacing:.08em; text-transform:uppercase; margin-bottom:3px; }
+.otp-val { font-size:24px; font-weight:700; color:var(--red); line-height:1; font-variant-numeric:tabular-nums; }
+.otp-target { font-size:10px; color:var(--text-muted); margin-top:2px; }
+.otp-delta { font-size:10px; font-weight:700; color:var(--red); margin-top:2px; font-variant-numeric:tabular-nums; }
+.otp-bar { height:4px; background:var(--border); border-radius:2px; margin-top:6px; position:relative; overflow:visible; }
+.otp-bar-fill { height:100%; border-radius:2px; background:var(--red); }
+.otp-bar-target { position:absolute; top:-4px; width:2px; height:12px; background:var(--orange); border-radius:1px; }
+
+/* FLEET */
+.fleet-row { display:flex; align-items:center; padding:6px 14px; border-bottom:1px solid var(--border); gap:8px; }
+.fleet-row:last-child { border-bottom:none; }
+.fleet-name { font-size:11px; font-weight:700; color:var(--cyan); min-width:40px; font-variant-numeric:tabular-nums; }
+.fleet-ratio { font-size:11px; color:var(--text-primary); min-width:44px; font-variant-numeric:tabular-nums; }
+.fleet-bar-wrap { flex:1; height:4px; background:var(--border); border-radius:2px; }
+.fleet-bar-fill { height:100%; border-radius:2px; background:var(--blue); }
+.fleet-note { font-size:10px; color:var(--text-muted); }
+
+/* APU */
+.apu-row { display:flex; align-items:flex-start; padding:6px 14px; gap:8px; border-bottom:1px solid var(--border); }
+.apu-row:last-child { border-bottom:none; }
+.apu-dot { width:7px; height:7px; border-radius:50%; margin-top:3px; flex-shrink:0; }
+.dot-red { background:var(--red); }
+.dot-orange { background:var(--orange); }
+.apu-reg { font-size:11px; font-weight:700; color:var(--gold); min-width:36px; font-family:'Consolas',monospace; }
+.apu-routes { font-size:10px; color:var(--text-muted); flex:1; line-height:1.45; font-family:'Consolas',monospace; }
+
+/* DENSE TABLE */
+.dtable { width:100%; border-collapse:collapse; }
+.dtable th { font-size:9px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--text-muted); padding:5px 10px; text-align:left; border-bottom:1px solid var(--border); background:var(--bg-sidebar); position:sticky; top:0; white-space:nowrap; }
+.dtable td { font-size:11px; padding:5px 10px; border-bottom:1px solid var(--border); color:var(--text-primary); vertical-align:middle; font-variant-numeric:tabular-nums; }
+.dtable tr:hover td { background:var(--bg-hover); cursor:pointer; }
+.dtable tr:last-child td { border-bottom:none; }
+.td-mono { font-family:'Consolas',monospace; font-size:11px; }
+.td-reg  { font-family:'Consolas',monospace; font-weight:700; color:var(--gold); }
+.td-code { font-family:'Consolas',monospace; color:var(--cyan); font-weight:600; }
+.td-muted { color:var(--text-muted); }
+.td-wrap { white-space:normal; font-size:10px; max-width:160px; }
+.t-scroll { overflow-y:auto; }
+
+/* STATUS BADGES */
+.s-past   { display:inline-flex; padding:1px 6px; border-radius:var(--r-full); background:var(--red-dim);    color:var(--red);    font-size:9px; font-weight:700; }
+.s-today  { display:inline-flex; padding:1px 6px; border-radius:var(--r-full); background:var(--orange-dim); color:var(--orange); font-size:9px; font-weight:700; }
+.s-future { display:inline-flex; padding:1px 6px; border-radius:var(--r-full); background:var(--green-dim);  color:var(--green);  font-size:9px; font-weight:700; }
+.cat-a { display:inline-flex; padding:1px 5px; border-radius:var(--r-sm); background:var(--red-dim);    color:var(--red);    font-size:9px; font-weight:700; }
+.cat-c { display:inline-flex; padding:1px 5px; border-radius:var(--r-sm); background:var(--orange-dim); color:var(--orange); font-size:9px; font-weight:700; }
+.cat-d { display:inline-flex; padding:1px 5px; border-radius:var(--r-sm); background:var(--blue-dim);   color:var(--blue);   font-size:9px; font-weight:700; }
+.vip-a    { display:inline-flex; padding:1px 6px; border-radius:var(--r-sm); background:var(--gold-dim);  color:var(--gold);           font-size:9px; font-weight:700; }
+.vip-other { display:inline-flex; padding:1px 6px; border-radius:var(--r-sm); background:rgba(255,255,255,.06); color:var(--text-secondary); font-size:9px; font-weight:600; }
+
+/* DELAY BARS */
+.delay-row { display:flex; align-items:center; gap:8px; padding:5px 14px; border-bottom:1px solid var(--border); }
+.delay-row:last-child { border-bottom:none; }
+.delay-lbl { font-size:11px; color:var(--text-secondary); min-width:148px; }
+.delay-bar-wrap { flex:1; height:6px; background:var(--border); border-radius:3px; }
+.delay-bar-fill { height:100%; border-radius:3px; }
+.delay-pct { font-size:11px; font-weight:700; min-width:36px; text-align:right; font-variant-numeric:tabular-nums; font-family:'Consolas',monospace; }
+
+/* TWO PANEL */
+.two-panel { display:grid; grid-template-columns:1fr 1fr; border-bottom:1px solid var(--border); }
+.two-panel > *:first-child { border-right:1px solid var(--border); }
+
+/* WEATHER */
+.wx-region-lbl { font-size:9px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--text-muted); padding:5px 14px 3px; border-bottom:1px solid var(--border); background:rgba(255,255,255,.02); }
+.wx-row { display:flex; align-items:center; gap:8px; padding:4px 14px; border-bottom:1px solid var(--border); }
+.wx-row:last-child { border-bottom:none; }
+.wx-icao { font-family:'Consolas',monospace; font-size:11px; font-weight:700; color:var(--cyan); min-width:42px; }
+.wx-icao.warn { color:var(--red); }
+.wx-time { font-size:10px; color:var(--text-muted); flex:1; font-family:'Consolas',monospace; }
+.wx-chip { display:inline-flex; padding:1px 6px; border-radius:var(--r-full); background:var(--orange-dim); color:var(--orange); font-size:9px; font-weight:700; }
+.wx-chip.critical { background:var(--red-dim); color:var(--red); }
+
+/* NOTAM */
+.notam-row { display:flex; gap:8px; padding:6px 14px; border-bottom:1px solid var(--border); }
+.notam-row:last-child { border-bottom:none; }
+.notam-id { font-family:'Consolas',monospace; font-size:10px; color:var(--cyan); font-weight:600; white-space:nowrap; }
+.notam-validity { font-size:9px; color:var(--text-muted); white-space:nowrap; font-family:'Consolas',monospace; }
+.notam-text { font-size:10px; color:var(--text-secondary); line-height:1.45; flex:1; }
+.notam-airport { color:var(--text-primary); font-weight:600; }
+
+/* BQDB */
+.bqdb-section { padding:8px 14px; }
+.bqdb-fleet-lbl { font-size:9px; font-weight:700; color:var(--text-muted); letter-spacing:.08em; text-transform:uppercase; margin-bottom:5px; padding-bottom:3px; border-bottom:1px solid var(--border); }
+.bqdb-tags { display:flex; flex-wrap:wrap; gap:4px; margin-bottom:8px; }
+.bqdb-tag { font-family:'Consolas',monospace; font-size:10px; padding:2px 6px; border:1px solid var(--border-light); border-radius:var(--r-sm); color:var(--text-secondary); background:var(--bg-elevated); }
+
+/* NTC / OCC */
+.ntc-row { display:flex; gap:8px; padding:5px 14px; border-bottom:1px solid var(--border); align-items:flex-start; }
+.ntc-row:last-child { border-bottom:none; }
+.ntc-reg { font-family:'Consolas',monospace; font-size:11px; font-weight:700; color:var(--gold); min-width:36px; }
+.ntc-fleet { font-size:10px; color:var(--text-muted); min-width:38px; }
+.ntc-text { font-size:10px; color:var(--text-secondary); line-height:1.4; flex:1; }
+.occ-row { display:flex; gap:8px; padding:5px 14px; border-bottom:1px solid var(--border); align-items:flex-start; }
+.occ-row:last-child { border-bottom:none; }
+.occ-key { font-family:'Consolas',monospace; font-size:10px; color:var(--orange); min-width:60px; white-space:nowrap; }
+.occ-text { font-size:10px; color:var(--text-secondary); line-height:1.4; flex:1; }
+
+/* AP SUPPORT */
+.ap-header { display:grid; grid-template-columns:42px 1fr 1fr 1fr; padding:4px 14px; border-bottom:1px solid var(--border); background:var(--bg-sidebar); gap:4px; }
+.ap-header span { font-size:9px; font-weight:700; letter-spacing:.07em; text-transform:uppercase; color:var(--text-muted); }
+.ap-row { display:grid; grid-template-columns:42px 1fr 1fr 1fr; padding:4px 14px; border-bottom:1px solid var(--border); gap:4px; align-items:center; }
+.ap-row:last-child { border-bottom:none; }
+.ap-code { font-family:'Consolas',monospace; font-size:11px; font-weight:700; color:var(--cyan); }
+.ap-x { font-size:10px; color:var(--red); font-weight:700; }
+.ap-ok { font-size:10px; color:var(--text-muted); }
+
+/* CHART */
+.chart-panel { padding:10px 14px 12px; }
+
+/* STATUS BAR */
+.statusbar { display:flex; align-items:center; gap:16px; padding:0 20px; height:26px; background:var(--bg-sidebar); border-top:1px solid var(--border); font-size:10px; color:var(--text-muted); flex-shrink:0; }
+.live-wrap { display:flex; align-items:center; gap:5px; font-weight:500; color:var(--text-secondary); }
+.live-dot { width:5px; height:5px; border-radius:50%; background:var(--green); animation:blink 2.2s ease infinite; }
+.sb-right { margin-left:auto; }
+</style>
+</head>
+<body>
+<div class="app">
+
+<!-- ══ SIDEBAR ══════════════════════════════════════════════ -->
+<aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+        <svg class="logo-lotus" viewBox="0 0 44 46" fill="none">
+            <defs><linearGradient id="pg" x1="22" y1="4" x2="22" y2="43" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#F0C84A"/><stop offset="100%" stop-color="#A8751A"/></linearGradient></defs>
+            <path d="M22 43C9 43 1 33 2 19C10 27 16 36 22 43Z" fill="url(#pg)" opacity=".55"/>
+            <path d="M22 43C8 40 4 27 8 12C15 24 19 35 22 43Z" fill="url(#pg)" opacity=".72"/>
+            <path d="M22 43C13 37 10 23 15 7C20 22 21 34 22 43Z" fill="url(#pg)" opacity=".88"/>
+            <path d="M22 43C16 32 15 18 22 3C29 18 28 32 22 43Z" fill="url(#pg)"/>
+            <path d="M22 43C31 37 34 23 29 7C24 22 23 34 22 43Z" fill="url(#pg)" opacity=".88"/>
+            <path d="M22 43C36 40 40 27 36 12C29 24 25 35 22 43Z" fill="url(#pg)" opacity=".72"/>
+            <path d="M22 43C35 43 43 33 42 19C34 27 28 36 22 43Z" fill="url(#pg)" opacity=".55"/>
+        </svg>
+        <div class="logo-texts">
+            <span class="logo-name">Vietnam Airlines</span>
+            <span class="logo-sub">TOSS — OCC</span>
+        </div>
+    </div>
+    <nav class="sidebar-nav">
+        <button class="nav-item active">
+            <span class="nav-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg></span>
+            <span class="nav-label">BCAO Dashboard</span>
+        </button>
+        <button class="nav-item">
+            <span class="nav-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg></span>
+            <span class="nav-label">Theo dõi chuyến bay</span>
+        </button>
+        <button class="nav-item">
+            <span class="nav-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/></svg></span>
+            <span class="nav-label">Kế hoạch bay</span>
+        </button>
+        <button class="nav-item">
+            <span class="nav-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span>
+            <span class="nav-label">AOG / MEL</span>
+        </button>
+        <button class="nav-item">
+            <span class="nav-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></span>
+            <span class="nav-label">NOTAM</span>
+        </button>
+        <button class="nav-item">
+            <span class="nav-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9z"/></svg></span>
+            <span class="nav-label">Thời tiết</span>
+        </button>
+        <button class="nav-item">
+            <span class="nav-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span>
+            <span class="nav-label">Báo cáo</span>
+        </button>
+    </nav>
+    <div class="sb-bottom">
+        <div class="sb-hide-wrap">
+            <button class="sb-hide-pill" id="hideBtn">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15,18 9,12 15,6"/></svg>
+                Thu gọn
+            </button>
+        </div>
+        <div class="sb-user">
+            <div class="sb-avatar-wrap">
+                <div class="sb-avatar-container">
+                    <div class="sb-avatar">ĐP</div>
+                    <div class="sb-online-dot"></div>
+                </div>
+                <div class="sb-user-detail">
+                    <div class="sb-user-name">Điều phối trưởng</div>
+                    <div class="sb-user-email">occ@vietnamairlines.com</div>
+                </div>
+            </div>
+        </div>
+        <button class="sb-expand-btn" id="expandBtn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9,18 15,12 9,6"/></svg>
+        </button>
+    </div>
+</aside>
+
+<!-- ══ MAIN ══════════════════════════════════════════════════ -->
+<div class="main">
+
+    <!-- TOPBAR -->
+    <div class="topbar">
+        <span class="topbar-title">BCAO DASHBOARD</span>
+        <span class="topbar-sub">10JUN – 11JUN / 2025</span>
+        <div class="topbar-right">
+            <span class="op-date">UTC <b id="clock-utc">--:--:--</b></span>
+            <span class="op-date">LT <b id="clock-lt">--:--:--</b></span>
+            <div class="day-toggle">
+                <button class="day-btn" id="btn-t1" onclick="switchDay('t1')">T-1 · 10JUN</button>
+                <button class="day-btn active" id="btn-t" onclick="switchDay('t')">T · 11JUN</button>
+            </div>
+            <a href="../bcao-pdf-redesign/index.html" target="_blank" class="btn-action primary">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="12" y1="18" x2="12" y2="12"/><polyline points="9,15 12,18 15,15"/></svg>
+                Xuất PDF
+            </a>
+        </div>
+    </div>
+
+    <!-- TYPHOON ALERT -->
+    <div class="alert-bar">
+        <span class="alert-badge"><span class="blink-dot"></span>ÁP THẤP 01W</span>
+        <span style="font-size:11px;color:var(--text-secondary)">Di chuyển <b style="color:var(--orange)">Tây Tây Bắc 10km/h</b> · Cách <em style="font-style:normal;color:var(--red)">VVDN (Đà Nẵng) 200Nm</em> · TSRA Miền Trung–Nam rải rộng · Theo dõi liên tục</span>
+        <span style="margin-left:auto;font-size:10px;color:var(--text-muted)">TAF 0600LT 11JUN2025</span>
+    </div>
+
+    <!-- KPI STRIP -->
+    <div class="kpi-strip">
+        <div class="kpi-cell">
+            <div class="kpi-label">Tổng Chuyến</div>
+            <div class="kpi-val cyan" id="kv-total">504</div>
+            <div class="kpi-sub" id="ks-total">VN:469 · 0V:16 · BL:19</div>
+            <div class="kpi-delta delta-pos">▲ +36 vs T-1</div>
+        </div>
+        <div class="kpi-cell">
+            <div class="kpi-label">Khách QN</div>
+            <div class="kpi-val" id="kv-qn">367</div>
+            <div class="kpi-sub" id="ks-qn">VN:332 · 0V:16 · BL:19</div>
+            <div class="kpi-delta delta-pos">▲ +57 vs T-1</div>
+        </div>
+        <div class="kpi-cell">
+            <div class="kpi-label">Khách QT · Ferry</div>
+            <div class="kpi-val">135</div>
+            <div class="kpi-sub">Ferry: 2 (VN)</div>
+            <div class="kpi-delta delta-pos">▲ +10 vs T-1</div>
+        </div>
+        <div class="kpi-cell">
+            <div class="kpi-label">Tàu Khai Thác</div>
+            <div class="kpi-val cyan" id="kv-fleet">77/98</div>
+            <div class="kpi-sub">Dự bị: 0 tất cả fleet</div>
+            <div class="kpi-delta delta-neg" style="color:var(--text-muted)">▼ -1 vs T-1</div>
+        </div>
+        <div class="kpi-cell">
+            <div class="kpi-label">AOG</div>
+            <div class="kpi-val red">10</div>
+            <div class="kpi-sub">HAN:7 · SGN:3</div>
+            <div class="kpi-delta delta-warn">2 quá hạn RTS</div>
+        </div>
+        <div class="kpi-cell">
+            <div class="kpi-label">OTP Đi / Đến</div>
+            <div class="kpi-val red" style="font-size:16px">55.6%/45.8%</div>
+            <div class="kpi-sub">MT 81% / MT 77%</div>
+            <div class="kpi-delta delta-neg">▼ -25.4pp / -29.2pp</div>
+        </div>
+        <div class="kpi-cell">
+            <div class="kpi-label">ADD Critical</div>
+            <div class="kpi-val red">8</div>
+            <div class="kpi-sub">CAT-A:1 · CAT-C ≤5d</div>
+            <div class="kpi-delta delta-neg">▼ A392 quá hạn 28d</div>
+        </div>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="content-area">
+    <div class="scroll-content">
+    <div class="dash-grid">
+
+    <!-- COL LEFT -->
+    <div class="col-left">
+        <!-- OTP/OSP -->
+        <div class="widget">
+            <div class="widget-head"><span class="widget-title">OTP / OSP — T-1 (10JUN)</span><span class="chip chip-red">CRITICAL</span></div>
+            <div class="otp-grid">
+                <div class="otp-cell">
+                    <div class="otp-lbl">OTP Đi</div><div class="otp-val">55.6%</div>
+                    <div class="otp-target">MT 81%</div><div class="otp-delta">▼ -25.4pp vs MT</div>
+                    <div class="otp-bar"><div class="otp-bar-fill" style="width:55.6%"></div><div class="otp-bar-target" style="left:81%"></div></div>
+                </div>
+                <div class="otp-cell">
+                    <div class="otp-lbl">OTP Đến</div><div class="otp-val">45.8%</div>
+                    <div class="otp-target">MT 77%</div><div class="otp-delta">▼ -29.2pp vs MT</div>
+                    <div class="otp-bar"><div class="otp-bar-fill" style="width:45.8%"></div><div class="otp-bar-target" style="left:77%"></div></div>
+                </div>
+            </div>
+            <div class="otp-grid" style="border-top:1px solid var(--border)">
+                <div class="otp-cell">
+                    <div class="otp-lbl">OSP Đi</div><div class="otp-val" style="font-size:18px">23.7%</div>
+                    <div class="otp-target">MT 43%</div><div class="otp-delta">▼ -19.3pp vs MT</div>
+                    <div class="otp-bar"><div class="otp-bar-fill" style="width:23.7%"></div><div class="otp-bar-target" style="left:43%"></div></div>
+                </div>
+                <div class="otp-cell">
+                    <div class="otp-lbl">OSP Đến</div><div class="otp-val" style="font-size:18px">20.8%</div>
+                    <div class="otp-target">MT 46%</div><div class="otp-delta">▼ -25.2pp vs MT</div>
+                    <div class="otp-bar"><div class="otp-bar-fill" style="width:20.8%"></div><div class="otp-bar-target" style="left:46%"></div></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FLEET -->
+        <div class="widget">
+            <div class="widget-head"><span class="widget-title">Fleet Status — 11JUN</span><span class="chip chip-cyan">77 / 98</span></div>
+            <div class="fleet-row"><span class="fleet-name">A350</span><span class="fleet-ratio">10/14</span><div class="fleet-bar-wrap"><div class="fleet-bar-fill" style="width:71%"></div></div><span class="fleet-note">2BQ · 1MNT · 1LC HAN</span></div>
+            <div class="fleet-row"><span class="fleet-name">B787</span><span class="fleet-ratio">16/17</span><div class="fleet-bar-wrap"><div class="fleet-bar-fill" style="width:94%;background:var(--green)"></div></div><span class="fleet-note">1 A01 CHECK SGN</span></div>
+            <div class="fleet-row"><span class="fleet-name">A321</span><span class="fleet-ratio">44/59</span><div class="fleet-bar-wrap"><div class="fleet-bar-fill" style="width:74%"></div></div><span class="fleet-note">11BQ · 2MNT · 1C · 1E19</span></div>
+            <div class="fleet-row"><span class="fleet-name">A320</span><span class="fleet-ratio">3/3</span><div class="fleet-bar-wrap"><div class="fleet-bar-fill" style="width:100%;background:var(--green)"></div></div><span class="fleet-note" style="color:var(--green)">Full op</span></div>
+            <div class="fleet-row"><span class="fleet-name">ATR72</span><span class="fleet-ratio">4/5</span><div class="fleet-bar-wrap"><div class="fleet-bar-fill" style="width:80%"></div></div><span class="fleet-note">1 Y8 SGN</span></div>
+        </div>
+
+        <!-- APU/PACK -->
+        <div class="widget">
+            <div class="widget-head"><span class="widget-title">APU / PACK Monitor</span><span class="chip chip-orange">3 INOP · 1 YẾU</span></div>
+            <div class="apu-row"><div class="apu-dot dot-orange"></div><span class="apu-reg">A396</span><span class="chip chip-orange" style="font-size:9px;padding:1px 5px">APU INOP</span><span class="apu-routes">HAN-SGN-BKK-SGN-CXR-SGN-SAI-SGN-PQC-SGN</span></div>
+            <div class="apu-row"><div class="apu-dot dot-orange"></div><span class="apu-reg">A601</span><span class="chip chip-orange" style="font-size:9px;padding:1px 5px">APU INOP</span><span class="apu-routes">SGN-HPH-SGN-PQC-SGN-DAD-HAN</span></div>
+            <div class="apu-row"><div class="apu-dot dot-orange"></div><span class="apu-reg">A616</span><span class="chip chip-orange" style="font-size:9px;padding:1px 5px">APU INOP</span><span class="apu-routes">MNL-HAN-DAD-HAN-DAD-HAN-SGN-HAN-DAD</span></div>
+            <div class="apu-row"><div class="apu-dot dot-orange"></div><span class="apu-reg">A604</span><span class="chip chip-orange" style="font-size:9px;padding:1px 5px">PACK YẾU</span><span class="apu-routes">SGN-DLI-SGN-PQC-PQC-SGN-TPE<br><span style="color:var(--red)">PACK#2 15°C — giám sát cabin</span></span></div>
+        </div>
+
+        <!-- AIRPORT SUPPORT -->
+        <div class="widget">
+            <div class="widget-head"><span class="widget-title">Sân bay thiếu xe APU</span><span class="chip chip-red">11 SÂN</span></div>
+            <div class="ap-header"><span>SÂN</span><span>ASU</span><span>ACU</span><span>Ghi chú</span></div>
+            <div class="t-scroll" style="max-height:180px">
+                <div class="ap-row"><span class="ap-code">THD</span><span class="ap-x">✗</span><span class="ap-x">✗</span><span class="ap-ok">—</span></div>
+                <div class="ap-row"><span class="ap-code">DIN</span><span class="ap-x">✗</span><span class="ap-x">✗</span><span class="ap-ok">—</span></div>
+                <div class="ap-row"><span class="ap-code">TBB</span><span class="ap-x">✗</span><span class="ap-x">✗</span><span class="ap-ok">—</span></div>
+                <div class="ap-row"><span class="ap-code">PXU</span><span class="ap-x">✗</span><span class="ap-x">✗</span><span class="ap-ok">—</span></div>
+                <div class="ap-row"><span class="ap-code">VCL</span><span class="ap-x">✗</span><span class="ap-x">✗</span><span class="ap-ok">—</span></div>
+                <div class="ap-row"><span class="ap-code">BMV</span><span class="ap-x">✗ 10Mar25</span><span class="ap-ok">—</span><span class="ap-ok">—</span></div>
+                <div class="ap-row"><span class="ap-code">VCA</span><span class="ap-x">✗ 17May24</span><span class="ap-x">✗ 30Sep24</span><span class="ap-ok">—</span></div>
+                <div class="ap-row"><span class="ap-code">LPQ</span><span class="ap-x">✗ 22Sep23</span><span class="ap-ok">—</span><span class="ap-ok">—</span></div>
+                <div class="ap-row"><span class="ap-code">VTE</span><span class="ap-x" style="font-size:9px">✗ (đã sửa 10Jun)</span><span class="ap-ok">—</span><span class="ap-ok">—</span></div>
+                <div class="ap-row"><span class="ap-code">CAN</span><span style="font-size:9px;color:var(--red);grid-column:2/-1">Không xếp APU INOP</span></div>
+                <div class="ap-row"><span class="ap-code">HND</span><span style="font-size:9px;color:var(--red);grid-column:2/-1">Không xếp APU INOP</span></div>
+            </div>
+        </div>
+    </div><!-- /col-left -->
+
+    <!-- COL MID -->
+    <div class="col-mid">
+        <div class="two-panel">
+            <!-- DELAY -->
+            <div class="widget" style="border-bottom:none">
+                <div class="widget-head"><span class="widget-title">Nguyên nhân Delay — T-1</span><span class="chip chip-red">KNOCK-ON 37.7%</span></div>
+                <div style="display:flex;align-items:center;gap:12px;padding:8px 14px 4px">
+                    <div style="position:relative;width:110px;height:110px;flex-shrink:0">
+                        <canvas id="chartDelay" width="110" height="110"></canvas>
+                        <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none">
+                            <div style="font-size:18px;font-weight:700;color:var(--red);font-variant-numeric:tabular-nums;line-height:1">37.7%</div>
+                            <div style="font-size:8px;color:var(--text-muted);letter-spacing:.05em;text-transform:uppercase;margin-top:2px">Knock-on</div>
+                        </div>
+                    </div>
+                    <div style="flex:1;display:flex;flex-direction:column;gap:5px">
+                        <div style="display:flex;align-items:center;gap:6px"><span style="width:8px;height:8px;border-radius:50%;background:var(--red);flex-shrink:0"></span><span style="font-size:10px;color:var(--text-secondary);flex:1">Ảnh hưởng chặng trước</span><span style="font-size:10px;font-weight:700;color:var(--red);font-variant-numeric:tabular-nums">37.7%</span></div>
+                        <div style="display:flex;align-items:center;gap:6px"><span style="width:8px;height:8px;border-radius:50%;background:var(--orange);flex-shrink:0"></span><span style="font-size:10px;color:var(--text-secondary);flex:1">Traffic</span><span style="font-size:10px;font-weight:600;color:var(--orange);font-variant-numeric:tabular-nums">2.7%</span></div>
+                        <div style="display:flex;align-items:center;gap:6px"><span style="width:8px;height:8px;border-radius:50%;background:var(--blue);flex-shrink:0"></span><span style="font-size:10px;color:var(--text-secondary);flex:1">Thời tiết</span><span style="font-size:10px;font-weight:600;color:var(--blue);font-variant-numeric:tabular-nums">1.1%</span></div>
+                        <div style="display:flex;align-items:center;gap:6px"><span style="width:8px;height:8px;border-radius:50%;background:#A78BFA;flex-shrink:0"></span><span style="font-size:10px;color:var(--text-secondary);flex:1">Kỹ thuật</span><span style="font-size:10px;font-weight:600;color:#A78BFA;font-variant-numeric:tabular-nums">0.7%</span></div>
+                        <div style="display:flex;align-items:center;gap:6px"><span style="width:8px;height:8px;border-radius:50%;background:var(--text-muted);flex-shrink:0"></span><span style="font-size:10px;color:var(--text-secondary);flex:1">Khác</span><span style="font-size:10px;font-weight:600;color:var(--text-muted);font-variant-numeric:tabular-nums">0.7%</span></div>
+                    </div>
+                </div>
+                <div style="padding:5px 14px;border-top:1px solid var(--border);font-size:10px;color:var(--text-muted)">Traffic &gt;60 CB · SGN 1630-1835LT: 5 divert, 10 bay chờ, &gt;40 delay</div>
+            </div>
+            <!-- LF -->
+            <div class="widget" style="border-bottom:none">
+                <div class="widget-head"><span class="widget-title">LF Đường Trục — 11JUN</span><span class="chip chip-green">HAN-SGN 92%</span></div>
+                <table class="dtable">
+                    <thead><tr><th>Trục</th><th>CB</th><th>Đi</th><th>Đến</th><th>TB</th></tr></thead>
+                    <tbody>
+                        <tr><td class="td-code">HAN-SGN</td><td class="td-muted">28/28</td><td style="color:var(--green);font-variant-numeric:tabular-nums">91%</td><td style="color:var(--green)">93%</td><td style="color:var(--green);font-weight:700">92</td></tr>
+                        <tr><td class="td-code">HAN-DAD</td><td class="td-muted">24/24</td><td style="color:var(--green)">92%</td><td style="color:var(--orange)">74%</td><td style="color:var(--orange);font-weight:700">83</td></tr>
+                        <tr><td class="td-code">SGN-DAD</td><td class="td-muted">20/21</td><td style="color:var(--orange)">74%</td><td style="color:var(--orange)">76%</td><td style="color:var(--orange);font-weight:700">75</td></tr>
+                    </tbody>
+                </table>
+                <div class="chart-panel" style="padding-top:6px"><canvas id="chartLF" height="80"></canvas></div>
+            </div>
+        </div>
+
+        <!-- AOG -->
+        <div class="widget">
+            <div class="widget-head"><span class="widget-title">Danh sách AOG — 11JUN 06:00</span><span class="chip chip-red">10 TÀU</span></div>
+            <div class="t-scroll" style="max-height:200px">
+                <table class="dtable">
+                    <thead><tr><th>REG</th><th>Loc</th><th>Công việc</th><th>EST RTS</th><th>Status</th></tr></thead>
+                    <tbody>
+                        <tr><td class="td-reg">A865</td><td class="td-muted">SGN</td><td class="td-muted td-wrap">A09</td><td style="color:var(--red);font-family:'Consolas',monospace;font-size:10px">23H 10/06</td><td><span class="s-past">QUÁ HẠN</span></td></tr>
+                        <tr><td class="td-reg">A324</td><td class="td-muted">HAN</td><td class="td-muted td-wrap">EO-2021-2058/2059</td><td style="color:var(--red);font-family:'Consolas',monospace;font-size:10px">20H 10/06</td><td><span class="s-past">QUÁ HẠN</span></td></tr>
+                        <tr><td class="td-reg">A893</td><td class="td-muted">HAN</td><td class="td-muted td-wrap">RH AILERON EHA FAULT</td><td style="color:var(--orange);font-family:'Consolas',monospace;font-size:10px">11H 11/06</td><td><span class="s-today">Hôm nay</span></td></tr>
+                        <tr><td class="td-reg">A887</td><td class="td-muted">HAN</td><td class="td-muted td-wrap">A03-A06 C01 Y03 INSTALL ENG1</td><td style="color:var(--orange);font-family:'Consolas',monospace;font-size:10px">17H 11/06</td><td><span class="s-today">Hôm nay</span></td></tr>
+                        <tr><td class="td-reg">A863</td><td class="td-muted">SGN</td><td class="td-muted td-wrap">A07</td><td style="color:var(--orange);font-family:'Consolas',monospace;font-size:10px">22H 11/06</td><td><span class="s-today">Hôm nay</span></td></tr>
+                        <tr><td class="td-reg">A501</td><td class="td-muted">HAN</td><td class="td-muted td-wrap">INSTALL ENG1,2 EA14-EA16</td><td class="td-mono td-muted" style="font-size:10px">20H 14/06</td><td><span class="s-future">+3 ngày</span></td></tr>
+                        <tr><td class="td-reg">A613</td><td class="td-muted">HAN</td><td class="td-muted td-wrap">C01 Y01</td><td class="td-mono td-muted" style="font-size:10px">20H 17/06</td><td><span class="s-future">+6 ngày</span></td></tr>
+                        <tr><td class="td-reg">B219</td><td class="td-muted">SGN</td><td class="td-muted td-wrap">A04 C01 Y01-Y08 SWAP MLG</td><td class="td-mono td-muted" style="font-size:10px">20H 20/06</td><td><span class="s-future">+9 ngày</span></td></tr>
+                        <tr><td class="td-reg">A886</td><td class="td-muted">HAN</td><td class="td-muted td-wrap">INSTALL ENG1,2 A03-A06 C01</td><td class="td-mono td-muted" style="font-size:10px">23H 30/06</td><td><span class="s-future">+19 ngày</span></td></tr>
+                        <tr><td class="td-reg">A508</td><td class="td-muted">HAN</td><td class="td-muted td-wrap">ENGCHG×2 C01 C03 Y01 Y06</td><td class="td-mono td-muted" style="font-size:10px">20H 15/07</td><td><span class="s-future">+34 ngày</span></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- ADD -->
+        <div class="widget">
+            <div class="widget-head"><span class="widget-title">ADD Deadline Gần — ≤ 14JUN</span><span style="display:flex;gap:5px"><span class="cat-a">A:1</span><span class="cat-c">C:35+</span><span class="cat-d">D:15+</span></span></div>
+            <div class="chart-panel" style="padding-bottom:6px"><canvas id="chartADD" height="65"></canvas></div>
+            <div class="t-scroll" style="max-height:165px">
+                <table class="dtable">
+                    <thead><tr><th>REG</th><th>ADD#</th><th>CAT</th><th>Nội dung</th><th>MEL</th><th>Deadline</th><th>Còn</th></tr></thead>
+                    <tbody>
+                        <tr><td class="td-reg">A392</td><td class="td-code">B1591</td><td><span class="cat-c">C</span></td><td class="td-muted td-wrap">ANTI ICE ENG2 VALVE DEACT REV05/25</td><td class="td-mono td-muted" style="font-size:9px">30-21-01C</td><td style="color:var(--red);font-family:'Consolas',monospace;font-size:10px">14/05/25</td><td><span class="s-past">QUÁ HẠN</span></td></tr>
+                        <tr><td class="td-reg">A898</td><td class="td-code">B1190</td><td><span class="cat-c">C</span></td><td class="td-muted td-wrap">CABIN HANDSET COVER 2R/3L BROKEN</td><td class="td-mono td-muted" style="font-size:9px">44-15-02A</td><td style="color:var(--orange);font-family:'Consolas',monospace;font-size:10px">12/06/25</td><td><span class="s-today">+1 ngày</span></td></tr>
+                        <tr><td class="td-reg">A603</td><td class="td-code">B872</td><td><span class="cat-c">C</span></td><td class="td-muted td-wrap">CAPT SEAT ELEC ADJ INOP</td><td class="td-mono td-muted" style="font-size:9px">25-11-05A</td><td style="color:var(--orange);font-family:'Consolas',monospace;font-size:10px">13/06/25</td><td><span class="s-today">+2 ngày</span></td></tr>
+                        <tr><td class="td-reg">A862</td><td class="td-code">B1372</td><td><span class="cat-c">C</span></td><td class="td-muted td-wrap">CABIN AIR CPRSR R1 STS MSG</td><td class="td-mono td-muted" style="font-size:9px">21-51-01</td><td style="color:var(--orange);font-family:'Consolas',monospace;font-size:10px">13/06/25</td><td><span class="s-today">+2 ngày</span></td></tr>
+                        <tr><td class="td-reg">A353</td><td class="td-code">B2263</td><td><span class="cat-c">C</span></td><td class="td-muted td-wrap">RUD TRIM #1 FAULT — MAX CAT3 SINGLE</td><td class="td-mono td-muted" style="font-size:9px">27-22-01A</td><td style="color:var(--orange);font-family:'Consolas',monospace;font-size:10px">14/06/25</td><td><span class="s-today">+3 ngày</span></td></tr>
+                        <tr><td class="td-reg">A324</td><td class="td-code">B1584</td><td><span class="cat-c">C</span></td><td class="td-muted td-wrap">ENG#2 REVERSER FAULT</td><td class="td-mono td-muted" style="font-size:9px">78-30-01A</td><td style="color:var(--orange);font-family:'Consolas',monospace;font-size:10px">14/06/25</td><td><span class="s-today">+3 ngày</span></td></tr>
+                        <tr><td class="td-reg">A603</td><td class="td-code">B789</td><td><span class="cat-a">A</span></td><td class="td-muted td-wrap">ENG2 FIRE LOOP A FAULT — test ea. flt</td><td class="td-mono td-muted" style="font-size:9px">26-12-02A</td><td class="td-mono td-muted" style="font-size:10px">20/06/25</td><td><span class="s-future">+9 ngày</span></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- WORK ORDERS -->
+        <div class="widget">
+            <div class="widget-head"><span class="widget-title">Work Orders — 11JUN</span><span class="chip chip-cyan">14 WO</span></div>
+            <div class="t-scroll" style="max-height:148px">
+                <table class="dtable">
+                    <thead><tr><th>REG</th><th>Loc</th><th>Nội dung</th><th>Khung giờ</th></tr></thead>
+                    <tbody>
+                        <tr><td class="td-reg">A888</td><td class="td-muted">HAN</td><td class="td-muted td-wrap">EHA-ELEV RPL</td><td class="td-mono td-muted" style="font-size:10px">12:00-19:00</td></tr>
+                        <tr><td class="td-reg">A892</td><td class="td-muted">HAN</td><td class="td-muted td-wrap">SPLR FCRM RPL</td><td class="td-mono td-muted" style="font-size:10px">08:00-18:00</td></tr>
+                        <tr><td class="td-reg">A898</td><td class="td-muted">HAN</td><td class="td-muted td-wrap">INSPECT FUEL NOZZLE MANIFOLD ENG#1</td><td class="td-mono td-muted" style="font-size:10px">22:00-07:00+</td></tr>
+                        <tr><td class="td-reg">A601</td><td class="td-muted">HAN</td><td class="td-muted td-wrap">EA01</td><td class="td-mono td-muted" style="font-size:10px">20:00-06:00+</td></tr>
+                        <tr><td class="td-reg">A608</td><td class="td-muted">HAN</td><td class="td-muted td-wrap">RAT TEST</td><td class="td-mono td-muted" style="font-size:10px">21:15-07:15+</td></tr>
+                        <tr><td class="td-reg">A353</td><td class="td-muted">HAN</td><td class="td-muted td-wrap">B2263 RUD TRIM #1 FAULT</td><td class="td-mono td-muted" style="font-size:10px">00:30-07:30 12/06</td></tr>
+                        <tr><td class="td-reg">A356</td><td class="td-muted">HAN</td><td class="td-muted td-wrap">REPLACE C.N.A / T/S APU</td><td class="td-mono td-muted" style="font-size:10px">20:00-06:00+</td></tr>
+                        <tr><td class="td-reg">A864</td><td class="td-muted">SGN</td><td class="td-muted td-wrap">INSP RDC HARNESS</td><td class="td-mono td-muted" style="font-size:10px">14:30-22:30</td></tr>
+                        <tr><td class="td-reg">A397</td><td class="td-muted">SGN</td><td class="td-muted td-wrap">BSI HPT BLADES ENG#2</td><td class="td-mono td-muted" style="font-size:10px">21:00-07:00+</td></tr>
+                        <tr><td class="td-reg">A621</td><td class="td-muted">SGN</td><td class="td-muted td-wrap">ENG#1 CLEANING</td><td class="td-mono td-muted" style="font-size:10px">20:00-06:00+</td></tr>
+                        <tr><td class="td-reg">A625</td><td class="td-muted">SGN</td><td class="td-muted td-wrap">YELLOW ENG PUMP IND + APU MAINT</td><td class="td-mono td-muted" style="font-size:10px">01:00-07:00 12/06</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div><!-- /col-mid -->
+
+    <!-- COL RIGHT -->
+    <div class="col-right">
+        <!-- WEATHER -->
+        <div class="widget">
+            <div class="widget-head"><span class="widget-title">Thời Tiết TAF — 11JUN</span><span class="chip chip-red">TSRA RỘNG</span></div>
+            <div class="wx-region-lbl">Miền Bắc</div>
+            <div class="wx-row"><span class="wx-icao">VVCI</span><span class="wx-time">2100–0700+LT</span><span class="wx-chip">TSRA</span></div>
+            <div class="wx-row"><span class="wx-icao">VVDH</span><span class="wx-time">0700–1000 · 1300–1600LT</span><span class="wx-chip">TSRA</span></div>
+            <div class="wx-row"><span class="wx-icao">VVNB</span><span class="wx-time">0300+–0700+LT</span><span class="wx-chip">TSRA</span></div>
+            <div class="wx-row"><span class="wx-icao">VVVD</span><span class="wx-time">2100–0700+LT</span><span class="wx-chip">TSRA</span></div>
+            <div class="wx-row"><span class="wx-icao">VVVH</span><span class="wx-time">1600–1900 · 0100+–0700+LT</span><span class="wx-chip">TSRA</span></div>
+            <div class="wx-region-lbl">Miền Trung <span style="color:var(--red);font-weight:700;font-size:9px;letter-spacing:0"> · 01W ẢNH HƯỞNG</span></div>
+            <div class="wx-row"><span class="wx-icao">VVCA</span><span class="wx-time">0700–1600LT</span><span class="wx-chip">TSRA</span></div>
+            <div class="wx-row"><span class="wx-icao warn">VVDN</span><span class="wx-time">0700–0700+LT (cả ngày)</span><span class="wx-chip critical">TSRA+01W</span></div>
+            <div class="wx-row"><span class="wx-icao warn">VVPB</span><span class="wx-time">0700–0700+LT (cả ngày)</span><span class="wx-chip critical">TSRA</span></div>
+            <div class="wx-region-lbl">Miền Nam</div>
+            <div class="wx-row"><span class="wx-icao">VVBM</span><span class="wx-time">1300–1800LT</span><span class="wx-chip">TSRA</span></div>
+            <div class="wx-row"><span class="wx-icao">VVCM</span><span class="wx-time">0800–1400LT</span><span class="wx-chip">TSRA</span></div>
+            <div class="wx-row"><span class="wx-icao">VVCS</span><span class="wx-time">0700–1600LT</span><span class="wx-chip">TSRA</span></div>
+            <div class="wx-row"><span class="wx-icao">VVCT</span><span class="wx-time">0800–1500LT</span><span class="wx-chip">TSRA</span></div>
+            <div class="wx-row"><span class="wx-icao">VVDL</span><span class="wx-time">1100–1700LT</span><span class="wx-chip">TSRA</span></div>
+            <div class="wx-row"><span class="wx-icao">VVPQ</span><span class="wx-time">0700–1400LT</span><span class="wx-chip">TSRA</span></div>
+            <div class="wx-row"><span class="wx-icao">VVRG</span><span class="wx-time">0700–1600LT</span><span class="wx-chip">TSRA</span></div>
+            <div class="wx-row"><span class="wx-icao">VVTS</span><span class="wx-time">0900–2000LT</span><span class="wx-chip">TSRA</span></div>
+            <div style="padding:4px 14px;font-size:10px;color:var(--text-muted);border-top:1px solid var(--border)">QT: Đủ điều kiện · BKK: TSRA</div>
+        </div>
+
+        <!-- NOTAM -->
+        <div class="widget">
+            <div class="widget-head"><span class="widget-title">NOTAM Hiệu Lực</span><span class="chip chip-blue">4 DOM · 1 INT</span></div>
+            <div class="notam-row">
+                <div><div class="notam-id">C0099/C0025</div><div class="notam-validity">17APR–09JUL · 1630–2200Z</div></div>
+                <div class="notam-text"><span class="notam-airport">VINH (VII)</span> — Đóng cửa / làm sân dự bị 1630-2200Z hàng ngày</div>
+            </div>
+            <div class="notam-row">
+                <div><div class="notam-id">A0918/25</div><div class="notam-validity">22APR–21JUN · 1630–2200Z</div></div>
+                <div class="notam-text"><span class="notam-airport">PQC</span> — Đóng cửa 1630-2200 UTC hàng ngày</div>
+            </div>
+            <div class="notam-row">
+                <div><div class="notam-id" style="color:var(--red)">A1650/25</div><div class="notam-validity">11-12JUN · 0200–0400Z</div></div>
+                <div class="notam-text"><span class="notam-airport">VVDN (DAD)</span> — Không tiếp thu MB 0200-0400 UTC · <span style="color:var(--orange)">VIP A3 VN1</span></div>
+            </div>
+            <div class="notam-row">
+                <div><div class="notam-id" style="color:var(--red)">A0232</div><div class="notam-validity">11-12JUN · 0200–0400Z</div></div>
+                <div class="notam-text"><span class="notam-airport">VVCA (VCA)</span> — Không tiếp thu MB 0200-0400 UTC</div>
+            </div>
+            <div class="notam-row">
+                <div><div class="notam-id">FIR D0478/25</div><div class="notam-validity">31MAY–30JUN</div><span class="chip chip-blue" style="font-size:9px;padding:1px 5px;margin-top:3px">INT</span></div>
+                <div class="notam-text">Đường bay <span style="color:var(--cyan);font-family:'Consolas',monospace">M875</span> — tuyến VN-EU-VN đến 30JUN</div>
+            </div>
+        </div>
+
+        <!-- VIP -->
+        <div class="widget">
+            <div class="widget-head"><span class="widget-title">VIP — 11JUN</span><span style="display:flex;gap:5px"><span class="vip-a">3 VIP-A</span><span class="vip-other">5 VIP</span></span></div>
+            <div class="t-scroll" style="max-height:172px">
+                <table class="dtable">
+                    <thead><tr><th>CB</th><th>Route</th><th>STD-STA</th><th>A/C</th><th>Khách</th><th>Cấp</th></tr></thead>
+                    <tbody>
+                        <tr><td class="td-code">VN1201</td><td class="td-muted">HAN-VCA</td><td class="td-mono td-muted" style="font-size:10px">0645-0900</td><td class="td-reg">A893</td><td class="td-muted td-wrap" style="font-size:10px">TRAN LUU QUANG · BUI THI MINH HOAI</td><td><span class="vip-a">A2</span></td></tr>
+                        <tr><td class="td-code">VN207</td><td class="td-muted">HAN-SGN</td><td class="td-mono td-muted" style="font-size:10px">0700-0910</td><td class="td-muted">—</td><td class="td-muted td-wrap" style="font-size:10px">NGUYEN THI KIM NGAN/CTQH</td><td><span class="vip-other">VIP</span></td></tr>
+                        <tr><td class="td-code">VN1200</td><td class="td-muted">VCA-HAN</td><td class="td-mono td-muted" style="font-size:10px">0935-1150</td><td class="td-muted">—</td><td class="td-muted td-wrap" style="font-size:10px">NGUYEN DUC HAI/P.CTQH</td><td><span class="vip-other">VIP</span></td></tr>
+                        <tr><td class="td-code">VN1202</td><td class="td-muted">VCA-HAN</td><td class="td-mono td-muted" style="font-size:10px">1405-1620</td><td class="td-reg">A866</td><td class="td-muted td-wrap" style="font-size:10px">TRAN LUU QUANG/BT TWĐ</td><td><span class="vip-a">A2</span></td></tr>
+                        <tr><td class="td-code">VN1</td><td class="td-muted">ORY-ARN</td><td class="td-mono td-muted" style="font-size:10px">1530-1755</td><td class="td-reg">A868</td><td class="td-muted">—</td><td><span class="vip-a">A3</span></td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div style="padding:5px 14px;border-top:1px solid var(--border);font-size:10px;color:var(--text-muted)">Ferry: <span style="font-family:'Consolas',monospace;color:var(--text-secondary)">VNA619 CXR→DAD 03:50 · VNA512 CXR→SGN 00:10</span></div>
+        </div>
+
+        <!-- BQDB -->
+        <div class="widget">
+            <div class="widget-head"><span class="widget-title">BQDB — 13 Tàu</span><span class="chip chip-blue">A321×11 · A350×2</span></div>
+            <div class="bqdb-section">
+                <div class="bqdb-fleet-lbl">A321 — HAN (10) · SGN (1)</div>
+                <div class="bqdb-tags">
+                    <span class="bqdb-tag">A501</span><span class="bqdb-tag">A503</span><span class="bqdb-tag">A505</span><span class="bqdb-tag">A506</span><span class="bqdb-tag">A510</span><span class="bqdb-tag">A511</span><span class="bqdb-tag">A617</span><span class="bqdb-tag">A620</span><span class="bqdb-tag">A622</span><span class="bqdb-tag">A623</span><span class="bqdb-tag">A624</span><span class="bqdb-tag">A509</span>
+                </div>
+                <div class="bqdb-fleet-lbl">A350 — HAN (2)</div>
+                <div class="bqdb-tags">
+                    <span class="bqdb-tag" style="border-color:var(--cyan-border);color:var(--cyan)">A886</span>
+                    <span class="bqdb-tag" style="border-color:var(--cyan-border);color:var(--cyan)">A895</span>
+                </div>
+                <div style="font-size:10px;color:var(--text-muted);margin-top:2px">Nội địa 03 ngày / 07FC sau tháo BQDB. Không bay QT.</div>
+            </div>
+        </div>
+
+        <!-- NTC -->
+        <div class="widget">
+            <div class="widget-head"><span class="widget-title">Note to Crew (NTC)</span><span class="chip chip-orange">5 Open</span></div>
+            <div class="ntc-row"><span class="ntc-reg">A621</span><span class="ntc-fleet">A321</span><div class="ntc-text">WO 7435234: ENG1 <span style="color:var(--orange)">OFF IDLE STALL ISSUE</span></div></div>
+            <div class="ntc-row"><span class="ntc-reg">A865</span><span class="ntc-fleet">B787</span><div class="ntc-text">WO 7435577: <span style="color:var(--orange)">APU START IN FLIGHT</span></div></div>
+            <div class="ntc-row"><span class="ntc-reg">A888</span><span class="ntc-fleet">A350</span><div class="ntc-text">WO 7434346: ENG1 (21052) <span style="color:var(--orange)">OIL QTY IND</span></div></div>
+            <div class="ntc-row"><span class="ntc-reg">A889</span><span class="ntc-fleet">A350</span><div class="ntc-text">WO 7436758: ENG#2 (21034) <span style="color:var(--orange)">OIL QTY IND</span></div></div>
+            <div class="ntc-row"><span class="ntc-reg">A890</span><span class="ntc-fleet">A350</span><div class="ntc-text">WO 7434362: <span style="color:var(--orange)">APU START IN FLIGHT</span></div></div>
+        </div>
+
+        <!-- OCC LƯU Ý -->
+        <div class="widget">
+            <div class="widget-head"><span class="widget-title">OCC Lưu Ý Khai Thác</span><span class="chip chip-orange">7 MỤC</span></div>
+            <div class="occ-row"><span class="occ-key">ALL NEO</span><span class="occ-text">Weekly check tối thiểu 6h tại HAN/SGN</span></div>
+            <div class="occ-row"><span class="occ-key">ALL FLEET</span><span class="occ-text">Nội địa 03 ngày / 07FC sau tháo BQDB</span></div>
+            <div class="occ-row"><span class="occ-key">A321 HPH</span><span class="occ-text">Không N/S HPH 2 đêm liên tục</span></div>
+            <div class="occ-row"><span class="occ-key">NEO/KHH</span><span class="occ-text">Bố trí CEO dừng đêm KHH từ 26/03</span></div>
+            <div class="occ-row"><span class="occ-key">B787 APU</span><span class="occ-text">Hạn chế sân không NVKT khi APU hỏng (alan key)</span></div>
+            <div class="occ-row"><span class="occ-key">A873</span><span class="occ-text">50FC từ VN307 NRT-SGN 04/06 rồi kiểm tra lại</span></div>
+            <div class="occ-row"><span class="occ-key">A507</span><span class="occ-text">Nội địa sân CRS-B hết 11/06 — theo dõi ELAC 2</span></div>
+        </div>
+    </div><!-- /col-right -->
+
+    </div><!-- /dash-grid -->
+    </div><!-- /scroll-content -->
+    </div><!-- /content-area -->
+
+    <!-- STATUS BAR -->
+    <div class="statusbar">
+        <div class="live-wrap"><div class="live-dot"></div>LIVE</div>
+        <span>BCAO 10JUN-11JUN/2025</span>
+        <span>OCC — Trực khai thác</span>
+        <span>REV 01</span>
+        <span class="sb-right">11JUN2025 06:00LT</span>
+    </div>
+
+</div><!-- /main -->
+</div><!-- /app -->
+
+<script>
+// CLOCK
+function updateClock() {
+    const now = new Date();
+    const pad = n => String(n).padStart(2,'0');
+    document.getElementById('clock-utc').textContent = `${pad(now.getUTCHours())}:${pad(now.getUTCMinutes())}:${pad(now.getUTCSeconds())}`;
+    const lt = new Date(now.getTime() + 7*3600000);
+    document.getElementById('clock-lt').textContent = `${pad(lt.getUTCHours())}:${pad(lt.getUTCMinutes())}:${pad(lt.getUTCSeconds())}`;
+}
+setInterval(updateClock, 1000); updateClock();
+
+// SIDEBAR
+document.getElementById('hideBtn').addEventListener('click', () => document.getElementById('sidebar').classList.toggle('collapsed'));
+document.getElementById('expandBtn').addEventListener('click', () => document.getElementById('sidebar').classList.toggle('collapsed'));
+
+// DAY SWITCH
+function switchDay(day) {
+    document.getElementById('btn-t1').classList.toggle('active', day==='t1');
+    document.getElementById('btn-t').classList.toggle('active', day==='t');
+    const isT = day === 't';
+    document.getElementById('kv-total').textContent = isT ? '504' : '468';
+    document.getElementById('ks-total').textContent = isT ? 'VN:469 · 0V:16 · BL:19' : 'VN:437 · 0V:16 · BL:15';
+    document.getElementById('kv-qn').textContent = isT ? '367' : '310';
+    document.getElementById('ks-qn').textContent = isT ? 'VN:332 · 0V:16 · BL:19' : 'VN:310 · 0V:16 · BL:15';
+    document.getElementById('kv-fleet').textContent = isT ? '77/98' : '78/98';
+}
+
+// CHARTS
+Chart.defaults.font.family = "'Segoe UI', system-ui, sans-serif";
+Chart.defaults.color = '#4A5370';
+
+// DELAY DOUGHNUT
+new Chart(document.getElementById('chartDelay').getContext('2d'), {
+    type: 'doughnut',
+    data: {
+        labels: ['Knock-on','Traffic','Thời tiết','Kỹ thuật','Khác'],
+        datasets: [{
+            data: [37.7, 2.7, 1.1, 0.7, 0.7],
+            backgroundColor: ['#FF4757','#F59E0B','#3B9EFF','#A78BFA','#4A5370'],
+            borderWidth: 0,
+            hoverOffset: 4
+        }]
+    },
+    options: {
+        cutout: '68%',
+        plugins: { legend: { display: false }, tooltip: {
+            callbacks: { label: ctx => ` ${ctx.label}: ${ctx.parsed}%` }
+        }},
+        animation: { duration: 600 }
+    }
+});
+
+// LF
+new Chart(document.getElementById('chartLF').getContext('2d'), {
+    type: 'bar',
+    data: {
+        labels: ['HAN-SGN','HAN-DAD','SGN-DAD'],
+        datasets: [
+            { label:'LF Đi', data:[91,92,74], backgroundColor:'rgba(59,158,255,0.55)', borderColor:'#3B9EFF', borderWidth:1, borderRadius:3 },
+            { label:'LF Đến', data:[93,74,76], backgroundColor:'rgba(29,214,140,0.45)', borderColor:'#1DD68C', borderWidth:1, borderRadius:3 }
+        ]
+    },
+    options: {
+        responsive:true,
+        plugins: {
+            legend: { labels:{ color:'#8892B0', font:{size:10}, boxWidth:10, boxHeight:4 } },
+            tooltip: { backgroundColor:'#1A2035', titleColor:'#E2E8F8', bodyColor:'#8892B0', borderColor:'#232C44', borderWidth:1, callbacks:{ label: c=>`${c.dataset.label}: ${c.raw}%` } }
+        },
+        scales: {
+            x:{ ticks:{color:'#4A5370',font:{size:10}}, grid:{color:'#1C2236'} },
+            y:{ min:50, max:100, ticks:{color:'#4A5370',font:{size:10},callback:v=>v+'%'}, grid:{color:'#1C2236'} }
+        }
+    }
+});
+
+// ADD deadline
+new Chart(document.getElementById('chartADD').getContext('2d'), {
+    type: 'bar',
+    data: {
+        labels:['A392-B1591','A898-B1190','A603-B872','A862-B1372','A353-B2263','A324-B1584','A603-B789'],
+        datasets:[{
+            data:[-28,1,2,2,3,3,9],
+            backgroundColor: ctx => ctx.raw < 0 ? 'rgba(255,71,87,0.65)' : ctx.raw <= 3 ? 'rgba(245,158,11,0.55)' : 'rgba(29,214,140,0.45)',
+            borderColor: ctx => ctx.raw < 0 ? '#FF4757' : ctx.raw <= 3 ? '#F59E0B' : '#1DD68C',
+            borderWidth:1, borderRadius:3
+        }]
+    },
+    options: {
+        indexAxis:'y', responsive:true,
+        plugins: {
+            legend:{display:false},
+            tooltip:{ backgroundColor:'#1A2035', titleColor:'#E2E8F8', bodyColor:'#8892B0', borderColor:'#232C44', borderWidth:1, callbacks:{ label: c => c.raw < 0 ? `QUÁ HẠN ${Math.abs(c.raw)}d` : `Còn ${c.raw} ngày` } }
+        },
+        scales: {
+            x:{ ticks:{color:'#4A5370',font:{size:9},callback:v=>v+'d'}, grid:{color:'#1C2236'} },
+            y:{ ticks:{color:'#4A5370',font:{size:9,family:"'Consolas',monospace"}}, grid:{display:false} }
+        }
+    }
+});
+</script>
+</body>
+</html>
