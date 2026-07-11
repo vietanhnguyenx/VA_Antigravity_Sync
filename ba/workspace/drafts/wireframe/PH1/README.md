@@ -10,7 +10,7 @@ document_id: "WF-INDEX-PH1-DSP-MON"
 
 # Wireframe low-fidelity — Cụm màn hình giám sát điều phái (Phân hệ 1)
 
-> **Phạm vi:** vẽ wireframe low-fidelity (ASCII) cho 4 cụm màn hình giám sát của điều phái thuộc Phân hệ 1 — Thông tin điều hành chuyến bay. Bám sát phân rã FUNC `PHAN-RA-BRD-PH1-thong-tin-dieu-hanh-chuyen-bay-v0.5.md` và mô hình dữ liệu khái niệm `DATA-MODEL-KHAI-NIEM-man-giam-sat-dieu-phai-v0.1.md`.
+> **Phạm vi:** vẽ wireframe low-fidelity (ASCII) cho 4 cụm màn hình giám sát của điều phái thuộc Phân hệ 1 — Thông tin điều hành chuyến bay. Bám sát phân rã FUNC `PHAN-RA-BRD-PH1-thong-tin-dieu-hanh-chuyen-bay-v0.5.md` và mô hình dữ liệu khái niệm `DATA-MODEL-KHAI-NIEM-man-giam-sat-dieu-phai-v0.2.md`.
 >
 > **Nguyên tắc (CLAUDE.md §0 + Workflow P4):**
 > - **Bám FUNC + entity map** — không bịa chức năng/trường ngoài nguồn; trường/khái niệm chưa rõ ghi `[cần xác nhận]`.

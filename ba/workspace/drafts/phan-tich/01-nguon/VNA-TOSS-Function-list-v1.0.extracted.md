@@ -2,15 +2,15 @@
 source_gdrive: "https://docs.google.com/spreadsheets/d/15icZM004vwMt0YvUbrLpj-2Z40T0QXsE"
 source_name: "VNA.TOSS_Function_list_v1.0.xlsx"
 document_type: "Google Drive → MD (read-only)"
-source_version: "404"
-source_modified: "2026-06-16T04:17:40.028Z"
-last_modifying_user: "chuyenly2003"
-pulled: "2026-06-16"
+source_version: "493"
+source_modified: "2026-06-18T03:07:18.693Z"
+last_modifying_user: "hiepdv0695"
+pulled: "2026-06-18"
 status: "Raw pull — chưa biên tập"
 ---
 
 > **Nguồn (Google Drive, live):** VNA.TOSS_Function_list_v1.0.xlsx — https://drive.google.com/file/d/15icZM004vwMt0YvUbrLpj-2Z40T0QXsE  
-> Pull 2026-06-16 (version 404, sửa 2026-06-16T04:17:40.028Z bởi chuyenly2003).
+> Pull 2026-06-18 (version 493, sửa 2026-06-18T03:07:18.693Z bởi hiepdv0695).
 
 ## Tổng Quan
 | Unnamed: 0 | Unnamed: 1 | Unnamed: 2 | Unnamed: 3 | Unnamed: 4 | Unnamed: 5 | Unnamed: 6 | Unnamed: 7 |
@@ -27,184 +27,205 @@ status: "Raw pull — chưa biên tập"
 | NaN | 9 | NaN | NaN | NaN | NaN | NaN | NaN |
 
 ## Function list
-| TOSS - Total Operations Steering System Function list TOSS | Unnamed: 1 | Unnamed: 2 | Unnamed: 3 | Unnamed: 4 | Unnamed: 5 |
-| --- | --- | --- | --- | --- | --- |
-| STT | Module | Chức năng | Chức năng con lv1 | Mô tả | Ghi chú |
-| 1 | Live Operations | NaN | NaN | NaN | NaN |
-| NaN | NaN | Nhập thông tin hỏng hóc kỹ thuật | NaN | NaN | NaN |
-| NaN | NaN | Nhập thông tin dịch vụ | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| 2 | Flight Dispatch | NaN | NaN | NaN | NaN |
-| NaN | Flight monitoring | Màn hình giám sát danh sách tổng quan | NaN | Tham chiếu kịch bản sheet màn hình Flight monitoring | NaN |
-| NaN | NaN | Lọc trên màn hình | NaN | NaN | NaN |
-| NaN | NaN | Release OFP | NaN | NaN | NaN |
-| NaN | NaN | Un release OFP | NaN | NaN | NaN |
-| NaN | NaN | NaN | Xem chi tiết chuyến bay | Mở cửa sổ mới | NaN |
-| NaN | NaN | NaN | Upload OFP trong details | NaN | NaN |
-| NaN | NaN | NaN | Các tab thông tin trong xem chi tiết chuyến bay | NaN | NaN |
-| NaN | Upload common Document | Màn hình danh sách tài liệu chung chuyến bay | NaN | NaN | NaN |
-| NaN | NaN | Xoá tài liệu chung chuyến bay | NaN | NaN | NaN |
-| NaN | NaN | Upload tài liệu chung chuyến bay | NaN | Cho chọn quãng thời gian hiệu lực có thể đưa lên MO theo ETD. | NaN |
-| 3 | Flight Load Control | NaN | NaN | NaN | NaN |
-| NaN | Tab1 | Màn hình Danh sách Chuyến bay kèm tài liệu từng chuyến | NaN | Phân quyền theo chức năng thì sẽ hiển thị được các cột tương ứng thưo từng cụm tài liệu\nCó customize bảng biểu\nCó highlight, status để báo cảnh báo\nThời gian upload tài liệu lần cuối,... | Tài liệu cần noti tới MO để sync được ngay lập tức |
-| NaN | NaN | Upload tài liệu từng chuyến | NaN | Vẫn có option ẩn hiện lên MO | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | Tab2 | Màn hình danh sách upload nhiều tài liệu cho nhiều chuyến bay | NaN | NaN | NaN |
-| NaN | NaN | Upload nhiều loại tài liệu cho nhiều chuyến bay | NaN | Có cơ chế nhận diện qua tên file hoặc content của file. | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| 4 | Station Manager | NaN | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| 5 | Report | NaN | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| 6 | Data Maintenance | NaN | NaN | NaN | NaN |
-| NaN | Quản lý danh mục tàu bay | Quản lý thông tin tàu bay | NaN | Quản lý được thời hạn vào ra\nSở hữu\nTàu thuê (thuê khô đội vận hành tàu là của VNA), thuê ướt (thuê toàn bộ chuyến bay, tiếp viên khác đó, pilot hãng đó)\n | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | NaN | Quản lý MEL, CDL, defect | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | NaN | Quản lý Performance Factor | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | Quản lý danh mục Sân bay | NaN | NaN | Có khai báo taxi time tiêu chuẩn cho từng loại tàu đối với từng sân bay, có thời gian hiệu lực, có gợi ý taxi time để user ghi nhận. | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | Quản lý danh mục Chặng bay | Chặng bay | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | NaN | Tankering | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | Quản lý giá nhiên liệu | NaN | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | Quản lý danh mục ULD | Danh sách ULD | NaN | Hiển thị danh sách tổng hợp toàn bộ ULD trên hệ thống | NaN |
-| NaN | NaN | Tìm kiếm | NaN | Cho phép người dùng tìm kiếm dữ liệu ULD theo Mã , Loại ULD (AKE, PMC, PAG...), Trạng thái hoạt động, Khoảng Trọng lượng rỗng, hoặc Vị trí sân bay hiện tại. | NaN |
-| NaN | NaN | Kết xuất | NaN | Cho phép nguời dùng kết xuất toàn bộ danh sách hoặc kết xuất theo bộ lọc dữ liệu ULD ra file định dạng .xlsx hoặc .csv | NaN |
-| NaN | NaN | Thêm mới ULD | NaN | Cho phép nguời dùng khởi tạo 1 ULD mới được hãng mua hoặc thuê bao gồm các trường như. Mã ULD, Loại , trọng lượng rỗng, trọng lượng tối đa, Thể tích, Trạng thái, Vị trí sân bay hiện tại | NaN |
-| NaN | NaN | Sửa ULD | NaN | Cho phép người dùng cập nhật hoặc chỉnh sửa các thông số của một ULD đang tồn tại trên hệ thống | NaN |
-| NaN | NaN | Xóa ULD | NaN | Cho phép người dùng loại bỏ hồ sơ của một ULD khỏi hệ thống (thường áp dụng khi nhập sai hoặc thiết bị đã được thanh lý). | NaN |
-| NaN | NaN | Xem chi tiết ULD | NaN | Cho phép người dùng xem lại toàn bộ hồ sơ "lý lịch" của một ULD ở chế độ chỉ đọc (Read-only), bao gồm các trường như: Mã ULD, Loại, Trọng lượng rỗng, Trọng lượng tối đa, Thể tích, Trạng thái, Vị trí hiện tại, Người tạo, Ngày tạo, Các chuyến bay gần nhất đã sử dụng thiết bị này | NaN |
-| NaN | NaN | Xem lịch sử cập nhật ULD | NaN | Cho phép người dùng tra cứu toàn bộ dấu vết thay đổi dữ liệu (Audit Trail) của một ULD bao gồm các trường như: Thời gian thay đổi, Người thực hiện, Thao tác, và Chi tiết thay đổi dữ liệu (Giá trị cũ -> Giá trị mới) | NaN |
-| NaN | Quản lý danh mục FIR | Danh sách FIR | NaN | NaN | NaN |
-| NaN | NaN | Tìm kiếm | NaN | NaN | NaN |
-| NaN | NaN | Kết xuất | NaN | NaN | NaN |
-| NaN | NaN | Thêm mới FIR | NaN | NaN | NaN |
-| NaN | NaN | Sửa FIR | NaN | NaN | NaN |
-| NaN | NaN | Xóa FIR | NaN | NaN | NaN |
-| NaN | NaN | Xem chi tiết FIR | NaN | NaN | NaN |
-| NaN | Quản lý danh mục phi công | Danh sách phi công | NaN | NaN | NaN |
-| NaN | NaN | Xuất danh sách phi công | NaN | NaN | NaN |
-| NaN | NaN | Xem chi tiết phi công | NaN | NaN | NaN |
-| NaN | NaN | Thêm mới phi công | NaN | NaN | NaN |
-| NaN | NaN | Sửa thông tin phi công | NaN | NaN | NaN |
-| NaN | Quản lý danh mục Tiếp viên | Danh sách tiếp viên | NaN | NaN | Đồng bộ từ aves |
-| NaN | NaN | Xuất danh sách tiếp viên | NaN | NaN | NaN |
-| NaN | NaN | Xem chi tiết tiếp viên | NaN | NaN | NaN |
-| NaN | NaN | Thêm mới tiếp viên | NaN | NaN | NaN |
-| NaN | NaN | Sửa thông tin tiếp viên | NaN | NaN | NaN |
-| NaN | Quản lý danh mục Quốc gia | Danh sách quốc gia | NaN | NaN | NaN |
-| NaN | NaN | Thêm mới quốc gia | NaN | NaN | NaN |
-| NaN | NaN | Sửa thông tin quốc gia | NaN | NaN | NaN |
-| NaN | NaN | Xóa quốc gia | NaN | NaN | NaN |
-| NaN | Quản lý danh mục Carrier | Danh sách Carrier | NaN | NaN | NaN |
-| NaN | NaN | Thêm mới carrier | NaN | NaN | NaN |
-| NaN | NaN | Sửa carrier | NaN | NaN | NaN |
-| NaN | NaN | Xóa carrier | NaN | NaN | NaN |
-| NaN | Quản lý danh mục cơ quan đơn vị | Danh sách cơ quan đơn vị | NaN | NaN | NaN |
-| NaN | NaN | Thêm mới cơ quan đơn vị | NaN | NaN | NaN |
-| NaN | NaN | Sửa thông tin cơ quan đơn vị | NaN | NaN | NaN |
-| NaN | NaN | Xóa cơ quan đơn vị | NaN | NaN | NaN |
-| NaN | Quản lý danh mục DOW | NaN | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| 7 | Data Source Monitoring | NaN | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| NaN | NaN | NaN | NaN | NaN | NaN |
-| 8 | System Admin | NaN | NaN | NaN | NaN |
-| NaN | Quản lý tham số trần và sàn ZFW | NaN | NaN | Cho phép khai báo để làm cảnh báo khi ZFW thay đổi từ CLC với kế hoạch bay nếu giảm hoặc tăng khác ngưỡng.\n Theo loại tàu bay\nTheo khoảng giờ bay (flight time) | NaN |
+| TOSS - Total Operations Steering System Function list TOSS | Unnamed: 1 | Unnamed: 2 | Unnamed: 3 | Unnamed: 4 | Unnamed: 5 | Unnamed: 6 |
+| --- | --- | --- | --- | --- | --- | --- |
+| STT | Module | Chức năng | Chức năng con lv1 | NaN | Mô tả | Ghi chú |
+| 1 | Live Operations | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | Nhập thông tin hỏng hóc kỹ thuật | NaN | NaN | NaN | NaN |
+| NaN | NaN | Nhập thông tin dịch vụ | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| 2 | Flight Dispatch | NaN | NaN | NaN | NaN | NaN |
+| NaN | Flight monitoring | Màn hình giám sát danh sách tổng quan | NaN | NaN | Tham chiếu kịch bản sheet màn hình Flight monitoring | NaN |
+| NaN | NaN | Lọc trên màn hình | NaN | NaN | NaN | NaN |
+| NaN | NaN | Release OFP | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | Xem chi tiết chuyến bay | NaN | Mở cửa sổ mới | NaN |
+| NaN | NaN | NaN | Upload OFP trong details | NaN | NaN | NaN |
+| NaN | NaN | NaN | Các tab thông tin trong xem chi tiết chuyến bay | NaN | NaN | NaN |
+| NaN | Upload common Document | Màn hình danh sách tài liệu chung chuyến bay | NaN | NaN | NaN | NaN |
+| NaN | NaN | Xoá tài liệu chung chuyến bay | NaN | NaN | NaN | NaN |
+| NaN | NaN | Upload tài liệu chung chuyến bay | NaN | NaN | Cho chọn quãng thời gian hiệu lực có thể đưa lên MO theo ETD. | NaN |
+| 3 | Flight Load Control | NaN | NaN | NaN | NaN | NaN |
+| NaN | Tab1 | Màn hình Danh sách Chuyến bay kèm tài liệu từng chuyến | NaN | NaN | Phân quyền theo chức năng thì sẽ hiển thị được các cột tương ứng thưo từng cụm tài liệu\nCó customize bảng biểu\nCó highlight, status để báo cảnh báo\nThời gian upload tài liệu lần cuối,... | Tài liệu cần noti tới MO để sync được ngay lập tức |
+| NaN | NaN | Upload tài liệu từng chuyến | NaN | NaN | Vẫn có option ẩn hiện lên MO | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | Tab2 | Màn hình danh sách upload nhiều tài liệu cho nhiều chuyến bay | NaN | NaN | NaN | NaN |
+| NaN | NaN | Upload nhiều loại tài liệu cho nhiều chuyến bay | NaN | NaN | Có cơ chế nhận diện qua tên file hoặc content của file. | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| 4 | Station Manager | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| 5 | Report | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | Báo cáo tàu dừng | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| 6 | Data Maintenance | NaN | NaN | NaN | NaN | NaN |
+| NaN | Quản lý danh mục tàu bay | Aircaft list | Màn hình danh sách tàu bay (Đồng bộ từ Ops++) | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | Xem chi tiết và chỉnh sửa | Thông tin tàu bay:\nĐồng bộ\n- ACsubtype, Cơ chế đồng bộ ACsubtype - Ops++\n- ACreg\n- Valid From - To (lấy cái cuối cùng)\n\n\nCho phép chỉnh sửa\n- 5 thuộc tính gom nhóm (thm chiếu sheet aircraft)\n- ICAO - IATA code\n- Taxi fuel flow (kiểu số) - đơn vị (kg/h)\n- APU fuel flow (kiểu số) - đơn vị (kg/h)\n- Fuel tank CAPC (kg)\n- Water tank CAPC (liters)\n- Cargo CAPC (kg)\n- ACARS fuel unit, ACARS fuel multiplier (khai báo from - to theo ngày giờ và nối tiếp nhau)\n- MTOW\n- Config\n- Ownership status (Wet Leased, Dry Leased, Owned)\n- Owner (50 ký tự) (Nếu Status là Owned thì mặc định là Viet Nam Airlines)\n- Basic Weight (kg)\n- Max Ramp Weight (kg) | NaN |
+| NaN | NaN | NaN | NaN | Lịch sử thay đổi thông tin của tàu | Xem lịch sử thay đổi của các thông tin:\nACsubtype\nACARS fuel unit\nACARS fuel multiplier\nThay đổi config\nOwnership status\nBasic Weight | NaN |
+| NaN | NaN | NaN | NaN | Filter (Subtype, reg, 5 thuộc tính gom nhóm (thm chiếu sheet aircraft) | NaN | NaN |
+| NaN | NaN | AOG/MNT Schedule | Danh sách lịch bảo dưỡng tàu bay | Danh sách lịch bảo dưỡng (Lấy từ Netline những chuyến bay có FN\_Carrier (thuộc danh sách code), legtype = Z\n\nReg\nFrom - To\nBase\nCode\nLeg STAGE\nGroup | Lấy từ OPs++ danh sách bảo dưỡng của tàu\n(danh sách trả ra theo legtype Z, và code chỉ định theo FN\_Carrier)\nFrom\nto\nAC reg\nCode\nGroup code | NaN |
+| NaN | NaN | NaN | NaN | Xem chi tiết\nLấy từ AMOS, khảo sát thêm | NaN | NaN |
+| NaN | NaN | NaN | NaN | Filter (Base, Tàu, Code, Group code, From - to) | NaN | NaN |
+| NaN | NaN | AOG/MNT Code | Thêm mới | Code, Group | NaN | NaN |
+| NaN | NaN | NaN | Lọc | NaN | NaN | NaN |
+| NaN | NaN | NaN | Sửa | NaN | NaN | NaN |
+| NaN | NaN | NaN | Xoá | NaN | NaN | NaN |
+| NaN | NaN | MEL, CDL | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | Performance Factor | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | Quản lý danh mục Sân bay | NaN | NaN | NaN | Có khai báo taxi time tiêu chuẩn cho từng loại tàu đối với từng sân bay, có thời gian hiệu lực, có gợi ý taxi time để user ghi nhận. | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | Quản lý danh mục Chặng bay | Chặng bay | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | Tankering | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | Quản lý giá nhiên liệu | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | Quản lý danh mục ULD | Danh sách ULD | NaN | NaN | Hiển thị danh sách tổng hợp toàn bộ ULD trên hệ thống | NaN |
+| NaN | NaN | Tìm kiếm | NaN | NaN | Cho phép người dùng tìm kiếm dữ liệu ULD theo Mã , Loại ULD (AKE, PMC, PAG...), Trạng thái hoạt động, Khoảng Trọng lượng rỗng, hoặc Vị trí sân bay hiện tại. | NaN |
+| NaN | NaN | Kết xuất | NaN | NaN | Cho phép nguời dùng kết xuất toàn bộ danh sách hoặc kết xuất theo bộ lọc dữ liệu ULD ra file định dạng .xlsx hoặc .csv | NaN |
+| NaN | NaN | Thêm mới ULD | NaN | NaN | Cho phép nguời dùng khởi tạo 1 ULD mới được hãng mua hoặc thuê bao gồm các trường như. Mã ULD, Loại , trọng lượng rỗng, trọng lượng tối đa, Thể tích, Trạng thái, Vị trí sân bay hiện tại | NaN |
+| NaN | NaN | Sửa ULD | NaN | NaN | Cho phép người dùng cập nhật hoặc chỉnh sửa các thông số của một ULD đang tồn tại trên hệ thống | NaN |
+| NaN | NaN | Xóa ULD | NaN | NaN | Cho phép người dùng loại bỏ hồ sơ của một ULD khỏi hệ thống (thường áp dụng khi nhập sai hoặc thiết bị đã được thanh lý). | NaN |
+| NaN | NaN | Xem chi tiết ULD | NaN | NaN | Cho phép người dùng xem lại toàn bộ hồ sơ "lý lịch" của một ULD ở chế độ chỉ đọc (Read-only), bao gồm các trường như: Mã ULD, Loại, Trọng lượng rỗng, Trọng lượng tối đa, Thể tích, Trạng thái, Vị trí hiện tại, Người tạo, Ngày tạo, Các chuyến bay gần nhất đã sử dụng thiết bị này | NaN |
+| NaN | NaN | Xem lịch sử cập nhật ULD | NaN | NaN | Cho phép người dùng tra cứu toàn bộ dấu vết thay đổi dữ liệu (Audit Trail) của một ULD bao gồm các trường như: Thời gian thay đổi, Người thực hiện, Thao tác, và Chi tiết thay đổi dữ liệu (Giá trị cũ -> Giá trị mới) | NaN |
+| NaN | Quản lý danh mục FIR | Danh sách FIR | NaN | NaN | NaN | NaN |
+| NaN | NaN | Tìm kiếm | NaN | NaN | NaN | NaN |
+| NaN | NaN | Kết xuất | NaN | NaN | NaN | NaN |
+| NaN | NaN | Thêm mới FIR | NaN | NaN | NaN | NaN |
+| NaN | NaN | Sửa FIR | NaN | NaN | NaN | NaN |
+| NaN | NaN | Xóa FIR | NaN | NaN | NaN | NaN |
+| NaN | NaN | Xem chi tiết FIR | NaN | NaN | NaN | NaN |
+| NaN | Quản lý danh mục phi công | Danh sách phi công | NaN | NaN | NaN | NaN |
+| NaN | NaN | Xuất danh sách phi công | NaN | NaN | NaN | NaN |
+| NaN | NaN | Xem chi tiết phi công | NaN | NaN | NaN | NaN |
+| NaN | NaN | Thêm mới phi công | NaN | NaN | NaN | NaN |
+| NaN | NaN | Sửa thông tin phi công | NaN | NaN | NaN | NaN |
+| NaN | Quản lý danh mục Tiếp viên | Danh sách tiếp viên | NaN | NaN | NaN | Đồng bộ từ aves |
+| NaN | NaN | Xuất danh sách tiếp viên | NaN | NaN | NaN | NaN |
+| NaN | NaN | Xem chi tiết tiếp viên | NaN | NaN | NaN | NaN |
+| NaN | NaN | Thêm mới tiếp viên | NaN | NaN | NaN | NaN |
+| NaN | NaN | Sửa thông tin tiếp viên | NaN | NaN | NaN | NaN |
+| NaN | Quản lý danh mục Quốc gia | Danh sách quốc gia | NaN | NaN | NaN | NaN |
+| NaN | NaN | Thêm mới quốc gia | NaN | NaN | NaN | NaN |
+| NaN | NaN | Sửa thông tin quốc gia | NaN | NaN | NaN | NaN |
+| NaN | NaN | Xóa quốc gia | NaN | NaN | NaN | NaN |
+| NaN | Quản lý danh mục Carrier | Danh sách Carrier | NaN | NaN | NaN | NaN |
+| NaN | NaN | Thêm mới carrier | NaN | NaN | NaN | NaN |
+| NaN | NaN | Sửa carrier | NaN | NaN | NaN | NaN |
+| NaN | NaN | Xóa carrier | NaN | NaN | NaN | NaN |
+| NaN | Quản lý danh mục cơ quan đơn vị | Danh sách cơ quan đơn vị | NaN | NaN | NaN | NaN |
+| NaN | NaN | Thêm mới cơ quan đơn vị | NaN | NaN | NaN | NaN |
+| NaN | NaN | Sửa thông tin cơ quan đơn vị | NaN | NaN | NaN | NaN |
+| NaN | NaN | Xóa cơ quan đơn vị | NaN | NaN | NaN | NaN |
+| NaN | Quản lý danh mục DOW | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| 7 | Data Source Monitoring | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| 8 | System Admin | NaN | NaN | NaN | NaN | NaN |
+| NaN | Quản lý tham số | Quản lý tham số trần và sàn ZFW | NaN | NaN | Cho phép khai báo để làm cảnh báo khi ZFW thay đổi từ CLC với kế hoạch bay nếu giảm hoặc tăng khác ngưỡng.\nTheo loại tàu bay\nTheo khoảng giờ bay (flight time) | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| 8 | Mail cảnh báo | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | Gửi mail cảnh báo khi có đồng bộ tàu mới từ ops++ | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | NaN | NaN | NaN | NaN | NaN |
+| 8 | Job đồng bộ | NaN | NaN | NaN | NaN | NaN |
+| NaN | NaN | Đồng bộ các thông tin trạng thái release, confirm tài liệu về hệ thống số hoá VIAGS và trả file, Có thể thiết kế API để VIAGS chủ đôngj gọi | NaN | NaN | NaN | NaN |
 
 ## Màn hình Flight Dispatch
 | Menu bar | Unnamed: 1 | Unnamed: 2 | Unnamed: 3 | Header | Unnamed: 5 | Unnamed: 6 | Unnamed: 7 | Unnamed: 8 | Unnamed: 9 | Unnamed: 10 | Unnamed: 11 | Unnamed: 12 | Unnamed: 13 | Unnamed: 14 | Unnamed: 15 | Unnamed: 16 | Unnamed: 17 | Unnamed: 18 | Unnamed: 19 | Unnamed: 20 | Unnamed: 21 | Unnamed: 22 | Unnamed: 23 | Unnamed: 24 | Unnamed: 25 | Unnamed: 26 | Unnamed: 27 |

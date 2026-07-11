@@ -1,0 +1,7 @@
+# Manifest: AYAME Kimono Interview Survey
+# Files to export (in order)
+# Created: 2026-06-23
+
+C:\Users\anhnlv\Downloads\TOSS-20260611T014328Z-3-001\Kimono\KHAO-SAT-MEETING-GUIDEV1.md
+C:\Users\anhnlv\Downloads\TOSS-20260611T014328Z-3-001\Kimono\INTERVIEW-GUIDE-QUICK-REF.md
+C:\Users\anhnlv\Downloads\TOSS-20260611T014328Z-3-001\Kimono\MEETING-PREP-CHECKLIST.md

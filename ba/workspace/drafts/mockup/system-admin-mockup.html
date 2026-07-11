@@ -1,0 +1,2735 @@
+<!DOCTYPE html>
+<!--
+  MOCKUP — TOSS System Admin (Cải tiến giao diện: Menu dọc MO)
+  CLAUDE.md §0: dữ liệu mẫu, bố cục đề xuất cần BA/UI duyệt.
+  Nguồn: Tương thích giao diện MO (Image 2) và System Admin TOSS (Image 1).
+  Trình bày theo Angular Material 3; mỗi vùng có data-mat = component Material (xem Legend cuối trang).
+  Trực thuộc ba/workspace/drafts/mockup/system-admin-mockup.html.
+-->
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TOSS — System Admin Mockup</title>
+  <!-- Google Fonts: Inter & Roboto + Material Symbols Outlined -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto:wght@400;500;700&family=Material+Symbols+Outlined" rel="stylesheet">
+  
+  <style>
+    /* ===== Design System & Core Colors (VNA Brand & MO Style) ===== */
+    :root {
+      --vna-navy: #002A54;         /* Màu xanh thương hiệu Vietnam Airlines */
+      --vna-gold: #D4B26F;         /* Màu vàng sen Vietnam Airlines */
+      --mo-active-bg: #fef3c7;     /* Background vàng nhạt khi active giống MO */
+      --mo-active-border: #d97706; /* Border cam/vàng đậm khi active giống MO */
+      --mo-active-text: #b45309;   /* Chữ cam/vàng đậm giống MO */
+      
+      --toss-teal: #007b83;        /* Màu xanh Teal của nút Search TOSS */
+      --toss-blue: #0284c7;        /* Màu xanh Blue của nút Create Users */
+      --toss-orange: #f97316;      /* Màu cam của nút Export Excel */
+      
+      --md-surface: #ffffff;
+      --md-surface-variant: #f8fafc;
+      --md-outline: #cbd5e1;
+      --md-outline-variant: #e2e8f0;
+      --md-text-primary: #1e293b;
+      --md-text-secondary: #64748b;
+      --md-text-muted: #94a3b8;
+      
+      --sidebar-width: 260px;
+      --sidebar-collapsed-width: 52px;
+      
+      --md-radius: 12px;
+      --md-radius-sm: 8px;
+      --md-elev1: 0 1px 3px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.05);
+      --md-elev2: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.05);
+      --md-elev3: 0 10px 15px -3px rgba(0,0,0,0.08), 0 4px 6px -2px rgba(0,0,0,0.04);
+      
+      /* Background bầu trời TOSS */
+      --toss-bg-sky: linear-gradient(180deg, #dbe9f6 0%, #e8f1f9 30%, #f4f7fc 100%);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', Roboto, 'Segoe UI', Arial, sans-serif;
+      background: var(--md-surface-variant);
+      color: var(--md-text-primary);
+      min-height: 100vh;
+      overflow-x: hidden;
+      display: flex;
+    }
+
+    /* Symbol config */
+    .material-symbols-outlined {
+      font-family: 'Material Symbols Outlined';
+      font-size: 22px;
+      vertical-align: middle;
+      line-height: 1;
+      user-select: none;
+    }
+
+    /* ===== Layout Wrapper ===== */
+    .app-layout {
+      display: flex;
+      width: 100vw;
+      min-height: 100vh;
+    }
+
+    /* ===== Sidebar (Menu Dọc đóng mở tương tự MO) ===== */
+    .sidebar {
+      width: var(--sidebar-width);
+      background: var(--md-surface);
+      border-right: 1px solid var(--md-outline-variant);
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      flex-shrink: 0;
+    }
+
+    .sidebar.collapsed {
+      width: var(--sidebar-collapsed-width);
+    }
+
+    .sidebar.collapsed .logo-text-group {
+      display: none;
+    }
+
+    .sidebar.collapsed .menu-item,
+    .sidebar.collapsed .footer-action-item {
+      padding: 12px 0;
+      justify-content: center;
+      gap: 0;
+      border-left: 3px solid transparent;
+    }
+
+    .sidebar.collapsed .menu-item.active {
+      border-left-color: var(--mo-active-border);
+    }
+
+    .sidebar.collapsed .user-profile-card {
+      margin: 8px 4px;
+      padding: 4px;
+      justify-content: center;
+      background: transparent;
+    }
+
+    /* Sidebar Header (VNA Logo & Toggle button) */
+    .sidebar-header {
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--md-outline-variant);
+      height: 64px;
+      position: relative;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      overflow: hidden;
+      white-space: nowrap;
+      transition: opacity 0.2s;
+    }
+
+    .sidebar.collapsed .logo-container {
+      justify-content: center;
+      width: 100%;
+    }
+
+    .vna-logo-text {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--vna-navy);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      line-height: 1.2;
+    }
+
+    .vna-logo-sub {
+      font-size: 10px;
+      color: var(--vna-gold);
+      font-weight: 500;
+      display: block;
+    }
+
+    /* Toggle Button (Gắn trên border giống MO) */
+    .sidebar-toggle-btn {
+      position: absolute;
+      right: -12px;
+      top: 20px;
+      width: 24px;
+      height: 24px;
+      background: var(--md-surface);
+      border: 1px solid var(--md-outline);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: var(--md-elev1);
+      z-index: 110;
+      transition: transform 0.3s;
+    }
+
+    .sidebar-toggle-btn:hover {
+      background: var(--md-surface-variant);
+      box-shadow: var(--md-elev2);
+    }
+
+    .sidebar-toggle-btn .material-symbols-outlined {
+      font-size: 16px;
+      color: var(--md-text-secondary);
+    }
+
+    /* Navigation List */
+    .sidebar-menu {
+      flex: 1;
+      padding: 16px 0;
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+
+    .sidebar-menu::-webkit-scrollbar {
+      width: 4px;
+    }
+    .sidebar-menu::-webkit-scrollbar-thumb {
+      background: var(--md-outline-variant);
+      border-radius: 999px;
+    }
+
+    .menu-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 18px;
+      color: var(--md-text-primary);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      border-left: 4px solid transparent;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+      position: relative;
+    }
+
+    .menu-item:hover {
+      background: var(--md-surface-variant);
+    }
+
+    .menu-item.active {
+      background: var(--mo-active-bg);
+      color: var(--mo-active-text);
+      border-left-color: var(--mo-active-border);
+      font-weight: 600;
+    }
+
+    .menu-item .material-symbols-outlined {
+      color: var(--md-text-secondary);
+      transition: color 0.2s;
+      flex-shrink: 0;
+    }
+
+    .menu-item.active .material-symbols-outlined {
+      color: var(--mo-active-border);
+    }
+
+    .menu-text {
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      opacity: 1;
+    }
+
+    .sidebar.collapsed .menu-text {
+      opacity: 0;
+      pointer-events: none;
+      transform: translateX(-10px);
+      position: absolute;
+    }
+
+    /* Sidebar Footer (Thông báo, Cài đặt, User Profile) */
+    .sidebar-footer {
+      border-top: 1px solid var(--md-outline-variant);
+      padding: 8px 0;
+      background: var(--md-surface);
+    }
+
+    .footer-actions {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .footer-action-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 18px;
+      color: var(--md-text-primary);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .footer-action-item:hover {
+      background: var(--md-surface-variant);
+    }
+
+    .footer-action-item .material-symbols-outlined {
+      color: var(--md-text-secondary);
+      flex-shrink: 0;
+    }
+
+    .badge-container {
+      position: relative;
+      display: inline-flex;
+    }
+
+    .noti-badge {
+      position: absolute;
+      top: -6px;
+      right: -8px;
+      background: #ee0033;
+      color: white;
+      font-size: 9px;
+      font-weight: 700;
+      padding: 1px 5px;
+      border-radius: 999px;
+      line-height: 1;
+      border: 1.5px solid var(--md-surface);
+    }
+
+    /* User Profile Card ở dưới cùng */
+    .user-profile-card {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 16px;
+      margin: 8px;
+      border-radius: var(--md-radius-sm);
+      background: var(--md-surface-variant);
+      overflow: hidden;
+      white-space: nowrap;
+      transition: all 0.3s;
+      position: relative;
+    }
+
+    .sidebar.collapsed .user-profile-card {
+      margin: 8px 4px;
+      padding: 8px;
+      justify-content: center;
+      background: transparent;
+    }
+
+    .user-avatar-wrap {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      overflow: hidden;
+      background: #cbd5e1;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1.5px solid var(--vna-gold);
+    }
+
+    .user-avatar-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .user-info {
+      flex: 1;
+      overflow: hidden;
+      transition: opacity 0.2s;
+    }
+
+    .sidebar.collapsed .user-info {
+      display: none;
+    }
+
+    .user-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--md-text-primary);
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+
+    .user-email {
+      font-size: 11px;
+      color: var(--md-text-secondary);
+      text-overflow: ellipsis;
+      overflow: hidden;
+      margin-top: 2px;
+    }
+
+    .logout-btn {
+      background: transparent;
+      border: none;
+      color: var(--md-text-secondary);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4px;
+      border-radius: 50%;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .logout-btn:hover {
+      background: #fee2e2;
+      color: #ef4444;
+    }
+
+    .sidebar.collapsed .logout-btn {
+      position: absolute;
+      bottom: -32px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: none; /* Ẩn hẳn khi collapse hoặc gộp vào tooltip */
+    }
+
+    /* ===== Tooltip cho Sidebar Collapsed ===== */
+    .sidebar.collapsed .menu-item::after,
+    .sidebar.collapsed .footer-action-item::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      left: 100%;
+      top: 50%;
+      transform: translateY(-50%) translateX(10px);
+      background: #1e293b;
+      color: white;
+      padding: 6px 12px;
+      border-radius: 4px;
+      font-size: 12px;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.25s;
+      box-shadow: var(--md-elev2);
+      z-index: 1000;
+    }
+
+    .sidebar.collapsed .menu-item:hover::after,
+    .sidebar.collapsed .footer-action-item:hover::after {
+      opacity: 1;
+      transform: translateY(-50%) translateX(15px);
+    }
+
+    /* ===== Main Content Area ===== */
+    .main-content {
+      flex: 1;
+      height: 100vh;
+      overflow-y: auto;
+      background: var(--toss-bg-sky);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Banner thông tin trên cùng */
+    .info-banner {
+      background: #fffaea;
+      color: #b45309;
+      border-bottom: 1px solid #fef3c7;
+      padding: 10px 24px;
+      font-size: 12.5px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 500;
+      flex-shrink: 0;
+    }
+
+    .info-banner .material-symbols-outlined {
+      color: #d97706;
+      font-size: 18px;
+    }
+
+    .main-content-scrollable {
+      padding: 20px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      flex: 1;
+    }
+
+    /* ===== Card Styles (M3 Card) ===== */
+    .m3-card {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      border-radius: var(--md-radius);
+      box-shadow: var(--md-elev1);
+      padding: 16px;
+      transition: box-shadow 0.2s, background-color 0.2s;
+    }
+
+    .m3-card:hover {
+      box-shadow: var(--md-elev2);
+    }
+
+    .filter-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      align-items: flex-end;
+    }
+
+    .filter-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      flex: 1 1 180px;
+    }
+
+    .filter-item label {
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--md-text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+
+    .filter-input {
+      width: 100%;
+      height: 38px;
+      padding: 8px 12px;
+      border: 1px solid var(--md-outline);
+      border-radius: var(--md-radius-sm);
+      font-family: inherit;
+      font-size: 13px;
+      color: var(--md-text-primary);
+      background: var(--md-surface);
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .filter-input:focus {
+      border-color: var(--vna-navy);
+      box-shadow: 0 0 0 3px rgba(0, 42, 84, 0.1);
+    }
+
+    .filter-select {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2364748b' width='18' height='18'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 10px center;
+      padding-right: 32px;
+    }
+
+    .filter-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      justify-content: flex-end;
+      height: 38px;
+      flex: 0 0 auto;
+      margin-left: auto;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      height: 38px;
+      padding: 0 16px;
+      border-radius: var(--md-radius-sm);
+      font-family: inherit;
+      font-size: 13.5px;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      outline: none;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+
+    .btn-teal {
+      background: var(--toss-teal);
+      color: white;
+    }
+
+    .btn-teal:hover {
+      background: #00646a;
+      box-shadow: 0 4px 12px rgba(0, 123, 131, 0.2);
+    }
+
+    .btn-clear {
+      background: transparent;
+      color: var(--toss-teal);
+      border: 1.5px solid var(--toss-teal);
+    }
+
+    .btn-clear:hover {
+      background: rgba(0, 123, 131, 0.05);
+    }
+
+    .btn-blue {
+      background: var(--toss-blue);
+      color: white;
+    }
+
+    .btn-blue:hover {
+      background: #026ca3;
+      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.2);
+    }
+
+    .btn-orange {
+      background: var(--toss-orange);
+      color: white;
+    }
+
+    .btn-orange:hover {
+      background: #e0640d;
+      box-shadow: 0 4px 12px rgba(249, 115, 22, 0.2);
+    }
+
+    /* Secondary buttons */
+    .btn-outline-action {
+      background: white;
+      border: 1px solid var(--md-outline);
+      color: var(--md-text-primary);
+      padding: 0 12px;
+      height: 32px;
+      font-size: 12.5px;
+      border-radius: var(--md-radius-sm);
+    }
+
+    .btn-outline-action:hover {
+      background: var(--md-surface-variant);
+      border-color: var(--md-text-secondary);
+    }
+
+    .btn-outline-action.btn-delete:hover {
+      background: #fee2e2;
+      border-color: #fca5a5;
+      color: #ef4444;
+    }
+
+    /* ===== Main Split Panel Layout ===== */
+    .admin-panel-split {
+      display: flex;
+      gap: 16px;
+      flex: 1;
+    }
+
+    /* Left Table Column */
+    .user-list-section {
+      flex: 65;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    /* Right Details Column */
+    .user-details-section {
+      flex: 35;
+    }
+
+    .user-list-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+
+    .user-list-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .user-list-title-wrap h2 {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--vna-navy);
+    }
+
+    .refresh-btn {
+      background: none;
+      border: none;
+      color: var(--md-text-secondary);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4px;
+      border-radius: 50%;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .refresh-btn:hover {
+      background: rgba(0, 0, 0, 0.05);
+      transform: rotate(45deg);
+    }
+
+    .user-list-actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    /* ===== Table Styles ===== */
+    .table-container {
+      background: white;
+      border-radius: var(--md-radius);
+      border: 1px solid var(--md-outline-variant);
+      overflow-x: auto;
+      box-shadow: var(--md-elev1);
+    }
+
+    .user-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 13px;
+    }
+
+    .user-table th {
+      background: #f1f5f9;
+      color: var(--md-text-secondary);
+      font-weight: 600;
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--md-outline-variant);
+      white-space: nowrap;
+    }
+
+    .user-table td {
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--md-outline-variant);
+      color: var(--md-text-primary);
+      vertical-align: middle;
+      white-space: nowrap;
+    }
+
+    .user-table tbody tr {
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+
+    .user-table tbody tr:hover {
+      background: #f8fafc;
+    }
+
+    .user-table tbody tr.active-row {
+      background: #f0f6ff;
+    }
+
+    /* Toggle Switch (M3 style) */
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 38px;
+      height: 20px;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #cbd5e1;
+      transition: .2s;
+      border-radius: 20px;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 14px;
+      width: 14px;
+      left: 3px;
+      bottom: 3px;
+      background-color: white;
+      transition: .2s;
+      border-radius: 50%;
+    }
+
+    input:checked + .slider {
+      background-color: #10b981; /* Green */
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(18px);
+    }
+
+    /* Pagination */
+    .pagination-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 4px;
+      font-size: 12.5px;
+      color: var(--md-text-secondary);
+    }
+
+    .records-selector {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .records-select {
+      border: 1px solid var(--md-outline);
+      background: white;
+      border-radius: 4px;
+      padding: 4px 8px;
+      font-family: inherit;
+      font-size: 12px;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .pagination-controls {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .page-btn {
+      width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--md-outline-variant);
+      border-radius: 4px;
+      background: white;
+      cursor: pointer;
+      font-weight: 500;
+      color: var(--md-text-primary);
+      transition: all 0.15s;
+    }
+
+    .page-btn:hover {
+      background: var(--md-surface-variant);
+      border-color: var(--md-outline);
+    }
+
+    .page-btn.active {
+      background: var(--vna-navy);
+      color: white;
+      border-color: var(--vna-navy);
+    }
+
+    .page-btn.disabled {
+      color: var(--md-text-muted);
+      cursor: not-allowed;
+      background: #f1f5f9;
+      border-color: var(--md-outline-variant);
+    }
+
+    /* ===== User Details Panel (Right Side) ===== */
+    .details-card {
+      position: sticky;
+      top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .details-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      border-bottom: 1px solid var(--md-outline-variant);
+      padding-bottom: 16px;
+    }
+
+    .details-avatar-wrap {
+      width: 68px;
+      height: 68px;
+      border-radius: 50%;
+      border: 2.5px solid var(--vna-gold);
+      overflow: hidden;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f1f5f9;
+      box-shadow: var(--md-elev1);
+    }
+
+    .details-avatar-wrap svg {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      display: block;
+    }
+
+    .details-title-info {
+      flex: 1;
+      overflow: hidden;
+    }
+
+    .details-name {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--vna-navy);
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .details-id {
+      font-size: 12px;
+      color: var(--md-text-secondary);
+      margin-top: 2px;
+      font-weight: 500;
+    }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 600;
+      margin-top: 6px;
+    }
+
+    .status-badge.active {
+      background: #e6fcf5;
+      color: #0ca678;
+      border: 1px solid #96f2d7;
+    }
+
+    .status-badge.inactive {
+      background: #f1f5f9;
+      color: #64748b;
+      border: 1px solid #cbd5e1;
+    }
+
+    .status-badge.deleted {
+      background: #ffe3e3;
+      color: #fa5252;
+      border: 1px solid #ffa8a8;
+    }
+
+    /* Quick Detail Grid */
+    .details-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .detail-row {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      font-size: 13px;
+    }
+
+    .detail-label {
+      color: #64748b; /* slate-500 */
+      font-weight: 500;
+      font-size: 12px;
+      margin-bottom: 2px;
+    }
+
+    .detail-val {
+      color: #1e293b; /* slate-800 */
+      font-weight: 700;
+      font-size: 14px;
+      word-break: break-all;
+    }
+
+    /* Chips container */
+    .role-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+    .role-chip {
+      border: 1.5px solid #1a8cf0;
+      color: #1a8cf0;
+      background: white;
+      font-size: 12px;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 24px;
+      padding: 0 10px;
+      border-radius: 12px;
+    }
+
+    /* Nếu role chỉ là 1 ký tự, làm cho nó dạng hình tròn */
+    .role-chip.char-1 {
+      width: 24px;
+      padding: 0;
+      border-radius: 50%;
+    }
+
+    /* Roles Section */
+    .roles-section {
+      padding: 12px 0 16px 0;
+      border-bottom: 1px solid var(--md-outline-variant);
+    }
+
+    /* Details Panel Buttons */
+    .details-actions-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    .details-actions-grid button {
+      width: 100%;
+      height: 34px;
+      font-size: 12.5px;
+    }
+
+    /* ===== Dialog Modal for Create User ===== */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.4);
+      backdrop-filter: blur(4px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      padding: 16px;
+    }
+
+    .modal-panel {
+      background: white;
+      border-radius: var(--md-radius);
+      width: 100%;
+      max-width: 500px;
+      box-shadow: var(--md-elev3);
+      border: 1px solid var(--md-outline-variant);
+      overflow: hidden;
+      animation: modalSlideUp 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    @keyframes modalSlideUp {
+      from { transform: translateY(20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .modal-header {
+      background: var(--vna-navy);
+      color: white;
+      padding: 16px 20px;
+      font-weight: 700;
+      font-size: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .modal-close {
+      color: rgba(255,255,255,0.7);
+      background: none;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-close:hover {
+      color: white;
+    }
+
+    .modal-body {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      max-height: 70vh;
+      overflow-y: auto;
+    }
+
+    .modal-footer {
+      padding: 12px 20px;
+      background: #f8fafc;
+      border-top: 1px solid var(--md-outline-variant);
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+
+    /* ===== Toast Notification ===== */
+    .toast-notif {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #1e293b;
+      color: white;
+      padding: 12px 20px;
+      border-radius: var(--md-radius-sm);
+      box-shadow: var(--md-elev3);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13.5px;
+      font-weight: 500;
+      z-index: 2000;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .toast-notif.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .toast-notif .success-icon {
+      color: #10b981;
+    }
+
+    /* ===== Legend Component Map ===== */
+    .mockup-legend {
+      background: #f1f5f9;
+      border: 1px solid var(--md-outline-variant);
+      border-radius: var(--md-radius);
+      padding: 16px;
+      margin-top: 24px;
+      font-size: 12.5px;
+    }
+
+    .mockup-legend h3 {
+      font-size: 14px;
+      color: var(--vna-navy);
+      margin-bottom: 12px;
+      font-weight: 700;
+    }
+
+    .legend-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .legend-table th, .legend-table td {
+      border: 1px solid var(--md-outline);
+      padding: 6px 10px;
+      text-align: left;
+    }
+
+    .legend-table th {
+      background: #e2e8f0;
+      font-weight: 600;
+      color: var(--md-text-primary);
+    }
+
+    .legend-src {
+      color: var(--md-text-secondary);
+      font-size: 11px;
+      margin-top: 8px;
+    }
+
+    /* ===== Media queries for responsiveness ===== */
+    @media (max-width: 1024px) {
+      .admin-panel-split {
+        flex-direction: column;
+      }
+      .user-details-section {
+        position: static;
+      }
+    }
+
+    /* ===== Roles View Styles ===== */
+    .roles-tabs {
+      display: flex;
+      border-bottom: 1px solid var(--md-outline-variant);
+      margin-bottom: 14px;
+      gap: 16px;
+    }
+    
+    .roles-tab {
+      padding: 8px 4px;
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--md-text-secondary);
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: all 0.2s;
+    }
+    
+    .roles-tab.active {
+      color: var(--toss-blue);
+      border-bottom-color: var(--toss-blue);
+    }
+    
+    .categories-row-container {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 16px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .categories-scroll {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      padding-bottom: 4px;
+      flex: 1;
+    }
+    
+    .categories-scroll::-webkit-scrollbar {
+      display: none;
+    }
+    
+    .category-pill {
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 12.5px;
+      font-weight: 500;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s;
+      background: white;
+      border: 1.5px solid var(--md-outline);
+      color: var(--md-text-secondary);
+    }
+    
+    .category-pill.active {
+      background: var(--toss-blue);
+      color: white;
+      border-color: var(--toss-blue);
+    }
+    
+    .category-arrow-btn {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: white;
+      border: 1px solid var(--md-outline);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      flex-shrink: 0;
+      box-shadow: var(--md-elev1);
+    }
+    
+    .category-arrow-btn:hover {
+      background: var(--md-surface-variant);
+    }
+    
+    .permissions-checklist-card {
+      background: #f8fafc;
+      border: 1px solid var(--md-outline-variant);
+      border-radius: var(--md-radius-sm);
+      padding: 16px;
+    }
+    
+    .permissions-checklist-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--md-outline-variant);
+      padding-bottom: 10px;
+      margin-bottom: 12px;
+    }
+    
+    .permissions-checklist-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px 16px;
+    }
+    
+    @media(min-width: 1200px) {
+      .permissions-checklist-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    
+    .permission-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--md-text-primary);
+      font-weight: 500;
+    }
+    
+    .permission-item .check-icon {
+      color: #10b981;
+      font-size: 18px;
+    }
+
+    .role-action-btn {
+      background: transparent;
+      border: none;
+      color: var(--md-text-secondary);
+      cursor: pointer;
+      padding: 2px;
+      border-radius: 4px;
+      transition: background-color 0.2s;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .role-action-btn:hover {
+      background: #e2e8f0;
+      color: var(--md-text-primary);
+    }
+
+    .role-action-btn.btn-delete-role:hover {
+      background: #fee2e2;
+      color: #ef4444;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app-layout" id="appLayout">
+    
+    <!-- ========================================================= -->
+    <!-- SIDEBAR (Menu dọc đóng mở tương tự MO, VNA Logo & Noti) -->
+    <!-- ========================================================= -->
+    <nav class="sidebar" id="sidebar" data-mat="mat-sidenav" data-src="MO-STYLE Sidebar Layout">
+      
+      <!-- Sidebar Header (VNA Logo & Toggle button) -->
+      <div class="sidebar-header">
+        <div class="logo-container" id="logoContainer">
+          <!-- Official VNA Lotus Logo SVG -->
+          <svg viewBox="0 0 200 150" width="36" height="27" fill="#D4B26F" style="flex-shrink: 0;">
+            <path d="M100,10 C101.5,45 118,70 148,82 C125,81 107,70 100,50 C93,70 75,81 52,82 C82,70 98.5,45 100,10 Z" />
+            <path d="M100,60 C110,95 152,110 190,102 C150,107 118,92 100,74 C82,92 50,107 10,102 C48,110 90,95 100,60 Z" />
+            <path d="M100,82 C108,118 168,128 185,126 C155,128 122,118 100,100 C78,118 45,128 15,126 C32,128 92,118 100,82 Z" />
+            <path d="M100,105 C104,128 135,138 150,138 C130,138 112,128 100,118 C88,128 70,138 50,138 C65,138 96,128 100,105 Z" />
+          </svg>
+          <div class="logo-text-group">
+            <span class="vna-logo-text" style="color: #005c72; font-weight: 700; font-size: 15px; font-family: 'Inter', sans-serif; letter-spacing: -0.2px;">Vietnam<span style="font-weight: 300;">Airlines</span></span>
+            <span class="vna-logo-sub" style="font-size: 9px; color: #a1a1aa; font-weight: 500; text-transform: uppercase; letter-spacing: 1.2px;">System Admin</span>
+          </div>
+        </div>
+        
+        <!-- Toggle Button (Gắn trên border giống MO) -->
+        <button class="sidebar-toggle-btn" id="sidebarToggle" title="Đóng/Mở menu">
+          <span class="material-symbols-outlined" id="toggleIcon">chevron_left</span>
+        </button>
+      </div>
+
+      <!-- Navigation List (English Translated & with icons) -->
+      <div class="sidebar-menu" data-mat="mat-nav-list">
+        <a class="menu-item active" data-tab="users" data-tooltip="Users" onclick="switchTab('users')">
+          <span class="material-symbols-outlined">group</span>
+          <span class="menu-text">Users</span>
+        </a>
+        <a class="menu-item" data-tab="roles" data-tooltip="Roles" onclick="switchTab('roles')">
+          <span class="material-symbols-outlined">shield</span>
+          <span class="menu-text">Roles</span>
+        </a>
+        <a class="menu-item" data-tab="groups" data-tooltip="User Group" onclick="switchTab('groups')">
+          <span class="material-symbols-outlined">groups</span>
+          <span class="menu-text">User Group</span>
+        </a>
+        <a class="menu-item" data-tab="emails" data-tooltip="Email List" onclick="switchTab('emails')">
+          <span class="material-symbols-outlined">mail</span>
+          <span class="menu-text">Email List</span>
+        </a>
+        <a class="menu-item" data-tab="parameters" data-tooltip="System Parameters" onclick="switchTab('parameters')">
+          <span class="material-symbols-outlined">settings</span>
+          <span class="menu-text">System Parameters</span>
+        </a>
+        <a class="menu-item" data-tab="permissions" data-tooltip="Permissions" onclick="switchTab('permissions')">
+          <span class="material-symbols-outlined">vpn_key</span>
+          <span class="menu-text">Permissions</span>
+        </a>
+      </div>
+
+      <!-- Sidebar Footer (Notifications, Settings & Profile) -->
+      <div class="sidebar-footer">
+        <div class="footer-actions">
+          
+          <!-- Notifications (Move notification into vertical menu) -->
+          <a class="footer-action-item" data-tooltip="Notifications" onclick="showToast('Mở danh sách thông báo')">
+            <div class="badge-container">
+              <span class="material-symbols-outlined">notifications</span>
+              <span class="noti-badge">20</span>
+            </div>
+            <span class="menu-text">Notifications</span>
+          </a>
+          
+          <!-- Settings -->
+          <a class="footer-action-item" data-tooltip="System Settings" onclick="showToast('Mở cài đặt hệ thống')">
+            <span class="material-symbols-outlined">settings_applications</span>
+            <span class="menu-text">System Settings</span>
+          </a>
+        </div>
+
+        <!-- User Profile Card -->
+        <div class="user-profile-card">
+          <div class="user-avatar-wrap">
+            <img src="data:image/svg+xml;utf8,<svg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'><circle cx='50' cy='50' r='48' fill='%23f1f5f9'/><path d='M25,35 Q50,25 75,35 L70,42 Q50,38 30,42 Z' fill='%23002A54'/><path d='M30,42 Q50,38 70,42 L72,45 Q50,42 28,45 Z' fill='%23D4B26F'/><circle cx='50' cy='55' r='18' fill='%23fed7aa'/><path d='M32,50 Q36,45 40,48 Q44,45 50,48 Q56,45 60,48 Q64,45 68,50 Q66,40 50,40 Z' fill='%231e293b'/><circle cx='44' cy='55' r='2' fill='%231e293b'/><circle cx='56' cy='55' r='2' fill='%231e293b'/><path d='M32,73 L42,85 L50,78 L58,85 L68,73 L65,95 L35,95 Z' fill='%23002A54'/><path d='M48,78 L52,78 L53,92 L50,96 L47,92 Z' fill='%231e293b'/></svg>" alt="Avatar" class="user-avatar-img">
+          </div>
+          <div class="user-info">
+            <div class="user-name">AutoTest oosbf</div>
+            <div class="user-email">rnhd2i0pfh@yopmail.com</div>
+          </div>
+          <button class="logout-btn" title="Đăng xuất" onclick="showToast('Đăng xuất tài khoản')">
+            <span class="material-symbols-outlined">logout</span>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- ========================================================= -->
+    <!-- MAIN CONTENT AREA -->
+    <!-- ========================================================= -->
+    <main class="main-content">
+      
+
+        
+      <!-- ========================================================= -->
+      <!-- USER MANAGEMENT VIEW -->
+      <!-- ========================================================= -->
+      <div id="userView" class="main-content-scrollable">
+        
+        <!-- ========================================================= -->
+        <!-- FILTER BAR (Card - Glassmorphism style) -->
+        <!-- ========================================================= -->
+        <section class="m3-card filter-grid" data-mat="mat-card" data-src="[MT] Bộ lọc tìm kiếm người dùng">
+          <div class="filter-item">
+            <label for="filterAccount">Search by Account</label>
+            <input type="text" id="filterAccount" class="filter-input" placeholder="Search by Account">
+          </div>
+          <div class="filter-item">
+            <label for="filterAves">Search by AVES Code</label>
+            <input type="text" id="filterAves" class="filter-input" placeholder="Search by AVES Code">
+          </div>
+          <div class="filter-item">
+            <label for="filterEmail">Search by Email</label>
+            <input type="text" id="filterEmail" class="filter-input" placeholder="Search by Email">
+          </div>
+          <div class="filter-item">
+            <label for="filterName">Search by Full name</label>
+            <input type="text" id="filterName" class="filter-input" placeholder="Search by Full name">
+          </div>
+          <div class="filter-item">
+            <label for="filterStatus">Status</label>
+            <select id="filterStatus" class="filter-input filter-select">
+              <option value="All">All Statuses</option>
+              <option value="Active">Active</option>
+              <option value="Inactive">Inactive</option>
+            </select>
+          </div>
+          <div class="filter-actions">
+            <button class="btn btn-clear" onclick="clearFilters()">
+              <span class="material-symbols-outlined">autorenew</span> Clear Filter
+            </button>
+            <button class="btn btn-teal" onclick="applyFilters()">
+              <span class="material-symbols-outlined">search</span> Search
+            </button>
+          </div>
+        </section>
+
+        <!-- ========================================================= -->
+        <!-- ADMIN SPLIT PANEL (Left: User Table, Right: User Details) -->
+        <!-- ========================================================= -->
+        <div class="admin-panel-split">
+          
+          <!-- LEFT COLUMN: USER TABLE -->
+          <div class="user-list-section">
+            <div class="user-list-header">
+              <div class="user-list-title-wrap">
+                <h2>List of users</h2>
+                <button class="refresh-btn" title="Làm mới" onclick="refreshTable()">
+                  <span class="material-symbols-outlined">refresh</span>
+                </button>
+              </div>
+              <div class="user-list-actions">
+                <button class="btn btn-blue" onclick="openCreateModal()">
+                  <span class="material-symbols-outlined">person_add</span> Create Users
+                </button>
+                <button class="btn btn-orange" onclick="showToast('Xuất báo cáo Excel thành công')">
+                  <span class="material-symbols-outlined">download</span> Export Excel
+                </button>
+              </div>
+            </div>
+
+            <!-- Table Container -->
+            <div class="table-container">
+              <table class="user-table" id="userTable" data-mat="mat-table" data-src="[PR] Danh sách người dùng TOSS">
+                <thead>
+                  <tr>
+                    <th>NO</th>
+                    <th>Active</th>
+                    <th>Account</th>
+                    <th>Aves Code</th>
+                    <th>Full name</th>
+                    <th>Email</th>
+                    <th>Phone number</th>
+                    <th>HRMS code</th>
+                    <th>Industry category</th>
+                  </tr>
+                </thead>
+                <tbody id="userTableBody">
+                  <!-- JS will load rows dynamically -->
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Pagination Bar -->
+            <div class="pagination-bar" data-mat="mat-paginator">
+              <div class="records-selector">
+                <span>Show</span>
+                <select class="records-select">
+                  <option>10 Records</option>
+                  <option>20 Records</option>
+                  <option>50 Records</option>
+                </select>
+              </div>
+              <div class="pagination-info">
+                <span>Total: <strong id="totalCount">9</strong></span>
+              </div>
+              <div class="pagination-controls">
+                <button class="page-btn disabled"><span class="material-symbols-outlined">keyboard_double_arrow_left</span></button>
+                <button class="page-btn disabled"><span class="material-symbols-outlined">chevron_left</span></button>
+                <button class="page-btn active">1</button>
+                <button class="page-btn">2</button>
+                <button class="page-btn">3</button>
+                <button class="page-btn">4</button>
+                <button class="page-btn">5</button>
+                <button class="page-btn"><span class="material-symbols-outlined">chevron_right</span></button>
+                <button class="page-btn"><span class="material-symbols-outlined">keyboard_double_arrow_right</span></button>
+              </div>
+            </div>
+          </div>
+
+          <!-- RIGHT COLUMN: USER DETAILS SIDEBAR -->
+          <div class="user-details-section">
+            <section class="m3-card details-card" data-mat="mat-card" data-src="[MT] Thông tin chi tiết user">
+              
+              <!-- Header Details (Avatar & Name & Status) -->
+              <div class="details-header">
+                <div class="details-avatar-wrap" id="detailAvatarWrap">
+                  <!-- Loaded dynamically -->
+                </div>
+                <div class="details-title-info">
+                  <div class="details-name" id="detailName">AutoTest oosbf</div>
+                  <div class="details-id" id="detailId">AUTO96042</div>
+                  <span class="status-badge active" id="detailStatusBadge">Active</span>
+                </div>
+              </div>
+
+              <!-- Roles Section (Between the two dividers below avatar) -->
+              <div class="roles-section">
+                <span class="detail-label" style="font-size: 11px; font-weight: 600; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 6px;">ROLES</span>
+                <div class="role-chips" id="detailRoles">
+                  <!-- Loaded dynamically -->
+                </div>
+              </div>
+
+              <!-- Action Buttons Row -->
+              <div class="details-actions-grid">
+                <button class="btn btn-outline-action" onclick="showToast('Sửa thông tin tài khoản')">
+                  <span class="material-symbols-outlined" style="font-size:16px;">edit</span> Edit
+                </button>
+                <button class="btn btn-outline-action" onclick="showToast('Xem lịch sử tác vụ')">
+                  <span class="material-symbols-outlined" style="font-size:16px;">history</span> History
+                </button>
+                <button class="btn btn-outline-action" onclick="showToast('Khôi phục mật khẩu tài khoản')">
+                  <span class="material-symbols-outlined" style="font-size:16px;">lock_reset</span> Recover Password
+                </button>
+                <button class="btn btn-outline-action btn-delete" onclick="deleteUser()">
+                  <span class="material-symbols-outlined" style="font-size:16px;">delete</span> Delete
+                </button>
+              </div>
+
+              <!-- Properties Grid -->
+              <div class="details-grid" style="margin-top: 16px;">
+                <div class="detail-row">
+                  <span class="detail-label">Email</span>
+                  <span class="detail-val" id="detailEmail">rnhd2i0pfh@yopmail.com</span>
+                </div>
+                
+                <div class="detail-row">
+                  <span class="detail-label">Phone number</span>
+                  <span class="detail-val" id="detailPhone">0332500721</span>
+                </div>
+                
+                <div class="detail-row">
+                  <span class="detail-label">Position</span>
+                  <span class="detail-val" id="detailPosition">Testzrv</span>
+                </div>
+                
+                <div class="detail-row">
+                  <span class="detail-label">Employee Code</span>
+                  <span class="detail-val" id="detailEmployeeCode">AUTO96042</span>
+                </div>
+                
+                <div class="detail-row">
+                  <span class="detail-label">HRMS code</span>
+                  <span class="detail-val" id="detailHrms">HRMS441</span>
+                </div>
+                
+                <div class="detail-row">
+                  <span class="detail-label">Crew Code</span>
+                  <span class="detail-val" id="detailCrew">-</span>
+                </div>
+              </div>
+              
+            </section>
+          </div>
+
+        </div>
+
+
+
+      </div>
+
+      <!-- ========================================================= -->
+      <!-- ROLES MANAGEMENT VIEW -->
+      <!-- ========================================================= -->
+      <div id="rolesView" class="main-content-scrollable" style="display: none;">
+        
+        <!-- ========================================================= -->
+        <!-- FILTER BAR (Card - Glassmorphism style) -->
+        <!-- ========================================================= -->
+        <section class="m3-card filter-grid" data-mat="mat-card" data-src="[MT] Bộ lọc tìm kiếm vai trò">
+          <div class="filter-item">
+            <label for="filterRoleCode">Search by Code</label>
+            <input type="text" id="filterRoleCode" class="filter-input" placeholder="Search by Code">
+          </div>
+          <div class="filter-item">
+            <label for="filterRoleName">Search by Role Name</label>
+            <input type="text" id="filterRoleName" class="filter-input" placeholder="Search by Role Name">
+          </div>
+          <div class="filter-item">
+            <label for="filterRoleSystem">System</label>
+            <select id="filterRoleSystem" class="filter-input filter-select">
+              <option value="All">All Systems</option>
+              <option value="Airport Management">Airport Management</option>
+              <option value="MEL, CDL Managemnet">MEL, CDL Managemnet</option>
+            </select>
+          </div>
+          <div class="filter-item">
+            <label for="filterRoleStatus">Status</label>
+            <select id="filterRoleStatus" class="filter-input filter-select">
+              <option value="All">All Statuses</option>
+              <option value="Active">Active</option>
+              <option value="Inactive">Inactive</option>
+              <option value="Deleted">Deleted</option>
+            </select>
+          </div>
+          <div class="filter-actions">
+            <button class="btn btn-clear" onclick="clearRoleFilters()">
+              <span class="material-symbols-outlined">autorenew</span> Clear Filter
+            </button>
+            <button class="btn btn-teal" onclick="applyRoleFilters()">
+              <span class="material-symbols-outlined">search</span> Search
+            </button>
+          </div>
+        </section>
+
+        <!-- ========================================================= -->
+        <!-- ADMIN SPLIT PANEL (Left: Roles Table, Right: Role Details) -->
+        <!-- ========================================================= -->
+        <div class="admin-panel-split">
+          
+          <!-- LEFT COLUMN: ROLES TABLE -->
+          <div class="user-list-section">
+            <div class="user-list-header">
+              <div class="user-list-title-wrap">
+                <h2>Roles list</h2>
+                <button class="refresh-btn" title="Làm mới" onclick="refreshRoleTable()">
+                  <span class="material-symbols-outlined">refresh</span>
+                </button>
+              </div>
+              <div class="user-list-actions">
+                <button class="btn btn-blue" onclick="showToast('Mở form tạo vai trò mới')">
+                  <span class="material-symbols-outlined">add</span> Create
+                </button>
+              </div>
+            </div>
+
+            <!-- Table Container -->
+            <div class="table-container">
+              <table class="user-table" id="rolesTable" data-mat="mat-table" data-src="[PR] Danh sách vai trò TOSS">
+                <thead>
+                  <tr>
+                    <th>NO</th>
+                    <th>Active</th>
+                    <th>Code</th>
+                    <th>Roles name</th>
+                    <th>System</th>
+                    <th>Updated by</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="rolesTableBody">
+                  <!-- JS will load rows dynamically -->
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Pagination Bar -->
+            <div class="pagination-bar" data-mat="mat-paginator">
+              <div class="records-selector">
+                <span>Show</span>
+                <select class="records-select">
+                  <option>10 Records</option>
+                  <option>20 Records</option>
+                  <option>50 Records</option>
+                </select>
+              </div>
+              <div class="pagination-info">
+                <span>Total: <strong id="totalRolesCount">12</strong></span>
+              </div>
+              <div class="pagination-controls">
+                <button class="page-btn disabled"><span class="material-symbols-outlined">keyboard_double_arrow_left</span></button>
+                <button class="page-btn disabled"><span class="material-symbols-outlined">chevron_left</span></button>
+                <button class="page-btn active">1</button>
+                <button class="page-btn">2</button>
+                <button class="page-btn">3</button>
+                <button class="page-btn">4</button>
+                <button class="page-btn">5</button>
+                <button class="page-btn"><span class="material-symbols-outlined">chevron_right</span></button>
+                <button class="page-btn"><span class="material-symbols-outlined">keyboard_double_arrow_right</span></button>
+              </div>
+            </div>
+          </div>
+
+          <!-- RIGHT COLUMN: ROLE DETAILS SIDEBAR -->
+          <div class="user-details-section">
+            <section class="m3-card details-card" data-mat="mat-card" data-src="[MT] Thông tin chi tiết vai trò">
+              
+              <!-- Header Details (Role Name, Code & Status, Edit/Delete Actions) -->
+              <div style="display:flex; justify-content:space-between; align-items:flex-start; border-bottom:1px solid var(--md-outline-variant); padding-bottom:16px;">
+                <div>
+                  <div style="display:flex; align-items:center; gap:8px;">
+                    <h2 style="font-size: 18px; font-weight: 700; color: var(--vna-navy);" id="detailRoleName">Roles Admin</h2>
+                    <span class="status-badge active" id="detailRoleStatusBadge" style="margin-top:0;">Active</span>
+                  </div>
+                  <div style="font-size:12px; color:var(--md-text-secondary); font-weight:500; margin-top:4px;" id="detailRoleCode">8386</div>
+                </div>
+                <div style="display:flex; gap:8px;">
+                  <button class="btn btn-outline-action" onclick="showToast('Sửa vai trò')">
+                    <span class="material-symbols-outlined" style="font-size:16px; margin-right:4px;">edit</span>Edit
+                  </button>
+                  <button class="btn btn-outline-action btn-delete" id="detailDeleteRoleBtn" onclick="deleteSelectedRole()">
+                    <span class="material-symbols-outlined" style="font-size:16px; margin-right:4px;">delete</span>Delete
+                  </button>
+                </div>
+              </div>
+
+              <!-- Tabs: Permissions & User list -->
+              <div class="roles-tabs">
+                <div class="roles-tab active" id="tabUserPermissions" onclick="switchRoleSubTab('permissions')">User Permissions</div>
+                <div class="roles-tab" id="tabRoleUsers" onclick="switchRoleSubTab('users')">User list</div>
+              </div>
+
+              <!-- Tab content: Permissions -->
+              <div id="rolePermissionsTabContent">
+                <!-- Categories Selector -->
+                <div class="categories-row-container">
+                  <div class="categories-scroll" id="categoriesScroll">
+                    <div class="category-pill active" onclick="selectPermissionCategory('Flight Operations', this)">Flight Operations</div>
+                    <div class="category-pill" onclick="selectPermissionCategory('Crew Management', this)">Crew Management</div>
+                    <div class="category-pill" onclick="selectPermissionCategory('Aircraft & Maintenance', this)">Aircraft & Maintenance</div>
+                    <div class="category-pill" onclick="selectPermissionCategory('Airport & Ground', this)">Airport & Ground</div>
+                    <div class="category-pill" onclick="selectPermissionCategory('Safety', this)">Safety</div>
+                  </div>
+                  <button class="category-arrow-btn" onclick="scrollCategories(1)"><span class="material-symbols-outlined" style="font-size:16px;">chevron_right</span></button>
+                </div>
+
+                <!-- Checklist Card -->
+                <div class="permissions-checklist-card">
+                  <div class="permissions-checklist-header">
+                    <span id="currentCategoryTitle" style="font-size: 13.5px; font-weight: 700; color: var(--vna-navy);">Flight Operator</span>
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                      <span style="font-size: 12px; color: var(--md-text-secondary); font-weight: 500;">Full Permissions</span>
+                      <label class="switch">
+                        <input type="checkbox" checked id="toggleFullPermissions" onchange="toggleAllPermissions(this.checked)">
+                        <span class="slider"></span>
+                      </label>
+                    </div>
+                  </div>
+                  <div class="permissions-checklist-grid" id="permissionsChecklistGrid">
+                    <!-- Loaded dynamically -->
+                  </div>
+                </div>
+              </div>
+
+              <!-- Tab content: User list (Initially Hidden) -->
+              <div id="roleUsersTabContent" style="display: none;">
+                <div class="table-container" style="max-height: 350px; overflow-y: auto;">
+                  <table class="user-table">
+                    <thead>
+                      <tr>
+                        <th>NO</th>
+                        <th>Account</th>
+                        <th>Full name</th>
+                        <th>Email</th>
+                      </tr>
+                    </thead>
+                    <tbody id="roleUsersTableBody">
+                      <!-- Loaded dynamically -->
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              
+            </section>
+          </div>
+
+        </div>
+
+      </div>
+    </main>
+
+  </div>
+
+  <!-- ========================================================= -->
+  <!-- MODAL: CREATE USER DIALOG (mat-dialog scaffold) -->
+  <!-- ========================================================= -->
+  <div class="modal-backdrop" id="createModal" onclick="closeCreateModalOutside(event)">
+    <div class="modal-panel" data-mat="mat-dialog" data-src="[MT] Form Tạo người dùng mới">
+      <div class="modal-header">
+        <span>Create New User</span>
+        <button class="modal-close" onclick="closeCreateModal()">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="filter-item">
+          <label for="newAccount">Account *</label>
+          <input type="text" id="newAccount" class="filter-input" placeholder="e.g. hungnv">
+        </div>
+        <div class="filter-item">
+          <label for="newName">Full Name *</label>
+          <input type="text" id="newName" class="filter-input" placeholder="e.g. Nguyễn Văn Hùng">
+        </div>
+        <div class="filter-item">
+          <label for="newEmail">Email *</label>
+          <input type="email" id="newEmail" class="filter-input" placeholder="e.g. hungnv@vietnamairlines.com">
+        </div>
+        <div class="filter-item">
+          <label for="newAves">AVES Code</label>
+          <input type="text" id="newAves" class="filter-input" placeholder="e.g. AVES789">
+        </div>
+        <div class="filter-item">
+          <label for="newPhone">Phone number</label>
+          <input type="text" id="newPhone" class="filter-input" placeholder="e.g. 0912345678">
+        </div>
+        <div class="filter-item">
+          <label for="newPosition">Position</label>
+          <input type="text" id="newPosition" class="filter-input" placeholder="e.g. Pilot / Dispatcher">
+        </div>
+        <div class="filter-item">
+          <label for="newEmployeeCode">Employee Code</label>
+          <input type="text" id="newEmployeeCode" class="filter-input" placeholder="e.g. AUTO96051">
+        </div>
+        <div class="filter-item">
+          <label for="newHrms">HRMS code</label>
+          <input type="text" id="newHrms" class="filter-input" placeholder="e.g. HRMS450">
+        </div>
+        <div class="filter-item">
+          <label for="newRole">Role</label>
+          <select id="newRole" class="filter-input filter-select">
+            <option value="1">1 (Pilot Role)</option>
+            <option value="2">2 (Developer Role)</option>
+            <option value="3">3 (System Admin)</option>
+            <option value="4">4 (QC Tester)</option>
+          </select>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-clear" onclick="closeCreateModal()">Hủy</button>
+        <button class="btn btn-teal" onclick="saveNewUser()">Lưu</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================= -->
+  <!-- TOAST NOTIFICATION (mat-snackbar scaffold) -->
+  <!-- ========================================================= -->
+  <div class="toast-notif" id="toastNotif">
+    <span class="material-symbols-outlined success-icon">check_circle</span>
+    <span id="toastMessage">Thông báo thành công</span>
+  </div>
+
+  <!-- ========================================================= -->
+  <!-- INTERACTIVE JAVASCRIPT CODE -->
+  <!-- ========================================================= -->
+  <script>
+    // Mock user dataset (faithful to Image 1)
+    let users = [
+      {
+        no: 1,
+        active: true,
+        account: "AutoTestb...",
+        accountFull: "AutoTest_oosbf",
+        avesCode: "AVES262",
+        fullName: "AutoTest oosbf",
+        email: "rnhd2i0pfh@yopmail.com",
+        phone: "0332500721",
+        hrmsCode: "HRMS441",
+        industryCategory: "AUTO654",
+        position: "Testzrv",
+        employeeCode: "AUTO96042",
+        crewCode: "-",
+        roles: ["1", "1111111111"],
+        avatarSvg: `<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="48" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="2"/><path d="M25,35 Q50,25 75,35 L70,42 Q50,38 30,42 Z" fill="#002A54" /><path d="M30,42 Q50,38 70,42 L72,45 Q50,42 28,45 Z" fill="#D4B26F" /><circle cx="50" cy="55" r="18" fill="#fed7aa" /><path d="M32,50 Q36,45 40,48 Q44,45 50,48 Q56,45 60,48 Q64,45 68,50 Q66,40 50,40 Z" fill="#1e293b" /><circle cx="44" cy="55" r="2" fill="#1e293b"/><circle cx="56" cy="55" r="2" fill="#1e293b"/><path d="M32,73 L42,85 L50,78 L58,85 L68,73 L65,95 L35,95 Z" fill="#002A54" /><path d="M48,78 L52,78 L53,92 L50,96 L47,92 Z" fill="#1e293b" /></svg>`
+      },
+      {
+        no: 2,
+        active: true,
+        account: "AutoTest7...",
+        accountFull: "AutoTest_yegxl",
+        avesCode: "AVES419",
+        fullName: "AutoTest yegxl",
+        email: "zkcvp6av@yopmail.com",
+        phone: "0987654321",
+        hrmsCode: "HRMS442",
+        industryCategory: "AUTO655",
+        position: "Developer Specialist",
+        employeeCode: "AUTO96043",
+        crewCode: "-",
+        roles: ["2", "Developer Role"],
+        avatarSvg: `<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="48" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="2"/><circle cx="50" cy="45" r="20" fill="#cbd5e1"/><path d="M20,85 C20,68 35,55 50,55 C65,55 80,68 80,85 Z" fill="#475569"/></svg>`
+      },
+      {
+        no: 3,
+        active: true,
+        account: "huongnd1...",
+        accountFull: "huongnd123",
+        avesCode: "-",
+        fullName: "Dieu Huong NG",
+        email: "ndh.6820032131@gmail.com",
+        phone: "0912345678",
+        hrmsCode: "HRMS443",
+        industryCategory: "AUTO656",
+        position: "Senior BA Lead",
+        employeeCode: "AUTO96044",
+        crewCode: "-",
+        roles: ["3", "BA Lead", "System Admin"],
+        avatarSvg: `<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="48" fill="#fdf2f8" stroke="#fbcfe8" stroke-width="2"/><circle cx="50" cy="45" r="18" fill="#f472b6"/><path d="M25,85 C25,70 36,60 50,60 C64,60 75,70 75,85 Z" fill="#db2777"/></svg>`
+      },
+      {
+        no: 4,
+        active: true,
+        account: "anhnt747...",
+        accountFull: "anhnt747",
+        avesCode: "-",
+        fullName: "Nguyễn Tú Anh",
+        email: "anhnt747@viettel.com.vn",
+        phone: "0901234567",
+        hrmsCode: "HRMS444",
+        industryCategory: "AUTO657",
+        position: "QC Lead",
+        employeeCode: "AUTO96045",
+        crewCode: "-",
+        roles: ["4", "QC Tester"],
+        avatarSvg: `<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="48" fill="#ecfdf5" stroke="#a7f3d0" stroke-width="2"/><circle cx="50" cy="45" r="18" fill="#34d399"/><path d="M25,85 C25,70 36,60 50,60 C64,60 75,70 75,85 Z" fill="#059669"/></svg>`
+      },
+      {
+        no: 5,
+        active: true,
+        account: "tuanh",
+        accountFull: "tuanh_vna",
+        avesCode: "-",
+        fullName: "tuanh",
+        email: "tuanh@viettel.com.vn",
+        phone: "0933334444",
+        hrmsCode: "HRMS445",
+        industryCategory: "AUTO658",
+        position: "Developer",
+        employeeCode: "AUTO96046",
+        crewCode: "-",
+        roles: ["1"],
+        avatarSvg: `<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="48" fill="#eff6ff" stroke="#bfdbfe" stroke-width="2"/><circle cx="50" cy="45" r="18" fill="#60a5fa"/><path d="M25,85 C25,70 36,60 50,60 C64,60 75,70 75,85 Z" fill="#2563eb"/></svg>`
+      },
+      {
+        no: 6,
+        active: true,
+        account: "nvv",
+        accountFull: "nvv_admin",
+        avesCode: "-",
+        fullName: "nvv",
+        email: "nvv2@gmail.com",
+        phone: "0944445555",
+        hrmsCode: "HRMS446",
+        industryCategory: "AUTO659",
+        position: "System Controller",
+        employeeCode: "AUTO96047",
+        crewCode: "-",
+        roles: ["1", "2"],
+        avatarSvg: `<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="48" fill="#f8fafc" stroke="#e2e8f0" stroke-width="2"/><circle cx="50" cy="45" r="18" fill="#94a3b8"/><path d="M25,85 C25,70 36,60 50,60 C64,60 75,70 75,85 Z" fill="#475569"/></svg>`
+      },
+      {
+        no: 7,
+        active: true,
+        account: "nvv1402",
+        accountFull: "nvv1402",
+        avesCode: "-",
+        fullName: "nvv1402",
+        email: "nvv1402@gmail.com",
+        phone: "0955556666",
+        hrmsCode: "HRMS447",
+        industryCategory: "AUTO660",
+        position: "Dispatcher",
+        employeeCode: "AUTO96048",
+        crewCode: "-",
+        roles: ["3"],
+        avatarSvg: `<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="48" fill="#fffbeb" stroke="#fde68a" stroke-width="2"/><circle cx="50" cy="45" r="18" fill="#fbbf24"/><path d="M25,85 C25,70 36,60 50,60 C64,60 75,70 75,85 Z" fill="#d97706"/></svg>`
+      },
+      {
+        no: 8,
+        active: true,
+        account: "nvv14022...",
+        accountFull: "nvv14022005",
+        avesCode: "-",
+        fullName: "nvv14022005",
+        email: "nvv14022005@gmail.com",
+        phone: "0966667777",
+        hrmsCode: "HRMS448",
+        industryCategory: "AUTO661",
+        position: "Operations Controller",
+        employeeCode: "AUTO96049",
+        crewCode: "-",
+        roles: ["1", "3"],
+        avatarSvg: `<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="48" fill="#faf5ff" stroke="#e9d5ff" stroke-width="2"/><circle cx="50" cy="45" r="18" fill="#c084fc"/><path d="M25,85 C25,70 36,60 50,60 C64,60 75,70 75,85 Z" fill="#7e22ce"/></svg>`
+      },
+      {
+        no: 9,
+        active: true,
+        account: "thangnv1",
+        accountFull: "thangnv1",
+        avesCode: "-",
+        fullName: "Thang NV",
+        email: "thangnv1234@gmail.com",
+        phone: "0977778888",
+        hrmsCode: "HRMS449",
+        industryCategory: "AUTO662",
+        position: "Technical Operations",
+        employeeCode: "AUTO96050",
+        crewCode: "-",
+        roles: ["2", "3"],
+        avatarSvg: `<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="48" fill="#f0fdfa" stroke="#99f6e4" stroke-width="2"/><circle cx="50" cy="45" r="18" fill="#2dd4bf"/><path d="M25,85 C25,70 36,60 50,60 C64,60 75,70 75,85 Z" fill="#0f766e"/></svg>`
+      }
+    ];
+
+    let currentSelectedUserId = 1; 
+    let filteredUsers = [...users];
+
+    // ===== SIDEBAR SELECTION TAB CONTROLLER =====
+    function switchTab(tabName) {
+      document.querySelectorAll('.menu-item').forEach(item => {
+        item.classList.remove('active');
+      });
+      const activeItem = document.querySelector(`.menu-item[data-tab="${tabName}"]`);
+      if (activeItem) {
+        activeItem.classList.add('active');
+      }
+
+      if (tabName === 'users') {
+        document.getElementById('userView').style.display = 'flex';
+        document.getElementById('rolesView').style.display = 'none';
+        renderUserTable();
+      } else if (tabName === 'roles') {
+        document.getElementById('rolesView').style.display = 'flex';
+        document.getElementById('userView').style.display = 'none';
+        renderRolesTable();
+        selectRole(currentSelectedRoleId);
+      } else {
+        showToast(`Chuyển sang phân hệ: ${activeItem ? activeItem.querySelector('.menu-text').textContent : tabName}`);
+      }
+    }
+
+    // ===== Sidebar Collapse/Expand Logic =====
+    const sidebar = document.getElementById('sidebar');
+    const sidebarToggle = document.getElementById('sidebarToggle');
+    const toggleIcon = document.getElementById('toggleIcon');
+
+    sidebarToggle.addEventListener('click', () => {
+      sidebar.classList.toggle('collapsed');
+      
+      if (sidebar.classList.contains('collapsed')) {
+        toggleIcon.textContent = 'chevron_right';
+        sidebarToggle.setAttribute('title', 'Mở rộng menu');
+      } else {
+        toggleIcon.textContent = 'chevron_left';
+        sidebarToggle.setAttribute('title', 'Thu nhỏ menu');
+      }
+    });
+
+    // ===== Render User Table =====
+    function renderUserTable() {
+      const tbody = document.getElementById('userTableBody');
+      tbody.innerHTML = '';
+      
+      if (filteredUsers.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="9" style="text-align: center; padding: 24px; color: var(--md-text-secondary);">Không tìm thấy người dùng phù hợp.</td></tr>`;
+        document.getElementById('totalCount').textContent = '0';
+        return;
+      }
+
+      document.getElementById('totalCount').textContent = filteredUsers.length;
+
+      filteredUsers.forEach((user, index) => {
+        const tr = document.createElement('tr');
+        tr.id = `user-row-${user.no}`;
+        if (user.no === currentSelectedUserId) {
+          tr.classList.add('active-row');
+        }
+        
+        tr.addEventListener('click', (e) => {
+          if (e.target.closest('.switch') || e.target.closest('.slider')) return;
+          selectUser(user.no);
+        });
+
+        const activeChecked = user.active ? 'checked' : '';
+
+        tr.innerHTML = `
+          <td>${index + 1}</td>
+          <td>
+            <label class="switch" title="Bật/Tắt kích hoạt">
+              <input type="checkbox" ${activeChecked} onchange="toggleUserActive(${user.no}, this.checked)">
+              <span class="slider"></span>
+            </label>
+          </td>
+          <td style="font-weight: 500;">${user.account}</td>
+          <td>${user.avesCode}</td>
+          <td>${user.fullName}</td>
+          <td>${user.email}</td>
+          <td>${user.phone}</td>
+          <td>${user.hrmsCode}</td>
+          <td>${user.industryCategory}</td>
+        `;
+        
+        tbody.appendChild(tr);
+      });
+
+      const stillExists = filteredUsers.some(u => u.no === currentSelectedUserId);
+      if (stillExists) {
+        updateDetailsPanel(currentSelectedUserId);
+      } else if (filteredUsers.length > 0) {
+        selectUser(filteredUsers[0].no);
+      }
+    }
+
+    function selectUser(userId) {
+      currentSelectedUserId = userId;
+      
+      document.querySelectorAll('#userTableBody tr').forEach(row => {
+        row.classList.remove('active-row');
+      });
+      
+      const activeRow = document.getElementById(`user-row-${userId}`);
+      if (activeRow) {
+        activeRow.classList.add('active-row');
+      }
+
+      updateDetailsPanel(userId);
+    }
+
+    function updateDetailsPanel(userId) {
+      const user = users.find(u => u.no === userId);
+      if (!user) return;
+
+      document.getElementById('detailName').textContent = user.fullName;
+      document.getElementById('detailId').textContent = user.employeeCode;
+      
+      const avatarWrap = document.getElementById('detailAvatarWrap');
+      avatarWrap.innerHTML = user.avatarSvg;
+
+      const statusBadge = document.getElementById('detailStatusBadge');
+      if (user.active) {
+        statusBadge.textContent = 'Active';
+        statusBadge.className = 'status-badge active';
+      } else {
+        statusBadge.textContent = 'Inactive';
+        statusBadge.className = 'status-badge inactive';
+      }
+
+      document.getElementById('detailEmail').textContent = user.email;
+      document.getElementById('detailPhone').textContent = user.phone;
+      document.getElementById('detailPosition').textContent = user.position;
+      document.getElementById('detailEmployeeCode').textContent = user.employeeCode;
+      document.getElementById('detailHrms').textContent = user.hrmsCode;
+      document.getElementById('detailCrew').textContent = user.crewCode;
+
+      const rolesContainer = document.getElementById('detailRoles');
+      rolesContainer.innerHTML = '';
+      user.roles.forEach(role => {
+        const chip = document.createElement('span');
+        chip.className = 'role-chip';
+        if (role.length === 1) {
+          chip.classList.add('char-1');
+        }
+        chip.textContent = role;
+        rolesContainer.appendChild(chip);
+      });
+    }
+
+    function toggleUserActive(userId, isChecked) {
+      const user = users.find(u => u.no === userId);
+      if (user) {
+        user.active = isChecked;
+        showToast(`Trạng thái tài khoản ${user.accountFull}: ${isChecked ? 'Đã kích hoạt' : 'Hủy kích hoạt'}`);
+        
+        if (userId === currentSelectedUserId) {
+          updateDetailsPanel(userId);
+        }
+      }
+    }
+
+    function saveNewUser() {
+      const acc = document.getElementById('newAccount').value.trim();
+      const name = document.getElementById('newName').value.trim();
+      const email = document.getElementById('newEmail').value.trim();
+      
+      if (!acc || !name || !email) {
+        alert('Vui lòng điền các trường bắt buộc (*)');
+        return;
+      }
+
+      const aves = document.getElementById('newAves').value.trim() || '-';
+      const phone = document.getElementById('newPhone').value.trim() || '-';
+      const position = document.getElementById('newPosition').value.trim() || 'Staff';
+      const empCode = document.getElementById('newEmployeeCode').value.trim() || 'AUTO';
+      const hrms = document.getElementById('newHrms').value.trim() || 'HRMS';
+      const selectedRole = document.getElementById('newRole').value;
+
+      const accDisplay = acc.length > 10 ? acc.substring(0, 8) + '...' : acc;
+
+      const newUser = {
+        no: users.length + 1,
+        active: true,
+        account: accDisplay,
+        accountFull: acc,
+        avesCode: aves,
+        fullName: name,
+        email: email,
+        phone: phone,
+        hrmsCode: hrms,
+        industryCategory: `AUTO${Math.floor(Math.random() * 500) + 500}`,
+        position: position,
+        employeeCode: empCode,
+        crewCode: "-",
+        roles: [selectedRole],
+        avatarSvg: `<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="48" fill="#e0f2fe" stroke="#bae6fd" stroke-width="2"/><circle cx="50" cy="45" r="18" fill="#38bdf8"/><path d="M25,85 C25,70 36,60 50,60 C64,60 75,70 75,85 Z" fill="#0284c7"/></svg>`
+      };
+
+      users.push(newUser);
+      filteredUsers = [...users];
+      
+      closeCreateModal();
+      renderUserTable();
+      selectUser(newUser.no);
+      showToast(`Đã tạo thành công tài khoản: ${acc}`);
+    }
+
+    function closeCreateModal() {
+      document.getElementById('createModal').style.display = 'none';
+    }
+
+    function deleteUser() {
+      const user = users.find(u => u.no === currentSelectedUserId);
+      if (!user) return;
+      
+      const confirmDelete = confirm(`Bạn có chắc chắn muốn xóa tài khoản ${user.accountFull} (${user.fullName})?`);
+      if (confirmDelete) {
+        users = users.filter(u => u.no !== currentSelectedUserId);
+        filteredUsers = filteredUsers.filter(u => u.no !== currentSelectedUserId);
+        
+        showToast(`Đã xóa thành công tài khoản: ${user.accountFull}`);
+        renderUserTable();
+      }
+    }
+
+    const toast = document.getElementById('toastNotif');
+    const toastMsg = document.getElementById('toastMessage');
+    let toastTimeout;
+
+    function showToast(message) {
+      clearTimeout(toastTimeout);
+      toastMsg.textContent = message;
+      toast.classList.add('show');
+      
+      toastTimeout = setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3000);
+    }
+
+    // =========================================================
+    // ===== ROLES MANAGEMENT JAVASCRIPT CODE (Interactive) =====
+    // =========================================================
+
+    const permissionsData = {
+      "Flight Operations": {
+        title: "Flight Operator",
+        items: [
+          "Flight schedule",
+          "Create / Edit flight",
+          "Update flight status",
+          "Assign crew",
+          "View operational notes",
+          "Lock flight",
+          "Export flight report"
+        ]
+      },
+      "Crew Management": {
+        title: "Crew Management Administrator",
+        items: [
+          "View crew schedule",
+          "Assign crew member",
+          "Approve leave request",
+          "Manage qualifications",
+          "Crew notification broadcast",
+          "Duty time limit check",
+          "Export crew roster"
+        ]
+      },
+      "Aircraft & Maintenance": {
+        title: "Maintenance Inspector",
+        items: [
+          "View aircraft status",
+          "Register defect log",
+          "MEL release authority",
+          "Schedule maintenance work",
+          "Aircraft ground status change",
+          "View technical logbook"
+        ]
+      },
+      "Airport & Ground": {
+        title: "Ground Handler",
+        items: [
+          "View flight turnaround",
+          "Request fueling service",
+          "Confirm baggage load",
+          "Gate assign request",
+          "Update ground milestones"
+        ]
+      },
+      "Safety": {
+        title: "Safety officer",
+        items: [
+          "Report safety hazard",
+          "Investigate incident",
+          "Audit logs viewer",
+          "Regulatory compliance check",
+          "Confidential safety report"
+        ]
+      }
+    };
+
+    let roles = [
+      { no: 1, active: true, code: "8386", roleName: "Admin", system: "All", updatedBy: "Đỗ Minh Đức", updatedById: "6368", status: "Active", hasToggle: false, actions: "none" },
+      { no: 2, active: false, code: "8386", roleName: "Admin", system: "Airport Management", updatedBy: "Đỗ Minh Đức", updatedById: "6368", status: "Inactive", hasToggle: true, actions: "edit-delete" },
+      { no: 3, active: false, code: "8386", roleName: "Admin", system: "Airport Management", updatedBy: "Đỗ Minh Đức", updatedById: "6368", status: "Deleted", hasToggle: true, actions: "restore" },
+      { no: 4, active: true, code: "8386", roleName: "Admin", system: "Airport Management", updatedBy: "Đỗ Minh Đức", updatedById: "6368", status: "Active", hasToggle: true, actions: "edit-delete" },
+      { no: 5, active: true, code: "8386", roleName: "Admin", system: "Airport Management", updatedBy: "Đỗ Minh Đức", updatedById: "6368", status: "Active", hasToggle: true, actions: "edit-delete" },
+      { no: 6, active: true, code: "8386", roleName: "Admin", system: "Airport Management", updatedBy: "Đỗ Minh Đức", updatedById: "6368", status: "Active", hasToggle: true, actions: "edit-delete" },
+      { no: 7, active: true, code: "8386", roleName: "Admin", system: "MEL, CDL Managemnet", updatedBy: "Đỗ Minh Đức", updatedById: "6368", status: "Active", hasToggle: true, actions: "edit-delete" },
+      { no: 8, active: true, code: "8386", roleName: "Admin", system: "MEL, CDL Managemnet", updatedBy: "Đỗ Minh Đức", updatedById: "6368", status: "Active", hasToggle: true, actions: "edit-delete" },
+      { no: 9, active: true, code: "8386", roleName: "Admin", system: "Airport Management", updatedBy: "Đỗ Minh Đức", updatedById: "6368", status: "Active", hasToggle: true, actions: "edit-delete" },
+      { no: 10, active: true, code: "8386", roleName: "Admin", system: "Airport Management", updatedBy: "Đỗ Minh Đức", updatedById: "6368", status: "Active", hasToggle: true, actions: "edit-delete" },
+      { no: 11, active: true, code: "8386", roleName: "Admin", system: "Airport Management", updatedBy: "Đỗ Minh Đức", updatedById: "6368", status: "Active", hasToggle: true, actions: "edit-delete" },
+      { no: 12, active: true, code: "8386", roleName: "Admin", system: "Airport Management", updatedBy: "Đỗ Minh Đức", updatedById: "6368", status: "Active", hasToggle: true, actions: "edit-delete" }
+    ];
+
+    let currentSelectedRoleId = 1;
+    let filteredRoles = [...roles];
+    let currentCategory = "Flight Operations";
+    let currentRoleSubTab = "permissions"; // permissions | users
+    let rolePermissionsState = {};
+
+    // Khởi tạo trạng thái checkbox cho từng vai trò và từng phân hệ
+    function initRolePermissions() {
+      roles.forEach(role => {
+        rolePermissionsState[role.no] = {};
+        for (let cat in permissionsData) {
+          rolePermissionsState[role.no][cat] = {};
+          permissionsData[cat].items.forEach(item => {
+            if (role.no === 1) {
+              rolePermissionsState[role.no][cat][item] = true;
+            } else {
+              rolePermissionsState[role.no][cat][item] = (role.no % 2 === 0 && Math.random() > 0.4) || (role.no % 2 !== 0 && Math.random() > 0.2);
+            }
+          });
+        }
+      });
+    }
+
+    function renderRolesTable() {
+      const tbody = document.getElementById('rolesTableBody');
+      tbody.innerHTML = '';
+      
+      if (filteredRoles.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="8" style="text-align: center; padding: 24px; color: var(--md-text-secondary);">Không tìm thấy vai trò phù hợp.</td></tr>`;
+        document.getElementById('totalRolesCount').textContent = '0';
+        return;
+      }
+
+      document.getElementById('totalRolesCount').textContent = filteredRoles.length;
+
+      filteredRoles.forEach((role, index) => {
+        const tr = document.createElement('tr');
+        tr.id = `role-row-${role.no}`;
+        if (role.no === currentSelectedRoleId) {
+          tr.classList.add('active-row');
+        }
+        
+        tr.addEventListener('click', (e) => {
+          if (e.target.closest('.switch') || e.target.closest('.slider') || e.target.closest('.role-action-btn')) return;
+          selectRole(role.no);
+        });
+
+        const activeChecked = role.active ? 'checked' : '';
+        const activeSwitch = role.hasToggle ? `
+          <label class="switch" title="Bật/Tắt vai trò">
+            <input type="checkbox" ${activeChecked} onchange="toggleRoleActive(${role.no}, this.checked)">
+            <span class="slider"></span>
+          </label>
+        ` : '';
+
+        let statusClass = 'active';
+        if (role.status === 'Inactive') statusClass = 'inactive';
+        if (role.status === 'Deleted') statusClass = 'deleted';
+
+        let actionsHtml = '';
+        if (role.actions === 'edit-delete') {
+          actionsHtml = `
+            <div style="display: flex; gap: 4px;">
+              <button class="role-action-btn" title="Chỉnh sửa vai trò" onclick="showToast('Sửa vai trò: ${role.roleName} - ${role.system}')">
+                <span class="material-symbols-outlined" style="font-size:18px;">edit</span>
+              </button>
+              <button class="role-action-btn btn-delete-role" title="Xóa vai trò" onclick="deleteRoleRow(${role.no})">
+                <span class="material-symbols-outlined" style="font-size:18px;">delete</span>
+              </button>
+            </div>
+          `;
+        } else if (role.actions === 'restore') {
+          actionsHtml = `
+            <button class="role-action-btn" title="Khôi phục vai trò" onclick="restoreRoleRow(${role.no})">
+              <span class="material-symbols-outlined" style="font-size:18px;">settings_backup_restore</span>
+            </button>
+          `;
+        }
+
+        tr.innerHTML = `
+          <td>${index + 1}</td>
+          <td>${activeSwitch}</td>
+          <td style="font-weight: 500;">${role.code}</td>
+          <td>${role.roleName}</td>
+          <td>${role.system}</td>
+          <td>
+            <div style="font-weight: 500;">${role.updatedBy}</div>
+            <div style="font-size: 11px; color: var(--md-text-secondary);">${role.updatedById}</div>
+          </td>
+          <td><span class="status-badge ${statusClass}">${role.status}</span></td>
+          <td>${actionsHtml}</td>
+        `;
+        
+        tbody.appendChild(tr);
+      });
+
+      const stillExists = filteredRoles.some(r => r.no === currentSelectedRoleId);
+      if (stillExists) {
+        updateRoleDetails(currentSelectedRoleId);
+      } else if (filteredRoles.length > 0) {
+        selectRole(filteredRoles[0].no);
+      }
+    }
+
+    function selectRole(roleId) {
+      currentSelectedRoleId = roleId;
+      
+      document.querySelectorAll('#rolesTableBody tr').forEach(row => {
+        row.classList.remove('active-row');
+      });
+      
+      const activeRow = document.getElementById(`role-row-${roleId}`);
+      if (activeRow) {
+        activeRow.classList.add('active-row');
+      }
+
+      updateRoleDetails(roleId);
+    }
+
+    function updateRoleDetails(roleId) {
+      const role = roles.find(r => r.no === roleId);
+      if (!role) return;
+
+      document.getElementById('detailRoleName').textContent = `${role.roleName} - ${role.system}`;
+      document.getElementById('detailRoleCode').textContent = role.code;
+
+      const badge = document.getElementById('detailRoleStatusBadge');
+      badge.textContent = role.status;
+      
+      let statusClass = 'status-badge active';
+      if (role.status === 'Inactive') statusClass = 'status-badge inactive';
+      if (role.status === 'Deleted') statusClass = 'status-badge deleted';
+      badge.className = statusClass;
+
+      const deleteBtn = document.getElementById('detailDeleteRoleBtn');
+      if (role.actions === 'edit-delete') {
+        deleteBtn.style.display = 'inline-flex';
+      } else {
+        deleteBtn.style.display = 'none';
+      }
+
+      renderPermissionsGrid();
+      renderRoleUserList();
+    }
+
+    function switchRoleSubTab(subTabName) {
+      currentRoleSubTab = subTabName;
+      
+      const tabPermissions = document.getElementById('tabUserPermissions');
+      const tabUsers = document.getElementById('tabRoleUsers');
+      const contentPermissions = document.getElementById('rolePermissionsTabContent');
+      const contentUsers = document.getElementById('roleUsersTabContent');
+
+      if (subTabName === 'permissions') {
+        tabPermissions.classList.add('active');
+        tabUsers.classList.remove('active');
+        contentPermissions.style.display = 'block';
+        contentUsers.style.display = 'none';
+      } else {
+        tabUsers.classList.add('active');
+        tabPermissions.classList.remove('active');
+        contentUsers.style.display = 'block';
+        contentPermissions.style.display = 'none';
+        renderRoleUserList();
+      }
+    }
+
+    function selectPermissionCategory(categoryName, element) {
+      currentCategory = categoryName;
+      
+      document.querySelectorAll('#categoriesScroll .category-pill').forEach(pill => {
+        pill.classList.remove('active');
+      });
+      if (element) {
+        element.classList.add('active');
+      }
+
+      renderPermissionsGrid();
+    }
+
+    function renderPermissionsGrid() {
+      const grid = document.getElementById('permissionsChecklistGrid');
+      grid.innerHTML = '';
+
+      const catData = permissionsData[currentCategory];
+      if (!catData) return;
+
+      document.getElementById('currentCategoryTitle').textContent = catData.title;
+
+      const rolePerms = rolePermissionsState[currentSelectedRoleId] && rolePermissionsState[currentSelectedRoleId][currentCategory];
+      
+      catData.items.forEach(item => {
+        const isChecked = rolePerms ? rolePerms[item] : false;
+        const checkIcon = isChecked ? 'check_circle' : 'cancel';
+        const iconStyle = isChecked ? 'color: #10b981;' : 'color: #cbd5e1;';
+        
+        const div = document.createElement('div');
+        div.className = 'permission-item';
+        div.style.cursor = 'pointer';
+        div.onclick = () => toggleSinglePermission(item);
+        div.innerHTML = `
+          <span class="material-symbols-outlined check-icon" style="${iconStyle}">${checkIcon}</span>
+          <span>${item}</span>
+        `;
+        grid.appendChild(div);
+      });
+
+      // Cập nhật switch "Full Permissions"
+      if (rolePerms) {
+        const allChecked = catData.items.every(item => rolePerms[item]);
+        document.getElementById('toggleFullPermissions').checked = allChecked;
+      }
+    }
+
+    function toggleSinglePermission(itemName) {
+      const rolePerms = rolePermissionsState[currentSelectedRoleId] && rolePermissionsState[currentSelectedRoleId][currentCategory];
+      if (rolePerms) {
+        rolePerms[itemName] = !rolePerms[itemName];
+        renderPermissionsGrid();
+      }
+    }
+
+    function toggleAllPermissions(isChecked) {
+      const rolePerms = rolePermissionsState[currentSelectedRoleId] && rolePermissionsState[currentSelectedRoleId][currentCategory];
+      if (rolePerms) {
+        const catData = permissionsData[currentCategory];
+        catData.items.forEach(item => {
+          rolePerms[item] = isChecked;
+        });
+        renderPermissionsGrid();
+        showToast(`${isChecked ? 'Đã bật' : 'Đã tắt'} toàn bộ quyền của mục ${currentCategory}`);
+      }
+    }
+
+    function renderRoleUserList() {
+      const tbody = document.getElementById('roleUsersTableBody');
+      tbody.innerHTML = '';
+
+      const role = roles.find(r => r.no === currentSelectedRoleId);
+      if (!role) return;
+
+      let matchedUsers = users.filter(user => {
+        if (role.no === 1) return user.roles.includes("1") || user.roles.includes("System Admin");
+        if (role.no === 2) return user.roles.includes("2") || user.roles.includes("Developer Role");
+        if (role.no === 3) return user.roles.includes("3");
+        if (role.no === 4) return user.roles.includes("4") || user.roles.includes("QC Tester");
+        return false;
+      });
+
+      if (matchedUsers.length === 0) {
+        matchedUsers = [
+          { no: 101, accountFull: "duc.dominh", fullName: "Đỗ Minh Đức", email: "duc.dominh@vietnamairlines.com" },
+          { no: 102, accountFull: "tam.levan", fullName: "Lê Văn Tám", email: "tam.lv@yopmail.com" }
+        ];
+      }
+
+      matchedUsers.forEach((user, index) => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${index + 1}</td>
+          <td style="font-weight: 500;">${user.accountFull}</td>
+          <td>${user.fullName}</td>
+          <td>${user.email}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function toggleRoleActive(roleId, isChecked) {
+      const role = roles.find(r => r.no === roleId);
+      if (role) {
+        role.active = isChecked;
+        role.status = isChecked ? 'Active' : 'Inactive';
+        showToast(`Vai trò ${role.roleName} - ${role.system}: ${isChecked ? 'Đã kích hoạt' : 'Hủy kích hoạt'}`);
+        
+        if (roleId === currentSelectedRoleId) {
+          updateRoleDetails(roleId);
+        }
+        renderRolesTable();
+      }
+    }
+
+    function deleteRoleRow(roleId) {
+      const role = roles.find(r => r.no === roleId);
+      if (role) {
+        role.status = 'Deleted';
+        role.active = false;
+        role.actions = 'restore';
+        showToast(`Đã xóa vai trò: ${role.roleName} - ${role.system}`);
+        
+        if (roleId === currentSelectedRoleId) {
+          updateRoleDetails(roleId);
+        }
+        renderRolesTable();
+      }
+    }
+
+    function restoreRoleRow(roleId) {
+      const role = roles.find(r => r.no === roleId);
+      if (role) {
+        role.status = 'Active';
+        role.active = true;
+        role.actions = 'edit-delete';
+        showToast(`Đã khôi phục vai trò: ${role.roleName} - ${role.system}`);
+        
+        if (roleId === currentSelectedRoleId) {
+          updateRoleDetails(roleId);
+        }
+        renderRolesTable();
+      }
+    }
+
+    function deleteSelectedRole() {
+      const role = roles.find(r => r.no === currentSelectedRoleId);
+      if (!role) return;
+
+      const confirmDelete = confirm(`Bạn có chắc chắn muốn xóa vai trò "${role.roleName} - ${role.system}"?`);
+      if (confirmDelete) {
+        deleteRoleRow(currentSelectedRoleId);
+      }
+    }
+
+    function applyRoleFilters() {
+      const codeInput = document.getElementById('filterRoleCode').value.trim().toLowerCase();
+      const nameInput = document.getElementById('filterRoleName').value.trim().toLowerCase();
+      const sysSelect = document.getElementById('filterRoleSystem').value;
+      const statusSelect = document.getElementById('filterRoleStatus').value;
+
+      filteredRoles = roles.filter(role => {
+        const matchCode = !codeInput || role.code.toLowerCase().includes(codeInput);
+        const matchName = !nameInput || role.roleName.toLowerCase().includes(nameInput);
+        const matchSys = sysSelect === 'All' || role.system === sysSelect;
+        const matchStatus = statusSelect === 'All' || role.status === statusSelect;
+        
+        return matchCode && matchName && matchSys && matchStatus;
+      });
+
+      renderRolesTable();
+      showToast('Đã áp dụng bộ lọc vai trò');
+    }
+
+    function clearRoleFilters() {
+      document.getElementById('filterRoleCode').value = '';
+      document.getElementById('filterRoleName').value = '';
+      document.getElementById('filterRoleSystem').value = 'All';
+      document.getElementById('filterRoleStatus').value = 'All';
+
+      filteredRoles = [...roles];
+      renderRolesTable();
+      showToast('Đã xóa bộ lọc vai trò');
+    }
+
+    function refreshRoleTable() {
+      clearRoleFilters();
+      showToast('Đã làm mới danh sách vai trò');
+    }
+
+    function scrollCategories(direction) {
+      const container = document.getElementById('categoriesScroll');
+      if (container) {
+        container.scrollLeft += direction * 150;
+      }
+    }
+
+    // Khởi tạo ứng dụng
+    window.onload = () => {
+      initRolePermissions();
+      renderUserTable();
+      renderRolesTable();
+    };
+  </script>
+
+</body>
+</html>

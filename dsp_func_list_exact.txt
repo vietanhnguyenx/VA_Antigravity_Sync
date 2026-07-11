@@ -1,0 +1,87 @@
+Row 01: Menu bar |  |  | Header |  |  |  |  |  |  |  |  |  | 
+Row 02:  |  | FLT NO | REG | DEP | ARR | ETD | ETA | Status (multi choice) |  |  |  |  | 
+Row 04: Flight monitoring | --> | Bảng danh sách chuyến bay |  |  |  |  |  |  |  |  |  |  | 
+Row 05: Upload common documents |  | REG | FLTNO | DEP | ARR | Date | ETD | ETA | Flight Type | Status | OFP REV | PILOT CFM | CREW
+Row 06:  |  |  |  |  |  |  |  |  | - Check flight Type: (Thay đổi type của chuyến bay)
+Lưu lịch sử thay đổi của loại chuyến bay.
+VIP->  thường
+Thường -> Ferry
+Và ngược lại | Trạng thái CB (đang ở phase nào), tạm thời: 
+GRD: Ground, đang PVMĐ
+BRD: Boarding
+OUT: Taxi out
+ENR: Enroute
+IN: Taxi in
+ARR: Arrival (đã kết thúc)
+Khi chuyển trạng thái thì nhấp nháy mấy lần rồi dừng | Hiển thị OFP number và OFP Rev cuối dạng 2/0/1 R2.
+
+Nếu Rev cuối đó đã dispatch release thì XANH.
+
+Nếu Rev cuối chưa release mà có rev trước đó release thì VÀNG.
+
+Nếu Rev cuối chưa release mà trước đó chưa có rev nào được dsp relesae thì ĐỎ  |  | OFP không có tổ bay
+Đổi tổ bay trên AVES
+
+
+Row 07:  | Dữ liệu mẫu | AZYX (không có VN) (VD: A320 ko có VN)
+Tàu XU giữ nguyên  | Đầy đủ(Bê nguyên từ netline) |  |  | dd | 16:00:00 | 16:00:00 | Theo flight type |  |  |  | Biểu tượng
+Gạch -
+Cảnh báo nháy đỏ
+Cảnh báo tam giác vàng
+Row 08: Các cảnh báo sẽ được phân màu theo rules đã thống nhất và khi hover chuột vào sẽ hiển thị tool tips chi tiết của cảnh báo theo từng ô, Khi bấm vào chi tiết chuyến bay để xem full. | Color | ( | - Surfix D,Z để vàng (chuyến bay có đuôi D hoặc Z)
+- Mất D, Z Báo đỏ
+- Ops++ hoặc netline đổi status ARR Hoặc có ACARS IN thì back về thường (không màu)
+- Thường là các trường hợp còn lại
+ |  | Chuyến Divert
+Vàng - Khi thay đổi 
+(ARR kế hoạch và thực tế khác nhau trong Ops++)
+??? | Theo màu của cột Flight Num | - Vàng - EDT 15 tới 30P so với trước đó trên netline
+- Xanh - Gửi điện change và lấy ETD mới so sánh (?)
+- Đỏ - netline kéo delayed trên 30p
+- Xanh - khi ATC vs OFP release khớp
+ |  | - Vàng: đã ATC và OFP ra nhưng điều phái chưa release
+- Đỏ: 2 trường hợp:
+Thường -> Ferry và ngược lại
+Thường -> VIP và ngược lại
+- Xanh: 
+Status head ATC và OFP đã release khớp áp dụng chuyến Thường -> VIP và ngược lại.
+Với Thường -> Ferry và ngược lại thì dựa vào số pax trong OFP. | Chờ xem xét tích hợp | - Chưa có OFP: (hiển thị icon theo rules dưới)
+ (-) nếu chưa tới giờ
+ (!) Vàng nếu sắp tới giờ (trước 210 phút với quốc nội, trước 270 phút với quốc tế)
+ (!) Đỏ nếu sắp tới giờ (trước 75 phút với quốc nội, trước 95 phút với quốc tế)
+
+- Đã có OFP, DSP chưa release: (Hiển thị Phiên bản OFP)
+Màu vàng từ (trước 75->60 quốc nội), (trước 90->75 quốc tế)
+Màu đỏ từ 60 quốc nội, 75 quốc tế
+
+- Đã có OFP, DSP đã release: (Hiển thị Phiên bản OFP)
+Màu xanh
+ | Chưa confirm
+- gạch trắng
+
+Đã confirm
+- Hiển thị phiên bản OFP R01 (ko màu)
+
+- Màu xanh đã release OFP cuối mà DSP đã Release (Khớp)
+- Màu vàng: đã release OFP trước OFP cuối OFP release (Khác)
+
+- Màu đỏ Reject. | Gạch -- (nếu ko có thay đổi)
+Màu vàng từ (75->60 quốc nội), (90->75 quốc tế)
+Màu đỏ từ 60 quốc nội, 75 quốc tế
+Xanh, đã về mức an toàn (???)
+Row 09:  | Hover details | Reg cũ --> Reg mới
+Giờ đổi trên netline 
+(Lấy lần thay đổi gần nhất) | - | - | Thông tin ARR Divert và giờ thực tế
+
+ARR kế hoạch -> ARR thực tế  |  | Giờ cũ -> giờ mới |  | Hiển thị lịch sử thay đổi code nào sang code nào và thời điểm thay đổi |  | Thời gian upload, Tên DSP,  thời gian release. | Thời gian release.
+Nội dung lý do nếu  reject | 
+Row 10:  | Details | Lịch sử đổi tàu: Các mốc thời gian và tàu tương ứng | Lịch sử thay đổi số hiệu chuyến bay |  |  |  | Lịch sử netline kéo các mốc giờ |  | Lịch sử đổi code |  |  |  | 
+Row 12:  |  |  | Phân quyền theo carrier |  |  |  |  |  |  |  |  |  | 
+Row 25: Bấm vào details sẽ nhảy sang tab mới chi tiết chuyến bay, bấm ở ô nào thì sẽ hiển thị tab tương ứng trong tab đó. |  |  |  |  |  |  |  |  |  |  |  |  | 
+Row 26: Lưu cấu hình bảng biểu và search |  |  |  |  |  |  |  |  |  |  |  |  | 
+Row 28: Màu:
+Không màu - Bình thường
+Đỏ - cần giải quyết
+Vàng - lưu ý
+Xanh lá - Đã xử lý |  |  |  |  |  |  |  |  |  |  |  |  | 
+Row 29: Danh sách +- 18 h chạy liên tục |  |  |  |  |  |  |  |  |  |  |  |  | 

@@ -1,0 +1,233 @@
+=== SHEET: Thông tin dự án ===
+Row 001: Jira | https://jira.viettelsoftware.com/secure/Dashboard.jspa?selectPageId=12709
+Row 002: Confluence | CNM.VNA.FIMS.SX Home
+Row 003: Gitlab | https://gitlab.viettelsoftware.com/ph-ng-ptpm/vss-customer/cnm_vna_fims_sx
+Row 004: Server Dev | https://fims-fe-dev.viettelsoftware.com/auth
+Row 005: Function list | https://docs.google.com/spreadsheets/d/1Y2amzBI92CcJLyncoSH_l9C-X2uMFRYJWbJY9qqY574/edit?gid=295976113#gid=295976113
+Row 006: SRS | System Admin:VNA.TOSS_SRS_System Admin_V0.1.docx
+Data Maintenance: VNA.TOSS_SRS_Data Maintenance_v0.1.docx
+Data Source Monitoring: VNA.TOSS_SRS_Data Source Monitoring_v0.1
+TOSS: 
+- Station Manager: VNA.TOSS_SRS_Station Manager_v0.1
+- Report: VNA.TOSS_SRS_Report_v0.1
+- Live operations: VNA.TOSS_SRS_Live Operations_v0.1
+- Flight load cotrol: VNA.TOSS_SRS_Flight Load Control_v0.1
+- Flight Dispatch: VNA.TOSS_SRS_Flight Dispatch_v0.1
+Row 007: Figma | https://www.figma.com/design/HNvApgVP8uqBD4eQOnW6K7/VNA_TOSS_H%E1%BB%87-th%E1%BB%91ng-qu%E1%BA%A3n-l%C3%BD-t%C3%A0i-li%E1%BB%87u---th%C3%B4ng-tin-%C4%91i%E1%BB%81u-h%C3%A0nh-chuy%E1%BA%BFn-bay?node-id=309-17734&p=f&t=yrCfatgrudZyRvSX-0
+Row 008: SVN | https://svn.viettelsoftware.com/!/#CNM.VNA.FIMS.SX
+4. Hướng dẫn sử dụng SVN.pdf
+Row 009: VPN | FortiClientVPN_Window (1).rar
+5. Hướng dẫn cÀI ĐẶT VPN-IPsec (1).pdf
+Row 010: Master Plan | https://docs.google.com/spreadsheets/d/1hXNPHroMfjC90fZS1ojRTxJtQE7JSN0o/edit?gid=2100811446#gid=2100811446
+Row 011: Test Plan | [VTIT.VNA] FIMS_Kế hoạch kiểm thử v1.0.xlsx
+[VTIT.VNA] FIMS_Function list_FINAL.xlsx
+Row 012: Testcase common | KBKT_VTIT.VNA_FIM_Common.xls
+Row 013: TKTT | FIMS_ThietKeTongThe_version_1.0.docx
+Row 014: Ext Chrome | https://chromewebstore.google.com/detail/edupham-optimize-jira/imhbhcgnaecdpiajecjljadaajlchgmg
+HDSD Ext.txt
+=== SHEET: Sprint 1 ===
+Row 001: Mã jira | Module | Chức năng | Feature | Type | Priority | Function list | Figma | SRS | Ghi chú | BA Estimate | BA Plan | BA PIC | BA status | BE Estimate | BE Plan | BE PIC | BE Status | BE Note/Check ảnh hưởng | BE note commit | Web Estimate | Web Plan | Web PIC | Web Status | Web Note | Enpoint API | Method | Estimate (h) | Start date | End date | PIC tester | Status scripts | PIC Review | Review | Status test | Bug/ Note | BA nghiệm thu | Test UAT | Test PROD | Demo FI
+Row 002: System Admin | User | Danh sách người dùng | New | 1.0 | VNA.TOSS_SRS_System Admin_V0.1.docx | Chuyển | Done | Tú Anh | Trung | Trangnt255 | Done | Huongnd5 | Open | Done | BUG: Lỗi case truyền page âm
+Row 003: User | Job đồng bộ danh sách người dùng LDAP | New | 1.0 | Chuyển | Done | Tú Anh | Không có Web | Trangnt255 | Cancel | Huongnd5 | Open | Cancel
+Row 004: User | Kết xuất danh sách | New | 1.0 | Chuyển | Done | Tú Anh | Trung | Trangnt255 | Done | Huongnd5 | Open | Done
+Row 005: User | Thêm người dùng Local | New | 1.0 | Chuyển | Done | Tú Anh | Trung | Trangnt255 | Done | Huongnd5 | Open | Done round1 | Department chính sửa lại combobox, tuy nhiên chưa có danh mục Department -> chưa có dữ liệu. BA báo skip
+Row 006: User | Thêm người dùng LDap | New | 1.0 | Chuyển | Done | Tú Anh | Trung | Trangnt255 | Done | Huongnd5 | Open | Open | BUG: Lỗi BE: không tạo được user
+Row 007: User | Xem chi tiết thông tin người dùng | New | 1.0 | Chuyển | Done | Tú Anh | Trung | Trangnt255 | Done | Huongnd5 | Open | Done
+Row 008: User | Xem chi tiết phân quyền người dùng | New | 1.0 | Chuyển | Done | Tú Anh | Trung | Trangnt255 | Done | Huongnd5 | Open | Done
+Row 009: User | Sửa người dùng LDap | New | 1.0 | Chuyển | Done | Tú Anh | Trung | Trangnt255 | Open | Huongnd5 | Open | Open
+Row 010: User | Sửa người dùng Local | New | 1.0 | Chuyển | Done | Tú Anh | Trung | Trangnt255 | In-progress | Huongnd5 | Open | Open
+Row 011: User | Thêm role cho người dùng | New | 1.0 | Chuyển | Done | Tú Anh | Trung | Trangnt255 | In-progress | Huongnd5 | Open | Open
+Row 012: User | Bật/tắt trạng thái người dùng | New | 1.0 | Chuyển | Done | Tú Anh | Trung | Trangnt255 | In-progress | Huongnd5 | Open | Open
+Row 013: User | Xóa người dùng | New | 1.0 | Chuyển | Done | Tú Anh | Trung | Trangnt255 | In-progress | Huongnd5 | Open | Open
+Row 014: User | Lấy lại mật khẩu người dùng Local | New | 1.0 | Chuyển | Done | Tú Anh | Trung | Trangnt255 | In-progress | Huongnd5 | Open | Open
+Row 015: User | Xem Lịch sử cập nhật người dùng (Update) | New | 1.0 | Chuyển | Done | Tú Anh | Trung | Trangnt255 | In-progress | Huongnd5 | Open | Open
+Row 016: User | Xem Lịch sử truy cập người dùng (Access) | New | 1.0 | Chuyển | Done | Tú Anh | Trung | Trangnt255 | In-progress | Huongnd5 | Open | Open
+Row 017: User | Phân quyền | New | 1.0 | Chuyển | Done | Tú Anh | Trung | Trangnt255 | In-progress | Đang thực hiện case phân quyền full
+Row 018: System Admin | Roles | Danh sách vai trò | New | 1.0 | VNA.TOSS_SRS_System Admin_V0.1.docx | Việt Anh | Done | Hải | Trung | Huongnd5 | Done | Anhttl4 | Open | Done | BUG: Truyền page, pagesize âm không ra trang 1
+Row 019: Roles | Thêm vai trò | New | 1.0 | Việt Anh | Done | Hải | Trung | Huongnd5 | Done | Anhttl4 | Open | Done
+Row 020: Roles | Thêm quyền chức năng cho vai trò | New | 1.0 | Việt Anh | Done | Hải | Trung | Huongnd5 | Done | Anhttl4 | Open | Done
+Row 021: Roles | Xem vai trò | New | 1.0 | Việt Anh | Done | Hải | Trung | Huongnd5 | Done | Anhttl4 | Open | Done
+Row 022: Roles | Xem vai trò/ Tab user list | New | 1.0 | Việt Anh | Done | Hải | Trung | Huongnd5 | Done | Anhttl4 | Open | Done
+Row 023: Roles | Sửa vai trò | New | 1.0 | Việt Anh | Done | Hải | Trung | Huongnd5 | Done | Anhttl4 | Open | Done
+Row 024: Roles | Xóa vai trò | New | 1.0 | Việt Anh | Done | Hải | Trung | Huongnd5 | Done | Anhttl4 | Open | Done
+Row 025: Roles | Khôi phục vai trò | New | 1.0 | Việt Anh | Done | Hải | Trung | Huongnd5 | In-progress | Anhttl4 | Open | Open
+Row 026: Roles | Bật/tắt hoạt động vai trò | New | 1.0 | Việt Anh | Done | Hải | Trung | Huongnd5 | In-progress | Anhttl4 | Open | Open
+Row 027: Roles | Phân quyền | New | 1.0 | Việt Anh | Done | Hải | Trung | Huongnd5 | In-progress | In-progress
+Row 028: System Admin | User Group | Danh sách nhóm người dùng | New | 1.0 | VNA.TOSS_SRS_System Admin_V0.1.docx | Việt Anh | Done | Hải | Quang Anh | Trangnt255 | Open | Huongnd5 | Open | Open | BUG: Truyền page, pagesize âm không ra trang 1
+Row 029: User Group | Thêm mới nhóm người dùng | New | 1.0 | Việt Anh | Done | Hải | Quang Anh | Trangnt255 | Open | Huongnd5 | Open | Open
+Row 030: User Group | Thêm mới quyền cho nhóm người dùng | New | 1.0 | Việt Anh | Done | Hải | Quang Anh | Trangnt255 | Open | Huongnd5 | Open | Open
+Row 031: User Group | Hiển thị danh sách quyền | New | 1.0 | Việt Anh | Done | Hải | Quang Anh | Trangnt255 | Open | Huongnd5 | Open | Open
+Row 032: User Group | Sửa nhóm người dùng | New | 1.0 | Việt Anh | Done | Hải | Quang Anh | Trangnt255 | Open | Huongnd5 | Open | Open
+Row 033: User Group | Hiển thị danh sách quyền hệ thống | New | 1.0 | Việt Anh | Done | Hải | Quang Anh | Trangnt255 | Open | Huongnd5 | Open | Open | xóa danh mục fir gắn country lỗi chưa check ràng buộc
+Row 034: User Group | Xóa nhóm người dùng | New | 1.0 | Việt Anh | Done | Hải | Quang Anh | Trangnt255 | Open | Huongnd5 | Open | Open
+Row 035: User Group | Xem chi tiết nhóm người dùng | New | 1.0 | Việt Anh | Done | Hải | Quang Anh | Trangnt255 | Open | Huongnd5 | Open | Open
+Row 036: User Group | Xem chi tiết danh sách người dùng cho nhóm người dùng | New | 1.0 | Việt Anh | Done | Hải | Quang Anh | Trangnt255 | Open | Huongnd5 | Open | Open
+Row 037: User Group | Xem chi tiết quyền của nhóm người dùng | New | 1.0 | Việt Anh | Done | Hải | Quang Anh | Trangnt255 | Open | Huongnd5 | Open | Open
+Row 038: User Group | Kết xuất danh sách | New | 1.0 | Việt Anh | Done | Hải | Quang Anh | Trangnt255 | Open | Huongnd5 | Open | Open
+Row 039: User Group | Xem lịch sử cập nhật nhóm người dùng | New | 1.0 | Việt Anh | Done | Hải | Quang Anh | Trangnt255 | Open | Huongnd5 | Open | Open
+Row 040: User Group | Phân quyền | New | 1.0 | Việt Anh | Done | Hải | Quang Anh | Trangnt255 | Open | Huongnd5 | Open | Open
+Row 041: Data Maintenance | Country Category | Xem danh sách quốc gia | New | VNA.TOSS_SRS_Data Maintenance_v0.1.docx | Chuyển | Done | VŨ | Quang Anh | Anhttl4 | Done | Thiemnt3 | Done | Done
+Row 042: Country Category | Xem chi tiết quốc gia | New | Chuyển | Done | VŨ | Quang Anh | Anhttl4 | Done | Thiemnt3 | Done | Done
+Row 043: Country Category | Tìm kiếm quốc gia | New | Chuyển | Done | VŨ | Quang Anh | Anhttl4 | Done | Thiemnt3 | Done | Done | đang vướng mắc : người dùng có quyền FIR nhưng ko có quyền view list country thì cũng chưa tạo,update,  list dc -> cần be bổ sung mã quyền
+Row 044: Country Category | Tạo mới quốc gia | New | Chuyển | Done | VŨ | Quang Anh | Anhttl4 | Done | Thiemnt3 | Done | Done
+Row 045: Country Category | Cập nhật quốc gia | New | Chuyển | Done | VŨ | Quang Anh | Anhttl4 | Done | Thiemnt3 | Done | Done
+Row 046: Country Category | Xóa  quốc gia | New | Chuyển | Done | VŨ | Quang Anh | Anhttl4 | Done | Thiemnt3 | Done | Done
+Row 047: Country Category | Kết xuất  quốc gia | New | Chuyển | Done | VŨ | Quang Anh | Anhttl4 | Done | Thiemnt3 | Done | Done | Bug
+Bug 2 https://prnt.sc/hJG5s0DgBWqt
+Row 048: Country Category | Phân quyền | New | Chuyển | Done | VŨ | Quang Anh | Thiemnt3 | Done | Thiemnt3 | Done | Done |  BUG: Lý do xóa: 1 finding nhỏ (reason maxlength thực tế = 255, không phải 1000)
+https://prnt.sc/Y2A6Be5YKvOj
+Row 049: FIR Category | Danh sách FIR | New | VNA.TOSS_SRS_Data Maintenance_v0.1.docx | Oanh | Done | Tú Anh | Quang Anh | Anhttl4 | Done | Thiemnt3 | Done | Done
+Row 050: FIR Category | Tìm kiếm FIR | New | Oanh | Done | Tú Anh | Quang Anh | Anhttl4 | Done | Thiemnt3 | Done | Done
+Row 051: FIR Category | Kết xuất FIR | New | Oanh | Done | Tú Anh | Quang Anh | Anhttl4 | Done | Thiemnt3 | Done | Done
+Row 052: FIR Category | Thêm mới FIR | New | Oanh | Done | Tú Anh | Quang Anh | Anhttl4 | Done | Thiemnt3 | Done | Done | 16/06: Cần sửa thêm kịch bản
+Row 053: FIR Category | Sửa FIR | New | Oanh | Done | Tú Anh | Quang Anh | Anhttl4 | Done | Thiemnt3 | Done | Done
+Row 054: FIR Category | Xóa FIR | New | Oanh | Done | Tú Anh | Quang Anh | Anhttl4 | Done | Thiemnt3 | Done | Done
+Row 055: FIR Category | Xem chi tiết FIR | New | Oanh | Done | Tú Anh | Quang Anh | Anhttl4 | Done | Thiemnt3 | Done | Done
+Row 056: FIR Category | Phân quyền | New | Oanh | Done | Tú Anh | Quang Anh | Thiemnt3 | Done | Thiemnt3 | Done | Done | đang vướng mắc : người dùng có quyền FIR nhưng ko có quyền view list country thì cũng chưa tạo,update,  list dc -> cần be bổ sung mã quyền
+Row 057: Data Maintenance | Carrier | Danh sách carrier | New | VNA.TOSS_SRS_Data Maintenance_v0.1.docx | Phượng | Done | VŨ | Đạt | Thiemnt3 | Done | Thiemnt3 | Done | Done
+Row 058: Carrier | Tìm kiếm carrier | New | Phượng | Done | VŨ | Đạt | Thiemnt3 | Done | Thiemnt3 | Done | Done
+Row 059: Carrier | Thêm mới carrier | New | Phượng | Done | VŨ | Đạt | Thiemnt3 | Done | Thiemnt3 | Done | Done
+Row 060: Carrier | Sửa carrier | New | Phượng | Done | VŨ | Đạt | Thiemnt3 | Done | Thiemnt3 | Done | Done round1
+Row 061: Carrier | Xóa carrier | New | Phượng | Done | VŨ | Đạt | Thiemnt3 | Done | Thiemnt3 | Done | Done |  BUG: Lý do xóa: 1 finding nhỏ (reason maxlength thực tế = 255, không phải 1000)
+https://prnt.sc/Y2A6Be5YKvOj
+Row 062: Carrier | Xem chi tiết carrier | New | Phượng | Done | VŨ | Đạt | Thiemnt3 | Done | Thiemnt3 | Done | Done
+Row 063: Carrier | Xem lịch sử | New | Phượng | Done | VŨ | Đạt | Thiemnt3 | Done | Thiemnt3 | Done | Done round1
+Row 064: Carrier | Phân quyền  | New | Phượng | Done | VŨ | Đạt | Thiemnt3 | Done | Thiemnt3 | Done | Done
+Row 065: Data Maintenance | Pilot Category | Danh sách phi công | New | VNA.TOSS_SRS_Data Maintenance_v0.1.docx | Việt Anh | Inprogress | VŨ | Đạt | Huongnd5 | Open | Anhttl4 | Open | Open
+Row 066: Pilot Category | Xuất danh sách phi công | New | Việt Anh | Inprogress | VŨ | Đạt | Huongnd5 | Open | Anhttl4 | Open | Open
+Row 067: Pilot Category | Xem chi tiết phi công | New | Việt Anh | Inprogress | VŨ | Đạt | Huongnd5 | Open | Anhttl4 | Open | Open
+Row 068: Pilot Category | Sửa thông tin phi công | New | Việt Anh | Inprogress | VŨ | Đạt | Huongnd5 | Open | Anhttl4 | Open | Open
+Row 069: Pilot Category | API Đồng bộ danh sách phi công AVES | New | Việt Anh | Inprogress | VŨ | Đạt | Huongnd5 | Open | Anhttl4 | Open | Open
+Row 070: Pilot Category | API Đồng bộ thông tin phi công AVES | New | Việt Anh | Inprogress | VŨ | Đạt | Huongnd5 | Open | Anhttl4 | Open | Open
+Row 071: Pilot Category | API lịch bay phi công | New | Việt Anh | Inprogress | VŨ | Đạt | Huongnd5 | Open | Anhttl4 | Open | Open
+Row 072: Pilot Category | API Kiểm tra trạng thái đồng bộ dữ liệu AVES | New | Việt Anh | Inprogress | VŨ | Đạt | Huongnd5 | Open | Anhttl4 | Open | Open
+Row 073: Pilot Category | API Tra cứu lịch sử đồng bộ dữ liệu AVES | New | Việt Anh | Inprogress | VŨ | Đạt | Huongnd5 | Open | Anhttl4 | Open | Open
+Row 074: Pilot Category | Xem thông tin Flight Itineraries phi công | New | Việt Anh | Inprogress | VŨ | Đạt | Huongnd5 | Open | Anhttl4 | Open | Open
+Row 075: Pilot Category | Xem lịch sử phi công | New | Việt Anh | Inprogress | VŨ | Đạt | Huongnd5 | Open | Anhttl4 | Open | Open
+Row 076: Pilot Category | Phân quyền  | New | Việt Anh | Inprogress | VŨ | Đạt | Thiemnt3 | Open | Thiemnt3 | Open | Open
+Row 077: Data Maintenance | Cabin crew Category | chưa có history | New | VNA.TOSS_SRS_Data Maintenance_v0.1.docx | Việt Anh | Inprogress | VŨ | Đạt | Anhttl4 | Pending | Trangnt255 | Open | Pending | BA confirm chưa chốt nghiệp vụ=> Pending
+Row 078: Cabin crew Category | Danh sách tiếp viên | New | Việt Anh | Inprogress | VŨ | Đạt | Anhttl4 | Done round1 | Trangnt255 | Open | Open
+Row 079: Cabin crew Category | Xuất danh sách tiếp viên | New | Việt Anh | Inprogress | VŨ | Đạt | Anhttl4 | Done round1 | Trangnt255 | Open | Open
+Row 080: Cabin crew Category | Tìm kiếm tiếp viên | New | Việt Anh | Inprogress | VŨ | Đạt | Anhttl4 | In-progress | Trangnt255 | Open | Open | BUG: Tìm kiếm theo status fail, nhập quá max length api lỗi 400
+Row 081: Cabin crew Category | Xem chi tiết tiếp viên | New | Việt Anh | Inprogress | VŨ | Đạt | Anhttl4 | Done round1 | Trangnt255 | Open | Open
+Row 082: Cabin crew Category | Sửa thông tin tiếp viên | New | Việt Anh | Inprogress | VŨ | Đạt | Anhttl4 | Pending | Trangnt255 | Open | Pending | BA confirm chưa chốt nghiệp vụ => Pending
+Row 083: Cabin crew Category | API Đồng bộ danh sách TV AVES | New | Việt Anh | Inprogress | VŨ | Đạt | Anhttl4 | Pending | Trangnt255 | Open | Pending | BA confirm chưa chốt nghiệp vụ => Pending
+Row 084: Cabin crew Category | API Đồng bộ thông tin TV AVES | New | Việt Anh | Inprogress | VŨ | Đạt | Anhttl4 | Pending | Trangnt255 | Open | Pending | BA confirm chưa chốt nghiệp vụ => Pending
+Row 085: Cabin crew Category | API lịch bay TV  | New | Việt Anh | Inprogress | VŨ | Đạt | Anhttl4 | Pending | Trangnt255 | Open | Pending | BA confirm chưa chốt nghiệp vụ => Pending
+Row 086: Cabin crew Category | API Kiểm tra trạng thái đồng bộ dữ liệu AVES | New | Việt Anh | Inprogress | VŨ | Đạt | Anhttl4 | Pending | Trangnt255 | Open | Pending | BA confirm chưa chốt nghiệp vụ => Pending
+Row 087: Cabin crew Category | API Tra cứu lịch sử đồng bộ dữ liệu AVES | New | Việt Anh | Inprogress | VŨ | Đạt | Anhttl4 | Pending | Trangnt255 | Open | Pending | BA confirm chưa chốt nghiệp vụ => Pending
+Row 088: Cabin crew Category | Xem thông tin Flight Itineraries tiếp viên | New | Việt Anh | Inprogress | VŨ | Đạt | Anhttl4 | Pending | Trangnt255 | Open | Pending | BA confirm chưa chốt nghiệp vụ => Pending
+Row 089: Cabin crew Category | Xem lịch sử tiếp viên | New | Việt Anh | Inprogress | VŨ | Đạt | Anhttl4 | Pending | Trangnt255 | Open | Pending | BA confirm chưa chốt nghiệp vụ => Pending
+Row 090: Cabin crew Category | Phân quyền  | New | Việt Anh | Inprogress | VŨ | Đạt | Anhttl4 | Pending | Trangnt255 | Open | Pending | BA confirm chưa chốt nghiệp vụ => Pending
+Row 091: Data Maintenance | ULD Category(Type) | Xem danh sách loại ULD | New | VNA.TOSS_SRS_Data Maintenance_v0.1.docx | Chuyển | Done | VŨ | Đạt | Thiemnt3 | Done | Thiemnt3 | Done | Done round1 | 16/06: còn FE
+Row 092: ULD Category(Type) | Thêm mới loại ULD | New | Chuyển | Done | VŨ | Đạt | Thiemnt3 | Done | Thiemnt3 | Done | Done round1 | điều chỉnh lại UI, 
+Bổ sung srs: update validate các trường physical như load control phía trên
+Row 093: ULD Category(Type) | Sửa loại ULD | New | Chuyển | Done | VŨ | Đạt | Thiemnt3 | Done | Thiemnt3 | Done | Done round1
+Row 094: ULD Category(Type) | Xem chi tiết loại ULD | New | Chuyển | Done | VŨ | Đạt | Thiemnt3 | Done | Thiemnt3 | Done | Done
+Row 095: ULD Category(Type) | Tìm kiếm loại ULD | New | Chuyển | Done | VŨ | Đạt | Thiemnt3 | Done | Thiemnt3 | Done | Done round1 | Lỗi xóa đk tìm kiếm
+Row 096: ULD Category(Type) | Kết xuất loại ULD | New | Chuyển | Done | VŨ | Đạt | Thiemnt3 | Done | Thiemnt3 | Done | Done
+Row 097: ULD Category(Type) | Xoá loại ULD | New | Chuyển | Done | VŨ | Đạt | Thiemnt3 | Done | Thiemnt3 | Done | Done | xóa danh mục ULD type lỗi chưa check ràng buộc  -> done
+Row 098: ULD Category(Type) | Phân quyền | New | Chuyển | Done | VŨ | Đạt | Thiemnt3 | Done | Thiemnt3 | Done | Done
+Row 099: Data Maintenance | ULD | Xem danh sách ULD | New | VNA.TOSS_SRS_Data Maintenance_v0.1.docx | Phát | Done | VŨ | Quang Anh | Thiemnt3 | Done | Thiemnt3 | Done | Done round1
+Row 100: ULD | Thêm mới ULD | New | Phát | Done | VŨ | Quang Anh | Thiemnt3 | Done | Thiemnt3 | Done | Done round1 | validate: ULDType đang trả cả inactive, ko tìm kiếm dc tại cbb ULDtype
+Row 101: ULD | Sửa ULD | New | Phát | Done | VŨ | Quang Anh | Thiemnt3 | Done | Thiemnt3 | Done | Done round1 | confirm BA về cbb ULDType 
+Row 102: ULD | Xem chi tiết  ULD | New | Phát | Done | VŨ | Quang Anh | Thiemnt3 | Done | Thiemnt3 | Done | Done round1
+Row 103: ULD | Tìm kiếm ULD | New | Phát | Done | VŨ | Quang Anh | Thiemnt3 | Done | Thiemnt3 | Done | Done round1
+Row 104: ULD | Kết xuất | New | Phát | Done | VŨ | Quang Anh | Thiemnt3 | Done | Thiemnt3 | Done | Done round1
+Row 105: ULD | Xoá ULD | New | Phát | Done | VŨ | Quang Anh | Thiemnt3 | Done | Thiemnt3 | Done | Done round1
+Row 106: ULD | Phân quyền | New | Phát | Done | VŨ | Quang Anh | Thiemnt3 | Done | Thiemnt3 | Done | Open
+Row 107: Data Maintenance | Flight routes | Xem danh sách | New | VNA.TOSS_SRS_Data Maintenance_v0.1.docx | Phượng | Inprogress | VŨ | Trung | 2026-06-15 00:00:00 | Thiemnt3 | Done | Thiemnt3 | Done | Done | FE: người dùng ko có quyền module vẫn hiển thị module trên menu => ẩn đi Lỗi chung cho all module => done
+Row 108: Flight routes | Tìm kiếm | New | Phượng | Inprogress | VŨ | Trung | 2026-06-15 00:00:00 | Thiemnt3 | Done | Thiemnt3 | Done | Done
+Row 109: Flight routes | Thêm mới | New | Phượng | Inprogress | VŨ | Trung | 2026-06-15 00:00:00 | Thiemnt3 | Done | Thiemnt3 | Done | Done
+Row 110: Flight routes | Sửa | New | Phượng | Inprogress | VŨ | Trung | 2026-06-15 00:00:00 | Thiemnt3 | Done | Thiemnt3 | Done | Done
+Row 111: Flight routes | Xóa | New | Phượng | Inprogress | VŨ | Trung | 2026-06-15 00:00:00 | Thiemnt3 | Done | Thiemnt3 | Done | Done
+Row 112: Flight routes | Phân quyền | New | Phượng | Inprogress | VŨ | Trung | 2026-06-15 00:00:00 | Thiemnt3 | Done | Thiemnt3 | Done | Done
+Row 113: Data Maintenance | AC Subtype | Xem danh sách | New | VNA.TOSS_SRS_Data Maintenance_v0.1.docx | Chuyển | Inprogress | VŨ | 2026-06-16 00:00:00 | Thiemnt3 | Done | Thiemnt3 | Done | Done | Auto bằng AI
+Ảnh lỗi BE ảnh lỗi
+Bổ sung nghiệp vụ : maxlength của name =100kys tự
+
+Row 114: AC Subtype | Tìm kiếm | New | Chuyển | Inprogress | VŨ | Quang Anh | 2026-06-16 00:00:00 | Thiemnt3 | Done | Thiemnt3 | Done | Done | Auto bằng AI
+Row 115: AC Subtype | Thêm mới | New | Chuyển | Inprogress | VŨ | Quang Anh | 2026-06-16 00:00:00 | Thiemnt3 | Done | Thiemnt3 | Done | Done | Auto bằng AI
+Bổ sung nghiệp vụ : maxlength của name =100kys tự => BE sửa
+
+Row 116: AC Subtype | Sửa | New | Chuyển | Inprogress | VŨ | Quang Anh | 2026-06-16 00:00:00 | Thiemnt3 | Done | Thiemnt3 | Done | Done | Auto bằng AI
+Bổ sung nghiệp vụ : maxlength của name =100kys tự => BE sửa
+
+Row 117: AC Subtype | Xóa | New | Chuyển | Inprogress | VŨ | Quang Anh | 2026-06-16 00:00:00 | Thiemnt3 | Done | Thiemnt3 | Done | Done | Auto bằng AI
+Row 118: AC Subtype | Export | New | Chuyển | Inprogress | VŨ | Quang Anh | 2026-06-16 00:00:00 | Thiemnt3 | Done | Thiemnt3 | Done | Done | Auto bằng AI
+Lỗi :  ACS-EXP-07 — BE trả filename="downloaded-file.xlsx" thay vì FIMS_AC_Subtype_ddmmyy_hhmm.xlsx.
+Row 119: AC Subtype | Phân quyền | New | Chuyển | Inprogress | VŨ | Quang Anh | 2026-06-16 00:00:00 | Thiemnt3 | Done | Thiemnt3 | Done | Done
+Row 120: Data Maintenance | Flight Fleet | Danh sách | New | VNA.TOSS_SRS_Data Maintenance_v0.1.docx | Việt Anh | Inprogress | VŨ | Đạt | Thiemnt3 | Open | Thiemnt3 | Open | Open
+Row 121: Flight Fleet | Thêm đội bay | New | Việt Anh | Inprogress | VŨ | Đạt | Thiemnt3 | Open | Thiemnt3 | Open | Open
+Row 122: Flight Fleet | Sửa đội bay | New | Việt Anh | Inprogress | VŨ | Đạt | Thiemnt3 | Open | Thiemnt3 | Open | Open
+Row 123: Flight Fleet | Xóa đội bay | New | Việt Anh | Inprogress | VŨ | Đạt | Thiemnt3 | Open | Thiemnt3 | Open | Open
+Row 124: Flight Fleet | Xem chi tiết đội bay | New | Việt Anh | Inprogress | VŨ | Đạt | Thiemnt3 | Open | Thiemnt3 | Open | Open
+Row 125: Flight Fleet | Xem lich sử đội bay | New | Việt Anh | Inprogress | VŨ | Đạt | Thiemnt3 | Open | Thiemnt3 | Open | Open
+Row 126: Flight Fleet | Thêm tàu bay | New | Việt Anh | Inprogress | VŨ | Đạt | Thiemnt3 | Open | Thiemnt3 | Open | Open
+Row 127: Flight Fleet | Xóa tàu bay | New | Việt Anh | Inprogress | VŨ | Đạt | Thiemnt3 | Open | Thiemnt3 | Open | Open
+Row 128: Login | Login | Chọn ngôn ngữ | New | https://www.figma.com/design/HNvApgVP8uqBD4eQOnW6K7/VNA_TOSS_H%E1%BB%87-th%E1%BB%91ng-qu%E1%BA%A3n-l%C3%BD-t%C3%A0i-li%E1%BB%87u---th%C3%B4ng-tin-%C4%91i%E1%BB%81u-h%C3%A0nh-chuy%E1%BA%BFn-bay?node-id=5062-60368&t=wdbKxEbHv7UWKcQP-4 | VNA.TOSS_SRS_System Admin_V0.1.docx | Minh Anh | Done | Tú Anh | Trung | Open | Open | Open
+Row 129: Login | Thông tin user đăng nhập | New | Minh Anh | Done | Tú Anh | Trung | Open | Open | Open
+Row 130: Login | View Thông tin user | New | Minh Anh | Done | Tú Anh | Trung | Open | Open | Open
+Row 131: Login | Logout | New | Minh Anh | Done | Tú Anh | Trung | Open | Open | Open
+Row 132: Login | Thay đổi pass | New | Minh Anh | Done | Tú Anh | Trung | Open | Open | Open
+Row 133: Login | Background hệ thống "FIMS" | New | Minh Anh | Done | Tú Anh | Trung | Open | Open | Open
+Row 134: Login | Chọn luồng đăng nhập | New | Minh Anh | Done | Tú Anh | Trung | Open | Open | Open
+Row 135: Login | Chỉ nhập Local User (username/pass) | New | Minh Anh | Done | Tú Anh | Trung
+Row 136: Login | Đăng nhập tk LDAP | New | Minh Anh | Done | Tú Anh | Trung
+Row 137: Login | Đăng nhập tk VIAGS | New | Minh Anh | Done | Tú Anh | Trung
+Row 138: Login | Đăng nhập tk Vasco | New | Minh Anh | Done | Tú Anh | Trung
+Row 139: Login | Ghi log đăng nhập thành công/thất bại | New | Minh Anh | Done | Tú Anh | Trung
+Row 140: Login | Xử lý mã hóa, token, session | New | Minh Anh | Done | Tú Anh | Trung
+Row 141: Login | Xử lý captcha  khi nhập sai MK quá 5 lần | New | Minh Anh | Done | Tú Anh | Trung
+Row 142: Login | Xử lý khóa tài khoản tạm thời khi sai pass quá 10 lần | New | Minh Anh | Done | Tú Anh | Trung
+Row 143: Login | Xử lý "Ghi nhớ đăng nhập" (mã hóa & lưu token dài hạn, an toàn) | New | Minh Anh | Done | Tú Anh | Trung
+Row 144: Login | Quên thông tin đăng nhập | New | Minh Anh | Done | Tú Anh | Trung
+Row 145: Home | Chọn phân hệ | Chọn phân hệ Systerm Admin | New | https://www.figma.com/design/HNvApgVP8uqBD4eQOnW6K7/VNA_TOSS_H%E1%BB%87-th%E1%BB%91ng-qu%E1%BA%A3n-l%C3%BD-t%C3%A0i-li%E1%BB%87u---th%C3%B4ng-tin-%C4%91i%E1%BB%81u-h%C3%A0nh-chuy%E1%BA%BFn-bay?node-id=5062-60368&t=wdbKxEbHv7UWKcQP-4 | VNA.TOSS_SRS_Thiết kế dùng chung_v0.1 | Minh Anh | Done | Tú Anh | Trung
+Row 146: Chọn phân hệ Data Maintenance | New | Minh Anh | Done | Tú Anh | Trung
+Row 147: Chọn phân hệ Data Source Monitoring | New | Minh Anh | Done | Tú Anh | Trung
+Row 148: Chọn phân hệ TOSS | New | Minh Anh | Done | Tú Anh | Trung
+Row 149: Data Maintenance | Quản lý tàu bay | Xem danh sách tàu bay | New
+Row 150: Quản lý tàu bay | Xem chi tiết tàu bay | New
+Row 151: Quản lý tàu bay | Tìm kiếm tàu bay | New
+Row 152: Quản lý tàu bay | Làm mới danh sách tàu bay | New
+Row 153: Quản lý tàu bay | Xuất danh sách tàu bay | New
+Row 154: Quản lý tàu bay | Chỉnh sửa tab General Information | New
+Row 155: Quản lý tàu bay | Chỉnh sửa Technical Parameters -  tab Aircraft Configuration | New
+Row 156: Quản lý tàu bay | Chỉnh sửa Cabin Configuration -  tab Aircraft Configuration | New
+Row 157: Quản lý tàu bay | Chỉnh sửa ACARS Fuel Limit & Fuel Multiplier -  tab Aircraft Configuration | New
+Row 158: Quản lý tàu bay | Thêm mới  ACARS Fuel Limit & Fuel Multiplier -  tab Aircraft Configuration | New
+Row 159: Quản lý tàu bay | Xóa ACARS Fuel Limit & Fuel Multiplier -  tab Aircraft Configuration | New
+Row 160: Quản lý tàu bay | Chỉnh sửa tab Group Attributes | New
+Row 161: Quản lý tàu bay | Xem lịch sử thay đổi  | New
+Row 162: Quản lý tàu bay | Tìm kiếm lịch sử thay đổi | New
+Row 163: Quản lý tàu bay | Xuất danh sách lịch sử thay đổi | New
+Row 164: Quản lý tàu bay | API đồng bộ danh sách tàu bay từ Netline ops++ | New
+Row 165: Quản lý tàu bay | Phân quyền | New
+=== SHEET: Bug ===
+Row 001: STT | Module | Function | Feature | Import Jira | Start date | End date | Summary * | Issue Type | Description * | Reporter | Priority * | Assignee * | Bug type * | Status DEV | Status TESTER | Comment
+Row 002: 17
+Row 003: 1 | Admin | Carrier | Lịch sử carrier | BE: Lỗi trả sai thông tin màn hình history https://prnt.sc/TqhRN7IsfBgw
+https://prnt.sc/a_fL5-gtF5dA | Bug | Thiemnt3 | Low | Tú Anh BE | Functional | Open | Open
+Row 004: Carrier | Sửa | FE: Màn hình sửa ko view được logo => ko thực hiện được chức năng update
+https://prnt.sc/LnYgMWlJLoNe | Bug | Thiemnt3 | Low | Đạt FE | Functional | Open | Open
+Row 005: Carrier | Xem chi tiết | FE: Lỗi ảnh logo : https://prnt.sc/Bgd40wyDoYPp | Bug | Thiemnt3 | Low | Đạt FE | Functional | Open | Open
+Row 006: Carrier | Xem lịch sử | https://prnt.sc/2aCttOtkhRpl | Bug | Thiemnt3 | Low | Đạt FE | Functional | Resovled | Open
+Row 007: Carrier | Xuất danh sách | https://prnt.sc/uofaF1aTtqWd | Bug | Thiemnt3 | Low | Vũ BE | Functional | Resovled | Done
+Row 008: Bug | Thiemnt3 | Low | Functional | Open | Open
+Row 009: Admin | ULDType | Danh sách | https://prnt.sc/ukfG5lVQoLIb
+thiếu cột ULDcode: https://prnt.sc/Z9p--ML1vAL1 | Bug | Thiemnt3 | Low | Đạt FE | Functional | Resovled | Open
+Row 010: ULDType | Tìm kiếm | https://prnt.sc/c1bwfTVqIirc | Bug | Thiemnt3 | Low | Đạt FE | Functional | Resovled | Open
+Row 011: ULDType | Thêm mới | https://prnt.sc/l32w0ZuNwYA1 | Bug | Thiemnt3 | Low | Đạt FE | Functional | Resovled | Open
+Row 012: ULDType | Chỉnh sửa | https://prnt.sc/l32w0ZuNwYA1
+https://prnt.sc/nW9DlA1QU43n | Bug | Thiemnt3 | Low | Đạt FE | Functional | Resovled | Open
+Row 013: ULDType | Chi tiết  | https://prnt.sc/-xCC3ymYD-Sm | Bug | Thiemnt3 | Low | Đạt FE | Functional | Resovled | Open
+Row 014: ULDType | Xuất | Tên file FIMS_ULDCategory_2506261035 -> yêu cầu : Tên file tải về: Fims_ULD_Type_ddmmyy_hhmm
+ | Bug | Thiemnt3 | Low | Đạt FE | Functional | Functional | Open
+Row 015: Admin | ULD | Export excel | Lỗi sai tên file xuất ra | Bug | Thiemnt3 | Low | Quang Anh FE | Functional | Open | Open
+Row 016: Bug | Thiemnt3 | Low | Functional | Open | Open
+Row 017: Bug | Thiemnt3 | Low | Functional | Open | Open
+Row 018: Bug | Thiemnt3 | Low | Functional | Open | Open
+Row 019: Bug | Thiemnt3 | Low | Functional | Open | Open
+Row 026: https://prnt.sc/TqhRN7IsfBgw
+=== SHEET: Sprint 2 ===
+=== SHEET: Tích hợp ===

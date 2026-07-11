@@ -217,7 +217,7 @@ Buổi Webex là demo hệ thống NOTOC (module NOTOC trên trang web "phim car
 19. Xử lý kỹ thuật cho phương án "part 1/part 2" trên NOTOC: việc nhận diện part qua tên file (như đã làm với weather NOTAM trên FIM) chưa khả thi với NOTOC; cần "bên em nghiên cứu thêm xem có thực hiện được không" (anh Nghĩa - VTIT). (Webex NOTOC)
 20. Làm rõ phiên bản mobile NOTOC có khác biệt chức năng gì so với phiên bản web (anh Sơn - VNA đặt câu hỏi, VTIT đã demo nhanh nhưng chưa hệ thống hoá khác biệt). (Webex NOTOC)
 21. Xác nhận chế độ test (sandbox) trước khi vận hành thật — VTIT cho biết sẽ làm "size test" trước, nhưng chưa làm rõ quy trình kích hoạt chế độ test ở phía VNA. (Webex NOTOC)
-22. Làm rõ các từ viết tắt và tên gọi trong transcript: `FIM cargo` (hay "phim cargo"), `MO Overload` (hay MO upload), `VR` (bộ phận giám sát chất xếp dưới ramp), `DZ` (hàng "DZ cần cứu tàu"), `AOG` (`AOZ` trong ASR), `Cita` (hay CITA — hệ thống nguồn điện FM). (Webex NOTOC)
+22. Làm rõ các từ viết tắt và tên gọi trong biên bản: `FIM cargo` (hay "phim cargo"), `MO Overload` (hay MO upload), `VR` (bộ phận giám sát chất xếp dưới ramp), `DZ` (hàng "DZ cần cứu tàu"), `AOG` (`AOZ` trong ASR), `Cita` (hay CITA — hệ thống nguồn điện FM). (Webex NOTOC)
 
 > Tất cả các điểm trên cần được đưa vào sổ theo dõi `OID-TOSS-001` (Open Items / Open Issues / Decisions) thuộc nhóm SME/KS để theo dõi đến khi đóng.
 

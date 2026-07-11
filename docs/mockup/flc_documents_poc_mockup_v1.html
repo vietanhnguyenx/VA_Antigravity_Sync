@@ -1,0 +1,1438 @@
+<!DOCTYPE html>
+<!--
+  FLC — Flight Load Control · Document Management (POC mockup)
+  Nguồn dữ liệu cột: ba/workspace/input/domain-knowledge/Man hinh TOSS.xlsx
+                     → sheet "Man hinh Document"
+  Tuân thủ CLAUDE.md §0: tên cột + ý nghĩa giữ nguyên theo source, không suy diễn.
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Load Control — Documents</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --bg-base:      #0B0E1A;
+            --bg-sidebar:   #0E1220;
+            --bg-surface:   #121728;
+            --bg-elevated:  #1A2035;
+            --bg-hover:     #151C30;
+
+            --text-primary:  #E2E8F8;
+            --text-secondary:#8892B0;
+            --text-muted:    #4A5370;
+
+            --cyan:        #06D4FF;
+            --cyan-dim:    rgba(6, 212, 255, 0.12);
+            --cyan-border: rgba(6, 212, 255, 0.28);
+
+            --green:       #1DD68C;
+            --green-dim:   rgba(29, 214, 140, 0.18);
+
+            --orange:      #F59E0B;
+            --orange-dim:  rgba(245, 158, 11, 0.18);
+
+            --red:         #FF4757;
+            --red-dim:     rgba(255, 71, 87, 0.14);
+
+            --blue:        #3B9EFF;
+            --blue-dim:    rgba(59, 158, 255, 0.16);
+
+            --purple:      #A78BFA;
+            --purple-dim:  rgba(167, 139, 250, 0.18);
+
+            --border:       #1C2236;
+            --border-light: #232C44;
+
+            --r-sm: 4px;
+            --r-md: 6px;
+            --r-lg: 10px;
+            --r-xl: 14px;
+            --r-full: 9999px;
+        }
+
+        html, body {
+            height: 100%;
+            overflow: hidden;
+            font-family: 'Segoe UI', -apple-system, system-ui, sans-serif;
+            background: var(--bg-base);
+            color: var(--text-primary);
+            font-size: 13px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ========= CUSTOM SCROLLBAR (theme-matched) ========= */
+        /* Firefox */
+        * {
+            scrollbar-width: thin;
+            scrollbar-color: #2A3450 transparent;
+        }
+        /* WebKit / Chromium / Edge */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+            background: transparent;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2A3450;
+            border-radius: 8px;
+            border: 2px solid transparent;
+            background-clip: padding-box;
+            transition: background .15s;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(6, 212, 255, 0.45);
+            background-clip: padding-box;
+            border: 2px solid transparent;
+        }
+        ::-webkit-scrollbar-thumb:active {
+            background: var(--cyan);
+            background-clip: padding-box;
+            border: 2px solid transparent;
+        }
+        ::-webkit-scrollbar-corner { background: transparent; }
+        /* Bigger area in table because it has both axes */
+        .table-wrap::-webkit-scrollbar { width: 10px; height: 10px; }
+        .table-wrap::-webkit-scrollbar-thumb {
+            background: #2A3450;
+            border: 3px solid transparent;
+            background-clip: padding-box;
+        }
+        .table-wrap::-webkit-scrollbar-thumb:hover {
+            background: rgba(6, 212, 255, 0.4);
+            background-clip: padding-box;
+        }
+
+        /* ========= APP SHELL ========= */
+        .app { display: flex; height: 100vh; width: 100vw; overflow: hidden; }
+
+        /* ========= SIDEBAR ========= */
+        .sidebar {
+            width: 210px; min-width: 210px;
+            background: var(--bg-sidebar);
+            border-right: 1px solid var(--border);
+            display: flex; flex-direction: column;
+            transition: width .22s ease, min-width .22s ease;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        .sidebar.collapsed { width: 48px; min-width: 48px; cursor: pointer; }
+        .sidebar.collapsed * { pointer-events: none; }
+
+        .sidebar-logo {
+            display: flex; align-items: center; gap: 10px;
+            padding: 13px 12px;
+            border-bottom: 1px solid var(--border);
+            min-height: 56px; white-space: nowrap;
+        }
+        .sidebar.collapsed .sidebar-logo { justify-content: center; padding: 13px 0; }
+        .logo-lotus { flex-shrink: 0; width: 30px; height: 30px; }
+        .logo-texts { display: flex; flex-direction: column; gap: 1px; }
+        .logo-name { font-size: 10px; font-weight: 800; color: var(--text-primary); letter-spacing: .06em; text-transform: uppercase; }
+        .logo-sub  { font-size: 9px;  font-weight: 500; color: var(--text-muted); letter-spacing: .04em; }
+        .sidebar.collapsed .logo-texts { display: none; }
+
+        .sidebar-nav { flex: 1; padding: 8px 0; overflow-y: auto; }
+        .nav-item {
+            display: flex; align-items: center; gap: 10px;
+            padding: 9px 14px; cursor: pointer; white-space: nowrap;
+            color: var(--text-secondary); border: none; background: none;
+            width: 100%; text-align: left;
+            border-left: 2px solid transparent;
+            transition: all .16s ease;
+        }
+        .nav-item:hover { background: var(--bg-elevated); color: var(--text-primary); }
+        .nav-item.active {
+            background: rgba(6, 212, 255, .13);
+            color: var(--cyan);
+            border-left-color: transparent;
+            border-radius: 8px;
+            margin: 0 8px;
+            width: calc(100% - 16px);
+        }
+        .sidebar.collapsed .nav-item.active {
+            background: none; margin: 0; width: 100%; border-radius: 0;
+        }
+        .sidebar.collapsed .nav-item.active .nav-icon {
+            background: rgba(6, 212, 255, .15); border-radius: 8px;
+        }
+        .nav-icon { width: 18px; height: 18px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+        .nav-label { font-size: 12px; font-weight: 500; }
+        .sidebar.collapsed .nav-label { display: none; }
+        .sidebar.collapsed .nav-item { justify-content: center; padding: 10px 0; }
+
+        .sb-bottom {
+            border-top: 1px solid var(--border);
+            padding: 8px 0 6px;
+            flex-shrink: 0;
+        }
+        .sb-hide-wrap { padding: 4px 12px 8px; }
+        .sidebar.collapsed .sb-hide-wrap { display: none; }
+        .sb-hide-pill {
+            display: flex; align-items: center; justify-content: center; gap: 6px;
+            width: 100%; height: 30px;
+            background: none;
+            border: 1px solid var(--border-light);
+            border-radius: var(--r-full);
+            color: var(--text-secondary); font-size: 11px; font-weight: 500;
+            cursor: pointer; white-space: nowrap;
+            transition: all .15s;
+        }
+        .sb-hide-pill:hover { color: var(--text-primary); border-color: var(--cyan-border); }
+        .sb-icons {
+            display: flex; align-items: center;
+            padding: 2px 14px; gap: 4px;
+        }
+        .sidebar.collapsed .sb-icons { flex-direction: column; padding: 4px 0; align-items: center; gap: 2px; }
+        .sb-user { display: flex; align-items: center; padding: 4px 10px 2px; gap: 6px; }
+        .sidebar.collapsed .sb-user { flex-direction: column; padding: 4px 0 2px; align-items: center; gap: 4px; }
+        .sb-avatar-wrap { display: flex; align-items: center; gap: 8px; flex: 1; min-width: 0; }
+        .sidebar.collapsed .sb-avatar-wrap { flex: none; }
+        .sb-avatar-container { position: relative; flex-shrink: 0; }
+        .sb-avatar {
+            width: 28px; height: 28px; border-radius: 50%;
+            background: linear-gradient(135deg, var(--cyan) 0%, #0055CC 100%);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 11px; font-weight: 800; color: #fff;
+        }
+        .sb-online-dot {
+            position: absolute; bottom: -1px; right: -1px;
+            width: 8px; height: 8px; border-radius: 50%;
+            background: var(--green); border: 1.5px solid var(--bg-sidebar);
+        }
+        .sb-user-detail { min-width: 0; flex: 1; }
+        .sb-user-name  { font-size: 11px; font-weight: 600; color: var(--text-primary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .sb-user-email { font-size: 9px; color: var(--text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .sidebar.collapsed .sb-user-detail { display: none; }
+
+        .sb-icon-btn {
+            width: 28px; height: 28px;
+            display: flex; align-items: center; justify-content: center;
+            background: none; border: none; cursor: pointer;
+            color: var(--text-muted); border-radius: var(--r-md);
+            flex-shrink: 0; transition: all .15s;
+        }
+        .sb-icon-btn:hover { color: var(--text-primary); background: var(--bg-elevated); }
+        .sb-expand-btn {
+            display: none;
+            width: 100%; padding: 5px 0 2px;
+            background: none; border: none; cursor: pointer;
+            color: var(--text-muted);
+            align-items: center; justify-content: center;
+            transition: color .15s;
+        }
+        .sb-expand-btn:hover { color: var(--text-primary); }
+        .sidebar.collapsed .sb-expand-btn { display: flex; }
+
+        /* ========= MAIN ========= */
+        .main { flex: 1; min-width: 0; display: flex; flex-direction: column; overflow: hidden; }
+
+        /* TOPBAR */
+        .topbar {
+            display: flex; align-items: center;
+            padding: 0 20px; gap: 16px;
+            background: var(--bg-sidebar);
+            border-bottom: 1px solid var(--border);
+            height: 52px; flex-shrink: 0;
+        }
+        .topbar-title {
+            font-size: 16px; font-weight: 700;
+            color: var(--cyan); letter-spacing: .07em; text-transform: uppercase;
+        }
+        .topbar-sub {
+            font-size: 11px; color: var(--text-muted);
+            letter-spacing: .04em; text-transform: uppercase;
+            margin-left: 6px; padding-left: 12px;
+            border-left: 1px solid var(--border);
+        }
+        .topbar-right { margin-left: auto; display: flex; align-items: center; gap: 10px; }
+        .op-date { font-size: 11px; color: var(--text-secondary); }
+        .op-date b { color: var(--text-primary); font-weight: 600; }
+        .op-time { font-size: 12px; font-weight: 700; color: var(--cyan); font-variant-numeric: tabular-nums; }
+
+        /* FILTER BAR */
+        .filter-bar { background: var(--bg-base); border-bottom: 1px solid var(--border); flex-shrink: 0; }
+        .filter-strip { display: flex; align-items: center; gap: 8px; padding: 0 20px; height: 38px; }
+        .filter-strip-right { margin-left: auto; display: flex; align-items: center; gap: 6px; }
+        .filter-inputs { overflow: hidden; max-height: 52px; opacity: 1; transition: max-height .22s ease, opacity .18s ease, padding .22s ease; }
+        .filter-inputs.collapsed { max-height: 0; opacity: 0; }
+        .filter-inputs-row { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; padding: 0 20px 8px; }
+        .fi { color: var(--text-muted); display: flex; align-items: center; flex-shrink: 0; }
+        .filter-lbl { font-size: 12px; font-weight: 600; color: var(--text-secondary); flex-shrink: 0; }
+        .f-input, .f-select {
+            height: 30px;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-light);
+            border-radius: var(--r-md);
+            color: var(--text-primary);
+            font-size: 11px; font-family: inherit;
+            padding: 0 8px; outline: none;
+            transition: border-color .15s;
+        }
+        .f-input { width: 100px; }
+        .f-input:focus, .f-select:focus, .f-input:hover, .f-select:hover { border-color: var(--cyan-border); }
+        .f-select { padding-right: 20px; cursor: pointer; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' fill='none' stroke='%236B7494' stroke-width='1.5'%3E%3Cpath d='M1 1l4 4 4-4'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 6px center; }
+        .f-select option { background: #1A2035; }
+        .f-date { width: 130px; }
+        .f-date::-webkit-calendar-picker-indicator { filter: invert(.4); cursor: pointer; }
+
+        .btn-search {
+            display: flex; align-items: center; gap: 5px;
+            height: 30px; padding: 0 14px;
+            background: var(--cyan); border: none; border-radius: var(--r-md);
+            color: #0B0E1A; font-size: 11px; font-weight: 700;
+            cursor: pointer; white-space: nowrap; flex-shrink: 0;
+            transition: opacity .15s;
+        }
+        .btn-search:hover { opacity: .85; }
+        .btn-clear {
+            display: flex; align-items: center; gap: 4px;
+            height: 30px; padding: 0 8px;
+            background: none; border: none;
+            color: var(--text-secondary); font-size: 11px; font-weight: 500;
+            cursor: pointer; white-space: nowrap; flex-shrink: 0;
+            transition: color .15s;
+        }
+        .btn-clear:hover { color: var(--text-primary); }
+        .btn-tbl-setting {
+            display: flex; align-items: center; gap: 6px;
+            height: 30px; padding: 0 12px;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-light); border-radius: var(--r-md);
+            color: var(--text-secondary); font-size: 11px; font-weight: 500;
+            cursor: pointer; white-space: nowrap; flex-shrink: 0;
+            margin-left: auto;
+            transition: all .15s;
+        }
+        .btn-tbl-setting:hover { color: var(--text-primary); border-color: var(--cyan-border); }
+        .collapse-btn {
+            width: 24px; height: 24px;
+            display: flex; align-items: center; justify-content: center;
+            background: none; border: none;
+            color: var(--text-muted); cursor: pointer;
+            flex-shrink: 0; transition: color .15s;
+        }
+        .collapse-btn:hover { color: var(--text-primary); }
+        .collapse-btn svg { transition: transform .2s; }
+        .collapse-btn.flipped svg { transform: rotate(180deg); }
+
+        /* ========= CONTENT SPLIT ========= */
+        .content { flex: 1; display: flex; min-height: 0; overflow: hidden; }
+        .table-pane {
+            flex: 1; min-width: 0;
+            display: flex; flex-direction: column; overflow: hidden;
+            transition: flex .25s ease;
+        }
+        .content.split .table-pane { flex: 0 0 58%; }
+        @media (max-width: 1200px) {
+            .content.split .table-pane { flex: 0 0 50%; }
+        }
+
+        /* TABLE */
+        .table-wrap { flex: 1; overflow: auto; position: relative; }
+        table { width: max-content; min-width: 100%; border-collapse: collapse; white-space: nowrap; }
+
+        thead .group-row th {
+            background: #0D1020;
+            color: var(--text-muted);
+            font-size: 9px; font-weight: 700;
+            letter-spacing: .1em; text-transform: uppercase;
+            padding: 4px 10px; text-align: center;
+            position: sticky; top: 0; z-index: 9;
+            border-bottom: 1px solid var(--border);
+        }
+        thead .group-row th:first-child { text-align: left; padding-left: 14px; }
+        thead .col-row th {
+            background: var(--bg-sidebar);
+            color: var(--text-muted);
+            font-size: 10px; font-weight: 600;
+            letter-spacing: .04em; text-transform: uppercase;
+            padding: 7px 10px; text-align: center;
+            position: sticky; z-index: 10;
+            border-bottom: 1px solid var(--border);
+            user-select: none; cursor: pointer; white-space: nowrap;
+        }
+        thead .col-row th:hover { color: var(--cyan); }
+        thead .col-row th.th-l { text-align: left; }
+
+        [data-tip] { position: relative; }
+        [data-tip]::before {
+            content: attr(data-tip);
+            position: absolute; bottom: calc(100% + 6px);
+            left: 50%; transform: translateX(-50%);
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-light);
+            color: var(--text-primary);
+            padding: 5px 9px; border-radius: var(--r-sm);
+            font-size: 10px; font-weight: 400; line-height: 1.5;
+            width: max-content; max-width: 220px;
+            opacity: 0; pointer-events: none; z-index: 100;
+            transition: opacity .18s;
+        }
+        [data-tip]:hover::before { opacity: 1; }
+
+        .sc1 { position: sticky; left: 0;   z-index: 6; background: var(--bg-sidebar); }
+        .sc2 { position: sticky; left: 80px; z-index: 6; background: var(--bg-sidebar); }
+        thead .sc1, thead .sc2 { z-index: 11 !important; }
+        tbody tr:hover td.sc1, tbody tr:hover td.sc2 { background: var(--bg-hover); }
+        tbody tr.selected td.sc1, tbody tr.selected td.sc2 { background: rgba(6, 212, 255, 0.08); }
+
+        tbody td {
+            padding: 5px 10px; text-align: center;
+            border-bottom: 1px solid var(--border);
+            font-size: 11px; vertical-align: middle;
+            color: var(--text-primary);
+        }
+        tbody td.td-l { text-align: left; }
+        tbody tr { transition: background .12s; cursor: pointer; }
+        tbody tr:hover { background: var(--bg-hover); }
+        tbody tr.selected { background: rgba(6, 212, 255, 0.08); border-left: 2px solid var(--cyan); }
+
+        /* CELL TYPES */
+        .cell-reg  { font-weight: 700; color: var(--cyan); }
+        .cell-flt  { font-weight: 600; }
+        .cell-dim  { color: var(--text-secondary); }
+        .cell-mono { font-family: 'Consolas', 'Courier New', monospace; font-size: 11px; }
+        .cell-dash { color: var(--text-muted); }
+
+        /* Document status cell — stacks Rev + Upload time + Ack icon */
+        .doc-cell {
+            display: inline-flex; flex-direction: column; align-items: center;
+            gap: 1px; line-height: 1.25; padding: 2px 0;
+        }
+        .doc-rev   { font-family: 'Consolas', monospace; font-size: 11px; font-weight: 700; color: var(--cyan); }
+        .doc-rev.dash { color: var(--text-muted); }
+        .doc-time  { font-family: 'Consolas', monospace; font-size: 9.5px; color: var(--text-secondary); }
+        .doc-ack {
+            display: inline-flex; align-items: center; gap: 3px;
+            font-size: 9px; font-weight: 700;
+            padding: 1px 7px; border-radius: var(--r-full);
+            margin-top: 1px; letter-spacing: .04em;
+        }
+        .ack-ok  { background: var(--green-dim); color: var(--green); }
+        .ack-pen { background: var(--orange-dim); color: var(--orange); }
+        .ack-na  { background: #252C42; color: var(--text-muted); }
+        .ack-dot { width: 5px; height: 5px; border-radius: 50%; background: currentColor; }
+
+        /* STATUS BAR */
+        .statusbar {
+            display: flex; align-items: center; gap: 16px;
+            padding: 0 20px; height: 27px;
+            background: var(--bg-sidebar);
+            border-top: 1px solid var(--border);
+            font-size: 10px; color: var(--text-muted);
+            flex-shrink: 0;
+        }
+        .live-wrap { display: flex; align-items: center; gap: 5px; font-weight: 500; color: var(--text-secondary); }
+        .live-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--green); }
+        @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
+        .live-dot { animation: blink 2.2s ease infinite; }
+        .sb-right { margin-left: auto; }
+
+        /* ========= DETAIL PANEL (right side) ========= */
+        .detail-pane {
+            flex: 0 0 0;
+            min-width: 0;
+            overflow: hidden;
+            background: var(--bg-surface);
+            border-left: 1px solid var(--border);
+            display: flex; flex-direction: column;
+            transition: flex .25s ease, min-width .25s ease;
+        }
+        .content.split .detail-pane {
+            flex: 0 0 42%;
+            min-width: 460px;
+        }
+        @media (max-width: 1200px) {
+            .content.split .detail-pane { flex: 0 0 50%; min-width: 380px; }
+        }
+        .detail-pane.empty .detail-inner { display: none; }
+        .detail-inner { display: flex; flex-direction: column; height: 100%; overflow: hidden; }
+
+        .dp-head {
+            display: flex; align-items: flex-start; justify-content: space-between;
+            padding: 14px 18px 12px;
+            border-bottom: 1px solid var(--border);
+            background: linear-gradient(180deg, var(--bg-elevated) 0%, var(--bg-surface) 100%);
+            flex-shrink: 0;
+        }
+        .dp-head-l { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+        .dp-flt {
+            display: flex; align-items: center; gap: 10px;
+            font-size: 17px; font-weight: 800; color: var(--cyan); letter-spacing: .05em;
+        }
+        .dp-reg { font-size: 11px; color: var(--text-secondary); font-weight: 600; letter-spacing: .05em; }
+        .dp-route {
+            display: flex; align-items: center; gap: 8px;
+            font-size: 13px; font-weight: 700; color: var(--text-primary);
+            margin-top: 4px;
+        }
+        .dp-route svg { color: var(--cyan); }
+        .dp-close {
+            width: 28px; height: 28px;
+            display: flex; align-items: center; justify-content: center;
+            background: none; border: 1px solid var(--border-light);
+            color: var(--text-muted); cursor: pointer;
+            border-radius: var(--r-md); transition: all .14s;
+            flex-shrink: 0;
+        }
+        .dp-close:hover { color: var(--text-primary); border-color: var(--cyan-border); background: var(--bg-elevated); }
+
+        .dp-meta {
+            display: grid; grid-template-columns: repeat(4, 1fr);
+            gap: 1px;
+            background: var(--border);
+            border-bottom: 1px solid var(--border);
+            flex-shrink: 0;
+        }
+        .dp-meta-item { background: var(--bg-surface); padding: 8px 12px; }
+        .dp-meta-lbl  { font-size: 9px; font-weight: 700; color: var(--text-muted); letter-spacing: .08em; text-transform: uppercase; margin-bottom: 2px; }
+        .dp-meta-val  { font-size: 12px; font-weight: 700; color: var(--text-primary); font-family: 'Consolas', monospace; }
+
+        .dp-body {
+            flex: 1; min-height: 0;
+            overflow-y: auto;
+            padding: 16px 18px 20px;
+        }
+        .dp-section-title {
+            display: flex; align-items: center; gap: 8px;
+            font-size: 10px; font-weight: 700;
+            text-transform: uppercase; letter-spacing: .1em;
+            color: var(--text-muted);
+            margin: 4px 0 10px;
+        }
+        .dp-section-title::after {
+            content: ''; flex: 1; height: 1px; background: var(--border);
+        }
+
+        /* Document card */
+        .doc-card {
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-light);
+            border-radius: var(--r-lg);
+            padding: 12px 14px;
+            margin-bottom: 10px;
+            transition: border-color .15s;
+        }
+        .doc-card:hover { border-color: var(--cyan-border); }
+        .doc-card.primary { border-left: 3px solid var(--cyan); }
+
+        .doc-card-head {
+            display: flex; align-items: center; gap: 10px;
+            margin-bottom: 10px;
+        }
+        .doc-icon {
+            width: 32px; height: 32px; flex-shrink: 0;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: var(--r-md);
+            background: var(--cyan-dim); color: var(--cyan);
+        }
+        .doc-icon.purple { background: var(--purple-dim); color: var(--purple); }
+        .doc-icon.blue   { background: var(--blue-dim);   color: var(--blue); }
+        .doc-icon.orange { background: var(--orange-dim); color: var(--orange); }
+        .doc-icon.green  { background: var(--green-dim);  color: var(--green); }
+        .doc-title {
+            flex: 1; min-width: 0;
+            display: flex; flex-direction: column;
+        }
+        .doc-name { font-size: 13px; font-weight: 700; color: var(--text-primary); }
+        .doc-abbr { font-size: 10px; color: var(--text-muted); letter-spacing: .06em; }
+
+        .doc-meta-row {
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 8px 14px;
+            font-size: 11px;
+            margin-bottom: 10px;
+        }
+        .doc-meta-lbl { color: var(--text-muted); font-size: 9.5px; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 1px; }
+        .doc-meta-val { color: var(--text-primary); font-weight: 600; font-family: 'Consolas', monospace; font-size: 11px; }
+        .doc-meta-val.empty { color: var(--text-muted); }
+
+        .doc-actions {
+            display: flex; align-items: center; gap: 6px;
+            flex-wrap: wrap;
+        }
+        .doc-btn {
+            display: inline-flex; align-items: center; gap: 5px;
+            height: 28px; padding: 0 11px;
+            border: 1px solid var(--border-light);
+            border-radius: var(--r-md);
+            background: var(--bg-surface);
+            color: var(--text-secondary);
+            font-size: 11px; font-weight: 600; letter-spacing: .02em;
+            cursor: pointer;
+            transition: all .14s;
+            white-space: nowrap;
+        }
+        .doc-btn:hover { color: var(--text-primary); border-color: var(--cyan-border); background: var(--bg-elevated); }
+        .doc-btn.primary {
+            background: var(--cyan-dim);
+            color: var(--cyan);
+            border-color: var(--cyan-border);
+            font-weight: 700;
+        }
+        .doc-btn.primary:hover {
+            background: rgba(6, 212, 255, 0.18);
+            color: var(--cyan);
+            border-color: var(--cyan);
+        }
+        .doc-btn.danger { color: var(--red); }
+        .doc-btn.danger:hover { border-color: var(--red); color: var(--red); }
+
+        /* ========= UPLOAD MODAL ========= */
+        dialog#uploadModal {
+            margin: auto; padding: 0;
+            border: 1px solid var(--border-light);
+            border-radius: var(--r-xl);
+            background: var(--bg-surface);
+            color: var(--text-primary);
+            width: min(520px, 95vw);
+            box-shadow: 0 24px 80px rgba(0,0,0,.65);
+        }
+        dialog::backdrop { background: rgba(0,0,0,.72); backdrop-filter: blur(4px); }
+        .um-head {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 14px 18px; border-bottom: 1px solid var(--border);
+        }
+        .um-title { font-size: 14px; font-weight: 700; color: var(--cyan); }
+        .um-close {
+            width: 26px; height: 26px;
+            display: flex; align-items: center; justify-content: center;
+            background: none; border: none; color: var(--text-muted);
+            cursor: pointer; font-size: 15px; border-radius: var(--r-sm);
+        }
+        .um-close:hover { background: var(--bg-elevated); color: var(--text-primary); }
+        .um-body { padding: 18px; }
+        .um-info {
+            background: var(--bg-elevated); border: 1px solid var(--border-light);
+            border-radius: var(--r-md); padding: 10px 12px; margin-bottom: 14px;
+            font-size: 11px; color: var(--text-secondary);
+        }
+        .um-info b { color: var(--cyan); font-family: 'Consolas', monospace; }
+
+        .drop-zone {
+            border: 1.5px dashed var(--border-light);
+            border-radius: var(--r-lg);
+            padding: 28px 16px;
+            text-align: center;
+            cursor: pointer;
+            transition: all .15s;
+            background: var(--bg-base);
+        }
+        .drop-zone:hover, .drop-zone.dragover {
+            border-color: var(--cyan); background: var(--cyan-dim);
+        }
+        .drop-zone svg { color: var(--text-muted); margin-bottom: 10px; }
+        .drop-zone:hover svg { color: var(--cyan); }
+        .drop-zone p { font-size: 12px; color: var(--text-secondary); margin: 2px 0; }
+        .drop-zone p.main { font-size: 13px; font-weight: 600; color: var(--text-primary); margin-bottom: 6px; }
+        .drop-zone small { font-size: 10px; color: var(--text-muted); }
+        .um-foot {
+            display: flex; align-items: center; justify-content: flex-end; gap: 8px;
+            padding: 14px 18px; border-top: 1px solid var(--border);
+        }
+        .um-btn {
+            display: inline-flex; align-items: center; gap: 6px;
+            height: 32px; padding: 0 16px;
+            border-radius: var(--r-md);
+            font-size: 12px; font-weight: 600;
+            cursor: pointer; border: none;
+            transition: opacity .14s;
+        }
+        .um-btn-cancel { background: var(--bg-elevated); color: var(--text-secondary); border: 1px solid var(--border-light); }
+        .um-btn-cancel:hover { color: var(--text-primary); }
+        .um-btn-ok { background: var(--cyan); color: #0B0E1A; font-weight: 700; }
+        .um-btn-ok:hover { opacity: .85; }
+
+        /* Empty state */
+        .empty-state {
+            position: absolute; inset: 0;
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            color: var(--text-muted); gap: 8px;
+            pointer-events: none;
+        }
+        .empty-state svg { color: var(--border-light); }
+        .empty-state p { font-size: 12px; }
+    </style>
+</head>
+<body>
+<div class="app">
+
+    <!-- ============ SIDEBAR ============ -->
+    <aside class="sidebar" id="sidebar">
+
+        <div class="sidebar-logo">
+            <svg class="logo-lotus" viewBox="0 0 44 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="pg" x1="22" y1="4" x2="22" y2="43" gradientUnits="userSpaceOnUse">
+                        <stop offset="0%" stop-color="#F0C84A"/>
+                        <stop offset="100%" stop-color="#A8751A"/>
+                    </linearGradient>
+                </defs>
+                <path d="M22 43C9 43 1 33 2 19C10 27 16 36 22 43Z" fill="url(#pg)" opacity=".55"/>
+                <path d="M22 43C8 40 4 27 8 12C15 24 19 35 22 43Z" fill="url(#pg)" opacity=".72"/>
+                <path d="M22 43C13 37 10 23 15 7C20 22 21 34 22 43Z" fill="url(#pg)" opacity=".88"/>
+                <path d="M22 43C16 32 15 18 22 3C29 18 28 32 22 43Z" fill="url(#pg)"/>
+                <path d="M22 43C31 37 34 23 29 7C24 22 23 34 22 43Z" fill="url(#pg)" opacity=".88"/>
+                <path d="M22 43C36 40 40 27 36 12C29 24 25 35 22 43Z" fill="url(#pg)" opacity=".72"/>
+                <path d="M22 43C35 43 43 33 42 19C34 27 28 36 22 43Z" fill="url(#pg)" opacity=".55"/>
+                <path d="M22 43C19 34 18 22 22 8C24 18 24 32 22 43Z" fill="#FFF5C0" opacity=".18"/>
+            </svg>
+            <div class="logo-texts">
+                <span class="logo-name">Vietnam Airlines</span>
+                <span class="logo-sub">Load Control System</span>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+            <button class="nav-item">
+                <span class="nav-icon">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="2" y="3" width="20" height="14" rx="2"/>
+                        <line x1="8" y1="21" x2="16" y2="21"/>
+                        <line x1="12" y1="17" x2="12" y2="21"/>
+                    </svg>
+                </span>
+                <span class="nav-label">Flight Monitoring</span>
+            </button>
+            <button class="nav-item active">
+                <span class="nav-icon">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                        <polyline points="14,2 14,8 20,8"/>
+                        <line x1="16" y1="13" x2="8" y2="13"/>
+                        <line x1="16" y1="17" x2="8" y2="17"/>
+                        <line x1="10" y1="9" x2="8" y2="9"/>
+                    </svg>
+                </span>
+                <span class="nav-label">FLC Documents</span>
+            </button>
+            <button class="nav-item">
+                <span class="nav-icon">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M3 3h7v7H3zM14 3h7v7h-7zM14 14h7v7h-7zM3 14h7v7H3z"/>
+                    </svg>
+                </span>
+                <span class="nav-label">Fuel Order</span>
+            </button>
+            <button class="nav-item">
+                <span class="nav-icon">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                        <polyline points="22,6 12,13 2,6"/>
+                    </svg>
+                </span>
+                <span class="nav-label">Common Docs</span>
+            </button>
+        </nav>
+
+        <div class="sb-bottom">
+            <div class="sb-hide-wrap">
+                <button class="sb-hide-pill" id="hideBtn">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <polyline points="15,18 9,12 15,6"/>
+                    </svg>
+                    Hide
+                </button>
+            </div>
+            <div class="sb-icons">
+                <button class="sb-icon-btn" title="Settings">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                </button>
+                <button class="sb-icon-btn" title="Toggle theme">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                </button>
+            </div>
+            <div class="sb-user">
+                <div class="sb-avatar-wrap">
+                    <div class="sb-avatar-container">
+                        <div class="sb-avatar">L</div>
+                        <span class="sb-online-dot"></span>
+                    </div>
+                    <div class="sb-user-detail">
+                        <div class="sb-user-name">CLC Operator</div>
+                        <div class="sb-user-email">loadctrl@vietnamairlines.com</div>
+                    </div>
+                </div>
+                <button class="sb-icon-btn" title="Logout">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16,17 21,12 16,7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+                </button>
+            </div>
+            <button class="sb-expand-btn" id="expandBtn">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="13,17 18,12 13,7"/><polyline points="6,17 11,12 6,7"/></svg>
+            </button>
+        </div>
+    </aside>
+
+    <!-- ============ MAIN PANEL ============ -->
+    <div class="main">
+
+        <!-- TOPBAR -->
+        <header class="topbar">
+            <div class="topbar-title">Flight Load Control</div>
+            <div class="topbar-sub">Document Management</div>
+            <div class="topbar-right">
+                <span class="op-date">Operating Date: <b>24/06/2026</b></span>
+                <span class="op-time" id="clock">--:--:--Z</span>
+            </div>
+        </header>
+
+        <!-- FILTER BAR -->
+        <div class="filter-bar">
+            <div class="filter-strip">
+                <span class="fi">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <polygon points="22,3 2,3 10,12.46 10,19 14,21 14,12.46"/>
+                    </svg>
+                </span>
+                <span class="filter-lbl">Filter</span>
+                <div class="filter-strip-right">
+                    <button class="btn-tbl-setting">
+                        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/>
+                            <line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/>
+                        </svg>
+                        Table Setting
+                    </button>
+                    <button class="collapse-btn" id="collapseBtn" onclick="toggleFilter()">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                            <polyline points="18,15 12,9 6,15"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <div class="filter-inputs" id="filterInputs">
+                <div class="filter-inputs-row">
+                    <input type="date" class="f-input f-date" id="fFromDate" value="2026-06-23" title="EDD From">
+                    <input type="date" class="f-input f-date" id="fToDate"   value="2026-06-24" title="EDD To">
+                    <input type="text" class="f-input" id="fFltNo" placeholder="FLIGHT" style="width:96px">
+                    <input type="text" class="f-input" id="fReg"   placeholder="ACREG"  style="width:96px">
+
+                    <select class="f-select" id="fAcType" style="width:96px">
+                        <option value="">ACTYPE</option>
+                        <option>A321</option>
+                        <option>A320</option>
+                        <option>A330</option>
+                        <option>A350</option>
+                        <option>B787</option>
+                    </select>
+
+                    <select class="f-select" id="fDep" style="width:92px">
+                        <option value="">DEP</option>
+                        <option>HAN</option>
+                        <option>SGN</option>
+                        <option>DAD</option>
+                        <option>PQC</option>
+                        <option>CXR</option>
+                        <option>THD</option>
+                    </select>
+
+                    <select class="f-select" id="fArr" style="width:92px">
+                        <option value="">ARR</option>
+                        <option>HAN</option>
+                        <option>SGN</option>
+                        <option>DAD</option>
+                        <option>PQC</option>
+                        <option>THD</option>
+                        <option>HKG</option>
+                        <option>ICN</option>
+                    </select>
+
+                    <select class="f-select" id="fDocStatus" style="width:160px">
+                        <option value="">Doc Status (all)</option>
+                        <option value="missing">Missing — chưa upload</option>
+                        <option value="pending">Pending Ack — chờ Capt ack</option>
+                        <option value="done">Done — full ack</option>
+                    </select>
+
+                    <button class="btn-search" onclick="applyFilter()">
+                        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                        </svg>
+                        Search
+                    </button>
+
+                    <button class="btn-clear" onclick="clearFilter()">
+                        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="1,4 1,10 7,10"/><path d="M3.51 15a9 9 0 1 0 .49-4"/>
+                        </svg>
+                        Clear Filter
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONTENT (split) -->
+        <div class="content" id="content">
+
+            <!-- LEFT: table pane -->
+            <div class="table-pane">
+                <div class="table-wrap" id="tableWrap">
+                    <table id="mainTable">
+                        <thead>
+                            <tr class="group-row" id="groupRow">
+                                <th colspan="2" class="sc1 td-l" style="left:0; padding-left:14px;">Identity</th>
+                                <th colspan="5">Flight Info</th>
+                                <th colspan="3">Primary Docs (LS · GD · PM)</th>
+                                <th colspan="2">NOTOC</th>
+                            </tr>
+                            <tr class="col-row" id="colRow">
+                                <th class="sc1 th-l" style="left:0; min-width:80px; padding-left:14px;">FLIGHT</th>
+                                <th class="sc2 th-l" style="min-width:80px;">ACREG</th>
+                                <th style="min-width:60px;" data-tip="Aircraft Type">ACTYPE</th>
+                                <th style="min-width:88px;" data-tip="EDD (dd/MM/yyyy) — Ngày khai thác (UTC)">EDD</th>
+                                <th style="min-width:60px;" data-tip="ETD (UTC) — giờ bay dự kiến">ETD</th>
+                                <th style="min-width:52px;">DEP</th>
+                                <th style="min-width:52px;">ARR</th>
+                                <th style="min-width:104px;" data-tip="Load Sheet — Rev + Upload time / Capt Ack time (UTC)">LS</th>
+                                <th style="min-width:104px;" data-tip="General Declaration — Rev + Upload time / Capt Ack time (UTC)">GD</th>
+                                <th style="min-width:104px;" data-tip="Passenger Manifest — Rev + Upload time / Capt Ack time (UTC)">PM</th>
+                                <th style="min-width:104px;" data-tip="NOTOC Cargo — Rev + Upload time / Capt Ack time (UTC)">NOTOC CGO</th>
+                                <th style="min-width:104px;" data-tip="NOTOC Baggage — Rev + Upload time / Capt Ack time (UTC)">NOTOC BAG</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- RIGHT: detail pane (empty by default) -->
+            <aside class="detail-pane empty" id="detailPane">
+                <div class="detail-inner">
+                    <div class="dp-head">
+                        <div class="dp-head-l">
+                            <div class="dp-flt">
+                                <span id="dpFlight">--</span>
+                                <span class="dp-reg" id="dpReg">--</span>
+                            </div>
+                            <div class="dp-route">
+                                <span id="dpDep">---</span>
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                    <line x1="5" y1="12" x2="19" y2="12"/>
+                                    <polyline points="12,5 19,12 12,19"/>
+                                </svg>
+                                <span id="dpArr">---</span>
+                            </div>
+                        </div>
+                        <button class="dp-close" onclick="closeDetail()" title="Close detail">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <div class="dp-meta">
+                        <div class="dp-meta-item">
+                            <div class="dp-meta-lbl">EDD</div>
+                            <div class="dp-meta-val" id="dpEdd">--</div>
+                        </div>
+                        <div class="dp-meta-item">
+                            <div class="dp-meta-lbl">ETD (UTC)</div>
+                            <div class="dp-meta-val" id="dpEtd">--</div>
+                        </div>
+                        <div class="dp-meta-item">
+                            <div class="dp-meta-lbl">ACTYPE</div>
+                            <div class="dp-meta-val" id="dpType">--</div>
+                        </div>
+                        <div class="dp-meta-item">
+                            <div class="dp-meta-lbl">ACREG</div>
+                            <div class="dp-meta-val" id="dpReg2" style="color: var(--cyan)">--</div>
+                        </div>
+                    </div>
+
+                    <div class="dp-body">
+                        <div class="dp-section-title">
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                <polyline points="14,2 14,8 20,8"/>
+                            </svg>
+                            Documents — Upload &amp; Acknowledge
+                        </div>
+                        <div id="docList"><!-- doc cards rendered by JS --></div>
+                    </div>
+                </div>
+
+                <!-- Empty placeholder -->
+                <div class="empty-state" id="emptyState">
+                    <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                        <polyline points="14,2 14,8 20,8"/>
+                    </svg>
+                    <p>Chọn 1 chuyến bay ở bảng bên trái để xem chi tiết &amp; tài liệu</p>
+                </div>
+            </aside>
+
+        </div><!-- /content -->
+
+        <!-- STATUS BAR -->
+        <div class="statusbar">
+            <div class="live-wrap">
+                <div class="live-dot"></div>
+                <span>Live</span>
+            </div>
+            <span>Showing: <b id="cntShow" style="color:var(--text-primary)">0</b> / <span id="cntTotal">0</span> flights</span>
+            <span class="sb-right">TOSS POC — Flight Load Control v1.0 (UTC)</span>
+        </div>
+
+    </div><!-- end .main -->
+</div><!-- end .app -->
+
+<!-- ============ UPLOAD MODAL ============ -->
+<dialog id="uploadModal">
+    <div class="um-head">
+        <div class="um-title" id="umTitle">Upload Document</div>
+        <button class="um-close" onclick="document.getElementById('uploadModal').close()">&#x2715;</button>
+    </div>
+    <div class="um-body">
+        <div class="um-info" id="umInfo">--</div>
+        <div class="drop-zone" id="dropZone" onclick="document.getElementById('umFile').click()">
+            <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                <polyline points="17,8 12,3 7,8"/>
+                <line x1="12" y1="3" x2="12" y2="15"/>
+            </svg>
+            <p class="main">Kéo &amp; thả file vào đây</p>
+            <p>hoặc <u>click để chọn file</u></p>
+            <small>Chấp nhận: PDF, XML, TXT &nbsp;·&nbsp; tối đa 10 MB</small>
+            <input type="file" id="umFile" hidden accept=".pdf,.xml,.txt">
+        </div>
+    </div>
+    <div class="um-foot">
+        <button class="um-btn um-btn-cancel" onclick="document.getElementById('uploadModal').close()">Cancel</button>
+        <button class="um-btn um-btn-ok" onclick="alert('Upload (mock) — tích hợp API trong giai đoạn dev'); document.getElementById('uploadModal').close()">Upload</button>
+    </div>
+</dialog>
+
+<script>
+/* =========================================================
+   CLOCK
+   ========================================================= */
+function updateClock() {
+    const n = new Date();
+    const pad = v => String(v).padStart(2,'0');
+    document.getElementById('clock').textContent =
+        pad(n.getUTCHours()) + ':' + pad(n.getUTCMinutes()) + ':' + pad(n.getUTCSeconds()) + 'Z';
+}
+updateClock(); setInterval(updateClock, 1000);
+
+/* =========================================================
+   SIDEBAR
+   ========================================================= */
+function toggleSidebar() {
+    document.getElementById('sidebar').classList.toggle('collapsed');
+    setTimeout(fixStickyOffsets, 260);
+}
+document.getElementById('hideBtn').addEventListener('click', function(e) {
+    e.stopPropagation(); toggleSidebar();
+});
+document.getElementById('expandBtn').addEventListener('click', toggleSidebar);
+document.getElementById('sidebar').addEventListener('click', function(e) {
+    if (this.classList.contains('collapsed')) { e.stopPropagation(); toggleSidebar(); }
+});
+
+/* =========================================================
+   STICKY OFFSETS
+   ========================================================= */
+function fixStickyHeaders() {
+    const groupRow = document.getElementById('groupRow');
+    const colRow   = document.getElementById('colRow');
+    if (!groupRow || !colRow) return;
+    const gh = groupRow.offsetHeight;
+    Array.from(colRow.cells).forEach(c => c.style.top = gh + 'px');
+}
+function fixStickyOffsets() {
+    const secondCols = document.querySelectorAll('.sc2');
+    const firstCell = document.querySelector('tbody .sc1') || document.querySelector('thead .sc1');
+    if (!firstCell) return;
+    const w1 = firstCell.offsetWidth;
+    secondCols.forEach(c => c.style.left = w1 + 'px');
+}
+
+/* =========================================================
+   FILTER COLLAPSE
+   ========================================================= */
+let filterVisible = true;
+function toggleFilter() {
+    filterVisible = !filterVisible;
+    document.getElementById('filterInputs').classList.toggle('collapsed', !filterVisible);
+    document.getElementById('collapseBtn').classList.toggle('flipped',    !filterVisible);
+}
+
+/* =========================================================
+   DATA — cấu trúc 1 dòng theo schema "Man hinh Document"
+   {edd, flt, reg, acType, etd, dep, arr,
+    docs: { LS:{rev,up,ack}, GD:{...}, PM:{...}, NOTOC_CGO:{...}, NOTOC_BAG:{...}}}
+
+   Trạng thái ack:
+     - 'ok'      : đã Capt ack (có timestamp)
+     - 'pending' : đã upload (có rev + upload time) nhưng Capt chưa ack
+     - 'none'    : chưa upload tài liệu (rev=null)
+   ========================================================= */
+function d(rev, up, ackTime) {
+    return { rev: rev, up: up, ack: ackTime ? 'ok' : (rev ? 'pending' : 'none'), ackTime: ackTime };
+}
+
+const SAMPLE = [
+    // Row 1 — đúng theo dòng mẫu trong Excel "Man hinh Document"
+    { edd:'23/06/2026', flt:'VN7273', reg:'VNA339', acType:'A321', etd:'00:00', dep:'HAN', arr:'THD',
+      docs:{ LS:d('R01','22/06 23:45','22/06 23:55'), GD:d('R01','22/06 23:45','22/06 23:55'),
+             PM:d('R01','22/06 23:45','22/06 23:55'), NOTOC_CGO:d('R01','22/06 23:45','22/06 23:55'),
+             NOTOC_BAG:d('R01','22/06 23:45','22/06 23:55') } },
+
+    { edd:'24/06/2026', flt:'VN120', reg:'VNA123', acType:'A321', etd:'00:30', dep:'SGN', arr:'HAN',
+      docs:{ LS:d('R02','24/06 00:05','24/06 00:12'), GD:d('R02','24/06 00:05','24/06 00:12'),
+             PM:d('R02','24/06 00:05','24/06 00:14'), NOTOC_CGO:d('R01','24/06 00:00','24/06 00:10'),
+             NOTOC_BAG:d('R01','24/06 00:00','24/06 00:10') } },
+
+    { edd:'24/06/2026', flt:'VN220', reg:'VNA321', acType:'A321', etd:'01:00', dep:'HAN', arr:'SGN',
+      docs:{ LS:d('R02','24/06 00:32',null), GD:d('R02','24/06 00:33',null),
+             PM:d('R02','24/06 00:33',null), NOTOC_CGO:d('R01','24/06 00:30','24/06 00:40'),
+             NOTOC_BAG:d('R01','24/06 00:30','24/06 00:40') } },
+
+    { edd:'24/06/2026', flt:'VN340', reg:'VNB456', acType:'B787', etd:'03:15', dep:'SGN', arr:'DAD',
+      docs:{ LS:d('R01','24/06 02:50','24/06 03:00'), GD:d('R01','24/06 02:50','24/06 03:00'),
+             PM:d('R01','24/06 02:50','24/06 03:00'), NOTOC_CGO:d('R01','24/06 02:48','24/06 02:58'),
+             NOTOC_BAG:d(null,null,null) } },
+
+    { edd:'24/06/2026', flt:'VN456', reg:'VNA144', acType:'A321', etd:'04:45', dep:'DAD', arr:'HAN',
+      docs:{ LS:d('R02','24/06 04:15','24/06 04:28'), GD:d('R02','24/06 04:15','24/06 04:28'),
+             PM:d('R02','24/06 04:18','24/06 04:30'), NOTOC_CGO:d('R01','24/06 04:10','24/06 04:25'),
+             NOTOC_BAG:d('R01','24/06 04:10','24/06 04:25') } },
+
+    { edd:'24/06/2026', flt:'VN568', reg:'VNA588', acType:'A321', etd:'06:00', dep:'SGN', arr:'HKG',
+      docs:{ LS:d('R01','24/06 05:32',null), GD:d('R01','24/06 05:32','24/06 05:48'),
+             PM:d('R01','24/06 05:35',null), NOTOC_CGO:d('R01','24/06 05:28','24/06 05:42'),
+             NOTOC_BAG:d('R01','24/06 05:28','24/06 05:42') } },
+
+    { edd:'24/06/2026', flt:'VN608', reg:'VNB787', acType:'B787', etd:'07:30', dep:'HAN', arr:'ICN',
+      docs:{ LS:d(null,null,null), GD:d(null,null,null), PM:d(null,null,null),
+             NOTOC_CGO:d(null,null,null), NOTOC_BAG:d(null,null,null) } },
+
+    { edd:'24/06/2026', flt:'VN720', reg:'VNA381', acType:'A320', etd:'09:10', dep:'SGN', arr:'HAN',
+      docs:{ LS:d('R02','24/06 08:42','24/06 08:55'), GD:d('R02','24/06 08:42','24/06 08:55'),
+             PM:d('R02','24/06 08:45','24/06 08:58'), NOTOC_CGO:d('R01','24/06 08:38','24/06 08:50'),
+             NOTOC_BAG:d('R01','24/06 08:38','24/06 08:50') } },
+
+    { edd:'24/06/2026', flt:'VN832', reg:'VNB190', acType:'B787', etd:'10:20', dep:'HAN', arr:'PQC',
+      docs:{ LS:d('R01','24/06 09:58',null), GD:d('R01','24/06 09:58',null),
+             PM:d('R01','24/06 10:00',null), NOTOC_CGO:d('R01','24/06 09:55','24/06 10:08'),
+             NOTOC_BAG:d('R01','24/06 09:55','24/06 10:08') } },
+
+    { edd:'24/06/2026', flt:'VN944', reg:'VNA777', acType:'A321', etd:'11:45', dep:'SGN', arr:'CXR',
+      docs:{ LS:d('R02','24/06 11:22','24/06 11:30'), GD:d('R02','24/06 11:22','24/06 11:30'),
+             PM:d('R02','24/06 11:24','24/06 11:32'), NOTOC_CGO:d('R01','24/06 11:18','24/06 11:28'),
+             NOTOC_BAG:d('R01','24/06 11:18','24/06 11:28') } },
+
+    { edd:'24/06/2026', flt:'VN052', reg:'VNB350', acType:'A350', etd:'13:00', dep:'HAN', arr:'SGN',
+      docs:{ LS:d('R01','24/06 12:30','24/06 12:42'), GD:d('R01','24/06 12:30','24/06 12:42'),
+             PM:d('R01','24/06 12:32','24/06 12:45'), NOTOC_CGO:d('R01','24/06 12:28','24/06 12:40'),
+             NOTOC_BAG:d('R01','24/06 12:28','24/06 12:40') } },
+
+    { edd:'24/06/2026', flt:'VN164', reg:'VNA201', acType:'A321', etd:'14:10', dep:'SGN', arr:'NRT',
+      docs:{ LS:d(null,null,null), GD:d(null,null,null), PM:d(null,null,null),
+             NOTOC_CGO:d(null,null,null), NOTOC_BAG:d(null,null,null) } },
+
+    { edd:'24/06/2026', flt:'VN278', reg:'VNA332', acType:'A330', etd:'15:30', dep:'HAN', arr:'DAD',
+      docs:{ LS:d('R02','24/06 14:58','24/06 15:10'), GD:d('R02','24/06 14:58','24/06 15:10'),
+             PM:d('R02','24/06 15:00','24/06 15:12'), NOTOC_CGO:d('R01','24/06 14:55','24/06 15:08'),
+             NOTOC_BAG:d('R01','24/06 14:55','24/06 15:08') } },
+
+    { edd:'24/06/2026', flt:'VN386', reg:'VNA099', acType:'A321', etd:'16:00', dep:'SGN', arr:'PQC',
+      docs:{ LS:d('R02','24/06 15:32','24/06 15:48'), GD:d('R02','24/06 15:32','24/06 15:48'),
+             PM:d('R02','24/06 15:35','24/06 15:50'), NOTOC_CGO:d('R01','24/06 15:28','24/06 15:45'),
+             NOTOC_BAG:d('R01','24/06 15:28','24/06 15:45') } },
+
+    { edd:'24/06/2026', flt:'VN492', reg:'VNA211', acType:'A321', etd:'16:20', dep:'DAD', arr:'SGN',
+      docs:{ LS:d('R01','24/06 15:55','24/06 16:08'), GD:d('R01','24/06 15:55','24/06 16:08'),
+             PM:d('R01','24/06 15:58','24/06 16:10'), NOTOC_CGO:d('R01','24/06 15:52','24/06 16:05'),
+             NOTOC_BAG:d('R01','24/06 15:52','24/06 16:05') } },
+
+    { edd:'24/06/2026', flt:'VN550', reg:'VNB211', acType:'B787', etd:'16:45', dep:'SGN', arr:'BKK',
+      docs:{ LS:d('R02','24/06 16:12',null), GD:d('R02','24/06 16:12',null),
+             PM:d('R02','24/06 16:14',null), NOTOC_CGO:d('R01','24/06 16:10','24/06 16:24'),
+             NOTOC_BAG:d('R01','24/06 16:10','24/06 16:24') } },
+
+    { edd:'24/06/2026', flt:'VN604', reg:'VNA088', acType:'A320', etd:'17:10', dep:'HAN', arr:'SGN',
+      docs:{ LS:d('R01','24/06 16:40','24/06 16:58'), GD:d('R01','24/06 16:40','24/06 16:58'),
+             PM:d('R01','24/06 16:42','24/06 17:00'), NOTOC_CGO:d('R01','24/06 16:38','24/06 16:55'),
+             NOTOC_BAG:d('R01','24/06 16:38','24/06 16:55') } },
+
+    { edd:'24/06/2026', flt:'VN716', reg:'VNA455', acType:'A321', etd:'17:30', dep:'SGN', arr:'HAN',
+      docs:{ LS:d('R02','24/06 17:02','24/06 17:14'), GD:d('R02','24/06 17:02','24/06 17:14'),
+             PM:d('R02','24/06 17:05','24/06 17:16'), NOTOC_CGO:d('R01','24/06 17:00','24/06 17:12'),
+             NOTOC_BAG:d('R01','24/06 17:00','24/06 17:12') } },
+
+    { edd:'24/06/2026', flt:'VN790', reg:'VNB322', acType:'B787', etd:'18:00', dep:'HAN', arr:'PVG',
+      docs:{ LS:d('R02','24/06 17:25','24/06 17:42'), GD:d('R02','24/06 17:25','24/06 17:42'),
+             PM:d('R02','24/06 17:28','24/06 17:45'), NOTOC_CGO:d('R01','24/06 17:22','24/06 17:38'),
+             NOTOC_BAG:d('R01','24/06 17:22','24/06 17:38') } },
+
+    { edd:'24/06/2026', flt:'VN840', reg:'VNA566', acType:'A321', etd:'18:20', dep:'SGN', arr:'CXR',
+      docs:{ LS:d(null,null,null), GD:d(null,null,null), PM:d(null,null,null),
+             NOTOC_CGO:d(null,null,null), NOTOC_BAG:d(null,null,null) } },
+
+    { edd:'24/06/2026', flt:'VN858', reg:'VNA630', acType:'A321', etd:'18:40', dep:'HAN', arr:'DAD',
+      docs:{ LS:d('R01','24/06 18:12','24/06 18:24'), GD:d('R01','24/06 18:12','24/06 18:24'),
+             PM:d('R01','24/06 18:14','24/06 18:26'), NOTOC_CGO:d('R01','24/06 18:10','24/06 18:22'),
+             NOTOC_BAG:d('R01','24/06 18:10','24/06 18:22') } },
+
+    { edd:'24/06/2026', flt:'VN910', reg:'VNB410', acType:'B787', etd:'19:10', dep:'SGN', arr:'KUL',
+      docs:{ LS:d('R01','24/06 18:38','24/06 18:55'), GD:d('R01','24/06 18:38','24/06 18:55'),
+             PM:d('R01','24/06 18:40','24/06 18:58'), NOTOC_CGO:d('R01','24/06 18:36','24/06 18:52'),
+             NOTOC_BAG:d('R01','24/06 18:36','24/06 18:52') } },
+
+    { edd:'24/06/2026', flt:'VN974', reg:'VNA722', acType:'A321', etd:'19:30', dep:'HAN', arr:'SGN',
+      docs:{ LS:d('R02','24/06 19:02','24/06 19:12'), GD:d('R02','24/06 19:02','24/06 19:12'),
+             PM:d('R02','24/06 19:04','24/06 19:14'), NOTOC_CGO:d('R01','24/06 19:00','24/06 19:10'),
+             NOTOC_BAG:d('R01','24/06 19:00','24/06 19:10') } },
+];
+
+let currentFilter = { flt:'', reg:'', acType:'', dep:'', arr:'', docStatus:'' };
+
+function rowDocAgg(r) {
+    const docs = Object.values(r.docs);
+    if (docs.every(x => x.ack === 'none')) return 'missing';
+    if (docs.some(x => x.ack === 'pending') || docs.some(x => x.ack === 'none')) return 'pending';
+    return 'done';
+}
+
+function currentData() {
+    return SAMPLE.filter(r => {
+        if (currentFilter.flt && !r.flt.toUpperCase().includes(currentFilter.flt.toUpperCase())) return false;
+        if (currentFilter.reg && !r.reg.toUpperCase().includes(currentFilter.reg.toUpperCase())) return false;
+        if (currentFilter.acType && r.acType !== currentFilter.acType) return false;
+        if (currentFilter.dep && r.dep !== currentFilter.dep) return false;
+        if (currentFilter.arr && r.arr !== currentFilter.arr) return false;
+        if (currentFilter.docStatus && rowDocAgg(r) !== currentFilter.docStatus) return false;
+        return true;
+    });
+}
+
+function applyFilter() {
+    currentFilter = {
+        flt: document.getElementById('fFltNo').value.trim(),
+        reg: document.getElementById('fReg').value.trim(),
+        acType: document.getElementById('fAcType').value,
+        dep: document.getElementById('fDep').value,
+        arr: document.getElementById('fArr').value,
+        docStatus: document.getElementById('fDocStatus').value,
+    };
+    renderTable(currentData());
+}
+function clearFilter() {
+    ['fFltNo','fReg'].forEach(id => document.getElementById(id).value = '');
+    ['fAcType','fDep','fArr','fDocStatus'].forEach(id => document.getElementById(id).value = '');
+    currentFilter = { flt:'', reg:'', acType:'', dep:'', arr:'', docStatus:'' };
+    renderTable(currentData());
+}
+
+/* =========================================================
+   RENDER TABLE
+   ========================================================= */
+function docCell(doc) {
+    if (!doc || !doc.rev) {
+        return `<div class="doc-cell">
+                  <span class="doc-rev dash">---</span>
+                  <span class="doc-ack ack-na"><span class="ack-dot"></span>MISSING</span>
+                </div>`;
+    }
+    const ackLabel = doc.ack === 'ok' ? `ACK ${doc.ackTime}` : 'AWAIT ACK';
+    const ackCls   = doc.ack === 'ok' ? 'ack-ok' : 'ack-pen';
+    return `<div class="doc-cell">
+              <span class="doc-rev">${doc.rev}</span>
+              <span class="doc-time">${doc.up}</span>
+              <span class="doc-ack ${ackCls}"><span class="ack-dot"></span>${ackLabel}</span>
+            </div>`;
+}
+
+function renderTable(data) {
+    const tbody = document.getElementById('tbody');
+    tbody.innerHTML = '';
+    data.forEach((r, i) => {
+        const tr = document.createElement('tr');
+        tr.dataset.idx = i;
+        tr.onclick = () => selectRow(i);
+        tr.innerHTML = `
+            <td class="sc1 td-l" style="padding-left:14px;"><span class="cell-flt">${r.flt}</span></td>
+            <td class="sc2 td-l"><span class="cell-reg">${r.reg}</span></td>
+            <td class="cell-dim">${r.acType}</td>
+            <td class="cell-mono">${r.edd}</td>
+            <td class="cell-mono">${r.etd}Z</td>
+            <td class="cell-dim">${r.dep}</td>
+            <td class="cell-dim">${r.arr}</td>
+            <td>${docCell(r.docs.LS)}</td>
+            <td>${docCell(r.docs.GD)}</td>
+            <td>${docCell(r.docs.PM)}</td>
+            <td>${docCell(r.docs.NOTOC_CGO)}</td>
+            <td>${docCell(r.docs.NOTOC_BAG)}</td>
+        `;
+        tbody.appendChild(tr);
+    });
+    document.getElementById('cntShow').textContent  = data.length;
+    document.getElementById('cntTotal').textContent = data.length;
+    window._currentRows = data;
+    setTimeout(() => { fixStickyHeaders(); fixStickyOffsets(); }, 0);
+}
+
+/* =========================================================
+   SELECT ROW → DETAIL PANE
+   ========================================================= */
+let selectedIdx = -1;
+function selectRow(idx) {
+    selectedIdx = idx;
+    document.querySelectorAll('#tbody tr').forEach((tr, i) => {
+        tr.classList.toggle('selected', i === idx);
+    });
+    document.getElementById('content').classList.add('split');
+    document.getElementById('detailPane').classList.remove('empty');
+    document.getElementById('emptyState').style.display = 'none';
+    renderDetail(window._currentRows[idx]);
+    setTimeout(() => { fixStickyHeaders(); fixStickyOffsets(); }, 260);
+}
+
+function closeDetail() {
+    selectedIdx = -1;
+    document.querySelectorAll('#tbody tr').forEach(tr => tr.classList.remove('selected'));
+    document.getElementById('content').classList.remove('split');
+    document.getElementById('detailPane').classList.add('empty');
+    document.getElementById('emptyState').style.display = '';
+    setTimeout(() => { fixStickyHeaders(); fixStickyOffsets(); }, 260);
+}
+
+const DOC_DEF = [
+    { key:'LS',         name:'Load Sheet',           abbr:'LS',         icon:'cyan',   primary:true,
+      svg:'<rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/>' },
+    { key:'GD',         name:'General Declaration',  abbr:'GD',         icon:'purple', primary:true,
+      svg:'<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>' },
+    { key:'PM',         name:'Passenger Manifest',   abbr:'PM',         icon:'blue',   primary:true,
+      svg:'<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>' },
+    { key:'NOTOC_CGO',  name:'NOTOC Cargo',          abbr:'NOTOC Cgo',  icon:'orange', primary:false,
+      svg:'<path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27,6.96 12,12.01 20.73,6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/>' },
+    { key:'NOTOC_BAG',  name:'NOTOC Baggage',        abbr:'NOTOC Bag',  icon:'green',  primary:false,
+      svg:'<path d="M6 21h12a2 2 0 0 0 2-2V8H4v11a2 2 0 0 0 2 2z"/><path d="M8 8V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v3"/><line x1="10" y1="11" x2="10" y2="17"/><line x1="14" y1="11" x2="14" y2="17"/>' },
+];
+
+function renderDetail(r) {
+    document.getElementById('dpFlight').textContent = r.flt;
+    document.getElementById('dpReg').textContent    = '· ' + r.reg;
+    document.getElementById('dpDep').textContent    = r.dep;
+    document.getElementById('dpArr').textContent    = r.arr;
+    document.getElementById('dpEdd').textContent    = r.edd;
+    document.getElementById('dpEtd').textContent    = r.etd + 'Z';
+    document.getElementById('dpType').textContent   = r.acType;
+    document.getElementById('dpReg2').textContent   = r.reg;
+
+    const list = document.getElementById('docList');
+    list.innerHTML = '';
+    DOC_DEF.forEach(def => {
+        const doc = r.docs[def.key];
+        const hasFile = !!doc.rev;
+        const ackLabel = doc.ack === 'ok'      ? `Đã ack lúc <b>${doc.ackTime}Z</b>`
+                       : doc.ack === 'pending' ? `<span style="color:var(--orange)">Chờ Captain Ack</span>`
+                                               : `<span style="color:var(--text-muted)">Chưa có tài liệu</span>`;
+
+        const card = document.createElement('div');
+        card.className = 'doc-card' + (def.primary ? ' primary' : '');
+        card.innerHTML = `
+            <div class="doc-card-head">
+                <div class="doc-icon ${def.icon}">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        ${def.svg}
+                    </svg>
+                </div>
+                <div class="doc-title">
+                    <div class="doc-name">${def.name}</div>
+                    <div class="doc-abbr">${def.abbr}</div>
+                </div>
+            </div>
+            <div class="doc-meta-row">
+                <div>
+                    <div class="doc-meta-lbl">Revision</div>
+                    <div class="doc-meta-val ${hasFile ? '' : 'empty'}">${hasFile ? doc.rev : '— (chưa upload)'}</div>
+                </div>
+                <div>
+                    <div class="doc-meta-lbl">Uploaded (UTC)</div>
+                    <div class="doc-meta-val ${hasFile ? '' : 'empty'}">${hasFile ? doc.up + 'Z' : '—'}</div>
+                </div>
+                <div style="grid-column: span 2;">
+                    <div class="doc-meta-lbl">Capt Acknowledge</div>
+                    <div class="doc-meta-val" style="font-family:inherit;font-weight:500">${ackLabel}</div>
+                </div>
+            </div>
+            <div class="doc-actions">
+                <button class="doc-btn primary" onclick="openUpload('${def.key}','${def.name}')">
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                        <polyline points="17,8 12,3 7,8"/>
+                        <line x1="12" y1="3" x2="12" y2="15"/>
+                    </svg>
+                    ${hasFile ? 'Upload new rev' : 'Upload'}
+                </button>
+                <button class="doc-btn" ${hasFile ? '' : 'disabled style="opacity:.4;cursor:not-allowed"'} onclick="alert('Preview tài liệu ${def.abbr} (mock)')">
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>
+                    </svg>
+                    View
+                </button>
+                <button class="doc-btn" ${hasFile ? '' : 'disabled style="opacity:.4;cursor:not-allowed"'} onclick="alert('Download tài liệu ${def.abbr} (mock)')">
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                        <polyline points="7,10 12,15 17,10"/>
+                        <line x1="12" y1="15" x2="12" y2="3"/>
+                    </svg>
+                    Download
+                </button>
+                <button class="doc-btn" ${hasFile ? '' : 'disabled style="opacity:.4;cursor:not-allowed"'} onclick="alert('Xem lịch sử Rev (mock)')">
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="1,4 1,10 7,10"/><path d="M3.51 15a9 9 0 1 0 .49-4"/>
+                    </svg>
+                    History
+                </button>
+            </div>
+        `;
+        list.appendChild(card);
+    });
+}
+
+/* =========================================================
+   UPLOAD MODAL
+   ========================================================= */
+function openUpload(key, name) {
+    const r = window._currentRows[selectedIdx];
+    if (!r) return;
+    document.getElementById('umTitle').textContent = `Upload — ${name}`;
+    document.getElementById('umInfo').innerHTML =
+        `Flight <b>${r.flt}</b> · ${r.reg} · ${r.dep} → ${r.arr} · EDD ${r.edd} · ETD ${r.etd}Z`;
+    document.getElementById('uploadModal').showModal();
+}
+
+/* Drag & drop styling for the drop zone */
+const dz = document.getElementById('dropZone');
+['dragenter','dragover'].forEach(ev => dz.addEventListener(ev, e => { e.preventDefault(); dz.classList.add('dragover'); }));
+['dragleave','drop'].forEach(ev => dz.addEventListener(ev, e => { e.preventDefault(); dz.classList.remove('dragover'); }));
+dz.addEventListener('drop', e => {
+    if (e.dataTransfer.files && e.dataTransfer.files.length) {
+        alert('Đã nhận file: ' + e.dataTransfer.files[0].name + ' (mock upload)');
+    }
+});
+
+/* =========================================================
+   INIT
+   ========================================================= */
+window.addEventListener('DOMContentLoaded', () => {
+    renderTable(currentData());
+});
+window.addEventListener('resize', () => {
+    fixStickyHeaders();
+    fixStickyOffsets();
+});
+</script>
+</body>
+</html>

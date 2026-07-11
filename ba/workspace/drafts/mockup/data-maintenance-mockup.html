@@ -1,0 +1,1817 @@
+<!DOCTYPE html>
+<!--
+  MOCKUP — TOSS Data Maintenance (Menu dọc + Flight Fleet mặc định)
+  CLAUDE.md §0: dữ liệu mẫu, bố cục đề xuất cần BA/UI duyệt.
+  Nguồn: Reuse sidebar từ system-admin-mockup.html + Flight Fleet layout từ reference image.
+  Trình bày theo Angular Material 3; mỗi vùng có data-mat = component Material.
+  Trực thuộc ba/workspace/drafts/mockup/data-maintenance-mockup.html.
+-->
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TOSS — Data Maintenance Mockup</title>
+  <!-- Google Fonts: Inter & Roboto + Material Symbols Outlined -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto:wght@400;500;700&family=Material+Symbols+Outlined" rel="stylesheet">
+
+  <style>
+    /* ===== Design System & Core Colors (VNA Brand & Material Design 3) ===== */
+    :root {
+      --vna-navy: #002A54;
+      --vna-gold: #D4B26F;
+      --mo-active-bg: #fef3c7;
+      --mo-active-border: #d97706;
+      --mo-active-text: #b45309;
+
+      --toss-teal: #007b83;
+      --toss-blue: #0284c7;
+      --toss-orange: #f97316;
+
+      --md-surface: #ffffff;
+      --md-surface-variant: #f8fafc;
+      --md-outline: #cbd5e1;
+      --md-outline-variant: #e2e8f0;
+      --md-text-primary: #1e293b;
+      --md-text-secondary: #64748b;
+      --md-text-muted: #94a3b8;
+
+      --sidebar-width: 260px;
+      --sidebar-collapsed-width: 52px;
+
+      --md-radius: 12px;
+      --md-radius-sm: 8px;
+      --md-elev1: 0 1px 3px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.05);
+      --md-elev2: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.05);
+      --md-elev3: 0 10px 15px -3px rgba(0,0,0,0.08), 0 4px 6px -2px rgba(0,0,0,0.04);
+
+      /* Background bầu trời TOSS */
+      --toss-bg-sky: linear-gradient(180deg, #dbe9f6 0%, #e8f1f9 30%, #f4f7fc 100%);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', Roboto, 'Segoe UI', Arial, sans-serif;
+      background: var(--md-surface-variant);
+      color: var(--md-text-primary);
+      min-height: 100vh;
+      overflow-x: hidden;
+      display: flex;
+    }
+
+    .material-symbols-outlined {
+      font-family: 'Material Symbols Outlined';
+      font-size: 22px;
+      vertical-align: middle;
+      line-height: 1;
+      user-select: none;
+    }
+
+    /* ===== Layout Wrapper ===== */
+    .app-layout {
+      display: flex;
+      width: 100vw;
+      min-height: 100vh;
+    }
+
+    /* ===== Sidebar ===== */
+    .sidebar {
+      width: var(--sidebar-width);
+      background: var(--md-surface);
+      border-right: 1px solid var(--md-outline-variant);
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      flex-shrink: 0;
+    }
+
+    .sidebar.collapsed {
+      width: var(--sidebar-collapsed-width);
+    }
+
+    .sidebar.collapsed .logo-text-group {
+      display: none;
+    }
+
+    .sidebar.collapsed .menu-item,
+    .sidebar.collapsed .footer-action-item {
+      padding: 12px 0;
+      justify-content: center;
+      gap: 0;
+      border-left: 3px solid transparent;
+    }
+
+    .sidebar.collapsed .menu-item.active {
+      border-left-color: var(--mo-active-border);
+    }
+
+    .sidebar.collapsed .user-profile-card {
+      margin: 8px 4px;
+      padding: 4px;
+      justify-content: center;
+      background: transparent;
+    }
+
+    .sidebar-header {
+      padding: 8px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--md-outline-variant);
+      height: 48px;
+      position: relative;
+      box-sizing: border-box;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      overflow: hidden;
+      white-space: nowrap;
+      transition: opacity 0.2s;
+      flex-shrink: 0;
+      height: 32px;
+    }
+
+    .sidebar.collapsed .logo-container {
+      justify-content: center;
+      width: 100%;
+    }
+
+    .vna-logo-text {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--vna-navy);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      line-height: 1.2;
+    }
+
+    .vna-logo-sub {
+      font-size: 10px;
+      color: var(--vna-gold);
+      font-weight: 500;
+      display: block;
+    }
+
+    .sidebar-toggle-btn {
+      position: absolute;
+      right: -12px;
+      top: 20px;
+      width: 24px;
+      height: 24px;
+      background: var(--md-surface);
+      border: 1px solid var(--md-outline);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: var(--md-elev1);
+      z-index: 110;
+      transition: transform 0.3s;
+    }
+
+    .sidebar-toggle-btn:hover {
+      background: var(--md-surface-variant);
+      box-shadow: var(--md-elev2);
+    }
+
+    .sidebar-toggle-btn .material-symbols-outlined {
+      font-size: 16px;
+      color: var(--md-text-secondary);
+    }
+
+    .sidebar-menu {
+      flex: 1;
+      padding: 16px 0;
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+
+    .sidebar-menu::-webkit-scrollbar {
+      width: 4px;
+    }
+    .sidebar-menu::-webkit-scrollbar-thumb {
+      background: var(--md-outline-variant);
+      border-radius: 999px;
+    }
+
+    .menu-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 18px;
+      color: var(--md-text-primary);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      border-left: 4px solid transparent;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+      position: relative;
+    }
+
+    .menu-item:hover {
+      background: var(--md-surface-variant);
+    }
+
+    .menu-item.active {
+      background: var(--mo-active-bg);
+      color: var(--mo-active-text);
+      border-left-color: var(--mo-active-border);
+      font-weight: 600;
+    }
+
+    .menu-item .material-symbols-outlined {
+      color: var(--md-text-secondary);
+      transition: color 0.2s;
+      flex-shrink: 0;
+    }
+
+    .menu-item.active .material-symbols-outlined {
+      color: var(--mo-active-border);
+    }
+
+    .menu-text {
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      opacity: 1;
+    }
+
+    .sidebar.collapsed .menu-text {
+      opacity: 0;
+      pointer-events: none;
+      transform: translateX(-10px);
+      position: absolute;
+    }
+
+    .sidebar-footer {
+      border-top: 1px solid var(--md-outline-variant);
+      padding: 8px 0;
+      background: var(--md-surface);
+    }
+
+    .footer-actions {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .footer-action-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 18px;
+      color: var(--md-text-primary);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .footer-action-item:hover {
+      background: var(--md-surface-variant);
+    }
+
+    .footer-action-item .material-symbols-outlined {
+      color: var(--md-text-secondary);
+      flex-shrink: 0;
+    }
+
+    .badge-container {
+      position: relative;
+      display: inline-flex;
+    }
+
+    .noti-badge {
+      position: absolute;
+      top: -6px;
+      right: -8px;
+      background: #ee0033;
+      color: white;
+      font-size: 9px;
+      font-weight: 700;
+      padding: 1px 5px;
+      border-radius: 999px;
+      line-height: 1;
+      border: 1.5px solid var(--md-surface);
+    }
+
+    .user-profile-card {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 16px;
+      margin: 8px;
+      border-radius: var(--md-radius-sm);
+      background: var(--md-surface-variant);
+      overflow: hidden;
+      white-space: nowrap;
+      transition: all 0.3s;
+      position: relative;
+    }
+
+    .sidebar.collapsed .user-profile-card {
+      margin: 8px 4px;
+      padding: 8px;
+      justify-content: center;
+      background: transparent;
+    }
+
+    .user-avatar-wrap {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      overflow: hidden;
+      background: #cbd5e1;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1.5px solid var(--vna-gold);
+    }
+
+    .user-avatar-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .user-info {
+      flex: 1;
+      overflow: hidden;
+      transition: opacity 0.2s;
+    }
+
+    .sidebar.collapsed .user-info {
+      display: none;
+    }
+
+    .user-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--md-text-primary);
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+
+    .user-email {
+      font-size: 11px;
+      color: var(--md-text-secondary);
+      text-overflow: ellipsis;
+      overflow: hidden;
+      margin-top: 2px;
+    }
+
+    .logout-btn {
+      background: transparent;
+      border: none;
+      color: var(--md-text-secondary);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4px;
+      border-radius: 50%;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .logout-btn:hover {
+      background: #fee2e2;
+      color: #ef4444;
+    }
+
+    /* ===== Tooltip ===== */
+    .sidebar.collapsed .menu-item::after,
+    .sidebar.collapsed .footer-action-item::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      left: 100%;
+      top: 50%;
+      transform: translateY(-50%) translateX(10px);
+      background: #1e293b;
+      color: white;
+      padding: 6px 12px;
+      border-radius: 4px;
+      font-size: 12px;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.25s;
+      box-shadow: var(--md-elev2);
+      z-index: 1000;
+    }
+
+    .sidebar.collapsed .menu-item:hover::after,
+    .sidebar.collapsed .footer-action-item:hover::after {
+      opacity: 1;
+      transform: translateY(-50%) translateX(15px);
+    }
+
+    /* ===== Main Content Area ===== */
+    .main-content {
+      flex: 1;
+      height: 100vh;
+      overflow-y: auto;
+      background: var(--toss-bg-sky);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .main-content-scrollable {
+      padding: 24px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      flex: 1;
+    }
+
+    /* ===== Card Styles ===== */
+    .m3-card {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      border-radius: var(--md-radius);
+      box-shadow: var(--md-elev1);
+      padding: 16px;
+      transition: box-shadow 0.2s, background-color 0.2s;
+    }
+
+    .m3-card:hover {
+      box-shadow: var(--md-elev2);
+    }
+
+    .filter-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      align-items: flex-end;
+    }
+
+    .filter-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      flex: 1 1 180px;
+    }
+
+    .filter-item label {
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--md-text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+
+    .filter-input {
+      width: 100%;
+      height: 38px;
+      padding: 8px 12px;
+      border: 1px solid var(--md-outline);
+      border-radius: var(--md-radius-sm);
+      font-family: inherit;
+      font-size: 13px;
+      color: var(--md-text-primary);
+      background: var(--md-surface);
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .filter-input:focus {
+      border-color: var(--vna-navy);
+      box-shadow: 0 0 0 3px rgba(0, 42, 84, 0.1);
+    }
+
+    .filter-select {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2364748b' width='18' height='18'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 10px center;
+      padding-right: 32px;
+    }
+
+    .filter-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      justify-content: flex-end;
+      height: 38px;
+      flex: 0 0 auto;
+      margin-left: auto;
+    }
+
+    /* ===== Buttons ===== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      height: 40px;
+      padding: 0 18px;
+      border-radius: 6px;
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      outline: none;
+      transition: all 0.25s ease;
+      white-space: nowrap;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    }
+
+    .btn:active {
+      transform: translateY(1px);
+    }
+
+    .btn-teal {
+      background: #007b83;
+      color: white;
+    }
+
+    .btn-teal:hover {
+      background: #006570;
+      box-shadow: 0 4px 12px rgba(0, 123, 131, 0.25);
+    }
+
+    .btn-clear {
+      background: white;
+      color: #007b83;
+      border: 1.5px solid #007b83;
+    }
+
+    .btn-clear:hover {
+      background: #f0fafb;
+      border-color: #006570;
+    }
+
+    .btn-blue {
+      background: var(--toss-blue);
+      color: white;
+    }
+
+    .btn-blue:hover {
+      background: #026ca3;
+      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.2);
+    }
+
+    .btn-orange {
+      background: var(--toss-orange);
+      color: white;
+    }
+
+    .btn-orange:hover {
+      background: #e0640d;
+      box-shadow: 0 4px 12px rgba(249, 115, 22, 0.2);
+    }
+
+    /* ===== Main Split Panel Layout ===== */
+    .admin-panel-split {
+      display: flex;
+      gap: 20px;
+      flex: 1;
+    }
+
+    .user-list-section {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      min-width: 0;
+    }
+
+    .user-details-section {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .user-list-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+
+    .user-list-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .user-list-title-wrap h2 {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--vna-navy);
+    }
+
+    .refresh-btn {
+      background: none;
+      border: none;
+      color: var(--md-text-secondary);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4px;
+      border-radius: 50%;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .refresh-btn:hover {
+      background: rgba(0, 0, 0, 0.05);
+      transform: rotate(45deg);
+    }
+
+    .user-list-actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    /* ===== Table Styles ===== */
+    .table-container {
+      background: white;
+      border-radius: var(--md-radius);
+      border: 1px solid var(--md-outline-variant);
+      overflow-x: auto;
+      box-shadow: var(--md-elev1);
+    }
+
+    .user-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 13px;
+    }
+
+    .user-table th {
+      background: #f1f5f9;
+      color: var(--md-text-secondary);
+      font-weight: 600;
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--md-outline-variant);
+      white-space: nowrap;
+    }
+
+    .user-table td {
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--md-outline-variant);
+      color: var(--md-text-primary);
+      vertical-align: middle;
+      white-space: nowrap;
+    }
+
+    .user-table tbody tr {
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+
+    .user-table tbody tr:hover {
+      background: #f8fafc;
+    }
+
+    .user-table tbody tr.active-row {
+      background: #f0f6ff;
+    }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .status-badge.active {
+      background: #e6fcf5;
+      color: #0ca678;
+    }
+
+    .status-badge.inactive {
+      background: #f1f5f9;
+      color: #64748b;
+    }
+
+    /* ===== Pagination ===== */
+    .pagination-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 4px;
+      font-size: 12.5px;
+      color: var(--md-text-secondary);
+    }
+
+    .records-selector {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .records-select {
+      border: 1px solid var(--md-outline);
+      background: white;
+      border-radius: 4px;
+      padding: 4px 8px;
+      font-family: inherit;
+      font-size: 12px;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .pagination-controls {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .page-btn {
+      width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--md-outline-variant);
+      border-radius: 4px;
+      background: white;
+      cursor: pointer;
+      font-weight: 500;
+      color: var(--md-text-primary);
+      transition: all 0.15s;
+    }
+
+    .page-btn:hover {
+      background: var(--md-surface-variant);
+      border-color: var(--md-outline);
+    }
+
+    .page-btn.active {
+      background: var(--toss-teal);
+      color: white;
+      border-color: var(--toss-teal);
+    }
+
+    .page-btn.disabled {
+      color: var(--md-text-muted);
+      cursor: not-allowed;
+      background: #f1f5f9;
+      border-color: var(--md-outline-variant);
+    }
+
+    /* ===== Details Panel ===== */
+    .details-card {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      background: white;
+      border-radius: var(--md-radius);
+      border: 1px solid var(--md-outline-variant);
+      box-shadow: var(--md-elev1);
+      padding: 16px;
+    }
+
+    .details-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      border-bottom: 1px solid #e2e8f0;
+      padding-bottom: 20px;
+      padding-top: 8px;
+    }
+
+    .details-avatar-wrap {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      border: 3px solid #d4af37;
+      overflow: hidden;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      font-size: 36px;
+    }
+
+    .details-title-info {
+      flex: 1;
+      overflow: hidden;
+    }
+
+    .details-name {
+      font-size: 19px;
+      font-weight: 800;
+      color: #002a54;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+      line-height: 1.3;
+      letter-spacing: -0.3px;
+    }
+
+    .details-id {
+      font-size: 13px;
+      color: #64748b;
+      margin-top: 4px;
+      font-weight: 500;
+    }
+
+    .details-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin-bottom: 24px;
+    }
+
+    .detail-row {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 13px;
+    }
+
+    .detail-label {
+      color: #475569;
+      font-weight: 600;
+      font-size: 13px;
+      margin-bottom: 0;
+    }
+
+    .detail-val {
+      color: #1e293b;
+      font-weight: 700;
+      font-size: 14px;
+      word-break: break-all;
+    }
+
+    /* ===== TAB NAVIGATION ===== */
+    .details-tab-nav { display: flex; gap: 0; border-bottom: 2px solid #e2e8f0; margin: 16px 0 20px 0; }
+    .details-tab-button { flex: 1; padding: 14px 12px; background: transparent; border: none; border-bottom: 3px solid transparent; cursor: pointer; font-size: 13px; font-weight: 500; color: #94a3b8; transition: all 0.2s ease; text-align: center; white-space: nowrap; min-width: 80px; }
+    .details-tab-button:hover { color: #64748b; }
+    .details-tab-button.active { color: #007b83; border-bottom: 3px solid #007b83; font-weight: 700; }
+    .details-tab-content { display: none; }
+    .details-tab-content.active { display: block; animation: fadeIn 0.2s; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    .config-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 8px; }
+    .audit-log-table { width: 100%; border-collapse: collapse; font-size: 10px; max-height: 250px; overflow-y: auto; margin-top: 6px; }
+    .audit-log-table th { background: #f1f5f9; padding: 6px 8px; font-weight: 600; color: #64748b; border-bottom: 1px solid #e2e8f0; position: sticky; top: 0; }
+    .audit-log-table td { padding: 6px 8px; border-bottom: 1px solid #e2e8f0; }
+    .audit-log-table tbody tr:hover { background: #f8fafc; }
+    .detail-input, .detail-select { width: 100%; padding: 10px 12px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 13px; font-family: inherit; background: #ffffff; transition: all 0.2s; }
+    .detail-input:hover:not(:disabled), .detail-select:hover:not(:disabled) { border-color: #a1d7dc; }
+    .detail-input:focus, .detail-select:focus { outline: none; border-color: #007b83; box-shadow: 0 0 0 3px rgba(0, 123, 131, 0.1); }
+    .detail-input:disabled { background: #f1f5f9; color: #64748b; cursor: not-allowed; border-color: #e2e8f0; }
+    .detail-select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2364748b'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 10px center; padding-right: 32px; }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 1024px) {
+      .admin-panel-split {
+        flex-direction: column;
+      }
+      .user-details-section {
+        position: static;
+      }
+    }
+
+    /* ===== Placeholder Tab Content (Hidden) ===== */
+    .tab-content {
+      display: none !important;
+      visibility: hidden;
+      position: absolute;
+      pointer-events: none;
+    }
+
+    .tab-content.active {
+      display: flex !important;
+      visibility: visible;
+      position: relative;
+      pointer-events: auto;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app-layout" id="appLayout">
+
+    <!-- ========================================================= -->
+    <!-- SIDEBAR (Menu dọc: Data Maintenance categories) -->
+    <!-- ========================================================= -->
+    <nav class="sidebar" id="sidebar" data-mat="mat-sidenav">
+
+      <!-- Sidebar Header (VNA Logo & Toggle button) -->
+      <div class="sidebar-header">
+        <div class="logo-container" id="logoContainer">
+          <!-- VNA Lotus Logo SVG -->
+          <svg viewBox="0 0 200 150" width="28" height="21" fill="#D4B26F" style="flex-shrink: 0;">
+            <path d="M100,10 C101.5,45 118,70 148,82 C125,81 107,70 100,50 C93,70 75,81 52,82 C82,70 98.5,45 100,10 Z" />
+            <path d="M100,60 C110,95 152,110 190,102 C150,107 118,92 100,74 C82,92 50,107 10,102 C48,110 90,95 100,60 Z" />
+            <path d="M100,82 C108,118 168,128 185,126 C155,128 122,118 100,100 C78,118 45,128 15,126 C32,128 92,118 100,82 Z" />
+            <path d="M100,105 C104,128 135,138 150,138 C130,138 112,128 100,118 C88,128 70,138 50,138 C65,138 96,128 100,105 Z" />
+          </svg>
+          <div class="logo-text-group">
+            <span class="vna-logo-text" style="color: #005c72; font-weight: 700; font-size: 15px; font-family: 'Inter', sans-serif; letter-spacing: -0.2px;">Vietnam<span style="font-weight: 300;">Airlines</span></span>
+            <span class="vna-logo-sub" style="font-size: 9px; color: #a1a1aa; font-weight: 500; text-transform: uppercase; letter-spacing: 1.2px;">Data Maintenance</span>
+          </div>
+        </div>
+
+        <!-- Toggle Button -->
+        <button class="sidebar-toggle-btn" id="sidebarToggle" title="Đóng/Mở menu">
+          <span class="material-symbols-outlined" id="toggleIcon">chevron_left</span>
+        </button>
+      </div>
+
+      <!-- Navigation List (14 Data Maintenance Categories) -->
+      <div class="sidebar-menu" data-mat="mat-nav-list">
+        <a class="menu-item" data-tab="pilot-category" data-tooltip="Pilot Category" onclick="switchTab('pilot-category')">
+          <span class="material-symbols-outlined">person</span>
+          <span class="menu-text">Pilot Category</span>
+        </a>
+        <a class="menu-item" data-tab="cabin-crew" data-tooltip="Cabin Crew Category" onclick="switchTab('cabin-crew')">
+          <span class="material-symbols-outlined">group</span>
+          <span class="menu-text">Cabin Crew Category</span>
+        </a>
+        <a class="menu-item" data-tab="carrier" data-tooltip="Carrier" onclick="switchTab('carrier')">
+          <span class="material-symbols-outlined">business_center</span>
+          <span class="menu-text">Carrier</span>
+        </a>
+        <a class="menu-item" data-tab="country" data-tooltip="Country Category" onclick="switchTab('country')">
+          <span class="material-symbols-outlined">public</span>
+          <span class="menu-text">Country Category</span>
+        </a>
+        <a class="menu-item" data-tab="fir" data-tooltip="FIR Category" onclick="switchTab('fir')">
+          <span class="material-symbols-outlined">cloud</span>
+          <span class="menu-text">FIR Category</span>
+        </a>
+        <a class="menu-item" data-tab="email-list" data-tooltip="Email List" onclick="switchTab('email-list')">
+          <span class="material-symbols-outlined">mail</span>
+          <span class="menu-text">Email List</span>
+        </a>
+        <a class="menu-item" data-tab="uld-category" data-tooltip="ULD Category" onclick="switchTab('uld-category')">
+          <span class="material-symbols-outlined">category</span>
+          <span class="menu-text">ULD Category</span>
+        </a>
+        <a class="menu-item" data-tab="uld" data-tooltip="ULD" onclick="switchTab('uld')">
+          <span class="material-symbols-outlined">inventory_2</span>
+          <span class="menu-text">ULD</span>
+        </a>
+        <a class="menu-item" data-tab="flight-routes" data-tooltip="Flight Routes" onclick="switchTab('flight-routes')">
+          <span class="material-symbols-outlined">route</span>
+          <span class="menu-text">Flight Routes</span>
+        </a>
+        <a class="menu-item active" data-tab="flight-fleet" data-tooltip="Flight Fleet" onclick="switchTab('flight-fleet')">
+          <span class="material-symbols-outlined">flight</span>
+          <span class="menu-text">Flight Fleet</span>
+        </a>
+        <a class="menu-item" data-tab="ac-subtype" data-tooltip="AC Subtype" onclick="switchTab('ac-subtype')">
+          <span class="material-symbols-outlined">description</span>
+          <span class="menu-text">AC Subtype</span>
+        </a>
+        <a class="menu-item" data-tab="aircraft" data-tooltip="Aircraft" onclick="switchTab('aircraft')">
+          <span class="material-symbols-outlined">luggage</span>
+          <span class="menu-text">Aircraft</span>
+        </a>
+        <a class="menu-item" data-tab="airport" data-tooltip="Airport" onclick="switchTab('airport')">
+          <span class="material-symbols-outlined">flight_takeoff</span>
+          <span class="menu-text">Airport</span>
+        </a>
+        <a class="menu-item" data-tab="flight-leg" data-tooltip="Flight Leg" onclick="switchTab('flight-leg')">
+          <span class="material-symbols-outlined">timeline</span>
+          <span class="menu-text">Flight Leg</span>
+        </a>
+      </div>
+
+      <!-- Sidebar Footer -->
+      <div class="sidebar-footer">
+        <div class="footer-actions">
+          <a class="footer-action-item" data-tooltip="Notifications" onclick="showToast('Thông báo')">
+            <div class="badge-container">
+              <span class="material-symbols-outlined">notifications</span>
+              <span class="noti-badge">3</span>
+            </div>
+            <span class="menu-text">Notifications</span>
+          </a>
+
+          <a class="footer-action-item" data-tooltip="Settings" onclick="showToast('Cài đặt hệ thống')">
+            <span class="material-symbols-outlined">settings_applications</span>
+            <span class="menu-text">Settings</span>
+          </a>
+
+          <a class="footer-action-item" data-tooltip="System History" onclick="showToast('Lịch sử hệ thống')">
+            <span class="material-symbols-outlined">history</span>
+            <span class="menu-text">System History</span>
+          </a>
+        </div>
+
+        <!-- User Profile Card -->
+        <div class="user-profile-card">
+          <div class="user-avatar-wrap">
+            <img src="data:image/svg+xml;utf8,<svg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'><circle cx='50' cy='50' r='48' fill='%23f1f5f9'/><path d='M25,35 Q50,25 75,35 L70,42 Q50,38 30,42 Z' fill='%23002A54'/><path d='M30,42 Q50,38 70,42 L72,45 Q50,42 28,45 Z' fill='%23D4B26F'/><circle cx='50' cy='55' r='18' fill='%23fed7aa'/><path d='M32,50 Q36,45 40,48 Q44,45 50,48 Q56,45 60,48 Q64,45 68,50 Q66,40 50,40 Z' fill='%231e293b'/><circle cx='44' cy='55' r='2' fill='%231e293b'/><circle cx='56' cy='55' r='2' fill='%231e293b'/><path d='M32,73 L42,85 L50,78 L58,85 L68,73 L65,95 L35,95 Z' fill='%23002A54'/><path d='M48,78 L52,78 L53,92 L50,96 L47,92 Z' fill='%231e293b'/></svg>" alt="Avatar" class="user-avatar-img">
+          </div>
+          <div class="user-info">
+            <div class="user-name">Data Officer</div>
+            <div class="user-email">dataops@vietnamairlines.com</div>
+          </div>
+          <button class="logout-btn" title="Đăng xuất" onclick="showToast('Đăng xuất')">
+            <span class="material-symbols-outlined">logout</span>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- ========================================================= -->
+    <!-- MAIN CONTENT AREA (Flight Fleet - Default Tab) -->
+    <!-- ========================================================= -->
+    <main class="main-content">
+
+      <!-- Flight Fleet View (Default/Active) -->
+      <div id="flight-fleet" class="main-content-scrollable tab-content active">
+
+        <!-- Filter Bar -->
+        <section class="m3-card filter-grid" data-mat="mat-card">
+          <div class="filter-item">
+            <label for="filterFleetCode">Search by Flight Fleet Code</label>
+            <input type="text" id="filterFleetCode" class="filter-input" placeholder="Search by Flight Fleet Code">
+          </div>
+          <div class="filter-item">
+            <label for="filterFleetName">Search by Flight Fleet Name</label>
+            <input type="text" id="filterFleetName" class="filter-input" placeholder="Search by Flight Fleet Name">
+          </div>
+          <div class="filter-item">
+            <label for="filterFleetStatus">Status</label>
+            <select id="filterFleetStatus" class="filter-input filter-select">
+              <option value="">All Statuses</option>
+              <option value="Active">Active</option>
+              <option value="Inactive">Inactive</option>
+            </select>
+          </div>
+          <div class="filter-actions">
+            <button class="btn btn-clear" onclick="clearFilters()">
+              <span class="material-symbols-outlined">autorenew</span> Clear Filter
+            </button>
+            <button class="btn btn-teal" onclick="applyFilters()">
+              <span class="material-symbols-outlined">search</span> Search
+            </button>
+          </div>
+        </section>
+
+        <!-- Split Panel: Table + Details -->
+        <div class="admin-panel-split">
+
+          <!-- LEFT: Flight Fleet Table -->
+          <div class="user-list-section">
+            <div class="user-list-header">
+              <div class="user-list-title-wrap">
+                <h2>Flight fleet list</h2>
+                <button class="refresh-btn" title="Làm mới" onclick="refreshTable()">
+                  <span class="material-symbols-outlined">refresh</span>
+                </button>
+              </div>
+              <div class="user-list-actions">
+                <button class="btn btn-blue" onclick="showToast('Tạo Flight Fleet mới')">
+                  <span class="material-symbols-outlined">add</span> Create
+                </button>
+                <button class="btn btn-orange" onclick="showToast('Xuất Excel thành công')">
+                  <span class="material-symbols-outlined">download</span> Export Excel
+                </button>
+              </div>
+            </div>
+
+            <!-- Table Container -->
+            <div class="table-container">
+              <table class="user-table" id="fleetTable" data-mat="mat-table">
+                <thead>
+                  <tr>
+                    <th>Seq</th>
+                    <th>Flight Fleet Code</th>
+                    <th>Flight Fleet Name</th>
+                    <th>Number of Registration</th>
+                    <th>Note</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="fleetTableBody">
+                  <tr class="active-row">
+                    <td>1</td>
+                    <td>A320-A321</td>
+                    <td>Tàu bay A320 A321</td>
+                    <td>30</td>
+                    <td>Dòi bay gồm các máy bay sản xuất từ năm 1980</td>
+                    <td><span class="status-badge active">Active</span></td>
+                    <td style="text-align: center;">
+                      <button style="background: none; border: none; cursor: pointer; padding: 4px;">
+                        <span class="material-symbols-outlined" style="font-size: 18px; color: #0284c7;">edit</span>
+                      </button>
+                      <button style="background: none; border: none; cursor: pointer; padding: 4px;">
+                        <span class="material-symbols-outlined" style="font-size: 18px; color: #ef4444;">delete</span>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td>A350</td>
+                    <td>Tàu bay A350</td>
+                    <td>30</td>
+                    <td>Dòi bay gồm các máy bay sản xuất từ năm 1980</td>
+                    <td><span class="status-badge inactive">Inactive</span></td>
+                    <td style="text-align: center;">
+                      <button style="background: none; border: none; cursor: pointer; padding: 4px;">
+                        <span class="material-symbols-outlined" style="font-size: 18px; color: #0284c7;">edit</span>
+                      </button>
+                      <button style="background: none; border: none; cursor: pointer; padding: 4px;">
+                        <span class="material-symbols-outlined" style="font-size: 18px; color: #ef4444;">delete</span>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>3</td>
+                    <td>A350</td>
+                    <td>Tàu bay A350</td>
+                    <td>30</td>
+                    <td>Dòi bay gồm các máy bay sản xuất từ năm 1980</td>
+                    <td><span class="status-badge active">Active</span></td>
+                    <td style="text-align: center;">
+                      <button style="background: none; border: none; cursor: pointer; padding: 4px;">
+                        <span class="material-symbols-outlined" style="font-size: 18px; color: #0284c7;">edit</span>
+                      </button>
+                      <button style="background: none; border: none; cursor: pointer; padding: 4px;">
+                        <span class="material-symbols-outlined" style="font-size: 18px; color: #ef4444;">delete</span>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>4</td>
+                    <td>A350</td>
+                    <td>Tàu bay A350</td>
+                    <td>30</td>
+                    <td>Dòi bay gồm các máy bay sản xuất từ năm 1980</td>
+                    <td><span class="status-badge inactive">Inactive</span></td>
+                    <td style="text-align: center;">
+                      <button style="background: none; border: none; cursor: pointer; padding: 4px;">
+                        <span class="material-symbols-outlined" style="font-size: 18px; color: #0284c7;">edit</span>
+                      </button>
+                      <button style="background: none; border: none; cursor: pointer; padding: 4px;">
+                        <span class="material-symbols-outlined" style="font-size: 18px; color: #ef4444;">delete</span>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>5</td>
+                    <td>A350</td>
+                    <td>Tàu bay A350</td>
+                    <td>30</td>
+                    <td>Dòi bay gồm các máy bay sản xuất từ năm 1980</td>
+                    <td><span class="status-badge inactive">Inactive</span></td>
+                    <td style="text-align: center;">
+                      <button style="background: none; border: none; cursor: pointer; padding: 4px;">
+                        <span class="material-symbols-outlined" style="font-size: 18px; color: #0284c7;">edit</span>
+                      </button>
+                      <button style="background: none; border: none; cursor: pointer; padding: 4px;">
+                        <span class="material-symbols-outlined" style="font-size: 18px; color: #ef4444;">delete</span>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>6</td>
+                    <td>A350</td>
+                    <td>Tàu bay A350</td>
+                    <td>30</td>
+                    <td>Dòi bay gồm các máy bay sản xuất từ năm 1980</td>
+                    <td><span class="status-badge inactive">Inactive</span></td>
+                    <td style="text-align: center;">
+                      <button style="background: none; border: none; cursor: pointer; padding: 4px;">
+                        <span class="material-symbols-outlined" style="font-size: 18px; color: #0284c7;">edit</span>
+                      </button>
+                      <button style="background: none; border: none; cursor: pointer; padding: 4px;">
+                        <span class="material-symbols-outlined" style="font-size: 18px; color: #ef4444;">delete</span>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Pagination -->
+            <div class="pagination-bar" data-mat="mat-paginator">
+              <div class="records-selector">
+                <span>Show</span>
+                <select class="records-select">
+                  <option>10 Records</option>
+                  <option>20 Records</option>
+                  <option>50 Records</option>
+                </select>
+              </div>
+              <div class="pagination-info">
+                <span>Total: <strong>80</strong></span>
+              </div>
+              <div class="pagination-controls">
+                <button class="page-btn disabled"><span class="material-symbols-outlined">keyboard_double_arrow_left</span></button>
+                <button class="page-btn disabled"><span class="material-symbols-outlined">chevron_left</span></button>
+                <button class="page-btn active">1</button>
+                <button class="page-btn">2</button>
+                <button class="page-btn">3</button>
+                <button class="page-btn">4</button>
+                <button class="page-btn">5</button>
+                <button class="page-btn"><span class="material-symbols-outlined">chevron_right</span></button>
+                <button class="page-btn"><span class="material-symbols-outlined">keyboard_double_arrow_right</span></button>
+              </div>
+            </div>
+          </div>
+
+          <!-- RIGHT: Flight Fleet Details with 4 Tabs -->
+          <div class="user-details-section">
+            <section class="m3-card details-card" style="padding: 12px;">
+
+              <!-- Header with Edit/Save buttons -->
+              <div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 12px; border-bottom: 1px solid #e2e8f0;">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                  <div style="font-size: 32px;">✈️</div>
+                  <div>
+                    <div class="details-name">Tàu bay A320 A321</div>
+                    <div class="details-id">A320-A321</div>
+                    <div style="display: flex; gap: 12px; align-items: center; margin-top: 4px;">
+                      <span class="status-badge active">Active</span>
+                      <span style="font-size: 12px; color: #64748b;"><strong>Qty:</strong> 30</span>
+                    </div>
+                  </div>
+                </div>
+                <div id="headerActions" style="display: flex; gap: 8px;">
+                  <button id="editBtn" class="btn btn-blue" style="height: 32px; font-size: 12px; padding: 0 12px;" onclick="enterEditMode()">
+                    <span class="material-symbols-outlined" style="font-size: 14px;">edit</span> Edit
+                  </button>
+                  <button id="deleteBtn" class="btn" style="height: 32px; font-size: 12px; padding: 0 8px; background: transparent; color: #ef4444; border: 1px solid #ef4444;" onclick="showToast('Xóa Flight Fleet')">
+                    <span class="material-symbols-outlined" style="font-size: 14px;">delete</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Tab Navigation -->
+              <div class="details-tab-nav">
+                <button class="details-tab-button active" onclick="switchDetailsTab(this, 'tab-general')">📋 Chung</button>
+                <button class="details-tab-button" onclick="switchDetailsTab(this, 'tab-config')">⚙️ Cấu hình</button>
+                <button class="details-tab-button" onclick="switchDetailsTab(this, 'tab-attr')">🏷️ Thuộc tính</button>
+                <button class="details-tab-button" onclick="switchDetailsTab(this, 'tab-audit')">📊 Lịch sử</button>
+              </div>
+
+              <!-- TAB 1: General Info -->
+              <div id="tab-general" class="details-tab-content active">
+                <div class="details-grid">
+                  <div class="detail-row">
+                    <span class="detail-label">AC Registration 🔒</span>
+                    <input type="text" class="detail-input" value="A320-A321" disabled>
+                  </div>
+                  <div class="detail-row">
+                    <span class="detail-label">Valid From 🔒</span>
+                    <input type="date" class="detail-input" value="2024-01-01" disabled>
+                  </div>
+                  <div class="detail-row">
+                    <span class="detail-label">Valid To</span>
+                    <input type="date" class="detail-input" value="2024-12-31">
+                  </div>
+                  <div class="detail-row">
+                    <span class="detail-label">ICAO/IATA Code</span>
+                    <input type="text" class="detail-input" value="A320/A320">
+                  </div>
+                  <div class="detail-row">
+                    <span class="detail-label">Ownership Status</span>
+                    <select class="detail-select" onchange="toggleOwner()">
+                      <option value="VNA">Vietnam Airlines</option>
+                      <option value="lease-dry">Thuê khô</option>
+                      <option value="lease-wet">Thuê ướt</option>
+                    </select>
+                  </div>
+                  <div class="detail-row">
+                    <span class="detail-label">Owner Name</span>
+                    <input type="text" class="detail-input" id="ownerField" value="Vietnam Airlines" disabled>
+                  </div>
+                  <div class="detail-row">
+                    <span class="detail-label">Status</span>
+                    <select class="detail-select">
+                      <option>Active</option>
+                      <option>Inactive</option>
+                    </select>
+                  </div>
+                </div>
+
+                <!-- Save/Cancel buttons (before Aircraft list) -->
+                <div id="editActions" style="display: none; padding: 16px 0; text-align: right; gap: 10px; border-top: 2px solid #cbd5e1; margin-top: 16px;">
+                  <button class="btn btn-clear" style="height: 36px; font-size: 13px; padding: 0 20px; font-weight: 600;" onclick="exitEditMode()">Hủy</button>
+                  <button class="btn btn-teal" style="height: 36px; font-size: 13px; padding: 0 20px; font-weight: 600;" onclick="saveChanges()">Lưu</button>
+                </div>
+
+                <!-- List Aircraft Sub-section (moved to tab-general) -->
+                <div style="background: #f8fafc; border-top: 2px solid #cbd5e1; padding: 16px; margin-top: 24px; border-radius: 8px;">
+                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                    <h3 style="font-size: 14px; font-weight: 700; color: #1e293b;">Danh sách tàu bay trong hạm đội (2)</h3>
+                    <button class="btn btn-blue" style="height: 28px; font-size: 11px; padding: 0 10px;" onclick="showToast('Thêm Aircraft')">
+                      <span class="material-symbols-outlined" style="font-size: 14px;">add</span> Thêm
+                    </button>
+                  </div>
+
+                  <!-- Aircraft Table -->
+                  <div style="max-height: 280px; overflow-y: auto; border-radius: 6px; border: 1px solid #cbd5e1; background: white;">
+                    <table class="user-table" style="font-size: 11px;">
+                      <thead>
+                        <tr>
+                          <th style="padding: 6px 8px; font-size: 10px;">Seq</th>
+                          <th style="padding: 6px 8px; font-size: 10px;">Reg</th>
+                          <th style="padding: 6px 8px; font-size: 10px;">ICAO</th>
+                          <th style="padding: 6px 8px; font-size: 10px;">IATA</th>
+                          <th style="padding: 6px 8px; font-size: 10px;">Status</th>
+                          <th style="padding: 6px 8px; font-size: 10px;">Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td style="padding: 6px 8px;">1</td>
+                          <td style="padding: 6px 8px;">VN123</td>
+                          <td style="padding: 6px 8px;">ICAO321</td>
+                          <td style="padding: 6px 8px;">IATA321</td>
+                          <td style="padding: 6px 8px;"><span class="status-badge inactive">Inactive</span></td>
+                          <td style="padding: 6px 8px; text-align: center;">
+                            <span class="material-symbols-outlined" style="font-size: 14px; color: #0284c7; cursor: pointer;" onclick="openEditAircraftDialog('VN123', 'ICAO321', 'IATA321')">edit</span>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td style="padding: 6px 8px;">2</td>
+                          <td style="padding: 6px 8px;">VN23</td>
+                          <td style="padding: 6px 8px;">ICAO322</td>
+                          <td style="padding: 6px 8px;">IATA321</td>
+                          <td style="padding: 6px 8px;"><span class="status-badge active">Active</span></td>
+                          <td style="padding: 6px 8px; text-align: center;">
+                            <span class="material-symbols-outlined" style="font-size: 14px; color: #0284c7; cursor: pointer;" onclick="openEditAircraftDialog('VN23', 'ICAO322', 'IATA321')">edit</span>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+
+              <!-- TAB 2: Aircraft Config -->
+              <div id="tab-config" class="details-tab-content">
+                <div class="details-grid">
+                  <div class="detail-row">
+                    <span class="detail-label">Fuel Flow (kg/h)</span>
+                    <input type="number" class="detail-input" value="1500">
+                  </div>
+                  <div class="detail-row">
+                    <span class="detail-label">APU Fuel Flow (kg/h)</span>
+                    <input type="number" class="detail-input" value="200">
+                  </div>
+                  <div class="detail-row">
+                    <span class="detail-label">Fuel Capacity (kg)</span>
+                    <input type="number" class="detail-input" value="27200">
+                  </div>
+                  <div class="detail-row">
+                    <span class="detail-label">Water Tank (kg)</span>
+                    <input type="number" class="detail-input" value="1500">
+                  </div>
+                  <div class="detail-row">
+                    <span class="detail-label">Cargo Capacity (kg)</span>
+                    <input type="number" class="detail-input" value="6000">
+                  </div>
+                  <div class="detail-row">
+                    <span class="detail-label">Basic Weight (kg)</span>
+                    <input type="number" class="detail-input" value="41413">
+                  </div>
+                  <div class="detail-row">
+                    <span class="detail-label">Max Ramp Weight (kg)</span>
+                    <input type="number" class="detail-input" value="75500">
+                  </div>
+                  <div class="detail-row">
+                    <span class="detail-label">Aircraft Config</span>
+                    <div class="config-grid">
+                      <div><input type="number" class="detail-input" value="8" placeholder="Cabin A"></div>
+                      <div><input type="number" class="detail-input" value="24" placeholder="Cabin B"></div>
+                      <div><input type="number" class="detail-input" value="0" placeholder="Cabin C"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- TAB 3: Attributes -->
+              <div id="tab-attr" class="details-tab-content">
+                <div class="details-grid">
+                  <div class="detail-row">
+                    <span class="detail-label">Aircraft Type</span>
+                    <select class="detail-select">
+                      <option>A320</option>
+                      <option>A321</option>
+                      <option>A350</option>
+                      <option>B787</option>
+                      <option>ATR</option>
+                      <option>A320NEO</option>
+                      <option>A321 CEO</option>
+                      <option>A321 NEO</option>
+                    </select>
+                  </div>
+                  <div class="detail-row">
+                    <span class="detail-label">Aircraft Category 1</span>
+                    <select class="detail-select">
+                      <option>A320NEO</option>
+                      <option>A321 CEO</option>
+                      <option>A321 NEO</option>
+                      <option>A350</option>
+                      <option>B787-9</option>
+                      <option>B787-10</option>
+                    </select>
+                  </div>
+                  <div class="detail-row">
+                    <span class="detail-label">Aircraft Category 2</span>
+                    <select class="detail-select">
+                      <option>A320</option>
+                      <option>A321 CEO</option>
+                      <option>A321 NEO</option>
+                      <option>A350</option>
+                      <option>B787</option>
+                    </select>
+                  </div>
+                  <div class="detail-row">
+                    <span class="detail-label">Aircraft Category 3</span>
+                    <select class="detail-select">
+                      <option>A320-A321</option>
+                      <option>A350</option>
+                      <option>B787</option>
+                    </select>
+                  </div>
+                  <div class="detail-row">
+                    <span class="detail-label">Aircraft Category 4</span>
+                    <select class="detail-select">
+                      <option>A320-A321</option>
+                      <option>A350-B787</option>
+                    </select>
+                  </div>
+                  <div class="detail-row">
+                    <span class="detail-label">Aircraft Category 5</span>
+                    <select class="detail-select">
+                      <option>320</option>
+                      <option>32B</option>
+                      <option>32D</option>
+                      <option>32N</option>
+                      <option>350</option>
+                      <option>787</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <!-- TAB 4: Audit Log -->
+              <div id="tab-audit" class="details-tab-content">
+                <table class="audit-log-table">
+                  <thead>
+                    <tr><th>Ngày giờ</th><th>User</th><th>Trường</th><th>Cũ</th><th>Mới</th><th>Ghi chú</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><td>2026-06-15 10:30</td><td>Data Off</td><td>AC Fuel</td><td>1500</td><td>1600</td><td>MTOW</td></tr>
+                    <tr><td>2026-06-10 14:15</td><td>Admin</td><td>Ownership</td><td>VNA</td><td>Thuê</td><td>Hợp đồng</td></tr>
+                    <tr><td>2026-06-05 09:00</td><td>Data Off</td><td>Config</td><td>8,24,0</td><td>8,26,0</td><td>Tháo ghế</td></tr>
+                    <tr><td>2026-05-28 16:45</td><td>Admin</td><td>Status</td><td>Active</td><td>Inactive</td><td>Bảo dưỡng</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+            </section>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Placeholder Tabs (Hidden) -->
+      <div id="pilot-category" class="main-content-scrollable tab-content" style="display: flex; align-items: center; justify-content: center;">
+        <div style="text-align: center; color: var(--md-text-secondary);">
+          <span class="material-symbols-outlined" style="font-size: 64px; display: block; margin-bottom: 16px;">category</span>
+          <p style="font-size: 16px;">Pilot Category — Đang phát triển</p>
+        </div>
+      </div>
+
+      <div id="cabin-crew" class="main-content-scrollable tab-content" style="display: flex; align-items: center; justify-content: center;">
+        <div style="text-align: center; color: var(--md-text-secondary);">
+          <span class="material-symbols-outlined" style="font-size: 64px; display: block; margin-bottom: 16px;">group</span>
+          <p style="font-size: 16px;">Cabin Crew Category — Đang phát triển</p>
+        </div>
+      </div>
+
+      <div id="carrier" class="main-content-scrollable tab-content" style="display: flex; align-items: center; justify-content: center;">
+        <div style="text-align: center; color: var(--md-text-secondary);">
+          <span class="material-symbols-outlined" style="font-size: 64px; display: block; margin-bottom: 16px;">airplanemode_on</span>
+          <p style="font-size: 16px;">Carrier — Đang phát triển</p>
+        </div>
+      </div>
+
+      <div id="country" class="main-content-scrollable tab-content" style="display: flex; align-items: center; justify-content: center;">
+        <div style="text-align: center; color: var(--md-text-secondary);">
+          <span class="material-symbols-outlined" style="font-size: 64px; display: block; margin-bottom: 16px;">public</span>
+          <p style="font-size: 16px;">Country Category — Đang phát triển</p>
+        </div>
+      </div>
+
+      <div id="fir" class="main-content-scrollable tab-content" style="display: flex; align-items: center; justify-content: center;">
+        <div style="text-align: center; color: var(--md-text-secondary);">
+          <span class="material-symbols-outlined" style="font-size: 64px; display: block; margin-bottom: 16px;">cloud</span>
+          <p style="font-size: 16px;">FIR Category — Đang phát triển</p>
+        </div>
+      </div>
+
+      <div id="email-list" class="main-content-scrollable tab-content" style="display: flex; align-items: center; justify-content: center;">
+        <div style="text-align: center; color: var(--md-text-secondary);">
+          <span class="material-symbols-outlined" style="font-size: 64px; display: block; margin-bottom: 16px;">mail</span>
+          <p style="font-size: 16px;">Email List — Đang phát triển</p>
+        </div>
+      </div>
+
+      <div id="uld-category" class="main-content-scrollable tab-content" style="display: flex; align-items: center; justify-content: center;">
+        <div style="text-align: center; color: var(--md-text-secondary);">
+          <span class="material-symbols-outlined" style="font-size: 64px; display: block; margin-bottom: 16px;">category</span>
+          <p style="font-size: 16px;">ULD Category — Đang phát triển</p>
+        </div>
+      </div>
+
+      <div id="uld" class="main-content-scrollable tab-content" style="display: flex; align-items: center; justify-content: center;">
+        <div style="text-align: center; color: var(--md-text-secondary);">
+          <span class="material-symbols-outlined" style="font-size: 64px; display: block; margin-bottom: 16px;">inventory_2</span>
+          <p style="font-size: 16px;">ULD — Đang phát triển</p>
+        </div>
+      </div>
+
+      <div id="flight-routes" class="main-content-scrollable tab-content" style="display: flex; align-items: center; justify-content: center;">
+        <div style="text-align: center; color: var(--md-text-secondary);">
+          <span class="material-symbols-outlined" style="font-size: 64px; display: block; margin-bottom: 16px;">route</span>
+          <p style="font-size: 16px;">Flight Routes — Đang phát triển</p>
+        </div>
+      </div>
+
+      <div id="ac-subtype" class="main-content-scrollable tab-content" style="display: flex; align-items: center; justify-content: center;">
+        <div style="text-align: center; color: var(--md-text-secondary);">
+          <span class="material-symbols-outlined" style="font-size: 64px; display: block; margin-bottom: 16px;">settings</span>
+          <p style="font-size: 16px;">AC Subtype — Đang phát triển</p>
+        </div>
+      </div>
+
+      <div id="aircraft" class="main-content-scrollable tab-content" style="display: flex; align-items: center; justify-content: center;">
+        <div style="text-align: center; color: var(--md-text-secondary);">
+          <span class="material-symbols-outlined" style="font-size: 64px; display: block; margin-bottom: 16px;">airplanemode_on</span>
+          <p style="font-size: 16px;">Aircraft — Đang phát triển</p>
+        </div>
+      </div>
+
+      <div id="airport" class="main-content-scrollable tab-content" style="display: flex; align-items: center; justify-content: center;">
+        <div style="text-align: center; color: var(--md-text-secondary);">
+          <span class="material-symbols-outlined" style="font-size: 64px; display: block; margin-bottom: 16px;">flight_takeoff</span>
+          <p style="font-size: 16px;">Airport — Đang phát triển</p>
+        </div>
+      </div>
+
+      <div id="flight-leg" class="main-content-scrollable tab-content" style="display: flex; align-items: center; justify-content: center;">
+        <div style="text-align: center; color: var(--md-text-secondary);">
+          <span class="material-symbols-outlined" style="font-size: 64px; display: block; margin-bottom: 16px;">timeline</span>
+          <p style="font-size: 16px;">Flight Leg — Đang phát triển</p>
+        </div>
+      </div>
+
+    </main>
+
+    <!-- Edit Aircraft Dialog (Modal Overlay) -->
+    <div id="aircraftDialog" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.3); z-index: 1000; align-items: center; justify-content: center;">
+      <div style="background: white; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); max-width: 500px; width: 90%; padding: 20px;">
+
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; border-bottom: 1px solid #e2e8f0; padding-bottom: 12px;">
+          <h2 style="font-size: 16px; font-weight: 700; color: #002A54;">Edit Aircraft</h2>
+          <span class="material-symbols-outlined" style="cursor: pointer; color: #64748b;" onclick="closeAircraftDialog()">close</span>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 16px;">
+          <div style="display: flex; flex-direction: column; gap: 4px;">
+            <label style="font-size: 11px; font-weight: 600; color: #64748b; text-transform: uppercase;">Registration 🔒</label>
+            <input type="text" id="aircraftReg" style="padding: 8px 10px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 12px;" disabled>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 4px;">
+            <label style="font-size: 11px; font-weight: 600; color: #64748b; text-transform: uppercase;">ICAO Code</label>
+            <input type="text" id="aircraftICAO" style="padding: 8px 10px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 12px;">
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 4px;">
+            <label style="font-size: 11px; font-weight: 600; color: #64748b; text-transform: uppercase;">IATA Code</label>
+            <input type="text" id="aircraftIATA" style="padding: 8px 10px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 12px;">
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 4px;">
+            <label style="font-size: 11px; font-weight: 600; color: #64748b; text-transform: uppercase;">Status</label>
+            <select id="aircraftStatus" style="padding: 8px 10px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 12px;">
+              <option>Active</option>
+              <option>Inactive</option>
+            </select>
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 8px; justify-content: flex-end;">
+          <button class="btn btn-clear" style="height: 32px; font-size: 12px; padding: 0 16px;" onclick="closeAircraftDialog()">Cancel</button>
+          <button class="btn btn-teal" style="height: 32px; font-size: 12px; padding: 0 16px;" onclick="saveAircraftChanges()">Save</button>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast-notif" id="toastNotif" style="position: fixed; bottom: 24px; right: 24px; background: #1e293b; color: white; padding: 12px 20px; border-radius: 8px; box-shadow: 0 10px 15px rgba(0,0,0,0.15); display: flex; align-items: center; gap: 10px; font-size: 13.5px; z-index: 2000; opacity: 0; transform: translateY(100px); transition: all 0.3s;">
+    <span class="material-symbols-outlined" style="color: #10b981; font-size: 20px;">check_circle</span>
+    <span id="toastMessage">Thành công</span>
+  </div>
+
+  <!-- JavaScript -->
+  <script>
+    // Sidebar Toggle
+    const sidebar = document.getElementById('sidebar');
+    const sidebarToggle = document.getElementById('sidebarToggle');
+    const toggleIcon = document.getElementById('toggleIcon');
+
+    sidebarToggle.addEventListener('click', () => {
+      sidebar.classList.toggle('collapsed');
+      toggleIcon.textContent = sidebar.classList.contains('collapsed') ? 'chevron_right' : 'chevron_left';
+    });
+
+    // Tab Switching
+    function switchTab(tabName) {
+      // Hide all tabs
+      const allTabs = document.querySelectorAll('.tab-content');
+      allTabs.forEach(tab => {
+        tab.classList.remove('active');
+        tab.style.display = 'none';
+      });
+
+      // Show selected tab
+      const selectedTab = document.getElementById(tabName);
+      if (selectedTab) {
+        selectedTab.classList.add('active');
+        selectedTab.style.display = 'block';
+      }
+
+      // Update menu active state
+      const menuItems = document.querySelectorAll('.menu-item');
+      menuItems.forEach(item => {
+        if (item.dataset.tab === tabName) {
+          item.classList.add('active');
+        } else {
+          item.classList.remove('active');
+        }
+      });
+    }
+
+    // Toast Notification
+    function showToast(message) {
+      const toast = document.getElementById('toastNotif');
+      const toastMessage = document.getElementById('toastMessage');
+      toastMessage.textContent = message;
+      toast.style.opacity = '1';
+      toast.style.transform = 'translateY(0)';
+
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateY(100px)';
+      }, 2500);
+    }
+
+    // Filter Functions
+    function clearFilters() {
+      document.getElementById('filterFleetCode').value = '';
+      document.getElementById('filterFleetName').value = '';
+      document.getElementById('filterFleetStatus').value = '';
+      showToast('Xóa bộ lọc thành công');
+    }
+
+    function applyFilters() {
+      showToast('Áp dụng bộ lọc thành công');
+    }
+
+    function refreshTable() {
+      showToast('Làm mới dữ liệu thành công');
+    }
+
+    // Tab Switching (NEW in v2.0)
+    function switchDetailsTab(btn, tabId) {
+      // Hide all tabs
+      document.querySelectorAll('.details-tab-content').forEach(tab => {
+        tab.classList.remove('active');
+      });
+      // Show selected tab
+      document.getElementById(tabId).classList.add('active');
+      // Update button state
+      document.querySelectorAll('.details-tab-button').forEach(b => {
+        b.classList.remove('active');
+      });
+      btn.classList.add('active');
+    }
+
+    // Ownership Status Logic (NEW in v2.0)
+    function toggleOwner() {
+      const ownershipSelect = document.querySelector('[onchange="toggleOwner()"]');
+      const ownerField = document.getElementById('ownerField');
+      const val = ownershipSelect.value;
+      if (val === 'VNA') {
+        ownerField.disabled = true;
+        ownerField.value = 'Vietnam Airlines';
+      } else {
+        ownerField.disabled = false;
+        ownerField.value = '';
+      }
+    }
+
+    // View/Edit Mode Toggle (NEW - Pattern 1)
+    function enterEditMode() {
+      // Hide action buttons, show edit/save buttons
+      document.getElementById('headerActions').style.display = 'none';
+      document.getElementById('editActions').style.display = 'flex';
+
+      // Enable all editable inputs (except AC Reg, Valid From)
+      const inputs = document.querySelectorAll('.detail-input, .detail-select');
+      inputs.forEach(input => {
+        // Keep AC Registration & Valid From disabled (read-only from SMA)
+        if (input.placeholder !== 'Cabin A' && input.placeholder !== 'Cabin B' && input.placeholder !== 'Cabin C') {
+          if (!input.value.includes('A320-A321') && !input.value.includes('01/01/2024')) {
+            input.disabled = false;
+          }
+        }
+      });
+
+      showToast('Chế độ chỉnh sửa');
+    }
+
+    function exitEditMode() {
+      // Show action buttons, hide edit/save buttons
+      document.getElementById('headerActions').style.display = 'flex';
+      document.getElementById('editActions').style.display = 'none';
+
+      // Disable all inputs
+      const inputs = document.querySelectorAll('.detail-input, .detail-select');
+      inputs.forEach(input => {
+        input.disabled = true;
+      });
+
+      showToast('Đã hủy chỉnh sửa');
+    }
+
+    function saveChanges() {
+      // Disable inputs again
+      document.getElementById('headerActions').style.display = 'flex';
+      document.getElementById('editActions').style.display = 'none';
+
+      const inputs = document.querySelectorAll('.detail-input, .detail-select');
+      inputs.forEach(input => {
+        input.disabled = true;
+      });
+
+      showToast('Lưu dữ liệu thành công');
+    }
+
+    // Initialize: disable all inputs on page load (View mode by default)
+    window.addEventListener('load', function() {
+      const inputs = document.querySelectorAll('.detail-input, .detail-select');
+      inputs.forEach(input => {
+        input.disabled = true;
+      });
+    });
+
+    // Edit Aircraft Dialog Functions
+    function openEditAircraftDialog(reg, icao, iata) {
+      document.getElementById('aircraftReg').value = reg;
+      document.getElementById('aircraftICAO').value = icao;
+      document.getElementById('aircraftIATA').value = iata;
+      document.getElementById('aircraftDialog').style.display = 'flex';
+    }
+
+    function closeAircraftDialog() {
+      document.getElementById('aircraftDialog').style.display = 'none';
+    }
+
+    function saveAircraftChanges() {
+      showToast('Lưu Aircraft thành công');
+      closeAircraftDialog();
+    }
+
+    // Close dialog when clicking outside
+    document.addEventListener('click', function(event) {
+      const dialog = document.getElementById('aircraftDialog');
+      if (event.target === dialog) {
+        closeAircraftDialog();
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,259 @@
+[00:00:00 --> 00:00:04] Mình sẽ bỏ riêng ra phần đề danh mục trong phần đề danh mục
+[00:00:04 --> 00:00:09] MENU ở đây, anh đang muốn là mình sẽ bổ chí MENU ở bên ngoài màn HOME
+[00:00:09 --> 00:00:16] Nó sẽ có SITTER MIN, DATA MIN, DATA SUBMONITORING và TOS
+[00:00:16 --> 00:00:20] Trong TOS thì nó sẽ có các cái môn như thế này
+[00:00:20 --> 00:00:22] Anh đã tạo sẵn cái tài liệu rồi
+[00:00:22 --> 00:00:25] Bây giờ mình sẽ chỉnh 2 khâu tài liệu đấy
+[00:00:25 --> 00:00:28] SITTER MIN để SITTER MIN thôi
+[00:00:28 --> 00:00:31] DATA MIN thì mình sẽ tách dao thành danh mục
+[00:00:31 --> 00:00:34] Thì ở cái cổng mình sẽ có 2 phần
+[00:00:34 --> 00:00:41] Một phần là sẽ chỉnh lại cái mình đã làm rồi, tức là đần
+[00:00:41 --> 00:00:46] Cái phần TOS thì mình sẽ đưa hết tất cả những cái phần về danh mục
+[00:00:46 --> 00:00:51] Nén ra bên ngoài, nén ra đây là cái DATA MIN, thấy chưa
+[00:00:52 --> 00:00:58] Bỏ cái này thì các cái này thì bỏ hết đi
+[00:00:58 --> 00:01:00] Trong SITTER MIN, chỉ có SITTER MIN thôi
+[00:01:00 --> 00:01:05] Thì chỗ này, đầu tiên là làm lại phim ma này, tập nhật lại tài liệu này
+[00:01:05 --> 00:01:10] Bóc cái phần danh mục này, đóng người dùng
+[00:01:10 --> 00:01:15] Đây, bắt đầu từ chỗ Categori này và tất cả những phần danh mục khác mình nén ra bên ngoài
+[00:01:15 --> 00:01:18] Mình sẽ đưa nó thành một cái icon mới
+[00:01:18 --> 00:01:23] Thì chỗ này, quân sẽ phải làm lại một cái màn home với đủ các cái phân hệ
+[00:01:23 --> 00:01:29] Đủ những cái module như mình đã đã làm, như mình đã define ra là các module này
+[00:01:29 --> 00:01:33] Nói chung, màn home thì nó sẽ là gần này các cái module
+[00:01:33 --> 00:01:46] Thì bọn anh đang khảo sát được cái module đầu tiên, nó là cái TOS này này
+[00:01:46 --> 00:01:48] Nó là FLY DISPAT
+[00:01:48 --> 00:01:52] Trong FLY DISPAT thì như Việt Anh có ngắm thông tin rồi
+[00:01:52 --> 00:01:57] Nó bao gồm là cái màn về overview, riêu liệu, dạng green time
+[00:01:57 --> 00:02:04] Cho phép người dùng là xem các cái cảnh báo này, xem các cái cảnh báo này
+[00:02:04 --> 00:02:08] Đọc trên màn hình thôi, không có thêm một chương năng khác
+[00:02:08 --> 00:02:11] Nhưng mà đằng sau đấy, cái rule của nó rất phức tạp
+[00:02:11 --> 00:02:14] Và bọn anh sẽ phải define dần dần dần dần dần ra
+[00:02:14 --> 00:02:16] Bây giờ mới đến cái cột là
+[00:02:16 --> 00:02:19] Cái rule ở đây nó sẽ có bao gồm là
+[00:02:19 --> 00:02:23] Đầu tiên này là riêu liệu mẫu, nó sẽ là riêu liệu gì này
+[00:02:25 --> 00:02:27] Riêu liệu mẫu ở đây thì ví dụ như là cái cột giờ
+[00:02:27 --> 00:02:31] Tất cả các giờ trên lĩnh thống của TOS, mình sẽ quy định bất kỳ chủ nào
+[00:02:31 --> 00:02:33] Nó đều phải là giày ITC hết
+[00:02:33 --> 00:02:37] Tức là khi mà mình đọc là 16.00, đít cả 24h nha
+[00:02:37 --> 00:02:40] Khi mình đọc 16.00, khách hàng sẽ gửi ra giày ITC
+[00:02:40 --> 00:02:42] Muốn khi đổi sang giày Việt Nam thì giày cộng 7
+[00:02:43 --> 00:02:47] Tất cả các giờ luôn, mình không có một cái mốc giờ nào của logo cả
+[00:02:47 --> 00:02:49] Đấy là cái tin quyết
+[00:02:49 --> 00:02:51] Ở cái bảng đấy nha
+[00:02:51 --> 00:02:53] Ở cái bảng đấy
+[00:02:53 --> 00:02:56] Anh sẽ có cái nhất về giao diện
+[00:02:56 --> 00:02:58] Nà nà như này, quân nó sẽ chuẩn hóa lại
+[00:02:58 --> 00:03:00] Nó sẽ làm lại về các cái phần logo
+[00:03:00 --> 00:03:02] Anh đã bảo quên bằng rồi
+[00:03:02 --> 00:03:04] Thì ở đây trong cái
+[00:03:04 --> 00:03:08] Trong cái fly list path đấy, cái menu của ngói
+[00:03:08 --> 00:03:10] Đây cái menu của ngói
+[00:03:10 --> 00:03:13] Nó sẽ có fly monitoring, chính là cái màn này
+[00:03:15 --> 00:03:16] Chính là cái màn này nè
+[00:03:16 --> 00:03:18] Đây fly monitoring
+[00:03:18 --> 00:03:21] Ở dưới fly monitoring thì nó chính là cái
+[00:03:21 --> 00:03:23] Upload common document
+[00:03:23 --> 00:03:25] Thì cái đấy sẽ làm sao, cái tab đấy sẽ làm sao
+[00:03:25 --> 00:03:27] Tại cái tab này nó đang như này
+[00:03:27 --> 00:03:29] Bao gồm
+[00:03:29 --> 00:03:31] header, filter
+[00:03:31 --> 00:03:33] Mình có thể chỉnh sửa bảng biển
+[00:03:33 --> 00:03:36] Tức là cái giao diện này là giao diện POG demo thôi
+[00:03:36 --> 00:03:38] Mình sẽ có thêm một cái nữa là
+[00:03:38 --> 00:03:40] Một cái lút là
+[00:03:40 --> 00:03:42] Catamai cái bảng này
+[00:03:42 --> 00:03:44] Theo cái cụt
+[00:03:44 --> 00:03:45] Tư hướng
+[00:03:45 --> 00:03:46] Ví dụ như là
+[00:03:46 --> 00:03:48] Mười dùng A có thích kiển thích các cụt AVC nào
+[00:03:48 --> 00:03:50] Mười dùng B thích kiển thích cụt VZ
+[00:03:50 --> 00:03:51] Nhưng
+[00:03:51 --> 00:03:53] Mình sẽ có một số cụt thông tin trung
+[00:03:53 --> 00:03:54] Của số bay
+[00:03:54 --> 00:03:57] Ví dụ là từ đây đến status thì chẳng hạn
+[00:03:57 --> 00:03:59] Thì cụt thông tin trung cũng không cho phép mười dùng thêm đến
+[00:03:59 --> 00:04:01] Thì nó sẽ không nằm trong cái dây thông tin catamai này
+[00:04:01 --> 00:04:03] Và cái
+[00:04:03 --> 00:04:05] Và cái catamai bảng biển đấy
+[00:04:05 --> 00:04:07] Nó sẽ lưu theo user
+[00:04:07 --> 00:04:09] Khi user đăng nhập
+[00:04:09 --> 00:04:11] Thì sẽ
+[00:04:11 --> 00:04:13] Lốt cái setting đấy
+[00:04:13 --> 00:04:15] Vào cái màn này nếu vào cái màn này
+[00:04:15 --> 00:04:16] Thì sẽ chỉ thể hiện cái
+[00:04:16 --> 00:04:18] Các cái cụt user đã xét
+[00:04:18 --> 00:04:20] Tức là mình phải nói chung với chúng ta là
+[00:04:20 --> 00:04:22] Nhà catamai này
+[00:04:22 --> 00:04:24] Ở cái công cụ filter này
+[00:04:24 --> 00:04:25] Thì mình sẽ đi phai sau
+[00:04:25 --> 00:04:26] Nhưng mà filter này về
+[00:04:26 --> 00:04:27] Về thích cái chú
+[00:04:27 --> 00:04:28] Thì nó sẽ có
+[00:04:28 --> 00:04:30] Thu gọn nó sẽ collab lại
+[00:04:30 --> 00:04:33] Menu cũng collab lại được để làm sao cái bảng biển
+[00:04:33 --> 00:04:35] Nó rộng nhất có thể
+[00:04:35 --> 00:04:37] Và khi tôi ấn vào một chuyến bay
+[00:04:37 --> 00:04:38] Thì nó sẽ
+[00:04:38 --> 00:04:40] Nó sẽ sổ ra một cái
+[00:04:40 --> 00:04:41] Màn hình đi theo chuyến bay
+[00:04:41 --> 00:04:43] Trong cái màn hình đi theo đấy
+[00:04:43 --> 00:04:45] Nó sẽ bao gồm thông tin trung chuyến bay
+[00:04:45 --> 00:04:47] Các thông tin ví dụ như là
+[00:04:47 --> 00:04:48] Tab này, tab này, tab này, tab này
+[00:04:48 --> 00:04:50] Những cái tab tương ứng là
+[00:04:50 --> 00:04:51] Ví dụ nô tam, thời tiết này
+[00:04:51 --> 00:04:52] Ví dụ như thế thì sau
+[00:04:52 --> 00:04:54] Cái màn đi theo đây sẽ đi phai xong
+[00:04:54 --> 00:04:56] Là ví dụ 2 cụt này làm 1 tab
+[00:04:56 --> 00:04:58] Hoặc là 6 cụt này làm 1 tab
+[00:04:58 --> 00:05:00] Thì trong các tab nó sẽ thể hiện các cái thông tin tương ứng
+[00:05:00 --> 00:05:02] Anh em thử vào
+[00:05:03 --> 00:05:05] Vậy kiểu như thế nào
+[00:05:05 --> 00:05:07] Nó sẽ kì kiểu như thế
+[00:05:07 --> 00:05:09] Nhưng mà nó sẽ không phải là
+[00:05:09 --> 00:05:11] Làm đem cái nền này mà nó chỉ
+[00:05:11 --> 00:05:12] Kéo ra một cái màn này
+[00:05:12 --> 00:05:13] Khi người dùng của họ vẫn tha tác
+[00:05:13 --> 00:05:14] Để người ta xem chuyến khách
+[00:05:14 --> 00:05:15] Người ta bấn vào thì lại ra một cái
+[00:05:15 --> 00:05:17] Có khó khăn, nó nhanh nhỉ
+[00:05:19 --> 00:05:21] Thì ở đây là cái phần ngô tải
+[00:05:21 --> 00:05:22] Bảng điều đấy, cái rule ấy
+[00:05:22 --> 00:05:24] Thì đầu tiên là cái
+[00:05:24 --> 00:05:26] Về VLD của khách
+[00:05:26 --> 00:05:27] Đúng không
+[00:05:27 --> 00:05:29] Thì anh em có một cái dòng đầu tiên là VLD
+[00:05:29 --> 00:05:31] Dạng coi là VLD
+[00:05:32 --> 00:05:34] Nói lên các cái nhu cầu về cái cụt
+[00:05:34 --> 00:05:36] Ví dụ cụt lô tam thì sẽ cảnh báo cái gì
+[00:05:36 --> 00:05:38] Thời tiết sẽ cảnh báo cái gì
+[00:05:38 --> 00:05:39] Đúng không
+[00:05:39 --> 00:05:41] Cái thứ 2 là dữ địa mẫu
+[00:05:41 --> 00:05:42] Dữ địa mẫu rồi ở đây
+[00:05:42 --> 00:05:44] Ví dụ như dữ địa mẫu của cái cụt này là cái gì
+[00:05:44 --> 00:05:45] Đúng không
+[00:05:45 --> 00:05:46] Anh sẽ có dữ địa mẫu
+[00:05:46 --> 00:05:48] Và mô tả về dữ địa mẫu đấy
+[00:05:51 --> 00:05:52] Dòng thứ 3
+[00:05:52 --> 00:05:54] Ở đây anh có biểu thị về mặt màu sắc
+[00:05:54 --> 00:05:56] Nó sẽ có quy định màu
+[00:05:57 --> 00:05:59] Xanh, vàng, đỏ và không màu
+[00:06:00 --> 00:06:01] Đúng không
+[00:06:01 --> 00:06:03] Xanh là cái gì, vàng là cái gì, đỏ là cái gì
+[00:06:04 --> 00:06:06] Thì anh đã có cái cụt
+[00:06:06 --> 00:06:07] Xanh đỏ vàng ở đây
+[00:06:07 --> 00:06:09] Anh đã quy định dần dần dần dần
+[00:06:09 --> 00:06:11] Và khi haver chuột vào
+[00:06:11 --> 00:06:14] Nó sẽ thể hiện cái tụ tĩ là cái nụ dô gì
+[00:06:15 --> 00:06:16] Đúng không
+[00:06:16 --> 00:06:18] Mình làm rất chi tiết để hút haver chuột vào này
+[00:06:19 --> 00:06:21] Thì tụ tĩ là cái gì đây
+[00:06:22 --> 00:06:24] Thì sẽ đi phai dường dần
+[00:06:24 --> 00:06:26] Còn cái nào mà haver chuột nó không có
+[00:06:26 --> 00:06:28] Thì cái dòng đấy mình sẽ tìm
+[00:06:29 --> 00:06:30] Và khi bấm detail
+[00:06:30 --> 00:06:33] Tức là cái mạng detail vừa rồi anh mô tả
+[00:06:33 --> 00:06:34] Thì khi bấm detail
+[00:06:34 --> 00:06:36] Thì cái góc thông tin đấy
+[00:06:36 --> 00:06:38] Nó sẽ tìm được cái thông tin nào trong detail
+[00:06:38 --> 00:06:39] Thì anh có được
+[00:06:42 --> 00:06:45] Thì đấy là 1 cái mà đầu tiên là cái mạng
+[00:06:47 --> 00:06:48] Thực ra nha
+[00:06:48 --> 00:06:51] Thì mình khảo sát
+[00:06:51 --> 00:06:55] Nó sẽ không kịp được tính độ sản xuất
+[00:06:55 --> 00:06:57] Cho nên ở đây về mặt cảnh báo
+[00:06:58 --> 00:07:01] Những cái gì mà hệ thống mình chưa tích hợp được
+[00:07:02 --> 00:07:03] Thì mình sẽ để chống ở đây
+[00:07:03 --> 00:07:04] Lệch nga ở đây
+[00:07:04 --> 00:07:05] Là chưa tích hợp được
+[00:07:05 --> 00:07:07] Còn lại những thông tin gì mình đã tích hợp được
+[00:07:07 --> 00:07:09] Ví dụ lịch bay
+[00:07:09 --> 00:07:10] Ví dụ như loại chuyến bay
+[00:07:10 --> 00:07:11] Ví dụ như là trạng thái
+[00:07:11 --> 00:07:12] Ví dụ như là
+[00:07:12 --> 00:07:14] OAPV vision mình đã tích hợp được
+[00:07:14 --> 00:07:16] Thì mình sẽ làm dần các cái cột đấy
+[00:07:17 --> 00:07:18] Đúng không
+[00:07:18 --> 00:07:19] Mình sẽ làm xong xong
+[00:07:19 --> 00:07:20] Anh sẽ khảo sát các mô run khác nữa
+[00:07:20 --> 00:07:22] Anh sẽ khảo sát các chương lao khác nữa
+[00:07:22 --> 00:07:24] Nhưng cái cột này chắc chắn là cái tiến hút tích hợp
+[00:07:24 --> 00:07:26] Nó sẽ không kịp được so với mình sản xuất tài liệu
+[00:07:26 --> 00:07:28] Cho nên những cột nào chưa tích hợp được
+[00:07:28 --> 00:07:30] Thì mình bỏ chấm dữ liệu
+[00:07:30 --> 00:07:32] Sau mình sẽ bổ sung thêm dữ liệu để
+[00:07:32 --> 00:07:34] Cột hợp phải nét là fusion vào
+[00:07:34 --> 00:07:36] Cái logic đó
+[00:07:36 --> 00:07:38] Kể cả man đi theo cũng thế
+[00:07:39 --> 00:07:41] Thì ở trong cái
+[00:07:41 --> 00:07:43] Mô run này có đúng một chức năng duy nhất là
+[00:07:43 --> 00:07:45] Relieve OAP thôi
+[00:07:45 --> 00:07:47] Vì cái đấy mình có thể làm xong
+[00:07:47 --> 00:07:49] Ở đấy thì chưa bàn tới
+[00:07:51 --> 00:07:52] Thì việc đầu tiên ở đây là
+[00:07:52 --> 00:07:54] Anh cần ra cái tài disc
+[00:07:54 --> 00:07:56] Công của FlyDiskPak
+[00:07:56 --> 00:07:58] Mô tả
+[00:07:58 --> 00:07:59] Màn hình
+[00:07:59 --> 00:08:01] Cối hợp với Quân để ra cái
+[00:08:01 --> 00:08:02] Màn hình đầu tiên
+[00:08:02 --> 00:08:04] Sau đấy mình sẽ lửa cái hình chốt trên cái
+[00:08:04 --> 00:08:06] Màn hình chốt đấy
+[00:08:06 --> 00:08:08] Sau đó mình sẽ triển khai cái
+[00:08:08 --> 00:08:10] Cái tài điệu đó
+[00:08:10 --> 00:08:12] Và cái thứ hai nữa là
+[00:08:12 --> 00:08:14] Rất cần là mình phải
+[00:08:14 --> 00:08:16] Chuẩn hóa lại cái
+[00:08:16 --> 00:08:18] Màn hình login rồi
+[00:08:18 --> 00:08:20] Home rồi các icon như thế này
+[00:08:20 --> 00:08:22] Trên chê là hơi trẻ khói
+[00:08:24 --> 00:08:26] Thì làm sao đấy để
+[00:08:26 --> 00:08:28] Để nhìn cho mọi người
+[00:08:28 --> 00:08:30] Với đại hóa và cái thứ hai nữa là
+[00:08:30 --> 00:08:32] Nhìn nó xa hơn
+[00:08:32 --> 00:08:34] Đổi tên đi nè
+[00:08:44 --> 00:08:47] Nó là tên này được không
+[00:08:47 --> 00:08:49] Nó không phải là cái này
+[00:08:49 --> 00:08:51] Các mô đun sắp xét thì
+[00:08:51 --> 00:08:53] Thứ tự đi anh đã để ở đây rồi
+[00:08:53 --> 00:08:55] 1234 là cái gì
+[00:08:55 --> 00:08:57] Thì ở màn home sẽ 1234 là cái đấy
+[00:08:57 --> 00:09:01] Vậy bây giờ cập nhật lại cái
+[00:09:01 --> 00:09:03] Thứ nhất là pigma đi
+[00:09:03 --> 00:09:05] Cái gì mình đang có trên
+[00:09:05 --> 00:09:07] Sites.min này cập nhật lại
+[00:09:15 --> 00:09:17] Và triển khai cái
+[00:09:17 --> 00:09:19] Phần hệ đầu tiên của
+[00:09:19 --> 00:09:21] Phần TOS của Trung Đi
+[00:09:23 --> 00:09:25] Điều hiểu bí đường của anh rồi đúng không
+[00:09:25 --> 00:09:27] Vâng
+[00:09:31 --> 00:09:33] Vậy anh có gửi cái này
+[00:09:33 --> 00:09:35] Và đi demo cho khách thì
+[00:09:35 --> 00:09:37] Chỉ ngồi xem cái màn này để
+[00:09:37 --> 00:09:39] Đưa ra dần cả cái
+[00:09:43 --> 00:09:45] Trong quá trình mà mọi người
+[00:09:45 --> 00:09:47] Đọc mọi người xem cái
+[00:09:47 --> 00:09:49] Công tin mà anh đưa anh này
+[00:09:49 --> 00:09:51] Có vấn đề gì chưa dọn
+[00:09:51 --> 00:09:53] Thì cứ nhắm tin lên trên nhỏ
+[00:09:53 --> 00:09:55] Nếu có vấn đề gì thì cứ nhắm
+[00:09:55 --> 00:09:57] Ví dụ là cái
+[00:09:57 --> 00:09:59] Công tin này
+[00:09:59 --> 00:10:01] Ghi như thế này thì cả
+[00:10:01 --> 00:10:03] Đọc 1 lần 2 lần sẽ chưa hiểu luôn
+[00:10:03 --> 00:10:05] Ủa mà ở đây
+[00:10:05 --> 00:10:07] Có bà nào làm con mô chưa
+[00:10:07 --> 00:10:09] Mô thì của
+[00:10:09 --> 00:10:11] Ông anh với Phượng làm
+[00:10:11 --> 00:10:13] Nhưng mà ông anh với Phượng vào cái giai đoạn là đã
+[00:10:13 --> 00:10:15] Maintain rồi và chỉ là tính cia thôi
+[00:10:15 --> 00:10:16] Vậy về cái mức
+[00:10:16 --> 00:10:17] Anh hiểu thì
+[00:10:17 --> 00:10:19] Chưa thật sự ai hiểu hết
+[00:10:21 --> 00:10:23] Ở đây mình có cái file mà
+[00:10:23 --> 00:10:25] Khách hàng mới gửi
+[00:10:31 --> 00:10:33] Anh nhớ là cái
+[00:10:37 --> 00:10:39] Cái mà chị Lê gọi
+[00:10:39 --> 00:10:41] Anh nhớ là ở đây
+[00:10:41 --> 00:10:43] Không cái dưới
+[00:10:43 --> 00:10:45] Ở đây
+[00:10:45 --> 00:10:47] Ở đây phát

@@ -1,0 +1,216 @@
+=== SHEET: Thông tin dự án ===
+R001 | ColA:Jira | ColB:https://jira.viettelsoftware.com/secure/Dashboard.jspa?selectPageId=12709 | ColC:None | ColD:None | ColE:None | ColF:
+R002 | ColA:Confluence | ColB:CNM.VNA.FIMS.SX Home | ColC:None | ColD:None | ColE:None | ColF:
+R003 | ColA:Gitlab | ColB:https://gitlab.viettelsoftware.com/ph-ng-ptpm/vss-customer/cnm_vna_fims_sx | ColC:None | ColD:None | ColE:None | ColF:
+R004 | ColA:Server Dev | ColB:https://fims-fe-dev.viettelsoftware.com/auth | ColC:None | ColD:None | ColE:None | ColF:
+R005 | ColA:Function list | ColB:https://docs.google.com/spreadsheets/d/1Y2amzBI92CcJLyncoSH_l9C-X2uMFRYJWbJY9qqY574/edit?gid=295976113#gid=295976113 | ColC:None | ColD:None | ColE:None | ColF:
+R006 | ColA:SRS | ColB:System Admin:VNA.TOSS_SRS_System Admin_V0.1.docx
+Data Maintenance: VNA.TOSS_SRS_Data Maintenance_v0.1.docx
+Data Source Monitoring: VNA.TOSS_SRS_Data Source Monitoring_v0.1
+TOSS: 
+- Station Manager: VNA.TOSS_SRS_Station Manager_v0.1
+- Report: VNA.TOSS_SRS_Report_v0.1
+- Live operations: VNA.TOSS_SRS_Live Operations_v0.1
+- Flight load cotrol: VNA.TOSS_SRS_Flight Load Control_v0.1
+- Flight Dispatch: VNA.TOSS_SRS_Flight Dispatch_v0.1 | ColC:None | ColD:None | ColE:None | ColF:
+R007 | ColA:Figma | ColB:https://www.figma.com/design/HNvApgVP8uqBD4eQOnW6K7/VNA_TOSS_H%E1%BB%87-th%E1%BB%91ng-qu%E1%BA%A3n-l%C3%BD-t%C3%A0i-li%E1%BB%87u---th%C3%B4ng-tin-%C4%91i%E1%BB%81u-h%C3%A0nh-chuy%E1%BA%BFn-bay?node-id=309-17734&p=f&t=yrCfatgrudZyRvSX-0 | ColC:None | ColD:None | ColE:None | ColF:
+R008 | ColA:SVN | ColB:https://svn.viettelsoftware.com/!/#CNM.VNA.FIMS.SX
+4. Hướng dẫn sử dụng SVN.pdf | ColC:None | ColD:None | ColE:None | ColF:
+R009 | ColA:VPN | ColB:FortiClientVPN_Window (1).rar
+5. Hướng dẫn cÀI ĐẶT VPN-IPsec (1).pdf | ColC:None | ColD:None | ColE:None | ColF:
+R010 | ColA:Master Plan | ColB:https://docs.google.com/spreadsheets/d/1hXNPHroMfjC90fZS1ojRTxJtQE7JSN0o/edit?gid=2100811446#gid=2100811446 | ColC:None | ColD:None | ColE:None | ColF:
+R011 | ColA:Test Plan | ColB:[VTIT.VNA] FIMS_Kế hoạch kiểm thử v1.0.xlsx
+[VTIT.VNA] FIMS_Function list_FINAL.xlsx | ColC:None | ColD:None | ColE:None | ColF:
+R012 | ColA:Testcase common | ColB:KBKT_VTIT.VNA_FIM_Common.xls | ColC:None | ColD:None | ColE:None | ColF:
+R013 | ColA:TKTT | ColB:FIMS_ThietKeTongThe_version_1.0.docx | ColC:None | ColD:None | ColE:None | ColF:
+R014 | ColA:Ext Chrome | ColB:https://chromewebstore.google.com/detail/edupham-optimize-jira/imhbhcgnaecdpiajecjljadaajlchgmg
+HDSD Ext.txt | ColC:None | ColD:None | ColE:None | ColF:
+=== SHEET: Sprint 1 ===
+R001 | ColA:Mã jira | ColB:Module | ColC:Chức năng | ColD:Feature | ColE:Type | ColF:Priority
+R002 | ColA:None | ColB:System Admin | ColC:User | ColD:Danh sách người dùng | ColE:New | ColF:1.0
+R003 | ColA:None | ColB:None | ColC:User | ColD:Job đồng bộ danh sách người dùng LDAP | ColE:New | ColF:1.0
+R004 | ColA:None | ColB:None | ColC:User | ColD:Kết xuất danh sách | ColE:New | ColF:1.0
+R005 | ColA:None | ColB:None | ColC:User | ColD:Thêm người dùng Local | ColE:New | ColF:1.0
+R006 | ColA:None | ColB:None | ColC:User | ColD:Thêm người dùng LDap | ColE:New | ColF:1.0
+R007 | ColA:None | ColB:None | ColC:User | ColD:Xem chi tiết thông tin người dùng | ColE:New | ColF:1.0
+R008 | ColA:None | ColB:None | ColC:User | ColD:Xem chi tiết phân quyền người dùng | ColE:New | ColF:1.0
+R009 | ColA:None | ColB:None | ColC:User | ColD:Sửa người dùng LDap | ColE:New | ColF:1.0
+R010 | ColA:None | ColB:None | ColC:User | ColD:Sửa người dùng Local | ColE:New | ColF:1.0
+R011 | ColA:None | ColB:None | ColC:User | ColD:Thêm role cho người dùng | ColE:New | ColF:1.0
+R012 | ColA:None | ColB:None | ColC:User | ColD:Bật/tắt trạng thái người dùng | ColE:New | ColF:1.0
+R013 | ColA:None | ColB:None | ColC:User | ColD:Xóa người dùng | ColE:New | ColF:1.0
+R014 | ColA:None | ColB:None | ColC:User | ColD:Lấy lại mật khẩu người dùng Local | ColE:New | ColF:1.0
+R015 | ColA:None | ColB:None | ColC:User | ColD:Xem Lịch sử cập nhật người dùng (Update) | ColE:New | ColF:1.0
+R016 | ColA:None | ColB:None | ColC:User | ColD:Xem Lịch sử truy cập người dùng (Access) | ColE:New | ColF:1.0
+R017 | ColA:None | ColB:None | ColC:User | ColD:Phân quyền | ColE:New | ColF:1.0
+R018 | ColA:None | ColB:System Admin | ColC:Roles | ColD:Danh sách vai trò | ColE:New | ColF:1.0
+R019 | ColA:None | ColB:None | ColC:Roles | ColD:Thêm vai trò | ColE:New | ColF:1.0
+R020 | ColA:None | ColB:None | ColC:Roles | ColD:Thêm quyền chức năng cho vai trò | ColE:New | ColF:1.0
+R021 | ColA:None | ColB:None | ColC:Roles | ColD:Xem vai trò | ColE:New | ColF:1.0
+R022 | ColA:None | ColB:None | ColC:Roles | ColD:Xem vai trò/ Tab user list | ColE:New | ColF:1.0
+R023 | ColA:None | ColB:None | ColC:Roles | ColD:Sửa vai trò | ColE:New | ColF:1.0
+R024 | ColA:None | ColB:None | ColC:Roles | ColD:Xóa vai trò | ColE:New | ColF:1.0
+R025 | ColA:None | ColB:None | ColC:Roles | ColD:Khôi phục vai trò | ColE:New | ColF:1.0
+R026 | ColA:None | ColB:None | ColC:Roles | ColD:Bật/tắt hoạt động vai trò | ColE:New | ColF:1.0
+R027 | ColA:None | ColB:None | ColC:Roles | ColD:Phân quyền | ColE:New | ColF:1.0
+R028 | ColA:None | ColB:System Admin | ColC:User Group | ColD:Danh sách nhóm người dùng | ColE:New | ColF:1.0
+R029 | ColA:None | ColB:None | ColC:User Group | ColD:Thêm mới nhóm người dùng | ColE:New | ColF:1.0
+R030 | ColA:None | ColB:None | ColC:User Group | ColD:Thêm mới quyền cho nhóm người dùng | ColE:New | ColF:1.0
+R031 | ColA:None | ColB:None | ColC:User Group | ColD:Hiển thị danh sách quyền | ColE:New | ColF:1.0
+R032 | ColA:None | ColB:None | ColC:User Group | ColD:Sửa nhóm người dùng | ColE:New | ColF:1.0
+R033 | ColA:None | ColB:None | ColC:User Group | ColD:Hiển thị danh sách quyền hệ thống | ColE:New | ColF:1.0
+R034 | ColA:None | ColB:None | ColC:User Group | ColD:Xóa nhóm người dùng | ColE:New | ColF:1.0
+R035 | ColA:None | ColB:None | ColC:User Group | ColD:Xem chi tiết nhóm người dùng | ColE:New | ColF:1.0
+R036 | ColA:None | ColB:None | ColC:User Group | ColD:Xem chi tiết danh sách người dùng cho nhóm người dùng | ColE:New | ColF:1.0
+R037 | ColA:None | ColB:None | ColC:User Group | ColD:Xem chi tiết quyền của nhóm người dùng | ColE:New | ColF:1.0
+R038 | ColA:None | ColB:None | ColC:User Group | ColD:Kết xuất danh sách | ColE:New | ColF:1.0
+R039 | ColA:None | ColB:None | ColC:User Group | ColD:Xem lịch sử cập nhật nhóm người dùng | ColE:New | ColF:1.0
+R040 | ColA:None | ColB:None | ColC:User Group | ColD:Phân quyền | ColE:New | ColF:1.0
+R041 | ColA:None | ColB:Data Maintenance | ColC:Country Category | ColD:Xem danh sách quốc gia | ColE:New | ColF:None
+R042 | ColA:None | ColB:None | ColC:Country Category | ColD:Xem chi tiết quốc gia | ColE:New | ColF:None
+R043 | ColA:None | ColB:None | ColC:Country Category | ColD:Tìm kiếm quốc gia | ColE:New | ColF:None
+R044 | ColA:None | ColB:None | ColC:Country Category | ColD:Tạo mới quốc gia | ColE:New | ColF:None
+R045 | ColA:None | ColB:None | ColC:Country Category | ColD:Cập nhật quốc gia | ColE:New | ColF:None
+R046 | ColA:None | ColB:None | ColC:Country Category | ColD:Xóa  quốc gia | ColE:New | ColF:None
+R047 | ColA:None | ColB:None | ColC:Country Category | ColD:Kết xuất  quốc gia | ColE:New | ColF:None
+R048 | ColA:None | ColB:None | ColC:Country Category | ColD:Phân quyền | ColE:New | ColF:None
+R049 | ColA:None | ColB:None | ColC:FIR Category | ColD:Danh sách FIR | ColE:New | ColF:None
+R050 | ColA:None | ColB:None | ColC:FIR Category | ColD:Tìm kiếm FIR | ColE:New | ColF:None
+R051 | ColA:None | ColB:None | ColC:FIR Category | ColD:Kết xuất FIR | ColE:New | ColF:None
+R052 | ColA:None | ColB:None | ColC:FIR Category | ColD:Thêm mới FIR | ColE:New | ColF:None
+R053 | ColA:None | ColB:None | ColC:FIR Category | ColD:Sửa FIR | ColE:New | ColF:None
+R054 | ColA:None | ColB:None | ColC:FIR Category | ColD:Xóa FIR | ColE:New | ColF:None
+R055 | ColA:None | ColB:None | ColC:FIR Category | ColD:Xem chi tiết FIR | ColE:New | ColF:None
+R056 | ColA:None | ColB:None | ColC:FIR Category | ColD:Phân quyền | ColE:New | ColF:None
+R057 | ColA:None | ColB:Data Maintenance | ColC:Carrier | ColD:Danh sách carrier | ColE:New | ColF:None
+R058 | ColA:None | ColB:None | ColC:Carrier | ColD:Tìm kiếm carrier | ColE:New | ColF:None
+R059 | ColA:None | ColB:None | ColC:Carrier | ColD:Thêm mới carrier | ColE:New | ColF:None
+R060 | ColA:None | ColB:None | ColC:Carrier | ColD:Sửa carrier | ColE:New | ColF:None
+R061 | ColA:None | ColB:None | ColC:Carrier | ColD:Xóa carrier | ColE:New | ColF:None
+R062 | ColA:None | ColB:None | ColC:Carrier | ColD:Xem chi tiết carrier | ColE:New | ColF:None
+R063 | ColA:None | ColB:None | ColC:Carrier | ColD:Xem lịch sử | ColE:New | ColF:None
+R064 | ColA:None | ColB:None | ColC:Carrier | ColD:Phân quyền  | ColE:New | ColF:None
+R065 | ColA:None | ColB:Data Maintenance | ColC:Pilot Category | ColD:Danh sách phi công | ColE:New | ColF:None
+R066 | ColA:None | ColB:None | ColC:Pilot Category | ColD:Xuất danh sách phi công | ColE:New | ColF:None
+R067 | ColA:None | ColB:None | ColC:Pilot Category | ColD:Xem chi tiết phi công | ColE:New | ColF:None
+R068 | ColA:None | ColB:None | ColC:Pilot Category | ColD:Sửa thông tin phi công | ColE:New | ColF:None
+R069 | ColA:None | ColB:None | ColC:Pilot Category | ColD:API Đồng bộ danh sách phi công AVES | ColE:New | ColF:None
+R070 | ColA:None | ColB:None | ColC:Pilot Category | ColD:API Đồng bộ thông tin phi công AVES | ColE:New | ColF:None
+R071 | ColA:None | ColB:None | ColC:Pilot Category | ColD:API lịch bay phi công | ColE:New | ColF:None
+R072 | ColA:None | ColB:None | ColC:Pilot Category | ColD:API Kiểm tra trạng thái đồng bộ dữ liệu AVES | ColE:New | ColF:None
+R073 | ColA:None | ColB:None | ColC:Pilot Category | ColD:API Tra cứu lịch sử đồng bộ dữ liệu AVES | ColE:New | ColF:None
+R074 | ColA:None | ColB:None | ColC:Pilot Category | ColD:Xem thông tin Flight Itineraries phi công | ColE:New | ColF:None
+R075 | ColA:None | ColB:None | ColC:Pilot Category | ColD:Xem lịch sử phi công | ColE:New | ColF:None
+R076 | ColA:None | ColB:None | ColC:Pilot Category | ColD:Phân quyền  | ColE:New | ColF:None
+R077 | ColA:None | ColB:Data Maintenance | ColC:Cabin crew Category | ColD:chưa có history | ColE:New | ColF:None
+R078 | ColA:None | ColB:None | ColC:Cabin crew Category | ColD:Danh sách tiếp viên | ColE:New | ColF:None
+R079 | ColA:None | ColB:None | ColC:Cabin crew Category | ColD:Xuất danh sách tiếp viên | ColE:New | ColF:None
+R080 | ColA:None | ColB:None | ColC:Cabin crew Category | ColD:Tìm kiếm tiếp viên | ColE:New | ColF:None
+R081 | ColA:None | ColB:None | ColC:Cabin crew Category | ColD:Xem chi tiết tiếp viên | ColE:New | ColF:None
+R082 | ColA:None | ColB:None | ColC:Cabin crew Category | ColD:Sửa thông tin tiếp viên | ColE:New | ColF:None
+R083 | ColA:None | ColB:None | ColC:Cabin crew Category | ColD:API Đồng bộ danh sách TV AVES | ColE:New | ColF:None
+R084 | ColA:None | ColB:None | ColC:Cabin crew Category | ColD:API Đồng bộ thông tin TV AVES | ColE:New | ColF:None
+R085 | ColA:None | ColB:None | ColC:Cabin crew Category | ColD:API lịch bay TV  | ColE:New | ColF:None
+R086 | ColA:None | ColB:None | ColC:Cabin crew Category | ColD:API Kiểm tra trạng thái đồng bộ dữ liệu AVES | ColE:New | ColF:None
+R087 | ColA:None | ColB:None | ColC:Cabin crew Category | ColD:API Tra cứu lịch sử đồng bộ dữ liệu AVES | ColE:New | ColF:None
+R088 | ColA:None | ColB:None | ColC:Cabin crew Category | ColD:Xem thông tin Flight Itineraries tiếp viên | ColE:New | ColF:None
+R089 | ColA:None | ColB:None | ColC:Cabin crew Category | ColD:Xem lịch sử tiếp viên | ColE:New | ColF:None
+R090 | ColA:None | ColB:None | ColC:Cabin crew Category | ColD:Phân quyền  | ColE:New | ColF:None
+R091 | ColA:None | ColB:Data Maintenance | ColC:ULD Category(Type) | ColD:Xem danh sách loại ULD | ColE:New | ColF:None
+R092 | ColA:None | ColB:None | ColC:ULD Category(Type) | ColD:Thêm mới loại ULD | ColE:New | ColF:None
+R093 | ColA:None | ColB:None | ColC:ULD Category(Type) | ColD:Sửa loại ULD | ColE:New | ColF:None
+R094 | ColA:None | ColB:None | ColC:ULD Category(Type) | ColD:Xem chi tiết loại ULD | ColE:New | ColF:None
+R095 | ColA:None | ColB:None | ColC:ULD Category(Type) | ColD:Tìm kiếm loại ULD | ColE:New | ColF:None
+R096 | ColA:None | ColB:None | ColC:ULD Category(Type) | ColD:Kết xuất loại ULD | ColE:New | ColF:None
+R097 | ColA:None | ColB:None | ColC:ULD Category(Type) | ColD:Xoá loại ULD | ColE:New | ColF:None
+R098 | ColA:None | ColB:None | ColC:ULD Category(Type) | ColD:Phân quyền | ColE:New | ColF:None
+R099 | ColA:None | ColB:Data Maintenance | ColC:ULD | ColD:Xem danh sách ULD | ColE:New | ColF:None
+R100 | ColA:None | ColB:None | ColC:ULD | ColD:Thêm mới ULD | ColE:New | ColF:None
+R101 | ColA:None | ColB:None | ColC:ULD | ColD:Sửa ULD | ColE:New | ColF:None
+R102 | ColA:None | ColB:None | ColC:ULD | ColD:Xem chi tiết  ULD | ColE:New | ColF:None
+R103 | ColA:None | ColB:None | ColC:ULD | ColD:Tìm kiếm ULD | ColE:New | ColF:None
+R104 | ColA:None | ColB:None | ColC:ULD | ColD:Kết xuất | ColE:New | ColF:None
+R105 | ColA:None | ColB:None | ColC:ULD | ColD:Xoá ULD | ColE:New | ColF:None
+R106 | ColA:None | ColB:None | ColC:ULD | ColD:Phân quyền | ColE:New | ColF:None
+R107 | ColA:None | ColB:Data Maintenance | ColC:Flight routes | ColD:Xem danh sách | ColE:New | ColF:None
+R108 | ColA:None | ColB:None | ColC:Flight routes | ColD:Tìm kiếm | ColE:New | ColF:None
+R109 | ColA:None | ColB:None | ColC:Flight routes | ColD:Thêm mới | ColE:New | ColF:None
+R110 | ColA:None | ColB:None | ColC:Flight routes | ColD:Sửa | ColE:New | ColF:None
+R111 | ColA:None | ColB:None | ColC:Flight routes | ColD:Xóa | ColE:New | ColF:None
+R112 | ColA:None | ColB:None | ColC:Flight routes | ColD:Phân quyền | ColE:New | ColF:None
+R113 | ColA:None | ColB:Data Maintenance | ColC:AC Subtype | ColD:Xem danh sách | ColE:New | ColF:None
+R114 | ColA:None | ColB:None | ColC:AC Subtype | ColD:Tìm kiếm | ColE:New | ColF:None
+R115 | ColA:None | ColB:None | ColC:AC Subtype | ColD:Thêm mới | ColE:New | ColF:None
+R116 | ColA:None | ColB:None | ColC:AC Subtype | ColD:Sửa | ColE:New | ColF:None
+R117 | ColA:None | ColB:None | ColC:AC Subtype | ColD:Xóa | ColE:New | ColF:None
+R118 | ColA:None | ColB:None | ColC:AC Subtype | ColD:Export | ColE:New | ColF:None
+R119 | ColA:None | ColB:None | ColC:AC Subtype | ColD:Phân quyền | ColE:New | ColF:None
+R120 | ColA:None | ColB:Data Maintenance | ColC:Flight Fleet | ColD:Danh sách | ColE:New | ColF:None
+R121 | ColA:None | ColB:None | ColC:Flight Fleet | ColD:Thêm đội bay | ColE:New | ColF:None
+R122 | ColA:None | ColB:None | ColC:Flight Fleet | ColD:Sửa đội bay | ColE:New | ColF:None
+R123 | ColA:None | ColB:None | ColC:Flight Fleet | ColD:Xóa đội bay | ColE:New | ColF:None
+R124 | ColA:None | ColB:None | ColC:Flight Fleet | ColD:Xem chi tiết đội bay | ColE:New | ColF:None
+R125 | ColA:None | ColB:None | ColC:Flight Fleet | ColD:Xem lich sử đội bay | ColE:New | ColF:None
+R126 | ColA:None | ColB:None | ColC:Flight Fleet | ColD:Thêm tàu bay | ColE:New | ColF:None
+R127 | ColA:None | ColB:None | ColC:Flight Fleet | ColD:Xóa tàu bay | ColE:New | ColF:None
+R128 | ColA:None | ColB:Login | ColC:Login | ColD:Chọn ngôn ngữ | ColE:New | ColF:None
+R129 | ColA:None | ColB:None | ColC:Login | ColD:Thông tin user đăng nhập | ColE:New | ColF:None
+R130 | ColA:None | ColB:None | ColC:Login | ColD:View Thông tin user | ColE:New | ColF:None
+R131 | ColA:None | ColB:None | ColC:Login | ColD:Logout | ColE:New | ColF:None
+R132 | ColA:None | ColB:None | ColC:Login | ColD:Thay đổi pass | ColE:New | ColF:None
+R133 | ColA:None | ColB:None | ColC:Login | ColD:Background hệ thống "FIMS" | ColE:New | ColF:None
+R134 | ColA:None | ColB:None | ColC:Login | ColD:Chọn luồng đăng nhập | ColE:New | ColF:None
+R135 | ColA:None | ColB:None | ColC:Login | ColD:Chỉ nhập Local User (username/pass) | ColE:New | ColF:None
+R136 | ColA:None | ColB:None | ColC:Login | ColD:Đăng nhập tk LDAP | ColE:New | ColF:None
+R137 | ColA:None | ColB:None | ColC:Login | ColD:Đăng nhập tk VIAGS | ColE:New | ColF:None
+R138 | ColA:None | ColB:None | ColC:Login | ColD:Đăng nhập tk Vasco | ColE:New | ColF:None
+R139 | ColA:None | ColB:None | ColC:Login | ColD:Ghi log đăng nhập thành công/thất bại | ColE:New | ColF:None
+R140 | ColA:None | ColB:None | ColC:Login | ColD:Xử lý mã hóa, token, session | ColE:New | ColF:None
+R141 | ColA:None | ColB:None | ColC:Login | ColD:Xử lý captcha  khi nhập sai MK quá 5 lần | ColE:New | ColF:None
+R142 | ColA:None | ColB:None | ColC:Login | ColD:Xử lý khóa tài khoản tạm thời khi sai pass quá 10 lần | ColE:New | ColF:None
+R143 | ColA:None | ColB:None | ColC:Login | ColD:Xử lý "Ghi nhớ đăng nhập" (mã hóa & lưu token dài hạn, an toàn) | ColE:New | ColF:None
+R144 | ColA:None | ColB:None | ColC:Login | ColD:Quên thông tin đăng nhập | ColE:New | ColF:None
+R145 | ColA:None | ColB:Home | ColC:Chọn phân hệ | ColD:Chọn phân hệ Systerm Admin | ColE:New | ColF:None
+R146 | ColA:None | ColB:None | ColC:None | ColD:Chọn phân hệ Data Maintenance | ColE:New | ColF:None
+R147 | ColA:None | ColB:None | ColC:None | ColD:Chọn phân hệ Data Source Monitoring | ColE:New | ColF:None
+R148 | ColA:None | ColB:None | ColC:None | ColD:Chọn phân hệ TOSS | ColE:New | ColF:None
+R149 | ColA:None | ColB:Data Maintenance | ColC:Quản lý tàu bay | ColD:Xem danh sách tàu bay | ColE:New | ColF:None
+R150 | ColA:None | ColB:None | ColC:Quản lý tàu bay | ColD:Xem chi tiết tàu bay | ColE:New | ColF:None
+R151 | ColA:None | ColB:None | ColC:Quản lý tàu bay | ColD:Tìm kiếm tàu bay | ColE:New | ColF:None
+R152 | ColA:None | ColB:None | ColC:Quản lý tàu bay | ColD:Làm mới danh sách tàu bay | ColE:New | ColF:None
+R153 | ColA:None | ColB:None | ColC:Quản lý tàu bay | ColD:Xuất danh sách tàu bay | ColE:New | ColF:None
+R154 | ColA:None | ColB:None | ColC:Quản lý tàu bay | ColD:Chỉnh sửa tab General Information | ColE:New | ColF:None
+R155 | ColA:None | ColB:None | ColC:Quản lý tàu bay | ColD:Chỉnh sửa Technical Parameters -  tab Aircraft Configuration | ColE:New | ColF:None
+R156 | ColA:None | ColB:None | ColC:Quản lý tàu bay | ColD:Chỉnh sửa Cabin Configuration -  tab Aircraft Configuration | ColE:New | ColF:None
+R157 | ColA:None | ColB:None | ColC:Quản lý tàu bay | ColD:Chỉnh sửa ACARS Fuel Limit & Fuel Multiplier -  tab Aircraft Configuration | ColE:New | ColF:None
+R158 | ColA:None | ColB:None | ColC:Quản lý tàu bay | ColD:Thêm mới  ACARS Fuel Limit & Fuel Multiplier -  tab Aircraft Configuration | ColE:New | ColF:None
+R159 | ColA:None | ColB:None | ColC:Quản lý tàu bay | ColD:Xóa ACARS Fuel Limit & Fuel Multiplier -  tab Aircraft Configuration | ColE:New | ColF:None
+R160 | ColA:None | ColB:None | ColC:Quản lý tàu bay | ColD:Chỉnh sửa tab Group Attributes | ColE:New | ColF:None
+R161 | ColA:None | ColB:None | ColC:Quản lý tàu bay | ColD:Xem lịch sử thay đổi  | ColE:New | ColF:None
+R162 | ColA:None | ColB:None | ColC:Quản lý tàu bay | ColD:Tìm kiếm lịch sử thay đổi | ColE:New | ColF:None
+R163 | ColA:None | ColB:None | ColC:Quản lý tàu bay | ColD:Xuất danh sách lịch sử thay đổi | ColE:New | ColF:None
+R164 | ColA:None | ColB:None | ColC:Quản lý tàu bay | ColD:API đồng bộ danh sách tàu bay từ Netline ops++ | ColE:New | ColF:None
+R165 | ColA:None | ColB:None | ColC:Quản lý tàu bay | ColD:Phân quyền | ColE:New | ColF:None
+=== SHEET: Bug ===
+R001 | ColA:STT | ColB:Module | ColC:Function | ColD:Feature | ColE:Import Jira | ColF:Start date
+R002 | ColA:None | ColB:None | ColC:None | ColD:None | ColE:None | ColF:None
+R003 | ColA:1 | ColB:Admin | ColC:Carrier | ColD:Lịch sử carrier | ColE:None | ColF:None
+R004 | ColA:None | ColB:None | ColC:Carrier | ColD:Sửa | ColE:None | ColF:None
+R005 | ColA:None | ColB:None | ColC:Carrier | ColD:Xem chi tiết | ColE:None | ColF:None
+R006 | ColA:None | ColB:None | ColC:Carrier | ColD:Xem lịch sử | ColE:None | ColF:None
+R007 | ColA:None | ColB:None | ColC:Carrier | ColD:Xuất danh sách | ColE:None | ColF:None
+R008 | ColA:None | ColB:None | ColC:None | ColD:None | ColE:None | ColF:None
+R009 | ColA:None | ColB:Admin | ColC:ULDType | ColD:Danh sách | ColE:None | ColF:None
+R010 | ColA:None | ColB:None | ColC:ULDType | ColD:Tìm kiếm | ColE:None | ColF:None
+R011 | ColA:None | ColB:None | ColC:ULDType | ColD:Thêm mới | ColE:None | ColF:None
+R012 | ColA:None | ColB:None | ColC:ULDType | ColD:Chỉnh sửa | ColE:None | ColF:None
+R013 | ColA:None | ColB:None | ColC:ULDType | ColD:Chi tiết  | ColE:None | ColF:None
+R014 | ColA:None | ColB:None | ColC:ULDType | ColD:Xuất | ColE:None | ColF:None
+R015 | ColA:None | ColB:Admin | ColC:ULD | ColD:Export excel | ColE:None | ColF:None
+R016 | ColA:None | ColB:None | ColC:None | ColD:None | ColE:None | ColF:None
+R017 | ColA:None | ColB:None | ColC:None | ColD:None | ColE:None | ColF:None
+R018 | ColA:None | ColB:None | ColC:None | ColD:None | ColE:None | ColF:None
+R019 | ColA:None | ColB:None | ColC:None | ColD:None | ColE:None | ColF:None
+R026 | ColA:None | ColB:None | ColC:None | ColD:None | ColE:None | ColF:None
+=== SHEET: Sprint 2 ===
+=== SHEET: Tích hợp ===

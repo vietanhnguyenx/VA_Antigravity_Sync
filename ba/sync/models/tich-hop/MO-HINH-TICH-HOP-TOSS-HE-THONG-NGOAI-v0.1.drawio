@@ -1,0 +1,97 @@
+<mxfile host="65bd71144e">
+    <diagram id="tich-hop-toss" name="Tích hợp TOSS ↔ Hệ thống Ngoài">
+        <mxGraphModel dx="428" dy="1458" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="826" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="title" value="Mô hình Tích hợp TOSS ↔ Hệ thống Ngoài (v0.1) — nét liền = Thông qua TOSS (trong scope); nét đứt = Trực tiếp/ngữ cảnh" style="text;html=1;fontStyle=1;fontSize=13;align=left;verticalAlign=middle;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="10" width="1080" height="24" as="geometry"/>
+                </mxCell>
+                <mxCell id="toss" value="TOSS&#xa;(Hub tích hợp)" style="shape=hexagon;perimeter=hexagonPerimeter2;whiteSpace=wrap;html=1;fontStyle=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="540" y="60" width="170" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="isb" value="ISB / LHS&#xa;(Trục tích hợp)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="1020" y="-26" width="110" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="sita" value="SITA&#xa;(Mạng điện văn HK)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="60" width="180" height="56" as="geometry"/>
+                </mxCell>
+                <mxCell id="amadeus" value="Amadeus PSS&#xa;(Đặt chỗ / khách)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="140" width="180" height="56" as="geometry"/>
+                </mxCell>
+                <mxCell id="aves" value="AVES&#xa;(Quản lý tổ bay VNA)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="220" width="180" height="56" as="geometry"/>
+                </mxCell>
+                <mxCell id="vms" value="VMS / VIAGS&#xa;(Mặt đất sân bay)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="300" width="180" height="56" as="geometry"/>
+                </mxCell>
+                <mxCell id="acdm" value="A-CDM&#xa;(Phối hợp ra QĐ sân bay)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="380" width="180" height="56" as="geometry"/>
+                </mxCell>
+                <mxCell id="cargo" value="Cargo Spot&#xa;(Hàng hóa)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="460" width="180" height="56" as="geometry"/>
+                </mxCell>
+                <mxCell id="sabreIn" value="Sabre (GDS)&#xa;(Lịch mùa SSIM)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="540" width="180" height="56" as="geometry"/>
+                </mxCell>
+                <mxCell id="opspp" value="OPS++ / NetOps++&#xa;(LHS — hệ khai thác chính)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontStyle=1;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="1020" y="186" width="200" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="sabreOut" value="Sabre (GDS)&#xa;(nhận ASM / ACH)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="900" y="540" width="200" height="56" as="geometry"/>
+                </mxCell>
+                <mxCell id="lido" value="Lido&#xa;(Kế hoạch bay — OFP)" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;fillColor=#f5f5f5;strokeColor=#999999;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="320" y="640" width="170" height="56" as="geometry"/>
+                </mxCell>
+                <mxCell id="amos" value="AMOS&#xa;(Bảo dưỡng — MEL Item)" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;fillColor=#f5f5f5;strokeColor=#999999;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="540" y="640" width="170" height="56" as="geometry"/>
+                </mxCell>
+                <mxCell id="e1" value="MVT·MVA·DIV·LDM&#xa;SFTP/Email · BR-556…559" style="endArrow=block;html=1;fontSize=10;" parent="1" source="sita" target="toss" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e2" value="PTM·PNL·ADL·Pax Detail&#xa;BR-563…566" style="endArrow=block;html=1;fontSize=10;" parent="1" source="amadeus" target="toss" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e3" value="Crew Assignment/Connection&#xa;BR-567 · BR-568" style="endArrow=block;html=1;fontSize=10;" parent="1" source="aves" target="toss" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e4" value="Gate info (API VIAGS)&#xa;BR-569" style="endArrow=block;html=1;fontSize=10;" parent="1" source="vms" target="toss" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e5" value="Flight data A-CDM 16 mốc&#xa;BR-570 [cần xác nhận]" style="endArrow=block;html=1;fontSize=10;" parent="1" source="acdm" target="toss" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e6" value="Cargo manifest&#xa;BR-572" style="endArrow=block;html=1;fontSize=10;" parent="1" source="cargo" target="toss" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e7" value="SSIM lịch mùa&#xa;SFTP · BR-562" style="endArrow=block;html=1;fontSize=10;" parent="1" source="sabreIn" target="toss" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e8" value="Forward 17 luồng inbound + FMM/Fuel Report (tự sinh)&#xa;VPN · SFTP/ISB · BR-560/561/575…581" style="endArrow=block;html=1;fontSize=10;" parent="1" source="toss" target="isb" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e9" value="" style="endArrow=block;html=1;" parent="1" source="isb" target="opspp" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e10" value="ASM · ACH (lịch chuyến)&#xa;2 luồng outbound" style="endArrow=block;html=1;fontSize=10;" parent="1" source="opspp" target="toss" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e11" value="ASM · ACH → Sabre&#xa;(TOSS chế biến/chuyển)" style="endArrow=block;html=1;fontSize=10;" parent="1" source="toss" target="sabreOut" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="c1" value="OFP (nội bộ)" style="endArrow=block;html=1;dashed=1;strokeColor=#999999;fontSize=10;fontColor=#666666;" parent="1" source="lido" target="toss" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="c2" value="MEL Item (nội bộ)" style="endArrow=block;html=1;dashed=1;strokeColor=#999999;fontSize=10;fontColor=#666666;" parent="1" source="amos" target="toss" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="c3" value="Trực tiếp → NetOps++&#xa;(ngoài luồng relay TOSS)" style="endArrow=block;html=1;dashed=1;strokeColor=#999999;fontSize=10;fontColor=#666666;" parent="1" source="lido" target="opspp" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="c4" value="Trực tiếp → NetOps++" style="endArrow=block;html=1;dashed=1;strokeColor=#999999;fontSize=10;fontColor=#666666;" parent="1" source="amos" target="opspp" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

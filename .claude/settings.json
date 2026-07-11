@@ -1,5 +1,23 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "permissions": {
+    "allow": [
+      "Bash(python3)",
+      "Read(//c/Users/anhnlv/AppData/Local/Temp/**)",
+      "PowerShell(python C:\\\\Users\\\\anhnlv\\\\AppData\\\\Local\\\\Temp\\\\fix_srs.py)",
+      "PowerShell(tailscale --version 2>$null)",
+      "PowerShell(syncthing --version 2>$null)",
+      "PowerShell(rclone --version 2>$null)",
+      "PowerShell(age --version 2>$null)",
+      "PowerShell(winget --version)",
+      "PowerShell(winget install --id Tailscale.Tailscale -e --silent --accept-package-agreements --accept-source-agreements)",
+      "PowerShell(winget install --id Syncthing.Syncthing -e --silent --accept-package-agreements --accept-source-agreements)"
+    ],
+    "additionalDirectories": [
+      "c:\\Users\\anhnlv\\Downloads",
+      "C:\\Users\\anhnlv\\AppData\\Local\\Temp"
+    ]
+  },
   "hooks": {
     "PreToolUse": [
       {
@@ -8,15 +26,6 @@
           {
             "type": "command",
             "command": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File \"$CLAUDE_PROJECT_DIR\\.claude\\sync\\check-vietnamese.ps1\""
-          }
-        ]
-      },
-      {
-        "matcher": "Bash|PowerShell|Read|Glob|Grep",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File \"$CLAUDE_PROJECT_DIR\\.claude\\sync\\guard-safety.ps1\""
           }
         ]
       }
@@ -28,14 +37,6 @@
           {
             "type": "command",
             "command": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File \"$CLAUDE_PROJECT_DIR\\.claude\\sync\\format-markdown.ps1\""
-          },
-          {
-            "type": "command",
-            "command": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File \"$CLAUDE_PROJECT_DIR\\.claude\\sync\\quality-gate.ps1\""
-          },
-          {
-            "type": "command",
-            "command": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File \"$CLAUDE_PROJECT_DIR\\.claude\\sync\\skill-lint.ps1\""
           }
         ]
       }

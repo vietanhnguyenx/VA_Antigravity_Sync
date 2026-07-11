@@ -1,0 +1,225 @@
+=== SHEET: Tổng Quan ===
+R002 | A: | B:STT | C:Module | D:Link Design | E: | F:STT | G:System
+R003 | A: | B:1.0 | C: | D:https://www.figma.com/design/HNvApgVP8uqBD4eQOnW6K7/VNA_TOSS_H%E1%BB%87-th%E1%BB%91ng-qu%E1%BA%A3n-l%C3%BD-t%C3%A0i-li%E1%BB%87u---th%C3%B4ng-tin-%C4%91i%E1%BB%81u-h%C3%A0nh-chuy%E1%BA%BFn-bay?node-id=309-17734&t=0I99L5JYO7Z2IEHG-1 | E: | F:1.0 | G:
+R004 | A: | B:2.0 | C: | D: | E: | F:2.0 | G:
+R005 | A: | B:3.0 | C: | D: | E: | F:3.0 | G:
+R006 | A: | B:4.0 | C: | D: | E: | F:4.0 | G:
+R007 | A: | B:5.0 | C: | D: | E: | F:5.0 | G:
+R008 | A: | B:6.0 | C: | D: | E: | F:6.0 | G:
+R009 | A: | B:7.0 | C: | D: | E: | F:7.0 | G:
+R010 | A: | B:8.0 | C: | D: | E: | F: | G:
+R011 | A: | B:9.0 | C: | D: | E: | F: | G:
+=== SHEET: Function list ===
+R001 | A:TOSS - Transformative Operations Support System
+Function list TOSS | B: | C: | D: | E: | F: | G:
+R002 | A:STT | B:Status | C: BA PIC | D:Reviewer | E:Module | F:Chức năng | G:Chức năng con lv1
+R003 | A:1.0 | B: | C: | D: | E:Live Operations | F: | G:
+R004 | A: | B: | C: | D: | E: | F:Nhập thông tin hỏng hóc kỹ thuật | G:
+R005 | A: | B: | C: | D: | E: | F:Nhập thông tin dịch vụ | G:
+R016 | A:2.0 | B: | C: | D: | E:Flight Dispatch | F: | G:
+R017 | A: | B: | C: | D: | E:Flight monitoring | F:Màn hình giám sát danh sách tổng quan | G:
+R018 | A: | B: | C: | D: | E: | F:Lọc trên màn hình | G:Xem chi tiết chuyến bay
+R019 | A: | B: | C: | D: | E: | F: | G:Upload OFP trong details
+R020 | A: | B: | C: | D: | E: | F: | G:Các tab thông tin trong xem chi tiết chuyến bay
+R022 | A: | B: | C: | D: | E:Flight Plan | F:Màn hình thông tin kế hoạch bay chuyến bay | G:
+R023 | A: | B: | C: | D: | E: | F:Lọc trên danh sách | G:
+R026 | A: | B: | C: | D: | E:Upload common Document | F:Màn hình danh sách tài liệu chung chuyến bay | G:
+R027 | A: | B: | C: | D: | E: | F: | G:Xoá tài liệu chung chuyến bay
+R028 | A: | B: | C: | D: | E: | F: | G:Upload tài liệu chung chuyến bay
+R029 | A: | B: | C: | D: | E: | F:Màn hình danh sách chuyến bay và upload tài liệu theo từng chuyến | G:
+R031 | A: | B: | C: | D: | E: | F: | G:Upload tài liệu chung chuyến bay (đặt tên theo rules trong libary)
+R032 | A:3.0 | B: | C: | D: | E:Flight Load Control | F: | G:
+R033 | A: | B: | C: | D: | E:Màn hình monitoring | F:Danh sách chuyến bay và trạng thái tài liệu tương ứng (realtime) | G:Payload OFP, Payload input, dow, trip
+R034 | A: | B: | C: | D: | E: | F:Lọc trên danh sách | G:
+R035 | A: | B: | C: | D: | E:Màn hình Document | F:Danh sách chuyến bay và trạng thái tài liệu | G:Loadsheet tích hợp đọc mail, đẩy thủ công.
+PM tích hợp đọc mail amadeus, đẩy thủ công
+GD tích hợp VIAGS, đẩy thủ công.
+
+NOTOC bagge tích hợp amadeus
+
+NOTOC cargo, đẩy thủ công (quy trình phức tạp)
+
+Cargo manifest,
+
+Mail manifest,
+R036 | A: | B: | C: | D: | E: | F:Lọc trên danh sách | G:
+R037 | A: | B: | C: | D: | E: | F:Upload tài liệu theo từng chuyến | G:
+R038 | A: | B: | C: | D: | E: | F:Xem details tài liệu chuyến bay | G:
+R039 | A: | B: | C: | D: | E:Màn hình fuel order | F:Màn hình danh sách chuyến bay và thông tin fuel order | G:
+R040 | A: | B: | C: | D: | E: | F:Xem details fuel chuyến bay | G:
+R041 | A: | B: | C: | D: | E: | F: | G:Chỉnh sửa và hiển thị thông tin dầu
+R042 | A: | B: | C: | D: | E: | F:Lọc trên danh sách | G:
+R043 | A: | B: | C: | D: | E: | F:Customize bảng | G:
+R046 | A:4.0 | B: | C: | D: | E:Station Manager | F: | G:
+R059 | A:5.0 | B: | C: | D: | E:Report | F: | G:
+R060 | A: | B: | C: | D: | E: | F:Báo cáo tàu dừng | G:
+R067 | A:6.0 | B: | C: | D: | E:Data Maintenance | F: | G:
+R068 | A: | B: | C: | D: | E:Quản lý danh mục tàu bay | F:Aircaft list | G:Màn hình danh sách tàu bay (Đồng bộ từ Ops++)
+R069 | A: | B: | C: | D: | E: | F: | G:
+R070 | A: | B: | C: | D: | E: | F: | G:
+R071 | A: | B: | C: | D: | E: | F: | G:
+R072 | A: | B: | C: | D: | E: | F: | G:
+R073 | A: | B: | C: | D: | E: | F:AOG/MNT Schedule | G:Danh sách lịch bảo dưỡng tàu bay
+R074 | A: | B: | C: | D: | E: | F: | G:
+R075 | A: | B: | C: | D: | E: | F: | G:
+R076 | A: | B: | C: | D: | E: | F:AOG/MNT Code | G:Thêm mới
+R077 | A: | B: | C: | D: | E: | F: | G:Lọc
+R078 | A: | B: | C: | D: | E: | F: | G:Sửa
+R079 | A: | B: | C: | D: | E: | F: | G:Xoá
+R080 | A: | B: | C: | D: | E: | F:MEL, CDL | G:
+R086 | A: | B: | C: | D: | E: | F:Performance Factor | G:
+R090 | A: | B: | C: | D: | E:Quản lý danh mục Sân bay | F: | G:
+R103 | A: | B: | C: | D: | E:Quản lý danh mục Chặng bay | F:Chặng bay | G:
+R104 | A: | B: | C: | D: | E: | F:Danh mục Payload | G:Theo chặng, theo tàu, ngưỡng trên, ngưỡng dưới
+R112 | A: | B: | C: | D: | E: | F:Tankering | G:
+R116 | A: | B: | C: | D: | E:Quản lý giá nhiên liệu | F: | G:
+R121 | A: | B: | C: | D: | E:Quản lý danh mục ULD | F:Danh sách ULD | G:
+R122 | A: | B: | C: | D: | E: | F:Tìm kiếm | G:
+R123 | A: | B: | C: | D: | E: | F:Kết xuất | G:
+R124 | A: | B: | C: | D: | E: | F:Thêm mới ULD | G:
+R125 | A: | B: | C: | D: | E: | F:Sửa ULD | G:
+R126 | A: | B: | C: | D: | E: | F:Xóa ULD | G:
+R127 | A: | B: | C: | D: | E: | F:Xem chi tiết ULD | G:
+R128 | A: | B: | C: | D: | E: | F:Xem lịch sử cập nhật ULD | G:
+R129 | A: | B: | C: | D: | E:Quản lý danh mục FIR | F:Danh sách FIR | G:
+R130 | A: | B: | C: | D: | E: | F:Tìm kiếm | G:
+R131 | A: | B: | C: | D: | E: | F:Kết xuất | G:
+R132 | A: | B: | C: | D: | E: | F:Thêm mới FIR | G:
+R133 | A: | B: | C: | D: | E: | F:Sửa FIR | G:
+R134 | A: | B: | C: | D: | E: | F:Xóa FIR | G:
+R135 | A: | B: | C: | D: | E: | F:Xem chi tiết FIR | G:
+R136 | A: | B: | C: | D: | E:Quản lý danh mục phi công | F:Danh sách phi công  | G:
+R137 | A: | B: | C: | D: | E: | F:Xuất danh sách phi công | G:
+R138 | A: | B: | C: | D: | E: | F:Xem chi tiết phi công | G:
+R139 | A: | B: | C: | D: | E: | F:Thêm mới phi công | G:
+R140 | A: | B: | C: | D: | E: | F:Sửa thông tin phi công | G:
+R141 | A: | B: | C: | D: | E:Quản lý danh mục Tiếp viên | F:Danh sách tiếp viên | G:
+R142 | A: | B: | C: | D: | E: | F:Xuất danh sách tiếp viên | G:
+R143 | A: | B: | C: | D: | E: | F:Xem chi tiết tiếp viên | G:
+R144 | A: | B: | C: | D: | E: | F:Thêm mới tiếp viên | G:
+R145 | A: | B: | C: | D: | E: | F:Sửa thông tin tiếp viên | G:
+R146 | A: | B: | C: | D: | E:Quản lý danh mục Quốc gia | F:Danh sách quốc gia | G:
+R147 | A: | B: | C: | D: | E: | F:Thêm mới quốc gia | G:
+R148 | A: | B: | C: | D: | E: | F:Sửa thông tin quốc gia | G:
+R149 | A: | B: | C: | D: | E: | F:Xóa quốc gia | G:
+R150 | A: | B: | C: | D: | E:Quản lý danh mục Carrier | F:Danh sách Carrier | G:
+R151 | A: | B: | C: | D: | E: | F:Thêm mới carrier | G:
+R152 | A: | B: | C: | D: | E: | F:Sửa carrier | G:
+R153 | A: | B: | C: | D: | E: | F:Xóa carrier | G:
+R154 | A: | B: | C: | D: | E:Quản lý danh mục cơ quan đơn vị | F:Danh sách cơ quan đơn vị | G:
+R155 | A: | B: | C: | D: | E: | F:Thêm mới cơ quan đơn vị | G:
+R156 | A: | B: | C: | D: | E: | F:Sửa thông tin cơ quan đơn vị | G:
+R157 | A: | B: | C: | D: | E: | F:Xóa cơ quan đơn vị | G:
+R158 | A: | B: | C: | D: | E:Quản lý danh mục DOW | F: | G:
+R181 | A:7.0 | B: | C: | D: | E:Data Source Monitoring | F: | G:
+R189 | A:8.0 | B: | C: | D: | E:System Admin | F: | G:
+R190 | A: | B: | C: | D: | E:Quản lý tham số hệ thống | F:Quản lý tham số trần và sàn ZFW | G:
+R191 | A: | B: | C: | D: | E: | F:Quản lý tham số thời điểm cảnh báo OFP, Payload, DOW | G:
+R193 | A: | B: | C: | D: | E:Quản lý Người dùng | F: | G:
+R194 | A: | B: | C: | D: | E:Danh sách người dùng | F: | G:
+R195 | A: | B: | C: | D: | E:Thêm người dùng | F: | G:
+R196 | A: | B: | C: | D: | E:Xem người dùng | F: | G:
+R197 | A: | B: | C: | D: | E:Sửa thông tin người dùng | F: | G:
+R198 | A: | B: | C: | D: | E:Add module cho người dùng | F: | G:
+R199 | A: | B: | C: | D: | E:Add Role người dùng | F: | G:
+R200 | A: | B: | C: | D: | E:Bật/tắt hoạt động người dùng | F: | G:
+R201 | A: | B: | C: | D: | E:Xóa người dùng | F: | G:
+R202 | A: | B: | C: | D: | E:Xem lịch sử cập nhật người dùng | F: | G:
+R203 | A: | B: | C: | D: | E:Quản lý vai trò | F: | G:
+R204 | A: | B: | C: | D: | E:Danh sách vai trò | F: | G:
+R205 | A: | B: | C: | D: | E:Thêm vai trò | F: | G:
+R206 | A: | B: | C: | D: | E:Add quyền chức năng cho vai trò | F: | G:
+R207 | A: | B: | C: | D: | E:Xem vai trò | F: | G:
+R208 | A: | B: | C: | D: | E:Sửa vai trò | F: | G:
+R209 | A: | B: | C: | D: | E:Xóa vai trò | F: | G:
+R210 | A: | B: | C: | D: | E:Khôi phục vai trò | F: | G:
+R211 | A: | B: | C: | D: | E:Xem lịch sử cập nhật | F: | G:
+R212 | A: | B: | C: | D: | E:Bật/tắt hoạt động vai trò | F: | G:
+R213 | A: | B: | C: | D: | E:Quản lý nhóm người dùng | F: | G:
+R214 | A: | B: | C: | D: | E:Danh sách nhóm người dùng | F: | G:
+R215 | A: | B: | C: | D: | E:Thêm mới nhóm người dùng | F: | G:
+R216 | A: | B: | C: | D: | E:Sửa nhóm người dùng | F: | G:
+R217 | A: | B: | C: | D: | E:Xóa nhóm người dùng | F: | G:
+R218 | A: | B: | C: | D: | E:Xem chi tiết nhóm người dùng | F: | G:
+R219 | A: | B: | C: | D: | E:Xem lịch sử cập nhật nhóm người dùng | F: | G:
+R224 | A:8.0 | B: | C: | D: | E:Mail cảnh báo | F: | G:
+R225 | A: | B: | C: | D: | E: | F:Gửi mail cảnh báo khi có đồng bộ tàu mới từ ops++ | G:
+R231 | A:8.0 | B: | C: | D: | E:Job đồng bộ | F: | G:
+R232 | A: | B: | C: | D: | E: | F:Đồng bộ các thông tin trạng thái release, confirm tài liệu về hệ thống số hoá VIAGS và trả file, Có thể thiết kế API để VIAGS chủ động gọi | G:
+=== SHEET: Màn hình Flight Dispatch monito ===
+R001 | A:Menu bar | B: | C: | D:Header | E: | F: | G:
+R002 | A: | B: | C:FLT NO | D:REG | E:DEP | F:ARR | G:ETD
+R004 | A:Flight monitoring | B:--> | C:Bảng danh sách chuyến bay | D: | E: | F: | G:
+R005 | A:Upload common documents | B: | C:REG | D:FLTNO | E:DEP | F:ARR | G:Date
+R006 | A: | B: | C: | D: | E: | F: | G:
+R007 | A: | B:Dữ liệu mẫu | C:AZYX (không có VN) (VD: A320 ko có VN)
+Tàu XU giữ nguyên  | D:Đầy đủ(Bê nguyên từ netline) | E: | F: | G:dd
+R008 | A:Các cảnh báo sẽ được phân màu theo rules đã thống nhất và khi hover chuột vào sẽ hiển thị tool tips chi tiết của cảnh báo theo từng ô, Khi bấm vào chi tiết chuyến bay để xem full. | B:Color | C:( | D:- Surfix D,Z để vàng (chuyến bay có đuôi D hoặc Z)
+- Mất D, Z Báo đỏ
+- Ops++ hoặc netline đổi status ARR Hoặc có ACARS IN thì back về thường (không màu)
+- Thường là các trường hợp còn lại
+ | E: | F:Chuyến Divert
+Vàng - Khi thay đổi 
+(ARR kế hoạch và thực tế khác nhau trong Ops++)
+??? | G:Theo màu của cột Flight Num
+R009 | A: | B:Hover details | C:Reg cũ --> Reg mới
+Giờ đổi trên netline 
+(Lấy lần thay đổi gần nhất) | D:- | E:- | F:Thông tin ARR Divert và giờ thực tế
+
+ARR kế hoạch -> ARR thực tế  | G:
+R010 | A: | B:Details | C:Lịch sử đổi tàu: Các mốc thời gian và tàu tương ứng | D:Lịch sử thay đổi số hiệu chuyến bay | E: | F: | G:
+R012 | A: | B: | C: | D:Phân quyền theo carrier | E: | F: | G:
+R025 | A:Bấm vào details sẽ nhảy sang tab mới chi tiết chuyến bay, bấm ở ô nào thì sẽ hiển thị tab tương ứng trong tab đó. | B: | C: | D: | E: | F: | G:
+R026 | A:Lưu cấu hình bảng biểu và search | B: | C: | D: | E: | F: | G:
+R028 | A:Màu:
+Không màu - Bình thường
+Đỏ - cần giải quyết
+Vàng - lưu ý
+Xanh lá - Đã xử lý | B: | C: | D: | E: | F: | G:
+R029 | A:Danh sách +- 18 h chạy liên tục | B: | C: | D: | E: | F: | G:
+=== SHEET: Màn hình flight Plan ===
+R001 | A: | B:Filter | C:From Date | D: | E: | F:Customize bảng | G:Export excel
+R002 | A: | B: | C:To Date | D: | E: | F: | G:
+R003 | A: | B: | C:Flt no | D: | E: | F: | G:
+R004 | A: | B: | C:AC Reg | D: | E: | F: | G:
+R005 | A: | B: | C:DEP | D: | E: | F: | G:
+R006 | A: | B: | C:ARR | D: | E: | F: | G:
+R007 | A: | B: | C:ETD | D: | E: | F: | G:
+R008 | A: | B: | C:ETA | D: | E: | F: | G:
+R009 | A: | B: | C:TYPE | D: | E: | F: | G:
+R010 | A: | B: | C:STATUS | D: | E: | F: | G:
+R011 | A: | B: | C:All Revision/ Last Revision | D: | E: | F: | G:
+R012 | A: | B: | C:Dispatcher | D: | E: | F: | G:
+R013 | A: | B:Bảng thông tin | C: | D: | E: | F: | G:
+R014 | A:OFP Rev | B:AC REG | C:FLT NO | D:DEP | E:ARR | F:DATE | G:ETD
+R015 | A: | B: | C: | D: | E: | F: | G:
+=== SHEET: Màn hình fuel order ===
+R002 | A: | B:EDD (dd/MM/yyyy) | C:FLIGHT | D:ACREG | E:ACTYPE | F:ETD | G:DEP
+R003 | A: | B:23/06/2026 | C:VN7273 | D:VNA339 | E:A321 | F:00:00:00 | G:HAN
+R006 | A: | B:EDD | C:Ngày (UTC) | D: | E: | F: | G:
+R007 | A: | B:FLIGHT | C:Số hiệu chuyến bay | D: | E: | F: | G:
+R008 | A: | B:ACREG | C:Đăng ký máy bay | D: | E: | F: | G:
+R009 | A: | B:ACTYPE | C:Loại máy bay | D: | E: | F: | G:
+R010 | A: | B:ETD | C:Giờ bay dự kiến (UTC) | D: | E: | F: | G:
+R011 | A: | B:DEP | C:Điểm đi | D: | E: | F: | G:
+R012 | A: | B:ARR | C:Điểm đến | D: | E: | F: | G:
+R013 | A: | B:EST PAYLOAD | C:Tải dự kiến KST nhập / gửi | D: | E: | F: | G:
+R014 | A: | B:CFP PAYLOAD | C:Tải dự kiến trên CFP | D: | E: | F: | G:
+R015 | A: | B:DOW | C:Chỉ số DOW | D: | E: | F: | G:
+R016 | A: | B:DIFFERENCE | C:EST PAYLOAD - CFP PAYLOAD | D: | E: | F: | G:
+R017 | A: | B:CFP Fuel | C:Fuel trên CFP | D: | E: | F: | G:
+R018 | A: | B:Fuel Order | C:Fuel Capt Release | D: | E: | F: | G:
+R019 | A: | B:Taxi | C:Taxi Fuel | D: | E: | F: | G:
+R020 | A: | B:Trip | C:Trip Fuel | D: | E: | F: | G:
+=== SHEET: Màn hình Document ===
+R002 | A: | B:EDD (dd/MM/yyyy) | C:FLIGHT | D:ACREG | E:ACTYPE | F:ETD | G:DEP
+R003 | A: | B:23/06/2026 | C:VN7273 | D:VNA339 | E:A321 | F:00:00:00 | G:HAN
+R006 | A: | B:EDD | C:Ngày (UTC) | D: | E: | F: | G:
+R007 | A: | B:FLIGHT | C:Số hiệu chuyến bay | D: | E: | F: | G:
+R008 | A: | B:ACREG | C:Đăng ký máy bay | D: | E: | F: | G:
+R009 | A: | B:ACTYPE | C:Loại máy bay | D: | E: | F: | G:
+R010 | A: | B:ETD | C:Giờ bay dự kiến (UTC) | D: | E: | F: | G:
+R011 | A: | B:DEP | C:Điểm đi | D: | E: | F: | G:
+R012 | A: | B:ARR | C:Điểm đến | D: | E: | F: | G:
+R013 | A: | B:LS/GD/PM/Notoc Cgo/Notoc Bag | C: | D:Version tài liệu cập nhật và thời gian cập nhật (tính theo giờ UTC) | E: | F: | G:
+R014 | A: | B:Ack LS/GD/PM/Notoc Cgo/Notoc Bag | C: | D:Tình trạng Accept tài liệu và thời gian accept của Capt (tính theo giờ UTC) | E: | F: | G:

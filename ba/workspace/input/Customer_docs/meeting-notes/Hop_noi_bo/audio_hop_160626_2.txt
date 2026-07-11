@@ -1,0 +1,220 @@
+[00:00:00 --> 00:00:04] Nó đang chưa được tổng hợp. Nó là giữ thô các nhà em cho vì anh sẽ bắt đầu đây.
+[00:00:04 --> 00:00:08] Ví dụ anh bảo là các em là vì anh không thích cho anh cái tài liệu của AK.
+[00:00:08 --> 00:00:10] Không luôn tổng hợp các địa thông như là những kia.
+[00:00:10 --> 00:00:15] Thì các em vào cái phần thích tập, xem cái tài liệu của AK nó sẽ có ra thông tin gì.
+[00:00:15 --> 00:00:17] Để mình lấy cái đồ vào cho mình.
+[00:00:18 --> 00:00:20] Peppet thì nó là tôn.
+[00:00:21 --> 00:00:24] Water, các thứ anh cũng đã thu tập về rồi.
+[00:00:24 --> 00:00:27] Nó chính là cái... Thực ra thì...
+[00:00:27 --> 00:00:31] Cái water service như thế này thì đáng hết ra nó sẽ touch.
+[00:00:31 --> 00:00:34] Nhưng mà mình làm và mình không kịp.
+[00:00:34 --> 00:00:38] Mình không kịp triển ai touch mà nó lại cần cái này trước.
+[00:00:38 --> 00:00:40] Chính vì thế mình phải cấu vào màu.
+[00:00:42 --> 00:00:44] Thì ở đây...
+[00:00:44 --> 00:00:46] Yêu cầu thì nó cũng dễ thôi.
+[00:00:46 --> 00:00:50] Nó không như là cái BLD hôm qua em đưa.
+[00:00:50 --> 00:00:52] Nó sẽ chỉ tính trên...
+[00:00:52 --> 00:00:56] Tính nhất là nước sạch tiêu thu, trên đầu người.
+[00:00:56 --> 00:00:58] Trong một chuyến.
+[00:00:58 --> 00:01:00] Thì ví lụ như này nhé.
+[00:01:00 --> 00:01:04] Mình có thông tin trạng bay này.
+[00:01:04 --> 00:01:06] Loại tàu bay trên cái trạng bay đấy này.
+[00:01:06 --> 00:01:09] Tổng số lượng người trên cái chuyến bay đấy là bao nhiêu?
+[00:01:09 --> 00:01:11] Bao gồm cả hành khách và tàu bay.
+[00:01:12 --> 00:01:16] Và cái flight time của cái chuyến bay đấy là bao nhiêu giờ?
+[00:01:16 --> 00:01:17] Phung giờ này.
+[00:01:17 --> 00:01:19] Từ 12 giờ, 14 giờ.
+[00:01:19 --> 00:01:21] Anh ví lụ là từ 12 giờ đến 14 giờ.
+[00:01:21 --> 00:01:23] Tàu V787.
+[00:01:24 --> 00:01:26] Với 100 người.
+[00:01:26 --> 00:01:30] Thì bây giờ mình sẽ có số lượng nước đầu tiên.
+[00:01:30 --> 00:01:33] Và số nữa sau khi kết thúc cái trạng bay đấy.
+[00:01:33 --> 00:01:35] Ví dụ như là...
+[00:01:35 --> 00:01:37] Nhi lít.
+[00:01:38 --> 00:01:40] 100 lít chẳng hạn.
+[00:01:40 --> 00:01:41] 100 lít chẳng hạn.
+[00:01:41 --> 00:01:43] 100 người, 100 lít chẳng hạn.
+[00:01:43 --> 00:01:45] Thì mình sẽ tính ra được...
+[00:01:47 --> 00:01:49] Trên cái trạng bay đấy.
+[00:01:49 --> 00:01:52] Một người đấy trung bình sẽ tiêu thụ bao nhiêu lít nước.
+[00:01:52 --> 00:01:53] Đúng không?
+[00:01:53 --> 00:01:54] Chắc tính được, đúng không?
+[00:01:54 --> 00:01:55] Vào cái khung giờ đấy.
+[00:01:56 --> 00:01:59] Thì mình sẽ tính rất nhiều chuyến bay trong cái khung giờ đấy.
+[00:01:59 --> 00:02:01] Cùng cái tàu đấy.
+[00:02:01 --> 00:02:03] Của một khoảng thời gian nhất định.
+[00:02:03 --> 00:02:05] Mình sẽ tính tỷ lệ trung bình ra.
+[00:02:05 --> 00:02:09] Để ví dụ như là một chuyến bay mới phát sinh sử dụng cái tàu đấy.
+[00:02:09 --> 00:02:11] Vại tàu đấy.
+[00:02:11 --> 00:02:13] Và có nhân đấy, có người.
+[00:02:13 --> 00:02:15] Mình sẽ nhân cái số lượng nó lên.
+[00:02:16 --> 00:02:20] Để xem xem là chuyến bay lý ước tính sử dụng bao nhiêu lít nước.
+[00:02:20 --> 00:02:21] Có ước bao nhiêu lít nước.
+[00:02:21 --> 00:02:23] Và...
+[00:02:23 --> 00:02:25] Mình sẽ bắt vơ lên 5 người và em như thế đấy.
+[00:02:27 --> 00:02:32] Đi đầu vào của mình nó sẽ có tính nhất là muốn biết bao nhiêu người.
+[00:02:32 --> 00:02:34] Chuyến bay nó chia ra 2 phần nhé.
+[00:02:34 --> 00:02:36] Một phần là có tài liệu cụ thể.
+[00:02:36 --> 00:02:38] Và một phần là khách cao bức kinh.
+[00:02:38 --> 00:02:39] Thấy chưa?
+[00:02:39 --> 00:02:42] Khâu tài liệu cụ thể thì khá là mộn rồi.
+[00:02:42 --> 00:02:44] Bây giờ muốn biết bao nhiêu người thì sẽ dựa một cái tàu.
+[00:02:44 --> 00:02:47] Một cái hệ thống lúc kinh là Amariot.
+[00:02:47 --> 00:02:49] Mình sẽ biết được tổng số 8.
+[00:02:50 --> 00:02:51] Tổ bay là cố định hả?
+[00:02:51 --> 00:02:52] Tổ bay là cố định.
+[00:02:52 --> 00:02:54] Tổ bay là một hệ thống tổ bay.
+[00:02:54 --> 00:02:59] Và cái hệ thống Amariot mình sẽ biết được là trên cái chuyên đấy.
+[00:02:59 --> 00:03:01] Nó sẽ có bao nhiêu người dự kiến nhé.
+[00:03:01 --> 00:03:03] Mình sẽ lấy cái cụm đấy, tổng với tổ bay.
+[00:03:03 --> 00:03:05] Mình sẽ ra được một con số gọi ý.
+[00:03:05 --> 00:03:07] Ồ, dựa trên cái cơm tức vừa rồi.
+[00:03:07 --> 00:03:09] Mình sẽ ra được con số gọi ý.
+[00:03:09 --> 00:03:14] Khi mà mở ô, khi mở ô tiết viên đang nhập vào FB,
+[00:03:14 --> 00:03:18] thì tiết viên sẽ nhìn thấy là đầu tiên là các bán xuyên.
+[00:03:18 --> 00:03:22] Công ty của tiền loại tổ bay đấy là tổ chứa nhiều nhất là được bao nhiêu lít.
+[00:03:22 --> 00:03:24] Thấy chưa?
+[00:03:24 --> 00:03:29] Chuyến bay đấy với cái số người A làm như thế,
+[00:03:29 --> 00:03:32] thì sẽ cần khoảng bao nhiêu lít dựa trên con số người nhà tình hoàng.
+[00:03:32 --> 00:03:33] Vâng.
+[00:03:33 --> 00:03:34] Thấy chưa?
+[00:03:34 --> 00:03:42] Ở dưới nó sẽ có một cái ô sốc mít nước đồng chuyến.
+[00:03:42 --> 00:03:47] Sau khi tiết viên đã nhìn đến con số đấy,
+[00:03:47 --> 00:03:51] tính toán, yêu cầu bên bơm nước bơm vào.
+[00:03:51 --> 00:03:53] Ví dụ cái tẩu đấy đang đổ.
+[00:03:53 --> 00:03:55] Nó đang tơn vào, nó chuẩn ra bánh rồi.
+[00:03:55 --> 00:03:57] Bên nước nó vào, nó phục vụ.
+[00:03:57 --> 00:03:59] Bên nước nó vào, nó sẽ bơm vào tay.
+[00:03:59 --> 00:04:02] Ví dụ cái tẩu đấy đang có 25% nước.
+[00:04:02 --> 00:04:05] Và tiết viên kết quét là bơm đến 75%.
+[00:04:05 --> 00:04:07] Sau khi bơm đến 75% rồi,
+[00:04:07 --> 00:04:12] thì nó sẽ có con số tương ứng với 75% đấy là bao nhiêu lít.
+[00:04:12 --> 00:04:17] Thì tiết viên sẽ submit con số đầu tiên, đầu chuyến về cho người quản trị.
+[00:04:17 --> 00:04:18] Để lấy thêm số đầu vào,
+[00:04:18 --> 00:04:21] để lần sau con tính toán chắc tiếp được của cái chặng đấy.
+[00:04:21 --> 00:04:25] Để lấy kết quả đầu vào đấy.
+[00:04:25 --> 00:04:29] Đó là submit nha.
+[00:04:29 --> 00:04:31] Và cuối chuyến, cuối chặng,
+[00:04:31 --> 00:04:33] tiết viên họ sẽ nhìn lại vào cái buồn này đấy,
+[00:04:33 --> 00:04:36] là cái tay nước còn lại là 300%,
+[00:04:36 --> 00:04:37] cái lúc đầu chuyến là 75%,
+[00:04:37 --> 00:04:39] cuối chuyến là còn 30%.
+[00:04:39 --> 00:04:42] Thì à, chuyến này là ta đã sử dụng cái này và cái này nữa.
+[00:04:42 --> 00:04:45] Tiết viên lại tiếp tục submit cái chỉ số,
+[00:04:45 --> 00:04:46] nhập cái chỉ số cuối chuyến lại,
+[00:04:46 --> 00:04:48] submit về.
+[00:04:48 --> 00:04:51] Thì mình đã có một cái dữ liệu chuyến bay là
+[00:04:51 --> 00:04:52] à, với chuyến bay đấy,
+[00:04:52 --> 00:04:55] ngần đấy mạch, trong chuyến bay đấy chẳng lấy giờ.
+[00:04:55 --> 00:04:58] Mình đã tiếp tục hôm nay để mình lấy cái dữ liệu lịch sử để mình tìm ra thức lần sau.
+[00:04:58 --> 00:05:00] Để hơi gợi ý cho các chuyến giao tiết.
+[00:05:00 --> 00:05:03] Cái dữ liệu lịch sử đấy sẽ được thay đổi liên tục.
+[00:05:05 --> 00:05:07] Thì ở đây,
+[00:05:07 --> 00:05:10] nó sẽ có thêm một cái là điện nước sạch.
+[00:05:12 --> 00:05:15] Điện nước sạch ở đây,
+[00:05:15 --> 00:05:19] nó sẽ là của 350 và B787.
+[00:05:19 --> 00:05:23] Thì mình sẽ có tích cái điện đấy,
+[00:05:23 --> 00:05:26] coi như đấy là một lần
+[00:05:26 --> 00:05:28] submit của tiết viên.
+[00:05:28 --> 00:05:31] Kết hợp với tiết viên, kết hợp với điện lấy.
+[00:05:31 --> 00:05:33] Để mình tính cán cái dữ liệu lịch sử đấy.
+[00:05:33 --> 00:05:36] Nó vẫn có dữ liệu đầu chuyến, nó vẫn có dữ liệu cuối chuyến.
+[00:05:36 --> 00:05:39] Em xem, em xem cái code rồi đúng không?
+[00:05:39 --> 00:05:42] Nó có một cái bản, code này, đọc code này.
+[00:05:45 --> 00:05:48] Cho vào bay 2 nó đọc thì nó sẽ ra.
+[00:05:51 --> 00:05:53] Thì ở đây, anh có thêm một cái chữ năng lĩnh là,
+[00:05:53 --> 00:05:55] vừa lẫn anh chỉ nói về Amadeus.
+[00:05:56 --> 00:05:58] Khi mà có file logic,
+[00:05:58 --> 00:06:00] thì ở gói tài liệu chuyên may nó về là có file logic.
+[00:06:00 --> 00:06:03] Trong logic chủ yếu là về tàn bệnh khách.
+[00:06:03 --> 00:06:07] Thì trong cái logic đấy, nó có một cái thông tin của Pax,
+[00:06:07 --> 00:06:09] tức là khách trên các khoang.
+[00:06:09 --> 00:06:10] Thì lúc đấy mình sẽ bắn,
+[00:06:10 --> 00:06:12] khi đấy mình sẽ nhận file logic đúng không?
+[00:06:12 --> 00:06:14] Mình sẽ bóp tạch cái file đó, mình lấy số Pax.
+[00:06:14 --> 00:06:16] Mình áp dụng bởi cái công thức kia.
+[00:06:16 --> 00:06:17] Đúng không?
+[00:06:17 --> 00:06:20] Mình đã ra được một con số, mình bắn lên trên MO.
+[00:06:20 --> 00:06:22] MO sẽ có Noti.
+[00:06:22 --> 00:06:24] Bấm vào Noti thì sẽ có pop up
+[00:06:24 --> 00:06:28] cập nhật cái thông tham số mà mình đã gọi ý lượng nước đầu truyền đó.
+[00:06:28 --> 00:06:30] Ờ hiểu cái luồng đấy chứ ạ?
+[00:06:30 --> 00:06:31] Hiểu.
+[00:06:31 --> 00:06:34] Thì bây giờ là thiết kế cho anh một màn, một màn kỳ khỏi
+[00:06:34 --> 00:06:36] ở trên web phim.
+[00:06:36 --> 00:06:39] Thiết kế cho anh một màn kỳ khỏi.
+[00:06:39 --> 00:06:43] Thiết kế cho anh cái giao diện về nước
+[00:06:43 --> 00:06:44] ở trên app OO.
+[00:06:44 --> 00:06:46] Cái thanh ngang ngang ở trên ấy.
+[00:06:46 --> 00:06:48] Anh bảo quân nó bẽ thêm một cái nhìn giả nước rồi.
+[00:06:48 --> 00:06:49] Thiết kế cho anh cái màn đấy,
+[00:06:49 --> 00:06:51] trong cái màn đấy nó có thông tin nước gọi ý.
+[00:06:51 --> 00:06:53] Xác minh lần 1, xác minh lần 2.
+[00:06:53 --> 00:06:55] À, xác minh đầu chuyến, xác minh cuối chuyến.
+[00:06:55 --> 00:06:56] Ru ở đây là tổ vai,
+[00:06:56 --> 00:06:59] là xác minh được không quan trọng tâm là cửa trưởng hay tiên viên trưởng.
+[00:06:59 --> 00:07:01] Cả cứ tổ vai dưới xác minh.
+[00:07:01 --> 00:07:03] Ok chứ ạ?
+[00:07:03 --> 00:07:05] Có vấn đề gì không?
+[00:07:05 --> 00:07:06] Hai đứa.
+[00:07:06 --> 00:07:08] Hai đứa thì hai đứa làm phần app đi.
+[00:07:08 --> 00:07:10] Còn cái này làm phần web đi.
+[00:07:10 --> 00:07:11] Chứ ạ?
+[00:07:11 --> 00:07:12] Còn chuyển.
+[00:07:12 --> 00:07:13] Còn chuyển thì...
+[00:07:13 --> 00:07:14] Đấy.
+[00:07:14 --> 00:07:17] Cứ dần dần dần dần sửa cho anh cái...
+[00:07:17 --> 00:07:18] Còn chuyển đi.
+[00:07:18 --> 00:07:20] Để con có xài.
+[00:07:22 --> 00:07:25] Ngoài ra các cái phai tạm điểm của anh đã tạo xác.
+[00:07:25 --> 00:07:27] Được chứ ạ?
+[00:07:27 --> 00:07:29] Tại mình nhất là mình chuẩn hóa ngay từ đầu tiên,
+[00:07:29 --> 00:07:31] đến khi các giai đoạn sau mình sửa xuất,
+[00:07:31 --> 00:07:33] mình cứ theo khung đấy.
+[00:07:33 --> 00:07:37] Ta ta ở đấy, anh Chào Quy phải dồi để cứ theo khung đấy hoặc là...
+[00:07:37 --> 00:07:38] dễ.
+[00:07:38 --> 00:07:41] Nó khoa học hơn, nó không bị phân mạng.
+[00:07:43 --> 00:07:45] Còn em với anh An thì vẫn tiếp tục kiếm ảnh cảm xác thôi.
+[00:07:45 --> 00:07:46] Ok.
+[00:07:48 --> 00:07:50] Còn cái chỗ tích hợp em không thấy gần tăng,
+[00:07:50 --> 00:07:52] chỗ là chưa có gì nhiều.
+[00:07:52 --> 00:07:54] Đấy, hỏi với Sơn nữa.
+[00:07:54 --> 00:07:58] Còn cái bản lý xong băng là trường trên cái lòng sau hay gì đâu?
+[00:07:58 --> 00:08:00] Em bám nắm chỗ thành quân đi.
+[00:08:00 --> 00:08:02] Cả hai đứa này nữa.
+[00:08:02 --> 00:08:07] Bám nắm chỗ thành quân đi để làm xong cái phần của Ipad.
+[00:08:07 --> 00:08:09] Rồi cũng làm...
+[00:08:09 --> 00:08:12] Lúc thúc nó làm luôn cái màn này.
+[00:08:12 --> 00:08:16] Đấy, về logo, về tên, bỏ cái này, cái này, cái này đi.
+[00:08:16 --> 00:08:20] Rồi có thể thêm một cái giày PC, một cái giày logo Việt Nam ở đây nhảm hạn.
+[00:08:20 --> 00:08:21] To to đây.
+[00:08:21 --> 00:08:22] Đấy.
+[00:08:22 --> 00:08:27] Làm sao cho nó nhìn mình đứng ở cái người sử dụng của cái người để hoành giám sát đấy.
+[00:08:27 --> 00:08:29] Người ta thấy được là khó tiện.
+[00:08:29 --> 00:08:33] Có phải viết ra một cái tài liệu để...
+[00:08:33 --> 00:08:37] tốt hơn cái mình cần cái xong để đưa cho anh ấy làm cái gì?
+[00:08:37 --> 00:08:39] Chưa của anh, hay là anh cho đồ chủ tiết nữa.
+[00:08:39 --> 00:08:41] Thì nó đi...
+[00:08:41 --> 00:08:43] Đấy, em có sẵn cái file này rồi.
+[00:08:43 --> 00:08:50] Đấy, thì quân nó sẽ chuẩn hóa lại cái design xong để làm sao nó tiện cận.
+[00:08:50 --> 00:08:54] Với cái này, thậm chí có thể nếu mà nó đẹp hơn đồ thì là khá tốt.
+[00:08:54 --> 00:08:56] Còn chữ thì nó nhỏ.
+[00:08:56 --> 00:08:58] Anh muốn là dòng khá nhiều là tốt.
+[00:08:58 --> 00:09:01] Chữ nhỏ cũng được, nhưng mà dễ nhìn.
+[00:09:01 --> 00:09:03] Ví dụ như cái này là dễ nhìn.
+[00:09:03 --> 00:09:05] Đấy.
+[00:09:05 --> 00:09:09] Hết rồi.
+[00:09:10 --> 00:09:15] Ví dụ như bây giờ trên lao diện...
+[00:09:15 --> 00:09:18] mô như thế hay phát như thế thì hai đứa bao giờ xử lý xong cái phần mũ luôn đấy.
+[00:09:18 --> 00:09:19] Phải có đét la.
+[00:09:19 --> 00:09:21] Chứ không anh không thể thả được.
+[00:09:23 --> 00:09:25] Bây giờ anh thì xử lý khô báo cáo.
+[00:09:25 --> 00:09:30] Rồi trong cái phần web đấy, bây giờ anh sẽ xử lý thêm một cái phần bóc tách đồng bộ.
+[00:09:32 --> 00:09:33] Sao, đi bao giờ?
+[00:09:33 --> 00:09:34] Hôm nay anh ạ.
+[00:09:34 --> 00:09:35] Ngày.
+[00:09:35 --> 00:09:36] Ngày.
+[00:09:36 --> 00:09:37] Điều của ngày ạ.
+[00:09:37 --> 00:09:39] Ném rồi nhé.
+[00:09:39 --> 00:09:41] Rồi cho em hết ngày mai.
+[00:09:41 --> 00:09:43] Được anh ạ.

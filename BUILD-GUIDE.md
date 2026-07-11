@@ -7,14 +7,14 @@
 ```mermaid
 flowchart TD
     A[A. Khởi tạo dự án] --> B[B. Thiết lập quy tắc]
-    B --> C[C. Thu thập đầu vào · ba/input]
-    C --> D[D. Phân tích/Process · ba/process]
-    D --> E[E. Đầu ra · ba/output human+agents]
+    B --> C[C. Thu thập đầu vào · ba/workspace/input]
+    C --> D[D. Phân tích · ba/workspace/drafts]
+    D --> E[E. Thống nhất & Đầu ra · ba/sync]
     E --> F[F. Phát triển · dev/]
     E --> G[G. Kiểm thử · qc/]
     F --> H[H. Bàn giao & bảo trì]
     G --> H
-    D -. điểm chưa rõ .-> N[(NKLR — con người quyết)]
+    D -. điểm chưa rõ .-> N[(OID — con người quyết)]
     N -. làm rõ .-> D
 ```
 
@@ -26,90 +26,95 @@ flowchart TD
 2. **Điền §1 Project Overview** trong `CLAUDE.md` + `HUMAN.md`: tên dự án (VI/EN), mã, domain (§2), personas (§3).
 3. **Tạo cấu trúc thư mục:**
    ```
-   ba/{input, process, output/{human, agents}}   dev/   qc/{test-plan,test-case,test-report}   shared/
+   ba/workspace/{input, drafts}
+   ba/sync/{requirements, models, output/{human, agents}}
+   dev/   qc/{test-plan,test-case,test-report}   shared/   logs/ba-sessions/
    ```
-4. **Khởi tạo Git** (cộng tác 100% qua git):
+4. **Khởi tạo Git** (cộng tác qua git):
    ```powershell
    git init -b main
    git config core.quotepath false ; git config core.autocrlf input
    ```
-5. **Sửa portable** trước khi chia sẻ: hook `settings.json` dùng `$CLAUDE_PROJECT_DIR`; script dùng đường dẫn tương đối (không hardcode `c:\…`/`d:\…`).
+5. **§0.4 — Định danh người dùng:** phiên đầu trên máy mới, agent hỏi tên/vai trò BA/phân hệ trước việc cần quyền (approve, chọn luồng, publish sync).
+6. **Sửa portable** trước khi chia sẻ: hook `settings.json` dùng `$CLAUDE_PROJECT_DIR`; script dùng đường dẫn tương đối (không hardcode `c:\…`/`d:\…`). Key Service Account (Google) để ở `.secrets/` (gitignore, không bàn giao).
 
 > **Tuân thủ §0 ngay từ đầu:** agent *phân rã + tái hiện theo nguồn*, không tự suy diễn. Mọi quyết định nghiệp vụ là của con người.
 
 ## B. Thiết lập quy tắc (Governance) — TRƯỚC khi làm tài liệu
 
-1. **§0.1 — CHỌN LUỒNG (BẮT BUỘC).** Đọc [`ba-workflow-patterns.md`](.claude/knowledge/ba-workflow-patterns.md), chọn 1 trong P1–P6, ghi vào trường **"Active Document Workflow"** ở §1. *Chưa chọn ⇒ chưa được làm tài liệu.* (Mặc định khuyến nghị **P4**.)
-2. **§0.2 — Triết lý phát triển (TÙY CHỌN).** Agent hỏi: có áp triết lý nào trong [`dev-philosophies.md`](.claude/knowledge/dev-philosophies.md) không? Mặc định **none**. Chỉ áp khi con người yêu cầu → ghi trường "Active Dev Philosophy".
+1. **§0.1 — CHỌN LUỒNG (BẮT BUỘC).** Đọc [`ba-workflow-patterns.md`](.claude/knowledge/ba-workflow-patterns.md), chọn 1 trong P1–P6, ghi vào **"Active Document Workflow"** ở §1. *Chưa chọn ⇒ chưa được làm tài liệu.* (TOSS đang dùng **P4 — Co-evolution Hybrid**.)
+2. **§0.2 — Triết lý phát triển (TÙY CHỌN).** Agent hỏi: có áp triết lý nào trong [`dev-philosophies.md`](.claude/knowledge/dev-philosophies.md) không? Mặc định **none**.
 3. **Cấu hình `.aiignore`** loại context rác (logs/, binary, tài liệu tham khảo lớn).
 
-## C. Thu thập đầu vào (Input) → `ba/input/`
+## C. Thu thập đầu vào (Input) → `ba/workspace/input/`
 
-- Đưa **tài liệu nguồn** vào `ba/input/`: khảo sát, biên bản họp, tài liệu UI khách, biểu mẫu chuẩn (QT02), tài liệu tham khảo.
-- **Ghi nhận trung thực** (transcribe) nếu cần trích dẫn — không suy diễn, không thêm yêu cầu.
-- `ba/input/` là **chỉ-đọc**: không sửa, không lưu đầu ra vào đây.
+- **Customer_docs/** — tài liệu VNA cung cấp (DOCX/XLSX/PPTX/PDF) + **meeting-notes/** (transcript phỏng vấn). Agent **tự extract** file Office/PDF mới → `drafts/phan-tich/01-nguon/*.extracted.md` (markitdown / pymupdf4llm) + cập nhật INDEX + TIMELINE.
+- **domain-knowledge/** — ICAO/IATA/CAAV/FTL + `toss-glossary-v0.1.md`. Human và agent cập nhật song song.
+- **Google Drive/Sheets live** — pull tài liệu đang ở Drive/Sheets (YCKT, Function list) về `.md` qua Service Account; re-pull khi nguồn đổi.
+- `ba/workspace/input/` là **chỉ-đọc**: không sửa, không lưu đầu ra vào đây.
 
-## D. Phân tích / Process (BA) → `ba/process/`
+## D. Phân tích (BA) → `ba/workspace/drafts/`
 
-Thực hiện theo **luồng đã chọn ở bước B**. Ví dụ với **P4 (đồng tiến hóa)**:
+Thực hiện theo **luồng đã chọn ở bước B**. Với **P4**:
 
-1. **BRD** (`process/brd/`) — yêu cầu nghiệp vụ mức cao.
-2. **Phân rã chức năng + trích trường** từ input (song song với wireframe).
-3. **Wireframe/Mockup** (`process/wireframe/`, `process/mockup/`) — bám nguồn UI, validate sớm với khách.
-4. **SRS** (`process/srs/`) — đặc tả theo biểu mẫu; mỗi điểm dẫn nguồn `[src]`.
-5. **NKLR** (`process/quan-ly-yeu-cau/`) — gom mọi điểm *chưa rõ/xung đột* để **con người quyết** (không tự trả lời).
-6. **RTM** — truy vết BR → chức năng → màn → (TC).
+1. **Báo cáo Khảo sát** (`phan-tich/02-khao-sat/`) — từ transcript, qua skill `survey-report` (Yêu cầu/Thảo luận/Kết luận). Sau mỗi báo cáo: rà **OID** + đề xuất **glossary**.
+2. **Phân tích YCKT** (`phan-tich/03-yckt/`) — phân rã sheet yêu cầu kỹ thuật khách hàng.
+3. **BRD** (`brd/`) — yêu cầu nghiệp vụ mức cao.
+4. **Phân rã song song:** SRS chức năng (`srs/`, agent `srs-writer`) · entity map (`data-modeler`) · luồng BPMN (`process-modeler`) · Wireframe (`wireframe/`) · Mockup HTML (`mockup/`, skill `gen-mockup`).
+5. **Đối chiếu & làm giàu:** dùng workflow [`survey-to-spec`](.claude/workflows/survey-to-spec.js) — đối chiếu báo cáo ↔ YCKT + Function list + wireframe/SRS → sinh **đề xuất** (FUNC/OID/glossary) + bảng quyết định BA Lead. *Chỉ đề xuất, người duyệt mới áp dụng (§0).*
+6. **Sổ theo dõi (cập nhật liên tục):** **OID-TOSS-001** (điểm cần chốt) · **BA-VERSION-LOG** (version) · **survey-pipeline-status.md** (tiến độ pipeline) · **RTM** (truy vết BR→FUNC→màn→TC).
 
-> Trước mỗi tài liệu: **đọc lại luồng đang set** (§0.1) và tuân theo trình tự của nó.
+> Trước mỗi tài liệu: **đọc lại luồng đang set** (§0.1) + lấy bearings (§0.5); KHÔNG tự đóng cờ `[cần xác nhận]`.
 
-## E. Đầu ra (Output) → `ba/output/`
+## E. Thống nhất & Đầu ra → `ba/sync/`
 
-| Nhánh | Cho ai | Đặc điểm |
+| Vùng | Cho ai | Đặc điểm |
 |---|---|---|
-| `output/human/` | Con người / khách hàng | Word QT02, presentation — **100% theo biểu mẫu**, tự mô tả, có version |
-| `output/agents/` | Agent DEV/QC | **Dense, machine-readable**, ít token, truy vết về `process/` (xem [README scaffold](ba/output/agents/README.md)) |
+| `sync/requirements/` | Team BA | BRD/SRS đã review + NKLR (quản lý thay đổi yêu cầu) |
+| `sync/models/` | Cross-cutting | ERD, deliverable-status.json, RTM, survey-pipeline-status.md |
+| `sync/output/human/` | Con người / khách | Word **QT02.BM.04**, presentation — tự mô tả, có version+ngày |
+| `sync/output/agents/` | Agent DEV/QC | Dense, machine-readable, ít token |
 
-**Xuất Word** (chạy từ gốc): skill `export-word` → `output/human/exports/`.
+**Xuất Word** (chạy từ gốc): skill `export-word` → `sync/output/human/exports/` (QC tự kiểm: font TNR, logo/footer, không lọt link nội bộ/ASR/thẻ trích).
 
 ## F. Phát triển (DEV) → `dev/`
 
-- Đọc `ba/output/agents/` (đặc tả compact) + `ba/process/srs/` phân hệ liên quan — **không** đọc cả repo (tiết kiệm token).
-- Định nghĩa/đọc **contract** ở `shared/` (API, event, mô hình dữ liệu) — *contract-first* nếu áp DP1.
-- Code trong `dev/`; nhánh `dev/<tinh-nang>` → PR.
+- Đọc `ba/sync/output/agents/` + SRS phân hệ liên quan (`ba/workspace/drafts/srs/` hoặc `sync/requirements/srs/`) — **không** đọc cả repo (tiết kiệm token).
+- Định nghĩa/đọc **contract** ở `shared/` (API, event, mô hình dữ liệu).
+- Stack: **Angular 21 · Signals · Standalone · PrimeNG** ([`angular-guidelines.md`](.claude/rules/angular-guidelines.md)). Code-gen qua `gen-*` skills + workflow `gen-feature`. Nhánh `dev/<tinh-nang>` → PR.
 
 ## G. Kiểm thử (QC) → `qc/`
 
-- Đọc acceptance criteria trong `ba/output/agents/` + đặc tả phân hệ.
+- Đọc acceptance criteria trong SRS + `ba/sync/output/agents/`.
 - Viết `test-plan/ test-case/ test-report/`; nhánh `qc/<bo-test>` → PR.
-- Kiểm thử tích hợp theo Data Flow giữa các phân hệ (nếu áp DP1 "Khắc nhập").
 
 ## H. Bàn giao & bảo trì (Maintain)
 
 - **Mốc bàn giao:** `git tag` (vd `srs-v2.1`); bản giao khách kèm version+ngày.
-- **Versioning tài liệu:** không ghi đè bản đã chốt — bump version; git history là bộ nhớ dài hạn.
+- **Versioning tài liệu (§8):** file chỉ chứa nội dung hiện tại — không nhúng CHANGELOG; bump version = file mới + xóa file cũ (git giữ lịch sử) + ghi **BA-VERSION-LOG** + cập nhật INDEX.
 - **Đổi luồng/triết lý giữa chừng:** cập nhật trường §1 + ghi [`SYNC-LOG.md`](.claude/sync/SYNC-LOG.md).
-- **Đồng bộ dual-scope:** sửa `.claude/…` hoặc `CLAUDE.md` → cập nhật mirror + SYNC-LOG.
+- **Đồng bộ dual-scope:** sửa `.claude/{agents,commands,templates,glossary}/` hoặc `CLAUDE.md` → cập nhật mirror VI + SYNC-LOG.
 
 ---
 
 ## Quy ước xuyên suốt (mọi pha)
 
-- **Git:** nhánh theo vai trò → PR review chéo; Conventional Commits (`docs(ba): …`, `feat(dev): …`, `test(qc): …`).
-- **Token AI:** 1 tính năng = 1 cửa sổ chat; `@mention` file liên quan; tiếng Anh cho lệnh code, tiếng Việt cho tài liệu. Xem [`ai-agent-token-optimization.md`](.claude/knowledge/ai-agent-token-optimization.md).
-- **Truy nguồn:** mọi artefact dẫn nguồn; phân biệt *sự thật* (`✓`) vs *suy luận cần xác nhận* (`≈`); chỗ thiếu ghi `(cần bổ sung)`.
+- **Git:** tài liệu BA commit trực tiếp `main` (nhóm commit theo chủ đề); code DEV/QC dùng nhánh + PR. Conventional-style (`docs(ba): …`, `feat(dev): …`, `test(qc): …`).
+- **Token AI:** 1 tính năng = 1 cửa sổ chat; đọc/ghi file chọn lọc (Grep/offset, không nạp cả file); tiếng Anh cho lệnh code, tiếng Việt cho tài liệu giao người.
+- **Truy nguồn:** mọi artefact dẫn nguồn (timestamp transcript / mã sheet / §wireframe / FUNC); chỗ thiếu ghi `[cần xác nhận]` — không bịa.
 - **Vai trò:** con người quyết định & suy diễn; agent phân rã & tái hiện.
 
 ## Checklist nhanh khởi động dự án mới
 
 - [ ] Lấy khung + điền §1/§2/§3 (tên, domain, personas)
-- [ ] Tạo `ba/{input,process,output}`, `dev/`, `qc/`, `shared/`
-- [ ] `git init` + cấu hình + sửa portable path
-- [ ] **Chọn luồng (§0.1)** → ghi Active Document Workflow
-- [ ] Hỏi triết lý phát triển (§0.2) → ghi Active Dev Philosophy
+- [ ] Tạo `ba/workspace/{input,drafts}`, `ba/sync/{requirements,models,output}`, `dev/`, `qc/`, `shared/`
+- [ ] `git init` + cấu hình + sửa portable path; `.secrets/` cho key SA
+- [ ] **Chọn luồng (§0.1)** → ghi Active Document Workflow (mặc định P4)
+- [ ] Hỏi triết lý phát triển (§0.2) + định danh người dùng (§0.4)
 - [ ] Cấu hình `.aiignore`
-- [ ] Đưa tài liệu nguồn vào `ba/input/`
-- [ ] Bắt đầu Process theo luồng đã chọn
+- [ ] Đưa tài liệu nguồn vào `ba/workspace/input/Customer_docs/`
+- [ ] Bắt đầu phân tích theo luồng đã chọn (survey-report → survey-to-spec)
 
 ---
 
-*Cập nhật 2026-06-03. Nguồn chân lý: [CLAUDE.md](CLAUDE.md). Tổng quan: [README.md](README.md). Quy ước cộng tác: [CONTRIBUTING.md](CONTRIBUTING.md).*
+*Cập nhật 2026-06-22. Nguồn chân lý: [CLAUDE.md](CLAUDE.md) (v2.10). Tổng quan: [README.md](README.md). Quy ước cộng tác: [CONTRIBUTING.md](CONTRIBUTING.md).*

@@ -1,0 +1,945 @@
+<mxfile host="65bd71144e">
+    <diagram id="page1-iam-lifecycle" name="§2.1 Vòng đời Tài khoản IAM">
+        <mxGraphModel dx="272" dy="632" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1700" pageHeight="2800" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="pg1_title" value="Sơ đồ To-Be — §2.1 Vòng đời Tài khoản IAM/RBAC · TOBE-PH5-quan-tri-he-thong-v0.1" style="text;html=1;fontStyle=1;fontSize=13;align=left;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="12" width="1500" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="pg1_leg_box" value="" style="rounded=0;dashed=1;strokeColor=#666666;fillColor=#fafafa;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="44" width="900" height="36" as="geometry"/>
+                </mxCell>
+                <mxCell id="pg1_leg1" value="((…)) Bắt đầu / Kết thúc" style="ellipse;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=9;" parent="1" vertex="1">
+                    <mxGeometry x="50" y="50" width="160" height="24" as="geometry"/>
+                </mxCell>
+                <mxCell id="pg1_leg2" value="[…] Bước xử lý (Activity)" style="rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=9;" parent="1" vertex="1">
+                    <mxGeometry x="225" y="50" width="160" height="24" as="geometry"/>
+                </mxCell>
+                <mxCell id="pg1_leg3" value="{…} Điểm quyết định" style="rhombus;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=9;" parent="1" vertex="1">
+                    <mxGeometry x="400" y="44" width="150" height="36" as="geometry"/>
+                </mxCell>
+                <mxCell id="pg1_leg4" value="[[…]] Quy trình con / Hệ thống ngoài" style="shape=process;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=9;" parent="1" vertex="1">
+                    <mxGeometry x="565" y="50" width="250" height="24" as="geometry"/>
+                </mxCell>
+
+                <!-- START -->
+                <mxCell id="S" value="Bắt đầu" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="700" y="110" width="160" height="60" as="geometry"/>
+                </mxCell>
+
+                <!-- Main gateway -->
+                <mxCell id="A1" value="Loại yêu cầu&#xa;của Admin?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="680" y="230" width="200" height="80" as="geometry"/>
+                </mxCell>
+
+                <!-- === TẠO MỚI branch (center-right) === -->
+                <mxCell id="B1" value="Nhập thông tin&#xa;định danh người dùng&#xa;FUNC-501-01" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="980" y="390" width="220" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="B2" value="Gán một hoặc nhiều&#xa;Vai trò / Nhóm quyền&#xa;FUNC-502-01" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="980" y="510" width="220" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="B3" value="Cấu hình phạm vi dữ liệu&#xa;Carrier / Sân bay / Tàu bay / Căn cứ bay&#xa;FUNC-504-01…04" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="980" y="630" width="220" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="B4" value="Cần MFA/2FA&#xa;bắt buộc?&#xa;FUNC-506-01,02" style="rhombus;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="970" y="750" width="240" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="B5" value="Bật bắt buộc MFA/2FA&#xa;FUNC-506-01,02" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="1280" y="750" width="220" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="B6" value="Lưu tài khoản&#xa;trạng thái Hoạt động" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="980" y="900" width="220" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="B7" value="Audit Log ghi nhận:&#xa;Người tạo — Thời điểm — Vai trò&#xa;FUNC-509-01,02" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="980" y="1030" width="220" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="E_OK" value="Tài khoản&#xa;hoạt động" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="1005" y="1170" width="170" height="60" as="geometry"/>
+                </mxCell>
+
+                <!-- === SỬA THÔNG TIN branch (center) === -->
+                <mxCell id="C1" value="Cập nhật thông tin&#xa;hoặc vai trò/quyền&#xa;FUNC-501-02 / FUNC-502-01" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="660" y="390" width="220" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="C2" value="Quyền mới có hiệu lực&#xa;theo thời gian thực&#xa;không cần đăng xuất&#xa;FUNC-503-03" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="660" y="510" width="220" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="C3" value="Audit Log ghi nhận&#xa;thay đổi quyền hạn&#xa;FUNC-509-02" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="660" y="630" width="220" height="70" as="geometry"/>
+                </mxCell>
+
+                <!-- === VÔ HIỆU HÓA branch (left) === -->
+                <mxCell id="D1" value="Đánh dấu tài khoản&#xa;Tạm khóa&#xa;FUNC-501-03" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="340" y="390" width="220" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="D2" value="Phiên đang hoạt động&#xa;bị hủy tức thì&#xa;FUNC-508-01" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="340" y="510" width="220" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="D3" value="Audit Log ghi nhận&#xa;FUNC-509-01" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="340" y="630" width="220" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="E_Lock" value="Tài khoản&#xa;đã khóa" style="ellipse;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontStyle=1;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="365" y="760" width="170" height="60" as="geometry"/>
+                </mxCell>
+
+                <!-- === KÍCH HOẠT LẠI branch (far left) === -->
+                <mxCell id="D4" value="Khôi phục trạng thái&#xa;Hoạt động&#xa;FUNC-501-04" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="60" y="390" width="220" height="70" as="geometry"/>
+                </mxCell>
+
+                <!-- === XÓA branch (far right) === -->
+                <mxCell id="X1" value="Xóa người dùng&#xa;khỏi hệ thống&#xa;FUNC-501-05" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="1400" y="390" width="220" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="X2" value="Audit Log ghi nhận&#xa;FUNC-509-01" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="1400" y="510" width="220" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="E_Del" value="Tài khoản&#xa;đã xóa" style="ellipse;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontStyle=1;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="1425" y="640" width="170" height="60" as="geometry"/>
+                </mxCell>
+
+                <!-- EDGES: S -> A1 -->
+                <mxCell id="e_s_a1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="S" target="A1" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+
+                <!-- A1 -> Tạo mới -> B1 -->
+                <mxCell id="e_a1_b1" value="Tạo mới" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="A1" target="B1" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1090" y="270"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <!-- B1->B2->B3->B4 -->
+                <mxCell id="e_b1_b2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="B1" target="B2" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_b2_b3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="B2" target="B3" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_b3_b4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="B3" target="B4" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <!-- B4 -> B5 (Admin/nhạy cảm) -->
+                <mxCell id="e_b4_b5" value="Tài khoản Admin&#xa;hoặc dữ liệu nhạy cảm" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="B4" target="B5" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <!-- B4 -> B6 (thông thường) -->
+                <mxCell id="e_b4_b6" value="Tài khoản thông thường" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="B4" target="B6" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <!-- B5 -> B6 -->
+                <mxCell id="e_b5_b6" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="B5" target="B6" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1390" y="885"/>
+                            <mxPoint x="1390" y="935"/>
+                            <mxPoint x="1200" y="935"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <!-- B6->B7->E_OK -->
+                <mxCell id="e_b6_b7" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="B6" target="B7" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_b7_eok" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="B7" target="E_OK" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+
+                <!-- A1 -> Sửa -> C1 -->
+                <mxCell id="e_a1_c1" value="Sửa thông tin" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="A1" target="C1" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="780" y="330"/>
+                            <mxPoint x="770" y="330"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <!-- C1->C2->C3->E_OK -->
+                <mxCell id="e_c1_c2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="C1" target="C2" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_c2_c3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="C2" target="C3" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_c3_eok" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="C3" target="B7" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="940" y="665"/>
+                            <mxPoint x="940" y="1065"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+
+                <!-- A1 -> Vô hiệu hóa -> D1 -->
+                <mxCell id="e_a1_d1" value="Vô hiệu hóa" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="A1" target="D1" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="450" y="270"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <!-- D1->D2->D3->E_Lock -->
+                <mxCell id="e_d1_d2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="D1" target="D2" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_d2_d3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="D2" target="D3" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_d3_elock" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="D3" target="E_Lock" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+
+                <!-- A1 -> Kích hoạt lại -> D4 -->
+                <mxCell id="e_a1_d4" value="Kích hoạt lại" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="A1" target="D4" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="170" y="270"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <!-- D4 -> B7 (shared Audit Log) -->
+                <mxCell id="e_d4_b7" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="D4" target="B7" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="170" y="1065"/>
+                            <mxPoint x="980" y="1065"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+
+                <!-- A1 -> Xóa -> X1 -->
+                <mxCell id="e_a1_x1" value="Xóa" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="A1" target="X1" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1510" y="270"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <!-- X1->X2->E_Del -->
+                <mxCell id="e_x1_x2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="X1" target="X2" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_x2_edel" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="X2" target="E_Del" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+    <diagram id="page2-account-state" name="§2.2 Vòng đời Trạng thái">
+        <mxGraphModel dx="272" dy="632" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1050" pageHeight="820" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="pg2_title" value="Sơ đồ To-Be — §2.2 Vòng đời Trạng thái Tài khoản · BR-501, BR-505" style="text;html=1;fontStyle=1;fontSize=13;align=left;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="12" width="950" height="26" as="geometry"/>
+                </mxCell>
+
+                <!-- Initial pseudo-state -->
+                <mxCell id="st_init" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#000000;strokeColor=#000000;" parent="1" vertex="1">
+                    <mxGeometry x="465" y="75" width="30" height="30" as="geometry"/>
+                </mxCell>
+
+                <!-- States -->
+                <mxCell id="st_hoat_dong" value="Hoạt động" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="370" y="170" width="220" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="st_da_khoa" value="Đã khóa&#xa;(Vô hiệu hóa)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontStyle=1;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="370" y="430" width="220" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="st_tam_thoi" value="Truy cập tạm thời&#xa;(có thời hạn)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontStyle=1;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="680" y="290" width="220" height="70" as="geometry"/>
+                </mxCell>
+
+                <!-- Final pseudo-state -->
+                <mxCell id="st_final" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#000000;strokeColor=#000000;strokeWidth=3;" parent="1" vertex="1">
+                    <mxGeometry x="465" y="620" width="30" height="30" as="geometry"/>
+                </mxCell>
+
+                <!-- Transitions -->
+                <!-- [*] -> Hoat_dong -->
+                <mxCell id="t0" value="Admin tạo tài khoản&#xa;(FUNC-501-01)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="st_init" target="st_hoat_dong" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <!-- Hoat_dong -> Da_khoa -->
+                <mxCell id="t1" value="Admin vô hiệu hóa&#xa;(FUNC-501-03)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="st_hoat_dong" target="st_da_khoa" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="430" y="310"/>
+                            <mxPoint x="430" y="430"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <!-- Da_khoa -> Hoat_dong -->
+                <mxCell id="t2" value="Admin kích hoạt lại&#xa;(FUNC-501-04)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="st_da_khoa" target="st_hoat_dong" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="530" y="430"/>
+                            <mxPoint x="530" y="310"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <!-- Hoat_dong -> Tam_thoi -->
+                <mxCell id="t3" value="Admin cấp quyền&#xa;truy cập tạm thời có thời hạn&#xa;(FUNC-508-02)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="st_hoat_dong" target="st_tam_thoi" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="640" y="205"/>
+                            <mxPoint x="640" y="325"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <!-- Tam_thoi -> Hoat_dong -->
+                <mxCell id="t4" value="Hết hạn — tự động thu hồi&#xa;(FUNC-508-03)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="st_tam_thoi" target="st_hoat_dong" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="640" y="325"/>
+                            <mxPoint x="640" y="205"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <!-- Da_khoa -> [*] -->
+                <mxCell id="t5" value="Admin xóa&#xa;(FUNC-501-05)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="st_da_khoa" target="st_final" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="390" y="600"/>
+                            <mxPoint x="465" y="635"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <!-- Hoat_dong -> [*] -->
+                <mxCell id="t6" value="Admin xóa&#xa;(FUNC-501-05)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="st_hoat_dong" target="st_final" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="590" y="600"/>
+                            <mxPoint x="495" y="635"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+    <diagram id="page3-sso-sequence" name="§2.3 Luồng Đăng nhập SSO">
+        <mxGraphModel dx="272" dy="632" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="1200" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="pg3_title" value="Sơ đồ To-Be — §2.3 Luồng Đăng nhập — Xác thực &amp; Phiên làm việc (SSO) · BR-509, BR-510, BR-511, BR-512" style="text;html=1;fontStyle=1;fontSize=13;align=left;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="12" width="1300" height="26" as="geometry"/>
+                </mxCell>
+
+                <!-- Participant headers -->
+                <mxCell id="ph_ND" value="Người dùng" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="60" y="55" width="160" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="ph_TOSS" value="TOSS IAM" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="360" y="55" width="160" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="ph_LDAP" value="LDAP / Active Directory" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="700" y="55" width="200" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="ph_AUDIT" value="Audit Log" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontStyle=1;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="1060" y="55" width="160" height="50" as="geometry"/>
+                </mxCell>
+
+                <!-- Lifelines -->
+                <mxCell id="lf_ND" value="" style="rounded=0;html=1;fillColor=none;strokeColor=#82b366;strokeWidth=1;dashed=1;" parent="1" vertex="1">
+                    <mxGeometry x="135" y="105" width="10" height="1010" as="geometry"/>
+                </mxCell>
+                <mxCell id="lf_TOSS" value="" style="rounded=0;html=1;fillColor=none;strokeColor=#6c8ebf;strokeWidth=1;dashed=1;" parent="1" vertex="1">
+                    <mxGeometry x="435" y="105" width="10" height="1010" as="geometry"/>
+                </mxCell>
+                <mxCell id="lf_LDAP" value="" style="rounded=0;html=1;fillColor=none;strokeColor=#9673a6;strokeWidth=1;dashed=1;" parent="1" vertex="1">
+                    <mxGeometry x="795" y="105" width="10" height="1010" as="geometry"/>
+                </mxCell>
+                <mxCell id="lf_AUDIT" value="" style="rounded=0;html=1;fillColor=none;strokeColor=#d6b656;strokeWidth=1;dashed=1;" parent="1" vertex="1">
+                    <mxGeometry x="1135" y="105" width="10" height="1010" as="geometry"/>
+                </mxCell>
+
+                <!-- Activation bars -->
+                <mxCell id="act_TOSS" value="" style="fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+                    <mxGeometry x="433" y="165" width="14" height="800" as="geometry"/>
+                </mxCell>
+                <mxCell id="act_ND" value="" style="fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
+                    <mxGeometry x="133" y="540" width="14" height="120" as="geometry"/>
+                </mxCell>
+
+                <!-- Message 1: ND -> TOSS: Truy cập ứng dụng -->
+                <mxCell id="m1" value="1. Truy cập ứng dụng TOSS (SSO — FUNC-507-01)" style="html=1;endArrow=block;endFill=1;fontSize=10;align=center;verticalAlign=bottom;edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.165;exitDx=0;exitDy=0;entryX=0;entryY=0.165;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="lf_ND" target="lf_TOSS" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <!-- Message 2: TOSS -> LDAP -->
+                <mxCell id="m2" value="2. Xác thực danh tính (FUNC-507-02, FUNC-507-03)" style="html=1;endArrow=block;endFill=1;fontSize=10;align=center;verticalAlign=bottom;edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.265;exitDx=0;exitDy=0;entryX=0;entryY=0.265;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="lf_TOSS" target="lf_LDAP" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <!-- Message 3: LDAP -> TOSS (return dashed) -->
+                <mxCell id="m3" value="3. Kết quả xác thực (thông tin phòng ban, trạng thái)" style="html=1;endArrow=open;endFill=0;dashed=1;fontSize=10;align=center;verticalAlign=bottom;edgeStyle=orthogonalEdgeStyle;exitX=0;exitY=0.355;exitDx=0;exitDy=0;entryX=1;entryY=0.355;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="lf_LDAP" target="lf_TOSS" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <!-- Alt frame label -->
+                <mxCell id="alt_frame" value="alt [Tài khoản Admin / Dữ liệu nhạy cảm]" style="text;html=1;fontSize=10;fontStyle=2;align=left;strokeColor=#d79b00;fillColor=#ffe6cc;" parent="1" vertex="1">
+                    <mxGeometry x="140" y="455" width="420" height="24" as="geometry"/>
+                </mxCell>
+                <!-- Message 4: TOSS -> ND: MFA request -->
+                <mxCell id="m4" value="4. Yêu cầu xác thực đa yếu tố (MFA/2FA — FUNC-506-01, FUNC-506-02)" style="html=1;endArrow=block;endFill=1;fontSize=10;align=center;verticalAlign=bottom;edgeStyle=orthogonalEdgeStyle;exitX=0;exitY=0.470;exitDx=0;exitDy=0;entryX=1;entryY=0.470;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="lf_TOSS" target="lf_ND" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <!-- Message 5: ND -> TOSS: OTP -->
+                <mxCell id="m5" value="5. Mã OTP / thiết bị xác thực" style="html=1;endArrow=block;endFill=1;fontSize=10;align=center;verticalAlign=bottom;edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.560;exitDx=0;exitDy=0;entryX=0;entryY=0.560;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="lf_ND" target="lf_TOSS" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <!-- Message 6: TOSS self: Tạo JWT -->
+                <mxCell id="m6" value="6. Tạo JWT Token (FUNC-506-03)" style="html=1;endArrow=block;endFill=1;fontSize=10;align=left;verticalAlign=middle;edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.635;exitDx=0;exitDy=0;entryX=1;entryY=0.680;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="lf_TOSS" target="lf_TOSS" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="510" y="630"/>
+                            <mxPoint x="510" y="680"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <!-- Message 7: TOSS self: Áp quyền -->
+                <mxCell id="m7" value="7. Áp dụng quyền theo vai trò và phạm vi dữ liệu (FUNC-502 / FUNC-504)" style="html=1;endArrow=block;endFill=1;fontSize=10;align=left;verticalAlign=middle;edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.720;exitDx=0;exitDy=0;entryX=1;entryY=0.765;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="lf_TOSS" target="lf_TOSS" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="510" y="720"/>
+                            <mxPoint x="510" y="765"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <!-- Message 8: TOSS self: Kiểm tra khung giờ -->
+                <mxCell id="m8" value="8. Kiểm tra khung giờ làm việc và trạng thái phiên (FUNC-503-01, 02)" style="html=1;endArrow=block;endFill=1;fontSize=10;align=left;verticalAlign=middle;edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.805;exitDx=0;exitDy=0;entryX=1;entryY=0.850;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="lf_TOSS" target="lf_TOSS" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="510" y="805"/>
+                            <mxPoint x="510" y="850"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <!-- Message 9: TOSS -> ND: Màn hình theo quyền -->
+                <mxCell id="m9" value="9. Màn hình hiển thị cột/nút theo quyền (FUNC-505-01, 02)" style="html=1;endArrow=open;endFill=0;dashed=1;fontSize=10;align=center;verticalAlign=bottom;edgeStyle=orthogonalEdgeStyle;exitX=0;exitY=0.890;exitDx=0;exitDy=0;entryX=1;entryY=0.890;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="lf_TOSS" target="lf_ND" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <!-- Message 10: AUDIT self: Ghi log đăng nhập -->
+                <mxCell id="m10" value="10. Ghi log đăng nhập (FUNC-509-01)" style="html=1;endArrow=block;endFill=1;fontSize=10;align=left;verticalAlign=middle;edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.890;exitDx=0;exitDy=0;entryX=1;entryY=0.920;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="lf_AUDIT" target="lf_AUDIT" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1210" y="920"/>
+                            <mxPoint x="1210" y="960"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <!-- Note: Admin có thể xem/hủy phiên từ xa -->
+                <mxCell id="note1" value="Trong phiên — Admin có thể xem / hủy phiên từ xa (FUNC-508-01)" style="text;html=1;fontSize=10;align=left;verticalAlign=middle;strokeColor=#d79b00;fillColor=#ffe6cc;" parent="1" vertex="1">
+                    <mxGeometry x="140" y="975" width="560" height="30" as="geometry"/>
+                </mxCell>
+                <!-- ND -> TOSS: Đăng xuất / timeout -->
+                <mxCell id="m11" value="11. Đăng xuất hoặc timeout phiên" style="html=1;endArrow=block;endFill=1;fontSize=10;align=center;verticalAlign=bottom;edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.970;exitDx=0;exitDy=0;entryX=0;entryY=0.970;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="lf_ND" target="lf_TOSS" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <!-- AUDIT self: Ghi log đăng xuất -->
+                <mxCell id="m12" value="12. Ghi log đăng xuất (FUNC-509-01)" style="html=1;endArrow=block;endFill=1;fontSize=10;align=left;verticalAlign=middle;edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.985;exitDx=0;exitDy=0;entryX=1;entryY=1.000;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="lf_AUDIT" target="lf_AUDIT" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1210" y="1095"/>
+                            <mxPoint x="1210" y="1115"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+    <diagram id="page4-acars-sequence" name="§3 Thu nạp Movement thay FMS">
+        <mxGraphModel dx="272" dy="632" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="1000" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="pg4_title" value="Sơ đồ To-Be — §3 Thu nạp Movement thay FMS (ACARS trực tiếp) · BR-530c, BR-527, FUNC-519-04" style="text;html=1;fontStyle=1;fontSize=13;align=left;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="12" width="1300" height="26" as="geometry"/>
+                </mxCell>
+
+                <!-- Participants -->
+                <mxCell id="p_AC" value="Tàu bay&#xa;(ACARS)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="50" y="55" width="160" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="p_AMHS" value="AMHS / AFTN / SITA TEXT" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="300" y="55" width="200" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="p_PH5" value="TOSS PH5&#xa;(API Gateway / Connector)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="620" y="55" width="200" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="p_PH1" value="TOSS PH1&#xa;(Monitoring)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontStyle=1;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="950" y="55" width="200" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="p_AUD" value="Audit Log" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontStyle=1;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="1230" y="55" width="130" height="50" as="geometry"/>
+                </mxCell>
+
+                <!-- Lifelines -->
+                <mxCell id="lf_AC" value="" style="rounded=0;html=1;fillColor=none;strokeColor=#82b366;strokeWidth=1;dashed=1;" parent="1" vertex="1">
+                    <mxGeometry x="125" y="105" width="10" height="800" as="geometry"/>
+                </mxCell>
+                <mxCell id="lf_AMHS" value="" style="rounded=0;html=1;fillColor=none;strokeColor=#9673a6;strokeWidth=1;dashed=1;" parent="1" vertex="1">
+                    <mxGeometry x="395" y="105" width="10" height="800" as="geometry"/>
+                </mxCell>
+                <mxCell id="lf_PH5" value="" style="rounded=0;html=1;fillColor=none;strokeColor=#6c8ebf;strokeWidth=1;dashed=1;" parent="1" vertex="1">
+                    <mxGeometry x="715" y="105" width="10" height="800" as="geometry"/>
+                </mxCell>
+                <mxCell id="lf_PH1" value="" style="rounded=0;html=1;fillColor=none;strokeColor=#d6b656;strokeWidth=1;dashed=1;" parent="1" vertex="1">
+                    <mxGeometry x="1045" y="105" width="10" height="800" as="geometry"/>
+                </mxCell>
+                <mxCell id="lf_AUD" value="" style="rounded=0;html=1;fillColor=none;strokeColor=#666666;strokeWidth=1;dashed=1;" parent="1" vertex="1">
+                    <mxGeometry x="1290" y="105" width="10" height="800" as="geometry"/>
+                </mxCell>
+
+                <!-- Activation bars -->
+                <mxCell id="act_PH5" value="" style="fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+                    <mxGeometry x="713" y="260" width="14" height="420" as="geometry"/>
+                </mxCell>
+
+                <!-- Messages -->
+                <mxCell id="am1" value="1. Điện văn ACARS theo pha (OUT / OFF / ON / IN)" style="html=1;endArrow=block;endFill=1;fontSize=10;align=center;verticalAlign=bottom;edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.200;exitDx=0;exitDy=0;entryX=0;entryY=0.200;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="lf_AC" target="lf_AMHS" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="am2" value="2. Chuyển điện văn *(chờ xác nhận: OID SME-23)*" style="html=1;endArrow=block;endFill=1;fontSize=10;align=center;verticalAlign=bottom;edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.330;exitDx=0;exitDy=0;entryX=0;entryY=0.330;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="lf_AMHS" target="lf_PH5" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="am3" value="3. Phân tích (parse) điện văn — Ánh xạ sang OOOI events (FUNC-519-04)" style="html=1;endArrow=block;endFill=1;fontSize=10;align=left;verticalAlign=middle;edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.450;exitDx=0;exitDy=0;entryX=1;entryY=0.500;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="lf_PH5" target="lf_PH5" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="790" y="465"/>
+                            <mxPoint x="790" y="505"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="am4" value="4. Áp dụng cơ chế retry và dead-letter nếu lỗi (BR-530c)" style="html=1;endArrow=block;endFill=1;fontSize=10;align=left;verticalAlign=middle;edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.555;exitDx=0;exitDy=0;entryX=1;entryY=0.605;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="lf_PH5" target="lf_PH5" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="790" y="555"/>
+                            <mxPoint x="790" y="605"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="am5" value="5. Đẩy mốc thời gian thực tế vào luồng Monitoring real-time" style="html=1;endArrow=block;endFill=1;fontSize=10;align=center;verticalAlign=bottom;edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.660;exitDx=0;exitDy=0;entryX=0;entryY=0.660;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="lf_PH5" target="lf_PH1" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="am6" value="6. Cập nhật Phase Trigger và màu trạng thái chuyến bay" style="html=1;endArrow=block;endFill=1;fontSize=10;align=left;verticalAlign=middle;edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.750;exitDx=0;exitDy=0;entryX=1;entryY=0.800;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="lf_PH1" target="lf_PH1" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1120" y="755"/>
+                            <mxPoint x="1120" y="805"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="am7" value="7. Ghi log nhận/xử lý điện văn ACARS" style="html=1;endArrow=block;endFill=1;fontSize=10;align=left;verticalAlign=middle;edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.855;exitDx=0;exitDy=0;entryX=1;entryY=0.900;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="lf_AUD" target="lf_AUD" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1365" y="855"/>
+                            <mxPoint x="1365" y="900"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <!-- Note -->
+                <mxCell id="note4" value="Song song — PH5 cũng thu nạp A-CDM (16 mốc turnaround)&#xa;cho màn Flight Detail (BR-530d — OID SME-22)" style="text;html=1;fontSize=10;align=left;verticalAlign=middle;strokeColor=#9673a6;fillColor=#e1d5e7;" parent="1" vertex="1">
+                    <mxGeometry x="130" y="920" width="620" height="50" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+    <diagram id="page5-integration-map" name="§4 Bản đồ Tích hợp Tổng thể">
+        <mxGraphModel dx="272" dy="632" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2200" pageHeight="1800" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="pg5_title" value="Sơ đồ To-Be — §4 Bản đồ Tích hợp Tổng thể TOSS PH5 ↔ Các hệ thống ngoài · BR-525, BR-527, BR-528a…h, BR-530a…g" style="text;html=1;fontStyle=1;fontSize=13;align=left;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="12" width="2100" height="26" as="geometry"/>
+                </mxCell>
+
+                <!-- ========== API GATEWAY (center hub) ========== -->
+                <mxCell id="gw_box" value="API Gateway (BR-525 / FUNC-510-01)" style="rounded=0;dashed=1;strokeColor=#6c8ebf;strokeWidth=2;fillColor=#f0f6ff;verticalAlign=top;fontStyle=1;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="820" y="680" width="560" height="320" as="geometry"/>
+                </mxCell>
+                <mxCell id="GW_IN" value="Luồng vào&#xa;(Inbound)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="840" y="720" width="160" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="GW_OUT" value="Luồng ra&#xa;(Outbound)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="1200" y="720" width="160" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="GW_MON" value="Giám sát luồng&#xa;Data Source Monitoring&#xa;FUNC-526-01…07" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="990" y="870" width="220" height="70" as="geometry"/>
+                </mxCell>
+
+                <!-- GW_IN -> GW_MON, GW_OUT -> GW_MON -->
+                <mxCell id="eg_in_mon" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="GW_IN" target="GW_MON" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="eg_out_mon" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="GW_OUT" target="GW_MON" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+
+                <!-- ========== TOSS PH1-PH4 (right of gateway) ========== -->
+                <mxCell id="toss_box" value="TOSS PH1–PH4&#xa;(tiêu thụ dữ liệu đã chuẩn hóa)" style="rounded=0;dashed=1;strokeColor=#82b366;strokeWidth=2;fillColor=#f0fff0;verticalAlign=top;fontStyle=1;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="1530" y="650" width="240" height="400" as="geometry"/>
+                </mxCell>
+                <mxCell id="PH1T" value="PH1: Monitoring /&#xa;Dispatch / Cảnh báo" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="1545" y="680" width="210" height="55" as="geometry"/>
+                </mxCell>
+                <mxCell id="PH2T" value="PH2: Tài liệu&#xa;Chuyến bay" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="1545" y="755" width="210" height="55" as="geometry"/>
+                </mxCell>
+                <mxCell id="PH3T" value="PH3: Báo cáo&#xa;Tối ưu khai thác" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="1545" y="830" width="210" height="55" as="geometry"/>
+                </mxCell>
+                <mxCell id="PH4T" value="PH4: Quản lý&#xa;Danh mục" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="1545" y="905" width="210" height="55" as="geometry"/>
+                </mxCell>
+
+                <!-- GW_IN -> PH1T..PH4T -->
+                <mxCell id="eg_in_ph1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="GW_IN" target="PH1T" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1530" y="750"/>
+                            <mxPoint x="1530" y="707"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="eg_in_ph2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="GW_IN" target="PH2T" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1520" y="750"/>
+                            <mxPoint x="1520" y="782"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="eg_in_ph3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="GW_IN" target="PH3T" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1510" y="750"/>
+                            <mxPoint x="1510" y="857"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="eg_in_ph4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="GW_IN" target="PH4T" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1500" y="750"/>
+                            <mxPoint x="1500" y="932"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+
+                <!-- PH1T -> GW_OUT -->
+                <mxCell id="eg_ph1_out" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="PH1T" target="GW_OUT" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1480" y="707"/>
+                            <mxPoint x="1480" y="750"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+
+                <!-- ========== NHOM_LICH (top-left) ========== -->
+                <mxCell id="sg_lich" value="Nhóm A: Lập lịch &amp; Điều phái (OID SME-14)" style="rounded=0;dashed=1;strokeColor=#555555;fillColor=#f5f5f5;verticalAlign=top;fontStyle=1;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="60" y="60" width="340" height="200" as="geometry"/>
+                </mxCell>
+                <mxCell id="NET" value="Netline / Flight Ops++&#xa;FUNC-511-01" style="shape=process;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="80" y="100" width="300" height="55" as="geometry"/>
+                </mxCell>
+                <mxCell id="FSS" value="Flight Scheduling System&#xa;SSIM / ASM / SSM&#xa;FUNC-511-03" style="shape=process;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="80" y="175" width="300" height="55" as="geometry"/>
+                </mxCell>
+
+                <!-- ========== NHOM_TOBAY (top-center-left) ========== -->
+                <mxCell id="sg_tobay" value="Nhóm B: Tổ bay &amp; Khai thác (OID SME-22)" style="rounded=0;dashed=1;strokeColor=#555555;fillColor=#f5f5f5;verticalAlign=top;fontStyle=1;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="460" y="60" width="340" height="280" as="geometry"/>
+                </mxCell>
+                <mxCell id="AVES" value="AVES&#xa;Danh sách tổ bay / Qualification&#xa;FUNC-511-04" style="shape=process;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="475" y="100" width="300" height="55" as="geometry"/>
+                </mxCell>
+                <mxCell id="MOP" value="MO Plus&#xa;OFP / Flight Release / Tài liệu&#xa;FUNC-511-06" style="shape=process;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="475" y="175" width="300" height="55" as="geometry"/>
+                </mxCell>
+                <mxCell id="CREW" value="Crew Trip&#xa;FUNC-511-05" style="shape=process;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="475" y="250" width="300" height="55" as="geometry"/>
+                </mxCell>
+
+                <!-- ========== NHOM_KEHOACHBAY (top-center-right) ========== -->
+                <mxCell id="sg_kh" value="Nhóm C: Lập kế hoạch bay (OID SME-23)" style="rounded=0;dashed=1;strokeColor=#555555;fillColor=#f5f5f5;verticalAlign=top;fontStyle=1;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="860" y="60" width="340" height="280" as="geometry"/>
+                </mxCell>
+                <mxCell id="LIDO" value="Lido Flight 4D / Adapter Lido&#xa;OFP / NOTAM / WX&#xa;FUNC-511-11" style="shape=process;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="875" y="100" width="300" height="55" as="geometry"/>
+                </mxCell>
+                <mxCell id="MPIL" value="Lido mPilot&#xa;FUNC-511-12" style="shape=process;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="875" y="175" width="300" height="55" as="geometry"/>
+                </mxCell>
+                <mxCell id="WNI" value="WNI / ICON / AIJS&#xa;Thời tiết / Flight Level&#xa;FUNC-519-06,08" style="shape=process;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="875" y="250" width="300" height="55" as="geometry"/>
+                </mxCell>
+
+                <!-- ========== NHOM_BDK (top-right) ========== -->
+                <mxCell id="sg_bdk" value="Nhóm D: Bảo dưỡng kỹ thuật (OID SME-14)" style="rounded=0;dashed=1;strokeColor=#555555;fillColor=#f5f5f5;verticalAlign=top;fontStyle=1;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="1260" y="60" width="360" height="360" as="geometry"/>
+                </mxCell>
+                <mxCell id="AMOS" value="AMOS / MRO&#xa;MEL / CDL / NAIL / AOG / Defect&#xa;FUNC-511-07 / FUNC-519-01" style="shape=process;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="1275" y="100" width="330" height="55" as="geometry"/>
+                </mxCell>
+                <mxCell id="TIMS" value="TIMS&#xa;FUNC-511-08" style="shape=process;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="1275" y="175" width="330" height="55" as="geometry"/>
+                </mxCell>
+                <mxCell id="ETLOG" value="eTechlog&#xa;Flight Log / Defect&#xa;FUNC-511-09" style="shape=process;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="1275" y="250" width="330" height="55" as="geometry"/>
+                </mxCell>
+                <mxCell id="FOEM" value="FOEM / DOW&#xa;FUNC-511-39" style="shape=process;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="1275" y="325" width="330" height="55" as="geometry"/>
+                </mxCell>
+
+                <!-- ========== NHOM_TM (bottom-right) ========== -->
+                <mxCell id="sg_tm" value="Nhóm E: Thương mại &amp; Đặt chỗ (OID SME-26)" style="rounded=0;dashed=1;strokeColor=#555555;fillColor=#f5f5f5;verticalAlign=top;fontStyle=1;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="1700" y="660" width="340" height="280" as="geometry"/>
+                </mxCell>
+                <mxCell id="PSS" value="Amadeus PSS 1A&#xa;PAX / Booking&#xa;FUNC-511-10" style="shape=process;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="1715" y="700" width="300" height="55" as="geometry"/>
+                </mxCell>
+                <mxCell id="DCS" value="DCS&#xa;Check-in / Load&#xa;FUNC-511-19" style="shape=process;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="1715" y="775" width="300" height="55" as="geometry"/>
+                </mxCell>
+                <mxCell id="CARGO" value="Cargo Spot&#xa;FUNC-511-18" style="shape=process;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="1715" y="850" width="300" height="55" as="geometry"/>
+                </mxCell>
+
+                <!-- ========== NHOM_MD (bottom-center-right) ========== -->
+                <mxCell id="sg_md" value="Nhóm F: Mặt đất &amp; Sân đỗ (OID SME-22)" style="rounded=0;dashed=1;strokeColor=#555555;fillColor=#f5f5f5;verticalAlign=top;fontStyle=1;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="1260" y="1120" width="360" height="280" as="geometry"/>
+                </mxCell>
+                <mxCell id="VMS" value="VMS / VIAGS&#xa;FUNC-511-13" style="shape=process;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="1275" y="1160" width="330" height="55" as="geometry"/>
+                </mxCell>
+                <mxCell id="ACDM" value="A-CDM&#xa;16 mốc turnaround&#xa;FUNC-511-15 / FUNC-519-05" style="shape=process;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="1275" y="1235" width="330" height="55" as="geometry"/>
+                </mxCell>
+                <mxCell id="RPS" value="RPS&#xa;FUNC-511-16" style="shape=process;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="1275" y="1310" width="330" height="55" as="geometry"/>
+                </mxCell>
+
+                <!-- ========== NHOM_GIAMSAT (bottom-center-left) ========== -->
+                <mxCell id="sg_gs" value="Nhóm G: Giám sát vị trí &amp; ACARS (OID SME-23)" style="rounded=0;dashed=1;strokeColor=#555555;fillColor=#f5f5f5;verticalAlign=top;fontStyle=1;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="860" y="1120" width="360" height="280" as="geometry"/>
+                </mxCell>
+                <mxCell id="FR24" value="FlightRadar24&#xa;Vị trí real-time&#xa;FUNC-511-20" style="shape=process;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="875" y="1160" width="330" height="55" as="geometry"/>
+                </mxCell>
+                <mxCell id="ACARS_SRC" value="ACARS / AMHS / AFTN / SITA TEXT&#xa;OOOI events / Điện văn&#xa;FUNC-519-04 / FUNC-511-30" style="shape=process;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="875" y="1235" width="330" height="55" as="geometry"/>
+                </mxCell>
+                <mxCell id="QAR" value="QAR / QAI&#xa;Standard Taxi Time / Post-Flight&#xa;FUNC-519-02,03" style="shape=process;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="875" y="1310" width="330" height="55" as="geometry"/>
+                </mxCell>
+
+                <!-- ========== NHOM_KHAC (bottom-left) ========== -->
+                <mxCell id="sg_khac" value="Nhóm H: Các nguồn khác" style="rounded=0;dashed=1;strokeColor=#555555;fillColor=#f5f5f5;verticalAlign=top;fontStyle=1;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="60" y="1120" width="740" height="280" as="geometry"/>
+                </mxCell>
+                <mxCell id="NOTAM" value="NOTAM / WX VATM&#xa;qua email&#xa;FUNC-511-34" style="shape=process;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="75" y="1160" width="330" height="55" as="geometry"/>
+                </mxCell>
+                <mxCell id="LDAP_AD" value="AD / LDAP&#xa;Xác thực danh tính&#xa;FUNC-511-38" style="shape=process;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="435" y="1160" width="330" height="55" as="geometry"/>
+                </mxCell>
+                <mxCell id="DWH" value="DWH / Lakehouse TCT&#xa;FUNC-511-02" style="shape=process;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="75" y="1235" width="330" height="55" as="geometry"/>
+                </mxCell>
+                <mxCell id="NETZER" value="NetZero / ETS / ANCM&#xa;FUNC-511-23,27 / FUNC-519-06" style="shape=process;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="435" y="1235" width="330" height="55" as="geometry"/>
+                </mxCell>
+
+                <!-- ========== INBOUND EDGES: groups -> GW_IN ========== -->
+                <!-- sg_lich -> GW_IN (via subgroup representative) -->
+                <mxCell id="eg_lich_in" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="sg_lich" target="GW_IN" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="430" y="160"/>
+                            <mxPoint x="430" y="750"/>
+                            <mxPoint x="840" y="750"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="eg_tobay_in" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="sg_tobay" target="GW_IN" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="820" y="200"/>
+                            <mxPoint x="820" y="750"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="eg_kh_in" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="sg_kh" target="GW_IN" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="eg_bdk_in" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="sg_bdk" target="GW_IN" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1000" y="240"/>
+                            <mxPoint x="1000" y="680"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="eg_tm_in" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="sg_tm" target="GW_IN" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1680" y="800"/>
+                            <mxPoint x="1410" y="800"/>
+                            <mxPoint x="1410" y="750"/>
+                            <mxPoint x="1380" y="750"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="eg_md_in" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="sg_md" target="GW_IN" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1220" y="1260"/>
+                            <mxPoint x="1220" y="750"/>
+                            <mxPoint x="1380" y="750"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="eg_gs_in" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="sg_gs" target="GW_IN" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="eg_khac_in" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="sg_khac" target="GW_IN" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="830" y="1260"/>
+                            <mxPoint x="830" y="750"/>
+                            <mxPoint x="840" y="750"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+
+                <!-- OUTBOUND: GW_OUT -> MOP, GW_OUT -> DWH -->
+                <mxCell id="eg_out_mop" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="GW_OUT" target="MOP" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1160" y="750"/>
+                            <mxPoint x="1160" y="202"/>
+                            <mxPoint x="775" y="202"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="eg_out_dwh" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="GW_OUT" target="DWH" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1170" y="750"/>
+                            <mxPoint x="1170" y="1262"/>
+                            <mxPoint x="405" y="1262"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+    <diagram id="page6-unrelease-sequence" name="§4.1 Unrelease OFP ↔ MO Plus">
+        <mxGraphModel dx="272" dy="632" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1200" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="pg6_title" value="Sơ đồ To-Be — §4.1 Luồng Unrelease OFP ↔ MO Plus · BR-532, FUNC-520-01…06 · (OID KS-20 — chờ xác nhận)" style="text;html=1;fontStyle=1;fontSize=13;align=left;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="12" width="1500" height="26" as="geometry"/>
+                </mxCell>
+
+                <!-- Participants -->
+                <mxCell id="p6_DSP" value="Điều phái viên" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="60" y="55" width="160" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="p6_TOSS" value="TOSS PH1/PH5" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="330" y="55" width="160" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="p6_GW" value="API Gateway&#xa;(PH5)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="680" y="55" width="160" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="p6_MOP" value="MO Plus" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="1050" y="55" width="160" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="p6_PIL" value="Phi công&#xa;(MO Plus App)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontStyle=1;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="1380" y="55" width="160" height="50" as="geometry"/>
+                </mxCell>
+
+                <!-- Lifelines -->
+                <mxCell id="lf6_DSP" value="" style="rounded=0;html=1;fillColor=none;strokeColor=#82b366;strokeWidth=1;dashed=1;" parent="1" vertex="1">
+                    <mxGeometry x="135" y="105" width="10" height="990" as="geometry"/>
+                </mxCell>
+                <mxCell id="lf6_TOSS" value="" style="rounded=0;html=1;fillColor=none;strokeColor=#6c8ebf;strokeWidth=1;dashed=1;" parent="1" vertex="1">
+                    <mxGeometry x="405" y="105" width="10" height="990" as="geometry"/>
+                </mxCell>
+                <mxCell id="lf6_GW" value="" style="rounded=0;html=1;fillColor=none;strokeColor=#6c8ebf;strokeWidth=1;dashed=1;" parent="1" vertex="1">
+                    <mxGeometry x="755" y="105" width="10" height="990" as="geometry"/>
+                </mxCell>
+                <mxCell id="lf6_MOP" value="" style="rounded=0;html=1;fillColor=none;strokeColor=#9673a6;strokeWidth=1;dashed=1;" parent="1" vertex="1">
+                    <mxGeometry x="1125" y="105" width="10" height="990" as="geometry"/>
+                </mxCell>
+                <mxCell id="lf6_PIL" value="" style="rounded=0;html=1;fillColor=none;strokeColor=#d6b656;strokeWidth=1;dashed=1;" parent="1" vertex="1">
+                    <mxGeometry x="1455" y="105" width="10" height="990" as="geometry"/>
+                </mxCell>
+
+                <!-- Activation bars -->
+                <mxCell id="act6_TOSS" value="" style="fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+                    <mxGeometry x="403" y="165" width="14" height="810" as="geometry"/>
+                </mxCell>
+                <mxCell id="act6_GW" value="" style="fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+                    <mxGeometry x="753" y="370" width="14" height="610" as="geometry"/>
+                </mxCell>
+                <mxCell id="act6_MOP" value="" style="fillColor=#e1d5e7;strokeColor=#9673a6;" parent="1" vertex="1">
+                    <mxGeometry x="1123" y="480" width="14" height="490" as="geometry"/>
+                </mxCell>
+
+                <!-- Messages -->
+                <!-- 1: DSP -> TOSS -->
+                <mxCell id="u1" value="1. Thực hiện Unrelease OFP (từ màn Dispatch)" style="html=1;endArrow=block;endFill=1;fontSize=10;align=center;verticalAlign=bottom;edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.155;exitDx=0;exitDy=0;entryX=0;entryY=0.155;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="lf6_DSP" target="lf6_TOSS" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <!-- 2: TOSS self: Tạo revision -->
+                <mxCell id="u2" value="2. Tạo revision/version OFP mới (FUNC-520-02)&#xa;*(payload — chờ xác nhận: OID KS-20)*" style="html=1;endArrow=block;endFill=1;fontSize=10;align=left;verticalAlign=middle;edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.295;exitDx=0;exitDy=0;entryX=1;entryY=0.345;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="lf6_TOSS" target="lf6_TOSS" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="480" y="295"/>
+                            <mxPoint x="480" y="345"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <!-- 3: TOSS -> GW: Đẩy revision -->
+                <mxCell id="u3" value="3. Đẩy revision mới sang MO Plus" style="html=1;endArrow=block;endFill=1;fontSize=10;align=center;verticalAlign=bottom;edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.380;exitDx=0;exitDy=0;entryX=0;entryY=0.380;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="lf6_TOSS" target="lf6_GW" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <!-- 4: GW -> MOP: Gửi revision -->
+                <mxCell id="u4" value="4. Gửi revision OFP mới — &quot;lấy bản mới nhất&quot; (FUNC-520-05)" style="html=1;endArrow=block;endFill=1;fontSize=10;align=center;verticalAlign=bottom;edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.490;exitDx=0;exitDy=0;entryX=0;entryY=0.490;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="lf6_GW" target="lf6_MOP" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <!-- 5: MOP self: Override OFP cũ -->
+                <mxCell id="u5" value="5. Override OFP cũ bằng revision mới" style="html=1;endArrow=block;endFill=1;fontSize=10;align=left;verticalAlign=middle;edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.560;exitDx=0;exitDy=0;entryX=1;entryY=0.610;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="lf6_MOP" target="lf6_MOP" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1200" y="560"/>
+                            <mxPoint x="1200" y="610"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <!-- 6: TOSS -> GW: Tín hiệu reset -->
+                <mxCell id="u6" value="6. Tín hiệu reset Confirm Release phi công&#xa;*(cơ chế — chờ xác nhận: OID KS-20)*" style="html=1;endArrow=block;endFill=1;fontSize=10;align=center;verticalAlign=bottom;edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.660;exitDx=0;exitDy=0;entryX=0;entryY=0.660;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="lf6_TOSS" target="lf6_GW" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <!-- 7: GW -> MOP: Reset Confirm Release = 0 -->
+                <mxCell id="u7" value="7. Reset trạng thái Confirm Release = 0 (FUNC-520-03)" style="html=1;endArrow=block;endFill=1;fontSize=10;align=center;verticalAlign=bottom;edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.750;exitDx=0;exitDy=0;entryX=0;entryY=0.750;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="lf6_GW" target="lf6_MOP" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <!-- 8: MOP -> PIL: Push notification -->
+                <mxCell id="u8" value="8. Push notification: yêu cầu Confirm Release lại (FUNC-520-04)&#xa;*(loại thông báo — chờ xác nhận: OID KS-20)*" style="html=1;endArrow=block;endFill=1;fontSize=10;align=center;verticalAlign=bottom;edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.850;exitDx=0;exitDy=0;entryX=0;entryY=0.850;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="lf6_MOP" target="lf6_PIL" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <!-- 9: PIL -> MOP: Xác nhận Confirm Release -->
+                <mxCell id="u9" value="9. Xác nhận Confirm Release trên phiên bản mới" style="html=1;endArrow=block;endFill=1;fontSize=10;align=center;verticalAlign=bottom;edgeStyle=orthogonalEdgeStyle;exitX=0;exitY=0.940;exitDx=0;exitDy=0;entryX=1;entryY=0.940;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="lf6_PIL" target="lf6_MOP" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

@@ -9,3 +9,4 @@
 | `TOSS-to-chuc-du-an-BA-v1.0-2026-06-04.md` | 270 | Tổ chức dự án BA |
 | `AI-Agents-to-chuc-du-an-v1.1-2026-06-04.md` | 304 | Tổ chức dự án kết hợp AI Agents (mới nhất) |
 | `AI-Agents-to-chuc-du-an-v1.0-2026-06-04.md` | 304 | (bản cũ v1.0 — cân nhắc xóa, giữ v1.1) |
+| `build-deck.py` | — | Script Python (python-pptx) build bộ slide rút gọn `TOSS-trinh-bay-khach-hang-rut-gon-v1.0-2026-05-29.pptx` từ `ba/input/VNA_TOSS.pptx`, kế thừa theme/font/màu thương hiệu (Inter, palette teal/cyan/gold). |

@@ -1,124 +1,112 @@
-param (
-    [int]$IntervalSeconds = 300,
-    [string]$Branch = "main"
-)
+# auto-sync.ps1 — He thong tu dong dong bo hoa Git du an TOSS
+# Chay ngam moi 5 phut de tai thay doi moi va day cac thay doi cuc bo len GitHub ca nhan.
 
-# Thư mục logs
-$LogDir = "d:\TOSS\logs"
-if (!(Test-Path $LogDir)) {
+$env:GIT_TERMINAL_PROMPT = "0"
+$ScriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
+$ProjectDir = Resolve-Path (Join-Path $ScriptDir "..")
+$LogDir = Join-Path $ProjectDir "logs"
+
+if (-not (Test-Path $LogDir)) {
     New-Item -ItemType Directory -Path $LogDir -Force | Out-Null
 }
 $LogFile = Join-Path $LogDir "sync.log"
 
-function Write-Log ($Message, $Color = "White") {
-    $Timestamp = Get-Date -Format 'yyyy-MM-dd HH:mm:ss'
-    $LogMessage = "[$Timestamp] $Message"
-    
-    # Ghi ra console (nếu đang chạy interactive)
-    Write-Host $LogMessage -ForegroundColor $Color
-    
-    # Ghi ra file log
-    Add-Content -Path $LogFile -Value $LogMessage
+function Write-SyncLog {
+    param(
+        [string]$Message,
+        [string]$Level = "INFO"
+    )
+    $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
+    $logLine = "[$timestamp] [$Level] $Message"
+    Write-Output $logLine
+    $logLine | Out-File -FilePath $LogFile -Append -Encoding utf8
 }
 
-Write-Log "=========================================================" "Cyan"
-Write-Log "TOSS Auto-Sync Script v2.0" "Cyan"
-Write-Log "Tu dong check, pull/rebase va push sau moi $IntervalSeconds giay" "Cyan"
-Write-Log "=========================================================" "Cyan"
-
-# Kiểm tra thư mục hiện tại có phải repo git không
-if (!(Test-Path ".git")) {
-    Write-Log "[!] Error: Current directory is not a Git repository." "Red"
-    Write-Log "Please run 'git init' and connect to remote first." "Yellow"
-    exit
+function Get-GitPath {
+    if (Get-Command git -ErrorAction SilentlyContinue) {
+        return "git"
+    }
+    $localGit = "$env:LOCALAPPDATA\Programs\Git\cmd\git.exe"
+    if (Test-Path $localGit) {
+        return $localGit
+    }
+    $programFilesGit = "${env:ProgramFiles}\Git\cmd\git.exe"
+    if (Test-Path $programFilesGit) {
+        return $programFilesGit
+    }
+    throw "Khong tim thay Git. Vui lau cai dat Git va dam bao no nam trong he thong PATH."
 }
 
-# Chọn Remote đồng bộ (Ưu tiên remote 'personal' nếu có, không thì dùng 'origin')
-$Remote = "origin"
-$Remotes = git remote
-if ($Remotes -contains "personal") {
-    $Remote = "personal"
-    Write-Log "Phat hien remote ca nhan 'personal'. Su dung 'personal' lam remote dong bo chinh." "Green"
-} else {
-    Write-Log "Canh bao: Khong tim thay remote 'personal'. Su dung remote mac dinh 'origin' ($Remote)." "Yellow"
-}
-
-# Lấy tên máy tính để đánh dấu commit nguồn
-$ComputerName = $env:COMPUTERNAME
+Write-SyncLog "Khoi dong tien trinh dong bo tu dong chay ngam..." "INFO"
 
 while ($true) {
     try {
-        # 1. Fetch de kiem tra thay doi tu remote
-        Write-Log "Dang dong bo tu remote '$Remote'..." "DarkGray"
-        git fetch $Remote
-        
-        # 2. Kiem tra thay doi local chua commit (Chi thuc hien neu la remote personal)
-        $Changes = git status --porcelain
-        if ($Changes) {
-            if ($Remote -eq "personal") {
-                Write-Log "Phat hien co thay doi chua commit. Dang tu dong commit..." "Yellow"
-                git add -A
-                $CommitMsg = "Auto-sync: $ComputerName [$(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')]"
-                git commit -m $CommitMsg
-                Write-Log "Da commit cac thay doi local thanh cong: $CommitMsg" "Green"
-            } else {
-                Write-Log "Phat hien thay doi local nhung bo qua commit tu dong o che do an toan (Remote = $Remote)." "Yellow"
-            }
-        }
-        
-        # 3. Keo thay doi tu remote ve bang rebase (Chi keo neu remote branch da ton tai)
-        $RemoteBranchExists = (git ls-remote --heads $Remote $Branch)
-        $CanPush = $true
-        
-        if ($RemoteBranchExists) {
-            Write-Log "Dang keo (Pull - Rebase) cac thay doi moi tu remote '$Remote'..." "DarkGray"
-            $PullResult = git pull $Remote $Branch --rebase 2>&1
-            $LastExitCode = $LASTEXITCODE
-            
-            if ($LastExitCode -ne 0) {
-                Write-Log "Loi xay ra khi keo code ve: $PullResult" "Red"
-                if ($PullResult -match "conflict" -or $PullResult -match "Resolve all conflicts") {
-                    Write-Log "[!] CANH BAO: Xung dot xay ra khi dong bo tu dong. Dang khoi phuc (Abort rebase)..." "Red"
-                    git rebase --abort
-                    Write-Log "Da khoi phuc trang thai. Vui long mo Terminal va chay 'git pull $Remote $Branch --rebase' de xu ly xung dot thu cong." "Yellow"
-                }
-                $CanPush = $false
-            }
-        } else {
-            Write-Log "Nhan thay branch '$Branch' chua ton tai tren remote '$Remote'. Bo qua pull, chuan bi push de khoi tao branch." "Yellow"
-        }
-        
-        # 4. Day thay doi len remote (Chi push neu la remote personal va hop le)
-        if ($CanPush) {
-            if ($Remote -eq "personal") {
-                Write-Log "Dang day (Push) thay doi len remote '$Remote'..." "DarkGray"
-                $PushResult = git push $Remote $Branch 2>&1
-                $PushExitCode = $LASTEXITCODE
-                if ($PushExitCode -eq 0) {
-                    Write-Log "Dong bo hoa hoan tat thanh cong!" "Green"
-                } else {
-                    Write-Log "Khong the day code len remote. Loi: $PushResult" "Red"
-                }
-            } else {
-                Write-Log "Bo qua push tu dong o che do an toan (Remote = $Remote)." "Yellow"
-            }
-        }
+        $git = Get-GitPath
+        Set-Location $ProjectDir
 
-        # 5. Dong bo thu vien dev dependencies (neu co cap nhat package.json)
-        if ($Changes -match "dev/package.json" -and (Test-Path "dev\package.json")) {
-            Write-Log "Phat hien thay doi trong dev/package.json. Dang cap nhat thu vien..." "Cyan"
-            Push-Location dev
-            if (Get-Command pnpm -ErrorAction SilentlyContinue) {
-                pnpm install
-            } else {
-                npm install
-            }
-            Pop-Location
-            Write-Log "Cap nhat thu vien hoan tat." "Green"
+        # 1. Kiem tra remote 'personal'
+        $remotes = & $git remote
+        if ($remotes -notcontains "personal") {
+            Write-SyncLog "Chua cau hinh remote 'personal'. Vui long chay lenh: git remote add personal <URL_REPO_GITHUB_CA_NHAN>" "WARNING"
         }
-    } catch {
-        Write-Log "Loi bat thuong trong qua trinh dong bo: $_" "Red"
+        else {
+            $personalUrl = & $git remote get-url personal
+            if ($personalUrl -like "*URL_REPO_GITHUB_CA_NHAN*" -or [string]::IsNullOrWhiteSpace($personalUrl)) {
+                Write-SyncLog "Remote 'personal' dang su dung URL gia dinh hoac trong. Vui long thiet lap lai bang lenh: git remote set-url personal <URL_REPO_GITHUB_CA_NHAN>" "WARNING"
+            }
+            else {
+                # 2. Kiem tra neu dang rebase thu cong
+                if ((Test-Path (Join-Path $ProjectDir ".git\rebase-merge")) -or (Test-Path (Join-Path $ProjectDir ".git\rebase-apply"))) {
+                    Write-SyncLog "Dang co tien trinh rebase thu cong. Bo qua chu ky dong bo tu dong de tranh xung dot." "INFO"
+                }
+                else {
+                    # 3. Add va Commit cac thay doi cuc bo
+                    $status = & $git status --porcelain
+                    if ($status) {
+                        Write-SyncLog "Phat hien thay doi cuc bo. Dang tien hanh add va commit..." "INFO"
+                        & $git add -A
+                        $commitMsg = "Auto-sync: $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')"
+                        & $git commit -m $commitMsg | Out-Null
+                    }
+
+                    # 4. Pull tu remote personal (su dung rebase)
+                    Write-SyncLog "Dang keo thay doi moi nhat tu remote personal (pull --rebase)..." "INFO"
+                    $pullResult = & $git -c credential.helper= pull personal main --rebase 2>&1
+                    $lastExitCode = $LASTEXITCODE
+
+                    if ($lastExitCode -ne 0) {
+                        # Phat hien xung dot (Conflict)
+                        if (($pullResult -match "conflict") -or ($pullResult -match "Conflict") -or (Test-Path (Join-Path $ProjectDir ".git\rebase-merge")) -or (Test-Path (Join-Path $ProjectDir ".git\rebase-apply"))) {
+                            Write-SyncLog "PHAT HIEN XUNG DOT CODE (Conflict)!" "ERROR"
+                            Write-SyncLog "Dang thuc hien huy rebase tu dong (git rebase --abort)..." "WARNING"
+                            & $git rebase --abort | Out-Null
+                            Write-SyncLog "Da huy rebase tu dong. Vui long xu ly xung dot thu cong bang lenh: git pull personal main --rebase" "ERROR"
+                        }
+                        else {
+                            Write-SyncLog "Loi khi thuc hien pull: $pullResult" "ERROR"
+                        }
+                    }
+                    else {
+                        # 5. Push len remote personal
+                        Write-SyncLog "Dang day cac thay doi len remote personal..." "INFO"
+                        $pushResult = & $git -c credential.helper= push personal main 2>&1
+                        $pushExitCode = $LASTEXITCODE
+
+                        if ($pushExitCode -ne 0) {
+                            Write-SyncLog "Loi khi day len github: $pushResult" "ERROR"
+                        }
+                        else {
+                            Write-SyncLog "Dong bo thanh cong!" "INFO"
+                        }
+                    }
+                }
+            }
+        }
     }
-    
-    Start-Sleep -Seconds $IntervalSeconds
+    catch {
+        Write-SyncLog "Loi nghiem trong trong chu ky dong bo: $_" "ERROR"
+    }
+
+    # Cho 5 phut (300 giay) truoc chu ky tiep theo
+    Start-Sleep -Seconds 300
 }

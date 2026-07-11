@@ -1,0 +1,1397 @@
+<!DOCTYPE html>
+<!--
+  MOCKUP v2.0 — TOSS Data Maintenance / Quản lý danh mục Tàu bay
+  CLAUDE.md §0: dữ liệu mẫu, bố cục đề xuất cần BA/UI duyệt.
+  Phạm vi áp dụng quyết định ngày 2026-06-22 với BA Lead:
+    - Mỗi dòng trên danh sách = 1 LOẠI TÀU BAY (Aircraft Subtype). Bỏ khái niệm Fleet/đội cha và list Aircraft con.
+    - Bổ sung ACARS Fuel Unit/Multiplier (cặp From–To nối tiếp), AC Subtype, MTOW.
+    - Bộ lọc danh sách: thêm Subtype + 5 thuộc tính gom nhóm.
+    - Bộ lọc trên Audit log; mở rộng phạm vi: ACsubtype, ACARS unit/multiplier, Config, Ownership, Basic Weight.
+    - Sidebar Việt hoá, đồng bộ với Function list mục 6 (R57–R148).
+    - Ownership enum: Owned / Wet Leased / Dry Leased; Owner maxlength 50.
+  Trực thuộc TOSS/ba/workspace/drafts/mockup/data-maintenance-mockup-v2.0.html.
+-->
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TOSS — Data Maintenance Mockup v2.0</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto:wght@400;500;700&family=Material+Symbols+Outlined" rel="stylesheet">
+
+  <style>
+    /* ===== Design System & Core Colors (VNA Brand & Material Design 3) ===== */
+    :root {
+      /* Brand Colors */
+      --vna-navy: #002A54;
+      --vna-gold: #D4B26F;
+
+      /* PRIMARY: CAAV Blue (Accent color lock) */
+      --toss-primary: #005a9c;
+      --toss-primary-light: #007ec3;
+      --toss-primary-dark: #003d6b;
+
+      /* SEMANTIC: Status Colors (WCAG AA/AAA compliant) */
+      --toss-success: #059669;       /* Active, healthy */
+      --toss-warn: #d97706;          /* Warning */
+      --toss-error: #dc2626;         /* Error */
+
+      /* Surface & Neutrals */
+      --md-surface: #ffffff;
+      --md-surface-variant: #f8fafc;
+      --md-outline: #cbd5e1;
+      --md-outline-variant: #e2e8f0;
+      --md-text-primary: #1e293b;
+      --md-text-secondary: #64748b;
+      --md-text-muted: #94a3b8;
+
+      --sidebar-width: 260px;
+      --sidebar-collapsed-width: 52px;
+
+      --md-radius: 12px;
+      --md-radius-sm: 8px;
+      --md-elev1: 0 1px 3px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.05);
+      --md-elev2: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.05);
+      --md-elev3: 0 10px 15px -3px rgba(0,0,0,0.08), 0 4px 6px -2px rgba(0,0,0,0.04);
+
+      --toss-bg-sky: linear-gradient(180deg, #dbe9f6 0%, #e8f1f9 30%, #f4f7fc 100%);
+    }
+
+    /* Prefers reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      * { animation: none !important; transition: none !important; }
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', Roboto, 'Segoe UI', Arial, sans-serif; background: var(--md-surface-variant); color: var(--md-text-primary); min-height: 100vh; overflow-x: hidden; display: flex; }
+    .material-symbols-outlined { font-family: 'Material Symbols Outlined'; font-size: 22px; vertical-align: middle; line-height: 1; user-select: none; }
+
+    .app-layout { display: flex; width: 100vw; min-height: 100vh; }
+
+    /* ===== Sidebar ===== */
+    .sidebar { width: var(--sidebar-width); background: var(--md-surface); border-right: 1px solid var(--md-outline-variant); display: flex; flex-direction: column; height: 100vh; position: sticky; top: 0; z-index: 100; transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1); flex-shrink: 0; }
+    .sidebar.collapsed { width: var(--sidebar-collapsed-width); }
+    .sidebar.collapsed .logo-text-group { display: none; }
+    .sidebar.collapsed .menu-item, .sidebar.collapsed .footer-action-item { padding: 12px 0; justify-content: center; gap: 0; border-left: 3px solid transparent; }
+    .sidebar.collapsed .menu-item.active { border-left-color: var(--mo-active-border); }
+    .sidebar.collapsed .user-profile-card { margin: 8px 4px; padding: 4px; justify-content: center; background: transparent; }
+    .sidebar-header { padding: 8px 12px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--md-outline-variant); height: 48px; position: relative; box-sizing: border-box; }
+    .logo-container { display: flex; align-items: center; gap: 8px; overflow: hidden; white-space: nowrap; transition: opacity 0.2s; flex-shrink: 0; height: 32px; }
+    .sidebar.collapsed .logo-container { justify-content: center; width: 100%; }
+    .vna-logo-text { font-size: 13px; font-weight: 700; color: var(--vna-navy); text-transform: uppercase; letter-spacing: 0.5px; line-height: 1.2; }
+    .vna-logo-sub { font-size: 10px; color: var(--vna-gold); font-weight: 500; display: block; }
+    .sidebar-toggle-btn { position: absolute; right: -12px; top: 20px; width: 24px; height: 24px; background: var(--md-surface); border: 1px solid var(--md-outline); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: var(--md-elev1); z-index: 110; transition: transform 0.3s; }
+    .sidebar-toggle-btn:hover { background: var(--md-surface-variant); box-shadow: var(--md-elev2); }
+    .sidebar-toggle-btn .material-symbols-outlined { font-size: 16px; color: var(--md-text-secondary); }
+    .sidebar-menu { flex: 1; padding: 12px 0; overflow-y: auto; overflow-x: hidden; }
+    .sidebar-menu::-webkit-scrollbar { width: 4px; }
+    .sidebar-menu::-webkit-scrollbar-thumb { background: var(--md-outline-variant); border-radius: 999px; }
+    .menu-item { display: flex; align-items: center; gap: 12px; padding: 10px 18px; color: var(--md-text-primary); text-decoration: none; font-size: 13.5px; font-weight: 500; border-left: 4px solid transparent; cursor: pointer; white-space: nowrap; transition: all 0.2s ease; position: relative; }
+    .menu-item:hover { background: var(--md-surface-variant); }
+    .menu-item.active { background: var(--mo-active-bg); color: var(--mo-active-text); border-left-color: var(--mo-active-border); font-weight: 600; }
+    .menu-item .material-symbols-outlined { color: var(--md-text-secondary); transition: color 0.2s; flex-shrink: 0; font-size: 20px; }
+    .menu-item.active .material-symbols-outlined { color: var(--mo-active-border); }
+    .menu-text { transition: opacity 0.2s ease, transform 0.2s ease; opacity: 1; }
+    .sidebar.collapsed .menu-text { opacity: 0; pointer-events: none; transform: translateX(-10px); position: absolute; }
+    .sidebar-footer { border-top: 1px solid var(--md-outline-variant); padding: 8px 0; background: var(--md-surface); }
+    .footer-actions { display: flex; flex-direction: column; }
+    .footer-action-item { display: flex; align-items: center; gap: 12px; padding: 10px 18px; color: var(--md-text-primary); text-decoration: none; font-size: 14px; font-weight: 500; cursor: pointer; position: relative; }
+    .footer-action-item:hover { background: var(--md-surface-variant); }
+    .footer-action-item .material-symbols-outlined { color: var(--md-text-secondary); flex-shrink: 0; }
+    .badge-container { position: relative; display: inline-flex; }
+    .noti-badge { position: absolute; top: -6px; right: -8px; background: #ee0033; color: white; font-size: 9px; font-weight: 700; padding: 1px 5px; border-radius: 999px; line-height: 1; border: 1.5px solid var(--md-surface); }
+    .user-profile-card { display: flex; align-items: center; gap: 10px; padding: 12px 16px; margin: 8px; border-radius: var(--md-radius-sm); background: var(--md-surface-variant); overflow: hidden; white-space: nowrap; transition: all 0.3s; position: relative; }
+    .sidebar.collapsed .user-profile-card { margin: 8px 4px; padding: 8px; justify-content: center; background: transparent; }
+    .user-avatar-wrap { width: 38px; height: 38px; border-radius: 50%; overflow: hidden; background: #cbd5e1; flex-shrink: 0; display: flex; align-items: center; justify-content: center; border: 1.5px solid var(--vna-gold); }
+    .user-avatar-img { width: 100%; height: 100%; object-fit: cover; }
+    .user-info { flex: 1; overflow: hidden; transition: opacity 0.2s; }
+    .sidebar.collapsed .user-info { display: none; }
+    .user-name { font-size: 13px; font-weight: 600; color: var(--md-text-primary); text-overflow: ellipsis; overflow: hidden; }
+    .user-email { font-size: 11px; color: var(--md-text-secondary); text-overflow: ellipsis; overflow: hidden; margin-top: 2px; }
+    .logout-btn { background: transparent; border: none; color: var(--md-text-secondary); cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 4px; border-radius: 50%; transition: background 0.2s, color 0.2s; }
+    .logout-btn:hover { background: #fee2e2; color: #ef4444; }
+
+    .sidebar.collapsed .menu-item::after, .sidebar.collapsed .footer-action-item::after { content: attr(data-tooltip); position: absolute; left: 100%; top: 50%; transform: translateY(-50%) translateX(10px); background: #1e293b; color: white; padding: 6px 12px; border-radius: 4px; font-size: 12px; white-space: nowrap; opacity: 0; pointer-events: none; transition: all 0.25s; box-shadow: var(--md-elev2); z-index: 1000; }
+    .sidebar.collapsed .menu-item:hover::after, .sidebar.collapsed .footer-action-item:hover::after { opacity: 1; transform: translateY(-50%) translateX(15px); }
+
+    /* ===== Main Content ===== */
+    .main-content { flex: 1; height: 100vh; overflow-y: auto; background: var(--toss-bg-sky); position: relative; display: flex; flex-direction: column; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+    .main-content-scrollable { padding: 24px 28px; display: flex; flex-direction: column; gap: 20px; flex: 1; }
+
+    /* ===== Card / Filter ===== */
+    .m3-card { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.6); border-radius: var(--md-radius); box-shadow: var(--md-elev1); padding: 16px; transition: box-shadow 0.2s, background-color 0.2s; }
+    .m3-card:hover { box-shadow: var(--md-elev2); }
+    .filter-grid { display: flex; flex-wrap: wrap; gap: 12px; align-items: flex-end; }
+    .filter-item { display: flex; flex-direction: column; gap: 4px; flex: 1 1 160px; }
+    .filter-item label { font-size: 11px; font-weight: 600; color: var(--md-text-secondary); text-transform: uppercase; letter-spacing: 0.3px; }
+    .filter-input { width: 100%; height: 36px; padding: 6px 10px; border: 1px solid var(--md-outline); border-radius: var(--md-radius-sm); font-family: inherit; font-size: 13px; color: var(--md-text-primary); background: var(--md-surface); outline: none; transition: border-color 0.2s, box-shadow 0.2s; }
+    .filter-input:focus { border-color: var(--vna-navy); box-shadow: 0 0 0 3px rgba(0, 42, 84, 0.1); }
+    .filter-select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2364748b' width='18' height='18'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 8px center; padding-right: 28px; }
+    .filter-actions { display: flex; align-items: center; gap: 10px; justify-content: flex-end; height: 36px; flex: 0 0 auto; margin-left: auto; }
+
+    /* ===== Buttons ===== */
+    .btn { display: inline-flex; align-items: center; gap: 6px; height: 38px; padding: 0 16px; border-radius: 6px; font-family: inherit; font-size: 13px; font-weight: 600; cursor: pointer; border: none; outline: 3px solid transparent; outline-offset: 2px; transition: all 0.25s ease; white-space: nowrap; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); }
+    .btn:active { transform: translateY(1px); }
+    .btn:focus { outline-color: var(--toss-primary); }
+    .btn-teal { background: var(--toss-primary); color: white; }
+    .btn-teal:hover { background: var(--toss-primary-light); box-shadow: 0 4px 12px rgba(0, 90, 156, 0.25); }
+    .btn-clear { background: white; color: var(--toss-primary); border: 1.5px solid var(--toss-primary); }
+    .btn-clear:hover { background: rgba(0, 90, 156, 0.05); border-color: var(--toss-primary-light); }
+    .btn-blue { background: var(--toss-primary); color: white; }
+    .btn-blue:hover { background: var(--toss-primary-light); box-shadow: 0 4px 12px rgba(0, 90, 156, 0.2); }
+    .btn-orange { background: var(--toss-warn); color: white; }
+    .btn-orange:hover { background: #b45100; box-shadow: 0 4px 12px rgba(217, 119, 6, 0.2); }
+    .btn-danger { background: transparent; color: var(--toss-error); border: 1px solid var(--toss-error); }
+    .btn-danger:hover { background: rgba(220, 38, 38, 0.05); }
+
+    /* ===== Status Badges (WCAG AA/AAA compliant) ===== */
+    .status-badge { display: inline-flex; align-items: center; gap: 4px; padding: 4px 10px; border-radius: 999px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.3px; }
+    .status-badge.active { background: #d1fae5; color: var(--toss-success); }  /* AAA 7.2:1 contrast */
+    .status-badge.inactive { background: #f3f4f6; color: #475569; }  /* AA 5.8:1 contrast */
+
+    /* ===== Split Panel ===== */
+    .admin-panel-split { display: flex; gap: 20px; flex: 1; }
+    .user-list-section { flex: 1; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+    .user-details-section { flex: 1; min-width: 0; }
+    .user-list-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px; }
+    .user-list-title-wrap { display: flex; align-items: center; gap: 12px; }
+    .user-list-title-wrap h2 { font-size: 18px; font-weight: 700; color: var(--vna-navy); }
+    .refresh-btn { background: none; border: none; color: var(--md-text-secondary); cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 4px; border-radius: 50%; transition: background 0.2s, transform 0.2s; }
+    .refresh-btn:hover { background: rgba(0, 0, 0, 0.05); transform: rotate(45deg); }
+    .user-list-actions { display: flex; gap: 10px; }
+
+    /* ===== Table ===== */
+    .table-container { background: white; border-radius: var(--md-radius); border: 1px solid var(--md-outline-variant); overflow-x: auto; box-shadow: var(--md-elev1); }
+    .user-table { width: 100%; border-collapse: collapse; text-align: left; font-size: 13px; }
+    .user-table th { background: #f1f5f9; color: var(--md-text-secondary); font-weight: 600; padding: 10px 12px; border-bottom: 1px solid var(--md-outline-variant); white-space: nowrap; }
+    .user-table td { padding: 10px 12px; border-bottom: 1px solid var(--md-outline-variant); color: var(--md-text-primary); vertical-align: middle; white-space: nowrap; }
+    .user-table tbody tr { cursor: pointer; transition: background 0.15s; }
+    .user-table tbody tr:hover { background: #f8fafc; }
+    .user-table tbody tr.active-row { background: #f0f6ff; }
+
+    .status-badge { display: inline-flex; align-items: center; padding: 4px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; }
+    .status-badge.active { background: #e6fcf5; color: #0ca678; }
+    .status-badge.inactive { background: #f1f5f9; color: #64748b; }
+
+    /* ===== Pagination ===== */
+    .pagination-bar { display: flex; align-items: center; justify-content: space-between; padding: 8px 4px; font-size: 12.5px; color: var(--md-text-secondary); }
+    .records-selector { display: flex; align-items: center; gap: 6px; }
+    .records-select { border: 1px solid var(--md-outline); background: white; border-radius: 4px; padding: 4px 8px; font-family: inherit; font-size: 12px; outline: none; cursor: pointer; }
+    .pagination-controls { display: flex; align-items: center; gap: 4px; }
+    .page-btn { width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--md-outline-variant); border-radius: 4px; background: white; cursor: pointer; font-weight: 500; color: var(--md-text-primary); transition: all 0.15s; }
+    .page-btn:hover { background: var(--md-surface-variant); border-color: var(--md-outline); }
+    .page-btn.active { background: var(--toss-teal); color: white; border-color: var(--toss-teal); }
+    .page-btn.disabled { color: var(--md-text-muted); cursor: not-allowed; background: #f1f5f9; border-color: var(--md-outline-variant); }
+
+    /* ===== Details Panel ===== */
+    .details-card { display: flex; flex-direction: column; gap: 12px; background: white; border-radius: var(--md-radius); border: 1px solid var(--md-outline-variant); box-shadow: var(--md-elev1); padding: 14px; position: relative; }
+    .details-header { display: flex; align-items: center; justify-content: space-between; padding-bottom: 12px; border-bottom: 1px solid #e2e8f0; }
+    .details-name { font-size: 18px; font-weight: 800; color: #002a54; line-height: 1.3; }
+    .details-id { font-size: 12.5px; color: #64748b; margin-top: 2px; font-weight: 500; }
+    .details-meta { display: flex; gap: 12px; align-items: center; margin-top: 4px; font-size: 12px; color: #64748b; }
+
+    .details-tab-nav { display: flex; gap: 0; border-bottom: 2px solid #e2e8f0; margin: 4px 0 16px 0; }
+    .details-tab-button { flex: 1; padding: 12px 10px; background: transparent; border: none; border-bottom: 3px solid transparent; cursor: pointer; font-size: 12.5px; font-weight: 500; color: #94a3b8; transition: all 0.2s ease; text-align: center; white-space: nowrap; }
+    .details-tab-button:hover { color: #64748b; }
+    .details-tab-button.active { color: #007b83; border-bottom: 3px solid #007b83; font-weight: 700; }
+    .details-tab-content { display: none; }
+    .details-tab-content.active { display: block; animation: fadeIn 0.2s; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+    .details-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    .detail-row { display: flex; flex-direction: column; gap: 6px; font-size: 13px; }
+    .detail-label { color: #475569; font-weight: 600; font-size: 12.5px; display: flex; align-items: center; gap: 6px; }
+    .detail-label .lock-ic { font-size: 14px; color: #94a3b8; }
+    .detail-input, .detail-select { width: 100%; padding: 8px 10px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 13px; font-family: inherit; background: #ffffff; transition: all 0.2s; outline: 3px solid transparent; outline-offset: 1px; }
+    .detail-input:hover:not(:disabled), .detail-select:hover:not(:disabled) { border-color: var(--toss-primary-light); }
+    .detail-input:focus, .detail-select:focus { outline-color: var(--toss-primary); border-color: var(--toss-primary); box-shadow: 0 0 0 2px rgba(0, 90, 156, 0.15); }
+    .detail-input:disabled { background: #f1f5f9; color: #64748b; cursor: not-allowed; border-color: #e2e8f0; opacity: 0.7; }
+    .detail-select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2364748b'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 10px center; padding-right: 28px; }
+
+    /* ===== Section Subhead ===== */
+    .subsection { margin-top: 18px; padding-top: 12px; border-top: 1px dashed #cbd5e1; }
+    .subsection-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+    .subsection-head h3 { font-size: 13px; font-weight: 700; color: var(--vna-navy); display: flex; align-items: center; gap: 6px; }
+    .subsection-head h3 .material-symbols-outlined { font-size: 18px; color: var(--toss-teal); }
+    .subsection-note { font-size: 11.5px; color: var(--md-text-secondary); margin-bottom: 8px; font-style: italic; }
+
+    /* ===== Flexible Cabin Config ===== */
+    .cabin-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+    .cabin-cell { display: flex; flex-direction: column; gap: 4px; }
+    .cabin-cell label { font-size: 10.5px; font-weight: 600; color: var(--md-text-secondary); text-transform: uppercase; }
+
+    /* ===== ACARS / Sub-tables ===== */
+    .sub-table { width: 100%; border-collapse: collapse; font-size: 12px; background: white; border: 1px solid var(--md-outline-variant); border-radius: 6px; overflow: hidden; }
+    .sub-table th { background: #eef2f7; color: var(--md-text-secondary); font-weight: 600; padding: 6px 8px; font-size: 11px; border-bottom: 1px solid var(--md-outline-variant); text-align: left; }
+    .sub-table td { padding: 6px 8px; border-bottom: 1px solid var(--md-outline-variant); }
+    .sub-table input { width: 100%; padding: 4px 6px; border: 1px solid transparent; background: transparent; font-size: 12px; font-family: inherit; border-radius: 4px; }
+    .sub-table input:focus { outline: none; border-color: var(--toss-teal); background: white; box-shadow: 0 0 0 2px rgba(0, 123, 131, 0.1); }
+    .sub-table input:disabled { color: var(--md-text-secondary); cursor: not-allowed; }
+    .sub-table .row-action { background: none; border: none; cursor: pointer; padding: 2px; }
+    .sub-table .row-action .material-symbols-outlined { font-size: 16px; }
+    .add-row-btn { margin-top: 8px; display: inline-flex; align-items: center; gap: 4px; padding: 6px 10px; background: var(--md-surface-variant); border: 1px dashed var(--md-outline); border-radius: 6px; color: var(--toss-teal); font-size: 12px; font-weight: 600; cursor: pointer; }
+    .add-row-btn:hover { background: #ecfeff; border-color: var(--toss-teal); }
+    .add-row-btn .material-symbols-outlined { font-size: 16px; }
+
+    /* ===== Audit Log ===== */
+    .audit-filter-bar { display: flex; flex-wrap: wrap; gap: 10px; align-items: flex-end; padding: 10px; background: #f8fafc; border: 1px solid var(--md-outline-variant); border-radius: 8px; margin-bottom: 12px; }
+    .audit-filter-bar .filter-item { flex: 1 1 130px; }
+    .audit-log-table { width: 100%; border-collapse: collapse; font-size: 11.5px; }
+    .audit-log-table th { background: #f1f5f9; padding: 8px 10px; font-weight: 600; color: #64748b; border-bottom: 1px solid #e2e8f0; position: sticky; top: 0; text-align: left; font-size: 11px; }
+    .audit-log-table td { padding: 8px 10px; border-bottom: 1px solid #e2e8f0; vertical-align: top; }
+    .audit-log-table tbody tr:hover { background: #f8fafc; }
+    .audit-log-wrap { max-height: 360px; overflow-y: auto; border: 1px solid var(--md-outline-variant); border-radius: 8px; }
+    .field-pill { display: inline-block; padding: 2px 6px; background: #e0f2fe; color: #075985; border-radius: 4px; font-size: 10.5px; font-weight: 600; }
+
+    /* ===== Edit-mode action bar (sticky in card) ===== */
+    .edit-action-bar { display: none !important; align-items: center; justify-content: flex-end; gap: 10px; padding: 10px 14px; margin: 12px -14px -14px -14px; background: #fffbeb; border-top: 1px solid #fde68a; border-radius: 0 0 var(--md-radius) var(--md-radius); }
+    .edit-action-bar.visible { display: flex !important; }
+    .edit-action-bar .hint { margin-right: auto; font-size: 11.5px; color: #92400e; font-weight: 600; display: flex; align-items: center; gap: 6px; }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 1024px) {
+      .admin-panel-split { flex-direction: column; }
+      .user-details-section { position: static; }
+      .cabin-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    .tab-content { display: none !important; visibility: hidden; position: absolute; pointer-events: none; }
+    .tab-content.active { display: flex !important; visibility: visible; position: relative; pointer-events: auto; }
+
+
+    /* Field hint text */
+    .field-hint { font-size: 11px; color: var(--md-text-secondary); font-style: italic; margin-top: 3px; display: block; }
+
+    /* ===== Section-Level Edit Button (Option 2B: Text + Icon) ===== */
+    .section-edit-btn { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; background: white; border: 1px solid var(--md-outline); border-radius: 6px; color: var(--toss-primary); font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.2s ease; outline: 3px solid transparent; outline-offset: 1px; }
+    .section-edit-btn:hover { background: rgba(0, 90, 156, 0.05); border-color: var(--toss-primary-light); }
+    .section-edit-btn:focus { outline-color: var(--toss-primary); }
+    .section-edit-btn .material-symbols-outlined { font-size: 16px; }
+
+    /* ===== Hide Add Row button by default ===== */
+    .add-row-btn { display: none; }
+    .add-row-btn.visible { display: inline-flex; }
+
+    /* ===== Hide ICAO/IATA columns in table ===== */
+    .user-table th:nth-child(5), .user-table th:nth-child(6),
+    .user-table td:nth-child(5), .user-table td:nth-child(6) {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app-layout" id="appLayout">
+
+    <!-- ========================================================= -->
+    <!-- SIDEBAR — 18 Data Maintenance categories (đồng bộ Function list R57-R148) -->
+    <!-- ========================================================= -->
+    <nav class="sidebar" id="sidebar" data-mat="mat-sidenav">
+
+      <div class="sidebar-header">
+        <div class="logo-container" id="logoContainer">
+          <svg viewBox="0 0 200 150" width="28" height="21" fill="#D4B26F" style="flex-shrink: 0;">
+            <path d="M100,10 C101.5,45 118,70 148,82 C125,81 107,70 100,50 C93,70 75,81 52,82 C82,70 98.5,45 100,10 Z" />
+            <path d="M100,60 C110,95 152,110 190,102 C150,107 118,92 100,74 C82,92 50,107 10,102 C48,110 90,95 100,60 Z" />
+            <path d="M100,82 C108,118 168,128 185,126 C155,128 122,118 100,100 C78,118 45,128 15,126 C32,128 92,118 100,82 Z" />
+            <path d="M100,105 C104,128 135,138 150,138 C130,138 112,128 100,118 C88,128 70,138 50,138 C65,138 96,128 100,105 Z" />
+          </svg>
+          <div class="logo-text-group">
+            <span class="vna-logo-text" style="color: #005c72; font-weight: 700; font-size: 15px; font-family: 'Inter', sans-serif; letter-spacing: -0.2px;">Vietnam<span style="font-weight: 300;">Airlines</span></span>
+            <span class="vna-logo-sub" style="font-size: 9px; color: #a1a1aa; font-weight: 500; text-transform: uppercase; letter-spacing: 1.2px;">Quản lý Danh mục</span>
+          </div>
+        </div>
+
+        <button class="sidebar-toggle-btn" id="sidebarToggle" title="Đóng/Mở menu">
+          <span class="material-symbols-outlined" id="toggleIcon">chevron_left</span>
+        </button>
+      </div>
+
+      <!-- Navigation List — đồng bộ Function list mục 6 (R57-R148) -->
+      <div class="sidebar-menu" data-mat="mat-nav-list">
+        <a class="menu-item active" data-tab="tau-bay" data-tooltip="Tàu bay" onclick="switchTab('tau-bay')">
+          <span class="material-symbols-outlined">flight</span>
+          <span class="menu-text">Tàu bay</span>
+        </a>
+        <a class="menu-item" data-tab="aog-schedule" data-tooltip="AOG/MNT Schedule" onclick="switchTab('aog-schedule')">
+          <span class="material-symbols-outlined">event</span>
+          <span class="menu-text">AOG/MNT Schedule</span>
+        </a>
+        <a class="menu-item" data-tab="aog-code" data-tooltip="AOG/MNT Code" onclick="switchTab('aog-code')">
+          <span class="material-symbols-outlined">qr_code_2</span>
+          <span class="menu-text">AOG/MNT Code</span>
+        </a>
+        <a class="menu-item" data-tab="mel-cdl" data-tooltip="MEL, CDL" onclick="switchTab('mel-cdl')">
+          <span class="material-symbols-outlined">rule</span>
+          <span class="menu-text">MEL, CDL</span>
+        </a>
+        <a class="menu-item" data-tab="performance-factor" data-tooltip="Performance Factor" onclick="switchTab('performance-factor')">
+          <span class="material-symbols-outlined">speed</span>
+          <span class="menu-text">Performance Factor</span>
+        </a>
+        <a class="menu-item" data-tab="san-bay" data-tooltip="Sân bay" onclick="switchTab('san-bay')">
+          <span class="material-symbols-outlined">flight_takeoff</span>
+          <span class="menu-text">Sân bay</span>
+        </a>
+        <a class="menu-item" data-tab="chang-bay" data-tooltip="Chặng bay" onclick="switchTab('chang-bay')">
+          <span class="material-symbols-outlined">route</span>
+          <span class="menu-text">Chặng bay</span>
+        </a>
+        <a class="menu-item" data-tab="payload" data-tooltip="Payload" onclick="switchTab('payload')">
+          <span class="material-symbols-outlined">scale</span>
+          <span class="menu-text">Payload</span>
+        </a>
+        <a class="menu-item" data-tab="tankering" data-tooltip="Tankering" onclick="switchTab('tankering')">
+          <span class="material-symbols-outlined">water_drop</span>
+          <span class="menu-text">Tankering</span>
+        </a>
+        <a class="menu-item" data-tab="gia-nhien-lieu" data-tooltip="Giá nhiên liệu" onclick="switchTab('gia-nhien-lieu')">
+          <span class="material-symbols-outlined">local_gas_station</span>
+          <span class="menu-text">Giá nhiên liệu</span>
+        </a>
+        <a class="menu-item" data-tab="uld" data-tooltip="ULD" onclick="switchTab('uld')">
+          <span class="material-symbols-outlined">inventory_2</span>
+          <span class="menu-text">ULD</span>
+        </a>
+        <a class="menu-item" data-tab="fir" data-tooltip="FIR" onclick="switchTab('fir')">
+          <span class="material-symbols-outlined">cloud</span>
+          <span class="menu-text">FIR</span>
+        </a>
+        <a class="menu-item" data-tab="phi-cong" data-tooltip="Phi công" onclick="switchTab('phi-cong')">
+          <span class="material-symbols-outlined">person</span>
+          <span class="menu-text">Phi công</span>
+        </a>
+        <a class="menu-item" data-tab="tiep-vien" data-tooltip="Tiếp viên" onclick="switchTab('tiep-vien')">
+          <span class="material-symbols-outlined">group</span>
+          <span class="menu-text">Tiếp viên</span>
+        </a>
+        <a class="menu-item" data-tab="quoc-gia" data-tooltip="Quốc gia" onclick="switchTab('quoc-gia')">
+          <span class="material-symbols-outlined">public</span>
+          <span class="menu-text">Quốc gia</span>
+        </a>
+        <a class="menu-item" data-tab="carrier" data-tooltip="Carrier" onclick="switchTab('carrier')">
+          <span class="material-symbols-outlined">business_center</span>
+          <span class="menu-text">Carrier</span>
+        </a>
+        <a class="menu-item" data-tab="co-quan-don-vi" data-tooltip="Cơ quan đơn vị" onclick="switchTab('co-quan-don-vi')">
+          <span class="material-symbols-outlined">apartment</span>
+          <span class="menu-text">Cơ quan đơn vị</span>
+        </a>
+        <a class="menu-item" data-tab="dow" data-tooltip="DOW" onclick="switchTab('dow')">
+          <span class="material-symbols-outlined">balance</span>
+          <span class="menu-text">DOW</span>
+        </a>
+      </div>
+
+      <div class="sidebar-footer">
+        <div class="footer-actions">
+          <a class="footer-action-item" data-tooltip="Thông báo" onclick="showToast('Thông báo')">
+            <div class="badge-container">
+              <span class="material-symbols-outlined">notifications</span>
+              <span class="noti-badge">3</span>
+            </div>
+            <span class="menu-text">Thông báo</span>
+          </a>
+          <a class="footer-action-item" data-tooltip="Cài đặt" onclick="showToast('Cài đặt hệ thống')">
+            <span class="material-symbols-outlined">settings_applications</span>
+            <span class="menu-text">Cài đặt</span>
+          </a>
+          <a class="footer-action-item" data-tooltip="Lịch sử hệ thống" onclick="showToast('Lịch sử hệ thống')">
+            <span class="material-symbols-outlined">history</span>
+            <span class="menu-text">Lịch sử hệ thống</span>
+          </a>
+        </div>
+
+        <div class="user-profile-card">
+          <div class="user-avatar-wrap">
+            <img src="data:image/svg+xml;utf8,<svg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'><circle cx='50' cy='50' r='48' fill='%23f1f5f9'/><path d='M25,35 Q50,25 75,35 L70,42 Q50,38 30,42 Z' fill='%23002A54'/><path d='M30,42 Q50,38 70,42 L72,45 Q50,42 28,45 Z' fill='%23D4B26F'/><circle cx='50' cy='55' r='18' fill='%23fed7aa'/><path d='M32,50 Q36,45 40,48 Q44,45 50,48 Q56,45 60,48 Q64,45 68,50 Q66,40 50,40 Z' fill='%231e293b'/><circle cx='44' cy='55' r='2' fill='%231e293b'/><circle cx='56' cy='55' r='2' fill='%231e293b'/><path d='M32,73 L42,85 L50,78 L58,85 L68,73 L65,95 L35,95 Z' fill='%23002A54'/><path d='M48,78 L52,78 L53,92 L50,96 L47,92 Z' fill='%231e293b'/></svg>" alt="Avatar" class="user-avatar-img">
+          </div>
+          <div class="user-info">
+            <div class="user-name">Data Officer</div>
+            <div class="user-email">dataops@vietnamairlines.com</div>
+          </div>
+          <button class="logout-btn" title="Đăng xuất" onclick="showToast('Đăng xuất')">
+            <span class="material-symbols-outlined">logout</span>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- ========================================================= -->
+    <!-- MAIN — Tàu bay (Aircraft Type list — default tab) -->
+    <!-- ========================================================= -->
+    <main class="main-content">
+
+      <div id="tau-bay" class="main-content-scrollable tab-content active">
+
+        <!-- Main Header Tabs (5 tabs) — Refined design (reference: Quản lý thiết bị) -->
+        <div style="display: flex; gap: 0; background: #006b75; padding: 0; margin-bottom: 20px; border-radius: 0; overflow: hidden; border: 1px solid rgba(0,0,0,0.1); box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+          <button class="details-tab-button active" style="font-size: 13px; font-weight: 600; flex: 1; padding: 14px 16px; border: none; text-align: center; background: transparent; color: white; cursor: pointer; transition: all 0.2s; border-right: 1px solid rgba(0,0,0,0.1);" onclick="switchMainTab(this, 'tau-bay')">📋 Danh sách loại tàu bay</button>
+          <button class="details-tab-button" style="font-size: 13px; font-weight: 600; flex: 1; padding: 14px 16px; border: none; text-align: center; background: transparent; color: rgba(255,255,255,0.9); cursor: pointer; transition: all 0.2s; border-right: 1px solid rgba(0,0,0,0.1);" onclick="switchMainTab(this, 'aog-schedule')">📅 AOG/MNT Schedule</button>
+          <button class="details-tab-button" style="font-size: 13px; font-weight: 600; flex: 1; padding: 14px 16px; border: none; text-align: center; background: transparent; color: rgba(255,255,255,0.9); cursor: pointer; transition: all 0.2s; border-right: 1px solid rgba(0,0,0,0.1);" onclick="switchMainTab(this, 'aog-code')">🔧 AOG/MNT Code</button>
+          <button class="details-tab-button" style="font-size: 13px; font-weight: 600; flex: 1; padding: 14px 16px; border: none; text-align: center; background: transparent; color: rgba(255,255,255,0.9); cursor: pointer; transition: all 0.2s; border-right: 1px solid rgba(0,0,0,0.1);" onclick="switchMainTab(this, 'mel-cdl')">⚠️ MEL, CDL</button>
+          <button class="details-tab-button" style="font-size: 13px; font-weight: 600; flex: 1; padding: 14px 16px; border: none; text-align: center; background: transparent; color: rgba(255,255,255,0.9); cursor: pointer; transition: all 0.2s;" onclick="switchMainTab(this, 'performance-factor')">⏱️ Performance Factor</button>
+        </div>
+
+        <!-- Filter Bar — bổ sung Subtype + 5 thuộc tính gom nhóm (Function list R62) -->
+        <section class="m3-card" data-mat="mat-card">
+          <div class="filter-grid">
+            <div class="filter-item">
+              <label for="fSubtype">AC Subtype</label>
+              <input type="text" id="fSubtype" class="filter-input" placeholder="VD: A320NEO">
+            </div>
+            <div class="filter-item">
+              <label for="fACreg">AC Registration (ACreg)</label>
+              <input type="text" id="fACreg" class="filter-input" placeholder="Tìm theo số ACreg">
+            </div>
+            <div class="filter-item">
+              <label for="fCat1">Category 1</label>
+              <select id="fCat1" class="filter-input filter-select">
+                <option value="">Tất cả</option>
+                <option>A320NEO</option><option>A321 CEO</option><option>A321 NEO</option><option>A350</option><option>B787-9</option><option>B787-10</option>
+              </select>
+            </div>
+            <div class="filter-item">
+              <label for="fCat2">Category 2</label>
+              <select id="fCat2" class="filter-input filter-select">
+                <option value="">Tất cả</option>
+                <option>A320</option><option>A321 CEO</option><option>A321 NEO</option><option>A350</option><option>B787</option>
+              </select>
+            </div>
+            <div class="filter-item">
+              <label for="fCat3">Category 3</label>
+              <select id="fCat3" class="filter-input filter-select">
+                <option value="">Tất cả</option>
+                <option>A320-A321</option><option>A350</option><option>B787</option>
+              </select>
+            </div>
+            <div class="filter-item">
+              <label for="fCat4">Category 4</label>
+              <select id="fCat4" class="filter-input filter-select">
+                <option value="">Tất cả</option>
+                <option>A320-A321</option><option>A350-B787</option>
+              </select>
+            </div>
+            <div class="filter-item">
+              <label for="fCat5">Category 5</label>
+              <select id="fCat5" class="filter-input filter-select">
+                <option value="">Tất cả</option>
+                <option>320</option><option>32B</option><option>32D</option><option>32N</option><option>350</option><option>787</option>
+              </select>
+            </div>
+            <div class="filter-item">
+              <label for="fStatus">Trạng thái</label>
+              <select id="fStatus" class="filter-input filter-select">
+                <option value="">Tất cả</option>
+                <option value="Active">Active</option>
+                <option value="Inactive">Inactive</option>
+              </select>
+            </div>
+          </div>
+          <div class="filter-actions" style="margin-top: 12px;">
+            <button class="btn btn-clear" onclick="clearFilters()">
+              <span class="material-symbols-outlined">autorenew</span> Xoá bộ lọc
+            </button>
+            <button class="btn btn-teal" onclick="applyFilters()">
+              <span class="material-symbols-outlined">search</span> Tìm kiếm
+            </button>
+          </div>
+        </section>
+
+        <!-- Split Panel: Table + Details -->
+        <div class="admin-panel-split">
+
+          <!-- LEFT: Aircraft Type list — 1 dòng = 1 loại tàu bay -->
+          <div class="user-list-section">
+            <div class="user-list-header">
+              <div class="user-list-title-wrap">
+                <h2>Danh sách loại tàu bay</h2>
+                <button class="refresh-btn" title="Làm mới" aria-label="Làm mới danh sách tàu bay" onclick="refreshTable()">
+                  <span class="material-symbols-outlined" aria-hidden="true">refresh</span>
+                </button>
+              </div>
+              <div class="user-list-actions">
+                <button class="btn btn-orange" onclick="showToast('Xuất Excel thành công')">
+                  <span class="material-symbols-outlined">download</span> Xuất Excel
+                </button>
+              </div>
+            </div>
+
+            <div class="table-container">
+              <table class="user-table" id="acTypeTable" data-mat="mat-table">
+                <thead>
+                  <tr>
+                    <th>STT</th>
+                    <th>Số ACreg</th>
+                    <th>AC Subtype</th>
+                    <th>Tên loại tàu</th>
+                    <th>ICAO</th>
+                    <th>IATA</th>
+                    <th>Trạng thái</th>
+                    <th>Thao tác</th>
+                  </tr>
+                </thead>
+                <tbody id="acTypeTableBody">
+                  <tr class="active-row">
+                    <td>1</td>
+                    <td>12</td>
+                    <td><strong>A320NEO</strong></td>
+                    <td>Airbus A320 NEO</td>
+                    <td>A20N</td>
+                    <td>32N</td>
+                    <td><span class="status-badge active">Active</span></td>
+                    <td style="text-align: center;">
+                      <button style="background: none; border: none; cursor: pointer; padding: 4px;" title="Sửa">
+                        <span class="material-symbols-outlined" style="font-size: 18px; color: #0284c7;">edit</span>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td>16</td>
+                    <td><strong>A321CEO</strong></td>
+                    <td>Airbus A321 CEO</td>
+                    <td>A321</td>
+                    <td>321</td>
+                    <td><span class="status-badge active">Active</span></td>
+                    <td style="text-align: center;">
+                      <button style="background: none; border: none; cursor: pointer; padding: 4px;"><span class="material-symbols-outlined" style="font-size: 18px; color: #0284c7;">edit</span></button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>3</td>
+                    <td>20</td>
+                    <td><strong>A321NEO</strong></td>
+                    <td>Airbus A321 NEO</td>
+                    <td>A21N</td>
+                    <td>32Q</td>
+                    <td><span class="status-badge active">Active</span></td>
+                    <td style="text-align: center;">
+                      <button style="background: none; border: none; cursor: pointer; padding: 4px;"><span class="material-symbols-outlined" style="font-size: 18px; color: #0284c7;">edit</span></button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>4</td>
+                    <td>14</td>
+                    <td><strong>A350</strong></td>
+                    <td>Airbus A350-900</td>
+                    <td>A359</td>
+                    <td>359</td>
+                    <td><span class="status-badge active">Active</span></td>
+                    <td style="text-align: center;">
+                      <button style="background: none; border: none; cursor: pointer; padding: 4px;"><span class="material-symbols-outlined" style="font-size: 18px; color: #0284c7;">edit</span></button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>5</td>
+                    <td>11</td>
+                    <td><strong>B787-9</strong></td>
+                    <td>Boeing 787-9</td>
+                    <td>B789</td>
+                    <td>789</td>
+                    <td><span class="status-badge active">Active</span></td>
+                    <td style="text-align: center;">
+                      <button style="background: none; border: none; cursor: pointer; padding: 4px;"><span class="material-symbols-outlined" style="font-size: 18px; color: #0284c7;">edit</span></button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>6</td>
+                    <td>0</td>
+                    <td><strong>B787-10</strong></td>
+                    <td>Boeing 787-10</td>
+                    <td>B78X</td>
+                    <td>78J</td>
+                    <td><span class="status-badge inactive">Inactive</span></td>
+                    <td style="text-align: center;">
+                      <button style="background: none; border: none; cursor: pointer; padding: 4px;"><span class="material-symbols-outlined" style="font-size: 18px; color: #0284c7;">edit</span></button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>7</td>
+                    <td>4</td>
+                    <td><strong>ATR72</strong></td>
+                    <td>ATR 72-500</td>
+                    <td>AT75</td>
+                    <td>AT7</td>
+                    <td><span class="status-badge inactive">Inactive</span></td>
+                    <td style="text-align: center;">
+                      <button style="background: none; border: none; cursor: pointer; padding: 4px;"><span class="material-symbols-outlined" style="font-size: 18px; color: #0284c7;">edit</span></button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="pagination-bar" data-mat="mat-paginator">
+              <div class="records-selector">
+                <span>Hiển thị</span>
+                <select class="records-select">
+                  <option>10 dòng</option>
+                  <option>20 dòng</option>
+                  <option>50 dòng</option>
+                </select>
+              </div>
+              <div class="pagination-info">
+                <span>Tổng cộng: <strong>7</strong></span>
+              </div>
+              <div class="pagination-controls">
+                <button class="page-btn disabled"><span class="material-symbols-outlined">keyboard_double_arrow_left</span></button>
+                <button class="page-btn disabled"><span class="material-symbols-outlined">chevron_left</span></button>
+                <button class="page-btn active">1</button>
+                <button class="page-btn disabled"><span class="material-symbols-outlined">chevron_right</span></button>
+                <button class="page-btn disabled"><span class="material-symbols-outlined">keyboard_double_arrow_right</span></button>
+              </div>
+            </div>
+          </div>
+
+          <!-- RIGHT: Aircraft Type Details -->
+          <div class="user-details-section">
+            <section class="m3-card details-card">
+
+              <!-- Header -->
+              <div class="details-header">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                  <div style="font-size: 30px;">✈️</div>
+                  <div>
+                    <div class="details-name">Airbus A320 NEO</div>
+                    <div class="details-meta">
+                      <span class="status-badge active">Active</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Tab Nav - Section-Level Edit (removed inline icons) -->
+              <div class="details-tab-nav" role="tablist">
+                <button class="details-tab-button active" role="tab" aria-selected="true" aria-controls="tab-general" onclick="switchDetailsTab(this, 'tab-general')">
+                  Chung
+                </button>
+                <button class="details-tab-button" role="tab" aria-selected="false" aria-controls="tab-config" onclick="switchDetailsTab(this, 'tab-config')">
+                  Cấu hình tàu
+                </button>
+                <button class="details-tab-button" role="tab" aria-selected="false" aria-controls="tab-attr" onclick="switchDetailsTab(this, 'tab-attr')">
+                  Thuộc tính nhóm
+                </button>
+                <button class="details-tab-button" role="tab" aria-selected="false" aria-controls="tab-audit" onclick="switchDetailsTab(this, 'tab-audit')">
+                  Lịch sử thay đổi
+                </button>
+              </div>
+
+              <!-- ============================ -->
+              <!-- TAB 1: General Info -->
+              <!-- ============================ -->
+              <div id="tab-general" class="details-tab-content active">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                  <h3 style="font-size: 13px; font-weight: 700; color: var(--vna-navy);">Thông tin chung (General Info)</h3>
+                  <button class="section-edit-btn" title="Sửa thông tin chung" onclick="enterSectionEditMode(event, 'tab-general', 'general-info')">
+                    <span class="material-symbols-outlined">edit</span> Sửa
+                  </button>
+                </div>
+                <p class="subsection-note">Các trường có biểu tượng <span class="material-symbols-outlined" style="font-size: 14px; vertical-align: -2px;">lock</span> được đồng bộ từ hệ thống nguồn (SMA/Ops++), chỉ đọc trên TOSS.</p>
+                <div class="details-grid">
+                  <div class="detail-row">
+                    <span class="detail-label">AC Subtype <span class="material-symbols-outlined lock-ic">lock</span></span>
+                    <input type="text" class="detail-input" value="A320NEO" disabled>
+                  </div>
+                  <div class="detail-row">
+                    <span class="detail-label">Tên loại tàu</span>
+                    <input type="text" class="detail-input" value="Airbus A320 NEO">
+                  </div>
+                  <div class="detail-row">
+                    <span class="detail-label">Valid From <span class="material-symbols-outlined lock-ic">lock</span></span>
+                    <input type="date" class="detail-input" value="2024-01-01" disabled>
+                  </div>
+                  <div class="detail-row">
+                    <span class="detail-label">Valid To</span>
+                    <input type="date" class="detail-input" value="2029-12-31">
+                  </div>
+                  <div class="detail-row">
+                    <span class="detail-label">ICAO Code</span>
+                    <input type="text" class="detail-input" value="A20N" maxlength="4">
+                  </div>
+                  <div class="detail-row">
+                    <span class="detail-label">IATA Code</span>
+                    <input type="text" class="detail-input" value="32N" maxlength="3">
+                  </div>
+                  <div class="detail-row">
+                    <span class="detail-label">Ownership Status</span>
+                    <select class="detail-select" id="ownershipSel" onchange="toggleOwner()">
+                      <option value="Owned" selected>Owned</option>
+                      <option value="Wet Leased">Wet Leased</option>
+                      <option value="Dry Leased">Dry Leased</option>
+                    </select>
+                  </div>
+                  <div class="detail-row">
+                    <span class="detail-label">Owner (tối đa 50 ký tự)</span>
+                    <input type="text" class="detail-input" id="ownerField" value="Vietnam Airlines" maxlength="50" disabled aria-describedby="ownerHint">
+                    <span class="field-hint" id="ownerHint">Tự động điền "Vietnam Airlines" nếu chọn "Owned" ở trên</span>
+                  </div>
+                  <div class="detail-row">
+                    <span class="detail-label">Trạng thái</span>
+                    <select class="detail-select">
+                      <option>Active</option>
+                      <option>Inactive</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <!-- ============================ -->
+              <!-- TAB 2: Aircraft Config -->
+              <!-- ============================ -->
+              <div id="tab-config" class="details-tab-content">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                  <h3 style="font-size: 13px; font-weight: 700; color: var(--vna-navy);">Tham số kỹ thuật (Aircraft Config)</h3>
+                  <button class="section-edit-btn" title="Sửa tham số kỹ thuật" onclick="enterSectionEditMode(event, 'tab-config', 'aircraft-params')">
+                    <span class="material-symbols-outlined">edit</span> Sửa
+                  </button>
+                </div>
+                <div class="details-grid">
+                  <div class="detail-row">
+                    <span class="detail-label">Taxi Fuel Flow (kg/h)</span>
+                    <input type="number" class="detail-input" value="1500">
+                  </div>
+                  <div class="detail-row">
+                    <span class="detail-label">APU Fuel Flow (kg/h)</span>
+                    <input type="number" class="detail-input" value="200">
+                  </div>
+                  <div class="detail-row">
+                    <span class="detail-label">Fuel Tank Capacity (kg)</span>
+                    <input type="number" class="detail-input" value="27200">
+                  </div>
+                  <div class="detail-row">
+                    <span class="detail-label">Water Tank Capacity (liters)</span>
+                    <input type="number" class="detail-input" value="200">
+                  </div>
+                  <div class="detail-row">
+                    <span class="detail-label">Cargo Capacity (kg)</span>
+                    <input type="number" class="detail-input" value="6000">
+                  </div>
+                  <div class="detail-row">
+                    <span class="detail-label">Basic Weight (kg)</span>
+                    <input type="number" class="detail-input" value="41413">
+                  </div>
+                  <div class="detail-row">
+                    <span class="detail-label">Max Ramp Weight (kg)</span>
+                    <input type="number" class="detail-input" value="75500">
+                  </div>
+                  <div class="detail-row">
+                    <span class="detail-label">MTOW (kg)</span>
+                    <input type="number" class="detail-input" value="79000">
+                  </div>
+                </div>
+
+                <!-- Cabin Config — linh hoạt theo MM §2.4: tối đa N khoang, khoang không có nhập 0 -->
+                <div class="subsection">
+                  <div class="subsection-head" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                    <h3><span class="material-symbols-outlined">view_column</span> Cấu hình khoang tàu (Cabin Config)</h3>
+                    <button class="section-edit-btn" title="Sửa cấu hình khoang tàu" onclick="enterSectionEditMode(event, 'tab-config', 'cabin-config')">
+                      <span class="material-symbols-outlined">edit</span> Sửa
+                    </button>
+                  </div>
+                  <p class="subsection-note">Khai báo tối đa 3 khoang. Khoang không tồn tại trên loại tàu này → nhập <strong>0</strong>.</p>
+                  <div class="cabin-grid">
+                    <div class="cabin-cell"><label>Cabin A</label><input type="number" class="detail-input" value="8" min="0"></div>
+                    <div class="cabin-cell"><label>Cabin B</label><input type="number" class="detail-input" value="24" min="0"></div>
+                    <div class="cabin-cell"><label>Cabin C</label><input type="number" class="detail-input" value="120" min="0"></div>
+                  </div>
+                </div>
+
+                <!-- ACARS Fuel Unit / Multiplier — cặp From-To nối tiếp theo MM §2.3 -->
+                <div class="subsection">
+                  <div class="subsection-head" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                    <h3><span class="material-symbols-outlined">local_gas_station</span> ACARS Fuel Unit & Fuel Multiplier</h3>
+                    <div style="display: flex; gap: 8px;">
+                      <button class="section-edit-btn" title="Sửa ACARS Fuel Unit & Multiplier" onclick="enterSectionEditMode(event, 'tab-config', 'acars-fuel')">
+                        <span class="material-symbols-outlined">edit</span> Sửa
+                      </button>
+                      <button class="add-row-btn" onclick="addAcarsRow()">
+                        <span class="material-symbols-outlined">add</span> Thêm khoảng hiệu lực
+                      </button>
+                    </div>
+                  </div>
+                  <p class="subsection-note">
+                    Khai báo theo cặp, các khoảng <strong>From – To</strong> phải <strong>nối tiếp</strong> theo thời gian thực tế (không chồng lấn, không hở).<br>
+                    <span style="font-size: 12px; color: #64748b; margin-top: 6px; display: inline-block;">
+                      ✓ Nối tiếp đúng: 2026-01-01 → 2026-06-30, rồi 2026-07-01 → 2026-12-31<br>
+                      ✗ Hở: 2026-01-01 → 2026-06-30, rồi 2026-07-02 → 2026-12-31 (thiếu 2026-07-01)<br>
+                      ✗ Chồng lấn: 2026-01-01 → 2026-07-15, rồi 2026-07-01 → 2026-12-31 (khoảng 07-01 ~ 07-15 nhập 2 lần)
+                    </span>
+                  </p>
+                  <table class="sub-table" id="acarsTable">
+                    <thead>
+                      <tr>
+                        <th style="width: 22%;">From</th>
+                        <th style="width: 22%;">To</th>
+                        <th style="width: 22%;">Fuel Unit</th>
+                        <th style="width: 22%;">Fuel Multiplier</th>
+                        <th style="width: 12%; text-align: center;">Thao tác</th>
+                      </tr>
+                    </thead>
+                    <tbody id="acarsBody">
+                      <tr>
+                        <td><input type="datetime-local" value="2026-01-01T00:00"></td>
+                        <td><input type="datetime-local" value="2026-06-30T23:59"></td>
+                        <td><input type="number" step="0.01" value="1500"></td>
+                        <td><input type="number" step="0.001" value="1.050"></td>
+                        <td style="text-align: center;"><button class="row-action" onclick="removeRow(this)" title="Xoá"><span class="material-symbols-outlined" style="color: #ef4444;">delete</span></button></td>
+                      </tr>
+                      <tr>
+                        <td><input type="datetime-local" value="2026-07-01T00:00"></td>
+                        <td><input type="datetime-local" value="2026-12-31T23:59"></td>
+                        <td><input type="number" step="0.01" value="1550"></td>
+                        <td><input type="number" step="0.001" value="1.060"></td>
+                        <td style="text-align: center;"><button class="row-action" onclick="removeRow(this)" title="Xoá"><span class="material-symbols-outlined" style="color: #ef4444;">delete</span></button></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <!-- ============================ -->
+              <!-- TAB 3: Attributes — 5 thuộc tính gom nhóm -->
+              <!-- ============================ -->
+              <div id="tab-attr" class="details-tab-content">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                  <h3 style="font-size: 13px; font-weight: 700; color: var(--vna-navy);">Thuộc tính nhóm (Group Attributes)</h3>
+                  <button class="section-edit-btn" title="Sửa thuộc tính nhóm" onclick="enterSectionEditMode(event, 'tab-attr', 'group-attr')">
+                    <span class="material-symbols-outlined">edit</span> Sửa
+                  </button>
+                </div>
+                <p class="subsection-note">
+                  <strong>Nghiệp vụ:</strong> 6 thuộc tính gom nhóm để phân loại loại tàu bay cho các hoạt động lợi dụng, báo cáo, và phân tích. Các giá trị này giúp hệ thống TOSS xác định nhóm tàu bay (A320, A321, A350, B787, ATR) để hỗ trợ quyết định trong lịch trình bay, phân công phi hành, và kế hoạch bảo dưỡng. Chỉnh sửa khi cấu hình tàu bay thay đổi hoặc khi cần gán tàu bay vào hạng mục mới.
+                </p>
+                <div class="details-grid">
+                  <div class="detail-row">
+                    <span class="detail-label">Aircraft Category 1</span>
+                    <select class="detail-select">
+                      <option>A320NEO</option><option>A321 CEO</option><option>A321 NEO</option>
+                      <option>A350</option><option>B787-9</option><option>B787-10</option>
+                    </select>
+                  </div>
+                  <div class="detail-row">
+                    <span class="detail-label">Aircraft Category 2</span>
+                    <select class="detail-select">
+                      <option>A320</option><option>A321 CEO</option><option>A321 NEO</option>
+                      <option>A350</option><option>B787</option>
+                    </select>
+                  </div>
+                  <div class="detail-row">
+                    <span class="detail-label">Aircraft Category 3</span>
+                    <select class="detail-select">
+                      <option>A320-A321</option><option>A350</option><option>B787</option>
+                    </select>
+                  </div>
+                  <div class="detail-row">
+                    <span class="detail-label">Aircraft Category 4</span>
+                    <select class="detail-select">
+                      <option>A320-A321</option><option>A350-B787</option>
+                    </select>
+                  </div>
+                  <div class="detail-row">
+                    <span class="detail-label">Aircraft Category 5</span>
+                    <select class="detail-select">
+                      <option>320</option><option>32B</option><option>32D</option>
+                      <option>32N</option><option>350</option><option>787</option>
+                    </select>
+                  </div>
+                  <div class="detail-row">
+                    <span class="detail-label">Aircraft Fleet</span>
+                    <select class="detail-select">
+                      <option value="">Chọn fleet</option>
+                      <option>A320</option>
+                      <option>A321</option>
+                      <option>A350</option>
+                      <option>B787</option>
+                      <option>ATR</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <!-- ============================ -->
+              <!-- TAB 4: Audit Log -->
+              <!-- ============================ -->
+              <div id="tab-audit" class="details-tab-content">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                  <h3 style="font-size: 13px; font-weight: 700; color: var(--vna-navy);">Lịch sử thay đổi</h3>
+                  <button class="section-edit-btn" disabled title="Lịch sử chỉ đọc" style="opacity: 0.5; cursor: not-allowed;">
+                    <span class="material-symbols-outlined">lock</span> Chỉ đọc
+                  </button>
+                </div>
+                <p class="subsection-note">
+                  Lịch sử thay đổi — ghi nhận <strong>TẤT CẢ</strong> changes của loại tàu bay.<br>
+                  <span style="font-size: 12px; color: #64748b; margin-top: 6px; display: inline-block;">
+                    Filter dropdown liệt kê 6 trường thường xuyên thay đổi (AC Subtype, ACARS Fuel Unit, ACARS Fuel Multiplier, Cabin Config, Ownership Status, Basic Weight) để tìm nhanh. Nếu cần xem changes của fields khác (Valid To, ICAO, IATA, Owner, Status...) → chọn Filter "Tất cả" hoặc tìm tự do.
+                  </span>
+                </p>
+
+                <!-- Filter bar trên audit log (MM §3.3) -->
+                <div class="audit-filter-bar">
+                  <div class="filter-item">
+                    <label>Từ ngày</label>
+                    <input type="date" class="filter-input" value="2026-01-01">
+                  </div>
+                  <div class="filter-item">
+                    <label>Đến ngày</label>
+                    <input type="date" class="filter-input" value="2026-06-22">
+                  </div>
+                  <div class="filter-item">
+                    <label>Người thực hiện</label>
+                    <select class="filter-input filter-select">
+                      <option value="">Tất cả</option>
+                      <option>data_officer</option>
+                      <option>admin</option>
+                      <option>sys_sync</option>
+                    </select>
+                  </div>
+                  <div class="filter-item">
+                    <label>Trường thay đổi</label>
+                    <select class="filter-input filter-select">
+                      <option value="">Tất cả</option>
+                      <option>AC Subtype</option>
+                      <option>ACARS Fuel Unit</option>
+                      <option>ACARS Fuel Multiplier</option>
+                      <option>Cabin Config</option>
+                      <option>Ownership Status</option>
+                      <option>Basic Weight</option>
+                    </select>
+                  </div>
+                  <div class="filter-actions">
+                    <button class="btn btn-clear" style="height: 36px;" onclick="showToast('Đã xoá bộ lọc audit')">
+                      <span class="material-symbols-outlined">autorenew</span> Xoá
+                    </button>
+                    <button class="btn btn-teal" style="height: 36px;" onclick="showToast('Áp dụng bộ lọc audit')">
+                      <span class="material-symbols-outlined">search</span> Lọc
+                    </button>
+                  </div>
+                </div>
+
+                <div class="audit-log-wrap">
+                  <table class="audit-log-table">
+                    <thead>
+                      <tr>
+                        <th>Ngày giờ</th>
+                        <th>Người thực hiện</th>
+                        <th>Tab</th>
+                        <th>Trường</th>
+                        <th>Giá trị cũ</th>
+                        <th>Giá trị mới</th>
+                        <th>Ghi chú</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <!-- Phiên 1: 2026-06-23 10:30 | Chung -->
+                      <tr style="border-top: 2px solid #cbd5e1;">
+                        <td>2026-06-23 10:30</td>
+                        <td>data_officer</td>
+                        <td><span class="field-pill">Chung</span></td>
+                        <td><span class="field-pill">IATA Code</span></td>
+                        <td>32N</td>
+                        <td>32Q</td>
+                        <td>—</td>
+                      </tr>
+                      <tr style="border-top: 1px solid #e2e8f0;">
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><span class="field-pill">ICAO Code</span></td>
+                        <td>A20N</td>
+                        <td>A20M</td>
+                        <td>—</td>
+                      </tr>
+
+                      <!-- Phiên 2: 2026-06-23 10:30 | Cấu hình tàu -->
+                      <tr style="border-top: 2px solid #cbd5e1;">
+                        <td>2026-06-23 10:30</td>
+                        <td>data_officer</td>
+                        <td><span class="field-pill">Cấu hình tàu</span></td>
+                        <td><span class="field-pill">APU Fuel Flow</span></td>
+                        <td>200</td>
+                        <td>210</td>
+                        <td>—</td>
+                      </tr>
+                      <tr style="border-top: 1px solid #e2e8f0;">
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><span class="field-pill">Taxi Fuel Flow</span></td>
+                        <td>1500</td>
+                        <td>1550</td>
+                        <td>—</td>
+                      </tr>
+
+                      <!-- Phiên 3: 2026-06-15 10:30 | Cấu hình tàu (ACARS) -->
+                      <tr style="border-top: 2px solid #cbd5e1;">
+                        <td>2026-06-15 10:30</td>
+                        <td>data_officer</td>
+                        <td><span class="field-pill">Cấu hình tàu</span></td>
+                        <td><span class="field-pill">ACARS Fuel Unit</span></td>
+                        <td>1500</td>
+                        <td>1550</td>
+                        <td>Khoảng 2026-07-01 → 2026-12-31</td>
+                      </tr>
+                      <tr style="border-top: 1px solid #e2e8f0;">
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><span class="field-pill">ACARS Fuel Multiplier</span></td>
+                        <td>1.050</td>
+                        <td>1.060</td>
+                        <td>Khoảng 2026-07-01 → 2026-12-31</td>
+                      </tr>
+
+                      <!-- Phiên 4: 2026-06-10 14:15 | Chung (Ownership) -->
+                      <tr style="border-top: 2px solid #cbd5e1;">
+                        <td>2026-06-10 14:15</td>
+                        <td>admin</td>
+                        <td><span class="field-pill">Chung</span></td>
+                        <td><span class="field-pill">Ownership Status</span></td>
+                        <td>Wet Leased</td>
+                        <td>Owned</td>
+                        <td>Hết hạn HĐ thuê, đổi sang sở hữu</td>
+                      </tr>
+
+                      <!-- Phiên 5: 2026-06-05 09:00 | Cấu hình tàu (Cabin) -->
+                      <tr style="border-top: 2px solid #cbd5e1;">
+                        <td>2026-06-05 09:00</td>
+                        <td>data_officer</td>
+                        <td><span class="field-pill">Cấu hình tàu</span></td>
+                        <td><span class="field-pill">Cabin Config</span></td>
+                        <td>8 / 24 / 0 / 0 / 0</td>
+                        <td>8 / 24 / 120 / 0 / 0</td>
+                        <td>Thêm khoang C cho A320NEO</td>
+                      </tr>
+
+                      <!-- Phiên 6: 2026-05-28 16:45 | Cấu hình tàu (Weight) -->
+                      <tr style="border-top: 2px solid #cbd5e1;">
+                        <td>2026-05-28 16:45</td>
+                        <td>data_officer</td>
+                        <td><span class="field-pill">Cấu hình tàu</span></td>
+                        <td><span class="field-pill">Basic Weight</span></td>
+                        <td>41 200</td>
+                        <td>41 413</td>
+                        <td>Đo lại sau bảo dưỡng</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <!-- Edit-mode action bar — per-tab edit -->
+              <div id="editActionBar" class="edit-action-bar" style="display: none;">
+                <span class="hint"><span class="material-symbols-outlined" style="font-size: 16px;">edit_note</span> Đang sửa: Chung</span>
+                <button class="btn btn-clear" onclick="exitEditMode()">Huỷ</button>
+                <button class="btn btn-teal" onclick="saveChanges()">Lưu</button>
+              </div>
+
+            </section>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ===== Placeholder Tabs cho 17 menu còn lại ===== -->
+      <div id="aog-schedule" class="main-content-scrollable tab-content" style="display: flex; align-items: center; justify-content: center;">
+        <div style="text-align: center; color: var(--md-text-secondary);">
+          <span class="material-symbols-outlined" style="font-size: 64px; display: block; margin-bottom: 16px;">event</span>
+          <p style="font-size: 16px;">AOG/MNT Schedule — Đang phát triển</p>
+        </div>
+      </div>
+      <div id="aog-code" class="main-content-scrollable tab-content" style="display: flex; align-items: center; justify-content: center;">
+        <div style="text-align: center; color: var(--md-text-secondary);">
+          <span class="material-symbols-outlined" style="font-size: 64px; display: block; margin-bottom: 16px;">qr_code_2</span>
+          <p style="font-size: 16px;">AOG/MNT Code — Đang phát triển</p>
+        </div>
+      </div>
+      <div id="mel-cdl" class="main-content-scrollable tab-content" style="display: flex; align-items: center; justify-content: center;">
+        <div style="text-align: center; color: var(--md-text-secondary);">
+          <span class="material-symbols-outlined" style="font-size: 64px; display: block; margin-bottom: 16px;">rule</span>
+          <p style="font-size: 16px;">MEL, CDL — Đang phát triển</p>
+        </div>
+      </div>
+      <div id="performance-factor" class="main-content-scrollable tab-content" style="display: flex; align-items: center; justify-content: center;">
+        <div style="text-align: center; color: var(--md-text-secondary);">
+          <span class="material-symbols-outlined" style="font-size: 64px; display: block; margin-bottom: 16px;">speed</span>
+          <p style="font-size: 16px;">Performance Factor — Đang phát triển</p>
+        </div>
+      </div>
+      <div id="san-bay" class="main-content-scrollable tab-content" style="display: flex; align-items: center; justify-content: center;">
+        <div style="text-align: center; color: var(--md-text-secondary);">
+          <span class="material-symbols-outlined" style="font-size: 64px; display: block; margin-bottom: 16px;">flight_takeoff</span>
+          <p style="font-size: 16px;">Sân bay — Đang phát triển</p>
+        </div>
+      </div>
+      <div id="chang-bay" class="main-content-scrollable tab-content" style="display: flex; align-items: center; justify-content: center;">
+        <div style="text-align: center; color: var(--md-text-secondary);">
+          <span class="material-symbols-outlined" style="font-size: 64px; display: block; margin-bottom: 16px;">route</span>
+          <p style="font-size: 16px;">Chặng bay — Đang phát triển</p>
+        </div>
+      </div>
+      <div id="payload" class="main-content-scrollable tab-content" style="display: flex; align-items: center; justify-content: center;">
+        <div style="text-align: center; color: var(--md-text-secondary);">
+          <span class="material-symbols-outlined" style="font-size: 64px; display: block; margin-bottom: 16px;">scale</span>
+          <p style="font-size: 16px;">Payload — Đang phát triển</p>
+        </div>
+      </div>
+      <div id="tankering" class="main-content-scrollable tab-content" style="display: flex; align-items: center; justify-content: center;">
+        <div style="text-align: center; color: var(--md-text-secondary);">
+          <span class="material-symbols-outlined" style="font-size: 64px; display: block; margin-bottom: 16px;">water_drop</span>
+          <p style="font-size: 16px;">Tankering — Đang phát triển</p>
+        </div>
+      </div>
+      <div id="gia-nhien-lieu" class="main-content-scrollable tab-content" style="display: flex; align-items: center; justify-content: center;">
+        <div style="text-align: center; color: var(--md-text-secondary);">
+          <span class="material-symbols-outlined" style="font-size: 64px; display: block; margin-bottom: 16px;">local_gas_station</span>
+          <p style="font-size: 16px;">Giá nhiên liệu — Đang phát triển</p>
+        </div>
+      </div>
+      <div id="uld" class="main-content-scrollable tab-content" style="display: flex; align-items: center; justify-content: center;">
+        <div style="text-align: center; color: var(--md-text-secondary);">
+          <span class="material-symbols-outlined" style="font-size: 64px; display: block; margin-bottom: 16px;">inventory_2</span>
+          <p style="font-size: 16px;">ULD — Đang phát triển</p>
+        </div>
+      </div>
+      <div id="fir" class="main-content-scrollable tab-content" style="display: flex; align-items: center; justify-content: center;">
+        <div style="text-align: center; color: var(--md-text-secondary);">
+          <span class="material-symbols-outlined" style="font-size: 64px; display: block; margin-bottom: 16px;">cloud</span>
+          <p style="font-size: 16px;">FIR — Đang phát triển</p>
+        </div>
+      </div>
+      <div id="phi-cong" class="main-content-scrollable tab-content" style="display: flex; align-items: center; justify-content: center;">
+        <div style="text-align: center; color: var(--md-text-secondary);">
+          <span class="material-symbols-outlined" style="font-size: 64px; display: block; margin-bottom: 16px;">person</span>
+          <p style="font-size: 16px;">Phi công — Đang phát triển</p>
+        </div>
+      </div>
+      <div id="tiep-vien" class="main-content-scrollable tab-content" style="display: flex; align-items: center; justify-content: center;">
+        <div style="text-align: center; color: var(--md-text-secondary);">
+          <span class="material-symbols-outlined" style="font-size: 64px; display: block; margin-bottom: 16px;">group</span>
+          <p style="font-size: 16px;">Tiếp viên — Đang phát triển</p>
+        </div>
+      </div>
+      <div id="quoc-gia" class="main-content-scrollable tab-content" style="display: flex; align-items: center; justify-content: center;">
+        <div style="text-align: center; color: var(--md-text-secondary);">
+          <span class="material-symbols-outlined" style="font-size: 64px; display: block; margin-bottom: 16px;">public</span>
+          <p style="font-size: 16px;">Quốc gia — Đang phát triển</p>
+        </div>
+      </div>
+      <div id="carrier" class="main-content-scrollable tab-content" style="display: flex; align-items: center; justify-content: center;">
+        <div style="text-align: center; color: var(--md-text-secondary);">
+          <span class="material-symbols-outlined" style="font-size: 64px; display: block; margin-bottom: 16px;">business_center</span>
+          <p style="font-size: 16px;">Carrier — Đang phát triển</p>
+        </div>
+      </div>
+      <div id="co-quan-don-vi" class="main-content-scrollable tab-content" style="display: flex; align-items: center; justify-content: center;">
+        <div style="text-align: center; color: var(--md-text-secondary);">
+          <span class="material-symbols-outlined" style="font-size: 64px; display: block; margin-bottom: 16px;">apartment</span>
+          <p style="font-size: 16px;">Cơ quan đơn vị — Đang phát triển</p>
+        </div>
+      </div>
+      <div id="dow" class="main-content-scrollable tab-content" style="display: flex; align-items: center; justify-content: center;">
+        <div style="text-align: center; color: var(--md-text-secondary);">
+          <span class="material-symbols-outlined" style="font-size: 64px; display: block; margin-bottom: 16px;">balance</span>
+          <p style="font-size: 16px;">DOW — Đang phát triển</p>
+        </div>
+      </div>
+
+    </main>
+
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast-notif" id="toastNotif" style="position: fixed; bottom: 24px; right: 24px; background: #1e293b; color: white; padding: 12px 20px; border-radius: 8px; box-shadow: 0 10px 15px rgba(0,0,0,0.15); display: flex; align-items: center; gap: 10px; font-size: 13.5px; z-index: 2000; opacity: 0; transform: translateY(100px); transition: all 0.3s;">
+    <span class="material-symbols-outlined" style="color: #10b981; font-size: 20px;">check_circle</span>
+    <span id="toastMessage">Thành công</span>
+  </div>
+
+  <script>
+    // Sidebar Toggle
+    const sidebar = document.getElementById('sidebar');
+    const sidebarToggle = document.getElementById('sidebarToggle');
+    const toggleIcon = document.getElementById('toggleIcon');
+    sidebarToggle.addEventListener('click', () => {
+      sidebar.classList.toggle('collapsed');
+      toggleIcon.textContent = sidebar.classList.contains('collapsed') ? 'chevron_right' : 'chevron_left';
+    });
+
+    // Main Tab Switching
+    function switchTab(tabName) {
+      document.querySelectorAll('.tab-content').forEach(t => { t.classList.remove('active'); t.style.display = 'none'; });
+      const t = document.getElementById(tabName);
+      if (t) { t.classList.add('active'); t.style.display = (tabName === 'tau-bay') ? 'flex' : 'flex'; }
+      document.querySelectorAll('.menu-item').forEach(m => {
+        m.classList.toggle('active', m.dataset.tab === tabName);
+      });
+    }
+
+    // Toast
+    function showToast(message) {
+      const toast = document.getElementById('toastNotif');
+      const msg = document.getElementById('toastMessage');
+      msg.textContent = message;
+      toast.style.opacity = '1';
+      toast.style.transform = 'translateY(0)';
+      setTimeout(() => { toast.style.opacity = '0'; toast.style.transform = 'translateY(100px)'; }, 2200);
+    }
+
+    // Filters
+    function clearFilters() {
+      ['fSubtype','fACreg','fCat1','fCat2','fCat3','fCat4','fCat5','fStatus'].forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
+      showToast('Đã xoá bộ lọc');
+    }
+    function applyFilters() { showToast('Đã áp dụng bộ lọc'); }
+    function refreshTable() { showToast('Đã làm mới danh sách'); }
+
+    // Main tabs (5 header tabs)
+    function switchMainTab(btn, tabId) {
+      document.querySelectorAll('.main-content .tab-content').forEach(t => {
+        t.style.display = t.id === tabId ? 'flex' : 'none';
+      });
+
+      // Update button state
+      document.querySelectorAll('.main-content > div > div:first-child > button').forEach(b => {
+        b.style.color = 'rgba(255,255,255,0.9)';
+        b.style.background = 'transparent';
+      });
+      btn.style.color = 'white';
+      btn.style.background = 'rgba(0,0,0,0.15)';
+    }
+
+    // Detail tabs - switch content only
+    function switchDetailsTab(btn, tabId) {
+      // Switch tab content
+      document.querySelectorAll('.details-tab-content').forEach(t => t.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+
+      // Switch tab button active state + aria-selected
+      document.querySelectorAll('.details-tab-button').forEach(b => {
+        b.classList.remove('active');
+        b.setAttribute('aria-selected', 'false');
+      });
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
+    }
+
+    function showTabActionBar(tabId) {
+      const actionBar = document.getElementById('editActionBar');
+      actionBar.classList.add('visible');
+      const hint = document.querySelector('.edit-action-bar .hint');
+      hint.textContent = '✎ Đang sửa: ' + getTabName(tabId);
+    }
+
+    function hideTabActionBar() {
+      const actionBar = document.getElementById('editActionBar');
+      actionBar.classList.remove('visible');
+      // Hide add-row button
+      document.querySelectorAll('.add-row-btn').forEach(btn => btn.classList.remove('visible'));
+    }
+
+    function getTabName(tabId) {
+      const names = {'tab-general': 'Chung', 'tab-config': 'Cấu hình tàu', 'tab-attr': 'Thuộc tính nhóm'};
+      return names[tabId] || 'Tab này';
+    }
+
+    // Section-level edit mode (Option 2B: Text + Icon buttons)
+    function enterSectionEditMode(event, tabId, sectionId) {
+      event.stopPropagation();
+      const tab = document.getElementById(tabId);
+
+      // Enable all editable fields in this tab (except locked fields like AC Subtype, Valid From)
+      const lockedLabels = ['AC Subtype', 'Valid From'];
+      tab.querySelectorAll('.detail-input, .detail-select, .sub-table input, .cabin-cell input').forEach(el => {
+        // Check if this field is locked
+        const labelEl = el.parentElement.querySelector('.detail-label');
+        const isLocked = labelEl && lockedLabels.some(l => labelEl.textContent.includes(l));
+
+        if (!isLocked) {
+          el.disabled = false;
+        }
+      });
+
+      // Show save/cancel buttons
+      showTabActionBar(tabId);
+
+      // Show "Add Row" button only for ACARS Fuel section
+      if (sectionId === 'acars-fuel') {
+        const addRowBtn = tab.querySelector('.add-row-btn');
+        if (addRowBtn) addRowBtn.classList.add('visible');
+      }
+
+      window.__currentEditingTab = tabId;
+      window.__currentEditingSection = sectionId;
+
+      showToast(`Đang sửa: ${sectionId}`);
+    }
+
+    // Ownership Status logic (MM §2.5; Function list R59)
+    function toggleOwner() {
+      const sel = document.getElementById('ownershipSel');
+      const owner = document.getElementById('ownerField');
+      if (sel.value === 'Owned') {
+        owner.value = 'Vietnam Airlines';
+        owner.disabled = true;
+      } else {
+        if (owner.value === 'Vietnam Airlines') owner.value = '';
+        owner.disabled = !window.__isEditing;
+      }
+    }
+
+    // View / Edit Mode (toàn bộ 4 tab)
+    window.__isEditing = false;
+    function enterEditMode() {
+      window.__isEditing = true;
+      document.getElementById('headerActions').style.display = 'none';
+      document.getElementById('editActionBar').classList.add('visible');
+      document.querySelectorAll('.details-tab-content .detail-input, .details-tab-content .detail-select').forEach(el => {
+        const lockedLabels = ['AC Subtype', 'Valid From'];
+        const labelEl = el.parentElement.querySelector('.detail-label');
+        const isLocked = labelEl && lockedLabels.some(l => labelEl.textContent.includes(l));
+        if (!isLocked) el.disabled = false;
+      });
+      document.querySelectorAll('.sub-table input').forEach(el => el.disabled = false);
+      // Ownership rule
+      toggleOwner();
+      showToast('Đã vào chế độ chỉnh sửa');
+    }
+    function exitEditMode() {
+      window.__isEditing = false;
+      hideTabActionBar();
+      document.querySelectorAll('.details-tab-content .detail-input, .details-tab-content .detail-select').forEach(el => el.disabled = true);
+      document.querySelectorAll('.sub-table input').forEach(el => el.disabled = true);
+      showToast('Đã huỷ chỉnh sửa');
+    }
+    function saveChanges() {
+      window.__isEditing = false;
+      hideTabActionBar();
+      document.querySelectorAll('.details-tab-content .detail-input, .details-tab-content .detail-select').forEach(el => el.disabled = true);
+      document.querySelectorAll('.sub-table input').forEach(el => el.disabled = true);
+      showToast('Lưu thay đổi thành công');
+    }
+
+    // ACARS table row ops
+    function addAcarsRow() {
+      const tbody = document.getElementById('acarsBody');
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td><input type="datetime-local"></td>
+        <td><input type="datetime-local"></td>
+        <td><input type="number" step="0.01" placeholder="VD: 1600"></td>
+        <td><input type="number" step="0.001" placeholder="VD: 1.070"></td>
+        <td style="text-align: center;"><button class="row-action" onclick="removeRow(this)" title="Xoá"><span class="material-symbols-outlined" style="color: #ef4444;">delete</span></button></td>`;
+      tbody.appendChild(tr);
+      if (!window.__isEditing) tr.querySelectorAll('input').forEach(i => i.disabled = true);
+    }
+    function removeRow(btn) {
+      const tr = btn.closest('tr');
+      tr.parentElement.removeChild(tr);
+      showToast('Đã xoá khoảng hiệu lực');
+    }
+
+    // Initialize: disable all inputs on page load (View mode by default)
+    window.addEventListener('load', function() {
+      document.querySelectorAll('.details-tab-content .detail-input, .details-tab-content .detail-select').forEach(el => el.disabled = true);
+      document.querySelectorAll('.sub-table input').forEach(el => el.disabled = true);
+    });
+  </script>
+</body>
+</html>

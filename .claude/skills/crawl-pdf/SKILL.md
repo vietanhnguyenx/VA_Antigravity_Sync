@@ -1,8 +1,6 @@
 ---
 name: crawl-pdf
-description: Crawl một website để thu thập liên kết PDF, tải các file PDF về máy, và (tuỳ chọn) phân rã sang Markdown — PDF bằng pdftotext -layout, tài liệu Office (DOCX/PPTX/XLSX/HTML) bằng markitdown. Dùng khi người dùng muốn "crawl PDF", "lấy/tải các link PDF", "tải tài liệu PDF của trang X về", "liệt kê link PDF", hoặc "phân rã/chuyển PDF/DOCX/XLSX sang md" từ một nguồn web hay tài liệu nội bộ (vd ffac.ch, iata.org, govinfo.gov, ccaa.hr, Customer_docs...).
-metadata:
-  version: "1.0.0"
+description: Crawl một website để thu thập liên kết PDF, tải các file PDF về máy, và (tuỳ chọn) phân rã sang Markdown bằng pdftotext. Dùng khi người dùng muốn "crawl PDF", "lấy/tải các link PDF", "tải tài liệu PDF của trang X về", "liệt kê link PDF", hoặc "phân rã/chuyển PDF sang md" từ một nguồn web (vd ffac.ch, iata.org, govinfo.gov, ccaa.hr...).
 ---
 
 # Skill: Crawl + Tải + Phân rã PDF từ website
@@ -11,41 +9,8 @@ metadata:
 >
 > **Nguyên tắc (CLAUDE.md §0):** bản .md phân rã là **trích trung thực** (raw extract), không diễn giải. Việc lọc "phạm vi nào" và dịch tiêu đề là quyết định bám yêu cầu người dùng.
 
-## 0. Engine phân rã & cài đặt môi trường (ĐỌC TRƯỚC)
-
-> Cập nhật 2026-06-16. Định tuyến engine theo định dạng nguồn — **đỡ token vì convert chạy ở máy (0 token mô hình)**, sau đó Grep/đọc chọn lọc bản `.md`.
-
-| Định dạng nguồn | Engine | Lệnh | Ghi chú |
-|---|---|---|---|
-| **PDF** | `pdftotext -layout` | qua `scripts/pdf-to-md.ps1` (đọc PDF qua `/mnt/host`, ghi `.md` phía Windows) | Giữ bảng/cột tốt hơn — **ưu tiên cho PDF** |
-| **Office/HTML** (DOCX, PPTX, XLSX, HTML, CSV) | **markitdown** | `python -m markitdown "<file>" -o "<out.md>"` | pdftotext KHÔNG đọc được Office → dùng markitdown |
-
-**Cài đặt (một lần / khi mất):**
-- **markitdown** — pure Python: `python -m pip install --user "markitdown[all]"` (đã cài v0.1.6). Kiểm tra: `python -m markitdown --version`.
-- **pdftotext** — máy hiện tại chỉ có 1 WSL distro `docker-desktop` (Alpine), **mặc định CHƯA có** pdftotext. Cài: `wsl -d docker-desktop -- apk add --no-cache poppler-utils` → có `pdftotext`. **Lưu ý:** distro docker-desktop ephemeral → có thể **mất sau khi WSL/Docker restart**, chạy lại lệnh trên khi `pdftotext: not found`.
-
-**Lưu ý chất lượng:** bản trích là **raw extract** (CLAUDE.md §0). XLSX qua markitdown để ô trống thành `NaN`/cột không tên thành `Unnamed: N` — dọn tay khi cần bản chính thức. PDF nhiều cột/bảng phức tạp ưu tiên pdftotext -layout.
-
-### 0.1 Kết nối Google Drive / Sheets (LIVE, qua Service Account)
-Pull tài liệu **đang ở Google Drive/Sheets** về `.md` (re-pull khi nguồn đổi). Chạy ở máy → 0 token.
-
-| Loại nguồn Google | Script | Lệnh |
-|---|---|---|
-| **Google Sheet native** (đọc cell trực tiếp, **sạch hơn** — không `NaN`/`Unnamed`) | `scripts/gsheet-to-md.py` | `python scripts/gsheet-to-md.py <id\|url> <out.md>` |
-| **File Office trên Drive** (xlsx/docx upload) **hoặc** native | `scripts/gdrive-to-md.py` | `python scripts/gdrive-to-md.py <id\|url> <out.md>` |
-
-- **Native sheet → ưu tiên `gsheet-to-md.py`** (mỗi tab = 1 `##`, đọc cell sạch). File Office-trên-Drive (lỗi *"must not be an Office file"* khi gọi Sheets API) → dùng `gdrive-to-md.py` (Drive API tải thô → markitdown).
-- **Cài (một lần):** `python -m pip install --user gspread google-auth`. Bật **Google Sheets API** + **Drive API** trong GCP project.
-- **Auth (việc của HUMAN — §0.3):** tạo **Service Account** (KHÔNG cần role project) → tạo **key JSON** → đặt ở `.secrets/` (đã gitignore, **không bao giờ commit/chia sẻ**) → **Share** file/sheet cho `client_email` của SA (Viewer). Bàn giao máy khác: người nhận tự tạo SA key riêng.
-- Key mặc định script đọc: `.secrets/toss-sa.json` (đổi bằng `--key`).
-
-**Đối soát các lần TIẾP THEO (incremental):** mỗi bản pull ghi `source_version`/`source_modified`/`last_modifying_user` vào frontmatter.
-- **Phát hiện đổi (không tải):** `python scripts/gsheet-to-md.py <id> <out.md> --check` (hoặc `gdrive-to-md.py … --check`) → in `[CHƯA ĐỔI]` / `[ĐÃ ĐỔI] local vX → live vY, sửa <time> bởi <user>`.
-- **Đối soát + delta:** `python scripts/gdrive-reconcile.py <id> <out.md>` → nếu đổi: tự chọn engine, pull đè, rồi **`git diff`** (working vs bản committed) in **delta cấp dòng/mục** + ai/khi nào.
-- **Lưu ý:** Google API KHÔNG expose diff cấp ô; **git là nhật ký thay đổi** — commit mỗi lần pull, lần sau `reconcile`/`git diff` cho đúng phần khác. `revisions` API chỉ cho ai/khi nào (không phải nội dung ô).
-
 ## 1. Khi nào dùng
-Người dùng muốn: "crawl các link PDF", "tải PDF của trang X", "liệt kê link PDF song ngữ", "chỉ tải PDF phạm vi …", "phân rã PDF/DOCX/XLSX sang md".
+Người dùng muốn: "crawl các link PDF", "tải PDF của trang X", "liệt kê link PDF song ngữ", "chỉ tải PDF phạm vi …", "phân rã PDF sang md".
 
 ## 2. Quy trình 4 bước
 

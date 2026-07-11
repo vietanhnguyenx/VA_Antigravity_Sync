@@ -134,5 +134,5 @@ Người yêu cầu          BA Lead              Stakeholder            BA team
 ## 7. Liên kết
 
 - NKLR: [`ba/sync/requirements/quan-ly-yeu-cau/`](../../sync/requirements/quan-ly-yeu-cau/)
-- RTM: [`ba/sync/models/RTM-template-v0.1.md`](../../sync/models/RTM-template-v0.1.md)
+- RTM: [`ba/sync/models/RTM-template-v0.1.json`](../../sync/models/RTM-template-v0.1.json)
 - SOP Luồng: [SOP-LUONG-TAI-LIEU-v0.1.md](SOP-LUONG-TAI-LIEU-v0.1.md)

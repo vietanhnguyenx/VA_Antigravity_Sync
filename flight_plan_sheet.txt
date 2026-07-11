@@ -1,0 +1,14 @@
+Row 01:  | Filter | From Date |  |  | Customize bảng | Export excel |  |  |  |  |  |  | 
+Row 02:  |  | To Date |  |  |  |  |  |  |  |  |  |  | 
+Row 03:  |  | Flt no |  |  |  |  |  |  |  |  |  |  | 
+Row 04:  |  | AC Reg |  |  |  |  |  |  |  |  |  |  | 
+Row 05:  |  | DEP |  |  |  |  |  |  |  |  |  |  | 
+Row 06:  |  | ARR |  |  |  |  |  |  |  |  |  |  | 
+Row 07:  |  | ETD |  |  |  |  |  |  |  |  |  |  | 
+Row 08:  |  | ETA |  |  |  |  |  |  |  |  |  |  | 
+Row 09:  |  | TYPE |  |  |  |  |  |  |  |  |  |  | 
+Row 10:  |  | STATUS |  |  |  |  |  |  |  |  |  |  | 
+Row 11:  |  | All Revision/ Last Revision |  |  |  |  |  |  |  |  |  |  | 
+Row 12:  |  | Dispatcher |  |  |  |  |  |  |  |  |  |  | 
+Row 13:  | Bảng thông tin |  |  |  |  |  |  |  |  |  |  |  | 
+Row 14: OFP Rev | AC REG | FLT NO | DEP | ARR | DATE | ETD | ETA | Type | Status | Dispatcher | DSP Relesase Time | PIC | Pilot Release Time

@@ -1,0 +1,1356 @@
+<mxfile host="65bd71144e">
+    <diagram id="page1-bp006-sequence" name="BP-006 Dispatch Release">
+        <mxGraphModel dx="272" dy="632" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="1100" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="pg1_title" value="Sơ đồ To-Be — BP-006: Dispatch Release → Captain&#39;s Release · BR-205…BR-214" style="text;html=1;fontStyle=1;fontSize=13;align=left;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="12" width="1300" height="26" as="geometry"/>
+                </mxCell>
+                <!-- Lifeline headers -->
+                <mxCell id="ph_Lido" value="Lido" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="60" y="50" width="160" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="ph_TOSS" value="TOSS PH2" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="310" y="50" width="160" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="ph_DSP" value="Điều phái viên" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="560" y="50" width="160" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="ph_MOP" value="MO Plus" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontStyle=1;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="810" y="50" width="160" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="ph_PIC" value="Phi công (Captain)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontStyle=1;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="1060" y="50" width="160" height="50" as="geometry"/>
+                </mxCell>
+                <!-- Lifelines (dashed vertical bars) -->
+                <mxCell id="lf_Lido" value="" style="rounded=0;html=1;fillColor=none;strokeColor=#9673a6;strokeWidth=1;dashed=1;" parent="1" vertex="1">
+                    <mxGeometry x="135" y="100" width="10" height="900" as="geometry"/>
+                </mxCell>
+                <mxCell id="lf_TOSS" value="" style="rounded=0;html=1;fillColor=none;strokeColor=#6c8ebf;strokeWidth=1;dashed=1;" parent="1" vertex="1">
+                    <mxGeometry x="385" y="100" width="10" height="900" as="geometry"/>
+                </mxCell>
+                <mxCell id="lf_DSP" value="" style="rounded=0;html=1;fillColor=none;strokeColor=#82b366;strokeWidth=1;dashed=1;" parent="1" vertex="1">
+                    <mxGeometry x="635" y="100" width="10" height="900" as="geometry"/>
+                </mxCell>
+                <mxCell id="lf_MOP" value="" style="rounded=0;html=1;fillColor=none;strokeColor=#d6b656;strokeWidth=1;dashed=1;" parent="1" vertex="1">
+                    <mxGeometry x="885" y="100" width="10" height="900" as="geometry"/>
+                </mxCell>
+                <mxCell id="lf_PIC" value="" style="rounded=0;html=1;fillColor=none;strokeColor=#b85450;strokeWidth=1;dashed=1;" parent="1" vertex="1">
+                    <mxGeometry x="1135" y="100" width="10" height="900" as="geometry"/>
+                </mxCell>
+                <!-- Activation boxes -->
+                <mxCell id="act_TOSS" value="" style="fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+                    <mxGeometry x="383" y="150" width="14" height="730" as="geometry"/>
+                </mxCell>
+                <mxCell id="act_DSP" value="" style="fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
+                    <mxGeometry x="633" y="310" width="14" height="250" as="geometry"/>
+                </mxCell>
+                <mxCell id="act_MOP" value="" style="fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
+                    <mxGeometry x="883" y="590" width="14" height="180" as="geometry"/>
+                </mxCell>
+                <mxCell id="act_PIC" value="" style="fillColor=#f8cecc;strokeColor=#b85450;" parent="1" vertex="1">
+                    <mxGeometry x="1133" y="700" width="14" height="80" as="geometry"/>
+                </mxCell>
+                <!-- Messages -->
+                <mxCell id="m1" value="OFP mới tự động đẩy qua adapter&#xa;(FUNC-201)" style="html=1;endArrow=block;endFill=1;fontSize=10;align=center;verticalAlign=bottom;edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="lf_Lido" target="lf_TOSS" edge="1">
+                    <mxGeometry x="0" y="150" relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="140" y="165"/>
+                            <mxPoint x="390" y="165"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="m2" value="Gán phiên bản R1/R2…&#xa;bóc tách và lưu toàn bộ trường&#xa;(BR-202, BR-203; FUNC-252)" style="html=1;endArrow=block;endFill=1;fontSize=10;align=left;verticalAlign=middle;edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="lf_TOSS" target="lf_TOSS" edge="1">
+                    <mxGeometry x="0" y="240" relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="460" y="245"/>
+                            <mxPoint x="460" y="285"/>
+                            <mxPoint x="395" y="285"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="m3" value="Hiển thị trạng thái OFP&#xa;4 trạng thái + mã màu Trắng/Vàng/Đỏ&#xa;(BR-212, BR-213; FUNC-205)" style="html=1;endArrow=block;endFill=1;fontSize=10;align=center;verticalAlign=bottom;edgeStyle=orthogonalEdgeStyle;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="lf_TOSS" target="lf_DSP" edge="1">
+                    <mxGeometry x="0" y="320" relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="390" y="330"/>
+                            <mxPoint x="640" y="330"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="m4" value="Bấm Dispatch Release&#xa;(thao tác chủ động có quyền — BR-207)" style="html=1;endArrow=block;endFill=1;fontSize=10;align=center;verticalAlign=bottom;edgeStyle=orthogonalEdgeStyle;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="lf_DSP" target="lf_TOSS" edge="1">
+                    <mxGeometry x="0" y="420" relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="640" y="430"/>
+                            <mxPoint x="390" y="430"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="m5" value="Gắn trạng thái đã Dispatch Release&#xa;Ghi audit — người thực hiện + thời gian&#xa;(BR-205, BR-207; FUNC-253)" style="html=1;endArrow=block;endFill=1;fontSize=10;align=left;verticalAlign=middle;edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="lf_TOSS" target="lf_TOSS" edge="1">
+                    <mxGeometry x="0" y="490" relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="460" y="500"/>
+                            <mxPoint x="460" y="540"/>
+                            <mxPoint x="395" y="540"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="m6" value="Đồng bộ trạng thái Dispatch Release&#xa;(BR-206; FUNC-256)" style="html=1;endArrow=block;endFill=1;fontSize=10;align=center;verticalAlign=bottom;edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="lf_TOSS" target="lf_MOP" edge="1">
+                    <mxGeometry x="0" y="595" relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="395" y="605"/>
+                            <mxPoint x="890" y="605"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="note_mop" value="Nhận tín hiệu DR → mở khóa Captain&#39;s Release&#xa;(phạm vi sửa MO Plus — xem OID KS-08)" style="text;html=1;fontSize=10;align=left;verticalAlign=top;strokeColor=#d6b656;fillColor=#fff2cc;" parent="1" vertex="1">
+                    <mxGeometry x="810" y="630" width="340" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="m7" value="Thực hiện Captain&#39;s Release&#xa;(Fly Release / Confirm OFP)" style="html=1;endArrow=block;endFill=1;fontSize=10;align=center;verticalAlign=bottom;edgeStyle=orthogonalEdgeStyle;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="lf_PIC" target="lf_MOP" edge="1">
+                    <mxGeometry x="0" y="705" relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1140" y="715"/>
+                            <mxPoint x="890" y="715"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="m8" value="Trạng thái PIC Confirm cập nhật&#xa;(BR-214; FUNC cột PIC Confirm)" style="html=1;endArrow=block;endFill=1;fontSize=10;align=center;verticalAlign=bottom;edgeStyle=orthogonalEdgeStyle;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="lf_MOP" target="lf_TOSS" edge="1">
+                    <mxGeometry x="0" y="765" relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="890" y="775"/>
+                            <mxPoint x="395" y="775"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="m9" value="Trạng thái OFP chuyển&#xa;Dispatch + Pilot đều đã release&#xa;(BR-213 trạng thái (d))" style="html=1;endArrow=block;endFill=1;fontSize=10;align=center;verticalAlign=bottom;edgeStyle=orthogonalEdgeStyle;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="lf_TOSS" target="lf_DSP" edge="1">
+                    <mxGeometry x="0" y="840" relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="390" y="850"/>
+                            <mxPoint x="640" y="850"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <!-- Legend -->
+                <mxCell id="leg_box" value="" style="rounded=0;dashed=1;strokeColor=#666666;fillColor=#fafafa;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="1020" width="700" height="36" as="geometry"/>
+                </mxCell>
+                <mxCell id="leg1" value="Lido — hệ thống ngoài" style="rounded=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=9;" parent="1" vertex="1">
+                    <mxGeometry x="50" y="1026" width="130" height="24" as="geometry"/>
+                </mxCell>
+                <mxCell id="leg2" value="TOSS PH2 — hệ thống chính" style="rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=9;" parent="1" vertex="1">
+                    <mxGeometry x="195" y="1026" width="160" height="24" as="geometry"/>
+                </mxCell>
+                <mxCell id="leg3" value="MO Plus — hệ thống ngoài" style="rounded=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=9;" parent="1" vertex="1">
+                    <mxGeometry x="370" y="1026" width="150" height="24" as="geometry"/>
+                </mxCell>
+                <mxCell id="leg4" value="Phi công (Captain)" style="rounded=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=9;" parent="1" vertex="1">
+                    <mxGeometry x="535" y="1026" width="150" height="24" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+    <diagram id="page2-bp007-unrelease" name="BP-007 Unrelease">
+        <mxGraphModel dx="272" dy="632" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1050" pageHeight="1600" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="pg2_title" value="Sơ đồ To-Be — BP-007: Unrelease và quay về OFP cũ · BR-208…BR-211" style="text;html=1;fontStyle=1;fontSize=13;align=left;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="12" width="960" height="26" as="geometry"/>
+                </mxCell>
+                <!-- Legend -->
+                <mxCell id="pg2_leg" value="" style="rounded=0;dashed=1;strokeColor=#666666;fillColor=#fafafa;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="44" width="640" height="36" as="geometry"/>
+                </mxCell>
+                <mxCell id="pg2_l1" value="((…)) Bắt đầu / Kết thúc" style="ellipse;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=9;" parent="1" vertex="1">
+                    <mxGeometry x="50" y="50" width="140" height="24" as="geometry"/>
+                </mxCell>
+                <mxCell id="pg2_l2" value="[…] Bước xử lý" style="rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=9;" parent="1" vertex="1">
+                    <mxGeometry x="205" y="50" width="130" height="24" as="geometry"/>
+                </mxCell>
+                <mxCell id="pg2_l3" value="{…} Điểm quyết định" style="rhombus;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=9;" parent="1" vertex="1">
+                    <mxGeometry x="350" y="44" width="140" height="36" as="geometry"/>
+                </mxCell>
+                <mxCell id="pg2_l4" value="[[…]] Hệ thống ngoài" style="shape=process;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=9;" parent="1" vertex="1">
+                    <mxGeometry x="505" y="50" width="155" height="24" as="geometry"/>
+                </mxCell>
+                <!-- Nodes -->
+                <mxCell id="S3" value="Bắt đầu&#xa;Unrelease" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="415" y="110" width="220" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="U1" value="Điều phái viên bấm Unrelease&#xa;trên phiên bản OFP đang ở trạng thái&#xa;đã Dispatch Release&#xa;FUNC-276" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="365" y="220" width="320" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="U2" value="TOSS khóa tạm thời&#xa;cả Dispatch Release và Pilot Release&#xa;BR-211" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="365" y="340" width="320" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="U3" value="TOSS hiển thị danh sách&#xa;toàn bộ phiên bản OFP&#xa;của chuyến — để Dispatcher chọn&#xa;FUNC-277" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="365" y="450" width="320" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="U4" value="Điều phái chọn phiên bản cũ&#xa;muốn quay về" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="365" y="570" width="320" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="U5" value="TOSS sinh revision mới&#xa;với nội dung phiên bản cũ được chọn&#xa;gán số phiên bản mới&#xa;FUNC-278&#xa;*(quy ước đánh số — chờ xác nhận OID KS-21)*" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="365" y="670" width="320" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="U6" value="TOSS đẩy revision mới&#xa;sang MO Plus&#xa;FUNC-278" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="365" y="800" width="320" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="U7" value="MO Plus reset&#xa;trạng thái Confirm Release&#xa;của phi công về 0&#xa;BR-209; FUNC-279&#xa;*(cơ chế notification — xem OID KS-20)*" style="shape=process;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="365" y="910" width="320" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="U8" value="Phi công nhận thông báo&#xa;cần Confirm lại&#xa;trên phiên bản mới" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="365" y="1040" width="320" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="U9" value="Điều phái viên KHÔNG&#xa;phải thao tác lại trên Lido&#xa;FUNC-280" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="365" y="1150" width="320" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="U10" value="Cần khai thác&#xa;bản mới chính thức?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="375" y="1260" width="300" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="U11" value="Điều phái thực hiện&#xa;Dispatch Release lại&#xa;trên revision mới&#xa;BR-210; FUNC-282" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="170" y="1390" width="280" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="U12" value="Tài liệu ở trạng thái&#xa;chưa Dispatch Release&#xa;trên revision mới&#xa;Chờ Dispatcher xử lý" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="600" y="1390" width="280" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="E3" value="Kết thúc —&#xa;trở về BP-006" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="415" y="1510" width="220" height="60" as="geometry"/>
+                </mxCell>
+                <!-- Edges -->
+                <mxCell id="e_s3_u1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="S3" target="U1" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_u1_u2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="U1" target="U2" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_u2_u3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="U2" target="U3" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_u3_u4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="U3" target="U4" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_u4_u5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="U4" target="U5" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_u5_u6" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="U5" target="U6" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_u6_u7" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="U6" target="U7" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_u7_u8" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="U7" target="U8" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_u8_u9" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="U8" target="U9" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_u9_u10" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="U9" target="U10" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_u10_u11" value="Có" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="U10" target="U11" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="310" y="1305"/>
+                            <mxPoint x="310" y="1430"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="e_u10_u12" value="Chưa cần release ngay" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="U10" target="U12" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="740" y="1305"/>
+                            <mxPoint x="740" y="1430"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="e_u11_e3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="U11" target="E3" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="310" y="1510"/>
+                            <mxPoint x="415" y="1540"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="e_u12_e3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="U12" target="E3" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="740" y="1510"/>
+                            <mxPoint x="635" y="1540"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+    <diagram id="page3-bp008-6phases" name="BP-008 6 Giai đoạn Dispatch">
+        <mxGraphModel dx="272" dy="632" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="3200" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="pg3_title" value="Sơ đồ To-Be — BP-008: 6 Giai đoạn Module Dispatch · BR-212…BR-225" style="text;html=1;fontStyle=1;fontSize=13;align=left;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="12" width="1300" height="26" as="geometry"/>
+                </mxCell>
+                <!-- Legend -->
+                <mxCell id="pg3_leg" value="" style="rounded=0;dashed=1;strokeColor=#666666;fillColor=#fafafa;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="44" width="740" height="36" as="geometry"/>
+                </mxCell>
+                <mxCell id="pg3_l1" value="((…)) Bắt đầu / Kết thúc" style="ellipse;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=9;" parent="1" vertex="1">
+                    <mxGeometry x="50" y="50" width="140" height="24" as="geometry"/>
+                </mxCell>
+                <mxCell id="pg3_l2" value="[…] Bước xử lý" style="rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=9;" parent="1" vertex="1">
+                    <mxGeometry x="205" y="50" width="130" height="24" as="geometry"/>
+                </mxCell>
+                <mxCell id="pg3_l3" value="{…} Điểm quyết định" style="rhombus;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=9;" parent="1" vertex="1">
+                    <mxGeometry x="350" y="44" width="140" height="36" as="geometry"/>
+                </mxCell>
+                <mxCell id="pg3_l4" value="Khung nét đứt — giai đoạn (Phase)" style="rounded=0;dashed=1;strokeColor=#555555;fillColor=#f5f5f5;fontSize=9;" parent="1" vertex="1">
+                    <mxGeometry x="505" y="50" width="255" height="24" as="geometry"/>
+                </mxCell>
+                <!-- Start -->
+                <mxCell id="S4" value="Bắt đầu ca&#xa;Dispatch" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="560" y="110" width="220" height="70" as="geometry"/>
+                </mxCell>
+                <!-- Phase 1 -->
+                <mxCell id="sg_ph1" value="Giai đoạn 1 — Chuẩn bị đầu ca" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;strokeColor=#555555;fillColor=#f5f5f5;verticalAlign=top;fontStyle=1;fontSize=12;align=center;" parent="1" vertex="1">
+                    <mxGeometry x="380" y="230" width="590" height="230" as="geometry"/>
+                </mxCell>
+                <mxCell id="G1" value="Đăng nhập TOSS&#xa;bằng tài khoản ca riêng&#xa;BR-220" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="505" y="280" width="340" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="G2" value="Kiểm tra tổng thể&#xa;chuyến bay trong ca&#xa;tàu bay, tổ bay, tải trọng&#xa;BR-114 PH1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="505" y="370" width="340" height="70" as="geometry"/>
+                </mxCell>
+                <!-- Phase 2 -->
+                <mxCell id="sg_ph2" value="Giai đoạn 2 — Chuẩn bị OFP" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;strokeColor=#555555;fillColor=#f5f5f5;verticalAlign=top;fontStyle=1;fontSize=12;align=center;" parent="1" vertex="1">
+                    <mxGeometry x="250" y="520" width="880" height="380" as="geometry"/>
+                </mxCell>
+                <mxCell id="G3" value="Nhận OFP từ Lido&#xa;tự động qua adapter&#xa;FUNC-201" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="505" y="570" width="340" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="G4" value="Kiểm tra ngưỡng thời gian release&#xa;Trắng → Vàng → Đỏ&#xa;theo ETD chuyến&#xa;BR-212" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="505" y="670" width="340" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="G5" value="Đủ điều kiện&#xa;Dispatch Release?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="515" y="780" width="320" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="G6" value="Thực hiện Dispatch Release&#xa;xem chi tiết BP-006" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="505" y="820" width="340" height="60" as="geometry"/>
+                </mxCell>
+                <!-- Phase 3 -->
+                <mxCell id="sg_ph3" value="Giai đoạn 3 — Post-Release Transition (sau Dispatch Release đến trước cất cánh)" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;strokeColor=#555555;fillColor=#f5f5f5;verticalAlign=top;fontStyle=1;fontSize=12;align=center;" parent="1" vertex="1">
+                    <mxGeometry x="120" y="980" width="1160" height="520" as="geometry"/>
+                </mxCell>
+                <mxCell id="G7" value="TOSS quét cảnh báo liên tục&#xa;NOTAM / Thời tiết / Tàu bay / Tải trọng&#xa;BR-216" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="505" y="1030" width="340" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="G8" value="Phát sinh cảnh báo&#xa;bất thường?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="515" y="1130" width="320" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="G9" value="Chờ cất cánh" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="160" y="1143" width="220" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="G10" value="TOSS hiển thị cảnh báo&#xa;và tham chiếu đề xuất cập nhật OFP" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="960" y="1130" width="280" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="G11" value="Cần OFP phiên bản mới&#xa;sau Release → mở Lido&#xa;TOSS không tự cập nhật OFP&#xa;BR-216" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="960" y="1230" width="280" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="G12" value="Upload phiên bản mới&#xa;từ Lido hoặc Unrelease&#xa;xem BP-007" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="960" y="1340" width="280" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="G13" value="PIC thực hiện&#xa;Captain&#39;s Release&#xa;trên MO Plus&#xa;BR-214" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="160" y="1330" width="220" height="80" as="geometry"/>
+                </mxCell>
+                <!-- Phase 4 -->
+                <mxCell id="sg_ph4" value="Giai đoạn 4 — Theo dõi chuẩn bị khởi hành" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;strokeColor=#555555;fillColor=#f5f5f5;verticalAlign=top;fontStyle=1;fontSize=12;align=center;" parent="1" vertex="1">
+                    <mxGeometry x="380" y="1580" width="590" height="230" as="geometry"/>
+                </mxCell>
+                <mxCell id="G14" value="Theo dõi các tài liệu&#xa;bổ sung Load Sheet / NOTOC&#xa;trạng thái CLC, PVHH&#xa;BR-224" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="505" y="1630" width="340" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="G15" value="Kiểm tra tổ bay&#xa;đã download tài liệu mới nhất&#xa;BR-222 cảnh báo FUNC-298" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="505" y="1730" width="340" height="70" as="geometry"/>
+                </mxCell>
+                <!-- Phase 5 -->
+                <mxCell id="sg_ph5" value="Giai đoạn 5 — Theo dõi trong khi bay" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;strokeColor=#555555;fillColor=#f5f5f5;verticalAlign=top;fontStyle=1;fontSize=12;align=center;" parent="1" vertex="1">
+                    <mxGeometry x="380" y="1890" width="590" height="230" as="geometry"/>
+                </mxCell>
+                <mxCell id="G16" value="Giám sát trạng thái&#xa;chuyến bay đang bay&#xa;Flight Watch&#xa;PH1 BR-149" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="505" y="1940" width="340" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="G17" value="Nhận cảnh báo NOTAM/WX&#xa;phát sinh trong chuyến&#xa;BR-240" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="505" y="2040" width="340" height="70" as="geometry"/>
+                </mxCell>
+                <!-- Phase 6 -->
+                <mxCell id="sg_ph6" value="Giai đoạn 6 — Sau chuyến bay và bàn giao ca" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;strokeColor=#555555;fillColor=#f5f5f5;verticalAlign=top;fontStyle=1;fontSize=12;align=center;" parent="1" vertex="1">
+                    <mxGeometry x="380" y="2200" width="590" height="290" as="geometry"/>
+                </mxCell>
+                <mxCell id="G18" value="Ghi nhận tài liệu&#xa;EOFP sau chuyến&#xa;BR-225 / FUNC-305 308" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="505" y="2260" width="340" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="G19" value="Tài liệu từ hệ thống ngoài&#xa;cache tối đa 3 ngày&#xa;sau hạ cánh rồi tự xóa&#xa;BR-251" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="505" y="2350" width="340" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="G20" value="Bàn giao ca&#xa;ca sau đăng nhập&#xa;tài khoản riêng&#xa;BR-220" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="505" y="2450" width="340" height="80" as="geometry"/>
+                </mxCell>
+                <!-- End -->
+                <mxCell id="E4" value="Kết thúc ca&#xa;Dispatch" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="560" y="2590" width="220" height="70" as="geometry"/>
+                </mxCell>
+                <!-- Edges Phase flow -->
+                <mxCell id="e_s4_g1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="S4" target="G1" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_g1_g2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="G1" target="G2" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_g2_g3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="G2" target="G3" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_g3_g4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="G3" target="G4" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_g4_g5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="G4" target="G5" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <!-- G5 polling: Chưa loops back to G4 (left side), Có goes right to G6 -->
+                <mxCell id="e_g5_g4_loop" value="Chưa đến ngưỡng" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="G5" target="G4" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="430" y="825"/>
+                            <mxPoint x="430" y="710"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="e_g5_g6" value="Trong ngưỡng — Dispatcher duyệt" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="G5" target="G6" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="920" y="825"/>
+                            <mxPoint x="920" y="850"/>
+                            <mxPoint x="845" y="850"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="e_g6_g7" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="G6" target="G7" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_g7_g8" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="G7" target="G8" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_g8_g9" value="Không" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="G8" target="G9" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="430" y="1175"/>
+                            <mxPoint x="380" y="1175"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="e_g8_g10" value="Có" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="G8" target="G10" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="920" y="1175"/>
+                            <mxPoint x="960" y="1175"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="e_g10_g11" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="G10" target="G11" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_g11_g12" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="G11" target="G12" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <!-- G12 back-loop to G7 via right margin -->
+                <mxCell id="e_g12_g7" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="G12" target="G7" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1320" y="1375"/>
+                            <mxPoint x="1320" y="1065"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="e_g9_g13" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="G9" target="G13" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_g13_g14" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="G13" target="G14" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="270" y="1500"/>
+                            <mxPoint x="505" y="1670"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="e_g14_g15" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="G14" target="G15" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_g15_g16" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="G15" target="G16" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_g16_g17" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="G16" target="G17" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_g17_g18" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="G17" target="G18" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_g18_g19" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="G18" target="G19" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_g19_g20" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="G19" target="G20" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_g20_e4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="G20" target="E4" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+    <diagram id="page4-bp011-bulk-upload" name="BP-011 Bulk Upload và Weather">
+        <mxGraphModel dx="272" dy="632" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="1600" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="pg4_title" value="Sơ đồ To-Be — BP-011: Bulk Document Upload và Weather Multi-Flight · BR-236…BR-250" style="text;html=1;fontStyle=1;fontSize=13;align=left;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="12" width="1300" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="pg4_leg" value="" style="rounded=0;dashed=1;strokeColor=#666666;fillColor=#fafafa;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="44" width="740" height="36" as="geometry"/>
+                </mxCell>
+                <mxCell id="pg4_l1" value="((…)) Bắt đầu / Kết thúc" style="ellipse;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=9;" parent="1" vertex="1">
+                    <mxGeometry x="50" y="50" width="140" height="24" as="geometry"/>
+                </mxCell>
+                <mxCell id="pg4_l2" value="[…] Bước xử lý" style="rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=9;" parent="1" vertex="1">
+                    <mxGeometry x="205" y="50" width="130" height="24" as="geometry"/>
+                </mxCell>
+                <mxCell id="pg4_l3" value="{…} Điểm quyết định" style="rhombus;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=9;" parent="1" vertex="1">
+                    <mxGeometry x="350" y="44" width="140" height="36" as="geometry"/>
+                </mxCell>
+                <mxCell id="pg4_l4" value="Khung nét đứt — luồng" style="rounded=0;dashed=1;strokeColor=#555555;fillColor=#f5f5f5;fontSize=9;" parent="1" vertex="1">
+                    <mxGeometry x="505" y="50" width="185" height="24" as="geometry"/>
+                </mxCell>
+                <!-- Start -->
+                <mxCell id="S5" value="Bắt đầu&#xa;tải tài liệu" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="560" y="110" width="220" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="B1" value="Loại tải&#xa;tài liệu?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="565" y="220" width="210" height="80" as="geometry"/>
+                </mxCell>
+                <!-- Luong A -->
+                <mxCell id="sg_bulk" value="Luồng A — Tải tài liệu hàng loạt (BR-250)" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;strokeColor=#555555;fillColor=#f5f5f5;verticalAlign=top;fontStyle=1;fontSize=11;align=center;" parent="1" vertex="1">
+                    <mxGeometry x="60" y="360" width="520" height="500" as="geometry"/>
+                </mxCell>
+                <mxCell id="BK1" value="Dispatcher chọn khu vực&#xa;tải hàng loạt trên TOSS&#xa;FUNC-246" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="120" y="410" width="400" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="BK2" value="Upload nhiều file&#xa;PDF / DOCX / ảnh / TXT&#xa;BR-249; FUNC-224" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="120" y="510" width="400" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="BK3" value="TOSS đọc quy ước tên file&#xa;tự động gắn vào đúng chuyến&#xa;FUNC-247&#xa;*(quy ước đặt tên cụ thể — xem OID KS-05)*" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="120" y="610" width="400" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="BK4" value="Tài liệu hiển thị&#xa;trên dashboard chuyến tương ứng&#xa;FUNC-332" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="120" y="720" width="400" height="70" as="geometry"/>
+                </mxCell>
+                <!-- Luong B -->
+                <mxCell id="sg_wx" value="Luồng B — Weather Multi-Flight (BR-236, BR-237)" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;strokeColor=#555555;fillColor=#f5f5f5;verticalAlign=top;fontStyle=1;fontSize=11;align=center;" parent="1" vertex="1">
+                    <mxGeometry x="760" y="360" width="580" height="700" as="geometry"/>
+                </mxCell>
+                <mxCell id="WX1" value="Dispatcher chọn khoảng&#xa;thời gian hiệu lực&#xa;từ giờ X đến giờ Y ~3 tiếng&#xa;FUNC-287" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="820" y="410" width="460" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="WX2" value="Upload file thời tiết&#xa;khu vực / đường bay&#xa;BR-236" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="820" y="520" width="460" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="WX3" value="TOSS tự gắn file&#xa;vào toàn bộ chuyến có ETD&#xa;nằm trong khoảng hiệu lực&#xa;FUNC-288" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="820" y="620" width="460" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="WX4" value="Hai khoảng hiệu lực&#xa;chồng nhau&#xa;cùng một chuyến?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="840" y="730" width="420" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="WX5" value="Chuyến nhận&#xa;cả hai file&#xa;FUNC-290" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="780" y="860" width="240" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="WX6" value="Gắn file theo khoảng&#xa;hiệu lực tương ứng" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="1060" y="860" width="240" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="WX7" value="Dispatcher quyết định&#xa;ẩn hoặc hiện tài liệu&#xa;trên MO Plus&#xa;BR-239; FUNC-291" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="870" y="960" width="340" height="80" as="geometry"/>
+                </mxCell>
+                <!-- End -->
+                <mxCell id="E5" value="Hoàn tất&#xa;tải tài liệu" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="560" y="1130" width="220" height="70" as="geometry"/>
+                </mxCell>
+                <!-- Edges -->
+                <mxCell id="p4e_s5_b1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="S5" target="B1" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="p4e_b1_bk1" value="Tải hàng loạt tài liệu chuyến" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="B1" target="BK1" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="480" y="260"/>
+                            <mxPoint x="320" y="260"/>
+                            <mxPoint x="320" y="410"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="p4e_b1_wx1" value="Weather Multi-Flight" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="B1" target="WX1" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="860" y="260"/>
+                            <mxPoint x="1050" y="260"/>
+                            <mxPoint x="1050" y="410"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="p4e_bk1_bk2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="BK1" target="BK2" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="p4e_bk2_bk3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="BK2" target="BK3" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="p4e_bk3_bk4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="BK3" target="BK4" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="p4e_bk4_e5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="BK4" target="E5" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="320" y="830"/>
+                            <mxPoint x="320" y="1165"/>
+                            <mxPoint x="560" y="1165"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="p4e_wx1_wx2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="WX1" target="WX2" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="p4e_wx2_wx3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="WX2" target="WX3" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="p4e_wx3_wx4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="WX3" target="WX4" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="p4e_wx4_wx5" value="Có" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="WX4" target="WX5" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="840" y="775"/>
+                            <mxPoint x="900" y="775"/>
+                            <mxPoint x="900" y="860"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="p4e_wx4_wx6" value="Không" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="WX4" target="WX6" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1260" y="775"/>
+                            <mxPoint x="1180" y="775"/>
+                            <mxPoint x="1180" y="860"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="p4e_wx5_wx7" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="WX5" target="WX7" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="900" y="960"/>
+                            <mxPoint x="870" y="1000"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="p4e_wx6_wx7" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="WX6" target="WX7" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1180" y="960"/>
+                            <mxPoint x="1210" y="1000"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="p4e_wx7_e5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="WX7" target="E5" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1040" y="1100"/>
+                            <mxPoint x="1040" y="1165"/>
+                            <mxPoint x="780" y="1165"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+    <diagram id="page5-bp012-state" name="BP-012 Vòng đời tài liệu">
+        <mxGraphModel dx="272" dy="632" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="1100" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="pg5_title" value="Sơ đồ To-Be — BP-012: Vòng đời tài liệu (Document Lifecycle) · BR-203, BR-208, BR-251" style="text;html=1;fontStyle=1;fontSize=13;align=left;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="12" width="1300" height="26" as="geometry"/>
+                </mxCell>
+                <!-- State nodes -->
+                <mxCell id="st_init" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#000000;strokeColor=#000000;" parent="1" vertex="1">
+                    <mxGeometry x="645" y="80" width="30" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="st_chua_co" value="Chưa có tài liệu" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontStyle=1;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="530" y="160" width="260" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="st_da_nhan" value="Đã nhận — chưa Dispatch Release" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="490" y="330" width="340" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="st_da_phat_hanh" value="Đã Dispatch Release" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="530" y="510" width="260" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="st_revision" value="Revision mới&#xa;(nội dung phiên bản cũ)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontStyle=1;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="160" y="510" width="280" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="st_pilot_confirm" value="Phi công đã Confirm Release" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="490" y="690" width="340" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="st_sau_ha_canh" value="Sau hạ cánh" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontStyle=1;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="530" y="870" width="260" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="st_tu_xoa" value="Đã tự xóa&#xa;(tài liệu ngoài)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontStyle=1;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="260" y="1020" width="240" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="st_luu_tru" value="Lưu trữ trong TOSS&#xa;(tài liệu nội bộ)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="800" y="1020" width="280" height="70" as="geometry"/>
+                </mxCell>
+                <!-- Transitions -->
+                <mxCell id="t_init" value="Chuyến được lên lịch" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="st_init" target="st_chua_co" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="t_ofp_auto" value="OFP nhận tự động từ Lido&#xa;(BR-201; FUNC-201)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="st_chua_co" target="st_da_nhan" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="440" y="195"/>
+                            <mxPoint x="380" y="195"/>
+                            <mxPoint x="380" y="365"/>
+                            <mxPoint x="490" y="365"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="t_manual" value="Dispatcher tải thủ công&#xa;(BR-249; FUNC-225)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="st_chua_co" target="st_da_nhan" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="870" y="195"/>
+                            <mxPoint x="940" y="195"/>
+                            <mxPoint x="940" y="365"/>
+                            <mxPoint x="830" y="365"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="t_dispatch" value="Dispatch Release&#xa;(BR-205; FUNC-253)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="st_da_nhan" target="st_da_phat_hanh" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="t_unrelease" value="Unrelease → chọn phiên bản cũ&#xa;→ sinh revision mới&#xa;(BR-208; FUNC-278)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="st_da_phat_hanh" target="st_revision" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="440" y="545"/>
+                            <mxPoint x="300" y="545"/>
+                            <mxPoint x="300" y="510"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="t_re_dispatch" value="Dispatch Release lại&#xa;(BR-210; FUNC-282)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="st_revision" target="st_da_phat_hanh" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="300" y="640"/>
+                            <mxPoint x="300" y="580"/>
+                            <mxPoint x="530" y="580"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="t_captain_release" value="Captain&#39;s Release / Confirm&#xa;(BR-206, BR-214)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="st_da_phat_hanh" target="st_pilot_confirm" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="t_notoc_revision" value="Revision NOTOC kể cả khi&#xa;phi công đã confirm (BR-230)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=1;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="st_pilot_confirm" target="st_revision" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="400" y="725"/>
+                            <mxPoint x="300" y="725"/>
+                            <mxPoint x="300" y="580"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="t_ha_canh" value="Chuyến hạ cánh — nhận IN/ARR" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="st_pilot_confirm" target="st_sau_ha_canh" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="t_tu_xoa_tran" value="Tài liệu từ hệ thống ngoài&#xa;lưu tối đa 3 ngày&#xa;sau đó tự xóa (BR-251)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="st_sau_ha_canh" target="st_tu_xoa" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="450" y="980"/>
+                            <mxPoint x="380" y="980"/>
+                            <mxPoint x="380" y="1020"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="t_luu_tru_tran" value="Tài liệu do TOSS tự sinh&#xa;lưu trong hệ thống (BR-251)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=1;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="st_sau_ha_canh" target="st_luu_tru" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="870" y="980"/>
+                            <mxPoint x="940" y="980"/>
+                            <mxPoint x="940" y="1020"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <!-- Note -->
+                <mxCell id="pg5_note" value="Ghi chú: Thời gian lưu theo từng loại tài liệu có thể cấu hình — OID KS-49" style="text;html=1;fontSize=10;align=left;verticalAlign=top;strokeColor=#6c8ebf;fillColor=#dae8fc;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="1060" width="600" height="30" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+    <diagram id="page6-bp013-loadbalance" name="BP-013 Load Balance 4 bước">
+        <mxGraphModel dx="272" dy="632" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1500" pageHeight="2800" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="pg6_title" value="Sơ đồ To-Be — BP-013: Load Balance 4 bước · BR-224…BR-228" style="text;html=1;fontStyle=1;fontSize=13;align=left;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="12" width="1300" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="pg6_leg" value="" style="rounded=0;dashed=1;strokeColor=#666666;fillColor=#fafafa;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="44" width="640" height="36" as="geometry"/>
+                </mxCell>
+                <mxCell id="pg6_l1" value="((…)) Bắt đầu / Kết thúc" style="ellipse;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=9;" parent="1" vertex="1">
+                    <mxGeometry x="50" y="50" width="140" height="24" as="geometry"/>
+                </mxCell>
+                <mxCell id="pg6_l2" value="[…] Bước xử lý" style="rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=9;" parent="1" vertex="1">
+                    <mxGeometry x="205" y="50" width="130" height="24" as="geometry"/>
+                </mxCell>
+                <mxCell id="pg6_l3" value="{…} Điểm quyết định" style="rhombus;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=9;" parent="1" vertex="1">
+                    <mxGeometry x="350" y="44" width="140" height="36" as="geometry"/>
+                </mxCell>
+                <mxCell id="pg6_l4" value="Khung nét đứt — bước" style="rounded=0;dashed=1;strokeColor=#555555;fillColor=#f5f5f5;fontSize=9;" parent="1" vertex="1">
+                    <mxGeometry x="505" y="50" width="155" height="24" as="geometry"/>
+                </mxCell>
+                <!-- Start -->
+                <mxCell id="S6" value="Bắt đầu&#xa;Load Balance" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="580" y="110" width="220" height="70" as="geometry"/>
+                </mxCell>
+                <!-- Buoc 1 -->
+                <mxCell id="sg_b1" value="Bước 1 — CLC nhập trọng tải ước tính" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;strokeColor=#555555;fillColor=#f5f5f5;verticalAlign=top;fontStyle=1;fontSize=12;align=center;" parent="1" vertex="1">
+                    <mxGeometry x="200" y="240" width="980" height="500" as="geometry"/>
+                </mxCell>
+                <mxCell id="LB1" value="CLC nhập số liệu tải trọng ước tính&#xa;Hành khách / Hành lý / Hàng hóa / ULD&#xa;FUNC-262 265 266" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="430" y="300" width="520" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="LB2" value="TOSS tính Payload + ZFW ước tính&#xa;FUNC-268 269" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="430" y="400" width="520" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="LB3" value="TOSS đối soát ZFW&#xa;với OFP theo ma trận ngưỡng&#xa;loại tàu × dải giờ bay × ngưỡng&#xa;BR-225; FUNC-272" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="430" y="500" width="520" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="LB4" value="Delta ZFW&#xa;vượt ngưỡng?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="540" y="610" width="300" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="LB5" value="Sinh cảnh báo&#xa;cho Dispatcher và CLC&#xa;FUNC-273" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="960" y="610" width="180" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="LB6" value="Ghi nhận lịch sử&#xa;cập nhật tải trọng&#xa;FUNC-275" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="430" y="610" width="280" height="70" as="geometry"/>
+                </mxCell>
+                <!-- Buoc 2 -->
+                <mxCell id="sg_b2" value="Bước 2 — Dispatcher lập OFP trên Lido" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;strokeColor=#555555;fillColor=#f5f5f5;verticalAlign=top;fontStyle=1;fontSize=12;align=center;" parent="1" vertex="1">
+                    <mxGeometry x="200" y="830" width="980" height="310" as="geometry"/>
+                </mxCell>
+                <mxCell id="LB7" value="Dispatcher lập OFP&#xa;trên Lido — nhập dầu mỡ&#xa;Flight Level Climb/Cruise/Descend&#xa;FUNC-293 294" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="430" y="890" width="520" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="LB8" value="Lido sinh OFP&#xa;và đẩy sang TOSS qua adapter&#xa;FUNC-201" style="shape=process;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="430" y="1000" width="520" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="LB9" value="TOSS gán phiên bản&#xa;bóc tách và lưu trường dữ liệu&#xa;BR-202 203" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="430" y="1100" width="520" height="70" as="geometry"/>
+                </mxCell>
+                <!-- Buoc 3 -->
+                <mxCell id="sg_b3" value="Bước 3 — OFP lên MO Plus, phi công Fly Release" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;strokeColor=#555555;fillColor=#f5f5f5;verticalAlign=top;fontStyle=1;fontSize=12;align=center;" parent="1" vertex="1">
+                    <mxGeometry x="200" y="1260" width="980" height="320" as="geometry"/>
+                </mxCell>
+                <mxCell id="LB10" value="Dispatcher thực hiện&#xa;Dispatch Release trên TOSS&#xa;xem BP-006" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="430" y="1320" width="520" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="LB11" value="TOSS đồng bộ&#xa;trạng thái DR sang MO Plus&#xa;FUNC-256" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="430" y="1420" width="520" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="LB12" value="Phi công xem OFP&#xa;và thực hiện Captain&#39;s Release&#xa;trên MO Plus" style="shape=process;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="430" y="1520" width="520" height="70" as="geometry"/>
+                </mxCell>
+                <!-- Buoc 4 -->
+                <mxCell id="sg_b4" value="Bước 4 — Cân bằng cuối và nạp dầu" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;strokeColor=#555555;fillColor=#f5f5f5;verticalAlign=top;fontStyle=1;fontSize=12;align=center;" parent="1" vertex="1">
+                    <mxGeometry x="100" y="1700" width="1280" height="500" as="geometry"/>
+                </mxCell>
+                <mxCell id="LB13" value="Song song&#xa;hai nhánh" style="rhombus;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="570" y="1760" width="240" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="LB14" value="Đại diện sân bay lập&#xa;phiếu cân bằng Load Sheet&#xa;PSS/DCS → TOSS tích hợp&#xa;BR-224; FUNC-228" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="200" y="1890" width="380" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="LB15" value="Điều phối nạp dầu&#xa;từ Fuel Order trên OFP&#xa;FUNC-211" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="800" y="1890" width="380" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="LB16" value="TOSS đối soát&#xa;ZFW thực tế vs OFP cuối&#xa;CLC nhập số cuối — TOSS lấy số nhập cuối&#xa;BR-225" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="480" y="2050" width="420" height="80" as="geometry"/>
+                </mxCell>
+                <!-- End -->
+                <mxCell id="E6" value="Hoàn tất&#xa;Load Balance" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="580" y="2260" width="220" height="70" as="geometry"/>
+                </mxCell>
+                <!-- Edges -->
+                <mxCell id="p6e_s6_lb1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="S6" target="LB1" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="p6e_lb1_lb2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="LB1" target="LB2" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="p6e_lb2_lb3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="LB2" target="LB3" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="p6e_lb3_lb4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="LB3" target="LB4" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="p6e_lb4_lb5" value="Có" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="LB4" target="LB5" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="920" y="655"/>
+                            <mxPoint x="960" y="655"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <!-- LB5 back-loop to LB1 via right margin -->
+                <mxCell id="p6e_lb5_lb1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="LB5" target="LB1" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1200" y="645"/>
+                            <mxPoint x="1200" y="335"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="p6e_lb4_lb6" value="Không" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="LB4" target="LB6" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="460" y="655"/>
+                            <mxPoint x="710" y="655"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="p6e_lb6_lb7" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="LB6" target="LB7" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="p6e_lb7_lb8" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="LB7" target="LB8" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="p6e_lb8_lb9" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="LB8" target="LB9" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="p6e_lb9_lb10" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="LB9" target="LB10" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="p6e_lb10_lb11" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="LB10" target="LB11" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="p6e_lb11_lb12" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="LB11" target="LB12" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="p6e_lb12_lb13" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="LB12" target="LB13" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="p6e_lb13_lb14" value="4a — Phiếu cân bằng" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="LB13" target="LB14" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="480" y="1800"/>
+                            <mxPoint x="390" y="1800"/>
+                            <mxPoint x="390" y="1890"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="p6e_lb13_lb15" value="4b — Fuel Order" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="LB13" target="LB15" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="900" y="1800"/>
+                            <mxPoint x="990" y="1800"/>
+                            <mxPoint x="990" y="1890"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="p6e_lb14_lb16" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="LB14" target="LB16" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="390" y="2090"/>
+                            <mxPoint x="480" y="2090"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="p6e_lb15_lb16" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="LB15" target="LB16" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="990" y="2090"/>
+                            <mxPoint x="900" y="2090"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="p6e_lb16_e6" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="LB16" target="E6" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+    <diagram id="page7-bp014-notoc" name="BP-014 NOTOC số hóa">
+        <mxGraphModel dx="272" dy="632" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1500" pageHeight="2200" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="pg7_title" value="Sơ đồ To-Be — BP-014: NOTOC số hóa · BR-229…BR-234" style="text;html=1;fontStyle=1;fontSize=13;align=left;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="12" width="1300" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="pg7_leg" value="" style="rounded=0;dashed=1;strokeColor=#666666;fillColor=#fafafa;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="44" width="640" height="36" as="geometry"/>
+                </mxCell>
+                <mxCell id="pg7_l1" value="((…)) Bắt đầu / Kết thúc" style="ellipse;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=9;" parent="1" vertex="1">
+                    <mxGeometry x="50" y="50" width="140" height="24" as="geometry"/>
+                </mxCell>
+                <mxCell id="pg7_l2" value="[…] Bước xử lý" style="rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=9;" parent="1" vertex="1">
+                    <mxGeometry x="205" y="50" width="130" height="24" as="geometry"/>
+                </mxCell>
+                <mxCell id="pg7_l3" value="{…} Điểm quyết định" style="rhombus;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=9;" parent="1" vertex="1">
+                    <mxGeometry x="350" y="44" width="140" height="36" as="geometry"/>
+                </mxCell>
+                <mxCell id="pg7_l4" value="Khung nét đứt — luồng" style="rounded=0;dashed=1;strokeColor=#555555;fillColor=#f5f5f5;fontSize=9;" parent="1" vertex="1">
+                    <mxGeometry x="505" y="50" width="155" height="24" as="geometry"/>
+                </mxCell>
+                <!-- Start -->
+                <mxCell id="S7" value="Bắt đầu&#xa;NOTOC" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="600" y="110" width="220" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="N1" value="Nguồn dữ liệu&#xa;NOTOC?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="600" y="220" width="220" height="80" as="geometry"/>
+                </mxCell>
+                <!-- Luong A Cita -->
+                <mxCell id="sg_cita" value="Luồng A — Từ điện FM qua Cita (BR-229)" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;strokeColor=#555555;fillColor=#f5f5f5;verticalAlign=top;fontStyle=1;fontSize=11;align=center;" parent="1" vertex="1">
+                    <mxGeometry x="60" y="370" width="500" height="240" as="geometry"/>
+                </mxCell>
+                <mxCell id="NC1" value="Cita nhận điện FM&#xa;từ nguồn hàng hóa" style="shape=process;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="120" y="420" width="380" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="NC2" value="TOSS bóc tách điện FM&#xa;tự động đưa vào form NOTOC&#xa;BR-229; FUNC-...cita" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="120" y="510" width="380" height="70" as="geometry"/>
+                </mxCell>
+                <!-- Luong B Manual -->
+                <mxCell id="sg_manual" value="Luồng B — Nhập tay (BR-229)" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;strokeColor=#555555;fillColor=#f5f5f5;verticalAlign=top;fontStyle=1;fontSize=11;align=center;" parent="1" vertex="1">
+                    <mxGeometry x="860" y="370" width="580" height="240" as="geometry"/>
+                </mxCell>
+                <mxCell id="NM1" value="PVHH / KTKTB nhập tay&#xa;dữ liệu từ tờ khai khách hàng&#xa;và thông tin chất xếp thực tế từ kho&#xa;BR-229&#xa;Không lấy từ Go Support hay hệ thống khác" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="920" y="420" width="460" height="100" as="geometry"/>
+                </mxCell>
+                <!-- Merge -->
+                <mxCell id="N2" value="Tạo form NOTOC trên TOSS" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="530" y="680" width="360" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="N3" value="SGN — có 2 loại&#xa;hàng nội địa + quốc tế transit?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="545" y="790" width="330" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="N4" value="Hoàn thiện&#xa;một form NOTOC" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="200" y="840" width="260" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="N5" value="Điền form thứ nhất&#xa;hàng nội địa&#xa;BR-233" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="970" y="790" width="300" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="N6" value="Điền form thứ hai&#xa;hàng quốc tế transit&#xa;Tùy chọn — không bắt buộc sân bay khác&#xa;BR-233&#xa;*(phương án chính thức part1/part2 — chưa chốt&#xa;VTIT làm việc thêm với ATS)*" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="940" y="900" width="360" height="110" as="geometry"/>
+                </mxCell>
+                <mxCell id="N7" value="TOSS gộp hai form&#xa;sinh một file NOTOC hai trang&#xa;BR-233" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="960" y="1050" width="320" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="N8" value="Đẩy PDF NOTOC&#xa;lên MO Plus — submit cho phi công&#xa;FUNC-...submit" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="530" y="1200" width="360" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="N9" value="Phi công xem NOTOC&#xa;và Confirm / Reject&#xa;trên MO Plus" style="shape=process;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="530" y="1310" width="360" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="N10" value="Phản hồi của phi công?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="555" y="1420" width="310" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="N11" value="Hiển thị Reject toàn phần&#xa;màu đỏ — ghi lịch sử&#xa;BR-232" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="100" y="1430" width="300" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="N12" value="Hiển thị Reject một phần&#xa;màu cam — ghi lịch sử&#xa;chi tiết số/vị trí chất xếp&#xa;BR-232" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="530" y="1560" width="360" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="N13" value="NOTOC trạng thái&#xa;Confirm OK" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="1050" y="1430" width="280" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="N14" value="Cần revision NOTOC&#xa;kể cả phi công&#xa;đã Confirm OK?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="555" y="1710" width="310" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="N15" value="Bắt đầu lại quy trình&#xa;tạo revision mới&#xa;không sửa file cũ — phải tạo mới&#xa;BR-231" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="100" y="1730" width="320" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="E7" value="NOTOC&#xa;hoàn tất" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="1060" y="1725" width="200" height="60" as="geometry"/>
+                </mxCell>
+                <!-- Edges -->
+                <mxCell id="p7e_s7_n1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="S7" target="N1" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="p7e_n1_nc1" value="Sân bay có điện NTM qua Cita" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="N1" target="NC1" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="510" y="260"/>
+                            <mxPoint x="310" y="260"/>
+                            <mxPoint x="310" y="420"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="p7e_n1_nm1" value="Nhập tay từ tờ khai giấy" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="N1" target="NM1" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="910" y="260"/>
+                            <mxPoint x="1150" y="260"/>
+                            <mxPoint x="1150" y="420"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="p7e_nc1_nc2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="NC1" target="NC2" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="p7e_nc2_n2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="NC2" target="N2" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="310" y="660"/>
+                            <mxPoint x="310" y="710"/>
+                            <mxPoint x="530" y="710"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="p7e_nm1_n2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="NM1" target="N2" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1150" y="660"/>
+                            <mxPoint x="1150" y="710"/>
+                            <mxPoint x="890" y="710"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="p7e_n2_n3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="N2" target="N3" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="p7e_n3_n4" value="Không — một NOTOC" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="N3" target="N4" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="460" y="835"/>
+                            <mxPoint x="330" y="835"/>
+                            <mxPoint x="330" y="840"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="p7e_n3_n5" value="Có — tại Tân Sơn Nhất" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="N3" target="N5" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="960" y="835"/>
+                            <mxPoint x="1120" y="835"/>
+                            <mxPoint x="1120" y="790"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="p7e_n5_n6" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="N5" target="N6" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="p7e_n6_n7" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="N6" target="N7" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="p7e_n7_n4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="N7" target="N4" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="870" y="1085"/>
+                            <mxPoint x="330" y="1085"/>
+                            <mxPoint x="330" y="870"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="p7e_n4_n8" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="N4" target="N8" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="330" y="1150"/>
+                            <mxPoint x="330" y="1235"/>
+                            <mxPoint x="530" y="1235"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="p7e_n8_n9" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="N8" target="N9" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="p7e_n9_n10" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="N9" target="N10" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="p7e_n10_n11" value="Reject toàn phần màu đỏ" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="N10" target="N11" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="460" y="1460"/>
+                            <mxPoint x="250" y="1460"/>
+                            <mxPoint x="250" y="1430"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="p7e_n10_n12" value="Reject một phần màu cam" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="N10" target="N12" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="p7e_n10_n13" value="Confirm OK" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="N10" target="N13" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="960" y="1460"/>
+                            <mxPoint x="1190" y="1460"/>
+                            <mxPoint x="1190" y="1430"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="p7e_n11_n14" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="N11" target="N14" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="250" y="1660"/>
+                            <mxPoint x="250" y="1755"/>
+                            <mxPoint x="555" y="1755"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="p7e_n12_n14" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="N12" target="N14" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="p7e_n13_n14" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="N13" target="N14" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1190" y="1570"/>
+                            <mxPoint x="1190" y="1755"/>
+                            <mxPoint x="865" y="1755"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="p7e_n14_n15" value="Có — BR-230 mở quy tắc" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="N14" target="N15" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="460" y="1755"/>
+                            <mxPoint x="260" y="1755"/>
+                            <mxPoint x="260" y="1730"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <!-- N15 back-loop to N2 via left margin -->
+                <mxCell id="p7e_n15_n2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="N15" target="N2" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="40" y="1770"/>
+                            <mxPoint x="40" y="710"/>
+                            <mxPoint x="530" y="710"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="p7e_n14_e7" value="Không cần revision" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="N14" target="E7" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="960" y="1755"/>
+                            <mxPoint x="1160" y="1755"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+    <diagram id="page8-bp015-backup" name="BP-015 Backup Lido lỗi">
+        <mxGraphModel dx="272" dy="632" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1050" pageHeight="1500" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="pg8_title" value="Sơ đồ To-Be — BP-015: Backup khi Lido lỗi · BR-218, BR-249, BR-250" style="text;html=1;fontStyle=1;fontSize=13;align=left;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="12" width="960" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="pg8_leg" value="" style="rounded=0;dashed=1;strokeColor=#666666;fillColor=#fafafa;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="44" width="640" height="36" as="geometry"/>
+                </mxCell>
+                <mxCell id="pg8_l1" value="((…)) Bắt đầu / Kết thúc" style="ellipse;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=9;" parent="1" vertex="1">
+                    <mxGeometry x="50" y="50" width="140" height="24" as="geometry"/>
+                </mxCell>
+                <mxCell id="pg8_l2" value="[…] Bước xử lý" style="rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=9;" parent="1" vertex="1">
+                    <mxGeometry x="205" y="50" width="130" height="24" as="geometry"/>
+                </mxCell>
+                <mxCell id="pg8_l3" value="{…} Điểm quyết định" style="rhombus;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=9;" parent="1" vertex="1">
+                    <mxGeometry x="350" y="44" width="140" height="36" as="geometry"/>
+                </mxCell>
+                <!-- Nodes -->
+                <mxCell id="S8" value="Lido&#xa;không sinh được OFP" style="ellipse;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontStyle=1;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="360" y="110" width="280" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="BU1" value="TOSS phát hiện&#xa;adapter Lido lỗi?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="355" y="230" width="290" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="BU2" value="TOSS sinh cảnh báo&#xa;adapter / parse / đẩy lỗi&#xa;FUNC-329 330 331&#xa;BR-231" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="295" y="380" width="410" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="BU3" value="Dispatcher tìm chuyến tương tự&#xa;trên TOSS — cùng tuyến đường / loại tàu&#xa;từ ngày trước làm template&#xa;FUNC-283" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="295" y="510" width="410" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="BU4" value="Download gói raw OFP&#xa;của chuyến tương tự&#xa;3 định dạng: PDF + TXT + HTML&#xa;BR-218; FUNC-283" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="295" y="630" width="410" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="BU5" value="Dispatcher sửa thủ công&#xa;nội dung cần cập nhật&#xa;giờ / dầu mỡ / ADC / Brady / Flight Level&#xa;Giữ nguyên: số hiệu tàu + đường bay&#xa;BR-218; FUNC-284&#xa;*(viết tắt Brady / ADC — xem OID SME-28)*" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="295" y="760" width="410" height="110" as="geometry"/>
+                </mxCell>
+                <mxCell id="BU6" value="Dispatcher upload lại&#xa;lên TOSS&#xa;FUNC-284" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="295" y="920" width="410" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="BU7" value="TOSS gán phiên bản&#xa;theo thứ tự nhận&#xa;như bản nhận từ adapter Lido&#xa;FUNC-286" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="295" y="1030" width="410" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="BU8" value="TOSS đẩy đủ 3 định dạng lên MO Plus&#xa;PDF → hiển thị&#xa;TXT → bóc tách NOTAM/giờ&#xa;HTML → bóc tách group/section&#xa;BR-218; FUNC-285" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="295" y="1150" width="410" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="BU9" value="Luồng Release/Unrelease&#xa;tiếp tục bình thường&#xa;trên phiên bản backup&#xa;FUNC-286" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="295" y="1300" width="410" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="E8" value="Hoàn tất&#xa;Backup OFP" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="360" y="1420" width="280" height="60" as="geometry"/>
+                </mxCell>
+                <!-- Edges -->
+                <mxCell id="p8e_s8_bu1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="S8" target="BU1" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="p8e_bu1_bu2_yes" value="Có — cảnh báo" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="BU1" target="BU2" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="265" y="275"/>
+                            <mxPoint x="220" y="275"/>
+                            <mxPoint x="220" y="420"/>
+                            <mxPoint x="295" y="420"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="p8e_bu1_bu2_manual" value="Dispatcher phát hiện thủ công" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="BU1" target="BU2" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="730" y="275"/>
+                            <mxPoint x="780" y="275"/>
+                            <mxPoint x="780" y="420"/>
+                            <mxPoint x="705" y="420"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="p8e_bu2_bu3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="BU2" target="BU3" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="p8e_bu3_bu4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="BU3" target="BU4" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="p8e_bu4_bu5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="BU4" target="BU5" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="p8e_bu5_bu6" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="BU5" target="BU6" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="p8e_bu6_bu7" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="BU6" target="BU7" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="p8e_bu7_bu8" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="BU7" target="BU8" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="p8e_bu8_bu9" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="BU8" target="BU9" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="p8e_bu9_e8" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=arc;jumpSize=6;" parent="1" source="BU9" target="E8" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

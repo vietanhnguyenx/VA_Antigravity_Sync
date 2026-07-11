@@ -1,0 +1,190 @@
+
+=== MODULE: System Admin ===
+  [Chức năng (Col C)]: User
+    - Feature (Col D): Danh sách người dùng
+    - Feature (Col D): Job đồng bộ danh sách người dùng LDAP
+    - Feature (Col D): Kết xuất danh sách
+    - Feature (Col D): Thêm người dùng Local
+    - Feature (Col D): Thêm người dùng LDap
+    - Feature (Col D): Xem chi tiết thông tin người dùng
+    - Feature (Col D): Xem chi tiết phân quyền người dùng
+    - Feature (Col D): Sửa người dùng LDap
+    - Feature (Col D): Sửa người dùng Local
+    - Feature (Col D): Thêm role cho người dùng
+    - Feature (Col D): Bật/tắt trạng thái người dùng
+    - Feature (Col D): Xóa người dùng
+    - Feature (Col D): Lấy lại mật khẩu người dùng Local
+    - Feature (Col D): Xem Lịch sử cập nhật người dùng (Update)
+    - Feature (Col D): Xem Lịch sử truy cập người dùng (Access)
+    - Feature (Col D): Phân quyền
+  [Chức năng (Col C)]: Roles
+    - Feature (Col D): Danh sách vai trò
+    - Feature (Col D): Thêm vai trò
+    - Feature (Col D): Thêm quyền chức năng cho vai trò
+    - Feature (Col D): Xem vai trò
+    - Feature (Col D): Xem vai trò/ Tab user list
+    - Feature (Col D): Sửa vai trò
+    - Feature (Col D): Xóa vai trò
+    - Feature (Col D): Khôi phục vai trò
+    - Feature (Col D): Bật/tắt hoạt động vai trò
+    - Feature (Col D): Phân quyền
+  [Chức năng (Col C)]: User Group
+    - Feature (Col D): Danh sách nhóm người dùng
+    - Feature (Col D): Thêm mới nhóm người dùng
+    - Feature (Col D): Thêm mới quyền cho nhóm người dùng
+    - Feature (Col D): Hiển thị danh sách quyền
+    - Feature (Col D): Sửa nhóm người dùng
+    - Feature (Col D): Hiển thị danh sách quyền hệ thống
+    - Feature (Col D): Xóa nhóm người dùng
+    - Feature (Col D): Xem chi tiết nhóm người dùng
+    - Feature (Col D): Xem chi tiết danh sách người dùng cho nhóm người dùng
+    - Feature (Col D): Xem chi tiết quyền của nhóm người dùng
+    - Feature (Col D): Kết xuất danh sách
+    - Feature (Col D): Xem lịch sử cập nhật nhóm người dùng
+    - Feature (Col D): Phân quyền
+
+=== MODULE: Data Maintenance ===
+  [Chức năng (Col C)]: Country Category
+    - Feature (Col D): Xem danh sách quốc gia
+    - Feature (Col D): Xem chi tiết quốc gia
+    - Feature (Col D): Tìm kiếm quốc gia
+    - Feature (Col D): Tạo mới quốc gia
+    - Feature (Col D): Cập nhật quốc gia
+    - Feature (Col D): Xóa  quốc gia
+    - Feature (Col D): Kết xuất  quốc gia
+    - Feature (Col D): Phân quyền
+  [Chức năng (Col C)]: FIR Category
+    - Feature (Col D): Danh sách FIR
+    - Feature (Col D): Tìm kiếm FIR
+    - Feature (Col D): Kết xuất FIR
+    - Feature (Col D): Thêm mới FIR
+    - Feature (Col D): Sửa FIR
+    - Feature (Col D): Xóa FIR
+    - Feature (Col D): Xem chi tiết FIR
+    - Feature (Col D): Phân quyền
+  [Chức năng (Col C)]: Carrier
+    - Feature (Col D): Danh sách carrier
+    - Feature (Col D): Tìm kiếm carrier
+    - Feature (Col D): Thêm mới carrier
+    - Feature (Col D): Sửa carrier
+    - Feature (Col D): Xóa carrier
+    - Feature (Col D): Xem chi tiết carrier
+    - Feature (Col D): Xem lịch sử
+    - Feature (Col D): Phân quyền
+  [Chức năng (Col C)]: Pilot Category
+    - Feature (Col D): Danh sách phi công
+    - Feature (Col D): Xuất danh sách phi công
+    - Feature (Col D): Xem chi tiết phi công
+    - Feature (Col D): Sửa thông tin phi công
+    - Feature (Col D): API Đồng bộ danh sách phi công AVES
+    - Feature (Col D): API Đồng bộ thông tin phi công AVES
+    - Feature (Col D): API lịch bay phi công
+    - Feature (Col D): API Kiểm tra trạng thái đồng bộ dữ liệu AVES
+    - Feature (Col D): API Tra cứu lịch sử đồng bộ dữ liệu AVES
+    - Feature (Col D): Xem thông tin Flight Itineraries phi công
+    - Feature (Col D): Xem lịch sử phi công
+    - Feature (Col D): Phân quyền
+  [Chức năng (Col C)]: Cabin crew Category
+    - Feature (Col D): chưa có history
+    - Feature (Col D): Danh sách tiếp viên
+    - Feature (Col D): Xuất danh sách tiếp viên
+    - Feature (Col D): Tìm kiếm tiếp viên
+    - Feature (Col D): Xem chi tiết tiếp viên
+    - Feature (Col D): Sửa thông tin tiếp viên
+    - Feature (Col D): API Đồng bộ danh sách TV AVES
+    - Feature (Col D): API Đồng bộ thông tin TV AVES
+    - Feature (Col D): API lịch bay TV
+    - Feature (Col D): API Kiểm tra trạng thái đồng bộ dữ liệu AVES
+    - Feature (Col D): API Tra cứu lịch sử đồng bộ dữ liệu AVES
+    - Feature (Col D): Xem thông tin Flight Itineraries tiếp viên
+    - Feature (Col D): Xem lịch sử tiếp viên
+    - Feature (Col D): Phân quyền
+  [Chức năng (Col C)]: ULD Category(Type)
+    - Feature (Col D): Xem danh sách loại ULD
+    - Feature (Col D): Thêm mới loại ULD
+    - Feature (Col D): Sửa loại ULD
+    - Feature (Col D): Xem chi tiết loại ULD
+    - Feature (Col D): Tìm kiếm loại ULD
+    - Feature (Col D): Kết xuất loại ULD
+    - Feature (Col D): Xoá loại ULD
+    - Feature (Col D): Phân quyền
+  [Chức năng (Col C)]: ULD
+    - Feature (Col D): Xem danh sách ULD
+    - Feature (Col D): Thêm mới ULD
+    - Feature (Col D): Sửa ULD
+    - Feature (Col D): Xem chi tiết  ULD
+    - Feature (Col D): Tìm kiếm ULD
+    - Feature (Col D): Kết xuất
+    - Feature (Col D): Xoá ULD
+    - Feature (Col D): Phân quyền
+  [Chức năng (Col C)]: Flight routes
+    - Feature (Col D): Xem danh sách
+    - Feature (Col D): Tìm kiếm
+    - Feature (Col D): Thêm mới
+    - Feature (Col D): Sửa
+    - Feature (Col D): Xóa
+    - Feature (Col D): Phân quyền
+  [Chức năng (Col C)]: AC Subtype
+    - Feature (Col D): Xem danh sách
+    - Feature (Col D): Tìm kiếm
+    - Feature (Col D): Thêm mới
+    - Feature (Col D): Sửa
+    - Feature (Col D): Xóa
+    - Feature (Col D): Export
+    - Feature (Col D): Phân quyền
+  [Chức năng (Col C)]: Flight Fleet
+    - Feature (Col D): Danh sách
+    - Feature (Col D): Thêm đội bay
+    - Feature (Col D): Sửa đội bay
+    - Feature (Col D): Xóa đội bay
+    - Feature (Col D): Xem chi tiết đội bay
+    - Feature (Col D): Xem lich sử đội bay
+    - Feature (Col D): Thêm tàu bay
+    - Feature (Col D): Xóa tàu bay
+
+=== MODULE: Login ===
+  [Chức năng (Col C)]: Login
+    - Feature (Col D): Chọn ngôn ngữ
+    - Feature (Col D): Thông tin user đăng nhập
+    - Feature (Col D): View Thông tin user
+    - Feature (Col D): Logout
+    - Feature (Col D): Thay đổi pass
+    - Feature (Col D): Background hệ thống "FIMS"
+    - Feature (Col D): Chọn luồng đăng nhập
+    - Feature (Col D): Chỉ nhập Local User (username/pass)
+    - Feature (Col D): Đăng nhập tk LDAP
+    - Feature (Col D): Đăng nhập tk VIAGS
+    - Feature (Col D): Đăng nhập tk Vasco
+    - Feature (Col D): Ghi log đăng nhập thành công/thất bại
+    - Feature (Col D): Xử lý mã hóa, token, session
+    - Feature (Col D): Xử lý captcha  khi nhập sai MK quá 5 lần
+    - Feature (Col D): Xử lý khóa tài khoản tạm thời khi sai pass quá 10 lần
+    - Feature (Col D): Xử lý "Ghi nhớ đăng nhập" (mã hóa & lưu token dài hạn, an toàn)
+    - Feature (Col D): Quên thông tin đăng nhập
+
+=== MODULE: Home ===
+  [Chức năng (Col C)]: Chọn phân hệ
+    - Feature (Col D): Chọn phân hệ Systerm Admin
+    - Feature (Col D): Chọn phân hệ Data Maintenance
+    - Feature (Col D): Chọn phân hệ Data Source Monitoring
+    - Feature (Col D): Chọn phân hệ TOSS
+
+=== MODULE: Data Maintenance ===
+  [Chức năng (Col C)]: Quản lý tàu bay
+    - Feature (Col D): Xem danh sách tàu bay
+    - Feature (Col D): Xem chi tiết tàu bay
+    - Feature (Col D): Tìm kiếm tàu bay
+    - Feature (Col D): Làm mới danh sách tàu bay
+    - Feature (Col D): Xuất danh sách tàu bay
+    - Feature (Col D): Chỉnh sửa tab General Information
+    - Feature (Col D): Chỉnh sửa Technical Parameters -  tab Aircraft Configuration
+    - Feature (Col D): Chỉnh sửa Cabin Configuration -  tab Aircraft Configuration
+    - Feature (Col D): Chỉnh sửa ACARS Fuel Limit & Fuel Multiplier -  tab Aircraft Configuration
+    - Feature (Col D): Thêm mới  ACARS Fuel Limit & Fuel Multiplier -  tab Aircraft Configuration
+    - Feature (Col D): Xóa ACARS Fuel Limit & Fuel Multiplier -  tab Aircraft Configuration
+    - Feature (Col D): Chỉnh sửa tab Group Attributes
+    - Feature (Col D): Xem lịch sử thay đổi
+    - Feature (Col D): Tìm kiếm lịch sử thay đổi
+    - Feature (Col D): Xuất danh sách lịch sử thay đổi
+    - Feature (Col D): API đồng bộ danh sách tàu bay từ Netline ops++
+    - Feature (Col D): Phân quyền

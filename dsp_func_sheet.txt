@@ -1,0 +1,30 @@
+R001 | A:Menu bar | B: | C: | D:Header | E: | F: | G:
+R002 | A: | B: | C:FLT NO | D:REG | E:DEP | F:ARR | G:ETD
+R004 | A:Flight monitoring | B:--> | C:Bảng danh sách chuyến bay | D: | E: | F: | G:
+R005 | A:Upload common documents | B: | C:REG | D:FLTNO | E:DEP | F:ARR | G:Date
+R006 | A: | B: | C: | D: | E: | F: | G:
+R007 | A: | B:Dữ liệu mẫu | C:AZYX (không có VN) (VD: A320 ko có VN)
+Tàu XU giữ nguyên  | D:Đầy đủ(Bê nguyên từ netline) | E: | F: | G:dd
+R008 | A:Các cảnh báo sẽ được phân màu theo rules đã thống nhất và khi hover chuột vào sẽ hiển thị tool tips chi tiết của cảnh báo theo từng ô, Khi bấm vào chi tiết chuyến bay để xem full. | B:Color | C:( | D:- Surfix D,Z để vàng (chuyến bay có đuôi D hoặc Z)
+- Mất D, Z Báo đỏ
+- Ops++ hoặc netline đổi status ARR Hoặc có ACARS IN thì back về thường (không màu)
+- Thường là các trường hợp còn lại
+ | E: | F:Chuyến Divert
+Vàng - Khi thay đổi 
+(ARR kế hoạch và thực tế khác nhau trong Ops++)
+??? | G:Theo màu của cột Flight Num
+R009 | A: | B:Hover details | C:Reg cũ --> Reg mới
+Giờ đổi trên netline 
+(Lấy lần thay đổi gần nhất) | D:- | E:- | F:Thông tin ARR Divert và giờ thực tế
+
+ARR kế hoạch -> ARR thực tế  | G:
+R010 | A: | B:Details | C:Lịch sử đổi tàu: Các mốc thời gian và tàu tương ứng | D:Lịch sử thay đổi số hiệu chuyến bay | E: | F: | G:
+R012 | A: | B: | C: | D:Phân quyền theo carrier | E: | F: | G:
+R025 | A:Bấm vào details sẽ nhảy sang tab mới chi tiết chuyến bay, bấm ở ô nào thì sẽ hiển thị tab tương ứng trong tab đó. | B: | C: | D: | E: | F: | G:
+R026 | A:Lưu cấu hình bảng biểu và search | B: | C: | D: | E: | F: | G:
+R028 | A:Màu:
+Không màu - Bình thường
+Đỏ - cần giải quyết
+Vàng - lưu ý
+Xanh lá - Đã xử lý | B: | C: | D: | E: | F: | G:
+R029 | A:Danh sách +- 18 h chạy liên tục | B: | C: | D: | E: | F: | G:

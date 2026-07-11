@@ -1,0 +1,1826 @@
+<!DOCTYPE html>
+<!--
+  MOCKUP v2.0 — TOSS Data Maintenance / Aircraft Catalog Management
+  CLAUDE.md §0: sample data, layout proposal needs BA/UI review.
+  Scope of application decided on 2026-06-22 with BA Lead:
+    - Each row on the list = 1 AIRCRAFT SUBTYPE. Removed concept of parent Fleet/child Aircraft list.
+    - Added ACARS Fuel Unit/Multiplier (consecutive From–To pairs), AC Subtype, MTOW.
+    - List filters: added Subtype + 5 grouping attributes.
+    - Filters on Audit log; expanded scope: AC Subtype, ACARS unit/multiplier, Config, Ownership, Basic Weight.
+    - Sidebar translated to English, synced with Function list §6 (R57–R148).
+    - Ownership enum: Owned / Wet Leased / Dry Leased; Owner maxlength 50.
+  Reports to TOSS/ba/workspace/drafts/mockup/data-maintenance-mockup-v2.0.html.
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TOSS — Data Maintenance Mockup v2.0</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto:wght@400;500;700&family=Material+Symbols+Outlined" rel="stylesheet">
+
+  <style>
+    /* ===== Design System & Core Colors (VNA Brand & Material Design 3) ===== */
+    :root {
+      /* Brand Colors */
+      --vna-navy: #002A54;
+      --vna-gold: #D4B26F;
+
+      /* PRIMARY: CAAV Blue (Accent color lock) */
+      --toss-primary: #005a9c;
+      --toss-primary-light: #007ec3;
+      --toss-primary-dark: #003d6b;
+
+      /* SEMANTIC: Status Colors (WCAG AA/AAA compliant) */
+      --toss-success: #059669;       /* Active, healthy */
+      --toss-warn: #d97706;          /* Warning */
+      --toss-error: #dc2626;         /* Error */
+
+      /* Surface & Neutrals */
+      --md-surface: #ffffff;
+      --md-surface-variant: #f8fafc;
+      --md-outline: #cbd5e1;
+      --md-outline-variant: #e2e8f0;
+      --md-text-primary: #1e293b;
+      --md-text-secondary: #64748b;
+      --md-text-muted: #94a3b8;
+
+      --sidebar-width: 260px;
+      --sidebar-collapsed-width: 52px;
+
+      --md-radius: 12px;
+      --md-radius-sm: 8px;
+      --md-elev1: 0 1px 3px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.05);
+      --md-elev2: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.05);
+      --md-elev3: 0 10px 15px -3px rgba(0,0,0,0.08), 0 4px 6px -2px rgba(0,0,0,0.04);
+
+      --toss-bg-sky: linear-gradient(180deg, #dbe9f6 0%, #e8f1f9 30%, #f4f7fc 100%);
+    }
+
+    /* Prefers reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      * { animation: none !important; transition: none !important; }
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', Roboto, 'Segoe UI', Arial, sans-serif; background: var(--md-surface-variant); color: var(--md-text-primary); min-height: 100vh; overflow-x: hidden; display: flex; }
+    .material-symbols-outlined { font-family: 'Material Symbols Outlined'; font-size: 22px; vertical-align: middle; line-height: 1; user-select: none; }
+
+    .app-layout { display: flex; width: 100vw; min-height: 100vh; }
+
+    /* ===== Sidebar ===== */
+    .sidebar { width: var(--sidebar-width); background: var(--md-surface); border-right: 1px solid var(--md-outline-variant); display: flex; flex-direction: column; height: 100vh; position: sticky; top: 0; z-index: 100; transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1); flex-shrink: 0; }
+    .sidebar.collapsed { width: var(--sidebar-collapsed-width); }
+    .sidebar.collapsed .logo-text-group { display: none; }
+    .sidebar.collapsed .menu-item, .sidebar.collapsed .footer-action-item { padding: 12px 0; justify-content: center; gap: 0; border-left: 3px solid transparent; }
+    .sidebar.collapsed .menu-item.active { border-left-color: var(--mo-active-border); }
+    .sidebar.collapsed .user-profile-card { margin: 8px 4px; padding: 4px; justify-content: center; background: transparent; }
+    .sidebar-header { padding: 8px 12px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--md-outline-variant); height: 48px; position: relative; box-sizing: border-box; }
+    .logo-container { display: flex; align-items: center; gap: 8px; overflow: hidden; white-space: nowrap; transition: opacity 0.2s; flex-shrink: 0; height: 32px; }
+    .sidebar.collapsed .logo-container { justify-content: center; width: 100%; }
+    .vna-logo-text { font-size: 13px; font-weight: 700; color: var(--vna-navy); text-transform: uppercase; letter-spacing: 0.5px; line-height: 1.2; }
+    .vna-logo-sub { font-size: 10px; color: var(--vna-gold); font-weight: 500; display: block; }
+    .sidebar-toggle-btn { position: absolute; right: -12px; top: 20px; width: 24px; height: 24px; background: var(--md-surface); border: 1px solid var(--md-outline); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: var(--md-elev1); z-index: 110; transition: transform 0.3s; }
+    .sidebar-toggle-btn:hover { background: var(--md-surface-variant); box-shadow: var(--md-elev2); }
+    .sidebar-toggle-btn .material-symbols-outlined { font-size: 16px; color: var(--md-text-secondary); }
+    .sidebar-menu { flex: 1; padding: 12px 0; overflow-y: auto; overflow-x: hidden; }
+    .sidebar-menu::-webkit-scrollbar { width: 4px; }
+    .sidebar-menu::-webkit-scrollbar-thumb { background: var(--md-outline-variant); border-radius: 999px; }
+    .menu-item { display: flex; align-items: center; gap: 12px; padding: 10px 18px; color: var(--md-text-primary); text-decoration: none; font-size: 13.5px; font-weight: 500; border-left: 4px solid transparent; cursor: pointer; white-space: nowrap; transition: all 0.2s ease; position: relative; }
+    .menu-item:hover { background: var(--md-surface-variant); }
+    .menu-item.active { background: var(--mo-active-bg); color: var(--mo-active-text); border-left-color: var(--mo-active-border); font-weight: 600; }
+    .menu-item .material-symbols-outlined { color: var(--md-text-secondary); transition: color 0.2s; flex-shrink: 0; font-size: 20px; }
+    .menu-item.active .material-symbols-outlined { color: var(--mo-active-border); }
+    .menu-text { transition: opacity 0.2s ease, transform 0.2s ease; opacity: 1; }
+    .sidebar.collapsed .menu-text { opacity: 0; pointer-events: none; transform: translateX(-10px); position: absolute; }
+    .sidebar-footer { border-top: 1px solid var(--md-outline-variant); padding: 8px 0; background: var(--md-surface); }
+    .footer-actions { display: flex; flex-direction: column; }
+    .footer-action-item { display: flex; align-items: center; gap: 12px; padding: 10px 18px; color: var(--md-text-primary); text-decoration: none; font-size: 14px; font-weight: 500; cursor: pointer; position: relative; }
+    .footer-action-item:hover { background: var(--md-surface-variant); }
+    .footer-action-item .material-symbols-outlined { color: var(--md-text-secondary); flex-shrink: 0; }
+    .badge-container { position: relative; display: inline-flex; }
+    .noti-badge { position: absolute; top: -6px; right: -8px; background: #ee0033; color: white; font-size: 9px; font-weight: 700; padding: 1px 5px; border-radius: 999px; line-height: 1; border: 1.5px solid var(--md-surface); }
+    .user-profile-card { display: flex; align-items: center; gap: 10px; padding: 12px 16px; margin: 8px; border-radius: var(--md-radius-sm); background: var(--md-surface-variant); overflow: hidden; white-space: nowrap; transition: all 0.3s; position: relative; }
+    .sidebar.collapsed .user-profile-card { margin: 8px 4px; padding: 8px; justify-content: center; background: transparent; }
+    .user-avatar-wrap { width: 38px; height: 38px; border-radius: 50%; overflow: hidden; background: #cbd5e1; flex-shrink: 0; display: flex; align-items: center; justify-content: center; border: 1.5px solid var(--vna-gold); }
+    .user-avatar-img { width: 100%; height: 100%; object-fit: cover; }
+    .user-info { flex: 1; overflow: hidden; transition: opacity 0.2s; }
+    .sidebar.collapsed .user-info { display: none; }
+    .user-name { font-size: 13px; font-weight: 600; color: var(--md-text-primary); text-overflow: ellipsis; overflow: hidden; }
+    .user-email { font-size: 11px; color: var(--md-text-secondary); text-overflow: ellipsis; overflow: hidden; margin-top: 2px; }
+    .logout-btn { background: transparent; border: none; color: var(--md-text-secondary); cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 4px; border-radius: 50%; transition: background 0.2s, color 0.2s; }
+    .logout-btn:hover { background: #fee2e2; color: #ef4444; }
+
+    .sidebar.collapsed .menu-item::after, .sidebar.collapsed .footer-action-item::after { content: attr(data-tooltip); position: absolute; left: 100%; top: 50%; transform: translateY(-50%) translateX(10px); background: #1e293b; color: white; padding: 6px 12px; border-radius: 4px; font-size: 12px; white-space: nowrap; opacity: 0; pointer-events: none; transition: all 0.25s; box-shadow: var(--md-elev2); z-index: 1000; }
+    .sidebar.collapsed .menu-item:hover::after, .sidebar.collapsed .footer-action-item:hover::after { opacity: 1; transform: translateY(-50%) translateX(15px); }
+
+    /* ===== Main Content ===== */
+    .main-content { flex: 1; height: 100vh; overflow-y: auto; background: var(--toss-bg-sky); position: relative; display: flex; flex-direction: column; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+    .main-content-scrollable { padding: 24px 28px; display: flex; flex-direction: column; gap: 20px; flex: 1; }
+
+    /* ===== Card / Filter ===== */
+    .m3-card { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.6); border-radius: var(--md-radius); box-shadow: var(--md-elev1); padding: 16px; transition: box-shadow 0.2s, background-color 0.2s; }
+    .m3-card:hover { box-shadow: var(--md-elev2); }
+    .filter-grid { display: flex; flex-wrap: wrap; gap: 12px; align-items: flex-end; }
+    .filter-item { display: flex; flex-direction: column; gap: 4px; flex: 1 1 160px; }
+    .filter-item label { font-size: 11px; font-weight: 600; color: var(--md-text-secondary); text-transform: uppercase; letter-spacing: 0.3px; }
+    .filter-input { width: 100%; height: 36px; padding: 6px 10px; border: 1px solid var(--md-outline); border-radius: var(--md-radius-sm); font-family: inherit; font-size: 13px; color: var(--md-text-primary); background: var(--md-surface); outline: none; transition: border-color 0.2s, box-shadow 0.2s; }
+    .filter-input:focus { border-color: var(--vna-navy); box-shadow: 0 0 0 3px rgba(0, 42, 84, 0.1); }
+    .filter-select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2364748b' width='18' height='18'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 8px center; padding-right: 28px; }
+    .filter-actions { display: flex; align-items: center; gap: 10px; justify-content: flex-end; height: 36px; flex: 0 0 auto; margin-left: auto; }
+
+    /* ===== Main Nav Bar (top 5 tabs) — Light frosted glass ===== */
+    .main-nav-bar {
+      background: rgba(255, 255, 255, 0.72);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      border-radius: 12px;
+      padding: 5px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 18px rgba(0, 42, 84, 0.09), 0 1px 4px rgba(0, 42, 84, 0.06), inset 0 1px 0 rgba(255,255,255,0.8);
+      display: flex;
+      gap: 3px;
+    }
+    .mnav-btn {
+      flex: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      padding: 10px 10px;
+      border: none;
+      border-radius: 8px;
+      background: transparent;
+      color: #64748b;
+      font-family: inherit;
+      font-size: 12.5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+      letter-spacing: 0.2px;
+      white-space: nowrap;
+    }
+    .mnav-btn .mnav-ic { font-size: 17px; color: #94a3b8; transition: color 0.2s; flex-shrink: 0; }
+    .mnav-btn:hover:not(.active) { background: rgba(0, 42, 84, 0.06); color: #002A54; }
+    .mnav-btn:hover:not(.active) .mnav-ic { color: #005a9c; }
+    .mnav-btn.active {
+      background: white;
+      color: #002A54;
+      box-shadow: 0 2px 10px rgba(0, 42, 84, 0.12), 0 1px 3px rgba(0, 42, 84, 0.08);
+      font-weight: 700;
+    }
+    .mnav-btn.active .mnav-ic { color: #005a9c; }
+
+    /* ===== Inner main-nav content panels ===== */
+    .mnav-content { display: none; flex-direction: column; gap: 20px; flex: 1; }
+    .mnav-content.active { display: flex; }
+    .mnav-content.mnav-placeholder { align-items: center; justify-content: center; min-height: 400px; }
+
+    /* ===== Buttons ===== */
+    .btn { display: inline-flex; align-items: center; gap: 6px; height: 38px; padding: 0 16px; border-radius: 6px; font-family: inherit; font-size: 13px; font-weight: 600; cursor: pointer; border: none; outline: 3px solid transparent; outline-offset: 2px; transition: all 0.25s ease; white-space: nowrap; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); }
+    .btn:active { transform: translateY(1px); }
+    .btn:focus { outline-color: var(--toss-primary); }
+    .btn-teal { background: var(--toss-primary); color: white; }
+    .btn-teal:hover { background: var(--toss-primary-light); box-shadow: 0 4px 12px rgba(0, 90, 156, 0.25); }
+    .btn-clear { background: white; color: var(--toss-primary); border: 1.5px solid var(--toss-primary); }
+    .btn-clear:hover { background: rgba(0, 90, 156, 0.05); border-color: var(--toss-primary-light); }
+    .btn-blue { background: var(--toss-primary); color: white; }
+    .btn-blue:hover { background: var(--toss-primary-light); box-shadow: 0 4px 12px rgba(0, 90, 156, 0.2); }
+    .btn-orange { background: var(--toss-warn); color: white; }
+    .btn-orange:hover { background: #b45100; box-shadow: 0 4px 12px rgba(217, 119, 6, 0.2); }
+    .btn-danger { background: transparent; color: var(--toss-error); border: 1px solid var(--toss-error); }
+    .btn-danger:hover { background: rgba(220, 38, 38, 0.05); }
+
+    /* ===== Status Badges (WCAG AA/AAA compliant) ===== */
+    .status-badge { display: inline-flex; align-items: center; gap: 4px; padding: 4px 10px; border-radius: 999px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.3px; }
+    .status-badge.active { background: #d1fae5; color: var(--toss-success); }  /* AAA 7.2:1 contrast */
+    .status-badge.inactive { background: #f3f4f6; color: #475569; }  /* AA 5.8:1 contrast */
+
+    /* ===== Split Panel ===== */
+    .admin-panel-split { display: flex; gap: 20px; flex: 1; }
+    .user-list-section { flex: 0 0 42%; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+    .user-details-section { flex: 1; min-width: 0; }
+    .user-list-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px; }
+    .user-list-title-wrap { display: flex; align-items: center; gap: 12px; }
+    .user-list-title-wrap h2 { font-size: 18px; font-weight: 700; color: var(--vna-navy); }
+    .refresh-btn { background: none; border: none; color: var(--md-text-secondary); cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 4px; border-radius: 50%; transition: background 0.2s, transform 0.2s; }
+    .refresh-btn:hover { background: rgba(0, 0, 0, 0.05); transform: rotate(45deg); }
+    .user-list-actions { display: flex; gap: 10px; }
+
+    /* ===== Table ===== */
+    .table-container { background: white; border-radius: var(--md-radius); border: 1px solid var(--md-outline-variant); overflow-x: auto; box-shadow: var(--md-elev1); }
+    .user-table { width: 100%; border-collapse: collapse; text-align: left; font-size: 13px; }
+    .user-table th { background: #f1f5f9; color: var(--md-text-secondary); font-weight: 600; padding: 10px 12px; border-bottom: 1px solid var(--md-outline-variant); white-space: nowrap; }
+    .user-table td { padding: 10px 12px; border-bottom: 1px solid var(--md-outline-variant); color: var(--md-text-primary); vertical-align: middle; white-space: nowrap; }
+    .user-table tbody tr { cursor: pointer; transition: background 0.15s; }
+    .user-table tbody tr:hover { background: #f8fafc; }
+    .user-table tbody tr.active-row { background: #f0f6ff; }
+
+    .status-badge { display: inline-flex; align-items: center; padding: 4px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; }
+    .status-badge.active { background: #e6fcf5; color: #0ca678; }
+    .status-badge.inactive { background: #f1f5f9; color: #64748b; }
+
+    /* ===== Pagination ===== */
+    .pagination-bar { display: flex; align-items: center; justify-content: space-between; padding: 8px 4px; font-size: 12.5px; color: var(--md-text-secondary); }
+    .records-selector { display: flex; align-items: center; gap: 6px; }
+    .records-select { border: 1px solid var(--md-outline); background: white; border-radius: 4px; padding: 4px 8px; font-family: inherit; font-size: 12px; outline: none; cursor: pointer; }
+    .pagination-controls { display: flex; align-items: center; gap: 4px; }
+    .page-btn { width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--md-outline-variant); border-radius: 4px; background: white; cursor: pointer; font-weight: 500; color: var(--md-text-primary); transition: all 0.15s; }
+    .page-btn:hover { background: var(--md-surface-variant); border-color: var(--md-outline); }
+    .page-btn.active { background: var(--toss-teal); color: white; border-color: var(--toss-teal); }
+    .page-btn.disabled { color: var(--md-text-muted); cursor: not-allowed; background: #f1f5f9; border-color: var(--md-outline-variant); }
+
+    /* ===== Details Panel ===== */
+    .details-card { display: flex; flex-direction: column; gap: 12px; background: white; border-radius: var(--md-radius); border: 1px solid var(--md-outline-variant); box-shadow: var(--md-elev1); padding: 14px; position: relative; }
+    .details-header { display: flex; align-items: center; justify-content: space-between; padding-bottom: 12px; border-bottom: 1px solid #e2e8f0; }
+    .details-name { font-size: 18px; font-weight: 800; color: #002a54; line-height: 1.3; }
+    .details-id { font-size: 12.5px; color: #64748b; margin-top: 2px; font-weight: 500; }
+    .details-meta { display: flex; gap: 12px; align-items: center; margin-top: 4px; font-size: 12px; color: #64748b; }
+
+    .details-tab-nav { display: flex; gap: 0; border-bottom: 2px solid #e2e8f0; margin: 4px 0 16px 0; }
+    .details-tab-button { flex: 1; padding: 12px 10px; background: transparent; border: none; border-bottom: 3px solid transparent; cursor: pointer; font-size: 12.5px; font-weight: 500; color: #94a3b8; transition: all 0.2s ease; text-align: center; white-space: nowrap; }
+    .details-tab-button:hover { color: #64748b; }
+    .details-tab-button.active { color: #007b83; border-bottom: 3px solid #007b83; font-weight: 700; }
+    .details-tab-content { display: none; }
+    .details-tab-content.active { display: block; animation: fadeIn 0.2s; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+    .details-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    .detail-row { display: flex; flex-direction: column; gap: 6px; font-size: 13px; }
+    .detail-label { color: #475569; font-weight: 600; font-size: 12.5px; display: flex; align-items: center; gap: 6px; }
+    .detail-label .lock-ic { font-size: 14px; color: #94a3b8; }
+    .detail-input, .detail-select { width: 100%; padding: 8px 10px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 13px; font-family: inherit; background: #ffffff; transition: all 0.2s; outline: 3px solid transparent; outline-offset: 1px; }
+    .detail-input:hover:not(:disabled), .detail-select:hover:not(:disabled) { border-color: var(--toss-primary-light); }
+    .detail-input:focus, .detail-select:focus { outline-color: var(--toss-primary); border-color: var(--toss-primary); box-shadow: 0 0 0 2px rgba(0, 90, 156, 0.15); }
+    .detail-input:disabled { background: #f1f5f9; color: #64748b; cursor: not-allowed; border-color: #e2e8f0; opacity: 0.7; }
+    .detail-select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2364748b'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 10px center; padding-right: 28px; }
+
+    /* ===== Section Subhead ===== */
+    .subsection { margin-top: 18px; padding-top: 12px; border-top: 1px dashed #cbd5e1; }
+    .subsection-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+    .subsection-head h3 { font-size: 13px; font-weight: 700; color: var(--vna-navy); display: flex; align-items: center; gap: 6px; }
+    .subsection-head h3 .material-symbols-outlined { font-size: 18px; color: var(--toss-teal); }
+    .subsection-note { font-size: 11.5px; color: var(--md-text-secondary); margin-bottom: 8px; font-style: italic; }
+
+    /* ===== Flexible Cabin Config ===== */
+    .cabin-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+    .cabin-cell { display: flex; flex-direction: column; gap: 4px; }
+    .cabin-cell label { font-size: 10.5px; font-weight: 600; color: var(--md-text-secondary); text-transform: uppercase; }
+
+    /* ===== ACARS / Sub-tables ===== */
+    .sub-table { width: 100%; border-collapse: collapse; font-size: 12px; background: white; border: 1px solid var(--md-outline-variant); border-radius: 6px; overflow: hidden; }
+    .sub-table th { background: #eef2f7; color: var(--md-text-secondary); font-weight: 600; padding: 6px 8px; font-size: 11px; border-bottom: 1px solid var(--md-outline-variant); text-align: left; }
+    .sub-table td { padding: 6px 8px; border-bottom: 1px solid var(--md-outline-variant); }
+    .sub-table input { width: 100%; padding: 4px 6px; border: 1px solid transparent; background: transparent; font-size: 12px; font-family: inherit; border-radius: 4px; }
+    .sub-table input:focus { outline: none; border-color: var(--toss-teal); background: white; box-shadow: 0 0 0 2px rgba(0, 123, 131, 0.1); }
+    .sub-table input:disabled { color: var(--md-text-secondary); cursor: not-allowed; }
+    .sub-table .row-action { background: none; border: none; cursor: pointer; padding: 2px; }
+    .sub-table .row-action .material-symbols-outlined { font-size: 16px; }
+    .add-row-btn { margin-top: 8px; display: inline-flex; align-items: center; gap: 4px; padding: 6px 10px; background: var(--md-surface-variant); border: 1px dashed var(--md-outline); border-radius: 6px; color: var(--toss-teal); font-size: 12px; font-weight: 600; cursor: pointer; }
+    .add-row-btn:hover { background: #ecfeff; border-color: var(--toss-teal); }
+    .add-row-btn .material-symbols-outlined { font-size: 16px; }
+
+    /* ===== Audit Log ===== */
+    .audit-filter-bar { display: flex; flex-wrap: wrap; gap: 10px; align-items: flex-end; padding: 10px; background: #f8fafc; border: 1px solid var(--md-outline-variant); border-radius: 8px; margin-bottom: 12px; }
+    .audit-filter-bar .filter-item { flex: 1 1 130px; position: relative; }
+    #accountSuggestions { position: absolute; top: 100%; left: 0; right: 0; background: white; border: 1px solid #cbd5e1; border-top: none; border-radius: 0 0 6px 6px; max-height: 120px; overflow-y: auto; z-index: 10; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+
+    /* Audit table redesign */
+    .audit-log-table { width: 100%; border-collapse: collapse; font-size: 11.5px; }
+    .audit-log-table th { background: #f1f5f9; padding: 9px 12px; font-weight: 600; color: #64748b; border-bottom: 2px solid #e2e8f0; position: sticky; top: 0; text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: 0.4px; }
+    .audit-log-table td { padding: 0; vertical-align: middle; }
+    .audit-log-table tr.session-start td { border-top: 2px solid #e2e8f0; }
+    .audit-log-table tr.session-start td .cell-inner { padding: 9px 12px; font-weight: 500; }
+    .audit-log-table tr.session-sub td .cell-inner { padding: 4px 12px; }
+    .audit-log-table tr.session-sub td:first-child .cell-inner,
+    .audit-log-table tr.session-sub td:nth-child(2) .cell-inner,
+    .audit-log-table tr.session-sub td:nth-child(3) .cell-inner,
+    .audit-log-table tr.session-sub td:nth-child(4) .cell-inner { opacity: 0; pointer-events: none; }
+    /* Alternating session backgrounds */
+    .audit-log-table tr.sess-odd td { background: #ffffff; }
+    .audit-log-table tr.sess-even td { background: #f0f6ff; }
+    .audit-log-table tr.sess-odd td:hover, .audit-log-table tr.sess-even td:hover { filter: brightness(0.97); }
+    /* Date/time + account column — muted on sub rows */
+    .cell-dt { font-size: 11px; color: #475569; white-space: nowrap; }
+    .cell-account { font-weight: 600; font-size: 11.5px; color: #334155; }
+    .cell-val { font-size: 12px; color: #1e293b; }
+    .cell-val.old { text-decoration: line-through; }
+    .audit-log-wrap { max-height: 400px; overflow-y: auto; border: 1px solid var(--md-outline-variant); border-radius: 8px; }
+
+    /* Pills */
+    .field-pill { display: inline-flex; align-items: center; padding: 3px 8px; background: #dbeafe; color: #1d4ed8; border-radius: 4px; font-size: 10.5px; font-weight: 600; }
+    .section-pill { display: inline-flex; align-items: center; padding: 3px 8px; background: #d1fae5; color: #065f46; border-radius: 4px; font-size: 10.5px; font-weight: 600; }
+    .action-pill { display: inline-flex; align-items: center; padding: 3px 8px; border-radius: 4px; font-size: 10.5px; font-weight: 600; white-space: nowrap; }
+    .action-pill.modify { background: #e0f2fe; color: #0369a1; }
+    .action-pill.add    { background: #d1fae5; color: #065f46; }
+    .action-pill.delete { background: #fee2e2; color: #b91c1c; }
+
+    /* Datetime Picker (DTP — ACARS table) */
+    .dtp-cell { cursor: pointer !important; }
+    .dtp-cell:disabled { cursor: not-allowed !important; }
+    .dtp-popup-root { display: none; position: fixed; z-index: 999; background: white; border: 1px solid #e2e8f0; border-radius: 12px; box-shadow: 0 8px 32px rgba(0,42,84,0.18); flex-direction: column; }
+    .dtp-popup-root.open { display: flex; }
+    .dtp-body-wrap { display: flex; }
+    .dtp-time-section { padding: 14px 14px 10px 12px; border-left: 1px solid #f1f5f9; display: flex; gap: 6px; }
+    .dtp-time-col { display: flex; flex-direction: column; align-items: center; }
+    .dtp-time-label { font-size: 9.5px; font-weight: 700; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
+    .dtp-time-list { height: 192px; overflow-y: auto; display: flex; flex-direction: column; gap: 1px; scrollbar-width: thin; scrollbar-color: #e2e8f0 transparent; }
+    .dtp-time-item { padding: 6px 14px; border-radius: 6px; font-size: 13px; font-weight: 500; cursor: pointer; color: #334155; text-align: center; min-width: 44px; transition: background 0.1s; }
+    .dtp-time-item:hover { background: #f1f5f9; }
+    .dtp-time-item.active { background: #005a9c; color: white; font-weight: 700; }
+    .dtp-popup-footer { display: flex; justify-content: space-between; align-items: center; padding: 8px 14px; border-top: 1px solid #e2e8f0; }
+    .dtp-action-btn { background: none; border: none; font-size: 12.5px; font-weight: 600; cursor: pointer; padding: 5px 10px; border-radius: 6px; }
+    .dtp-action-btn.dtp-clear { color: #64748b; }
+    .dtp-action-btn.dtp-clear:hover { background: #f1f5f9; }
+    .dtp-action-btn.dtp-today { color: #d97706; }
+    .dtp-action-btn.dtp-today:hover { background: #fef9ed; }
+
+    /* Date Range Picker */
+    .drp-wrap { position: relative; }
+    .drp-input-row { position: relative; display: flex; align-items: center; }
+    .drp-input-row .filter-input { padding-right: 34px; cursor: pointer; caret-color: transparent; }
+    .drp-icon { position: absolute; right: 9px; font-size: 17px; color: #64748b; cursor: pointer; pointer-events: none; }
+    .drp-popup { display: none; position: absolute; top: calc(100% + 6px); left: 0; z-index: 200; background: white; border: 1px solid #e2e8f0; border-radius: 12px; box-shadow: 0 8px 28px rgba(0,42,84,0.14); padding: 16px; width: 540px; }
+    .drp-popup.open { display: block; }
+    .drp-months { display: flex; gap: 24px; }
+    .drp-month { flex: 1; }
+    .drp-month-title { text-align: center; font-size: 13px; font-weight: 700; color: #002A54; margin-bottom: 8px; }
+    .drp-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; }
+    .drp-dow { text-align: center; font-size: 10.5px; font-weight: 600; color: #94a3b8; padding: 2px 0; }
+    .drp-day { text-align: center; font-size: 11.5px; padding: 5px 2px; cursor: pointer; border-radius: 50%; transition: background 0.15s; color: #334155; }
+    .drp-day:hover { background: #e8f1fb; color: #002A54; }
+    .drp-day.in-range { background: #dbeafe; border-radius: 0; color: #1d4ed8; }
+    .drp-day.range-start, .drp-day.range-end { background: #005a9c; color: white; border-radius: 50%; font-weight: 700; }
+    .drp-day.range-start { border-radius: 50% 0 0 50%; }
+    .drp-day.range-end { border-radius: 0 50% 50% 0; }
+    .drp-day.other-month { color: #cbd5e1; }
+    .drp-day.today { font-weight: 700; color: #005a9c; }
+    .drp-nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+    .drp-nav-btn { background: none; border: 1px solid #e2e8f0; border-radius: 6px; padding: 3px 8px; cursor: pointer; color: #64748b; font-size: 16px; line-height: 1; }
+    .drp-nav-btn:hover { background: #f1f5f9; }
+    .drp-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 12px; padding-top: 10px; border-top: 1px solid #e2e8f0; }
+    .drp-footer-btn { background: none; border: none; font-size: 12.5px; font-weight: 600; cursor: pointer; padding: 4px 8px; border-radius: 4px; }
+    .drp-footer-btn.today { color: #d97706; }
+    .drp-footer-btn.today:hover { background: #fef9ed; }
+    .drp-footer-btn.clear { color: #64748b; }
+    .drp-footer-btn.clear:hover { background: #f1f5f9; }
+    .drp-range-display { font-size: 11.5px; color: #64748b; }
+
+    /* ===== Edit-mode action bar (sticky in card) ===== */
+    .edit-action-bar { display: none !important; align-items: center; justify-content: flex-end; gap: 10px; padding: 10px 14px; margin: 12px -14px -14px -14px; background: #fffbeb; border-top: 1px solid #fde68a; border-radius: 0 0 var(--md-radius) var(--md-radius); }
+    .edit-action-bar.visible { display: flex !important; }
+    .edit-action-bar .hint { margin-right: auto; font-size: 11.5px; color: #92400e; font-weight: 600; display: flex; align-items: center; gap: 6px; }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 1024px) {
+      .admin-panel-split { flex-direction: column; }
+      .user-details-section { position: static; }
+      .cabin-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    .tab-content { display: none !important; visibility: hidden; position: absolute; pointer-events: none; }
+    .tab-content.active { display: flex !important; visibility: visible; position: relative; pointer-events: auto; }
+
+
+    /* Field hint text */
+    .field-hint { font-size: 11px; color: var(--md-text-secondary); font-style: italic; margin-top: 3px; display: block; }
+
+    /* ===== Section-Level Edit Button (Option 2B: Text + Icon) ===== */
+    .section-edit-btn { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; background: white; border: 1px solid var(--md-outline); border-radius: 6px; color: var(--toss-primary); font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.2s ease; outline: 3px solid transparent; outline-offset: 1px; }
+    .section-edit-btn:hover { background: rgba(0, 90, 156, 0.05); border-color: var(--toss-primary-light); }
+    .section-edit-btn:focus { outline-color: var(--toss-primary); }
+    .section-edit-btn .material-symbols-outlined { font-size: 16px; }
+
+    /* ===== Hide Add Row button by default ===== */
+    .add-row-btn { display: none; }
+    .add-row-btn.visible { display: inline-flex; }
+
+    /* ===== Hide ICAO/IATA columns in table ===== */
+    .user-table th:nth-child(5), .user-table th:nth-child(6),
+    .user-table td:nth-child(5), .user-table td:nth-child(6) {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app-layout" id="appLayout">
+
+    <!-- ========================================================= -->
+    <!-- SIDEBAR — 18 Data Maintenance categories (synced with Function list R57-R148) -->
+    <!-- ========================================================= -->
+    <nav class="sidebar" id="sidebar" data-mat="mat-sidenav">
+
+      <div class="sidebar-header">
+        <div class="logo-container" id="logoContainer">
+          <svg viewBox="0 0 200 150" width="28" height="21" fill="#D4B26F" style="flex-shrink: 0;">
+            <path d="M100,10 C101.5,45 118,70 148,82 C125,81 107,70 100,50 C93,70 75,81 52,82 C82,70 98.5,45 100,10 Z" />
+            <path d="M100,60 C110,95 152,110 190,102 C150,107 118,92 100,74 C82,92 50,107 10,102 C48,110 90,95 100,60 Z" />
+            <path d="M100,82 C108,118 168,128 185,126 C155,128 122,118 100,100 C78,118 45,128 15,126 C32,128 92,118 100,82 Z" />
+            <path d="M100,105 C104,128 135,138 150,138 C130,138 112,128 100,118 C88,128 70,138 50,138 C65,138 96,128 100,105 Z" />
+          </svg>
+          <div class="logo-text-group">
+            <span class="vna-logo-text" style="color: #005c72; font-weight: 700; font-size: 15px; font-family: 'Inter', sans-serif; letter-spacing: -0.2px;">Vietnam<span style="font-weight: 300;">Airlines</span></span>
+            <span class="vna-logo-sub" style="font-size: 9px; color: #a1a1aa; font-weight: 500; text-transform: uppercase; letter-spacing: 1.2px;">Master Data Management</span>
+          </div>
+        </div>
+
+        <button class="sidebar-toggle-btn" id="sidebarToggle" title="Toggle Navigation">
+          <span class="material-symbols-outlined" id="toggleIcon">chevron_left</span>
+        </button>
+      </div>
+
+      <!-- Navigation List — synced with Function list §6 (R57-R148) -->
+      <div class="sidebar-menu" data-mat="mat-nav-list">
+        <a class="menu-item active" data-tab="tau-bay" data-tooltip="Aircraft Fleet" onclick="switchTab('tau-bay')">
+          <span class="material-symbols-outlined">flight</span>
+          <span class="menu-text">Aircraft Fleet</span>
+        </a>
+        <a class="menu-item" data-tab="aog-schedule" data-tooltip="AOG/Maintenance Schedule" onclick="switchTab('aog-schedule')">
+          <span class="material-symbols-outlined">event</span>
+          <span class="menu-text">AOG/Maintenance Schedule</span>
+        </a>
+        <a class="menu-item" data-tab="aog-code" data-tooltip="AOG/Maintenance Codes" onclick="switchTab('aog-code')">
+          <span class="material-symbols-outlined">qr_code_2</span>
+          <span class="menu-text">AOG/Maintenance Codes</span>
+        </a>
+        <a class="menu-item" data-tab="mel-cdl" data-tooltip="MEL, CDL" onclick="switchTab('mel-cdl')">
+          <span class="material-symbols-outlined">rule</span>
+          <span class="menu-text">MEL, CDL</span>
+        </a>
+        <a class="menu-item" data-tab="performance-factor" data-tooltip="Performance Factors" onclick="switchTab('performance-factor')">
+          <span class="material-symbols-outlined">speed</span>
+          <span class="menu-text">Performance Factors</span>
+        </a>
+        <a class="menu-item" data-tab="san-bay" data-tooltip="Airports" onclick="switchTab('san-bay')">
+          <span class="material-symbols-outlined">flight_takeoff</span>
+          <span class="menu-text">Airports</span>
+        </a>
+        <a class="menu-item" data-tab="chang-bay" data-tooltip="Flight Routes" onclick="switchTab('chang-bay')">
+          <span class="material-symbols-outlined">route</span>
+          <span class="menu-text">Flight Routes</span>
+        </a>
+        <a class="menu-item" data-tab="payload" data-tooltip="Payload" onclick="switchTab('payload')">
+          <span class="material-symbols-outlined">scale</span>
+          <span class="menu-text">Payload</span>
+        </a>
+        <a class="menu-item" data-tab="tankering" data-tooltip="Tankering" onclick="switchTab('tankering')">
+          <span class="material-symbols-outlined">water_drop</span>
+          <span class="menu-text">Tankering</span>
+        </a>
+        <a class="menu-item" data-tab="gia-nhien-lieu" data-tooltip="Fuel Pricing" onclick="switchTab('gia-nhien-lieu')">
+          <span class="material-symbols-outlined">local_gas_station</span>
+          <span class="menu-text">Fuel Pricing</span>
+        </a>
+        <a class="menu-item" data-tab="uld" data-tooltip="ULD (Unit Load Devices)" onclick="switchTab('uld')">
+          <span class="material-symbols-outlined">inventory_2</span>
+          <span class="menu-text">ULD (Unit Load Devices)</span>
+        </a>
+        <a class="menu-item" data-tab="fir" data-tooltip="FIR (Flight Information Region)" onclick="switchTab('fir')">
+          <span class="material-symbols-outlined">cloud</span>
+          <span class="menu-text">FIR (Flight Information Region)</span>
+        </a>
+        <a class="menu-item" data-tab="phi-cong" data-tooltip="Pilots" onclick="switchTab('phi-cong')">
+          <span class="material-symbols-outlined">person</span>
+          <span class="menu-text">Pilots</span>
+        </a>
+        <a class="menu-item" data-tab="tiep-vien" data-tooltip="Flight Attendants" onclick="switchTab('tiep-vien')">
+          <span class="material-symbols-outlined">group</span>
+          <span class="menu-text">Flight Attendants</span>
+        </a>
+        <a class="menu-item" data-tab="quoc-gia" data-tooltip="Countries" onclick="switchTab('quoc-gia')">
+          <span class="material-symbols-outlined">public</span>
+          <span class="menu-text">Countries</span>
+        </a>
+        <a class="menu-item" data-tab="carrier" data-tooltip="Carriers" onclick="switchTab('carrier')">
+          <span class="material-symbols-outlined">business_center</span>
+          <span class="menu-text">Carriers</span>
+        </a>
+        <a class="menu-item" data-tab="co-quan-don-vi" data-tooltip="Organizational Units" onclick="switchTab('co-quan-don-vi')">
+          <span class="material-symbols-outlined">apartment</span>
+          <span class="menu-text">Organizational Units</span>
+        </a>
+        <a class="menu-item" data-tab="dow" data-tooltip="DOW (Dry Operating Weight)" onclick="switchTab('dow')">
+          <span class="material-symbols-outlined">balance</span>
+          <span class="menu-text">DOW (Dry Operating Weight)</span>
+        </a>
+      </div>
+
+      <div class="sidebar-footer">
+        <div class="footer-actions">
+          <a class="footer-action-item" data-tooltip="Notifications" onclick="showToast('Notifications')">
+            <div class="badge-container">
+              <span class="material-symbols-outlined">notifications</span>
+              <span class="noti-badge">3</span>
+            </div>
+            <span class="menu-text">Notifications</span>
+          </a>
+          <a class="footer-action-item" data-tooltip="Settings" onclick="showToast('System Settings')">
+            <span class="material-symbols-outlined">settings_applications</span>
+            <span class="menu-text">Settings</span>
+          </a>
+          <a class="footer-action-item" data-tooltip="System Audit Log" onclick="showToast('System Audit Log')">
+            <span class="material-symbols-outlined">history</span>
+            <span class="menu-text">System Audit Log</span>
+          </a>
+        </div>
+
+        <div class="user-profile-card">
+          <div class="user-avatar-wrap">
+            <img src="data:image/svg+xml;utf8,<svg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'><circle cx='50' cy='50' r='48' fill='%23f1f5f9'/><path d='M25,35 Q50,25 75,35 L70,42 Q50,38 30,42 Z' fill='%23002A54'/><path d='M30,42 Q50,38 70,42 L72,45 Q50,42 28,45 Z' fill='%23D4B26F'/><circle cx='50' cy='55' r='18' fill='%23fed7aa'/><path d='M32,50 Q36,45 40,48 Q44,45 50,48 Q56,45 60,48 Q64,45 68,50 Q66,40 50,40 Z' fill='%231e293b'/><circle cx='44' cy='55' r='2' fill='%231e293b'/><circle cx='56' cy='55' r='2' fill='%231e293b'/><path d='M32,73 L42,85 L50,78 L58,85 L68,73 L65,95 L35,95 Z' fill='%23002A54'/><path d='M48,78 L52,78 L53,92 L50,96 L47,92 Z' fill='%231e293b'/></svg>" alt="Avatar" class="user-avatar-img">
+          </div>
+          <div class="user-info">
+            <div class="user-name">Data Officer</div>
+            <div class="user-email">dataops@vietnamairlines.com</div>
+          </div>
+          <button class="logout-btn" title="Sign Out" onclick="showToast('Sign Out')">
+            <span class="material-symbols-outlined">logout</span>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- ========================================================= -->
+    <!-- MAIN — Aircraft Fleet (Aircraft Type list — default tab) -->
+    <!-- ========================================================= -->
+    <main class="main-content">
+
+      <div id="tau-bay" class="main-content-scrollable tab-content active">
+
+        <!-- Main Header Tabs — Redesigned: pill-on-navy -->
+        <nav class="main-nav-bar" id="mainNavBar" role="tablist">
+          <button class="mnav-btn active" role="tab" aria-selected="true" onclick="switchMainTab(this, 'inner-catalog')">
+            <span class="material-symbols-outlined mnav-ic">airplanemode_active</span>
+            Aircraft Catalog
+          </button>
+          <button class="mnav-btn" role="tab" aria-selected="false" onclick="switchMainTab(this, 'inner-aog-schedule')">
+            <span class="material-symbols-outlined mnav-ic">event_busy</span>
+            AOG / Schedule
+          </button>
+          <button class="mnav-btn" role="tab" aria-selected="false" onclick="switchMainTab(this, 'inner-aog-code')">
+            <span class="material-symbols-outlined mnav-ic">build_circle</span>
+            AOG / Codes
+          </button>
+          <button class="mnav-btn" role="tab" aria-selected="false" onclick="switchMainTab(this, 'inner-mel-cdl')">
+            <span class="material-symbols-outlined mnav-ic">checklist</span>
+            MEL / CDL
+          </button>
+          <button class="mnav-btn" role="tab" aria-selected="false" onclick="switchMainTab(this, 'inner-performance-factor')">
+            <span class="material-symbols-outlined mnav-ic">speed</span>
+            Performance Factors
+          </button>
+        </nav>
+
+        <!-- ===== INNER PANEL: Aircraft Catalog (default) ===== -->
+        <div id="inner-catalog" class="mnav-content active">
+
+        <!-- Filter Bar — added Subtype + 5 grouping attributes (Function list R62) -->
+        <section class="m3-card" data-mat="mat-card">
+          <div class="filter-grid">
+            <div class="filter-item">
+              <label for="fSubtype">AC Subtype</label>
+              <input type="text" id="fSubtype" class="filter-input" placeholder="E.g., A320NEO">
+            </div>
+            <div class="filter-item">
+              <label for="fACreg">AC Registration (ACreg)</label>
+              <input type="text" id="fACreg" class="filter-input" placeholder="Search by ACreg">
+            </div>
+            <div class="filter-item">
+              <label for="fCat1">Category 1</label>
+              <select id="fCat1" class="filter-input filter-select">
+                <option value="">All</option>
+                <option>A320NEO</option><option>A321 CEO</option><option>A321 NEO</option><option>A350</option><option>B787-9</option><option>B787-10</option>
+              </select>
+            </div>
+            <div class="filter-item">
+              <label for="fCat2">Category 2</label>
+              <select id="fCat2" class="filter-input filter-select">
+                <option value="">All</option>
+                <option>A320</option><option>A321 CEO</option><option>A321 NEO</option><option>A350</option><option>B787</option>
+              </select>
+            </div>
+            <div class="filter-item">
+              <label for="fCat3">Category 3</label>
+              <select id="fCat3" class="filter-input filter-select">
+                <option value="">All</option>
+                <option>A320-A321</option><option>A350</option><option>B787</option>
+              </select>
+            </div>
+            <div class="filter-item">
+              <label for="fCat4">Category 4</label>
+              <select id="fCat4" class="filter-input filter-select">
+                <option value="">All</option>
+                <option>A320-A321</option><option>A350-B787</option>
+              </select>
+            </div>
+            <div class="filter-item">
+              <label for="fCat5">Category 5</label>
+              <select id="fCat5" class="filter-input filter-select">
+                <option value="">All</option>
+                <option>320</option><option>32B</option><option>32D</option><option>32N</option><option>350</option><option>787</option>
+              </select>
+            </div>
+            <div class="filter-item">
+              <label for="fStatus">Status</label>
+              <select id="fStatus" class="filter-input filter-select">
+                <option value="">All</option>
+                <option value="Active">Active</option>
+                <option value="Inactive">Inactive</option>
+              </select>
+            </div>
+          </div>
+          <div class="filter-actions" style="margin-top: 12px;">
+            <button class="btn btn-clear" onclick="clearFilters()">
+              <span class="material-symbols-outlined">autorenew</span> Clear Filters
+            </button>
+            <button class="btn btn-teal" onclick="applyFilters()">
+              <span class="material-symbols-outlined">search</span> Search
+            </button>
+          </div>
+        </section>
+
+        <!-- Split Panel: Table + Details -->
+        <div class="admin-panel-split">
+
+          <!-- LEFT: Aircraft Type list — 1 row = 1 aircraft type -->
+          <div class="user-list-section">
+            <div class="user-list-header">
+              <div class="user-list-title-wrap">
+                <h2>Aircraft Type List</h2>
+                <button class="refresh-btn" title="Refresh" aria-label="Refresh aircraft type list" onclick="refreshTable()" style="border-radius: 6px; padding: 5px 10px; gap: 5px; font-size: 12.5px; font-weight: 500;">
+                  <span class="material-symbols-outlined" aria-hidden="true" style="font-size: 17px;">refresh</span>
+                  Refresh
+                </button>
+              </div>
+              <div class="user-list-actions">
+                <button class="btn btn-orange" onclick="showToast('Excel export successful')">
+                  <span class="material-symbols-outlined">download</span> Export Excel
+                </button>
+              </div>
+            </div>
+
+            <div class="table-container">
+              <table class="user-table" id="acTypeTable" data-mat="mat-table">
+                <thead>
+                  <tr>
+                    <th>No.</th>
+                    <th>Registration Count</th>
+                    <th>AC Subtype</th>
+                    <th>Aircraft Type Name</th>
+                    <th>ICAO Code</th>
+                    <th>IATA Code</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="acTypeTableBody">
+                  <tr class="active-row">
+                    <td>1</td>
+                    <td>12</td>
+                    <td><strong>A320NEO</strong></td>
+                    <td>Airbus A320 NEO</td>
+                    <td>A20N</td>
+                    <td>32N</td>
+                    <td><span class="status-badge active">Active</span></td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td>16</td>
+                    <td><strong>A321CEO</strong></td>
+                    <td>Airbus A321 CEO</td>
+                    <td>A321</td>
+                    <td>321</td>
+                    <td><span class="status-badge active">Active</span></td>
+                  </tr>
+                  <tr>
+                    <td>3</td>
+                    <td>20</td>
+                    <td><strong>A321NEO</strong></td>
+                    <td>Airbus A321 NEO</td>
+                    <td>A21N</td>
+                    <td>32Q</td>
+                    <td><span class="status-badge active">Active</span></td>
+                  </tr>
+                  <tr>
+                    <td>4</td>
+                    <td>14</td>
+                    <td><strong>A350</strong></td>
+                    <td>Airbus A350-900</td>
+                    <td>A359</td>
+                    <td>359</td>
+                    <td><span class="status-badge active">Active</span></td>
+                  </tr>
+                  <tr>
+                    <td>5</td>
+                    <td>11</td>
+                    <td><strong>B787-9</strong></td>
+                    <td>Boeing 787-9</td>
+                    <td>B789</td>
+                    <td>789</td>
+                    <td><span class="status-badge active">Active</span></td>
+                  </tr>
+                  <tr>
+                    <td>6</td>
+                    <td>0</td>
+                    <td><strong>B787-10</strong></td>
+                    <td>Boeing 787-10</td>
+                    <td>B78X</td>
+                    <td>78J</td>
+                    <td><span class="status-badge inactive">Inactive</span></td>
+                  </tr>
+                  <tr>
+                    <td>7</td>
+                    <td>4</td>
+                    <td><strong>ATR72</strong></td>
+                    <td>ATR 72-500</td>
+                    <td>AT75</td>
+                    <td>AT7</td>
+                    <td><span class="status-badge inactive">Inactive</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="pagination-bar" data-mat="mat-paginator">
+              <div class="records-selector">
+                <span>Show</span>
+                <select class="records-select">
+                  <option>10 rows</option>
+                  <option>20 rows</option>
+                  <option>50 rows</option>
+                </select>
+              </div>
+              <div class="pagination-info">
+                <span>Total: <strong>7</strong></span>
+              </div>
+              <div class="pagination-controls">
+                <button class="page-btn disabled"><span class="material-symbols-outlined">keyboard_double_arrow_left</span></button>
+                <button class="page-btn disabled"><span class="material-symbols-outlined">chevron_left</span></button>
+                <button class="page-btn active">1</button>
+                <button class="page-btn disabled"><span class="material-symbols-outlined">chevron_right</span></button>
+                <button class="page-btn disabled"><span class="material-symbols-outlined">keyboard_double_arrow_right</span></button>
+              </div>
+            </div>
+          </div>
+
+          <!-- RIGHT: Aircraft Type Details -->
+          <div class="user-details-section">
+            <section class="m3-card details-card">
+
+              <!-- Header -->
+              <div class="details-header">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                  <div style="font-size: 30px;">✈️</div>
+                  <div>
+                    <div class="details-name">Airbus A320 NEO</div>
+                    <div class="details-meta">
+                      <span class="status-badge active">Active</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Tab Nav - Section-Level Edit (removed inline icons) -->
+              <div class="details-tab-nav" role="tablist">
+                <button class="details-tab-button active" role="tab" aria-selected="true" aria-controls="tab-general" onclick="switchDetailsTab(this, 'tab-general')">
+                  General Information
+                </button>
+                <button class="details-tab-button" role="tab" aria-selected="false" aria-controls="tab-config" onclick="switchDetailsTab(this, 'tab-config')">
+                  Aircraft Configuration
+                </button>
+                <button class="details-tab-button" role="tab" aria-selected="false" aria-controls="tab-attr" onclick="switchDetailsTab(this, 'tab-attr')">
+                  Group Attributes
+                </button>
+                <button class="details-tab-button" role="tab" aria-selected="false" aria-controls="tab-audit" onclick="switchDetailsTab(this, 'tab-audit')">
+                  Change History
+                </button>
+              </div>
+
+              <!-- ============================ -->
+              <!-- TAB 1: General Information -->
+              <!-- ============================ -->
+              <div id="tab-general" class="details-tab-content active">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                  <h3 style="font-size: 13px; font-weight: 700; color: var(--vna-navy);">General Information</h3>
+                  <button class="section-edit-btn" title="Edit general information" onclick="enterSectionEditMode(event, 'tab-general', 'general-info')">
+                    <span class="material-symbols-outlined">edit</span> Edit
+                  </button>
+                </div>
+                <p class="subsection-note">Fields marked with <span class="material-symbols-outlined" style="font-size: 14px; vertical-align: -2px;">lock</span> icon are synchronized from source system (SMA/Ops++) and read-only in TOSS.</p>
+                <div class="details-grid">
+                  <div class="detail-row">
+                    <span class="detail-label">AC Subtype <span class="material-symbols-outlined lock-ic">lock</span></span>
+                    <input type="text" class="detail-input" value="A320NEO" disabled>
+                  </div>
+                  <div class="detail-row">
+                    <span class="detail-label">Aircraft Type Name</span>
+                    <input type="text" class="detail-input" value="Airbus A320 NEO">
+                  </div>
+                  <div class="detail-row">
+                    <span class="detail-label">Valid From <span class="material-symbols-outlined lock-ic">lock</span></span>
+                    <input type="date" class="detail-input" value="2024-01-01" disabled>
+                  </div>
+                  <div class="detail-row">
+                    <span class="detail-label">Valid To <span class="material-symbols-outlined lock-ic">lock</span></span>
+                    <input type="date" class="detail-input" value="2029-12-31" disabled>
+                  </div>
+                  <div class="detail-row">
+                    <span class="detail-label">ICAO Code</span>
+                    <input type="text" class="detail-input" value="A20N" maxlength="4">
+                  </div>
+                  <div class="detail-row">
+                    <span class="detail-label">IATA Code</span>
+                    <input type="text" class="detail-input" value="32N" maxlength="3">
+                  </div>
+                  <div class="detail-row">
+                    <span class="detail-label">Ownership Status</span>
+                    <select class="detail-select" id="ownershipSel" onchange="toggleOwner()">
+                      <option value="Owned" selected>Owned</option>
+                      <option value="Wet Leased">Wet Leased</option>
+                      <option value="Dry Leased">Dry Leased</option>
+                    </select>
+                  </div>
+                  <div class="detail-row">
+                    <span class="detail-label">Owner (max 50 characters)</span>
+                    <input type="text" class="detail-input" id="ownerField" value="Vietnam Airlines" maxlength="50" disabled aria-describedby="ownerHint">
+                    <span class="field-hint" id="ownerHint">Auto-filled as "Vietnam Airlines" when "Owned" is selected</span>
+                  </div>
+                  <div class="detail-row">
+                    <span class="detail-label">Status</span>
+                    <select class="detail-select">
+                      <option>Active</option>
+                      <option>Inactive</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <!-- ============================ -->
+              <!-- TAB 2: Aircraft Configuration -->
+              <!-- ============================ -->
+              <div id="tab-config" class="details-tab-content">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                  <h3 style="font-size: 13px; font-weight: 700; color: var(--vna-navy);">Technical Parameters</h3>
+                  <button class="section-edit-btn" title="Edit technical parameters" onclick="enterSectionEditMode(event, 'tab-config', 'aircraft-params')">
+                    <span class="material-symbols-outlined">edit</span> Edit
+                  </button>
+                </div>
+                <div class="details-grid">
+                  <div class="detail-row">
+                    <span class="detail-label">Taxi Fuel Flow (kg/h)</span>
+                    <input type="number" class="detail-input" value="1500">
+                  </div>
+                  <div class="detail-row">
+                    <span class="detail-label">APU Fuel Flow (kg/h)</span>
+                    <input type="number" class="detail-input" value="200">
+                  </div>
+                  <div class="detail-row">
+                    <span class="detail-label">Fuel Tank Capacity (kg)</span>
+                    <input type="number" class="detail-input" value="27200">
+                  </div>
+                  <div class="detail-row">
+                    <span class="detail-label">Water Tank Capacity (liters)</span>
+                    <input type="number" class="detail-input" value="200">
+                  </div>
+                  <div class="detail-row">
+                    <span class="detail-label">Cargo Capacity (kg)</span>
+                    <input type="number" class="detail-input" value="6000">
+                  </div>
+                  <div class="detail-row">
+                    <span class="detail-label">Basic Operating Weight (kg)</span>
+                    <input type="number" class="detail-input" value="41413">
+                  </div>
+                  <div class="detail-row">
+                    <span class="detail-label">Max Ramp Weight (kg)</span>
+                    <input type="number" class="detail-input" value="75500">
+                  </div>
+                  <div class="detail-row">
+                    <span class="detail-label">MTOW (kg)</span>
+                    <input type="number" class="detail-input" value="79000">
+                  </div>
+                </div>
+
+                <!-- Cabin Config — flexible based on up to 5 cabins; enter 0 for non-existent cabins -->
+                <div class="subsection">
+                  <div class="subsection-head" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                    <h3><span class="material-symbols-outlined">view_column</span> Cabin Configuration</h3>
+                    <button class="section-edit-btn" title="Edit cabin configuration" onclick="enterSectionEditMode(event, 'tab-config', 'cabin-config')">
+                      <span class="material-symbols-outlined">edit</span> Edit
+                    </button>
+                  </div>
+                  <p class="subsection-note">Declare up to 5 cabins. Enter 0 for cabins that don't exist on this aircraft type.</p>
+                  <div class="cabin-grid">
+                    <div class="cabin-cell"><label>Cabin A</label><input type="number" class="detail-input" value="8" min="0"></div>
+                    <div class="cabin-cell"><label>Cabin B</label><input type="number" class="detail-input" value="24" min="0"></div>
+                    <div class="cabin-cell"><label>Cabin C</label><input type="number" class="detail-input" value="120" min="0"></div>
+                  </div>
+                </div>
+
+                <!-- ACARS Fuel Unit / Multiplier — consecutive From-To pairs per MM §2.3 -->
+                <div class="subsection">
+                  <div class="subsection-head" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                    <h3><span class="material-symbols-outlined">local_gas_station</span> ACARS Fuel Limit & Fuel Multiplier</h3>
+                    <div style="display: flex; gap: 8px;">
+                      <button class="section-edit-btn" title="Edit ACARS Fuel Limit & Multiplier" onclick="enterSectionEditMode(event, 'tab-config', 'acars-fuel')">
+                        <span class="material-symbols-outlined">edit</span> Edit
+                      </button>
+                      <button class="add-row-btn" onclick="addAcarsRow()">
+                        <span class="material-symbols-outlined">add</span> Add Time Period
+                      </button>
+                    </div>
+                  </div>
+                  <p class="subsection-note">
+                    Declare as pairs; time periods (From–To) must be consecutive with no gaps or overlaps.
+                  </p>
+                  <table class="sub-table" id="acarsTable">
+                    <thead>
+                      <tr>
+                        <th style="width: 22%;">From</th>
+                        <th style="width: 22%;">To</th>
+                        <th style="width: 22%;">Fuel Limit</th>
+                        <th style="width: 22%;">Fuel Multiplier</th>
+                        <th style="width: 12%; text-align: center;">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody id="acarsBody">
+                      <tr>
+                        <td><input type="text" class="dtp-cell" value="01/01/2026 12:00 AM" readonly onclick="if(!this.disabled)openDtp(this)"></td>
+                        <td><input type="text" class="dtp-cell" value="06/30/2026 11:59 PM" readonly onclick="if(!this.disabled)openDtp(this)"></td>
+                        <td><input type="number" step="0.01" value="1500"></td>
+                        <td><input type="number" step="0.001" value="1.050"></td>
+                        <td style="text-align: center;"><button class="row-action" onclick="removeRow(this)" title="Delete"><span class="material-symbols-outlined" style="color: #ef4444;">delete</span></button></td>
+                      </tr>
+                      <tr>
+                        <td><input type="text" class="dtp-cell" value="07/01/2026 12:00 AM" readonly onclick="if(!this.disabled)openDtp(this)"></td>
+                        <td><input type="text" class="dtp-cell" value="12/31/2026 11:59 PM" readonly onclick="if(!this.disabled)openDtp(this)"></td>
+                        <td><input type="number" step="0.01" value="1550"></td>
+                        <td><input type="number" step="0.001" value="1.060"></td>
+                        <td style="text-align: center;"><button class="row-action" onclick="removeRow(this)" title="Delete"><span class="material-symbols-outlined" style="color: #ef4444;">delete</span></button></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <!-- ============================ -->
+              <!-- TAB 3: Group Attributes -->
+              <!-- ============================ -->
+              <div id="tab-attr" class="details-tab-content">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                  <h3 style="font-size: 13px; font-weight: 700; color: var(--vna-navy);">Group Attributes</h3>
+                  <button class="section-edit-btn" title="Edit group attributes" onclick="enterSectionEditMode(event, 'tab-attr', 'group-attr')">
+                    <span class="material-symbols-outlined">edit</span> Edit
+                  </button>
+                </div>
+                <div class="details-grid">
+                  <div class="detail-row">
+                    <span class="detail-label">Aircraft Category 1</span>
+                    <select class="detail-select">
+                      <option>A320NEO</option><option>A321 CEO</option><option>A321 NEO</option>
+                      <option>A350</option><option>B787-9</option><option>B787-10</option>
+                    </select>
+                  </div>
+                  <div class="detail-row">
+                    <span class="detail-label">Aircraft Category 2</span>
+                    <select class="detail-select">
+                      <option>A320</option><option>A321 CEO</option><option>A321 NEO</option>
+                      <option>A350</option><option>B787</option>
+                    </select>
+                  </div>
+                  <div class="detail-row">
+                    <span class="detail-label">Aircraft Category 3</span>
+                    <select class="detail-select">
+                      <option>A320-A321</option><option>A350</option><option>B787</option>
+                    </select>
+                  </div>
+                  <div class="detail-row">
+                    <span class="detail-label">Aircraft Category 4</span>
+                    <select class="detail-select">
+                      <option>A320-A321</option><option>A350-B787</option>
+                    </select>
+                  </div>
+                  <div class="detail-row">
+                    <span class="detail-label">Aircraft Category 5</span>
+                    <select class="detail-select">
+                      <option>320</option><option>32B</option><option>32D</option>
+                      <option>32N</option><option>350</option><option>787</option>
+                    </select>
+                  </div>
+                  <div class="detail-row">
+                    <span class="detail-label">Aircraft Fleet</span>
+                    <select class="detail-select">
+                      <option value="">Select Fleet</option>
+                      <option>A320</option>
+                      <option>A321</option>
+                      <option>A350</option>
+                      <option>B787</option>
+                      <option>ATR</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <!-- ============================ -->
+              <!-- TAB 4: Change History -->
+              <!-- ============================ -->
+              <div id="tab-audit" class="details-tab-content">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                  <h3 style="font-size: 13px; font-weight: 700; color: var(--vna-navy);">Change History</h3>
+                  <div style="display: flex; gap: 8px; align-items: center;">
+                    <button class="btn btn-orange" style="height: 34px; font-size: 12px; padding: 0 14px;" onclick="showToast('Change History exported to Excel')">
+                      <span class="material-symbols-outlined" style="font-size: 16px;">download</span> Export Excel
+                    </button>
+                  </div>
+                </div>
+                <p class="subsection-note">
+                  Change History — records ALL changes to aircraft type. Search by date range, account, action, or section to find specific modifications.
+                </p>
+
+                <!-- Search & Filter bar for Change History -->
+                <div class="audit-filter-bar">
+                  <div class="filter-item drp-wrap" style="flex: 1 1 200px;">
+                    <label>Date Range</label>
+                    <div class="drp-input-row">
+                      <input type="text" class="filter-input" id="drpInput" placeholder="Select date range" readonly onclick="toggleDatePicker()">
+                      <span class="material-symbols-outlined drp-icon">calendar_month</span>
+                    </div>
+                    <div class="drp-popup" id="drpPopup">
+                      <div class="drp-months" id="drpMonths"></div>
+                      <div class="drp-footer">
+                        <button class="drp-footer-btn clear" onclick="clearDateRange()">Clear</button>
+                        <span class="drp-range-display" id="drpRangeDisplay"></span>
+                        <button class="drp-footer-btn today" onclick="selectToday()">Today</button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="filter-item">
+                    <label>Account</label>
+                    <input type="text" class="filter-input" placeholder="Search account..." id="accountSearch" oninput="showAccountSuggestions()">
+                    <div id="accountSuggestions" style="display: none;"></div>
+                  </div>
+                  <div class="filter-item">
+                    <label>Action</label>
+                    <select class="filter-input filter-select">
+                      <option value="">All</option>
+                      <option value="add">Add</option>
+                      <option value="modify">Modify</option>
+                      <option value="delete">Delete</option>
+                    </select>
+                  </div>
+                  <div class="filter-item">
+                    <label>Section</label>
+                    <select class="filter-input filter-select">
+                      <option value="">All</option>
+                      <option>General Information</option>
+                      <option>Technical Parameters</option>
+                      <option>Cabin Configuration</option>
+                      <option>ACARS Fuel Limit & Fuel Multiplier</option>
+                      <option>Group Attributes</option>
+                    </select>
+                  </div>
+                  <div class="filter-actions">
+                    <button class="btn btn-clear" style="height: 36px;" onclick="showToast('Search cleared')">
+                      <span class="material-symbols-outlined">autorenew</span> Clear Search
+                    </button>
+                    <button class="btn btn-teal" style="height: 36px;" onclick="showToast('Search applied')">
+                      <span class="material-symbols-outlined">search</span> Search
+                    </button>
+                  </div>
+                </div>
+
+                <div class="audit-log-wrap">
+                  <table class="audit-log-table">
+                    <thead>
+                      <tr>
+                        <th>Date/Time</th>
+                        <th>Changed By</th>
+                        <th>Section</th>
+                        <th>Action</th>
+                        <th>Field</th>
+                        <th>Old Value</th>
+                        <th>New Value</th>
+                      </tr>
+                    </thead>
+                    <tbody id="auditLogBody">
+                      <!-- Session 1 (odd) — General Information -->
+                      <tr class="session-start sess-odd">
+                        <td><div class="cell-inner"><span class="cell-dt">2026-06-23&nbsp;10:30</span></div></td>
+                        <td><div class="cell-inner"><span class="cell-account">data_officer</span></div></td>
+                        <td><div class="cell-inner"><span class="section-pill">General Information</span></div></td>
+                        <td><div class="cell-inner"><span class="action-pill modify">Modify</span></div></td>
+                        <td><div class="cell-inner"><span class="field-pill">IATA Code</span></div></td>
+                        <td><div class="cell-inner"><span class="cell-val old">32N</span></div></td>
+                        <td><div class="cell-inner"><span class="cell-val new">32Q</span></div></td>
+                      </tr>
+                      <tr class="session-sub sess-odd">
+                        <td><div class="cell-inner"><span class="cell-dt">2026-06-23&nbsp;10:30</span></div></td>
+                        <td><div class="cell-inner"><span class="cell-account">data_officer</span></div></td>
+                        <td><div class="cell-inner"><span class="section-pill">General Information</span></div></td>
+                        <td><div class="cell-inner"><span class="action-pill modify">Modify</span></div></td>
+                        <td><div class="cell-inner"><span class="field-pill">ICAO Code</span></div></td>
+                        <td><div class="cell-inner"><span class="cell-val old">A20N</span></div></td>
+                        <td><div class="cell-inner"><span class="cell-val new">A20M</span></div></td>
+                      </tr>
+
+                      <!-- Session 2 (even) — Technical Parameters -->
+                      <tr class="session-start sess-even">
+                        <td><div class="cell-inner"><span class="cell-dt">2026-06-23&nbsp;10:30</span></div></td>
+                        <td><div class="cell-inner"><span class="cell-account">data_officer</span></div></td>
+                        <td><div class="cell-inner"><span class="section-pill">Technical Parameters</span></div></td>
+                        <td><div class="cell-inner"><span class="action-pill modify">Modify</span></div></td>
+                        <td><div class="cell-inner"><span class="field-pill">APU Fuel Flow</span></div></td>
+                        <td><div class="cell-inner"><span class="cell-val old">200</span></div></td>
+                        <td><div class="cell-inner"><span class="cell-val new">210</span></div></td>
+                      </tr>
+                      <tr class="session-sub sess-even">
+                        <td><div class="cell-inner"><span class="cell-dt">2026-06-23&nbsp;10:30</span></div></td>
+                        <td><div class="cell-inner"><span class="cell-account">data_officer</span></div></td>
+                        <td><div class="cell-inner"><span class="section-pill">Technical Parameters</span></div></td>
+                        <td><div class="cell-inner"><span class="action-pill modify">Modify</span></div></td>
+                        <td><div class="cell-inner"><span class="field-pill">Taxi Fuel Flow</span></div></td>
+                        <td><div class="cell-inner"><span class="cell-val old">1 500</span></div></td>
+                        <td><div class="cell-inner"><span class="cell-val new">1 550</span></div></td>
+                      </tr>
+
+                      <!-- Session 3 (odd) — ACARS Fuel: Add new period row -->
+                      <tr class="session-start sess-odd">
+                        <td><div class="cell-inner"><span class="cell-dt">2026-06-15&nbsp;10:30</span></div></td>
+                        <td><div class="cell-inner"><span class="cell-account">data_officer</span></div></td>
+                        <td><div class="cell-inner"><span class="section-pill">ACARS Fuel</span></div></td>
+                        <td><div class="cell-inner"><span class="action-pill add">Add</span></div></td>
+                        <td><div class="cell-inner"><span class="field-pill">Fuel Limit</span><br><span style="font-size:10px;color:#94a3b8;padding-left:2px;">07/01 – 12/31/2026</span></div></td>
+                        <td><div class="cell-inner"><span class="cell-val" style="color:#94a3b8;">—</span></div></td>
+                        <td><div class="cell-inner"><span class="cell-val new">1 550</span></div></td>
+                      </tr>
+                      <tr class="session-sub sess-odd">
+                        <td><div class="cell-inner"><span class="cell-dt">2026-06-15&nbsp;10:30</span></div></td>
+                        <td><div class="cell-inner"><span class="cell-account">data_officer</span></div></td>
+                        <td><div class="cell-inner"><span class="section-pill">ACARS Fuel</span></div></td>
+                        <td><div class="cell-inner"><span class="action-pill add">Add</span></div></td>
+                        <td><div class="cell-inner"><span class="field-pill">Fuel Multiplier</span><br><span style="font-size:10px;color:#94a3b8;padding-left:2px;">07/01 – 12/31/2026</span></div></td>
+                        <td><div class="cell-inner"><span class="cell-val" style="color:#94a3b8;">—</span></div></td>
+                        <td><div class="cell-inner"><span class="cell-val new">1.060</span></div></td>
+                      </tr>
+
+                      <!-- Session 4 (even) — ACARS Fuel Delete -->
+                      <tr class="session-start sess-even">
+                        <td><div class="cell-inner"><span class="cell-dt">2026-06-14&nbsp;09:05</span></div></td>
+                        <td><div class="cell-inner"><span class="cell-account">data_officer</span></div></td>
+                        <td><div class="cell-inner"><span class="section-pill">ACARS Fuel</span></div></td>
+                        <td><div class="cell-inner"><span class="action-pill delete">Delete</span></div></td>
+                        <td><div class="cell-inner"><span class="field-pill">Fuel Limit</span><br><span style="font-size:10px;color:#94a3b8;padding-left:2px;">07/01 – 12/31/2026</span></div></td>
+                        <td><div class="cell-inner"><span class="cell-val old">1 520</span></div></td>
+                        <td><div class="cell-inner"><span class="cell-val" style="color:#94a3b8;">—</span></div></td>
+                      </tr>
+                      <tr class="session-sub sess-even">
+                        <td><div class="cell-inner"><span class="cell-dt">2026-06-14&nbsp;09:05</span></div></td>
+                        <td><div class="cell-inner"><span class="cell-account">data_officer</span></div></td>
+                        <td><div class="cell-inner"><span class="section-pill">ACARS Fuel</span></div></td>
+                        <td><div class="cell-inner"><span class="action-pill delete">Delete</span></div></td>
+                        <td><div class="cell-inner"><span class="field-pill">Fuel Multiplier</span><br><span style="font-size:10px;color:#94a3b8;padding-left:2px;">07/01 – 12/31/2026</span></div></td>
+                        <td><div class="cell-inner"><span class="cell-val old">1.055</span></div></td>
+                        <td><div class="cell-inner"><span class="cell-val" style="color:#94a3b8;">—</span></div></td>
+                      </tr>
+
+                      <!-- Session 5 (odd) — General Information -->
+                      <tr class="session-start sess-odd">
+                        <td><div class="cell-inner"><span class="cell-dt">2026-06-10&nbsp;14:15</span></div></td>
+                        <td><div class="cell-inner"><span class="cell-account">admin</span></div></td>
+                        <td><div class="cell-inner"><span class="section-pill">General Information</span></div></td>
+                        <td><div class="cell-inner"><span class="action-pill modify">Modify</span></div></td>
+                        <td><div class="cell-inner"><span class="field-pill">Ownership Status</span></div></td>
+                        <td><div class="cell-inner"><span class="cell-val old">Wet Leased</span></div></td>
+                        <td><div class="cell-inner"><span class="cell-val new">Owned</span></div></td>
+                      </tr>
+
+                      <!-- Session 6 (even) — Cabin Configuration -->
+                      <tr class="session-start sess-even">
+                        <td><div class="cell-inner"><span class="cell-dt">2026-06-05&nbsp;09:00</span></div></td>
+                        <td><div class="cell-inner"><span class="cell-account">data_officer</span></div></td>
+                        <td><div class="cell-inner"><span class="section-pill">Cabin Configuration</span></div></td>
+                        <td><div class="cell-inner"><span class="action-pill modify">Modify</span></div></td>
+                        <td><div class="cell-inner"><span class="field-pill">Cabin Layout</span></div></td>
+                        <td><div class="cell-inner"><span class="cell-val old">8 / 24 / 0 / 0 / 0</span></div></td>
+                        <td><div class="cell-inner"><span class="cell-val new">8 / 24 / 120 / 0 / 0</span></div></td>
+                      </tr>
+
+                      <!-- Session 7 (odd) — Technical Parameters -->
+                      <tr class="session-start sess-odd">
+                        <td><div class="cell-inner"><span class="cell-dt">2026-05-28&nbsp;16:45</span></div></td>
+                        <td><div class="cell-inner"><span class="cell-account">data_officer</span></div></td>
+                        <td><div class="cell-inner"><span class="section-pill">Technical Parameters</span></div></td>
+                        <td><div class="cell-inner"><span class="action-pill modify">Modify</span></div></td>
+                        <td><div class="cell-inner"><span class="field-pill">Basic Operating Weight</span></div></td>
+                        <td><div class="cell-inner"><span class="cell-val old">41 200</span></div></td>
+                        <td><div class="cell-inner"><span class="cell-val new">41 413</span></div></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <!-- Pagination for Change History -->
+                <div class="pagination-bar" style="padding: 8px 4px; font-size: 12.5px;">
+                  <div class="records-selector">
+                    <span>Show</span>
+                    <select class="records-select">
+                      <option>10 rows</option>
+                      <option>20 rows</option>
+                      <option>50 rows</option>
+                    </select>
+                  </div>
+                  <div class="pagination-info">
+                    <span>Total: <strong>8</strong></span>
+                  </div>
+                  <div class="pagination-controls">
+                    <button class="page-btn disabled"><span class="material-symbols-outlined">keyboard_double_arrow_left</span></button>
+                    <button class="page-btn disabled"><span class="material-symbols-outlined">chevron_left</span></button>
+                    <button class="page-btn active">1</button>
+                    <button class="page-btn disabled"><span class="material-symbols-outlined">chevron_right</span></button>
+                    <button class="page-btn disabled"><span class="material-symbols-outlined">keyboard_double_arrow_right</span></button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Edit-mode action bar — per-tab edit -->
+              <div id="editActionBar" class="edit-action-bar" style="display: none;">
+                <span class="hint"><span class="material-symbols-outlined" style="font-size: 16px;">edit_note</span> Editing: General Information</span>
+                <button class="btn btn-clear" onclick="exitEditMode()">Cancel</button>
+                <button class="btn btn-teal" onclick="saveChanges()">Save</button>
+              </div>
+
+            </section>
+          </div>
+
+        </div>
+        </div><!-- /inner-catalog -->
+
+        <!-- ===== INNER PANEL: AOG / Schedule ===== -->
+        <div id="inner-aog-schedule" class="mnav-content mnav-placeholder">
+          <div style="background: rgba(255,255,255,0.82); backdrop-filter: blur(14px); border: 1px solid rgba(255,255,255,0.85); border-radius: 16px; padding: 36px 48px; display: flex; flex-direction: column; align-items: center; gap: 14px; box-shadow: 0 4px 18px rgba(0,42,84,0.09); max-width: 480px; text-align: center;">
+            <span class="material-symbols-outlined" style="font-size: 44px; color: #005a9c; background: #e8f1fb; border-radius: 50%; padding: 14px; display: flex;">event_busy</span>
+            <div>
+              <p style="font-size: 15px; font-weight: 700; color: #002A54; margin-bottom: 6px;">AOG / Maintenance Schedule</p>
+              <p style="font-size: 13px; color: #64748b; line-height: 1.5;">Màn hình này đang được phát triển và sẽ sớm ra mắt.</p>
+            </div>
+            <span style="display: inline-flex; align-items: center; gap: 5px; font-size: 11.5px; font-weight: 600; color: #d97706; background: #fef9ed; border: 1px solid #fde68a; border-radius: 6px; padding: 4px 12px;"><span class="material-symbols-outlined" style="font-size: 15px;">construction</span> Under Development</span>
+          </div>
+        </div>
+
+        <!-- ===== INNER PANEL: AOG / Codes ===== -->
+        <div id="inner-aog-code" class="mnav-content mnav-placeholder">
+          <div style="background: rgba(255,255,255,0.82); backdrop-filter: blur(14px); border: 1px solid rgba(255,255,255,0.85); border-radius: 16px; padding: 36px 48px; display: flex; flex-direction: column; align-items: center; gap: 14px; box-shadow: 0 4px 18px rgba(0,42,84,0.09); max-width: 480px; text-align: center;">
+            <span class="material-symbols-outlined" style="font-size: 44px; color: #005a9c; background: #e8f1fb; border-radius: 50%; padding: 14px; display: flex;">build_circle</span>
+            <div>
+              <p style="font-size: 15px; font-weight: 700; color: #002A54; margin-bottom: 6px;">AOG / Maintenance Codes</p>
+              <p style="font-size: 13px; color: #64748b; line-height: 1.5;">Màn hình này đang được phát triển và sẽ sớm ra mắt.</p>
+            </div>
+            <span style="display: inline-flex; align-items: center; gap: 5px; font-size: 11.5px; font-weight: 600; color: #d97706; background: #fef9ed; border: 1px solid #fde68a; border-radius: 6px; padding: 4px 12px;"><span class="material-symbols-outlined" style="font-size: 15px;">construction</span> Under Development</span>
+          </div>
+        </div>
+
+        <!-- ===== INNER PANEL: MEL / CDL ===== -->
+        <div id="inner-mel-cdl" class="mnav-content mnav-placeholder">
+          <div style="background: rgba(255,255,255,0.82); backdrop-filter: blur(14px); border: 1px solid rgba(255,255,255,0.85); border-radius: 16px; padding: 36px 48px; display: flex; flex-direction: column; align-items: center; gap: 14px; box-shadow: 0 4px 18px rgba(0,42,84,0.09); max-width: 480px; text-align: center;">
+            <span class="material-symbols-outlined" style="font-size: 44px; color: #005a9c; background: #e8f1fb; border-radius: 50%; padding: 14px; display: flex;">checklist</span>
+            <div>
+              <p style="font-size: 15px; font-weight: 700; color: #002A54; margin-bottom: 6px;">MEL / CDL</p>
+              <p style="font-size: 13px; color: #64748b; line-height: 1.5;">Màn hình này đang được phát triển và sẽ sớm ra mắt.</p>
+            </div>
+            <span style="display: inline-flex; align-items: center; gap: 5px; font-size: 11.5px; font-weight: 600; color: #d97706; background: #fef9ed; border: 1px solid #fde68a; border-radius: 6px; padding: 4px 12px;"><span class="material-symbols-outlined" style="font-size: 15px;">construction</span> Under Development</span>
+          </div>
+        </div>
+
+        <!-- ===== INNER PANEL: Performance Factors ===== -->
+        <div id="inner-performance-factor" class="mnav-content mnav-placeholder">
+          <div style="background: rgba(255,255,255,0.82); backdrop-filter: blur(14px); border: 1px solid rgba(255,255,255,0.85); border-radius: 16px; padding: 36px 48px; display: flex; flex-direction: column; align-items: center; gap: 14px; box-shadow: 0 4px 18px rgba(0,42,84,0.09); max-width: 480px; text-align: center;">
+            <span class="material-symbols-outlined" style="font-size: 44px; color: #005a9c; background: #e8f1fb; border-radius: 50%; padding: 14px; display: flex;">speed</span>
+            <div>
+              <p style="font-size: 15px; font-weight: 700; color: #002A54; margin-bottom: 6px;">Performance Factors</p>
+              <p style="font-size: 13px; color: #64748b; line-height: 1.5;">Màn hình này đang được phát triển và sẽ sớm ra mắt.</p>
+            </div>
+            <span style="display: inline-flex; align-items: center; gap: 5px; font-size: 11.5px; font-weight: 600; color: #d97706; background: #fef9ed; border: 1px solid #fde68a; border-radius: 6px; padding: 4px 12px;"><span class="material-symbols-outlined" style="font-size: 15px;">construction</span> Under Development</span>
+          </div>
+        </div>
+
+      </div><!-- /tau-bay -->
+      <div id="san-bay" class="main-content-scrollable tab-content" style="display: flex; align-items: center; justify-content: center;">
+        <div style="text-align: center; color: var(--md-text-secondary);">
+          <span class="material-symbols-outlined" style="font-size: 64px; display: block; margin-bottom: 16px;">flight_takeoff</span>
+          <p style="font-size: 16px;">Airports — Under Development</p>
+        </div>
+      </div>
+      <div id="chang-bay" class="main-content-scrollable tab-content" style="display: flex; align-items: center; justify-content: center;">
+        <div style="text-align: center; color: var(--md-text-secondary);">
+          <span class="material-symbols-outlined" style="font-size: 64px; display: block; margin-bottom: 16px;">route</span>
+          <p style="font-size: 16px;">Flight Routes — Under Development</p>
+        </div>
+      </div>
+      <div id="payload" class="main-content-scrollable tab-content" style="display: flex; align-items: center; justify-content: center;">
+        <div style="text-align: center; color: var(--md-text-secondary);">
+          <span class="material-symbols-outlined" style="font-size: 64px; display: block; margin-bottom: 16px;">scale</span>
+          <p style="font-size: 16px;">Payload — Under Development</p>
+        </div>
+      </div>
+      <div id="tankering" class="main-content-scrollable tab-content" style="display: flex; align-items: center; justify-content: center;">
+        <div style="text-align: center; color: var(--md-text-secondary);">
+          <span class="material-symbols-outlined" style="font-size: 64px; display: block; margin-bottom: 16px;">water_drop</span>
+          <p style="font-size: 16px;">Tankering — Under Development</p>
+        </div>
+      </div>
+      <div id="gia-nhien-lieu" class="main-content-scrollable tab-content" style="display: flex; align-items: center; justify-content: center;">
+        <div style="text-align: center; color: var(--md-text-secondary);">
+          <span class="material-symbols-outlined" style="font-size: 64px; display: block; margin-bottom: 16px;">local_gas_station</span>
+          <p style="font-size: 16px;">Fuel Pricing — Under Development</p>
+        </div>
+      </div>
+      <div id="uld" class="main-content-scrollable tab-content" style="display: flex; align-items: center; justify-content: center;">
+        <div style="text-align: center; color: var(--md-text-secondary);">
+          <span class="material-symbols-outlined" style="font-size: 64px; display: block; margin-bottom: 16px;">inventory_2</span>
+          <p style="font-size: 16px;">ULD (Unit Load Devices) — Under Development</p>
+        </div>
+      </div>
+      <div id="fir" class="main-content-scrollable tab-content" style="display: flex; align-items: center; justify-content: center;">
+        <div style="text-align: center; color: var(--md-text-secondary);">
+          <span class="material-symbols-outlined" style="font-size: 64px; display: block; margin-bottom: 16px;">cloud</span>
+          <p style="font-size: 16px;">FIR (Flight Information Region) — Under Development</p>
+        </div>
+      </div>
+      <div id="phi-cong" class="main-content-scrollable tab-content" style="display: flex; align-items: center; justify-content: center;">
+        <div style="text-align: center; color: var(--md-text-secondary);">
+          <span class="material-symbols-outlined" style="font-size: 64px; display: block; margin-bottom: 16px;">person</span>
+          <p style="font-size: 16px;">Pilots — Under Development</p>
+        </div>
+      </div>
+      <div id="tiep-vien" class="main-content-scrollable tab-content" style="display: flex; align-items: center; justify-content: center;">
+        <div style="text-align: center; color: var(--md-text-secondary);">
+          <span class="material-symbols-outlined" style="font-size: 64px; display: block; margin-bottom: 16px;">group</span>
+          <p style="font-size: 16px;">Flight Attendants — Under Development</p>
+        </div>
+      </div>
+      <div id="quoc-gia" class="main-content-scrollable tab-content" style="display: flex; align-items: center; justify-content: center;">
+        <div style="text-align: center; color: var(--md-text-secondary);">
+          <span class="material-symbols-outlined" style="font-size: 64px; display: block; margin-bottom: 16px;">public</span>
+          <p style="font-size: 16px;">Countries — Under Development</p>
+        </div>
+      </div>
+      <div id="carrier" class="main-content-scrollable tab-content" style="display: flex; align-items: center; justify-content: center;">
+        <div style="text-align: center; color: var(--md-text-secondary);">
+          <span class="material-symbols-outlined" style="font-size: 64px; display: block; margin-bottom: 16px;">business_center</span>
+          <p style="font-size: 16px;">Carriers — Under Development</p>
+        </div>
+      </div>
+      <div id="co-quan-don-vi" class="main-content-scrollable tab-content" style="display: flex; align-items: center; justify-content: center;">
+        <div style="text-align: center; color: var(--md-text-secondary);">
+          <span class="material-symbols-outlined" style="font-size: 64px; display: block; margin-bottom: 16px;">apartment</span>
+          <p style="font-size: 16px;">Organizational Units — Under Development</p>
+        </div>
+      </div>
+      <div id="dow" class="main-content-scrollable tab-content" style="display: flex; align-items: center; justify-content: center;">
+        <div style="text-align: center; color: var(--md-text-secondary);">
+          <span class="material-symbols-outlined" style="font-size: 64px; display: block; margin-bottom: 16px;">balance</span>
+          <p style="font-size: 16px;">DOW (Dry Operating Weight) — Under Development</p>
+        </div>
+      </div>
+
+    </main>
+
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast-notif" id="toastNotif" style="position: fixed; bottom: 24px; right: 24px; background: #1e293b; color: white; padding: 12px 20px; border-radius: 8px; box-shadow: 0 10px 15px rgba(0,0,0,0.15); display: flex; align-items: center; gap: 10px; font-size: 13.5px; z-index: 2000; opacity: 0; transform: translateY(100px); transition: all 0.3s;">
+    <span class="material-symbols-outlined" style="color: #10b981; font-size: 20px;">check_circle</span>
+    <span id="toastMessage">Success</span>
+  </div>
+
+  <script>
+    // Sidebar Toggle
+    const sidebar = document.getElementById('sidebar');
+    const sidebarToggle = document.getElementById('sidebarToggle');
+    const toggleIcon = document.getElementById('toggleIcon');
+    sidebarToggle.addEventListener('click', () => {
+      sidebar.classList.toggle('collapsed');
+      toggleIcon.textContent = sidebar.classList.contains('collapsed') ? 'chevron_right' : 'chevron_left';
+    });
+
+    // Main Tab Switching
+    function switchTab(tabName) {
+      document.querySelectorAll('.tab-content').forEach(t => { t.classList.remove('active'); t.style.display = 'none'; });
+      const t = document.getElementById(tabName);
+      if (t) { t.classList.add('active'); t.style.display = (tabName === 'tau-bay') ? 'flex' : 'flex'; }
+      document.querySelectorAll('.menu-item').forEach(m => {
+        m.classList.toggle('active', m.dataset.tab === tabName);
+      });
+    }
+
+    // Toast
+    function showToast(message) {
+      const toast = document.getElementById('toastNotif');
+      const msg = document.getElementById('toastMessage');
+      msg.textContent = message;
+      toast.style.opacity = '1';
+      toast.style.transform = 'translateY(0)';
+      setTimeout(() => { toast.style.opacity = '0'; toast.style.transform = 'translateY(100px)'; }, 2200);
+    }
+
+    // Filters
+    function clearFilters() {
+      ['fSubtype','fACreg','fCat1','fCat2','fCat3','fCat4','fCat5','fStatus'].forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
+      showToast('Filters cleared');
+    }
+    function applyFilters() { showToast('Filters applied'); }
+    function refreshTable() { showToast('List refreshed'); }
+
+    // Main tabs (5 header tabs) — toggle INNER panels within #tau-bay; nav bar always stays
+    function switchMainTab(btn, tabId) {
+      document.querySelectorAll('#tau-bay .mnav-content').forEach(t => {
+        t.classList.toggle('active', t.id === tabId);
+      });
+      document.querySelectorAll('#mainNavBar .mnav-btn').forEach(b => {
+        b.classList.remove('active');
+        b.setAttribute('aria-selected', 'false');
+      });
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
+    }
+
+    // Detail tabs - switch content only
+    function switchDetailsTab(btn, tabId) {
+      // Switch tab content
+      document.querySelectorAll('.details-tab-content').forEach(t => t.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+
+      // Switch tab button active state + aria-selected
+      document.querySelectorAll('.details-tab-button').forEach(b => {
+        b.classList.remove('active');
+        b.setAttribute('aria-selected', 'false');
+      });
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
+    }
+
+    function showTabActionBar(tabId) {
+      const actionBar = document.getElementById('editActionBar');
+      actionBar.classList.add('visible');
+      const hint = document.querySelector('.edit-action-bar .hint');
+      hint.textContent = '✎ Editing: ' + getTabName(tabId);
+    }
+
+    function hideTabActionBar() {
+      const actionBar = document.getElementById('editActionBar');
+      actionBar.classList.remove('visible');
+      // Hide add-row button
+      document.querySelectorAll('.add-row-btn').forEach(btn => btn.classList.remove('visible'));
+    }
+
+    function getTabName(tabId) {
+      const names = {'tab-general': 'General Information', 'tab-config': 'Aircraft Configuration', 'tab-attr': 'Group Attributes'};
+      return names[tabId] || 'This Tab';
+    }
+
+    // Section-level edit mode (Option 2B: Text + Icon buttons)
+    function enterSectionEditMode(event, tabId, sectionId) {
+      event.stopPropagation();
+      const tab = document.getElementById(tabId);
+
+      // Enable all editable fields in this tab (except locked fields like AC Subtype, Valid From)
+      const lockedLabels = ['AC Subtype', 'Valid From', 'Valid To'];
+      tab.querySelectorAll('.detail-input, .detail-select, .sub-table input, .cabin-cell input').forEach(el => {
+        // Check if this field is locked
+        const labelEl = el.parentElement.querySelector('.detail-label');
+        const isLocked = labelEl && lockedLabels.some(l => labelEl.textContent.includes(l));
+
+        if (!isLocked) {
+          el.disabled = false;
+        }
+      });
+
+      // Show save/cancel buttons
+      showTabActionBar(tabId);
+
+      // Show "Add Row" button only for ACARS Fuel section
+      if (sectionId === 'acars-fuel') {
+        const addRowBtn = tab.querySelector('.add-row-btn');
+        if (addRowBtn) addRowBtn.classList.add('visible');
+      }
+
+      window.__currentEditingTab = tabId;
+      window.__currentEditingSection = sectionId;
+
+      showToast(`Editing: ${sectionId}`);
+    }
+
+    // Ownership Status logic (MM §2.5; Function list R59)
+    function toggleOwner() {
+      const sel = document.getElementById('ownershipSel');
+      const owner = document.getElementById('ownerField');
+      if (sel.value === 'Owned') {
+        owner.value = 'Vietnam Airlines';
+        owner.disabled = true;
+      } else {
+        if (owner.value === 'Vietnam Airlines') owner.value = '';
+        owner.disabled = !window.__isEditing;
+      }
+    }
+
+    // View / Edit Mode (all 4 tabs)
+    window.__isEditing = false;
+    function enterEditMode() {
+      window.__isEditing = true;
+      document.getElementById('headerActions').style.display = 'none';
+      document.getElementById('editActionBar').classList.add('visible');
+      document.querySelectorAll('.details-tab-content .detail-input, .details-tab-content .detail-select').forEach(el => {
+        const lockedLabels = ['AC Subtype', 'Valid From', 'Valid To'];
+        const labelEl = el.parentElement.querySelector('.detail-label');
+        const isLocked = labelEl && lockedLabels.some(l => labelEl.textContent.includes(l));
+        if (!isLocked) el.disabled = false;
+      });
+      document.querySelectorAll('.sub-table input').forEach(el => el.disabled = false);
+      // Ownership rule
+      toggleOwner();
+      showToast('Entered edit mode');
+    }
+    function exitEditMode() {
+      window.__isEditing = false;
+      hideTabActionBar();
+      document.querySelectorAll('.details-tab-content .detail-input, .details-tab-content .detail-select').forEach(el => el.disabled = true);
+      document.querySelectorAll('.sub-table input').forEach(el => el.disabled = true);
+      showToast('Edit cancelled');
+    }
+    function saveChanges() {
+      window.__isEditing = false;
+      hideTabActionBar();
+      document.querySelectorAll('.details-tab-content .detail-input, .details-tab-content .detail-select').forEach(el => el.disabled = true);
+      document.querySelectorAll('.sub-table input').forEach(el => el.disabled = true);
+      showToast('Changes saved successfully');
+    }
+
+    // Account search suggestions for Change History
+    const accounts = ['data_officer', 'admin', 'sys_sync'];
+    function showAccountSuggestions() {
+      const input = document.getElementById('accountSearch');
+      const suggestions = document.getElementById('accountSuggestions');
+      const searchTerm = input.value.toLowerCase();
+
+      if (searchTerm.length === 0) {
+        suggestions.style.display = 'none';
+        return;
+      }
+
+      const filtered = accounts.filter(acc => acc.toLowerCase().includes(searchTerm)).slice(0, 3);
+      if (filtered.length > 0) {
+        suggestions.style.display = 'block';
+        suggestions.innerHTML = filtered.map(acc =>
+          `<div style="padding: 4px 8px; font-size: 11.5px; color: #64748b; cursor: pointer; border-bottom: 1px solid #e2e8f0;" onclick="selectAccount('${acc}')">${acc}</div>`
+        ).join('');
+      } else {
+        suggestions.style.display = 'none';
+      }
+    }
+
+    function selectAccount(account) {
+      document.getElementById('accountSearch').value = account;
+      document.getElementById('accountSuggestions').style.display = 'none';
+    }
+
+    // ===== Date Range Picker =====
+    (function() {
+      var drpStart = null, drpEnd = null, drpHover = null;
+      var drpViewLeft = new Date(2026, 5, 1);  // June 2026
+      var drpViewRight = new Date(2026, 6, 1); // July 2026
+      var MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+      var DAYS = ['Su','Mo','Tu','We','Th','Fr','Sa'];
+
+      function pad(n) { return n < 10 ? '0' + n : n; }
+      function fmtDate(d) { return pad(d.getDate()) + '/' + pad(d.getMonth()+1) + '/' + d.getFullYear(); }
+      function sameDay(a, b) { return a && b && a.getFullYear()===b.getFullYear() && a.getMonth()===b.getMonth() && a.getDate()===b.getDate(); }
+
+      function renderCalendars() {
+        var container = document.getElementById('drpMonths');
+        container.innerHTML = renderMonth(drpViewLeft, 'left') + renderMonth(drpViewRight, 'right');
+        container.querySelectorAll('.drp-day[data-ts]').forEach(function(el) {
+          el.addEventListener('click', function() { onDayClick(new Date(+el.dataset.ts)); });
+          el.addEventListener('mouseover', function() { drpHover = new Date(+el.dataset.ts); updateRange(); });
+        });
+        document.getElementById('drpMonths').querySelector('.drp-nav-btn[data-dir="-1"]') && null;
+        bindNavBtn('left', -1);
+        bindNavBtn('right', 1);
+      }
+
+      function renderMonth(date, side) {
+        var y = date.getFullYear(), m = date.getMonth();
+        var first = new Date(y, m, 1).getDay();
+        var daysInMonth = new Date(y, m+1, 0).getDate();
+        var today = new Date(); today.setHours(0,0,0,0);
+        var html = '<div class="drp-month">';
+        html += '<div class="drp-nav">';
+        html += (side === 'left') ? '<button class="drp-nav-btn" data-side="left" data-dir="-1">&#8249;</button>' : '<div></div>';
+        html += '<div class="drp-month-title">' + MONTHS[m] + ' ' + y + '</div>';
+        html += (side === 'right') ? '<button class="drp-nav-btn" data-side="right" data-dir="1">&#8250;</button>' : '<div></div>';
+        html += '</div><div class="drp-grid">';
+        DAYS.forEach(function(d) { html += '<div class="drp-dow">' + d + '</div>'; });
+        for (var i = 0; i < first; i++) { html += '<div></div>'; }
+        for (var day = 1; day <= daysInMonth; day++) {
+          var dt = new Date(y, m, day);
+          var effectiveEnd = drpStart && !drpEnd && drpHover ? drpHover : drpEnd;
+          var lo = drpStart && effectiveEnd ? (drpStart <= effectiveEnd ? drpStart : effectiveEnd) : drpStart;
+          var hi = drpStart && effectiveEnd ? (drpStart <= effectiveEnd ? effectiveEnd : drpStart) : null;
+          var cls = 'drp-day';
+          if (sameDay(dt, today)) { cls += ' today'; }
+          if (lo && hi) {
+            if (sameDay(dt, lo)) { cls += ' range-start'; }
+            else if (sameDay(dt, hi)) { cls += ' range-end'; }
+            else if (dt > lo && dt < hi) { cls += ' in-range'; }
+          } else if (lo && sameDay(dt, lo)) { cls += ' range-start range-end'; }
+          html += '<div class="' + cls + '" data-ts="' + dt.getTime() + '">' + day + '</div>';
+        }
+        html += '</div></div>';
+        return html;
+      }
+
+      function bindNavBtn(side, dir) {
+        document.querySelectorAll('.drp-nav-btn[data-dir="' + dir + '"]').forEach(function(btn) {
+          btn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            if (dir === -1) { drpViewLeft = new Date(drpViewLeft.getFullYear(), drpViewLeft.getMonth()-1, 1); drpViewRight = new Date(drpViewRight.getFullYear(), drpViewRight.getMonth()-1, 1); }
+            else { drpViewLeft = new Date(drpViewLeft.getFullYear(), drpViewLeft.getMonth()+1, 1); drpViewRight = new Date(drpViewRight.getFullYear(), drpViewRight.getMonth()+1, 1); }
+            renderCalendars();
+          });
+        });
+      }
+
+      function onDayClick(dt) {
+        if (!drpStart || drpEnd) { drpStart = dt; drpEnd = null; drpHover = null; }
+        else { drpEnd = dt; if (drpEnd < drpStart) { var tmp = drpStart; drpStart = drpEnd; drpEnd = tmp; } updateInput(); }
+        updateRange();
+      }
+
+      function updateRange() {
+        renderCalendars();
+        var disp = document.getElementById('drpRangeDisplay');
+        if (drpStart && drpEnd) { disp.textContent = fmtDate(drpStart) + ' → ' + fmtDate(drpEnd); }
+        else if (drpStart) { disp.textContent = fmtDate(drpStart) + ' → ...'; }
+        else { disp.textContent = ''; }
+      }
+
+      function updateInput() {
+        if (drpStart && drpEnd) {
+          document.getElementById('drpInput').value = fmtDate(drpStart) + ' → ' + fmtDate(drpEnd);
+        }
+      }
+
+      window.toggleDatePicker = function() {
+        var popup = document.getElementById('drpPopup');
+        if (popup.classList.contains('open')) { popup.classList.remove('open'); }
+        else { renderCalendars(); popup.classList.add('open'); }
+      };
+      window.clearDateRange = function() {
+        drpStart = null; drpEnd = null; drpHover = null;
+        document.getElementById('drpInput').value = '';
+        document.getElementById('drpRangeDisplay').textContent = '';
+        renderCalendars();
+      };
+      window.selectToday = function() {
+        var today = new Date(); today.setHours(0,0,0,0);
+        drpStart = today; drpEnd = today;
+        updateInput(); updateRange();
+        setTimeout(function() { document.getElementById('drpPopup').classList.remove('open'); }, 300);
+      };
+
+      document.addEventListener('click', function(e) {
+        var popup = document.getElementById('drpPopup');
+        var wrap = popup ? popup.closest('.drp-wrap') : null;
+        if (popup && popup.classList.contains('open') && wrap && !wrap.contains(e.target)) {
+          popup.classList.remove('open');
+        }
+      });
+    })();
+
+    // ACARS table row ops
+    function addAcarsRow() {
+      const tbody = document.getElementById('acarsBody');
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td><input type="text" class="dtp-cell" placeholder="DD/MM/YYYY HH:MM AM" readonly onclick="if(!this.disabled)openDtp(this)"></td>
+        <td><input type="text" class="dtp-cell" placeholder="DD/MM/YYYY HH:MM AM" readonly onclick="if(!this.disabled)openDtp(this)"></td>
+        <td><input type="number" step="0.01" placeholder="E.g., 1600"></td>
+        <td><input type="number" step="0.001" placeholder="E.g., 1.070"></td>
+        <td style="text-align: center;"><button class="row-action" onclick="removeRow(this)" title="Delete"><span class="material-symbols-outlined" style="color: #ef4444;">delete</span></button></td>`;
+      tbody.appendChild(tr);
+      if (!window.__isEditing) tr.querySelectorAll('input').forEach(i => i.disabled = true);
+    }
+    function removeRow(btn) {
+      const tr = btn.closest('tr');
+      tr.parentElement.removeChild(tr);
+      showToast('Time period deleted');
+    }
+
+    // Initialize: disable all inputs on page load (View mode by default)
+    window.addEventListener('load', function() {
+      document.querySelectorAll('.details-tab-content .detail-input, .details-tab-content .detail-select').forEach(el => el.disabled = true);
+      document.querySelectorAll('.sub-table input').forEach(el => el.disabled = true);
+    });
+  // ===== Datetime Picker (DTP) for ACARS =====
+  (function() {
+    var _M=['January','February','March','April','May','June','July','August','September','October','November','December'];
+    var _D=['Su','Mo','Tu','We','Th','Fr','Sa'];
+    var _inp=null;
+    var _s={date:null,hour:12,minute:0,period:'AM',vm:new Date(2026,0,1)};
+    function _pad(n){return n<10?'0'+n:''+n;}
+    function _fmt(s){
+      if(!s.date)return '';
+      var d=s.date;
+      return _pad(d.getDate())+'/'+_pad(d.getMonth()+1)+'/'+d.getFullYear()+' '+_pad(s.hour)+':'+_pad(s.minute)+' '+s.period;
+    }
+    function _parse(str){
+      var s={date:null,hour:12,minute:0,period:'AM',vm:new Date(2026,0,1)};
+      if(!str)return s;
+      var m=str.match(/^(\d{2})\/(\d{2})\/(\d{4})\s+(\d{2}):(\d{2})\s+(AM|PM)$/);
+      if(m){s.date=new Date(+m[3],+m[2]-1,+m[1]);s.hour=+m[4];s.minute=+m[5];s.period=m[6];s.vm=new Date(+m[3],+m[2]-1,1);}
+      return s;
+    }
+    function _cal(){
+      var y=_s.vm.getFullYear(),mo=_s.vm.getMonth();
+      var first=new Date(y,mo,1).getDay(),dim=new Date(y,mo+1,0).getDate();
+      var today=new Date();today.setHours(0,0,0,0);
+      var h='<div style="padding:14px 12px 10px 14px;min-width:218px;">';
+      h+='<div class="drp-nav"><button class="drp-nav-btn" onclick="dtpNav(-1)">&#8249;</button>';
+      h+='<div class="drp-month-title">'+_M[mo]+' '+y+'</div>';
+      h+='<button class="drp-nav-btn" onclick="dtpNav(1)">&#8250;</button></div>';
+      h+='<div class="drp-grid" style="width:196px;">';
+      _D.forEach(function(d){h+='<div class="drp-dow">'+d+'</div>';});
+      for(var i=0;i<first;i++){h+='<div></div>';}
+      for(var day=1;day<=dim;day++){
+        var dt=new Date(y,mo,day);
+        var cls='drp-day';
+        if(_s.date&&dt.getTime()===_s.date.getTime())cls+=' range-start range-end';
+        if(dt.getTime()===today.getTime())cls+=' today';
+        h+='<div class="'+cls+'" onclick="dtpPickDay('+dt.getTime()+')">'+day+'</div>';
+      }
+      h+='</div></div>';
+      return h;
+    }
+    function _time(){
+      var h='<div class="dtp-time-section">';
+      h+='<div class="dtp-time-col"><div class="dtp-time-label">HH</div><div class="dtp-time-list" id="dtpHrL">';
+      for(var hr=1;hr<=12;hr++){h+='<div class="dtp-time-item'+(hr===_s.hour?' active':'')+'" onclick="dtpSetH('+hr+')">'+_pad(hr)+'</div>';}
+      h+='</div></div><div class="dtp-time-col"><div class="dtp-time-label">MM</div><div class="dtp-time-list" id="dtpMnL">';
+      for(var mn=0;mn<=59;mn++){h+='<div class="dtp-time-item'+(mn===_s.minute?' active':'')+'" onclick="dtpSetM('+mn+')">'+_pad(mn)+'</div>';}
+      h+='</div></div><div class="dtp-time-col"><div class="dtp-time-label">—</div><div class="dtp-time-list" id="dtpPdL">';
+      ['AM','PM'].forEach(function(p){h+='<div class="dtp-time-item'+(p===_s.period?' active':'')+'" onclick="dtpSetP(\''+p+'\')">'+p+'</div>';});
+      h+='</div></div></div>';
+      return h;
+    }
+    function _render(){
+      var b=document.getElementById('dtpBody');
+      if(!b)return;
+      b.innerHTML=_cal()+_time();
+      ['dtpHrL','dtpMnL','dtpPdL'].forEach(function(id){
+        var el=document.getElementById(id);
+        if(!el)return;
+        var a=el.querySelector('.active');
+        if(a){el.scrollTop=Math.max(0,a.offsetTop-60);}
+      });
+    }
+    function _pos(inp){
+      var p=document.getElementById('dtpPopup');
+      var r=inp.getBoundingClientRect();
+      var top=r.bottom+4,left=r.left;
+      if(top+290>window.innerHeight)top=r.top-290-4;
+      if(left+440>window.innerWidth)left=window.innerWidth-444;
+      p.style.top=top+'px';p.style.left=Math.max(4,left)+'px';
+    }
+    window.openDtp=function(inp){
+      _inp=inp;_s=_parse(inp.value);
+      var p=document.getElementById('dtpPopup');
+      if(!p)return;
+      _render();_pos(inp);p.classList.add('open');
+    };
+    window.dtpNav=function(d){_s.vm=new Date(_s.vm.getFullYear(),_s.vm.getMonth()+d,1);_render();};
+    window.dtpPickDay=function(ts){_s.date=new Date(ts);if(_inp)_inp.value=_fmt(_s);_render();};
+    window.dtpSetH=function(h){_s.hour=h;if(_inp)_inp.value=_fmt(_s);_render();};
+    window.dtpSetM=function(m){_s.minute=m;if(_inp)_inp.value=_fmt(_s);_render();};
+    window.dtpSetP=function(p){_s.period=p;if(_inp)_inp.value=_fmt(_s);_render();};
+    window.dtpClear=function(){if(_inp)_inp.value='';document.getElementById('dtpPopup').classList.remove('open');};
+    window.dtpSetToday=function(){
+      var t=new Date();t.setHours(0,0,0,0);
+      _s.date=t;_s.vm=new Date(t.getFullYear(),t.getMonth(),1);
+      if(_inp)_inp.value=_fmt(_s);_render();
+    };
+    document.addEventListener('click',function(e){
+      var p=document.getElementById('dtpPopup');
+      if(!p||!p.classList.contains('open'))return;
+      if(e.target.closest('#dtpPopup')||(_inp&&e.target===_inp))return;
+      p.classList.remove('open');
+    });
+  })();
+  </script>
+
+  <!-- Shared Datetime Picker Popup -->
+  <div id="dtpPopup" class="dtp-popup-root">
+    <div class="dtp-body-wrap" id="dtpBody"></div>
+    <div class="dtp-popup-footer">
+      <button class="dtp-action-btn dtp-clear" onclick="dtpClear()">Clear</button>
+      <button class="dtp-action-btn dtp-today" onclick="dtpSetToday()">Today</button>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,27 @@
+Thông tin dự án ===
+Row 001: Jira | https://jira.viettelsoftware.com/secure/Dashboard.jspa?selectPageId=12709
+Row 002: Confluence | CNM.VNA.FIMS.SX Home
+Row 003: Gitlab | https://gitlab.viettelsoftware.com/ph-ng-ptpm/vss-customer/cnm_vna_fims_sx
+Row 004: Server Dev | https://fims-fe-dev.viettelsoftware.com/auth
+Row 005: Function list | https://docs.google.com/spreadsheets/d/1Y2amzBI92CcJLyncoSH_l9C-X2uMFRYJWbJY9qqY574/edit?gid=295976113#gid=295976113
+Row 006: SRS | System Admin:VNA.TOSS_SRS_System Admin_V0.1.docx
+Data Maintenance: VNA.TOSS_SRS_Data Maintenance_v0.1.docx
+Data Source Monitoring: VNA.TOSS_SRS_Data Source Monitoring_v0.1
+TOSS: 
+- Station Manager: VNA.TOSS_SRS_Station Manager_v0.1
+- Report: VNA.TOSS_SRS_Report_v0.1
+- Live operations: VNA.TOSS_SRS_Live Operations_v0.1
+- Flight load cotrol: VNA.TOSS_SRS_Flight Load Control_v0.1
+- Flight Dispatch: VNA.TOSS_SRS_Flight Dispatch_v0.1
+Row 007: Figma | https://www.figma.com/design/HNvApgVP8uqBD4eQOnW6K7/VNA_TOSS_H%E1%BB%87-th%E1%BB%91ng-qu%E1%BA%A3n-l%C3%BD-t%C3%A0i-li%E1%BB%87u---th%C3%B4ng-tin-%C4%91i%E1%BB%81u-h%C3%A0nh-chuy%E1%BA%BFn-bay?node-id=309-17734&p=f&t=yrCfatgrudZyRvSX-0
+Row 008: SVN | https://svn.viettelsoftware.com/!/#CNM.VNA.FIMS.SX
+4. Hướng dẫn sử dụng SVN.pdf
+Row 009: VPN | FortiClientVPN_Window (1).rar
+5. Hướng dẫn cÀI ĐẶT VPN-IPsec (1).pdf
+Row 010: Master Plan | https://docs.google.com/spreadsheets/d/1hXNPHroMfjC90fZS1ojRTxJtQE7JSN0o/edit?gid=2100811446#gid=2100811446
+Row 011: Test Plan | [VTIT.VNA] FIMS_Kế hoạch kiểm thử v1.0.xlsx
+[VTIT.VNA] FIMS_Function list_FINAL.xlsx
+Row 012: Testcase common | KBKT_VTIT.VNA_FIM_Common.xls
+Row 013: TKTT | FIMS_ThietKeTongThe_version_1.0.docx
+Row 014: Ext Chrome | https://chromewebstore.google.com/detail/edupham-optimize-jira/imhbhcgnaecdpiajecjljadaajlchgmg
+HDSD Ext.txt

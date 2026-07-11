@@ -1,0 +1,2863 @@
+<!DOCTYPE html><html lang="vi"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>TOSS — Prototype v0.6</title>
+<!-- ============================================================
+  TOSS Prototype v0.6 — 2026-06-18
+  CLAUDE.md §0 compliance: every field/label/state traceable to source.
+  Source files: BAO-CAO-KHAO-SAT-11062026-buoi-sang-v0.1.md,
+    BAO-CAO-KHAO-SAT-11062026-buoi-chieu-v0.1.md,
+    BAO-CAO-KHAO-SAT-12062026-buoi-sang-v0.1.md,
+    BAO-CAO-KHAO-SAT-15062026-v0.1.md,
+    BAO-CAO-KHAO-SAT-17062026-v0.1.md,
+    VNA-TOSS-Function-list-v1.0.extracted.md
+  SÔ LIÊU = dữ liệu mẫu. BỐ CỤC = đề xuất, cần BA/UI duyệt.
+  Changes v0.6 (từ v0.5 — sửa MK-001/002/003 + lỗi HTML):
+    MK-001: Thêm nav item "Upload Documents" + màn placeholder screen-upload-doc
+            [FL-FD §8.1 — Upload common documents]
+    MK-002: Thêm banner §8-5/§8-6 trên screen-detail (tab mới trình duyệt);
+            wire ô NOTAM/WX đỏ/vàng → detail_openFromAlert('dtab-weather');
+            wire ô MEL/CDL vàng → detail_openFromAlert('dtab-aircraft')
+    MK-003: Thêm nút "Ẩn/Hiện cột [TBD]" trong filter bar
+            [FL-FD §8.1 · BR-102 · FUNC-104/105]
+    HTML:   Gỡ thẻ </style> thừa (~dòng 511 v0.5) — cân bằng 1 cặp <style>/</style>
+  Font CDN: fonts.googleapis.com — offline fallback: Roboto/system-ui
+============================================================ -->
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<style>
+/* ===== M3 Design Tokens (primary = Viettel đỏ #EE0033) ===== */
+:root{
+  --md-primary:#EE0033;--md-on-primary:#fff;--md-primary-container:#ffd9dd;--md-on-primary-container:#410008;
+  --md-secondary:#1565C0;--md-secondary-container:#BBDEFB;
+  --md-surface:#fdfcfc;--md-surface-container:#f3eded;--md-surface-container-high:#ece6e6;
+  --md-on-surface:#1c1b1b;--md-on-surface-variant:#5e5e5e;
+  --md-outline:#7a7979;--md-outline-variant:#cecccc;
+  --md-error:#ba1a1a;--md-error-container:#ffdad6;
+  --md-success:#2E7D32;--md-success-container:#d1e7dd;
+  --md-warn:#E65100;--md-warn-container:#fff3cd;
+  --md-radius:12px;--md-radius-sm:8px;
+  --md-elev1:0 1px 2px rgba(0,0,0,.3),0 1px 3px 1px rgba(0,0,0,.15);
+  --md-elev2:0 1px 2px rgba(0,0,0,.3),0 2px 6px 2px rgba(0,0,0,.15);
+  --dark-bg:#121212;--dark-surface:#1e1e1e;--dark-surface2:#2a2a2a;
+  --dark-on-surface:#e0e0e0;--dark-on-variant:#aaa;--dark-outline:#555;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:Roboto,'Segoe UI',Arial,sans-serif;background:var(--dark-bg);color:var(--dark-on-surface);font-size:14px;min-height:100vh;}
+.ms{font-family:'Material Symbols Outlined';font-size:20px;vertical-align:middle;line-height:1;user-select:none;}
+[data-mat="mat-toolbar"]{background:var(--dark-surface);color:var(--dark-on-surface);display:flex;align-items:center;gap:12px;padding:0 16px;height:56px;position:sticky;top:0;z-index:30;border-bottom:1px solid var(--dark-outline);box-shadow:var(--md-elev1);}
+[data-mat="mat-toolbar"] .app-title{font-size:18px;font-weight:700;color:var(--md-primary);}
+[data-mat="mat-toolbar"] .spacer{flex:1;}
+.proto-banner{background:#663c00;color:#ffd591;font-size:11px;padding:3px 10px;border-radius:4px;}
+.shell{display:flex;height:calc(100vh - 56px);}
+[data-mat="mat-sidenav"]{width:56px;background:var(--dark-surface);border-right:1px solid var(--dark-outline);display:flex;flex-direction:column;align-items:center;padding:8px 0;gap:4px;overflow:hidden;transition:width .2s;}
+[data-mat="mat-sidenav"]:hover,[data-mat="mat-sidenav"].expanded{width:220px;}
+[data-mat="mat-sidenav"] .nav-item{display:flex;align-items:center;gap:12px;padding:12px;width:100%;color:var(--dark-on-variant);cursor:pointer;border-radius:0 28px 28px 0;text-decoration:none;white-space:nowrap;overflow:hidden;transition:background .15s;}
+[data-mat="mat-sidenav"] .nav-item:hover{background:var(--dark-surface2);color:var(--dark-on-surface);}
+[data-mat="mat-sidenav"] .nav-item.active{background:var(--md-primary-container);color:var(--md-on-primary-container);}
+[data-mat="mat-sidenav"] .nav-item .nav-label{font-size:13px;font-weight:500;}
+.content{flex:1;overflow:auto;padding:16px;}
+.screen{display:none;animation:fadein .2s;}
+.screen.active{display:block;}
+@keyframes fadein{from{opacity:0}to{opacity:1}}
+.banner{background:#663c00;color:#ffd591;border-radius:var(--md-radius-sm);padding:8px 14px;font-size:12px;margin-bottom:14px;display:flex;gap:8px;align-items:center;}
+[data-mat^="mat-card"]{background:var(--dark-surface);border:1px solid var(--dark-outline);border-radius:var(--md-radius);padding:16px;margin-bottom:14px;}
+[data-mat^="mat-card"] .card-title{font-size:15px;font-weight:500;margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+.kpi-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px;}
+.kpi{background:var(--dark-surface);border:1px solid var(--dark-outline);border-radius:var(--md-radius);padding:12px 18px;flex:1;min-width:120px;}
+.kpi .kpi-val{font-size:26px;font-weight:700;line-height:1.2;}
+.kpi .kpi-lbl{font-size:11px;color:var(--dark-on-variant);margin-top:2px;}
+.kpi.err{border-color:var(--md-error);} .kpi.err .kpi-val{color:#ff6b6b;}
+.kpi.warn{border-color:var(--md-warn);} .kpi.warn .kpi-val{color:#ffb347;}
+.kpi.ok{border-color:var(--md-success);} .kpi.ok .kpi-val{color:#69d58f;}
+.tool-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:12px;}
+.search-box{display:flex;align-items:center;gap:6px;background:var(--dark-surface2);border:1px solid var(--dark-outline);border-radius:28px;padding:6px 14px;flex:1;max-width:320px;}
+.search-box input{background:transparent;border:none;color:var(--dark-on-surface);font:inherit;outline:none;width:100%;}
+[data-mat^="mat-table"]{width:100%;border-collapse:collapse;}
+[data-mat^="mat-table"] th{text-align:left;padding:10px 12px;font-weight:500;font-size:12px;color:var(--dark-on-variant);border-bottom:1px solid var(--dark-outline);background:var(--dark-surface2);position:sticky;top:0;z-index:2;white-space:nowrap;}
+[data-mat^="mat-table"] td{padding:9px 12px;border-bottom:1px solid var(--dark-outline);font-size:13px;white-space:nowrap;}
+[data-mat^="mat-table"] tbody tr{cursor:pointer;transition:background .1s;}
+[data-mat^="mat-table"] tbody tr:hover{background:var(--dark-surface2);}
+.table-wrap{border:1px solid var(--dark-outline);border-radius:var(--md-radius);overflow:auto;}
+[data-mat^="mat-chip"]{display:inline-block;padding:3px 10px;border-radius:6px;font-size:11px;font-weight:500;}
+.chip-red{background:#5c1515;color:#ff9090;border:1px solid #a83232;}
+.chip-yellow{background:#5c4800;color:#ffe090;border:1px solid #a87c00;}
+.chip-green{background:#0f3d20;color:#69d58f;border:1px solid #1b6e36;}
+.chip-blue{background:#0d2f5c;color:#90c4ff;border:1px solid #1a4fa0;}
+.chip-grey{background:var(--dark-surface2);color:var(--dark-on-variant);border:1px solid var(--dark-outline);}
+.alert-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:4px;}
+.alert-red{background:#ff5252;animation:blink 1.2s infinite;}
+.alert-yellow{background:#ffca28;}
+.alert-green{background:#69f0ae;}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+[data-mat^="mat-tab-group"] .tabs{display:flex;gap:0;border-bottom:2px solid var(--dark-outline);margin-bottom:14px;overflow-x:auto;}
+[data-mat^="mat-tab-group"] .tab{padding:10px 18px;cursor:pointer;color:var(--dark-on-variant);border-bottom:2px solid transparent;margin-bottom:-2px;white-space:nowrap;font-size:13px;}
+[data-mat^="mat-tab-group"] .tab.active{color:var(--md-primary);border-bottom-color:var(--md-primary);font-weight:500;}
+[data-mat^="mat-tab-group"] .tab-panel{display:none;}
+[data-mat^="mat-tab-group"] .tab-panel.active{display:block;}
+[data-mat*="mat-form-field"]{margin:8px 0;}
+[data-mat*="mat-form-field"] label{display:block;font-size:11px;color:var(--dark-on-variant);margin-bottom:3px;}
+[data-mat*="mat-form-field"] input,[data-mat*="mat-form-field"] select,[data-mat*="mat-form-field"] textarea{width:100%;padding:9px 12px;border:1px solid var(--dark-outline);border-radius:var(--md-radius-sm);font:inherit;background:var(--dark-surface2);color:var(--dark-on-surface);}
+[data-mat*="mat-form-field"] input:focus,[data-mat*="mat-form-field"] select:focus{outline:2px solid var(--md-primary);border-color:var(--md-primary);}
+.form-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px 14px;}
+.form-grid .col2{grid-column:span 2;} .form-grid .full{grid-column:1/-1;}
+.btn{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:9px 20px;font:inherit;font-weight:500;cursor:pointer;border:none;font-size:13px;}
+.btn-filled{background:var(--md-primary);color:#fff;}
+.btn-filled:hover{opacity:.9;}
+.btn-outlined{background:transparent;color:var(--md-primary);border:1px solid var(--md-primary);}
+.btn-text{background:transparent;color:var(--md-primary);padding:9px 12px;}
+.btn-icon{width:36px;height:36px;border-radius:50%;padding:0;justify-content:center;background:transparent;color:var(--dark-on-variant);cursor:pointer;border:none;}
+.btn-row{display:flex;gap:10px;justify-content:flex-end;margin-top:14px;flex-wrap:wrap;}
+[data-mat^="mat-dialog"]{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;align-items:center;justify-content:center;z-index:100;}
+[data-mat^="mat-dialog"].open{display:flex;}
+[data-mat^="mat-dialog"] .panel{background:var(--dark-surface);border-radius:28px;padding:24px;min-width:360px;max-width:600px;width:90vw;box-shadow:var(--md-elev2);max-height:90vh;overflow-y:auto;}
+[data-mat^="mat-dialog"] .panel h3{font-size:18px;font-weight:500;margin-bottom:16px;}
+[data-mat^="mat-dialog"] .panel .sub{font-size:12px;color:var(--dark-on-variant);margin-bottom:16px;}
+.timeline{display:flex;gap:0;margin:14px 0;flex-wrap:wrap;}
+.t-step{display:flex;flex-direction:column;align-items:center;flex:1;min-width:80px;}
+.t-node{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;border:2px solid var(--dark-outline);background:var(--dark-surface2);color:var(--dark-on-variant);}
+.t-node.done{background:var(--md-success);border-color:var(--md-success);color:#fff;}
+.t-node.current{background:var(--md-primary);border-color:var(--md-primary);color:#fff;}
+.t-node.pending{border-style:dashed;}
+.t-label{font-size:11px;color:var(--dark-on-variant);margin-top:4px;text-align:center;}
+.t-line{height:2px;background:var(--dark-outline);flex:1;margin-top:16px;align-self:flex-start;}
+.mel-item{border:1px solid var(--dark-outline);border-radius:var(--md-radius-sm);padding:12px;margin-bottom:8px;background:var(--dark-surface2);}
+.mel-item.critical{border-left:4px solid var(--md-error);}
+.mel-item.warn{border-left:4px solid var(--md-warn);}
+.mel-item-code{font-size:12px;font-weight:700;color:var(--md-primary);font-family:monospace;}
+.mel-item-name{font-size:13px;font-weight:500;margin:2px 0;}
+.mel-meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px;}
+.mel-meta .tag{background:var(--dark-surface);border:1px solid var(--dark-outline);border-radius:4px;padding:2px 8px;font-size:11px;color:var(--dark-on-variant);}
+.mel-meta .tag.impact{color:#ffb347;border-color:#a87c00;background:#5c4800;}
+.metar-row{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:12px;}
+.metar-card{background:var(--dark-surface2);border-radius:var(--md-radius-sm);padding:12px 16px;flex:1;min-width:120px;text-align:center;}
+.metar-val{font-size:22px;font-weight:700;}
+.metar-lbl{font-size:11px;color:var(--dark-on-variant);margin-top:2px;}
+.metar-card.alert .metar-val{color:#ff6b6b;}
+.metar-card.warn .metar-val{color:#ffb347;}
+.notam-item{border-left:3px solid var(--dark-outline);padding:8px 12px;margin-bottom:6px;background:var(--dark-surface2);border-radius:0 var(--md-radius-sm) var(--md-radius-sm) 0;}
+.notam-item.urgent{border-left-color:#ff5252;}
+.notam-code{font-family:monospace;font-size:11px;font-weight:700;color:var(--md-primary);}
+.notam-text{font-size:12px;margin-top:3px;}
+.hist-item{display:flex;gap:10px;padding:8px 0;border-bottom:1px solid var(--dark-outline);}
+.hist-item:last-child{border:none;}
+.hist-time{font-size:11px;color:var(--dark-on-variant);min-width:100px;}
+.hist-desc{font-size:13px;}
+.has-tooltip{position:relative;}
+.has-tooltip .tooltip{display:none;position:absolute;bottom:calc(100% + 6px);left:50%;transform:translateX(-50%);background:#333;color:#fff;padding:6px 10px;border-radius:6px;font-size:11px;white-space:nowrap;z-index:50;pointer-events:none;}
+.has-tooltip:hover .tooltip{display:block;}
+.detail-overlay{position:fixed;right:0;top:56px;bottom:0;width:460px;background:var(--dark-surface);border-left:1px solid var(--dark-outline);z-index:40;transform:translateX(100%);transition:transform .25s;overflow-y:auto;padding:16px;}
+.detail-overlay.open{transform:translateX(0);}
+.overlay-header{display:flex;align-items:center;gap:10px;margin-bottom:16px;position:sticky;top:0;background:var(--dark-surface);padding-bottom:10px;border-bottom:1px solid var(--dark-outline);}
+.overlay-header h3{font-size:16px;font-weight:500;flex:1;}
+.legend{margin-top:24px;font-size:12px;}
+.legend table{width:100%;border-collapse:collapse;}
+.legend th,.legend td{border:1px solid var(--dark-outline);padding:6px 10px;text-align:left;}
+.legend th{background:var(--dark-surface2);}
+.src{color:var(--dark-on-variant);font-size:11px;}
+@media(max-width:768px){.shell{flex-direction:column;}[data-mat="mat-sidenav"]{width:100%;flex-direction:row;}.form-grid{grid-template-columns:1fr;}.kpi-row{flex-direction:column;}}
+/* OCC Fragment */
+.occ-reg-tip{min-width:160px;text-align:left;}
+.cell-red{background:rgba(92,21,21,0.60);color:#ff9090;}
+.cell-yellow{background:rgba(92,72,0,0.60);color:#ffe090;}
+.cell-green{background:rgba(15,61,32,0.55);color:#69d58f;}
+.dispatch-btn{display:inline-flex;align-items:center;gap:4px;background:transparent;border:1px solid var(--md-primary);color:var(--md-primary);border-radius:999px;padding:3px 10px;font:inherit;font-size:11px;font-weight:500;cursor:pointer;white-space:nowrap;}
+.dispatch-btn:hover{background:rgba(238,0,51,0.12);}
+.dispatch-btn.released{border-color:var(--md-success);color:#69d58f;cursor:default;}
+.dispatch-btn.released:hover{background:transparent;}
+.pilot-cell-released{color:#69d58f;font-size:12px;}
+.pilot-cell-none{color:var(--dark-on-variant);font-size:12px;}
+[data-mat^="mat-table"] td.col-alert{text-align:center;}
+.occ-paginator{display:flex;justify-content:flex-end;align-items:center;gap:14px;padding:8px 12px;color:var(--dark-on-variant);font-size:12px;border-top:1px solid var(--dark-outline);}
+[data-mat^="mat-table"] tbody tr.occ-clickable td.col-flt:hover{text-decoration:underline;color:var(--md-primary);cursor:pointer;}
+/* Dispatch Fragment */
+#screen-dispatch .timeline-label{font-size:13px;font-weight:500;color:var(--dark-on-variant);margin-bottom:6px;}
+#screen-dispatch .deadline-red{color:#ff6b6b;font-weight:700;}
+#screen-dispatch .deadline-yellow{color:#ffe090;font-weight:500;}
+#screen-dispatch .deadline-ok{color:#69d58f;}
+#screen-dispatch .threshold-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+#screen-dispatch .threshold-card{background:var(--dark-surface2);border:1px solid var(--dark-outline);border-radius:var(--md-radius-sm);padding:12px 16px;}
+#screen-dispatch .threshold-card .tc-title{font-size:12px;font-weight:700;color:var(--dark-on-variant);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;}
+#screen-dispatch .threshold-row{display:flex;justify-content:space-between;align-items:center;padding:4px 0;border-bottom:1px solid var(--dark-outline);font-size:12px;}
+#screen-dispatch .threshold-row:last-child{border-bottom:none;}
+#screen-dispatch .threshold-row .t-name{color:var(--dark-on-variant);}
+#screen-dispatch .threshold-row .t-val{font-weight:700;}
+#screen-dispatch .threshold-row .t-val.white{color:var(--dark-on-surface);}
+#screen-dispatch .threshold-row .t-val.yellow{color:#ffe090;}
+#screen-dispatch .threshold-row .t-val.red{color:#ff6b6b;}
+#screen-dispatch .ver-chip{font-family:monospace;font-size:11px;font-weight:700;background:var(--dark-surface2);border:1px solid var(--dark-outline);border-radius:4px;padding:2px 7px;color:#90c4ff;}
+#screen-dispatch .fuel-delta-pos{color:#ff6b6b;font-size:12px;}
+#screen-dispatch .fuel-delta-zero{color:#69d58f;font-size:12px;}
+#screen-dispatch .fuel-ok{color:var(--dark-on-surface);font-size:12px;}
+.dlg-info-row{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid var(--dark-outline);font-size:13px;}
+.dlg-info-row:last-of-type{border-bottom:none;}
+.dlg-info-row .di-label{color:var(--dark-on-variant);font-size:12px;}
+.dlg-info-row .di-val{font-weight:500;}
+.unrelease-warn{background:#5c1515;border:1px solid #a83232;border-radius:var(--md-radius-sm);padding:10px 14px;font-size:12px;color:#ffb0b0;margin:12px 0;display:flex;gap:8px;align-items:flex-start;}
+/* Flight Detail Fragment */
+.ofp-row-cancelled{opacity:0.6;}
+.ofp-row-cancelled td:not(.no-strike){text-decoration:line-through;text-decoration-color:var(--dark-on-variant);}
+.crew-timeline{border-left:2px solid var(--dark-outline);margin-left:8px;padding-left:14px;}
+.crew-timeline-entry{position:relative;margin-bottom:10px;font-size:12px;}
+.crew-timeline-entry::before{content:'';position:absolute;left:-19px;top:4px;width:8px;height:8px;border-radius:50%;background:var(--dark-outline);border:2px solid var(--dark-surface2);}
+.crew-timeline-entry.current::before{background:var(--md-success);}
+.ac-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px 16px;margin-bottom:14px;}
+.ac-grid .ac-cell label{display:block;font-size:11px;color:var(--dark-on-variant);margin-bottom:2px;}
+.ac-grid .ac-cell .val{font-weight:500;font-size:13px;}
+.load-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:14px;}
+.load-card{background:var(--dark-surface2);border:1px solid var(--dark-outline);border-radius:var(--md-radius-sm);padding:14px 12px;text-align:center;}
+.load-card .lc-val{font-size:22px;font-weight:700;line-height:1.2;margin-bottom:4px;}
+.load-card .lc-val.delta-ok{color:#69d58f;}
+.load-card .lc-val.delta-warn{color:#ffb347;}
+.load-card .lc-lbl{font-size:11px;color:var(--dark-on-variant);}
+.banner-ok{background:#0f3d20;color:#69d58f;border:1px solid #1b6e36;border-radius:var(--md-radius-sm);padding:10px 14px;font-size:12px;display:flex;gap:8px;align-items:center;margin-top:8px;}
+.metar-raw{font-family:monospace;font-size:11px;background:var(--dark-surface2);border:1px solid var(--dark-outline);border-radius:var(--md-radius-sm);padding:8px 12px;color:var(--dark-on-variant);margin-bottom:10px;word-break:break-all;}
+.src-note{font-size:11px;color:var(--dark-on-variant);margin-top:8px;}
+@media(max-width:768px){.ac-grid{grid-template-columns:repeat(2,1fr);}.load-grid{grid-template-columns:repeat(2,1fr);}}
+/* MEL Fragment */
+#screen-mel .mel-split{display:flex;gap:14px;flex-wrap:wrap;align-items:flex-start;}
+#screen-mel .mel-tree-panel{width:300px;flex-shrink:0;}
+#screen-mel .mel-detail-panel{flex:1;min-width:0;}
+#screen-mel .mel-ac-select{width:100%;padding:8px 10px;background:var(--dark-surface2);border:1px solid var(--dark-outline);border-radius:var(--md-radius-sm);color:var(--dark-on-surface);font:inherit;margin-bottom:10px;}
+#screen-mel .mel-tree-node{padding:5px 6px;cursor:pointer;border-radius:4px;font-size:13px;color:var(--dark-on-surface);user-select:none;}
+#screen-mel .mel-tree-node:hover{background:var(--dark-surface2);}
+#screen-mel .mel-tree-node.selected{background:rgba(238,0,51,0.15);color:var(--md-primary);font-weight:500;}
+#screen-mel .mel-tree-children{padding-left:18px;display:none;}
+#screen-mel .mel-tree-children.open{display:block;}
+#screen-mel .mel-tree-chevron{font-size:16px;vertical-align:middle;transition:transform 0.15s;display:inline-block;}
+#screen-mel .mel-tree-chevron.open{transform:rotate(90deg);}
+#screen-mel .mel-item-tabs{display:flex;gap:0;border-bottom:1px solid var(--dark-outline);margin-bottom:12px;}
+#screen-mel .mel-item-tab{padding:7px 14px;cursor:pointer;font-size:13px;color:var(--dark-on-variant);border-bottom:2px solid transparent;margin-bottom:-1px;white-space:nowrap;}
+#screen-mel .mel-item-tab.active{color:var(--md-primary);border-bottom-color:var(--md-primary);font-weight:500;}
+#screen-mel .mel-item-panel{display:none;}
+#screen-mel .mel-item-panel.active{display:block;}
+#screen-mel .mel-code-block{background:var(--dark-surface2);border-radius:var(--md-radius-sm);padding:14px;font-size:12px;font-family:'Courier New',Courier,monospace;color:#ccc;margin-bottom:12px;white-space:pre-wrap;line-height:1.6;}
+#screen-mel .mel-code-block .mel-code-title{color:var(--md-primary);font-weight:700;}
+#mel-dlg-update .mel-compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
+#mel-dlg-update .mel-compare-col{background:var(--dark-surface2);border-radius:var(--md-radius-sm);padding:12px;font-size:12px;font-family:'Courier New',Courier,monospace;color:#ccc;line-height:1.6;}
+#mel-dlg-update .mel-compare-col.rev-new{border:1px solid #a87c00;background:#2a2000;}
+#mel-dlg-update .mel-compare-col .change-hl{background:rgba(255,200,0,0.2);color:#ffe090;border-radius:2px;padding:0 2px;}
+#mel-dlg-update .mel-compare-label{font-size:11px;font-weight:600;color:var(--dark-on-variant);margin-bottom:6px;font-family:Roboto,'Segoe UI',Arial,sans-serif;}
+#screen-mel .tab-badge{display:inline-block;background:var(--md-warn);color:#fff;border-radius:10px;font-size:10px;font-weight:700;padding:1px 6px;margin-left:5px;vertical-align:middle;}
+#screen-mel .row-near-expiry td{color:#ff6b6b;}
+/* alert-link helper for MK-003 */
+.alert-link{cursor:pointer;text-decoration:underline dotted;color:inherit;}
+.alert-goto{font-size:11px;color:var(--md-primary);cursor:pointer;text-decoration:underline;margin-left:8px;white-space:nowrap;}
+</style>
+<style id="dispatch-v05-css">
+/* ================================================================
+   CSS RIÊNG: Dispatch v0.5 — Flight Monitoring 26-col table
+   Chỉ định nghĩa class CHƯA CÓ trong toss-prototype-v0.4.html.
+   Các class dùng chung (.ms, .btn, .chip-*, .has-tooltip, .tooltip,
+   .tool-row, .search-box, [data-mat], .cell-red, .cell-yellow,
+   .cell-green) KHÔNG định nghĩa lại ở đây.
+================================================================ */
+
+/* ── Wrapper cuộn ngang cho bảng 26 cột ── */
+#screen-dispatch .mon-table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--dark-outline);
+  border-radius: var(--md-radius);
+  margin-bottom: 16px;
+  /* height tối đa để sticky header hoạt động */
+  max-height: calc(100vh - 210px);
+  overflow-y: auto;
+}
+
+/* ── Bảng chính ── */
+#screen-dispatch #dsp-mon-table {
+  width: max-content; /* bảng không co lại theo viewport */
+  min-width: 100%;
+  border-collapse: collapse;
+}
+
+/* ── Header 2 tầng ── */
+#screen-dispatch #dsp-mon-table thead tr.grp-row th {
+  background: #1a1a2e;
+  color: #90c4ff;
+  font-size: 11px;
+  font-weight: 700;
+  text-align: center;
+  padding: 5px 8px;
+  border-bottom: 1px solid var(--dark-outline);
+  border-right: 1px solid #2a2a4a;
+  white-space: nowrap;
+  position: sticky;
+  top: 0;
+  z-index: 4;
+}
+#screen-dispatch #dsp-mon-table thead tr.col-row th {
+  background: var(--dark-surface2);
+  color: var(--dark-on-variant);
+  font-size: 11px;
+  font-weight: 500;
+  padding: 7px 8px;
+  border-bottom: 2px solid var(--dark-outline);
+  white-space: nowrap;
+  position: sticky;
+  top: 28px; /* chiều cao grp-row */
+  z-index: 3;
+  cursor: pointer;
+  user-select: none;
+}
+#screen-dispatch #dsp-mon-table thead tr.col-row th:hover {
+  background: #333;
+  color: var(--dark-on-surface);
+}
+
+/* ── Cells ── */
+#screen-dispatch #dsp-mon-table td {
+  padding: 7px 8px;
+  border-bottom: 1px solid var(--dark-outline);
+  font-size: 12px;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+#screen-dispatch #dsp-mon-table tbody tr {
+  cursor: pointer;
+  transition: background 0.1s;
+}
+#screen-dispatch #dsp-mon-table tbody tr:hover {
+  background: var(--dark-surface2);
+}
+
+/* ── Cột cố định bên trái (freeze 3 cột đầu) ── */
+#screen-dispatch #dsp-mon-table th.col-freeze,
+#screen-dispatch #dsp-mon-table td.col-freeze {
+  position: sticky;
+  left: 0;
+  z-index: 2;
+  background: var(--dark-surface);
+  border-right: 1px solid var(--dark-outline);
+}
+#screen-dispatch #dsp-mon-table th.col-freeze-2,
+#screen-dispatch #dsp-mon-table td.col-freeze-2 {
+  position: sticky;
+  left: 36px;  /* width của cột 1 */
+  z-index: 2;
+  background: var(--dark-surface);
+  border-right: 1px solid var(--dark-outline);
+}
+#screen-dispatch #dsp-mon-table th.col-freeze-3,
+#screen-dispatch #dsp-mon-table td.col-freeze-3 {
+  position: sticky;
+  left: 108px; /* 36+72 */
+  z-index: 2;
+  background: var(--dark-surface);
+  border-right: 2px solid var(--dark-outline);
+}
+
+/* ── Cell màu theo trạng thái (ô-level, không phải chip) ── */
+/* Dùng chung: cell-red / cell-yellow / cell-green đã có trong v0.4 */
+/* Thêm: ô "không màu" / bình thường — không cần class riêng */
+
+/* ── DSP Release checkbox + Release button ── */
+#screen-dispatch .dsp-rel-cell {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 70px;
+}
+#screen-dispatch .dsp-chk {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--md-primary);
+  cursor: pointer;
+}
+#screen-dispatch .dsp-rel-btn {
+  font-size: 10px;
+  padding: 2px 7px;
+  border-radius: 999px;
+  border: 1px solid var(--md-primary);
+  background: transparent;
+  color: var(--md-primary);
+  cursor: pointer;
+  font-weight: 600;
+  white-space: nowrap;
+}
+#screen-dispatch .dsp-rel-btn:hover { background: rgba(238,0,51,.12); }
+#screen-dispatch .dsp-rel-btn.inactive {
+  border-color: var(--dark-outline);
+  color: var(--dark-on-variant);
+  cursor: default;
+  opacity: 0.5;
+}
+
+/* ── OFP DSP format cell ── */
+#screen-dispatch .ofp-fmt {
+  font-family: monospace;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+#screen-dispatch .ofp-green { background: #0f3d20; color: #69d58f; border: 1px solid #1b6e36; }
+#screen-dispatch .ofp-yellow { background: #5c4800; color: #ffe090; border: 1px solid #a87c00; }
+#screen-dispatch .ofp-red   { background: #5c1515; color: #ff9090; border: 1px solid #a83232; }
+#screen-dispatch .ofp-none  { color: var(--dark-on-variant); font-size: 11px; }
+
+/* ── Status badge + blink ── */
+#screen-dispatch .status-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .5px;
+}
+#screen-dispatch .st-GRD  { background: #2a2a2a; color: #aaa;     border: 1px solid #555; }
+#screen-dispatch .st-BRD  { background: #1a3a5c; color: #90c4ff;  border: 1px solid #2a5a9c; animation: dsp-blink 1.2s infinite; }
+#screen-dispatch .st-OUT  { background: #5c4800; color: #ffe090;  border: 1px solid #a87c00; animation: dsp-blink 1.2s infinite; }
+#screen-dispatch .st-ENR  { background: #0f3d20; color: #69d58f;  border: 1px solid #1b6e36; }
+#screen-dispatch .st-IN   { background: #1a3a5c; color: #90c4ff;  border: 1px solid #2a5a9c; }
+#screen-dispatch .st-ARR  { background: #2a2a2a; color: #ccc;     border: 1px solid #666; }
+@keyframes dsp-blink { 0%,100%{opacity:1} 50%{opacity:.35} }
+
+/* ── Flight Type chip ── */
+#screen-dispatch .ft-chip {
+  display: inline-block;
+  padding: 2px 7px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+}
+#screen-dispatch .ft-J   { background: #0d2f5c; color: #90c4ff; border: 1px solid #1a4fa0; }
+#screen-dispatch .ft-G   { background: #1a3a0a; color: #a0d080; border: 1px solid #2a6010; }
+#screen-dispatch .ft-P   { background: #3a1a0a; color: #ffa060; border: 1px solid #7a3010; }
+#screen-dispatch .ft-A   { background: #2a1a5c; color: #c090ff; border: 1px solid #5a30a0; }
+#screen-dispatch .ft-VIP { background: #5c4800; color: #ffe090; border: 1px solid #a87c00; }
+#screen-dispatch .ft-FERRY { background: #5c1515; color: #ff9090; border: 1px solid #a83232; }
+#screen-dispatch .ft-NOR { background: #2a2a2a; color: #ccc;     border: 1px solid #666; }
+
+/* ── Cột cảnh báo (icon + ô màu) ── */
+#screen-dispatch .alert-icon {
+  font-size: 16px;
+  vertical-align: middle;
+  font-family: 'Material Symbols Outlined';
+  line-height: 1;
+}
+#screen-dispatch .ai-ok     { color: #69d58f; }
+#screen-dispatch .ai-warn   { color: #ffe090; }
+#screen-dispatch .ai-crit   { color: #ff9090; }
+#screen-dispatch .ai-na     { color: #555; }
+
+/* ── TBD label ── */
+#screen-dispatch .tbd-lbl {
+  font-size: 10px;
+  color: #ffb347;
+  border: 1px dashed #a87c00;
+  border-radius: 3px;
+  padding: 1px 4px;
+  white-space: nowrap;
+}
+
+/* ── Filter bar compact ── */
+#screen-dispatch .dsp-filter-bar {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+  background: var(--dark-surface);
+  border: 1px solid var(--dark-outline);
+  border-radius: var(--md-radius-sm);
+  padding: 8px 12px;
+  margin-bottom: 12px;
+}
+#screen-dispatch .dsp-filter-bar select,
+#screen-dispatch .dsp-filter-bar input[type="text"] {
+  padding: 5px 10px;
+  background: var(--dark-surface2);
+  border: 1px solid var(--dark-outline);
+  color: var(--dark-on-surface);
+  border-radius: 6px;
+  font: inherit;
+  font-size: 12px;
+}
+#screen-dispatch .dsp-filter-note {
+  font-size: 11px;
+  color: #ffb347;
+  border: 1px dashed #a87c00;
+  border-radius: 4px;
+  padding: 3px 8px;
+  white-space: nowrap;
+}
+
+/* ── Banner nhỏ bên dưới title ── */
+#screen-dispatch .src-banner {
+  font-size: 11px;
+  color: #90c4ff;
+  background: #0d2f5c;
+  border: 1px solid #2a5a9c;
+  border-radius: 4px;
+  padding: 4px 10px;
+  margin-bottom: 10px;
+  display: inline-block;
+}
+
+/* ── Legend table ── */
+#screen-dispatch .mon-legend { margin-top: 20px; font-size: 12px; }
+#screen-dispatch .mon-legend table { width: 100%; border-collapse: collapse; }
+#screen-dispatch .mon-legend th,
+#screen-dispatch .mon-legend td {
+  border: 1px solid var(--dark-outline);
+  padding: 5px 9px;
+  text-align: left;
+  font-size: 11px;
+}
+#screen-dispatch .mon-legend th { background: var(--dark-surface2); font-weight: 600; }
+#screen-dispatch .color-dot {
+  display: inline-block;
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  margin-right: 4px;
+  vertical-align: middle;
+}
+#screen-dispatch .color-dot.red    { background: #ff5252; }
+#screen-dispatch .color-dot.yellow { background: #ffca28; }
+#screen-dispatch .color-dot.green  { background: #69f0ae; }
+#screen-dispatch .color-dot.none   { background: #555; border: 1px dashed #888; }
+</style>
+</head><body>
+<!-- PROTOTYPE v0.6 — gộp OCC+Dispatch thành màn Flight Dispatch 26 cột bám Function list -->
+<div style="background:#663c00;color:#ffd591;text-align:center;padding:5px;font-size:11px;position:sticky;top:0;z-index:50;">PROTOTYPE v0.6 — tương tác mô phỏng · Dữ liệu mẫu · Bố cục cần BA/UI duyệt</div>
+<div data-mat="mat-toolbar" data-src="[08062026 §I — EN labels, UTC]">
+  <span class="ms">flight_takeoff</span>
+  <span class="app-title">TOSS</span>
+  <span style="font-size:12px;color:#aaa">Airline Operations Management System — OCC</span>
+  <span class="spacer"></span>
+  <span style="font-size:12px;color:#aaa" id="clock-display">09:42 UTC</span>
+  <span class="proto-banner">PROTOTYPE · Sample Data · Layout pending BA/UI review</span>
+  <button class="btn-icon"><span class="ms">account_circle</span></button>
+</div>
+<div class="shell">
+<nav data-mat="mat-sidenav" data-src="[12062026 §5; 08062026 §III]">
+  
+  <a class="nav-item active" onclick="showScreen('dispatch')" data-src="[15062026 §II.2]">
+    <span class="ms">flight</span><span class="nav-label">Flight Dispatch</span>
+  </a>
+  <a class="nav-item" onclick="showScreen('detail')" data-src="[12062026 §2]">
+    <span class="ms">article</span><span class="nav-label">Flight Detail</span>
+  </a>
+  <a class="nav-item" onclick="showScreen('mel')" data-src="[17062026 §2]">
+    <span class="ms">build</span><span class="nav-label">MEL/CDL</span>
+  </a>
+  <a class="nav-item" onclick="showScreen('upload-doc')" data-src="[FL-FD §8.1 — Upload common documents]">
+    <span class="ms">upload_file</span><span class="nav-label">Upload Documents</span>
+  </a>
+  <div style="flex:1"></div>
+  <!-- MK-002 fix: Settings wired to placeholder screen -->
+  <a class="nav-item" onclick="showScreen('settings')" style="margin-top:auto" data-src="[prototype boundary — Settings not in scope v0.4]">
+    <span class="ms">settings</span><span class="nav-label">Settings</span>
+  </a>
+</nav>
+<div class="content">
+
+<!-- ══════════════════════════════════════════════════════════
+     SCREEN: OCC Dashboard
+══════════════════════════════════════════════════════════ -->
+<div id="screen-dispatch" class="screen active"
+     data-mat="mat-sidenav-content"
+     data-src="[FL-FD §8.1; wf-monitoring §8]">
+
+  <!-- ── Prototype banner ── -->
+  <div class="banner" data-src="[CLAUDE.md §0 — prototype governance]">
+    <span class="ms">science</span>
+    PROTOTYPE — tương tác mô phỏng &nbsp;·&nbsp; Dữ liệu mẫu &nbsp;·&nbsp; Bố cục cần BA/UI duyệt
+  </div>
+
+  <!-- ── Screen title + source banner ── -->
+  <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:6px;">
+    <h2 style="font-size:17px;font-weight:700;display:flex;align-items:center;gap:8px;">
+      <span class="ms">flight</span>Flight Dispatch — Flight Monitoring
+    </h2>
+    <span class="src-banner"
+          data-src="[FL-FD §8.1 — Module 2 Flight Dispatch · Flight monitoring]">
+      Bám sheet Màn hình Flight Dispatch (Function list v1.0) — dữ liệu mẫu
+    </span>
+  </div>
+
+  <!-- ── KPI summary strip ── -->
+  <div class="kpi-row" data-src="[wf-monitoring §7.1 — topbar badge thống kê]">
+    <div class="kpi">
+      <div class="kpi-val">6</div>
+      <div class="kpi-lbl">Total Flights</div>
+    </div>
+    <div class="kpi err">
+      <div class="kpi-val" style="color:#ff6b6b;">2</div>
+      <div class="kpi-lbl">Alerts (Red)</div>
+    </div>
+    <div class="kpi warn">
+      <div class="kpi-val" style="color:#ffb347;">3</div>
+      <div class="kpi-lbl">Warnings (Yellow)</div>
+    </div>
+    <div class="kpi ok">
+      <div class="kpi-val" style="color:#69d58f;">1</div>
+      <div class="kpi-lbl">Normal</div>
+    </div>
+  </div>
+
+  <!-- ── Filter bar ── -->
+  <div class="dsp-filter-bar"
+       data-mat="mat-toolbar(filter)"
+       data-src="[FL-FD §8.3 — Filter 1→20; wf-monitoring §7.1 filter bar]">
+
+    <!-- Search (Filter 4 FLTNO / Filter 3 REG) -->
+    <div class="search-box" data-mat="mat-form-field(outline)+matInput" style="max-width:200px;">
+      <span class="ms" style="color:#aaa;font-size:18px;">search</span>
+      <input type="text" id="dsp-search" placeholder="FLTNO / REG…"
+             oninput="dsp_filterTable()" autocomplete="off"
+             data-src="[FL-FD §8.3 Filter 3,4]">
+    </div>
+
+    <!-- Filter 5+6: DEP / ARR -->
+    <select id="dsp-f-dep" onchange="dsp_filterTable()"
+            data-mat="mat-select"
+            data-src="[FL-FD §8.3 Filter 5 DEP]">
+      <option value="">DEP: All</option>
+      <option value="HAN">HAN</option>
+      <option value="SGN">SGN</option>
+      <option value="DAD">DAD</option>
+    </select>
+
+    <!-- Filter 10: Flight Type -->
+    <select id="dsp-f-type" onchange="dsp_filterTable()"
+            data-mat="mat-select"
+            data-src="[FL-FD §8.3 Filter 10 Flight Type]">
+      <option value="">Type: All</option>
+      <option value="NOR">Normal</option>
+      <option value="VIP">VIP</option>
+      <option value="FERRY">Ferry</option>
+      <option value="J">J</option>
+    </select>
+
+    <!-- Filter 11: Status -->
+    <select id="dsp-f-status" onchange="dsp_filterTable()"
+            data-mat="mat-select"
+            data-src="[FL-FD §8.3 Filter 11 Status; wf-monitoring §7.3 — enum GRD/BRD/OUT/ENR/IN/ARR]">
+      <option value="">Status: All</option>
+      <option value="GRD">GRD</option>
+      <option value="BRD">BRD</option>
+      <option value="OUT">OUT</option>
+      <option value="ENR">ENR</option>
+      <option value="IN">IN</option>
+      <option value="ARR">ARR</option>
+    </select>
+
+    <!-- Filter 12: OFP DSP -->
+    <select id="dsp-f-ofp" onchange="dsp_filterTable()"
+            data-mat="mat-select"
+            data-src="[FL-FD §8.3 Filter 12 OFP DSP]">
+      <option value="">OFP DSP: All</option>
+      <option value="green">Released ✓</option>
+      <option value="yellow">Prev. Released</option>
+      <option value="red">Not Released</option>
+    </select>
+
+    <!-- Filter 8: ETD range (representative) -->
+    <input type="text" id="dsp-f-etd" placeholder="ETD (HH:MM)"
+           style="width:90px;"
+           data-mat="mat-form-field(outline)+matInput"
+           data-src="[FL-FD §8.3 Filter 8 ETD]">
+
+    <!-- Note: 20 filters total per sheet — showing representative subset -->
+    <span class="dsp-filter-note"
+          data-src="[FL-FD §8.3 — 20 filter tổng; wf-monitoring §8.3 cờ §8-5]">
+      20 filter — xem wireframe §8.3 &nbsp;
+      <span class="tbd-lbl">[TBD · OID §8-5]</span>
+    </span>
+
+    <button class="btn btn-outlined" style="padding:5px 12px;font-size:12px;"
+            onclick="dsp_filterTable()"
+            data-mat="mat-button(outlined)"
+            data-src="[FL-FD §8.3]">
+      <span class="ms" style="font-size:16px;">filter_list</span>Filter
+    </button>
+    <button class="btn btn-text" style="padding:5px 10px;font-size:12px;"
+            onclick="dsp_resetFilter()"
+            data-mat="mat-button(text)"
+            data-src="[wf-monitoring §7.1 — Reset filter]">
+      <span class="ms" style="font-size:16px;">close</span>Reset
+    </button>
+    <button class="btn btn-outlined" style="padding:5px 12px;font-size:12px;"
+            onclick="alert('[PROTOTYPE] Ẩn/Hiện cột + lưu cấu hình bảng theo người dùng — FUNC-104/105 (giả lập demo)')"
+            data-mat="mat-button(outlined)"
+            data-src="[FL-FD §8.1 · BR-102 · FUNC-104/105]">
+      <span class="ms" style="font-size:16px;">view_column</span>Ẩn/Hiện cột <span class="tbd-lbl">[TBD]</span>
+    </button>
+  </div>
+
+  <!-- ── Main table 26 columns ── -->
+  <div class="mon-table-wrap"
+       data-mat="mat-table+MatSort+MatPaginator"
+       data-src="[FL-FD §8.2 — Bảng đặc tả 26 cột; wf-monitoring §8.2]">
+
+    <table id="dsp-mon-table" data-mat="mat-table">
+      <thead>
+        <!-- Tầng 1: Nhóm cột -->
+        <tr class="grp-row">
+          <th colspan="1" data-src="[FL-FD §8.2 Col 1]">DSP<br>Release</th>
+          <!-- Freeze col 2: REG -->
+          <th colspan="1" data-src="[FL-FD §8.2 Col 2]">ID</th>
+          <!-- Freeze col 3: FLTNO -->
+          <th colspan="1" data-src="[FL-FD §8.2 Col 3]">Flight No</th>
+          <th colspan="5" style="text-align:center;" data-src="[FL-FD §8.2 Col 4–8]">Identity / Schedule</th>
+          <th colspan="2" style="text-align:center;" data-src="[FL-FD §8.2 Col 9–10]">Schedule / Status</th>
+          <th colspan="2" style="text-align:center;" data-src="[FL-FD §8.2 Col 11–12]">OFP / Release</th>
+          <th colspan="5" style="text-align:center;" data-src="[FL-FD §8.2 Col 13–16,19]">Load / Fuel</th>
+          <th colspan="3" style="text-align:center;" data-src="[FL-FD §8.2 Col 17–18,19]">Weather / NOTAM</th>
+          <th colspan="6" style="text-align:center;" data-src="[FL-FD §8.2 Col 20–26; YCKT TOSS-180]">Warnings</th>
+        </tr>
+        <!-- Tầng 2: Tên cột -->
+        <tr class="col-row">
+          <!-- Col 1: DSP Release -->
+          <th class="col-freeze"
+              data-mat="mat-checkbox"
+              data-src="[FL-FD §8.2 Col 1 — checkbox active khi tới thời điểm release]"
+              title="DSP Release — checkbox active khi OFP tới thời điểm cần release (FL-FD §8.2 Col 1)">
+            DSP Rel.
+          </th>
+          <!-- Col 2: REG -->
+          <th class="col-freeze-2"
+              data-src="[FL-FD §8.2 Col 2 — Đỏ: OFP≠Netline released; Vàng: khớp chưa release; Xanh: khớp+released; Không màu: chưa OFP]"
+              title="REG — logic màu 4 trạng thái Netline×OFP (FL-FD §8.2 Col 2; 12-sang §II.9)">
+            REG
+          </th>
+          <!-- Col 3: FLTNO -->
+          <th class="col-freeze-3"
+              data-src="[FL-FD §8.2 Col 3 — suffix D/Z → vàng; mất D/Z → đỏ]"
+              title="FLTNO — suffix D/Z → vàng; mất D/Z → đỏ (FL-FD §8.2 Col 3)">
+            FLTNO
+          </th>
+          <!-- Col 4: DEP -->
+          <th data-src="[FL-FD §8.2 Col 4]"
+              title="Sân bay đi">DEP</th>
+          <!-- Col 5: ARR -->
+          <th data-src="[FL-FD §8.2 Col 5 — Divert → vàng]"
+              title="ARR — Divert → vàng (FL-FD §8.2 Col 5)">ARR</th>
+          <!-- Col 6: Date -->
+          <th data-src="[FL-FD §8.2 Col 6 — theo màu FLTNO]"
+              title="Ngày khai thác — màu theo FLTNO (FL-FD §8.2 Col 6)">Date</th>
+          <!-- Col 7: ETD -->
+          <th data-src="[FL-FD §8.2 Col 7 — Vàng 15–30' lệch EDT; Đỏ >30'; Xanh ATC+OFP khớp]"
+              title="ETD — Vàng 15–30 phút lệch EDT; Đỏ delay >30 phút; Xanh ATC+OFP khớp (FL-FD §8.2 Col 7)">
+            ETD
+          </th>
+          <!-- Col 8: ETA -->
+          <th data-src="[FL-FD §8.2 Col 8 — sheet trống; Xanh sau ACARS IN per 12-sang §II.12]"
+              title="ETA — sheet để trống; xanh sau ACARS IN (wf-monitoring §9.2 cột 8)">
+            ETA
+            <span class="tbd-lbl" title="[TBD — ETA color rule: cờ §8-9]">[TBD]</span>
+          </th>
+          <!-- Col 9: Flight Type -->
+          <th data-src="[FL-FD §8.2 Col 9 — chip J/G/P/A/VIP/Ferry; Đỏ thay đổi loại; Xanh ATC+OFP head khớp]"
+              title="Flight Type — Vàng ATC+OFP ra chưa release; Đỏ đổi loại; Xanh ATC+OFP head khớp (FL-FD §8.2 Col 9)">
+            Type
+          </th>
+          <!-- Col 10: Status -->
+          <th data-src="[FL-FD §8.2 Col 10 — GRD/BRD/OUT/ENR/IN/ARR tạm thời; nhấp nháy khi chuyển; cờ §8-7]"
+              title="Status — enum GRD/BRD/OUT/ENR/IN/ARR (tạm thời, cần SME xác nhận) — cờ §8-7 (FL-FD §8.2 Col 10)">
+            Status
+            <span class="tbd-lbl">[TBD]</span>
+          </th>
+          <!-- Col 11: OFP DSP -->
+          <th data-src="[FL-FD §8.2 Col 11 — format 2/0/1 R2; Xanh/Vàng/Đỏ theo rev cuối; cờ §8-1 format]"
+              title="OFP DSP — format '2/0/1 R2' (ý nghĩa 3 số chờ SME §8-1); Xanh = rev cuối released; Vàng = rev trước released; Đỏ = chưa có release (FL-FD §8.2 Col 11)">
+            OFP DSP
+          </th>
+          <!-- Col 12: Pilot release -->
+          <th data-src="[FL-FD §8.2 Col 12 — Xanh/Vàng/Đỏ Reject; gạch trắng chưa confirm]"
+              title="Pilot Release — gạch trắng=chưa confirm; R01 xanh/vàng; Đỏ=Reject (FL-FD §8.2 Col 12)">
+            Pilot Rel.
+          </th>
+          <!-- Col 13: EPLD -->
+          <th data-src="[FL-FD §8.2 Col 13 — PAYLOAD EST trên OFP; cảnh báo khi CLC lệch giới hạn; cờ §8-4]"
+              title="EPLD — Payload EST trên OFP; cảnh báo khi CLC nhập lệch giới hạn — ngưỡng ma trận loại tàu×giờ bay (FL-FD §8.2 Col 13; cờ §8-4)">
+            EPLD
+            <span class="tbd-lbl">[TBD]</span>
+          </th>
+          <!-- Col 14: EST DOW -->
+          <th data-src="[FL-FD §8.2 Col 14 — DOW EST trên OFP; cảnh báo khi lệch giới hạn; cờ §8-4]"
+              title="EST DOW — DOW EST trên OFP; cảnh báo vượt trần/sàn ZFW (FL-FD §8.2 Col 14; cờ §8-4)">
+            EST DOW
+            <span class="tbd-lbl">[TBD]</span>
+          </th>
+          <!-- Col 15: BLOCK FUEL -->
+          <th data-src="[FL-FD §8.2 Col 15 — sheet để gạch; Đỏ 30' trước ETD pilot chưa release per 15062026]"
+              title="Block Fuel OFP — Đỏ nếu 30 phút trước ETD pilot chưa release (wf-monitoring §9.2 cột 15)">
+            BLOCK FUEL
+          </th>
+          <!-- Col 16: PILOT EXTRA -->
+          <th data-src="[FL-FD §8.2 Col 16 — Pilot Release − OFP Block Fuel; Đỏ 30' trước ETD chưa release]"
+              title="PILOT EXTRA = Pilot Release − OFP Block Fuel; Đỏ 30 phút trước ETD chưa release (FL-FD §8.2 Col 16)">
+            PILOT EXTRA
+          </th>
+          <!-- Col 17: NOTAM -->
+          <th data-src="[FL-FD §8.2 Col 17 — ngưỡng 210'/270' vàng; 75'/95' đỏ; có OFP: 75-60 QN / 90-75 QT vàng → đỏ]"
+              title="NOTAM — Chưa OFP: Vàng 210'QN/270'QT; Đỏ 75'QN/95'QT. Có OFP chưa release: Vàng 75-60'QN/90-75'QT; Đỏ 60'QN/75'QT. Released=Xanh (FL-FD §8.2 Col 17; 15062026 §II.2)">
+            NOTAM
+          </th>
+          <!-- Col 18: WX -->
+          <th data-src="[FL-FD §8.2 Col 18 — dùng ngưỡng nhóm như NOTAM; cờ §8-3]"
+              title="WX — tầm nhìn/trần mây/TSRA so với VMA+biên an toàn; METAR 30'/lần; áp ngưỡng nhóm như NOTAM (cờ §8-3 cần SME) (FL-FD §8.2 Col 18; 11-sang §7)">
+            WX
+          </th>
+          <!-- Col 19: ZFW-DOW -->
+          <th data-src="[FL-FD §8.2 Col 19 — check 60' QN / 90' QT; trần/sàn System Admin]"
+              title="ZFW-DOW — check ZFW lệch CLC vs OFP trong FON: 60'QN / 90'QT; ngưỡng System Admin (FL-FD §8.2 Col 19; 11-sang §10)">
+            ZFW-DOW
+          </th>
+          <!-- Col 20: MEL/CDL -->
+          <th data-src="[FL-FD §8.2 Col 20 — AMOS tích hợp; ảnh hưởng nhiên liệu/mực bay; cờ §8-3]"
+              title="MEL/CDL — cảnh báo từ AMOS Master MEL; ảnh hưởng nhiên liệu/mực bay; tích hợp chờ xem xét (FL-FD §8.2 Col 20)">
+            MEL/CDL
+          </th>
+          <!-- Col 21: ATC -->
+          <th data-src="[FL-FD §8.2 Col 21 — 'nội dung như MO'; sheet trống màu; cờ §8-3 §8-9]"
+              title="ATC — cảnh báo như Dispatch MO; màu chưa định nghĩa cờ §8-9 (FL-FD §8.2 Col 21)">
+            ATC
+            <span class="tbd-lbl">[TBD · OID §8-9]</span>
+          </th>
+          <!-- Col 22: TO/LD -->
+          <th data-src="[FL-FD §8.2 Col 22 — EST TO/LD vs MTOW/MLDW; TAF/METAR; cờ §8-9]"
+              title="TO/LD — EST TO/LD vs MTOW/MLDW; điều kiện TAF/METAR; màu cờ §8-9 (FL-FD §8.2 Col 22)">
+            TO/LD
+            <span class="tbd-lbl">[TBD · OID §8-9]</span>
+          </th>
+          <!-- Col 23: Missing Document -->
+          <th data-src="[FL-FD §8.2 Col 23 — OFP/NOTAM/WX thiếu; cờ §8-9; YCKT TOSS-175]"
+              title="Missing Document — thiếu OFP/NOTAM/WX; ngưỡng thời gian System Admin; màu cờ §8-9 (FL-FD §8.2 Col 23; TOSS-175)">
+            Missing Doc
+          </th>
+          <!-- Col 24: Taxi APU -->
+          <th data-src="[FL-FD §8.2 Col 24 — lệch taxi/APU so FON; cờ §8-9]"
+              title="Taxi APU — lệch taxi time / APU time so với FON; màu cờ §8-9 (FL-FD §8.2 Col 24; 15062026 §III)">
+            Taxi APU
+            <span class="tbd-lbl">[TBD · OID §8-9]</span>
+          </th>
+          <!-- Col 25: Crew change -->
+          <th data-src="[FL-FD §8.2 Col 25 — tổ bay chưa download tài liệu; MO Plus; FUNC-145]"
+              title="Crew change — tổ bay chưa download tài liệu mới nhất từ MO Plus; ngưỡng TOSS-175 (FL-FD §8.2 Col 25; 11-chieu §II.1)">
+            Crew ↓
+          </th>
+          <!-- Col 26: VIP -->
+          <th data-src="[FL-FD §8.2 Col 26 — ATC/OFP chưa Status Head trước chuyến VIP; BR-126]"
+              title="VIP — chuyến VIP mà ATC/OFP chưa có Status Head trước chuyến bay (FL-FD §8.2 Col 26; 11-chieu §II.2)">
+            VIP
+          </th>
+        </tr>
+      </thead>
+      <tbody id="dsp-mon-tbody">
+        <!-- Dòng 1: VN 302 — Red alerts (OFP chưa release, NOTAM đỏ, Missing Doc) -->
+        <tr data-status="GRD" data-flt="VN302" data-dep="HAN" data-type="NOR"
+            data-ofp="red"
+            onclick="showScreenDirect('detail')"
+            data-src="[FL-FD §8.2 — sample row demonstrating đỏ/vàng/xanh states]">
+          <!-- Col 1: DSP Release -->
+          <td class="col-freeze"
+              data-mat="mat-checkbox"
+              data-src="[FL-FD §8.2 Col 1]"
+              onclick="event.stopPropagation()">
+            <div class="dsp-rel-cell">
+              <input type="checkbox" class="dsp-chk" id="dsp-chk-302"
+                     title="Active khi OFP tới thời điểm release (FL-FD §8.2 Col 1)">
+              <button class="dsp-rel-btn" onclick="dsp_openRelease('VN302');event.stopPropagation();"
+                      data-src="[FL-FD §8.2 Col 1 — khi nhấn vào sẽ release OFP]">Rel.</button>
+            </div>
+          </td>
+          <!-- Col 2: REG — Đỏ: OFP released khác Netline [FL-FD §8.2 Col 2] -->
+          <td class="col-freeze-2 cell-red has-tooltip"
+              data-src="[FL-FD §8.2 Col 2 — Đỏ: OFP DSP release khác Netline]">
+            A893
+            <span class="tooltip occ-reg-tip">REG cũ → REG mới<br>VN-A456 → A893<br>Đổi 14:30 UTC · Netline ≠ OFP</span>
+          </td>
+          <!-- Col 3: FLTNO — Bình thường -->
+          <td class="col-freeze-3"
+              data-src="[FL-FD §8.2 Col 3]"
+              style="font-weight:700;">VN302</td>
+          <!-- Col 4: DEP -->
+          <td data-src="[FL-FD §8.2 Col 4]">HAN</td>
+          <!-- Col 5: ARR -->
+          <td data-src="[FL-FD §8.2 Col 5]">SGN</td>
+          <!-- Col 6: Date -->
+          <td data-src="[FL-FD §8.2 Col 6]">18 Jun</td>
+          <!-- Col 7: ETD — Đỏ: delayed >30' -->
+          <td class="cell-red has-tooltip"
+              data-src="[FL-FD §8.2 Col 7 — Đỏ: Netline kéo delayed >30 phút]">
+            09:15
+            <span class="tooltip">Giờ cũ → giờ mới: 08:45 → 09:15<br>Delay +30 phút — Đỏ (FL-FD §8.2 Col 7)</span>
+          </td>
+          <!-- Col 8: ETA -->
+          <td data-src="[FL-FD §8.2 Col 8]">11:20 <span class="tbd-lbl">[TBD]</span></td>
+          <!-- Col 9: Flight Type -->
+          <td data-src="[FL-FD §8.2 Col 9]">
+            <span class="ft-chip ft-NOR" data-mat="mat-chip">Normal</span>
+          </td>
+          <!-- Col 10: Status — GRD, không nhấp nháy -->
+          <td data-src="[FL-FD §8.2 Col 10]">
+            <span class="status-badge st-GRD"
+                  data-mat="mat-chip"
+                  title="GRD = Ground (đang PVMĐ) — enum tạm thời cần SME xác nhận §8-7">
+              GRD <span class="tbd-lbl">[TBD]</span>
+            </span>
+          </td>
+          <!-- Col 11: OFP DSP — Đỏ: chưa rev nào release -->
+          <td class="has-tooltip"
+              data-src="[FL-FD §8.2 Col 11 — Đỏ: chưa có rev nào DSP release]">
+            <span class="ofp-fmt ofp-red">—/—/— R0</span>
+            <span class="tooltip">Thời gian upload: 07:45 UTC<br>DSP: chưa release<br>Format '2/0/1 R2' — ý nghĩa 3 số TBD §8-1</span>
+          </td>
+          <!-- Col 12: Pilot release — gạch trắng (chưa confirm) -->
+          <td class="pilot-cell-none"
+              data-src="[FL-FD §8.2 Col 12 — chưa confirm = gạch trắng]">—</td>
+          <!-- Col 13: EPLD -->
+          <td class="has-tooltip"
+              data-src="[FL-FD §8.2 Col 13; cờ §8-4]">
+            18 450
+            <span class="tooltip">PAYLOAD EST OFP: 18 450 kg<br>CLC: chưa nhập — cờ §8-4 màu chưa xác nhận</span>
+          </td>
+          <!-- Col 14: EST DOW -->
+          <td data-src="[FL-FD §8.2 Col 14; cờ §8-4]">42 100 <span class="tbd-lbl">[TBD]</span></td>
+          <!-- Col 15: BLOCK FUEL — Đỏ: 30' trước ETD pilot chưa release -->
+          <td class="cell-red has-tooltip"
+              data-src="[FL-FD §8.2 Col 15; wf-monitoring §9.2 cột 15 — Đỏ 30' trước ETD pilot chưa release]">
+            14 800
+            <span class="tooltip">OFP Block Fuel: 14 800 kg<br>Đỏ: 30 phút trước ETD pilot chưa release (wf-monitoring §9.2 col 15)</span>
+          </td>
+          <!-- Col 16: PILOT EXTRA — Đỏ: chưa release -->
+          <td class="cell-red"
+              data-src="[FL-FD §8.2 Col 16 — Đỏ khi 30' trước ETD pilot chưa release]">— <span style="font-size:10px;color:#ff9090">(!)</span></td>
+          <!-- Col 17: NOTAM — Đỏ: <75' QN chưa có OFP -->
+          <td class="cell-red has-tooltip" style="cursor:pointer;"
+              onclick="showScreenDirect('detail');setTimeout(function(){detail_openFromAlert('dtab-weather');},150);"
+              data-src="[FL-FD §8.2 Col 17 — Đỏ: sắp tới giờ 75' QN chưa có OFP; §8.5 bấm ô→tab Weather]">
+            <span class="alert-icon ai-crit">error</span>
+            <span class="tooltip">NOTAM — Chưa có OFP<br>Đỏ: còn 72 phút ≤ 75' QN<br>Nguồn: VATM / ngưỡng 75'QN/95'QT (FL-FD §8.2 Col 17)<br>Click → mở Flight Detail tab Weather/NOTAM</span>
+          </td>
+          <!-- Col 18: WX — Vàng -->
+          <td class="cell-yellow has-tooltip" style="cursor:pointer;"
+              onclick="showScreenDirect('detail');setTimeout(function(){detail_openFromAlert('dtab-weather');},150);"
+              data-src="[FL-FD §8.2 Col 18 — áp ngưỡng nhóm như NOTAM; cờ §8-3; §8.5 bấm ô→tab Weather]">
+            <span class="alert-icon ai-warn">warning</span>
+            <span class="tooltip">WX — METAR SGN: tầm nhìn 3000m (gần VMA)<br>Áp ngưỡng nhóm OFP chưa release (cờ §8-3 cần SME)<br>Click → mở Flight Detail tab Weather/NOTAM</span>
+          </td>
+          <!-- Col 19: ZFW-DOW -->
+          <td class="has-tooltip"
+              data-src="[FL-FD §8.2 Col 19]">
+            <span class="alert-icon ai-ok">check_circle</span>
+            <span class="tooltip">ZFW-DOW — trong ngưỡng System Admin<br>60'QN / 90'QT (FL-FD §8.2 Col 19)</span>
+          </td>
+          <!-- Col 20: MEL/CDL -->
+          <td class="has-tooltip"
+              data-src="[FL-FD §8.2 Col 20]">
+            <span class="alert-icon ai-na">remove</span>
+            <span class="tooltip">MEL/CDL — AMOS: không có mục ảnh hưởng chuyến bay<br>(tích hợp AMOS chờ xem xét FL-FD §8.2 Col 20)</span>
+          </td>
+          <!-- Col 21: ATC — TBD -->
+          <td data-src="[FL-FD §8.2 Col 21; cờ §8-9]">
+            <span class="tbd-lbl">[TBD · OID §8-9]</span>
+          </td>
+          <!-- Col 22: TO/LD — TBD -->
+          <td data-src="[FL-FD §8.2 Col 22; cờ §8-9]">
+            <span class="tbd-lbl">[TBD · OID §8-9]</span>
+          </td>
+          <!-- Col 23: Missing Document — Đỏ -->
+          <td class="cell-red has-tooltip"
+              data-src="[FL-FD §8.2 Col 23 — thiếu OFP/NOTAM/WX; TOSS-175]">
+            <span class="alert-icon ai-crit">description</span>
+            <span class="tooltip">Missing Document<br>• OFP: chưa upload<br>• NOTAM: chưa đánh giá<br>(ngưỡng thời gian System Admin — TOSS-175)</span>
+          </td>
+          <!-- Col 24: Taxi APU — TBD -->
+          <td data-src="[FL-FD §8.2 Col 24; cờ §8-9]">
+            <span class="tbd-lbl">[TBD · OID §8-9]</span>
+          </td>
+          <!-- Col 25: Crew change -->
+          <td class="cell-yellow has-tooltip"
+              data-src="[FL-FD §8.2 Col 25 — tổ bay chưa download; MO Plus; FUNC-145]">
+            <span class="alert-icon ai-warn">group</span>
+            <span class="tooltip">Crew ↓ — tổ bay chưa download tài liệu mới nhất<br>Kết nối MO Plus (FL-FD §8.2 Col 25; 11-chieu §II.1)</span>
+          </td>
+          <!-- Col 26: VIP -->
+          <td data-src="[FL-FD §8.2 Col 26]">
+            <span class="alert-icon ai-na">remove</span>
+          </td>
+        </tr>
+
+        <!-- Dòng 2: VN 208 — FLTNO suffix D (Vàng), OFP Vàng, ETD Vàng -->
+        <tr data-status="BRD" data-flt="VN208D" data-dep="SGN" data-type="NOR"
+            data-ofp="yellow"
+            onclick="showScreenDirect('detail')"
+            data-src="[FL-FD §8.2 — sample row: suffix D → vàng; OFP prev released → vàng; BRD blinking]">
+          <td class="col-freeze" onclick="event.stopPropagation()">
+            <div class="dsp-rel-cell">
+              <input type="checkbox" class="dsp-chk" id="dsp-chk-208">
+              <button class="dsp-rel-btn" onclick="dsp_openRelease('VN208D');event.stopPropagation();">Rel.</button>
+            </div>
+          </td>
+          <!-- REG — Vàng: khớp tàu chưa release -->
+          <td class="col-freeze-2 cell-yellow has-tooltip"
+              data-src="[FL-FD §8.2 Col 2 — Vàng: OFP giống Netline DSP chưa release]">
+            B651
+            <span class="tooltip">REG cũ → REG mới: B651 (không đổi)<br>Vàng: khớp Netline nhưng DSP chưa release</span>
+          </td>
+          <!-- FLTNO — Vàng: suffix D -->
+          <td class="col-freeze-3 cell-yellow has-tooltip"
+              data-src="[FL-FD §8.2 Col 3 — suffix D → vàng; 12-sang §II.11]"
+              style="font-weight:700;">
+            VN208<span style="color:#ffe090;font-weight:900;">D</span>
+            <span class="tooltip">Suffix D — chuyến bay bị kéo sang ngày sau (12-sang §II.11)<br>Giữ Vàng — không chuyển Xanh</span>
+          </td>
+          <td>SGN</td>
+          <td data-src="[FL-FD §8.2 Col 5]">HAN</td>
+          <td class="cell-yellow"
+              data-src="[FL-FD §8.2 Col 6 — màu theo FLTNO]">18 Jun</td>
+          <!-- ETD — Vàng: lệch 20' -->
+          <td class="cell-yellow has-tooltip"
+              data-src="[FL-FD §8.2 Col 7 — Vàng: 15–30 phút so với EDT Netline]">
+            11:00
+            <span class="tooltip">Giờ cũ → giờ mới: 10:40 → 11:00<br>+20 phút lệch ETD — Vàng (15–30') (FL-FD §8.2 Col 7)</span>
+          </td>
+          <td>13:05 <span class="tbd-lbl">[TBD]</span></td>
+          <td><span class="ft-chip ft-NOR" data-mat="mat-chip">Normal</span></td>
+          <!-- Status — BRD, nhấp nháy -->
+          <td>
+            <span class="status-badge st-BRD"
+                  data-mat="mat-chip"
+                  title="BRD = Boarding — nhấp nháy khi BRD/OUT (cần SME xác nhận §8-7)">
+              BRD <span class="tbd-lbl">[TBD]</span>
+            </span>
+          </td>
+          <!-- OFP DSP — Vàng: rev trước đã release, rev cuối chưa -->
+          <td class="has-tooltip"
+              data-src="[FL-FD §8.2 Col 11 — Vàng: rev cuối chưa release mà rev trước đã release]">
+            <span class="ofp-fmt ofp-yellow">2/1/1 R2</span>
+            <span class="tooltip">Vàng: R2 chưa release; R1 đã DSP release<br>Thời gian upload R2: 09:22 UTC<br>Tên DSP: Nguyễn V.A — Hover details FL-FD §8.2 Col 11</span>
+          </td>
+          <!-- Pilot release — R01 Vàng: release OFP trước rev cuối -->
+          <td class="cell-yellow has-tooltip pilot-cell-released"
+              data-src="[FL-FD §8.2 Col 12 — Vàng: release OFP trước OFP cuối]">
+            R01
+            <span class="tooltip">Pilot release R01 (OFP trước, chưa release R2)<br>Thời gian release: 08:55 UTC (FL-FD §8.2 Col 12)</span>
+          </td>
+          <td data-src="[FL-FD §8.2 Col 13]">17 200 <span class="tbd-lbl">[TBD]</span></td>
+          <td data-src="[FL-FD §8.2 Col 14]">41 800 <span class="tbd-lbl">[TBD]</span></td>
+          <!-- BLOCK FUEL — Vàng: 30' trước ETD pilot chưa release rev mới -->
+          <td class="cell-yellow has-tooltip"
+              data-src="[FL-FD §8.2 Col 15; wf-monitoring §9.2 col 15]">
+            12 600
+            <span class="tooltip">Block Fuel OFP R2: 12 600 kg<br>Vàng: pilot release R01 (cũ), R2 chưa release</span>
+          </td>
+          <td class="cell-yellow"
+              data-src="[FL-FD §8.2 Col 16]">+250 <span style="font-size:10px;color:#ffe090">(R01)</span></td>
+          <!-- NOTAM — Vàng: có OFP chưa release, window 75-60' QN -->
+          <td class="cell-yellow has-tooltip" style="cursor:pointer;"
+              onclick="showScreenDirect('detail');setTimeout(function(){detail_openFromAlert('dtab-weather');},150);"
+              data-src="[FL-FD §8.2 Col 17 — Vàng: có OFP DSP chưa release, 75→60' QN; §8.5 bấm ô→tab Weather]">
+            <span class="alert-icon ai-warn">warning</span>
+            <span class="tooltip">NOTAM — Có OFP R2 chưa DSP release<br>Vàng: còn 65 phút (75→60' QN) (FL-FD §8.2 Col 17)<br>Click → mở Flight Detail tab Weather/NOTAM</span>
+          </td>
+          <!-- WX — OK -->
+          <td class="has-tooltip"
+              data-src="[FL-FD §8.2 Col 18]">
+            <span class="alert-icon ai-ok">check_circle</span>
+            <span class="tooltip">WX OK — METAR HAN: tầm nhìn 8000m, không TSRA</span>
+          </td>
+          <td class="has-tooltip" data-src="[FL-FD §8.2 Col 19]">
+            <span class="alert-icon ai-ok">check_circle</span>
+            <span class="tooltip">ZFW-DOW trong ngưỡng (60'QN)</span>
+          </td>
+          <td class="has-tooltip" style="cursor:pointer;"
+              onclick="showScreenDirect('detail');setTimeout(function(){detail_openFromAlert('dtab-aircraft');},150);"
+              data-src="[FL-FD §8.2 Col 20; §8.5 bấm ô→tab Aircraft/MEL]">
+            <span class="alert-icon ai-warn">warning</span>
+            <span class="tooltip">MEL/CDL — AMOS: 1 mục MEL ảnh hưởng mực bay +2000ft<br>Tích hợp AMOS chờ xem xét (FL-FD §8.2 Col 20)<br>Click → mở Flight Detail tab Aircraft/MEL</span>
+          </td>
+          <td data-src="[FL-FD §8.2 Col 21]"><span class="tbd-lbl">[TBD]</span></td>
+          <td data-src="[FL-FD §8.2 Col 22]"><span class="tbd-lbl">[TBD]</span></td>
+          <td class="has-tooltip" data-src="[FL-FD §8.2 Col 23]">
+            <span class="alert-icon ai-ok">check_circle</span>
+            <span class="tooltip">Missing Doc — OK (OFP R1 có; NOTAM/WX đánh giá xong)</span>
+          </td>
+          <td data-src="[FL-FD §8.2 Col 24]"><span class="tbd-lbl">[TBD]</span></td>
+          <td class="has-tooltip" data-src="[FL-FD §8.2 Col 25]">
+            <span class="alert-icon ai-ok">check_circle</span>
+            <span class="tooltip">Crew ↓ — tổ bay đã download tài liệu (MO Plus)</span>
+          </td>
+          <td data-src="[FL-FD §8.2 Col 26]"><span class="alert-icon ai-na">remove</span></td>
+        </tr>
+
+        <!-- Dòng 3: VN 411 — Dispatch Released, Pilot Released, Xanh -->
+        <tr data-status="OUT" data-flt="VN411" data-dep="HAN" data-type="NOR"
+            data-ofp="green"
+            onclick="showScreenDirect('detail')"
+            data-src="[FL-FD §8.2 — sample row: full released; OUT blinking; ETD xanh ATC+OFP khớp]">
+          <td class="col-freeze" onclick="event.stopPropagation()">
+            <div class="dsp-rel-cell">
+              <input type="checkbox" class="dsp-chk" id="dsp-chk-411" checked>
+              <button class="dsp-rel-btn inactive" disabled>Rel.</button>
+            </div>
+          </td>
+          <!-- REG — Xanh: khớp + released -->
+          <td class="col-freeze-2 cell-green has-tooltip"
+              data-src="[FL-FD §8.2 Col 2 — Xanh: OFP=Netline và DSP đã release]">
+            A368
+            <span class="tooltip">REG A368 — khớp Netline + DSP đã release<br>Xanh (12-sang §II.9; FL-FD §8.2 Col 2)</span>
+          </td>
+          <td class="col-freeze-3" style="font-weight:700;"
+              data-src="[FL-FD §8.2 Col 3]">VN411</td>
+          <td>HAN</td>
+          <td data-src="[FL-FD §8.2 Col 5]">PQC</td>
+          <td data-src="[FL-FD §8.2 Col 6]">18 Jun</td>
+          <!-- ETD — Xanh: ATC + OFP release khớp -->
+          <td class="cell-green has-tooltip"
+              data-src="[FL-FD §8.2 Col 7 — Xanh: ATC vs OFP release khớp]">
+            12:45
+            <span class="tooltip">ETD Xanh: ATC clearance + OFP release khớp giờ<br>(FL-FD §8.2 Col 7; cờ §8-8)</span>
+          </td>
+          <td data-src="[FL-FD §8.2 Col 8]">14:30</td>
+          <td><span class="ft-chip ft-NOR" data-mat="mat-chip">Normal</span></td>
+          <!-- Status — OUT, nhấp nháy -->
+          <td>
+            <span class="status-badge st-OUT"
+                  data-mat="mat-chip"
+                  title="OUT = Taxi out — nhấp nháy (cần SME xác nhận §8-7)">
+              OUT <span class="tbd-lbl">[TBD]</span>
+            </span>
+          </td>
+          <!-- OFP DSP — Xanh: rev cuối đã release -->
+          <td class="has-tooltip"
+              data-src="[FL-FD §8.2 Col 11 — Xanh: Rev cuối đã DSP release]">
+            <span class="ofp-fmt ofp-green">2/0/1 R2</span>
+            <span class="tooltip">Xanh: R2 đã DSP release lúc 11:05 UTC<br>Tên DSP: Trần V.B<br>Format '2/0/1 R2' — ý nghĩa 3 số TBD §8-1</span>
+          </td>
+          <!-- Pilot release — R02 Xanh -->
+          <td class="cell-green has-tooltip pilot-cell-released"
+              data-src="[FL-FD §8.2 Col 12 — Xanh: release OFP cuối đã DSP release]">
+            R02
+            <span class="tooltip">Pilot release R02 (OFP cuối DSP đã release)<br>Thời gian: 11:30 UTC (FL-FD §8.2 Col 12)</span>
+          </td>
+          <td class="cell-green has-tooltip" data-src="[FL-FD §8.2 Col 13]">
+            8 600
+            <span class="tooltip">EPLD OFP: 8 600 kg — CLC khớp trong ngưỡng (§8-4)</span>
+          </td>
+          <td class="cell-green" data-src="[FL-FD §8.2 Col 14]">39 400</td>
+          <td class="cell-green" data-src="[FL-FD §8.2 Col 15]">8 590</td>
+          <td class="cell-green has-tooltip" data-src="[FL-FD §8.2 Col 16]">
+            −10
+            <span class="tooltip">PILOT EXTRA = Pilot Release − OFP Block Fuel = −10 kg (FL-FD §8.2 Col 16)</span>
+          </td>
+          <!-- NOTAM — Xanh: OFP released -->
+          <td class="cell-green has-tooltip" data-src="[FL-FD §8.2 Col 17 — Xanh: OFP DSP đã release]">
+            <span class="alert-icon ai-ok">check_circle</span>
+            <span class="tooltip">NOTAM — Xanh: OFP đã DSP release<br>Phiên bản OFP R2 (FL-FD §8.2 Col 17)</span>
+          </td>
+          <td class="cell-green has-tooltip" data-src="[FL-FD §8.2 Col 18]">
+            <span class="alert-icon ai-ok">check_circle</span>
+            <span class="tooltip">WX — PQC: tầm nhìn OK, không TSRA</span>
+          </td>
+          <td class="cell-green has-tooltip" data-src="[FL-FD §8.2 Col 19]">
+            <span class="alert-icon ai-ok">check_circle</span>
+            <span class="tooltip">ZFW-DOW trong ngưỡng (FL-FD §8.2 Col 19)</span>
+          </td>
+          <td class="has-tooltip" data-src="[FL-FD §8.2 Col 20]">
+            <span class="alert-icon ai-na">remove</span>
+            <span class="tooltip">MEL/CDL — không có mục ảnh hưởng</span>
+          </td>
+          <td data-src="[FL-FD §8.2 Col 21]"><span class="tbd-lbl">[TBD]</span></td>
+          <td data-src="[FL-FD §8.2 Col 22]"><span class="tbd-lbl">[TBD]</span></td>
+          <td class="cell-green has-tooltip" data-src="[FL-FD §8.2 Col 23]">
+            <span class="alert-icon ai-ok">check_circle</span>
+            <span class="tooltip">Missing Doc — đầy đủ OFP/NOTAM/WX</span>
+          </td>
+          <td data-src="[FL-FD §8.2 Col 24]"><span class="tbd-lbl">[TBD]</span></td>
+          <td class="cell-green has-tooltip" data-src="[FL-FD §8.2 Col 25]">
+            <span class="alert-icon ai-ok">check_circle</span>
+            <span class="tooltip">Crew ↓ — đã download tài liệu</span>
+          </td>
+          <td data-src="[FL-FD §8.2 Col 26]"><span class="alert-icon ai-na">remove</span></td>
+        </tr>
+
+        <!-- Dòng 4: VN 500 — VIP flight, ATC/OFP chưa Status Head -->
+        <tr data-status="GRD" data-flt="VN500" data-dep="HAN" data-type="VIP"
+            data-ofp="yellow"
+            onclick="showScreenDirect('detail')"
+            data-src="[FL-FD §8.2 Col 26 — VIP: ATC/OFP chưa có Status Head; 11-chieu §II.2; BR-126]">
+          <td class="col-freeze" onclick="event.stopPropagation()">
+            <div class="dsp-rel-cell">
+              <input type="checkbox" class="dsp-chk" id="dsp-chk-500">
+              <button class="dsp-rel-btn" onclick="dsp_openRelease('VN500');event.stopPropagation();">Rel.</button>
+            </div>
+          </td>
+          <td class="col-freeze-2 cell-yellow has-tooltip"
+              data-src="[FL-FD §8.2 Col 2 — Vàng: khớp Netline chưa release]">
+            A861
+            <span class="tooltip">REG A861 — khớp Netline; DSP chưa release → Vàng</span>
+          </td>
+          <td class="col-freeze-3" style="font-weight:700;">VN500</td>
+          <td>HAN</td>
+          <!-- ARR — Không màu (không divert) -->
+          <td data-src="[FL-FD §8.2 Col 5]">PEK</td>
+          <td>18 Jun</td>
+          <td data-src="[FL-FD §8.2 Col 7]">14:00</td>
+          <td>19:30 <span class="tbd-lbl">[TBD]</span></td>
+          <!-- Flight Type — VIP chip vàng + Đỏ: Thường↔VIP đổi loại -->
+          <td class="cell-red has-tooltip"
+              data-src="[FL-FD §8.2 Col 9 — Đỏ: đổi Thường↔VIP; FL-FD §8.2]">
+            <span class="ft-chip ft-VIP" data-mat="mat-chip">VIP</span>
+            <span class="tooltip">Flight Type Đỏ: đổi Thường → VIP<br>Lịch sử đổi code: Normal → VIP lúc 07:15 UTC (FL-FD §8.2 Col 9)</span>
+          </td>
+          <td>
+            <span class="status-badge st-GRD" data-mat="mat-chip">GRD <span class="tbd-lbl">[TBD]</span></span>
+          </td>
+          <td class="has-tooltip" data-src="[FL-FD §8.2 Col 11]">
+            <span class="ofp-fmt ofp-yellow">1/0/1 R1</span>
+            <span class="tooltip">Vàng: R1 chưa DSP release; R0 đã release (prev)</span>
+          </td>
+          <td class="pilot-cell-none" data-src="[FL-FD §8.2 Col 12]">—</td>
+          <td data-src="[FL-FD §8.2 Col 13]">0 <span class="tbd-lbl">[TBD]</span></td>
+          <td data-src="[FL-FD §8.2 Col 14]">45 200 <span class="tbd-lbl">[TBD]</span></td>
+          <td data-src="[FL-FD §8.2 Col 15]">22 400</td>
+          <td data-src="[FL-FD §8.2 Col 16]">—</td>
+          <td class="cell-yellow has-tooltip" style="cursor:pointer;"
+              onclick="showScreenDirect('detail');setTimeout(function(){detail_openFromAlert('dtab-weather');},150);"
+              data-src="[FL-FD §8.2 Col 17; §8.5 bấm ô→tab Weather]">
+            <span class="alert-icon ai-warn">warning</span>
+            <span class="tooltip">NOTAM — Có OFP chưa release<br>Vàng: còn 120 phút (QT — ngưỡng 90→75') (FL-FD §8.2 Col 17)<br>Click → mở Flight Detail tab Weather/NOTAM</span>
+          </td>
+          <td class="has-tooltip" data-src="[FL-FD §8.2 Col 18]">
+            <span class="alert-icon ai-ok">check_circle</span>
+            <span class="tooltip">WX PEK — trong Minima</span>
+          </td>
+          <td class="has-tooltip" data-src="[FL-FD §8.2 Col 19]">
+            <span class="alert-icon ai-ok">check_circle</span>
+            <span class="tooltip">ZFW-DOW trong ngưỡng QT (90')</span>
+          </td>
+          <td class="has-tooltip" data-src="[FL-FD §8.2 Col 20]">
+            <span class="alert-icon ai-na">remove</span>
+            <span class="tooltip">MEL/CDL — không có mục ảnh hưởng</span>
+          </td>
+          <td data-src="[FL-FD §8.2 Col 21]"><span class="tbd-lbl">[TBD]</span></td>
+          <td data-src="[FL-FD §8.2 Col 22]"><span class="tbd-lbl">[TBD]</span></td>
+          <td class="has-tooltip" data-src="[FL-FD §8.2 Col 23]">
+            <span class="alert-icon ai-ok">check_circle</span>
+            <span class="tooltip">Missing Doc — OFP/NOTAM/WX đầy đủ</span>
+          </td>
+          <td data-src="[FL-FD §8.2 Col 24]"><span class="tbd-lbl">[TBD]</span></td>
+          <td class="has-tooltip" data-src="[FL-FD §8.2 Col 25]">
+            <span class="alert-icon ai-ok">check_circle</span>
+            <span class="tooltip">Crew ↓ — đã download tài liệu</span>
+          </td>
+          <!-- Col 26: VIP — Đỏ: ATC/OFP chưa Status Head -->
+          <td class="cell-red has-tooltip"
+              data-src="[FL-FD §8.2 Col 26 — Đỏ: chuyến VIP ATC/OFP chưa có Status Head; 11-chieu §II.2]">
+            <span class="alert-icon ai-crit">star</span>
+            <span class="tooltip">VIP — ATC/OFP chưa có Status Head trước chuyến bay<br>Cảnh báo raise trước Captain's Release (11-chieu §II.2; FL-FD §8.2 Col 26)</span>
+          </td>
+        </tr>
+
+        <!-- Dòng 5: VN 1184 — ENR (đang bay), tất cả xanh/OK -->
+        <tr data-status="ENR" data-flt="VN1184" data-dep="DAD" data-type="NOR"
+            data-ofp="green"
+            onclick="showScreenDirect('detail')"
+            data-src="[FL-FD §8.2 Col 10 — ENR: đang bay; wf-monitoring §7.3]">
+          <td class="col-freeze" onclick="event.stopPropagation()">
+            <div class="dsp-rel-cell">
+              <input type="checkbox" class="dsp-chk" id="dsp-chk-1184" checked>
+              <button class="dsp-rel-btn inactive" disabled>Rel.</button>
+            </div>
+          </td>
+          <td class="col-freeze-2 cell-green has-tooltip"
+              data-src="[FL-FD §8.2 Col 2 — Xanh: khớp + released]">
+            A395
+            <span class="tooltip">REG A395 — khớp Netline + DSP released → Xanh</span>
+          </td>
+          <td class="col-freeze-3" style="font-weight:700;">VN1184</td>
+          <td>DAD</td>
+          <td>HAN</td>
+          <td>18 Jun</td>
+          <td class="cell-green has-tooltip" data-src="[FL-FD §8.2 Col 7]">
+            06:30
+            <span class="tooltip">ETD Xanh: ATC + OFP release khớp (FL-FD §8.2 Col 7)</span>
+          </td>
+          <!-- ETA — Xanh sau ACARS IN per wf §9.2 -->
+          <td class="has-tooltip" data-src="[FL-FD §8.2 Col 8; wf-monitoring §9.2 cột 8]">
+            07:55
+            <span class="tooltip">ETA (ELDT) — source: Netline/A-CDM (wf-monitoring §9.2 cột 8)</span>
+          </td>
+          <td><span class="ft-chip ft-NOR" data-mat="mat-chip">Normal</span></td>
+          <td>
+            <span class="status-badge st-ENR" data-mat="mat-chip">ENR <span class="tbd-lbl">[TBD]</span></span>
+          </td>
+          <td class="has-tooltip" data-src="[FL-FD §8.2 Col 11]">
+            <span class="ofp-fmt ofp-green">1/0/1 R1</span>
+            <span class="tooltip">Xanh: R1 đã DSP release lúc 04:10 UTC</span>
+          </td>
+          <td class="cell-green has-tooltip pilot-cell-released" data-src="[FL-FD §8.2 Col 12]">
+            R01
+            <span class="tooltip">Pilot release R01 — đúng rev DSP release (FL-FD §8.2 Col 12)</span>
+          </td>
+          <td class="cell-green" data-src="[FL-FD §8.2 Col 13]">9 800</td>
+          <td class="cell-green" data-src="[FL-FD §8.2 Col 14]">38 200</td>
+          <td class="cell-green" data-src="[FL-FD §8.2 Col 15]">7 400</td>
+          <td class="cell-green has-tooltip" data-src="[FL-FD §8.2 Col 16]">
+            +100
+            <span class="tooltip">PILOT EXTRA = +100 kg (Pilot Release − OFP Block Fuel)</span>
+          </td>
+          <td class="cell-green has-tooltip" data-src="[FL-FD §8.2 Col 17]">
+            <span class="alert-icon ai-ok">check_circle</span>
+            <span class="tooltip">NOTAM — Xanh: OFP R1 đã release</span>
+          </td>
+          <td class="cell-green has-tooltip" data-src="[FL-FD §8.2 Col 18]">
+            <span class="alert-icon ai-ok">check_circle</span>
+            <span class="tooltip">WX HAN — trong Minima, không TSRA</span>
+          </td>
+          <td class="cell-green has-tooltip" data-src="[FL-FD §8.2 Col 19]">
+            <span class="alert-icon ai-ok">check_circle</span>
+            <span class="tooltip">ZFW-DOW — check 60'QN (FL-FD §8.2 Col 19)</span>
+          </td>
+          <td class="has-tooltip" data-src="[FL-FD §8.2 Col 20]">
+            <span class="alert-icon ai-na">remove</span>
+            <span class="tooltip">MEL/CDL — không có mục ảnh hưởng</span>
+          </td>
+          <td data-src="[FL-FD §8.2 Col 21]"><span class="tbd-lbl">[TBD]</span></td>
+          <td data-src="[FL-FD §8.2 Col 22]"><span class="tbd-lbl">[TBD]</span></td>
+          <td class="cell-green has-tooltip" data-src="[FL-FD §8.2 Col 23]">
+            <span class="alert-icon ai-ok">check_circle</span>
+            <span class="tooltip">Missing Doc — đầy đủ</span>
+          </td>
+          <td data-src="[FL-FD §8.2 Col 24]"><span class="tbd-lbl">[TBD]</span></td>
+          <td class="cell-green has-tooltip" data-src="[FL-FD §8.2 Col 25]">
+            <span class="alert-icon ai-ok">check_circle</span>
+            <span class="tooltip">Crew ↓ — đã download</span>
+          </td>
+          <td data-src="[FL-FD §8.2 Col 26]"><span class="alert-icon ai-na">remove</span></td>
+        </tr>
+
+        <!-- Dòng 6: BL 182 — ARR, Ferry, Divert ARR vàng -->
+        <tr data-status="ARR" data-flt="BL182" data-dep="HAN" data-type="FERRY"
+            data-ofp="green"
+            onclick="showScreenDirect('detail')"
+            data-src="[FL-FD §8.2 — sample row: ARR; divert ARR vàng; Flight Type Ferry Đỏ đổi loại; wf-monitoring §9.5 M3]">
+          <td class="col-freeze" onclick="event.stopPropagation()">
+            <div class="dsp-rel-cell">
+              <input type="checkbox" class="dsp-chk" checked>
+              <button class="dsp-rel-btn inactive" disabled>Rel.</button>
+            </div>
+          </td>
+          <td class="col-freeze-2 cell-green has-tooltip"
+              data-src="[FL-FD §8.2 Col 2 — Xanh]">
+            B421
+            <span class="tooltip">REG B421 — khớp Netline + DSP released</span>
+          </td>
+          <td class="col-freeze-3" style="font-weight:700;">BL182</td>
+          <td>HAN</td>
+          <!-- ARR — Vàng: Divert -->
+          <td class="cell-yellow has-tooltip"
+              data-src="[FL-FD §8.2 Col 5 — Vàng: Divert; wf-monitoring §9.5 M3]">
+            DAD*
+            <span class="tooltip">ARR Divert: SGN → DAD (sân bay thực tế)<br>Vàng: giữ đến ACARS IN sân divert (FL-FD §8.2 Col 5; 12-sang §II.12)</span>
+          </td>
+          <td>18 Jun</td>
+          <td class="cell-green" data-src="[FL-FD §8.2 Col 7]">06:45</td>
+          <td data-src="[FL-FD §8.2 Col 8]">09:05</td>
+          <!-- Flight Type — Đỏ: đổi từ Normal → Ferry -->
+          <td class="cell-red has-tooltip"
+              data-src="[FL-FD §8.2 Col 9 — Đỏ: Thường↔Ferry dựa vào số pax trong OFP]">
+            <span class="ft-chip ft-FERRY" data-mat="mat-chip">Ferry</span>
+            <span class="tooltip">Đỏ: đổi Normal → Ferry<br>Dựa vào số pax trong OFP (FL-FD §8.2 Col 9)</span>
+          </td>
+          <td>
+            <span class="status-badge st-ARR" data-mat="mat-chip">ARR <span class="tbd-lbl">[TBD]</span></span>
+          </td>
+          <td class="has-tooltip" data-src="[FL-FD §8.2 Col 11]">
+            <span class="ofp-fmt ofp-green">1/0/1 R1</span>
+            <span class="tooltip">Xanh: R1 đã DSP release</span>
+          </td>
+          <td class="cell-green pilot-cell-released" data-src="[FL-FD §8.2 Col 12]">R01</td>
+          <td class="cell-green" data-src="[FL-FD §8.2 Col 13]">0</td>
+          <td class="cell-green" data-src="[FL-FD §8.2 Col 14]">36 500</td>
+          <td class="cell-green" data-src="[FL-FD §8.2 Col 15]">6 200</td>
+          <td class="cell-green" data-src="[FL-FD §8.2 Col 16]">+50</td>
+          <td class="cell-green has-tooltip" data-src="[FL-FD §8.2 Col 17]">
+            <span class="alert-icon ai-ok">check_circle</span>
+            <span class="tooltip">NOTAM — Xanh: released</span>
+          </td>
+          <td class="cell-green has-tooltip" data-src="[FL-FD §8.2 Col 18]">
+            <span class="alert-icon ai-ok">check_circle</span>
+            <span class="tooltip">WX — OK</span>
+          </td>
+          <td class="cell-green has-tooltip" data-src="[FL-FD §8.2 Col 19]">
+            <span class="alert-icon ai-ok">check_circle</span>
+            <span class="tooltip">ZFW-DOW — OK</span>
+          </td>
+          <td class="has-tooltip" data-src="[FL-FD §8.2 Col 20]">
+            <span class="alert-icon ai-na">remove</span>
+            <span class="tooltip">MEL/CDL — không có</span>
+          </td>
+          <td data-src="[FL-FD §8.2 Col 21]"><span class="tbd-lbl">[TBD]</span></td>
+          <td data-src="[FL-FD §8.2 Col 22]"><span class="tbd-lbl">[TBD]</span></td>
+          <td class="cell-green has-tooltip" data-src="[FL-FD §8.2 Col 23]">
+            <span class="alert-icon ai-ok">check_circle</span>
+            <span class="tooltip">Missing Doc — đầy đủ</span>
+          </td>
+          <td data-src="[FL-FD §8.2 Col 24]"><span class="tbd-lbl">[TBD]</span></td>
+          <td class="cell-green has-tooltip" data-src="[FL-FD §8.2 Col 25]">
+            <span class="alert-icon ai-ok">check_circle</span>
+            <span class="tooltip">Crew ↓ — đã download</span>
+          </td>
+          <td data-src="[FL-FD §8.2 Col 26]"><span class="alert-icon ai-na">remove</span></td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div><!-- /.mon-table-wrap -->
+
+  <!-- ── Cờ TBD summary ── -->
+  <div style="background:#2a2000;border:1px solid #a87c00;border-radius:6px;padding:8px 14px;font-size:11px;color:#ffe090;margin-bottom:14px;"
+       data-src="[wf-monitoring §8.7 — 12 cờ §8-1…§8-12; §9.4]">
+    <strong>Các cờ [TBD] trên màn:</strong>
+    §8-1 (định dạng '2/0/1 R2') ·
+    §8-3 (WX/MEL/ATC/TO-LD/Missing/Taxi/VIP dùng chung ngưỡng OFP không) ·
+    §8-4 (màu EPLD/EST DOW vàng/đỏ theo mức lệch) ·
+    §8-5 (20 filter — ánh xạ trường chính xác) ·
+    §8-7 (enum LEG STATE chính thức — SME xác nhận) ·
+    §8-8 (Xanh ETD vs Xanh Flight Type — khác nhau không) ·
+    §8-9 (màu ATC/TO-LD/Missing/Taxi APU — sheet để trống) ·
+    §8-10 (hover tooltip 19 cột trống) ·
+    OID §9-1 (6 cột bổ sung TOSS-180) — xem OID-TOSS-001.
+  </div>
+
+  <!-- ── Legend ── -->
+  <div class="mon-legend"
+       data-src="[CLAUDE.md §0 — mọi data-mat map to catalog entry]">
+    <div style="font-size:13px;font-weight:600;margin-bottom:8px;">
+      Component Map — Flight Dispatch · Flight Monitoring (26 cột)
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>UI Region / data-mat</th>
+          <th>Angular Material Component</th>
+          <th>Nguồn (data-src)</th>
+          <th>Ghi chú</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Bảng 26 cột — cuộn ngang</td>
+          <td><code>mat-table + MatSort + MatPaginator</code></td>
+          <td class="src">[FL-FD §8.2; wf-monitoring §8]</td>
+          <td>Header 2 tầng (nhóm + tên cột); sticky header; overflow-x</td>
+        </tr>
+        <tr>
+          <td>Col 1: DSP Release checkbox</td>
+          <td><code>mat-checkbox</code></td>
+          <td class="src">[FL-FD §8.2 Col 1]</td>
+          <td>Active theo điều kiện DSP license</td>
+        </tr>
+        <tr>
+          <td>Col 1: Release button nhỏ</td>
+          <td><code>mat-button (outlined, small)</code></td>
+          <td class="src">[FL-FD §8.2 Col 1]</td>
+          <td>Mở dialog dsp-dlg-release</td>
+        </tr>
+        <tr>
+          <td>Col 10: Status badge GRD/BRD/OUT/ENR/IN/ARR</td>
+          <td><code>mat-chip</code> (custom color per state)</td>
+          <td class="src">[FL-FD §8.2 Col 10; wf-monitoring §7.3 — cờ §8-7]</td>
+          <td>BRD/OUT: animation blink 1.2s; enum tạm thời</td>
+        </tr>
+        <tr>
+          <td>Col 9: Flight Type chip J/G/P/A/VIP/Ferry</td>
+          <td><code>mat-chip</code> (per-type color)</td>
+          <td class="src">[FL-FD §8.2 Col 9; BR-126]</td>
+          <td>Đỏ ô khi đổi loại; Xanh khi ATC+OFP head khớp</td>
+        </tr>
+        <tr>
+          <td>Col 11: OFP DSP (ofp-fmt)</td>
+          <td><code>mat-chip (monospace custom)</code></td>
+          <td class="src">[FL-FD §8.2 Col 11; wf-monitoring §9.2 col 11]</td>
+          <td>Xanh/Vàng/Đỏ theo trạng thái rev cuối; format '2/0/1 R2' TBD §8-1</td>
+        </tr>
+        <tr>
+          <td>Ô cảnh báo (Col 17–26): icon + ô màu</td>
+          <td><code>MatIcon (Material Symbols Outlined)</code></td>
+          <td class="src">[FL-FD §8.2 Col 17–26; wf-monitoring §8.2]</td>
+          <td>✓=OK / ⚠=warn / ✕=crit / —=N/A; tooltip mô tả quy tắc</td>
+        </tr>
+        <tr>
+          <td>Hover tooltip mỗi ô cảnh báo</td>
+          <td><code>MatTooltip (CSS .has-tooltip)</code></td>
+          <td class="src">[FL-FD §8.1 — "hover chuột hiển thị tool tips chi tiết"]</td>
+          <td>Tooltip text theo hàng Hover details §8.2; ô trống gắn [TBD]</td>
+        </tr>
+        <tr>
+          <td>Filter bar (search + select)</td>
+          <td><code>mat-form-field(outline)+matInput · mat-select</code></td>
+          <td class="src">[FL-FD §8.3 Filter 1–20; wf-monitoring §8.3]</td>
+          <td>20 filter total; đại diện 6 filter + nhãn TBD §8-5</td>
+        </tr>
+        <tr>
+          <td>KPI strip (Tổng/Đỏ/Vàng/Bình thường)</td>
+          <td><code>mat-card (custom kpi)</code></td>
+          <td class="src">[wf-monitoring §7.1 — topbar badge thống kê]</td>
+          <td>Dữ liệu mẫu tổng hợp từ dòng bảng</td>
+        </tr>
+        <tr>
+          <td>Dialog Release OFP (dsp-dlg-release)</td>
+          <td><code>mat-dialog</code></td>
+          <td class="src">[FL-FD §8.2 Col 1; 15062026 §II.2]</td>
+          <td>Xác nhận: flight no, rev, DSP license, fuel delta</td>
+        </tr>
+        <tr>
+          <td>Dialog Unrelease (dsp-dlg-unrelease)</td>
+          <td><code>mat-dialog</code></td>
+          <td class="src">[11-chieu §II.4]</td>
+          <td>Chọn lý do; cảnh báo: un-release sinh version mới</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Quy ước màu -->
+    <div style="margin-top:12px;font-size:12px;font-weight:600;">Quy ước màu 4 trạng thái (áp toàn màn)</div>
+    <table style="margin-top:6px;">
+      <thead>
+        <tr><th>Màu ô</th><th>Trạng thái</th><th>Hành động</th><th>Nguồn</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="color-dot red"></span>Đỏ (cell-red)</td>
+          <td>Cần giải quyết ngay</td>
+          <td>Action required — không bỏ qua</td>
+          <td class="src">[FL-FD §8.1 quy ước màu; 12-sang §II.7 #5]</td>
+        </tr>
+        <tr>
+          <td><span class="color-dot yellow"></span>Vàng (cell-yellow)</td>
+          <td>Lưu ý / ghi nhận</td>
+          <td>Monitor</td>
+          <td class="src">[FL-FD §8.1; 12-sang §II.7 #7]</td>
+        </tr>
+        <tr>
+          <td><span class="color-dot green"></span>Xanh (cell-green)</td>
+          <td>Đã xử lý (chỉ sau khi đã từng Đỏ)</td>
+          <td>Clear — không tự chuyển từ Không màu</td>
+          <td class="src">[12-sang §II.7 #9 — "Xanh chỉ phát sinh sau khi đã từng Đỏ và xử lý xong"]</td>
+        </tr>
+        <tr>
+          <td><span class="color-dot none"></span>Không màu</td>
+          <td>Bình thường</td>
+          <td>—</td>
+          <td class="src">[FL-FD §8.1 — "Không màu: Bình thường"]</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Ngưỡng NOTAM/WX -->
+    <div style="margin-top:12px;font-size:12px;font-weight:600;">Ngưỡng thời gian cảnh báo NOTAM / nhóm OFP-dependent</div>
+    <table style="margin-top:6px;">
+      <thead>
+        <tr><th>Trạng thái OFP</th><th>Quốc nội (QN)</th><th>Quốc tế (QT)</th><th>Màu</th><th>Nguồn</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Chưa có OFP — chưa tới giờ</td>
+          <td colspan="2">Bình thường</td>
+          <td>Không màu</td>
+          <td class="src">[FL-FD §8.2 Col 17]</td>
+        </tr>
+        <tr>
+          <td>Chưa có OFP — sắp tới giờ (warning)</td>
+          <td>≤ 210 phút</td>
+          <td>≤ 270 phút</td>
+          <td><span class="color-dot yellow"></span>Vàng</td>
+          <td class="src">[FL-FD §8.2 Col 17; 15062026 §II.2]</td>
+        </tr>
+        <tr>
+          <td>Chưa có OFP — sắp tới giờ (critical)</td>
+          <td>≤ 75 phút</td>
+          <td>≤ 95 phút</td>
+          <td><span class="color-dot red"></span>Đỏ</td>
+          <td class="src">[FL-FD §8.2 Col 17]</td>
+        </tr>
+        <tr>
+          <td>Có OFP — DSP chưa release (approaching)</td>
+          <td>75 → 60 phút</td>
+          <td>90 → 75 phút</td>
+          <td><span class="color-dot yellow"></span>Vàng</td>
+          <td class="src">[FL-FD §8.2 Col 17; 15062026 §II.2 #5]</td>
+        </tr>
+        <tr>
+          <td>Có OFP — DSP chưa release (overdue)</td>
+          <td>≤ 60 phút</td>
+          <td>≤ 75 phút</td>
+          <td><span class="color-dot red"></span>Đỏ</td>
+          <td class="src">[FL-FD §8.2 Col 17]</td>
+        </tr>
+        <tr>
+          <td>Có OFP — DSP đã release</td>
+          <td colspan="2">—</td>
+          <td><span class="color-dot green"></span>Xanh</td>
+          <td class="src">[FL-FD §8.2 Col 17]</td>
+        </tr>
+      </tbody>
+    </table>
+  </div><!-- /.mon-legend -->
+
+</div><!-- /#screen-dispatch -->
+<div id="screen-detail" class="screen">
+  <div style="background:#1a3a5c;color:#9cc6ff;padding:6px 12px;font-size:11px;border-radius:6px;margin-bottom:10px;" data-src="[FL-FD §8.5 · §8-6]">
+    Sản xuất: màn chi tiết mở ở TAB MỚI của trình duyệt; ô được click trên bảng quyết định tab phụ được focus. Prototype mô phỏng trong cùng cửa sổ.
+  </div>
+  <div class="banner" data-src="[12062026 §1]">
+    <span class="ms">info</span>
+    PROTOTYPE — Flight Detail · VN 208 detail view · Source: 11–12/06, 17/06/2026
+  </div>
+
+  <!-- Header card -->
+  <div data-mat="mat-card" data-src="[12062026 §1,§2,§6]" style="display:flex;align-items:center;gap:18px;flex-wrap:wrap;padding:14px 18px;">
+    <div data-src="[12062026 §3]">
+      <div style="font-size:26px;font-weight:700;letter-spacing:.5px;">VN 208</div>
+      <div style="font-size:12px;color:var(--dark-on-variant);margin-top:2px;">SGN &rarr; HAN &nbsp;&middot;&nbsp; Airbus A321 &nbsp;&middot;&nbsp; VN-A321</div>
+    </div>
+    <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;" data-src="[12062026 §7,§2]">
+      <span data-mat="mat-chip" class="chip-blue">ENR &mdash; In-Flight</span>
+      <span data-mat="mat-chip" class="chip-green">Dispatch Release &#10003;</span>
+      <span data-mat="mat-chip" class="chip-green">Pilot Release &#10003;</span>
+    </div>
+    <div style="flex:1;"></div>
+    <div style="text-align:right;font-size:12px;color:var(--dark-on-variant);" data-src="[12062026 §6; 11062026-sang §1]">
+      <div>STD: 08:00 UTC &nbsp;&middot;&nbsp; STA: 09:45 UTC</div>
+      <div style="margin-top:3px;">Actual ETD: 08:15 UTC <span style="color:#ffb347;">(+15 min)</span></div>
+    </div>
+  </div>
+
+  <!-- Tab group -->
+  <div data-mat="mat-tab-group" data-src="[12062026 §2]">
+    <div class="tabs">
+      <!-- MK-001: tab labels EN; MK-003: alert dot clickable -->
+      <div class="tab active" onclick="detail_switchTab(this,'dtab-warnings')" data-src="[12062026 §2]">
+        <span class="alert-dot alert-red" style="cursor:pointer;" onclick="event.stopPropagation();detail_switchTab(this.parentElement,'dtab-warnings')"></span>Warnings (2)
+      </div>
+      <div class="tab" onclick="detail_switchTab(this,'dtab-release')" data-src="[12062026 §2; 11062026-chieu §II.4]">Flight Release</div>
+      <div class="tab" onclick="detail_switchTab(this,'dtab-aircraft')" data-src="[12062026 §2; 17062026 §2,§3]">Aircraft / MEL</div>
+      <div class="tab" onclick="detail_switchTab(this,'dtab-weather')" data-src="[11062026-sang §6,§7]">Weather / NOTAM</div>
+      <div class="tab" onclick="detail_switchTab(this,'dtab-crew')" data-src="[12062026 §2]">Crew</div>
+      <div class="tab" onclick="detail_switchTab(this,'dtab-load')" data-src="[11062026-sang §8; 11062026-chieu §II.10]">Load</div>
+    </div>
+
+    <!-- TAB 1: Warnings (MK-003: alert cards have goto links) -->
+    <div id="dtab-warnings" class="tab-panel active" data-src="[12062026 §2; 17062026 §3]">
+      <!-- Alert 1 — MEL (red) -->
+      <div class="mel-item critical" data-src="[17062026 §3; §2]">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+          <span class="alert-dot alert-red"></span>
+          <span style="font-weight:500;font-size:13px;">MEL Alert &mdash; 21-25-01 Bleed Air Pack 1 inoperative</span>
+          <span data-mat="mat-chip" class="chip-red" style="margin-left:auto;">Unresolved</span>
+          <!-- MK-003: goto Aircraft/MEL tab -->
+          <span class="alert-goto" onclick="detail_switchTab(document.querySelector('#screen-detail .tabs .tab:nth-child(3)'),'dtab-aircraft')" title="Go to Aircraft/MEL tab">Go to Aircraft/MEL &rarr;</span>
+        </div>
+        <div style="font-size:12px;color:var(--dark-on-variant);">Raised: 06:30 UTC &nbsp;&middot;&nbsp; MEL active from AMOS &nbsp;&middot;&nbsp; [17062026 §3]</div>
+        <div class="mel-meta">
+          <span class="tag impact">Fuel +2.5%</span>
+          <span class="tag impact">Payload &minus;800 kg</span>
+          <span class="tag">Altitude cap FL350</span>
+          <span class="tag">Dual AP required</span>
+        </div>
+      </div>
+      <!-- Alert 2 — OFP fuel delta (yellow) -->
+      <div class="mel-item warn" data-src="[11062026-sang §8; 11062026-chieu §II.10]">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+          <span class="alert-dot alert-yellow"></span>
+          <span style="font-weight:500;font-size:13px;">OFP Load Change &mdash; Block Fuel +150 kg vs plan</span>
+          <span data-mat="mat-chip" class="chip-yellow" style="margin-left:auto;">Monitor</span>
+          <!-- MK-003: goto Weather tab for fuel/weather related -->
+          <span class="alert-goto" onclick="detail_switchTab(document.querySelector('#screen-detail .tabs .tab:nth-child(4)'),'dtab-weather')" title="Go to Weather/NOTAM tab">Go to Weather/NOTAM &rarr;</span>
+        </div>
+        <div style="font-size:12px;color:var(--dark-on-variant);">Raised: 07:55 UTC &nbsp;&middot;&nbsp; Delta = Actual &minus; OFP &nbsp;&middot;&nbsp; [11062026-chieu §II.10]</div>
+      </div>
+      <p class="src-note">[12062026 §2 — Warnings tab logs all alerts from start to end of flight, resolved/unresolved status, raise-time; 17062026 §3 — alert when MEL raised or cleared]</p>
+    </div>
+
+    <!-- TAB 2: Flight Release -->
+    <div id="dtab-release" class="tab-panel" data-src="[12062026 §2; 11062026-chieu §II.3,§II.4]">
+      <div data-mat="mat-card" data-src="[11062026-chieu §II.4; 15062026 §II.3]">
+        <div class="card-title"><span class="ms">history</span>OFP Version History</div>
+        <div class="table-wrap">
+          <table data-mat="mat-table+MatSort">
+            <thead>
+              <tr>
+                <th>Version</th>
+                <th>Time</th>
+                <th>Block Fuel Sched</th>
+                <th>Block Fuel OFP</th>
+                <th>Extra Load</th>
+                <th>Dispatch</th>
+                <th>Pilot Confirm</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr data-src="[11062026-chieu §II.4]">
+                <td><strong>R2</strong> <span data-mat="mat-chip" class="chip-green" style="font-size:10px;">Current</span></td>
+                <td>07:50 UTC</td><td>13 200 kg</td><td>13 350 kg</td><td>No</td>
+                <td><span data-mat="mat-chip" class="chip-green">&#10003; Dispatcher A</span></td>
+                <td><span data-mat="mat-chip" class="chip-green">&#10003; PIC Nguyen V.A</span></td>
+              </tr>
+              <tr class="ofp-row-cancelled" data-src="[11062026-chieu §II.4]">
+                <td class="no-strike">R1 <span data-mat="mat-chip" class="chip-grey" style="font-size:10px;">Voided</span></td>
+                <td>06:40 UTC</td><td>13 200 kg</td><td>13 200 kg</td><td>No</td>
+                <td><span data-mat="mat-chip" class="chip-grey">Voided</span></td>
+                <td><span data-mat="mat-chip" class="chip-grey">&mdash;</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div style="margin-top:10px;padding:8px 12px;background:var(--dark-surface2);border-radius:var(--md-radius-sm);font-size:12px;color:var(--dark-on-variant);" data-src="[11062026-chieu §II.4]">
+          <span class="ms" style="font-size:15px;vertical-align:middle;">info</span>
+          &nbsp;Unrelease reason for R1: MEL raised after release — Dispatcher regenerated OFP version R2.
+        </div>
+        <p class="src-note">[11062026-chieu §II.4 — versioning model: Lido has own OFP no, TOSS assigns R1/R2 by receipt order; Unrelease creates new revision with old content; MO Plus always uses latest version]</p>
+      </div>
+    </div>
+
+    <!-- TAB 3: Aircraft / MEL -->
+    <div id="dtab-aircraft" class="tab-panel" data-src="[12062026 §2; 17062026 §2,§3]">
+      <div data-mat="mat-card" data-src="[12062026 §9,§2]">
+        <div class="card-title"><span class="ms">airplanemode_active</span>Aircraft &mdash; VN-A321 (Airbus A321)</div>
+        <div class="ac-grid">
+          <div class="ac-cell"><label>Registration</label><div class="val">VN-A321</div></div>
+          <div class="ac-cell"><label>Aircraft Type</label><div class="val">Airbus A321</div></div>
+          <div class="ac-cell"><label>Aircraft Change</label><div class="val"><span data-mat="mat-chip" class="chip-grey">No</span></div></div>
+          <div class="ac-cell"><label>Previous Leg</label><div class="val" style="font-size:12px;">VN 107 &middot; DAD&rarr;SGN (07:10)</div></div>
+        </div>
+      </div>
+      <div data-mat="mat-card" data-src="[17062026 §2,§3]">
+        <div class="card-title">
+          <span class="ms">build</span>MEL Active (2 items)
+          <span data-mat="mat-chip" class="chip-red" style="margin-left:8px;">Operational impact</span>
+        </div>
+        <div class="mel-item critical" data-src="[17062026 §2,§3]">
+          <div class="mel-item-code">21-25-01</div>
+          <div class="mel-item-name">Bleed Air Pack 1 &mdash; Inoperative</div>
+          <div style="font-size:12px;color:var(--dark-on-variant);margin-top:4px;">
+            Active on: VN-A321 &nbsp;&middot;&nbsp; <span style="font-size:11px;">Active Since: 2026-06-17</span> &nbsp;&middot;&nbsp; Expires: 30 days &nbsp;&middot;&nbsp; Source: AMOS
+          </div>
+          <div class="mel-meta">
+            <span class="tag impact">Fuel +2.5%</span>
+            <span class="tag impact">Payload &minus;800 kg</span>
+            <span class="tag">Altitude cap FL350</span>
+            <span class="tag">Autopilot: Dual AP required</span>
+          </div>
+          <div style="font-size:11px;color:var(--dark-on-variant);margin-top:6px;">[17062026 §2 — each item has multiple penalty cases (x1/x2/x3); Dispatcher decides which case applies — TOSS displays only]</div>
+        </div>
+        <div class="mel-item warn" data-src="[17062026 §2,§3]">
+          <div class="mel-item-code">34-10-02</div>
+          <div class="mel-item-name">ILS Receiver Channel 2 &mdash; Inoperative</div>
+          <div style="font-size:12px;color:var(--dark-on-variant);margin-top:4px;">
+            Active Since: 2026-06-15 &nbsp;&middot;&nbsp; Expires: 30 days &nbsp;&middot;&nbsp; Source: AMOS
+          </div>
+          <div class="mel-meta">
+            <span class="tag">No fuel impact</span>
+            <span class="tag impact">CAT II airport restriction</span>
+          </div>
+        </div>
+        <p class="src-note">[17062026 §2 — two-layer structure: Master MEL (static, by aircraft type) + MEL Active (from AMOS, per aircraft); §3 — when MEL cleared: TOSS notifies Dispatcher to reduce fuel]</p>
+      </div>
+    </div>
+
+    <!-- TAB 4: Weather / NOTAM -->
+    <div id="dtab-weather" class="tab-panel" data-src="[11062026-sang §6,§7]">
+      <div data-mat="mat-card" data-src="[11062026-sang §7]">
+        <div class="card-title"><span class="ms">thermostat</span>Weather — Destination HAN (VVNB)</div>
+        <div class="metar-raw" data-src="[11062026-sang §7]">METAR 08:00Z: HAN 170800Z 06008KT 9999 FEW020 29/23 Q1011 NOSIG [sample data]</div>
+        <div class="metar-row">
+          <div class="metar-card" data-src="[11062026-sang §7]">
+            <div class="metar-val">9 999 m</div>
+            <div class="metar-lbl">Visibility (VIS)</div>
+            <div style="font-size:10px;color:var(--dark-on-variant);margin-top:4px;">VMA + margin: 1 300 m &#10003;</div>
+          </div>
+          <div class="metar-card" data-src="[11062026-sang §7]">
+            <div class="metar-val">2 000 ft</div>
+            <div class="metar-lbl">Ceiling (FEW)</div>
+            <div style="font-size:10px;color:var(--dark-on-variant);margin-top:4px;">VMA &#10003;</div>
+          </div>
+          <div class="metar-card" data-src="[11062026-sang §7]">
+            <div class="metar-val">None</div>
+            <div class="metar-lbl">Thunderstorm (TSRA)</div>
+          </div>
+          <div class="metar-card" data-src="[11062026-sang §7]">
+            <div class="metar-val">06008KT</div>
+            <div class="metar-lbl">Wind (Dir/Speed)</div>
+          </div>
+        </div>
+        <p class="src-note">[11062026-sang §7 — alert when parameter approaches or drops below VMA + safety margin (500 m mentioned); domestic source: Vietnam aviation met authority; international: Lido feed]</p>
+      </div>
+      <div data-mat="mat-card" data-src="[11062026-sang §6]">
+        <div class="card-title"><span class="ms">announcement</span>NOTAM affecting flight (3)</div>
+        <div class="notam-item" data-src="[11062026-sang §6]">
+          <div class="notam-code">A2145/26 &middot; VVNB &mdash; Hanoi Airport</div>
+          <div class="notam-text">ILS RWY 11L &mdash; Navaids under maintenance. Effective 0800&ndash;1200 UTC 17 JUN 2026.</div>
+          <div style="margin-top:4px;"><span data-mat="mat-chip" class="chip-grey" style="font-size:10px;">Airport NOTAM</span></div>
+        </div>
+        <div class="notam-item" data-src="[11062026-sang §6]">
+          <div class="notam-code">P0312/26 &middot; Airspace &mdash; HANOI TMA</div>
+          <div class="notam-text">Temporary altitude restriction area A1 &le; FL150. TFR per NOTAM CAAV.</div>
+          <div style="margin-top:4px;"><span data-mat="mat-chip" class="chip-blue" style="font-size:10px;">Airspace NOTAM</span></div>
+        </div>
+        <div class="notam-item urgent" data-src="[11062026-sang §6]">
+          <div class="notam-code">A2150/26 &middot; VVNB &mdash; RFFS &nbsp;<span data-mat="mat-chip" class="chip-red">URGENT</span></div>
+          <div class="notam-text">Fire truck #3 inoperative &mdash; RFFS category reduced to CAT 5. Direct alert.</div>
+          <div style="margin-top:4px;"><span data-mat="mat-chip" class="chip-red" style="font-size:10px;">RFFS NOTAM</span></div>
+        </div>
+        <p class="src-note">[11062026-sang §6 — NOTAM classification: airport / airspace / route; RFFS direct alert]</p>
+      </div>
+    </div>
+
+    <!-- TAB 5: Crew -->
+    <div id="dtab-crew" class="tab-panel" data-src="[12062026 §2]">
+      <div data-mat="mat-card" data-src="[12062026 §2]">
+        <div class="card-title"><span class="ms">people</span>Current Crew</div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px;">
+          <div>
+            <label style="font-size:11px;color:var(--dark-on-variant);display:block;">Captain (PIC)</label>
+            <div style="font-weight:500;">Nguyen Van An</div>
+            <div style="font-size:11px;color:var(--dark-on-variant);">A321 &middot; Rating: A/B</div>
+          </div>
+          <div>
+            <label style="font-size:11px;color:var(--dark-on-variant);display:block;">First Officer (F/O)</label>
+            <div style="font-weight:500;">Tran Thi Binh</div>
+            <div style="font-size:11px;color:var(--dark-on-variant);">A321</div>
+          </div>
+          <div>
+            <label style="font-size:11px;color:var(--dark-on-variant);display:block;">Purser</label>
+            <div style="font-weight:500;">Le Van Cuong</div>
+            <div style="font-size:11px;color:var(--dark-on-variant);">&mdash;</div>
+          </div>
+        </div>
+        <div class="card-title" style="margin-top:8px;">
+          <span class="ms">history</span>Crew Change History
+          <span style="font-size:11px;font-weight:400;color:var(--dark-on-variant);margin-left:8px;">[12062026 §13 — timeline format, UTC timestamps]</span>
+        </div>
+        <div class="crew-timeline" data-src="[12062026 §2,§13]">
+          <div class="crew-timeline-entry" data-src="[12062026 §2]">
+            <div style="font-size:12px;color:var(--dark-on-variant);">05:15 UTC &mdash; Initial assignment</div>
+            <div style="font-size:13px;">Captain: Pham Duc Dung &middot; F/O: Tran Thi Binh &middot; Purser: Le Van Cuong</div>
+          </div>
+          <div class="crew-timeline-entry" data-src="[12062026 §2]">
+            <div style="font-size:12px;color:var(--dark-on-variant);">05:30 UTC &mdash; Captain Change</div>
+            <div style="font-size:13px;">Captain Pham Duc Dung &rarr; <strong>Nguyen Van An</strong> (Health incident) [Crew change alert sent to Dispatcher]</div>
+          </div>
+          <div class="crew-timeline-entry current" data-src="[12062026 §2]">
+            <div style="font-size:12px;color:#69d58f;">06:10 UTC &mdash; Final crew confirmed</div>
+            <div style="font-size:13px;">Current crew: Captain Nguyen Van An / F/O Tran Thi Binh / Purser Le Van Cuong</div>
+          </div>
+        </div>
+        <p class="src-note">[12062026 §2 — Crew tab records full change history; §13 — timeline format applied to aircraft change, crew change, ETD change]</p>
+      </div>
+    </div>
+
+    <!-- TAB 6: Load -->
+    <div id="dtab-load" class="tab-panel" data-src="[11062026-sang §8; 11062026-chieu §II.10]">
+      <div data-mat="mat-card" data-src="[11062026-sang §8; 11062026-chieu §II.10]">
+        <div class="card-title"><span class="ms">scale</span>Load — Flight VN 208</div>
+        <div class="load-grid">
+          <div class="load-card" data-src="[11062026-sang §8]">
+            <div class="lc-val">78 240 kg</div>
+            <div class="lc-lbl">Zero Fuel Weight (ZFW)</div>
+          </div>
+          <div class="load-card" data-src="[11062026-sang §8]">
+            <div class="lc-val">15 800 kg</div>
+            <div class="lc-lbl">Payload (PAX + Baggage)</div>
+          </div>
+          <div class="load-card" data-src="[11062026-sang §8; 12062026 §2]">
+            <div class="lc-val">13 350 kg</div>
+            <div class="lc-lbl">Block Fuel (OFP)</div>
+          </div>
+          <div class="load-card" data-src="[11062026-chieu §II.10]">
+            <div class="lc-val delta-ok">+150 kg</div>
+            <div class="lc-lbl">&Delta; Fuel Delta (Extra Load)</div>
+          </div>
+        </div>
+        <div class="banner-ok" data-src="[11062026-sang §8]">
+          <span class="ms" style="font-size:18px;">check_circle</span>
+          Within normal range &mdash; no load deviation alert.
+        </div>
+        <p class="src-note">[11062026-sang §8 — alert matrix: aircraft type × flight hours × upper/lower thresholds (asymmetric: e.g. short 1.5t but only exceed 1t); TOSS compares last CLC input vs last OFP; 11062026-chieu §II.10 — Pallet Relief report: filter by date, route, time window, aircraft type]</p>
+      </div>
+    </div>
+  </div><!-- /mat-tab-group -->
+
+  <!-- Legend -->
+  <div class="legend" data-src="[CLAUDE.md — QC: legend required for each screen]">
+    <div style="font-weight:500;margin-bottom:6px;">Component Map &mdash; Flight Detail</div>
+    <table>
+      <tr><th>UI Region</th><th>Angular Material component</th><th>data-mat</th><th>Source (data-src)</th></tr>
+      <tr><td>Flight header card (identity + chips + schedule)</td><td>MatCard + MatChip</td><td><code>mat-card, mat-chip</code></td><td class="src">12062026 §1,§2,§6</td></tr>
+      <tr><td>6-tab navigation</td><td>MatTabGroup + MatTab</td><td><code>mat-tab-group</code></td><td class="src">12062026 §2</td></tr>
+      <tr><td>Alert cards (MEL, fuel delta)</td><td>MatCard (custom left-border)</td><td><code>mat-card [.mel-item.critical/.warn]</code></td><td class="src">12062026 §2; 17062026 §3; 11062026-chieu §II.10</td></tr>
+      <tr><td>OFP version history table (R1, R2)</td><td>MatTable + MatSort</td><td><code>mat-table+MatSort</code></td><td class="src">11062026-chieu §II.4; 15062026 §II.3</td></tr>
+      <tr><td>Status chips (Current, Voided, Dispatch, Pilot)</td><td>MatChip</td><td><code>mat-chip</code></td><td class="src">11062026-chieu §II.4; 12062026 §2</td></tr>
+      <tr><td>Aircraft info grid (4 fields)</td><td>MatCard (grid layout)</td><td><code>mat-card [.ac-grid]</code></td><td class="src">12062026 §2,§9</td></tr>
+      <tr><td>MEL item cards (21-25-01, 34-10-02)</td><td>MatCard (left-border: critical/warn)</td><td><code>mat-card [.mel-item.critical/.warn]</code></td><td class="src">17062026 §2,§3</td></tr>
+      <tr><td>METAR data cards (4: VIS, Ceiling, TSRA, Wind)</td><td>MatCard (grid)</td><td><code>mat-card [.metar-row/.metar-card]</code></td><td class="src">11062026-sang §7</td></tr>
+      <tr><td>Raw METAR string</td><td>Custom pre-formatted block</td><td><code>[.metar-raw]</code></td><td class="src">11062026-sang §7</td></tr>
+      <tr><td>NOTAM list (3: airport, airspace, RFFS)</td><td>MatList + MatListItem</td><td><code>mat-card [.notam-item]</code></td><td class="src">11062026-sang §6</td></tr>
+      <tr><td>Crew change timeline (vertical)</td><td>MatTimeline (custom vertical) [cần xác nhận]</td><td><code>[.crew-timeline]</code> (custom / cần xác nhận)</td><td class="src">12062026 §2,§13</td></tr>
+      <tr><td>Load metrics (ZFW, Payload, Fuel, Delta)</td><td>MatCard (grid)</td><td><code>mat-card [.load-grid/.load-card]</code></td><td class="src">11062026-sang §8; 11062026-chieu §II.10</td></tr>
+      <tr><td>Normal range banner (green)</td><td>Custom inline banner</td><td><code>[.banner-ok]</code></td><td class="src">11062026-sang §8</td></tr>
+    </table>
+  </div>
+</div><!-- /#screen-detail -->
+
+<!-- ══════════════════════════════════════════════════════════
+     SCREEN: MEL/CDL
+══════════════════════════════════════════════════════════ -->
+<div id="screen-mel" class="screen" data-src="[17062026 §I; 08062026 §12]">
+  <div class="banner" data-src="[17062026 §I]">
+    <span class="ms">build</span>
+    PROTOTYPE — MEL/CDL Management · Master MEL + MEL Active + Version Update · Source: BAO-CAO-KHAO-SAT-17062026, 08062026
+  </div>
+
+  <div data-mat="mat-tab-group" data-src="[17062026 §1,§2,§3,§4]">
+    <div class="tabs">
+      <div class="tab active" onclick="mel_switchSubTab(this,'mel-subtab-master')" data-src="[17062026 §2]">Master MEL</div>
+      <div class="tab" onclick="mel_switchSubTab(this,'mel-subtab-active')" data-src="[17062026 §3]">Fleet MEL Active</div>
+      <div class="tab" onclick="mel_switchSubTab(this,'mel-subtab-update')" data-src="[17062026 §2]">
+        Version Update (3)<span class="tab-badge">3</span>
+      </div>
+    </div>
+
+    <!-- SUB-TAB 1: Master MEL -->
+    <div id="mel-subtab-master" class="tab-panel active" data-src="[17062026 §2]">
+      <div class="mel-split">
+        <div class="mel-tree-panel">
+          <div data-mat="mat-card" data-src="[17062026 §2; 08062026 §12]">
+            <div class="card-title"><span class="ms">account_tree</span>Master MEL Tree</div>
+            <div data-mat="mat-form-field(outline)+matSelect" data-src="[17062026 §2; 08062026 §12]" style="margin-bottom:8px;">
+              <label style="font-size:11px;color:var(--dark-on-variant);display:block;margin-bottom:3px;">Aircraft Type</label>
+              <select class="mel-ac-select" data-mat="mat-select">
+                <option>Airbus A321 (VN)</option>
+                <option>Airbus A320 (VN)</option>
+                <option>Airbus A319 (VN)</option>
+                <option>Boeing 787-9 (VN)</option>
+              </select>
+            </div>
+            <div data-mat="mat-form-field(outline)+matInput" data-src="[17062026 §4]" style="margin-bottom:10px;">
+              <div class="search-box" style="max-width:100%;">
+                <span class="ms" style="color:#aaa;font-size:18px;">search</span>
+                <input type="text" placeholder="Search item..." oninput="mel_filterTree(this.value)">
+              </div>
+            </div>
+            <div style="font-size:13px;" data-src="[17062026 §2; level AMOS: 3-4 — KS-55 cần xác nhận]">
+              <div class="mel-tree-node" onclick="mel_expandNode(this)" id="mel-node-21">
+                <span class="ms mel-tree-chevron open">chevron_right</span><strong>Chapter 21</strong> — Air Conditioning
+              </div>
+              <div class="mel-tree-children open" id="mel-children-21">
+                <div class="mel-tree-node" onclick="mel_expandNode(this)" id="mel-node-2125">
+                  <span class="ms mel-tree-chevron open">chevron_right</span>21-25 — Pack System
+                </div>
+                <div class="mel-tree-children open" id="mel-children-2125">
+                  <div class="mel-tree-node selected" onclick="mel_selectItem('21-25-01')" id="mel-leaf-21-25-01" data-src="[17062026 §2]">21-25-01 — Pack 1</div>
+                  <div class="mel-tree-node" onclick="mel_selectItem('21-25-02')" id="mel-leaf-21-25-02">21-25-02 — Pack 2</div>
+                </div>
+              </div>
+              <div class="mel-tree-node" onclick="mel_expandNode(this)" id="mel-node-34">
+                <span class="ms mel-tree-chevron">chevron_right</span><strong>Chapter 34</strong> — Navigation
+              </div>
+              <div class="mel-tree-children" id="mel-children-34">
+                <div class="mel-tree-node" onclick="mel_expandNode(this)" id="mel-node-3410">
+                  <span class="ms mel-tree-chevron">chevron_right</span>34-10 — ILS
+                </div>
+                <div class="mel-tree-children" id="mel-children-3410">
+                  <div class="mel-tree-node" onclick="mel_selectItem('34-10-02')" id="mel-leaf-34-10-02">34-10-02 — ILS Receiver Ch.2</div>
+                </div>
+              </div>
+              <div class="mel-tree-node" onclick="mel_expandNode(this)" id="mel-node-73">
+                <span class="ms mel-tree-chevron">chevron_right</span><strong>Chapter 73</strong> — Engine
+              </div>
+              <div class="mel-tree-children" id="mel-children-73">
+                <div class="mel-tree-node" onclick="mel_selectItem('73-12-01')" id="mel-leaf-73-12-01">73-12-01 — Engine Oil Temp Sensor</div>
+              </div>
+              <p style="font-size:11px;color:var(--dark-on-variant);margin-top:10px;padding:4px;">… ~3,000 items · A321 MEL Rev.35 [sample data]</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="mel-detail-panel" id="mel-detail-panel">
+          <div data-mat="mat-card" data-src="[17062026 §2,§4]">
+            <div class="card-title" data-src="[17062026 §2]">
+              <span class="ms">article</span>
+              <span class="mel-item-code" style="font-size:15px;">21-25-01</span>
+              Pack 1 — Bleed Air / Air Conditioning
+              <span data-mat="mat-chip" class="chip-red" style="margin-left:auto;" data-src="[17062026 §3]">Active on VN-A321</span>
+            </div>
+            <div class="mel-item-tabs" data-mat="mat-tab-group" data-src="[17062026 §2]">
+              <div class="mel-item-tab active" onclick="mel_switchItemDetail('orig')" id="mel-itab-orig">Original Content (Manufacturer)</div>
+              <div class="mel-item-tab" onclick="mel_switchItemDetail('meta')" id="mel-itab-meta">VNA Operational Metadata</div>
+            </div>
+            <div class="mel-item-panel active" id="mel-ipanel-orig" data-src="[17062026 §4]">
+              <pre class="mel-code-block"><span class="mel-code-title">21-25-01  PACK 1 INOPERATIVE</span>
+
+(O) May be deferred provided:
+1. Applicable ECON cruise FL is reduced per QRH
+   procedure AIR-PACK-1.
+2. Payload is limited in accordance with FM
+   supplementary procedure.
+3. Auto Flight restrictions apply as per FCOM 1.22.30.
+
+Category: B — rectification within 3 calendar days.
+Dispatch Conditions:
+  x1: One pack inoperative (second pack operative)
+  x2: Restriction for hot/high airports — see FM
+  x3: Autopilot engagement limitations per FCOM
+[Original content from AMM Rev.35 · Airbus A321 — sample data]</pre>
+              <p style="font-size:11px;color:var(--dark-on-variant);">[17062026 §4 — display original manufacturer content so user can read without opening source file in parallel]</p>
+            </div>
+            <div class="mel-item-panel" id="mel-ipanel-meta" data-src="[17062026 §2,§4; 08062026 §12]">
+              <div class="form-grid" style="grid-template-columns:repeat(3,1fr);">
+                <div data-mat="mat-form-field(outline)+mat-select" data-src="[17062026 §2]">
+                  <label>Case applicable</label>
+                  <select data-mat="mat-select">
+                    <option>x1 — Pack 1 inoperative (1 pack remaining)</option>
+                    <option>x2 — Hot/high airport restriction</option>
+                    <option>x3 — Autopilot limitation per FCOM</option>
+                  </select>
+                </div>
+                <div data-mat="mat-form-field(outline)+matInput" data-src="[17062026 §2; 08062026 §12]">
+                  <label>Fuel Factor (%)</label><input type="text" value="2.5">
+                </div>
+                <div data-mat="mat-form-field(outline)+matInput" data-src="[17062026 §2; 08062026 §12]">
+                  <label>Payload Reduction (kg)</label><input type="text" value="800">
+                </div>
+                <div data-mat="mat-form-field(outline)+matInput" data-src="[17062026 §2]">
+                  <label>Altitude Cap (FL)</label><input type="text" value="350">
+                </div>
+                <div data-mat="mat-form-field(outline)+matInput" data-src="[17062026 §2]">
+                  <label>Autopilot Restriction</label><input type="text" value="Dual AP mode only">
+                </div>
+                <div data-mat="mat-form-field(outline)+matInput" data-src="[17062026 §2]">
+                  <label>Airport Restriction</label><input type="text" value="No CAT III airports">
+                </div>
+                <div class="full" data-mat="mat-form-field(outline)+matTextarea" data-src="[17062026 §4]">
+                  <label>Operational Notes</label>
+                  <textarea rows="3">Check with AMM Supplement before applying to A321XLR.</textarea>
+                </div>
+              </div>
+              <div class="btn-row" data-src="[17062026 §3]">
+                <button class="btn btn-outlined" onclick="alert('[PROTOTYPE] Save metadata — simulated demo')">
+                  <span class="ms">save</span>Save
+                </button>
+                <button class="btn btn-filled" onclick="alert('[PROTOTYPE] Save &amp; Notify Dispatcher to regen OFP — simulated demo')">
+                  <span class="ms">notifications</span>Save &amp; Notify Dispatcher
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div><!-- /mel-subtab-master -->
+
+    <!-- SUB-TAB 2: Fleet MEL Active -->
+    <div id="mel-subtab-active" class="tab-panel" data-src="[17062026 §3]">
+      <div data-mat="mat-card" data-src="[17062026 §3]">
+        <div class="card-title">
+          <span class="ms">warning</span>
+          MEL Active — Fleet (Sample Data · Source: AMOS)
+          <span data-mat="mat-chip" class="chip-grey" style="margin-left:auto;font-size:11px;">[simulated — demo] AMOS sync: 09:40 UTC</span>
+        </div>
+        <div class="tool-row" data-src="[17062026 §3]">
+          <div class="search-box">
+            <span class="ms" style="color:#aaa;font-size:18px;">search</span>
+            <input type="text" placeholder="Search aircraft, item code…">
+          </div>
+          <select style="padding:8px 12px;background:var(--dark-surface2);border:1px solid var(--dark-outline);color:var(--dark-on-surface);border-radius:28px;font:inherit;" data-mat="mat-select">
+            <option>All impact levels</option>
+            <option>Fuel penalty</option>
+            <option>Expiring Soon</option>
+          </select>
+        </div>
+        <div class="table-wrap">
+          <table data-mat="mat-table+MatSort" data-src="[17062026 §3; 08062026 §12]">
+            <thead>
+              <tr>
+                <th>Aircraft</th><th>MEL Item</th><th>Equipment Name</th>
+                <th>Active Since</th><th>Expiry</th><th>Fuel +%</th>
+                <th>Payload &minus;kg</th><th>FL Cap</th><th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr data-src="[17062026 §3]">
+                <td><strong>VN-A321</strong></td>
+                <td><span class="mel-item-code">21-25-01</span></td>
+                <td>Pack 1 — Bleed Air</td><td>17/06/2026</td><td>30 days</td>
+                <td><span class="tag impact">+2.5%</span></td>
+                <td><span class="tag impact">&minus;800</span></td>
+                <td>FL350</td>
+                <td><span data-mat="mat-chip" class="chip-red">Active</span></td>
+              </tr>
+              <tr data-src="[17062026 §3]">
+                <td><strong>VN-A320</strong></td>
+                <td><span class="mel-item-code">34-10-02</span></td>
+                <td>ILS Receiver Ch.2</td><td>15/06/2026</td><td>28 days</td>
+                <td>—</td><td>—</td><td>—</td>
+                <td><span data-mat="mat-chip" class="chip-yellow">Active</span></td>
+              </tr>
+              <tr class="row-near-expiry" data-src="[17062026 §3]">
+                <td><strong>VN-A319</strong></td>
+                <td><span class="mel-item-code">73-12-01</span></td>
+                <td>Engine Oil Temp Sensor</td><td>10/06/2026</td>
+                <td style="color:#ff6b6b;font-weight:500;"><span class="ms" style="font-size:14px;vertical-align:middle;">warning</span> 7 days — Expiring Soon</td>
+                <td><span class="tag impact">+1.0%</span></td><td>—</td><td>—</td>
+                <td><span data-mat="mat-chip" class="chip-red">Expiring Soon</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="font-size:11px;color:var(--dark-on-variant);margin-top:8px;" data-src="[17062026 §3; §1 — AMOS→TOSS mechanism KS-56]">
+          [17062026 §3] Fleet dashboard for Shift Supervisor and BCAO daily report.
+          AMOS data mechanism (real-time / polling / batch) — [TBD — not confirmed · KS-56]
+        </p>
+      </div>
+    </div><!-- /mel-subtab-active -->
+
+    <!-- SUB-TAB 3: Version Update -->
+    <div id="mel-subtab-update" class="tab-panel" data-src="[17062026 §2]">
+      <div class="banner" style="background:#5c4800;color:#ffe090;border:1px solid #a87c00;" data-src="[17062026 §2]">
+        <span class="ms">new_releases</span>
+        MEL Rev.36 available — 3 items changed, review required. Update VNA operational metadata for changed items.
+      </div>
+      <div data-mat="mat-card" data-src="[17062026 §2]">
+        <div class="card-title"><span class="ms">compare</span>Changed Items — Rev.35 vs Rev.36 (Airbus A321)</div>
+        <div class="table-wrap">
+          <table data-mat="mat-table" data-src="[17062026 §2]">
+            <thead>
+              <tr><th>Item</th><th>Equipment Name</th><th>Change Type</th><th>Current VNA Metadata</th><th>Action</th></tr>
+            </thead>
+            <tbody>
+              <tr style="background:#2a0a0a;" data-src="[17062026 §2]">
+                <td><span class="mel-item-code">21-25-01</span></td>
+                <td>Pack 1 — Bleed Air</td>
+                <td><span data-mat="mat-chip" class="chip-red">Major revision — new FL limit</span></td>
+                <td>Fuel +2.5%, Payload &minus;800 kg, FL350</td>
+                <td>
+                  <button class="btn btn-filled" style="padding:6px 12px;font-size:12px;" onclick="mel_openUpdateDialog('21-25-01','Major revision — new FL limit')">
+                    <span class="ms">edit</span>Review &amp; Update
+                  </button>
+                </td>
+              </tr>
+              <tr style="background:#1a1400;" data-src="[17062026 §2]">
+                <td><span class="mel-item-code">34-10-02</span></td>
+                <td>ILS Receiver</td>
+                <td><span data-mat="mat-chip" class="chip-yellow">Note added — CAT II airport</span></td>
+                <td>No fuel impact</td>
+                <td>
+                  <button class="btn btn-outlined" style="padding:6px 12px;font-size:12px;" onclick="mel_openUpdateDialog('34-10-02','Note added — CAT II airport')">
+                    <span class="ms">edit</span>Review
+                  </button>
+                </td>
+              </tr>
+              <tr data-src="[17062026 §2]">
+                <td><span class="mel-item-code">29-11-03</span></td>
+                <td>Hydraulic Pump (Green)</td>
+                <td><span data-mat="mat-chip" class="chip-blue">New item in Rev.36</span></td>
+                <td>—</td>
+                <td>
+                  <button class="btn btn-outlined" style="padding:6px 12px;font-size:12px;" onclick="mel_openUpdateDialog('29-11-03','New item')">
+                    <span class="ms">add</span>Enter metadata
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="font-size:11px;color:var(--dark-on-variant);margin-top:8px;" data-src="[17062026 §2,§4]">
+          [17062026 §2] TOSS marks changed items; user reviews only changed metadata, not full re-entry. ·
+          Boeing format ("FILMATER") — [TBD · KS-57] · Lido Import file insert/update — [TBD · KS-59]
+        </p>
+      </div>
+    </div><!-- /mel-subtab-update -->
+
+  </div><!-- /mat-tab-group -->
+
+  <!-- Legend -->
+  <div class="legend" data-src="[17062026 §1,§2,§3,§4; 08062026 §12]">
+    <div style="font-weight:500;margin-bottom:6px;">Component Map — MEL/CDL Management</div>
+    <table>
+      <tr><th>UI Region</th><th>Angular Material component</th><th>data-mat</th><th>Source</th></tr>
+      <tr><td>Main sub-tabs (Master / Active / Version Update)</td><td><code>MatTabGroup+MatTab</code></td><td><code>mat-tab-group</code></td><td class="src">17062026 §1,§2,§3,§4</td></tr>
+      <tr><td>Aircraft type selector</td><td><code>MatFormField+MatSelect</code></td><td><code>mat-form-field(outline)+matSelect</code></td><td class="src">17062026 §2; 08062026 §12</td></tr>
+      <tr><td>MEL item search</td><td><code>MatFormField+matInput</code></td><td><code>mat-form-field(outline)+matInput</code></td><td class="src">17062026 §4</td></tr>
+      <tr><td>MEL hierarchy tree (chapter → item)</td><td><code>MatTree (flat node)</code></td><td><code>mat-tree (custom — cần xác nhận)</code></td><td class="src">17062026 §2</td></tr>
+      <tr><td>Item detail card (left/right split)</td><td><code>MatCard</code></td><td><code>mat-card</code></td><td class="src">17062026 §2,§4</td></tr>
+      <tr><td>Inner tabs (Original / VNA Metadata)</td><td><code>MatTabGroup+MatTab</code></td><td><code>mat-tab-group</code></td><td class="src">17062026 §2</td></tr>
+      <tr><td>Original AMM code block</td><td><code>MatCard+&lt;pre&gt; (custom)</code></td><td><code>mat-card (custom)</code></td><td class="src">17062026 §4</td></tr>
+      <tr><td>Metadata form (x1/x2/x3, Fuel%, Payload, FL Cap…)</td><td><code>MatFormField+matInput+MatSelect+matTextarea</code></td><td><code>mat-form-field(outline)+matInput/mat-select/matTextarea</code></td><td class="src">17062026 §2,§4; 08062026 §12</td></tr>
+      <tr><td>Status badges (Active / Expiring Soon)</td><td><code>MatChip</code></td><td><code>mat-chip</code></td><td class="src">17062026 §3</td></tr>
+      <tr><td>Fleet MEL Active table</td><td><code>MatTable+MatSort</code></td><td><code>mat-table+MatSort</code></td><td class="src">17062026 §3; 08062026 §12</td></tr>
+      <tr><td>Version comparison table (Rev.35 vs Rev.36)</td><td><code>MatTable</code></td><td><code>mat-table</code></td><td class="src">17062026 §2</td></tr>
+      <tr><td>Version update review dialog</td><td><code>MatDialog</code></td><td><code>mat-dialog</code></td><td class="src">17062026 §2</td></tr>
+      <tr><td>Save / Save &amp; Notify Dispatcher buttons</td><td><code>MatButton (filled/outlined)</code></td><td><code>btn-filled / btn-outlined</code></td><td class="src">17062026 §3</td></tr>
+    </table>
+  </div>
+</div><!-- /screen-mel -->
+
+<!-- ══════════════════════════════════════════════════════════
+     SCREEN: Settings — MK-002 placeholder
+══════════════════════════════════════════════════════════ -->
+<div id="screen-settings" class="screen" data-src="[prototype boundary — Settings not in v0.4 scope]">
+  <div data-mat="mat-card" style="margin:24px auto;max-width:480px;padding:32px;text-align:center;">
+    <span class="ms" style="font-size:48px;color:var(--dark-on-variant);display:block;margin-bottom:16px;">settings</span>
+    <div style="font-size:18px;font-weight:500;margin-bottom:8px;">Settings</div>
+    <div style="color:var(--dark-on-variant);font-size:13px;">This screen is not included in prototype v0.4.<br>Scope: OCC Dashboard · Flight Dispatch · Flight Detail · MEL/CDL</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     SCREEN: Upload Common Document — MK-001 placeholder
+     Nguồn: FL-FD §8.1 — "Menu bar bên trái: Upload common documents"
+══════════════════════════════════════════════════════════ -->
+<div id="screen-upload-doc" class="screen" data-src="[FL-FD §8.1 — Upload common documents]">
+  <div data-mat="mat-card" style="margin:24px auto;max-width:560px;padding:32px;text-align:center;">
+    <span class="ms" style="font-size:48px;color:var(--dark-on-variant);display:block;margin-bottom:16px;">upload_file</span>
+    <div style="font-size:18px;font-weight:500;margin-bottom:8px;">Upload Common Document</div>
+    <div style="color:var(--dark-on-variant);font-size:13px;">
+      Màn hình danh sách + upload/xoá tài liệu chung chuyến bay (chọn quãng thời gian hiệu lực, đẩy lên MO theo ETD). Chưa dựng chi tiết trong prototype này.<br>
+      <span style="display:inline-block;margin-top:10px;background:#1a3a5c;color:#9cc6ff;padding:4px 10px;border-radius:4px;font-size:11px;">[FL-FD §8.1 · Function list Module 2]</span>
+    </div>
+  </div>
+</div>
+
+</div></div><!-- /content /shell -->
+
+<script>
+// ---- Clock ----
+function updateClock(){
+  var now=new Date();
+  var h=String(now.getUTCHours()).padStart(2,'0');
+  var m=String(now.getUTCMinutes()).padStart(2,'0');
+  document.getElementById('clock-display').textContent=h+':'+m+' UTC';
+}
+setInterval(updateClock,30000);
+updateClock();
+
+// ---- Navigation ----
+function showScreen(name){
+  document.querySelectorAll('.screen').forEach(function(s){s.classList.remove('active');});
+  document.querySelectorAll('[data-mat="mat-sidenav"] .nav-item').forEach(function(a){a.classList.remove('active');});
+  var target=document.getElementById('screen-'+name);
+  if(target){ target.classList.add('active'); }
+  if(event&&event.currentTarget){ event.currentTarget.classList.add('active'); }
+}
+function showScreenDirect(name){
+  document.querySelectorAll('.screen').forEach(function(s){s.classList.remove('active');});
+  document.querySelectorAll('[data-mat="mat-sidenav"] .nav-item').forEach(function(a){a.classList.remove('active');});
+  var target=document.getElementById('screen-'+name);
+  if(target){ target.classList.add('active'); }
+  var navItem=document.querySelector('[onclick="showScreen(\''+name+'\')"]');
+  if(navItem){ navItem.classList.add('active'); }
+}
+
+// ---- OCC Fragment ----
+(function(){
+  'use strict';
+  var OCC_ROWS=[
+    {alert:'red',   flightNo:'VN 302',reg:'A302',regTooltip:'VNA298 → VNA302  07:41 UTC',route:'HAN-DAD',std:'09:15',sta:'10:20',state:'BRD',dispatch:'pending', pilot:'none',    mel:1,detailLink:true},
+    {alert:'yellow',flightNo:'VN 123',reg:'A123',regTooltip:null,                         route:'HAN-SGN',std:'10:30',sta:'12:15',state:'GRD',dispatch:'none',    pilot:'none',    mel:0,detailLink:false},
+    {alert:'none',  flightNo:'VN 208',reg:'A321',regTooltip:'VNA319 → VNA321  05:30 UTC',route:'SGN-HAN',std:'08:00',sta:'09:45',state:'ENR',dispatch:'released',pilot:'released',mel:2,detailLink:true},
+    {alert:'none',  flightNo:'VN 411',reg:'A411',regTooltip:null,                         route:'HAN-PQC',std:'12:45',sta:'14:00',state:'GRD',dispatch:'released',pilot:'released',mel:0,detailLink:false},
+    {alert:'none',  flightNo:'VN 850',reg:'A850',regTooltip:null,                         route:'HAN-NRT',std:'11:20',sta:'18:45',state:'GRD',dispatch:'pending', pilot:'none',    mel:0,detailLink:false},
+    {alert:'none',  flightNo:'VN 002',reg:'A002',regTooltip:null,                         route:'SGN-CDG',std:'23:55',sta:'06:10+1',state:'GRD',dispatch:'none',  pilot:'none',    mel:0,detailLink:false}
+  ];
+  function occ_renderTable(){
+    var tbody=document.getElementById('occ-tbody');
+    var search=(document.getElementById('occ-search-input')||{}).value||'';
+    var fCarr=(document.getElementById('occ-filter-carrier')||{}).value||'';
+    var fState=(document.getElementById('occ-filter-state')||{}).value||'';
+    search=search.toLowerCase();
+    var rows=OCC_ROWS.filter(function(r){
+      if(fCarr&&r.flightNo.indexOf(fCarr)===-1){return false;}
+      if(fState&&r.state!==fState){return false;}
+      if(search&&r.flightNo.toLowerCase().indexOf(search)===-1&&r.route.toLowerCase().indexOf(search)===-1&&r.reg.toLowerCase().indexOf(search)===-1){return false;}
+      return true;
+    });
+    var html='';
+    rows.forEach(function(r){
+      var alertHtml='';
+      if(r.alert==='red'){
+        // MK-003: red alert dot click → detail + warnings tab
+        var ac=r.detailLink?'onclick="showScreenDirect(\'detail\');setTimeout(function(){detail_openFromAlert(\'dtab-warnings\');},150);" style="cursor:pointer;"':'';
+        alertHtml='<span class="alert-dot alert-red" title="Red alert — action required" '+ac+'></span>';
+      }else if(r.alert==='yellow'){alertHtml='<span class="alert-dot alert-yellow" title="Monitor"></span>';}
+      else if(r.alert==='green'){alertHtml='<span class="alert-dot alert-green" title="Resolved"></span>';}
+      var stateClass={GRD:'chip-grey',BRD:'chip-blue',OUT:'chip-blue',ENR:'chip-green',IN:'chip-yellow',ARR:'chip-grey'}[r.state]||'chip-grey';
+      var stateHtml='<span data-mat="mat-chip" class="'+stateClass+'">'+r.state+'</span>';
+      var dispHtml;
+      if(r.dispatch==='released'){dispHtml='<button class="dispatch-btn released" disabled><span class="ms" style="font-size:13px">check_circle</span>Released</button>';}
+      else if(r.dispatch==='pending'){dispHtml='<button class="dispatch-btn" onclick="occ_dispatchRelease(\''+r.flightNo+'\')"><span class="ms" style="font-size:13px">flight</span>Release</button>';}
+      else{dispHtml='<span style="color:var(--dark-on-variant);font-size:12px">—</span>';}
+      var pilotHtml=r.pilot==='released'?'<span class="pilot-cell-released"><span class="ms" style="font-size:13px">check_circle</span> Released</span>':'<span class="pilot-cell-none">—</span>';
+      var melHtml;
+      if(r.mel===0){melHtml='<span style="color:var(--dark-on-variant);font-size:12px">—</span>';}
+      else if(r.mel===1){melHtml='<span data-mat="mat-chip" class="chip-yellow">'+r.mel+'</span>';}
+      else{melHtml='<span data-mat="mat-chip" class="chip-red">'+r.mel+'</span>';}
+      var regHtml=r.regTooltip?'<span class="has-tooltip">'+r.reg+'<span class="tooltip occ-reg-tip">'+r.regTooltip+'</span></span>':r.reg;
+      var navHtml=r.detailLink?'<button class="btn-icon" title="Open Flight Detail" onclick="occ_openDetail(\''+r.flightNo+'\')"><span class="ms">open_in_new</span></button>':'';
+      var fltCell=r.detailLink?'<td class="col-flt" onclick="occ_openDetail(\''+r.flightNo+'\')" style="cursor:pointer;color:var(--md-primary);text-decoration:underline dotted;"><strong>'+r.flightNo+'</strong></td>':'<td class="col-flt"><strong>'+r.flightNo+'</strong></td>';
+      html+='<tr class="occ-clickable" data-src="[12062026 §4,§6,§7,§9,§10]"><td class="col-alert">'+alertHtml+'</td>'+fltCell+'<td>'+regHtml+'</td><td>'+r.route+'</td><td>'+r.std+'</td><td>'+r.sta+'</td><td>'+stateHtml+'</td><td>'+dispHtml+'</td><td>'+pilotHtml+'</td><td>'+melHtml+'</td><td>'+navHtml+'</td></tr>';
+    });
+    if(html===''){html='<tr><td colspan="11" style="text-align:center;color:var(--dark-on-variant);padding:20px;">No matching flights found</td></tr>';}
+    tbody.innerHTML=html;
+  }
+  function occ_dispatchRelease(flightNo){
+    var row=OCC_ROWS.filter(function(r){return r.flightNo===flightNo;})[0];
+    if(!row){return;}
+    if(row.dispatch!=='released'){row.dispatch='released';occ_renderTable();}
+  }
+  function occ_openDetail(flightNo){
+    if(typeof showScreenDirect==='function'){showScreenDirect('detail');}
+    else if(typeof showScreen==='function'){showScreen('detail');}
+  }
+  window.occ_renderTable=occ_renderTable;
+  window.occ_dispatchRelease=occ_dispatchRelease;
+  window.occ_openDetail=occ_openDetail;
+  if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',occ_renderTable);}else{occ_renderTable();}
+})();
+
+// ---- Dispatch Fragment ----
+(function(){
+  'use strict';
+  var DS={activeFlight:null,flights:{
+    'VN 302':{version:'R2',fuelKH:'4 200',fuelOFP:'4 350',delta:'+150 kg',deltaClass:'fuel-delta-pos',dispatcher:'Nguyen Van A (simulated)'},
+    'VN 123':{version:'R1',fuelKH:'12 800',fuelOFP:'12 850',delta:'+50 kg',deltaClass:'fuel-delta-pos',dispatcher:'Tran Thi B (simulated)'},
+    'VN 208':{version:'R1',fuelKH:'13 200',fuelOFP:'13 200',delta:'0 kg',deltaClass:'fuel-delta-zero',dispatcher:'Le Van C (simulated)'}
+  }};
+  window.dispatch_openRelease=function(flt){
+    DS.activeFlight=flt;
+    var f=DS.flights[flt]||{};
+    document.getElementById('dlg-release-flight').textContent=flt;
+    document.getElementById('dlg-release-version').innerHTML='<span class="ver-chip">'+(f.version||'—')+'</span>';
+    document.getElementById('dlg-release-fuel').textContent=(f.fuelKH||'—')+' / '+(f.fuelOFP||'—');
+    document.getElementById('dlg-release-delta').textContent=f.delta||'—';
+    document.getElementById('dlg-release-delta').className='di-val '+(f.deltaClass||'');
+    document.getElementById('dlg-release-dispatcher').textContent=f.dispatcher||'—';
+    document.getElementById('dispatch-dlg-release').classList.add('open');
+  };
+  window.dispatch_confirmRelease=function(){
+    var flt=DS.activeFlight;if(!flt){return;}
+    document.querySelectorAll('#dispatch-tbody tr').forEach(function(row){
+      if(row.dataset.flight===flt){
+        var chips=row.querySelectorAll('[data-mat^="mat-chip"]');
+        if(chips[0]){chips[0].className='chip-green';chips[0].textContent='Dispatch Released';}
+        if(chips[1]){chips[1].className='chip-yellow';chips[1].textContent='Awaiting Pilot';}
+        var ac=row.cells[row.cells.length-1];
+        if(ac){ac.innerHTML='<button class="btn btn-text" style="font-size:12px;" onclick="dispatch_openUnrelease(\''+flt+'\')"><span class="ms" style="font-size:16px">undo</span>Unrelease</button>';}
+        var dc=row.cells[3];if(dc){dc.className='deadline-ok';}
+        row.dataset.state='cho-pilot';
+      }
+    });
+    dispatch_closeDialog('dispatch-dlg-release');
+  };
+  window.dispatch_openUnrelease=function(flt){
+    DS.activeFlight=flt;
+    document.getElementById('dlg-unrelease-flight').textContent=flt;
+    document.getElementById('unrelease-reason').value='';
+    document.getElementById('dispatch-dlg-unrelease').classList.add('open');
+  };
+  window.dispatch_confirmUnrelease=function(){
+    var reason=document.getElementById('unrelease-reason').value;
+    if(!reason){alert('Please select an Unrelease reason.');return;}
+    var flt=DS.activeFlight;if(!flt){return;}
+    document.querySelectorAll('#dispatch-tbody tr').forEach(function(row){
+      if(row.dataset.flight===flt){
+        var vc=row.querySelector('.ver-chip');
+        if(vc){var n=parseInt(vc.textContent.replace('R',''))||1;vc.textContent='R'+(n+1);}
+        var chips=row.querySelectorAll('[data-mat^="mat-chip"]');
+        if(chips[0]){chips[0].className='chip-yellow';chips[0].textContent='Not Released';}
+        if(chips[1]){chips[1].className='chip-grey';chips[1].textContent='—';}
+        var ac=row.cells[row.cells.length-1];
+        if(ac){ac.innerHTML='<button class="btn btn-outlined" style="font-size:12px;padding:7px 14px;" onclick="dispatch_openRelease(\''+flt+'\')"><span class="ms" style="font-size:16px">send</span>Release</button>';}
+        row.dataset.state='chua-release';
+      }
+    });
+    dispatch_closeDialog('dispatch-dlg-unrelease');
+  };
+  window.dispatch_closeDialog=function(id){var el=document.getElementById(id);if(el){el.classList.remove('open');}DS.activeFlight=null;};
+  window.dispatch_filterTable=function(){
+    var sv=(document.getElementById('dispatch-search').value||'').toLowerCase();
+    var stv=document.getElementById('dispatch-state-filter').value;
+    document.querySelectorAll('#dispatch-tbody tr').forEach(function(row){
+      var ms=!sv||row.textContent.toLowerCase().indexOf(sv)!==-1;
+      var mst=!stv||(row.dataset.state||'')===stv;
+      row.style.display=(ms&&mst)?'':'none';
+    });
+  };
+  ['dispatch-dlg-release','dispatch-dlg-unrelease'].forEach(function(id){
+    var el=document.getElementById(id);
+    if(!el){return;}
+    el.addEventListener('click',function(e){if(e.target===el){dispatch_closeDialog(id);}});
+  });
+})();
+
+// ---- Flight Detail Fragment ----
+function detail_switchTab(el,panelId){
+  var group=el.closest('[data-mat^="mat-tab-group"]');
+  if(!group){return;}
+  group.querySelectorAll('.tab').forEach(function(t){t.classList.remove('active');});
+  el.classList.add('active');
+  group.querySelectorAll('.tab-panel').forEach(function(p){p.classList.remove('active');});
+  var target=document.getElementById(panelId);
+  if(target){target.classList.add('active');}
+}
+// MK-003: navigate to detail and activate specified tab
+function detail_openFromAlert(panelId){
+  var group=document.querySelector('#screen-detail [data-mat^="mat-tab-group"]');
+  if(!group){return;}
+  group.querySelectorAll('.tab').forEach(function(t){t.classList.remove('active');});
+  group.querySelectorAll('.tab-panel').forEach(function(p){p.classList.remove('active');});
+  group.querySelectorAll('.tab').forEach(function(t){
+    if((t.getAttribute('onclick')||'').indexOf(panelId)!==-1){t.classList.add('active');}
+  });
+  var target=document.getElementById(panelId);
+  if(target){target.classList.add('active');}
+}
+
+// ---- MEL Fragment ----
+(function(){
+  'use strict';
+  function mel_switchSubTab(el,panelId){
+    var screen=document.getElementById('screen-mel');if(!screen){return;}
+    screen.querySelectorAll('[data-mat="mat-tab-group"] > .tabs > .tab').forEach(function(t){t.classList.remove('active');});
+    el.classList.add('active');
+    screen.querySelectorAll('[data-mat="mat-tab-group"] > .tab-panel').forEach(function(p){p.classList.remove('active');});
+    var target=document.getElementById(panelId);if(target){target.classList.add('active');}
+  }
+  window.mel_switchSubTab=mel_switchSubTab;
+  function mel_expandNode(el){
+    var suffix=el.id.replace('mel-node-','');
+    var children=document.getElementById('mel-children-'+suffix);
+    var chevron=el.querySelector('.mel-tree-chevron');
+    if(!children){return;}
+    var open=children.classList.contains('open');
+    if(open){children.classList.remove('open');if(chevron){chevron.classList.remove('open');}}
+    else{children.classList.add('open');if(chevron){chevron.classList.add('open');}}
+  }
+  window.mel_expandNode=mel_expandNode;
+  var MEL_ITEMS={'21-25-01':{code:'21-25-01',name:'Pack 1 — Bleed Air / Air Conditioning',status:'Active on VN-A321',statusClass:'chip-red'},'21-25-02':{code:'21-25-02',name:'Pack 2 — Bleed Air / Air Conditioning',status:'Not active',statusClass:'chip-grey'},'34-10-02':{code:'34-10-02',name:'ILS Receiver Ch.2',status:'Active on VN-A320',statusClass:'chip-yellow'},'73-12-01':{code:'73-12-01',name:'Engine Oil Temp Sensor',status:'Active on VN-A319 — expiring soon',statusClass:'chip-red'}};
+  function mel_selectItem(itemCode){
+    document.querySelectorAll('#screen-mel .mel-tree-node').forEach(function(n){n.classList.remove('selected');});
+    var leafEl=document.getElementById('mel-leaf-'+itemCode);
+    if(!leafEl){document.querySelectorAll('#screen-mel .mel-tree-node').forEach(function(n){if((n.getAttribute('onclick')||'').indexOf(itemCode)!==-1){n.classList.add('selected');}});}
+    else{leafEl.classList.add('selected');}
+    var item=MEL_ITEMS[itemCode];if(!item){return;}
+    var codeEl=document.querySelector('#mel-detail-panel .mel-item-code');if(codeEl){codeEl.textContent=item.code;}
+    var titleEl=document.querySelector('#mel-detail-panel .card-title');
+    if(titleEl){titleEl.innerHTML='<span class="ms">article</span> <span class="mel-item-code" style="font-size:15px;">'+item.code+'</span> '+item.name+' <span data-mat="mat-chip" class="'+item.statusClass+'" style="margin-left:auto;" data-src="[17062026 §3]">'+item.status+'</span>';}
+    mel_switchItemDetail('orig');
+  }
+  window.mel_selectItem=mel_selectItem;
+  function mel_switchItemDetail(tab){
+    var map={orig:{tab:'mel-itab-orig',panel:'mel-ipanel-orig'},meta:{tab:'mel-itab-meta',panel:'mel-ipanel-meta'}};
+    for(var k in map){if(Object.prototype.hasOwnProperty.call(map,k)){var t=document.getElementById(map[k].tab);var p=document.getElementById(map[k].panel);if(t){t.classList.remove('active');}if(p){p.classList.remove('active');}}}
+    var c=map[tab];if(c){var te=document.getElementById(c.tab);var pe=document.getElementById(c.panel);if(te){te.classList.add('active');}if(pe){pe.classList.add('active');}}
+  }
+  window.mel_switchItemDetail=mel_switchItemDetail;
+  function mel_filterTree(query){
+    var q=(query||'').toLowerCase().trim();
+    document.querySelectorAll('#screen-mel .mel-tree-node').forEach(function(n){n.style.display=(!q||n.textContent.toLowerCase().indexOf(q)!==-1)?'':'none';});
+    if(q){document.querySelectorAll('#screen-mel .mel-tree-children').forEach(function(c){c.classList.add('open');});}
+  }
+  window.mel_filterTree=mel_filterTree;
+  function mel_openUpdateDialog(itemCode,changeType){
+    var dlg=document.getElementById('mel-dlg-update');
+    var titleEl=document.getElementById('mel-dlg-title');
+    if(titleEl){titleEl.textContent='Review Update — '+(itemCode||'')+(changeType?' · '+changeType:'');}
+    if(dlg){dlg.classList.add('open');}
+  }
+  window.mel_openUpdateDialog=mel_openUpdateDialog;
+  function mel_closeDialog(dialogId){var dlg=document.getElementById(dialogId);if(dlg){dlg.classList.remove('open');}}
+  window.mel_closeDialog=mel_closeDialog;
+  function mel_confirmUpdate(){mel_closeDialog('mel-dlg-update');alert('[PROTOTYPE — simulated demo] Metadata updated per Rev.36. System will notify Dispatcher of relevant changes.');}
+  window.mel_confirmUpdate=mel_confirmUpdate;
+  var dlgU=document.getElementById('mel-dlg-update');
+  if(dlgU){dlgU.addEventListener('click',function(e){if(e.target===dlgU){mel_closeDialog('mel-dlg-update');}});}
+})();
+<script>
+// ================================================================
+//  Flight Monitoring — dispatch-v05-fragment.js
+//  Prefix: dsp_  (tránh trùng namespace với occ_, detail_, mel_)
+//  Không khai báo biến global trùng với toss-prototype-v0.4.html
+//  showScreenDirect() đã có trong shell v0.4 — gọi trực tiếp
+// ================================================================
+
+(function() {
+  'use strict';
+
+  // ── Sample data (dữ liệu mẫu — khớp với HTML rows) ──
+  var DSP_ROWS = [
+    { flt: 'VN302',  dep: 'HAN', type: 'NOR',   status: 'GRD', ofp: 'red'    },
+    { flt: 'VN208D', dep: 'SGN', type: 'NOR',   status: 'BRD', ofp: 'yellow' },
+    { flt: 'VN411',  dep: 'HAN', type: 'NOR',   status: 'OUT', ofp: 'green'  },
+    { flt: 'VN500',  dep: 'HAN', type: 'VIP',   status: 'GRD', ofp: 'yellow' },
+    { flt: 'VN1184', dep: 'DAD', type: 'NOR',   status: 'ENR', ofp: 'green'  },
+    { flt: 'BL182',  dep: 'HAN', type: 'FERRY', status: 'ARR', ofp: 'green'  }
+  ];
+
+  // Current release flight (for dialog)
+  var _dsp_currentFlt = '';
+
+  // ── Filter table ──
+  window.dsp_filterTable = function() {
+    var search  = (document.getElementById('dsp-search')    || {}).value || '';
+    var dep     = (document.getElementById('dsp-f-dep')     || {}).value || '';
+    var type    = (document.getElementById('dsp-f-type')    || {}).value || '';
+    var status  = (document.getElementById('dsp-f-status')  || {}).value || '';
+    var ofp     = (document.getElementById('dsp-f-ofp')     || {}).value || '';
+
+    var rows = document.querySelectorAll('#dsp-mon-tbody tr');
+    rows.forEach(function(tr) {
+      var flt    = (tr.getAttribute('data-flt')    || '').toUpperCase();
+      var trDep  = (tr.getAttribute('data-dep')    || '').toUpperCase();
+      var trType = (tr.getAttribute('data-type')   || '').toUpperCase();
+      var trStat = (tr.getAttribute('data-status') || '').toUpperCase();
+      var trOfp  = (tr.getAttribute('data-ofp')    || '');
+
+      var ok = true;
+      if (search  && flt.indexOf(search.toUpperCase()) === -1)    { ok = false; }
+      if (dep     && trDep   !== dep.toUpperCase())               { ok = false; }
+      if (type    && trType  !== type.toUpperCase())              { ok = false; }
+      if (status  && trStat  !== status.toUpperCase())            { ok = false; }
+      if (ofp     && trOfp   !== ofp)                             { ok = false; }
+
+      tr.style.display = ok ? '' : 'none';
+    });
+  };
+
+  // ── Reset filter ──
+  window.dsp_resetFilter = function() {
+    var ids = ['dsp-search','dsp-f-dep','dsp-f-type','dsp-f-status','dsp-f-ofp','dsp-f-etd'];
+    ids.forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el) { el.value = ''; }
+    });
+    dsp_filterTable();
+  };
+
+  // ── Open Release dialog ──
+  window.dsp_openRelease = function(fltNo) {
+    _dsp_currentFlt = fltNo;
+    var dlg = document.getElementById('dsp-dlg-release');
+    if (!dlg) { return; }
+
+    // Populate dialog với dữ liệu mẫu theo flight
+    var fltEl  = document.getElementById('dsp-dlg-flt');
+    var revEl  = document.getElementById('dsp-dlg-rev');
+    var etdEl  = document.getElementById('dsp-dlg-etd');
+    var fuelEl = document.getElementById('dsp-dlg-fuel');
+
+    var data = {
+      'VN302':  { rev: 'R2', etd: '09:15 UTC', fuel: '14 800 kg' },
+      'VN208D': { rev: 'R2', etd: '11:00 UTC', fuel: '12 600 kg' },
+      'VN500':  { rev: 'R1', etd: '14:00 UTC', fuel: '22 400 kg' }
+    };
+    var d = data[fltNo] || { rev: 'R1', etd: '—', fuel: '—' };
+
+    if (fltEl)  { fltEl.textContent  = fltNo; }
+    if (revEl)  { revEl.textContent  = d.rev; }
+    if (etdEl)  { etdEl.textContent  = d.etd; }
+    if (fuelEl) { fuelEl.textContent = d.fuel; }
+
+    dlg.style.display = 'flex';
+  };
+
+  window.dsp_closeRelease = function() {
+    var dlg = document.getElementById('dsp-dlg-release');
+    if (dlg) { dlg.style.display = 'none'; }
+  };
+
+  window.dsp_confirmRelease = function() {
+    // Giả lập (demo) — không thực sự gọi API
+    dsp_closeRelease();
+    var msg = 'Release OFP cho ' + _dsp_currentFlt + ' thành công (giả lập — demo).';
+    if (typeof alert !== 'undefined') { alert(msg); }
+  };
+
+  // ── Open Unrelease dialog ──
+  window.dsp_openUnrelease = function(fltNo) {
+    _dsp_currentFlt = fltNo;
+    var dlg = document.getElementById('dsp-dlg-unrelease');
+    if (dlg) { dlg.style.display = 'flex'; }
+  };
+
+  window.dsp_closeUnrelease = function() {
+    var dlg = document.getElementById('dsp-dlg-unrelease');
+    if (dlg) { dlg.style.display = 'none'; }
+  };
+
+  window.dsp_confirmUnrelease = function() {
+    var reason = (document.getElementById('dsp-unrel-reason') || {}).value || '';
+    if (!reason) {
+      alert('Vui lòng chọn lý do un-release.');
+      return;
+    }
+    dsp_closeUnrelease();
+    var msg = 'Un-Release OFP cho ' + _dsp_currentFlt + ' (giả lập — demo).\nSinh phiên bản mới + reset Pilot Confirm MO Plus.';
+    if (typeof alert !== 'undefined') { alert(msg); }
+  };
+
+  // ── Close dialogs on backdrop click ──
+  ['dsp-dlg-release', 'dsp-dlg-unrelease'].forEach(function(id) {
+    var dlg = document.getElementById(id);
+    if (!dlg) { return; }
+    dlg.addEventListener('click', function(e) {
+      if (e.target === dlg) {
+        dlg.style.display = 'none';
+      }
+    });
+  });
+
+  // ── Expose for shell navigation ──
+  // Ensure screen-dispatch is activated when nav item clicked
+  // showScreenDirect() already defined in v0.4 shell — no redef needed
+
+})();
+</script>
+</script><!-- Dialog: Release OFP — prefix id dsp- -->
+<div id="dsp-dlg-release"
+     data-mat="mat-dialog"
+     data-src="[FL-FD §8.2 Col 1 — nhấn vào sẽ release OFP; 15062026 §II.2]"
+     style="position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;align-items:center;justify-content:center;z-index:100;">
+  <div style="background:var(--dark-surface);border-radius:28px;padding:24px;min-width:360px;max-width:520px;width:90vw;box-shadow:var(--md-elev2);max-height:90vh;overflow-y:auto;">
+    <h3 style="font-size:17px;font-weight:500;margin-bottom:4px;">Dispatch Release — OFP</h3>
+    <div style="font-size:12px;color:var(--dark-on-variant);margin-bottom:16px;"
+         data-src="[FL-FD §8.2 Col 1 — Active khi OFP tới thời điểm cần release]">
+      Xác nhận release OFP cho chuyến bay dưới đây.
+    </div>
+
+    <div class="dlg-info-row" data-src="[FL-FD §8.2 Col 3]">
+      <span class="di-label">Flight No</span>
+      <span class="di-val" id="dsp-dlg-flt">VN302</span>
+    </div>
+    <div class="dlg-info-row" data-src="[FL-FD §8.2 Col 11 — OFP Rev]">
+      <span class="di-label">OFP Revision</span>
+      <span class="di-val" id="dsp-dlg-rev">R2</span>
+    </div>
+    <div class="dlg-info-row" data-src="[FL-FD §8.2 Col 7]">
+      <span class="di-label">ETD</span>
+      <span class="di-val" id="dsp-dlg-etd">09:15 UTC</span>
+    </div>
+    <div class="dlg-info-row" data-src="[FL-FD §8.2 Col 1 — DSP license trong thông tin user]">
+      <span class="di-label">DSP License</span>
+      <span class="di-val">DSP-002 — Nguyễn Văn A</span>
+    </div>
+    <div class="dlg-info-row" data-src="[FL-FD §8.2 Col 15,16 — Block Fuel / Pilot Extra]">
+      <span class="di-label">Block Fuel (OFP)</span>
+      <span class="di-val" id="dsp-dlg-fuel">14 800 kg</span>
+    </div>
+
+    <div style="background:#5c4800;border:1px solid #a87c00;border-radius:8px;padding:10px 14px;font-size:12px;color:#ffe090;margin:12px 0;display:flex;gap:8px;align-items:flex-start;"
+         data-src="[FL-FD §8.2 Col 17 — cửa sổ release NOTAM 75'QN/95'QT]">
+      <span class="ms" style="font-size:18px;">schedule</span>
+      <span>Cửa sổ release: ≥ 75' trước ETD (QN) / ≥ 95' trước ETD (QT)<br>
+      Muộn nhất: 60' QN / 75' QT — sau đó không thể release qua TOSS.</span>
+    </div>
+
+    <div style="display:flex;gap:10px;justify-content:flex-end;margin-top:16px;flex-wrap:wrap;">
+      <button class="btn btn-outlined" onclick="dsp_closeRelease()"
+              data-mat="mat-button(outlined)">
+        <span class="ms" style="font-size:16px">close</span>Cancel
+      </button>
+      <button class="btn btn-filled" onclick="dsp_confirmRelease()"
+              data-mat="mat-button(filled)"
+              data-src="[FL-FD §8.2 Col 1 — khi nhấn vào sẽ release OFP]">
+        <span class="ms" style="font-size:16px">bolt</span>Confirm Release
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Dialog: Unrelease OFP — prefix id dsp- -->
+<div id="dsp-dlg-unrelease"
+     data-mat="mat-dialog"
+     data-src="[11-chieu §II.4 — un-release sinh phiên bản mới; 15062026 §II.2 #8]"
+     style="position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;align-items:center;justify-content:center;z-index:100;">
+  <div style="background:var(--dark-surface);border-radius:28px;padding:24px;min-width:360px;max-width:520px;width:90vw;box-shadow:var(--md-elev2);max-height:90vh;overflow-y:auto;">
+    <h3 style="font-size:17px;font-weight:500;margin-bottom:4px;">Un-Release OFP</h3>
+    <div style="font-size:12px;color:var(--dark-on-variant);margin-bottom:16px;"
+         data-src="[11-chieu §II.4]">
+      Un-Release OFP sẽ tạo phiên bản mới và khóa release tạm thời.
+    </div>
+
+    <div class="unrelease-warn"
+         data-src="[15062026 §II.2 #8 — Un-Release luôn sinh phiên bản mới và khóa release tạm thời]">
+      <span class="ms" style="font-size:18px;color:#ff9090">warning</span>
+      <span>Un-Release sẽ sinh phiên bản OFP mới và <strong>reset Pilot Confirm trên MO Plus</strong>. Pilot cần re-confirm sau khi DSP release lại.</span>
+    </div>
+
+    <div data-mat="mat-form-field(outline)+mat-select"
+         data-src="[11-chieu §II.4 — lý do un-release]"
+         style="margin:14px 0;">
+      <label style="font-size:11px;color:var(--dark-on-variant);display:block;margin-bottom:4px;">Lý do Un-Release</label>
+      <select id="dsp-unrel-reason"
+              style="width:100%;padding:9px 12px;border:1px solid var(--dark-outline);border-radius:8px;font:inherit;background:var(--dark-surface2);color:var(--dark-on-surface);">
+        <option value="">— Chọn lý do —</option>
+        <option value="rev-moi">OFP revision mới phát sinh</option>
+        <option value="thay-tau">Thay đổi tàu bay</option>
+        <option value="thay-route">Thay đổi route / alternate</option>
+        <option value="dieu-kien-wx">Điều kiện thời tiết thay đổi</option>
+        <option value="khac">Lý do khác (ghi bên dưới)</option>
+      </select>
+    </div>
+    <div data-mat="mat-form-field(outline)+matInput" style="margin-bottom:14px;">
+      <label style="font-size:11px;color:var(--dark-on-variant);display:block;margin-bottom:4px;">Ghi chú (tùy chọn)</label>
+      <textarea id="dsp-unrel-note" rows="2"
+                style="width:100%;padding:9px 12px;border:1px solid var(--dark-outline);border-radius:8px;font:inherit;background:var(--dark-surface2);color:var(--dark-on-surface);resize:vertical;"
+                placeholder="Nhập ghi chú nếu cần…"></textarea>
+    </div>
+
+    <div style="display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap;">
+      <button class="btn btn-outlined" onclick="dsp_closeUnrelease()"
+              data-mat="mat-button(outlined)">
+        <span class="ms" style="font-size:16px">close</span>Cancel
+      </button>
+      <button class="btn btn-filled" style="background:#b71c1c;" onclick="dsp_confirmUnrelease()"
+              data-mat="mat-button(filled/warn)"
+              data-src="[11-chieu §II.4 — confirm un-release]">
+        <span class="ms" style="font-size:16px">undo</span>Confirm Un-Release
+      </button>
+    </div>
+  </div>
+</div>
+</body></html>
+
+<!-- ══ Dialog: Dispatch Release ══ -->
+<div id="dispatch-dlg-release" data-mat="mat-dialog" data-src="[15062026 §II.3; 11062026-sang §1,§2]">
+  <div class="panel" role="dialog" aria-modal="true" aria-labelledby="dlg-release-title">
+    <h3 id="dlg-release-title">
+      <span class="ms" style="color:var(--md-primary);vertical-align:middle;margin-right:6px;">send</span>
+      Confirm Release
+    </h3>
+    <p class="sub">After Release, the Captain may perform Captain's Release on MO Plus.
+      <br><span style="color:#aaa;">[11062026-sang §2 — Captain's Release depends on Dispatch Release]</span></p>
+    <div data-src="[15062026 §II.2; 11062026-sang §1]">
+      <div class="dlg-info-row"><span class="di-label">Flight No</span><span class="di-val" id="dlg-release-flight">VN 123</span></div>
+      <div class="dlg-info-row"><span class="di-label">OFP Version</span><span class="di-val" id="dlg-release-version"><span class="ver-chip">R1</span></span></div>
+      <div class="dlg-info-row"><span class="di-label">Block Fuel Sched / OFP (kg)</span><span class="di-val" id="dlg-release-fuel">12 800 / 12 850</span></div>
+      <div class="dlg-info-row"><span class="di-label">Fuel Delta</span><span class="di-val fuel-delta-pos" id="dlg-release-delta">+50 kg</span></div>
+      <div class="dlg-info-row"><span class="di-label">Dispatcher</span><span class="di-val" id="dlg-release-dispatcher">[TBD — not confirmed: dispatcher list by shift]</span></div>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-text" onclick="dispatch_closeDialog('dispatch-dlg-release')">Cancel</button>
+      <button class="btn btn-filled" onclick="dispatch_confirmRelease()" data-src="[11062026-sang §1]">
+        <span class="ms" style="font-size:16px">check_circle</span>Confirm Release
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ Dialog: Unrelease ══ -->
+<div id="dispatch-dlg-unrelease" data-mat="mat-dialog" data-src="[11062026-chieu §II.4]">
+  <div class="panel" role="dialog" aria-modal="true" aria-labelledby="dlg-unrelease-title">
+    <h3 id="dlg-unrelease-title">
+      <span class="ms" style="color:#ff6b6b;vertical-align:middle;margin-right:6px;">undo</span>
+      Unrelease OFP — <span id="dlg-unrelease-flight">VN 208</span>
+    </h3>
+    <div class="unrelease-warn" data-src="[11062026-chieu §II.4]">
+      <span class="ms" style="font-size:20px;flex-shrink:0;">warning</span>
+      <div>
+        <strong>Operational notice:</strong> After Unrelease, MO Plus will reset the Pilot's Confirm Release status.
+        The Pilot must re-confirm on the new version. The Dispatcher must perform Dispatch Release again on the new version.
+        <br><span style="font-size:11px;color:#ffb0b0;">[11062026-chieu §II.4]</span>
+      </div>
+    </div>
+    <div data-mat="mat-form-field(outline)+mat-select" data-src="[11062026-chieu §II.4]" style="margin:12px 0;">
+      <label style="display:block;font-size:12px;color:var(--dark-on-variant);margin-bottom:4px;">Unrelease Reason <span style="color:#ff6b6b;">*</span></label>
+      <select id="unrelease-reason" style="width:100%;padding:9px 12px;background:var(--dark-surface2);border:1px solid var(--dark-outline);border-radius:var(--md-radius-sm);font:inherit;color:var(--dark-on-surface);">
+        <option value="">-- Select reason --</option>
+        <option value="doi-to-quay">Crew change (fuel update)</option>
+        <option value="thay-doi-tai">Payload change</option>
+        <option value="cap-nhat-notam">NOTAM/weather update</option>
+        <option value="yeu-cau-to-bay">Crew request</option>
+        <option value="khac">[TBD — Other reason — full list not confirmed]</option>
+      </select>
+    </div>
+    <p style="font-size:12px;color:var(--dark-on-variant);margin-bottom:14px;" data-src="[11062026-chieu §II.4]">
+      System will generate a new revision (e.g. R2→R3 or sub-version 2.1).
+      <em style="color:#aaa;">Version convention after Unrelease needs official confirmation.
+      <span style="color:#ff9090;">[TBD — cần xác nhận — 11062026-chieu §II.4 / 15062026 §IV.4]</span></em>
+    </p>
+    <p style="font-size:11px;background:var(--dark-surface2);border-radius:var(--md-radius-sm);padding:8px 12px;color:#aaa;margin-bottom:14px;" data-src="[11062026-chieu §II.4]">
+      <span class="ms" style="font-size:14px;vertical-align:middle;color:#90c4ff;">info</span>
+      MO Plus integration (simulated — demo): TOSS pushes new revision to MO Plus for Pilot re-confirm.
+    </p>
+    <div class="btn-row">
+      <button class="btn btn-text" onclick="dispatch_closeDialog('dispatch-dlg-unrelease')">Cancel</button>
+      <button class="btn btn-filled" style="background:var(--md-error);" onclick="dispatch_confirmUnrelease()" data-src="[11062026-chieu §II.4]">
+        <span class="ms" style="font-size:16px">undo</span>Confirm Unrelease
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ Dialog: MEL Version Update ══ -->
+<div id="mel-dlg-update" data-mat="mat-dialog" data-src="[17062026 §2]">
+  <div class="panel" style="max-width:780px;width:95vw;">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;">
+      <span class="ms" style="color:var(--md-warn);">compare</span>
+      <h3 id="mel-dlg-title">Review Update — 21-25-01</h3>
+      <button class="btn-icon" style="margin-left:auto;" onclick="mel_closeDialog('mel-dlg-update')"><span class="ms">close</span></button>
+    </div>
+    <p class="sub" data-src="[17062026 §2]">Compare original content Rev.35 (current) with Rev.36 (new). Changes are highlighted. Update VNA operational metadata accordingly.</p>
+    <div class="mel-compare-grid" data-src="[17062026 §2]">
+      <div>
+        <div class="mel-compare-label">Rev.35 (current)</div>
+        <div class="mel-compare-col">21-25-01  PACK 1 INOPERATIVE
+
+(O) May be deferred provided:
+1. Applicable ECON cruise FL is reduced
+   per QRH procedure AIR-PACK-1.
+2. Payload is limited in accordance
+   with FM supplementary procedure.
+3. Auto Flight restrictions apply as
+   per FCOM 1.22.30.
+
+Category: B — 3 calendar days.
+x1: One pack inoperative
+x2: Hot/high airport restriction
+x3: Autopilot limitations</div>
+      </div>
+      <div>
+        <div class="mel-compare-label" style="color:#ffe090;">Rev.36 (new — changed)</div>
+        <div class="mel-compare-col rev-new">21-25-01  PACK 1 INOPERATIVE
+
+(O) May be deferred provided:
+1. Applicable ECON cruise FL is reduced
+   per QRH procedure AIR-PACK-1.
+2. Payload is limited in accordance
+   with FM supplementary procedure.
+3. Auto Flight restrictions apply as
+   per FCOM 1.22.30.
+
+Category: B — 3 calendar days.
+x1: One pack inoperative
+x2: Hot/high airport restriction
+x3: Autopilot limitations
+<span class="change-hl">Max FL: 330 (previously FL350 — REVISED)</span>
+<span class="change-hl">x4: ETOPS restriction — NEW in Rev.36</span></div>
+      </div>
+    </div>
+    <div style="font-weight:500;font-size:13px;margin-bottom:8px;" data-src="[17062026 §2]">Update VNA Operational Metadata for Rev.36</div>
+    <div class="form-grid" style="grid-template-columns:repeat(2,1fr);" data-src="[17062026 §2; 08062026 §12]">
+      <div data-mat="mat-form-field(outline)+matInput"><label>Altitude Cap (FL) — update required</label><input type="text" value="330" style="border-color:var(--md-warn);"></div>
+      <div data-mat="mat-form-field(outline)+matInput"><label>Fuel Factor (%)</label><input type="text" value="2.5"></div>
+      <div data-mat="mat-form-field(outline)+matInput"><label>Payload Reduction (kg)</label><input type="text" value="800"></div>
+      <div data-mat="mat-form-field(outline)+matInput" data-src="[17062026 §2 — x4 ETOPS TBD]">
+        <label>Case x4 — ETOPS [TBD — not confirmed]</label>
+        <input type="text" placeholder="[TBD — not confirmed · SME-46]">
+      </div>
+      <div class="full" data-mat="mat-form-field(outline)+matTextarea">
+        <label>Update notes</label>
+        <textarea rows="2">Rev.36: FL cap reduced 350→330. Confirm ETOPS impact with Engineering.</textarea>
+      </div>
+    </div>
+    <div class="btn-row" data-src="[17062026 §2]">
+      <button class="btn btn-outlined" onclick="mel_closeDialog('mel-dlg-update')"><span class="ms">close</span>Cancel</button>
+      <button class="btn btn-filled" onclick="mel_confirmUpdate()"><span class="ms">save</span>Confirm Update</button>
+    </div>
+  </div>
+</div>

@@ -12,8 +12,6 @@ document_type: "Ma trận Truy vết Yêu cầu (RTM)"
 > Ma trận truy vết yêu cầu: đảm bảo mọi Business Requirement đều được phủ bởi Functional Requirement, và mọi FR đều được phủ bởi User Story / Test Case.
 >
 > **Cập nhật đồng bộ** mỗi khi SRS hoặc BRD thay đổi. Người duy trì: Senior BA được phân công.
->
-> ⚙️ **Bản máy đọc (canonical):** [`RTM-template-v0.1.json`](RTM-template-v0.1.json). Khi **agent** chỉnh sửa RTM, sửa **bản JSON** rồi đồng bộ sang bảng .md này (JSON ít bị model ghi đè sai cấu trúc hơn — xem [agent-harness-engineering.md](../../.claude/knowledge/agent-harness-engineering.md) §A4 / N4). Bảng .md dưới đây là **view cho người đọc**.
 
 ---
 

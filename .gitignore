@@ -6,15 +6,6 @@ logs/
 identity.local.md
 *.local.md
 
-# --- SECRETS: credential, service-account key (TUYỆT ĐỐI không commit) ---
-.secrets/
-*service-account*.json
-*-service-account*.json
-*.sa.json
-toss-*.json
-credentials.json
-client_secret*.json
-
 # --- OS / editor ---
 Thumbs.db
 .DS_Store
@@ -22,21 +13,10 @@ desktop.ini
 .vscode/
 .idea/
 *~
-~$*
 
 # --- Build artifacts: bản sinh lại được (Word/PPTX) từ nguồn ---
 # Mặc định KHÔNG commit. Muốn lưu vết bàn giao khách → comment dòng tương ứng.
 ba/deliverables/exports/
-
-# --- Customer source: phần mềm & dữ liệu nhị phân lớn (KHÔNG đẩy vào git) ---
-# PEP5.16: bộ cài phần mềm PEP (Airbus Performance Engineer's Program) — .msi/.exe/.dll/SDK (~613MB)
-ba/workspace/input/Customer_docs/PEP5.16/
-# ACARS: gói điện văn nén theo ngày (~377MB) — giữ README/PDF/xlsx mô tả, bỏ .zip dữ liệu thô
-ba/workspace/input/Customer_docs/ACARS/*.zip
-
-# --- Python ---
-__pycache__/
-*.pyc
 
 # --- DEV (bổ sung khi có code) ---
 node_modules/

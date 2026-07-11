@@ -1,0 +1,165 @@
+R001 | Mod(B): Module                 | Func(C): Chức năng                    | Feat(D): Feature                                       | E: Type     | F: Priority
+R002 | Mod(B): System Admin           | Func(C): User                         | Feat(D): Danh sách người dùng                          | E: New      | F: 1.0
+R003 | Mod(B):                        | Func(C): User                         | Feat(D): Job đồng bộ danh sách người dùng LDAP         | E: New      | F: 1.0
+R004 | Mod(B):                        | Func(C): User                         | Feat(D): Kết xuất danh sách                            | E: New      | F: 1.0
+R005 | Mod(B):                        | Func(C): User                         | Feat(D): Thêm người dùng Local                         | E: New      | F: 1.0
+R006 | Mod(B):                        | Func(C): User                         | Feat(D): Thêm người dùng LDap                          | E: New      | F: 1.0
+R007 | Mod(B):                        | Func(C): User                         | Feat(D): Xem chi tiết thông tin người dùng             | E: New      | F: 1.0
+R008 | Mod(B):                        | Func(C): User                         | Feat(D): Xem chi tiết phân quyền người dùng            | E: New      | F: 1.0
+R009 | Mod(B):                        | Func(C): User                         | Feat(D): Sửa người dùng LDap                           | E: New      | F: 1.0
+R010 | Mod(B):                        | Func(C): User                         | Feat(D): Sửa người dùng Local                          | E: New      | F: 1.0
+R011 | Mod(B):                        | Func(C): User                         | Feat(D): Thêm role cho người dùng                      | E: New      | F: 1.0
+R012 | Mod(B):                        | Func(C): User                         | Feat(D): Bật/tắt trạng thái người dùng                 | E: New      | F: 1.0
+R013 | Mod(B):                        | Func(C): User                         | Feat(D): Xóa người dùng                                | E: New      | F: 1.0
+R014 | Mod(B):                        | Func(C): User                         | Feat(D): Lấy lại mật khẩu người dùng Local             | E: New      | F: 1.0
+R015 | Mod(B):                        | Func(C): User                         | Feat(D): Xem Lịch sử cập nhật người dùng (Update)      | E: New      | F: 1.0
+R016 | Mod(B):                        | Func(C): User                         | Feat(D): Xem Lịch sử truy cập người dùng (Access)      | E: New      | F: 1.0
+R017 | Mod(B):                        | Func(C): User                         | Feat(D): Phân quyền                                    | E: New      | F: 1.0
+R018 | Mod(B): System Admin           | Func(C): Roles                        | Feat(D): Danh sách vai trò                             | E: New      | F: 1.0
+R019 | Mod(B):                        | Func(C): Roles                        | Feat(D): Thêm vai trò                                  | E: New      | F: 1.0
+R020 | Mod(B):                        | Func(C): Roles                        | Feat(D): Thêm quyền chức năng cho vai trò              | E: New      | F: 1.0
+R021 | Mod(B):                        | Func(C): Roles                        | Feat(D): Xem vai trò                                   | E: New      | F: 1.0
+R022 | Mod(B):                        | Func(C): Roles                        | Feat(D): Xem vai trò/ Tab user list                    | E: New      | F: 1.0
+R023 | Mod(B):                        | Func(C): Roles                        | Feat(D): Sửa vai trò                                   | E: New      | F: 1.0
+R024 | Mod(B):                        | Func(C): Roles                        | Feat(D): Xóa vai trò                                   | E: New      | F: 1.0
+R025 | Mod(B):                        | Func(C): Roles                        | Feat(D): Khôi phục vai trò                             | E: New      | F: 1.0
+R026 | Mod(B):                        | Func(C): Roles                        | Feat(D): Bật/tắt hoạt động vai trò                     | E: New      | F: 1.0
+R027 | Mod(B):                        | Func(C): Roles                        | Feat(D): Phân quyền                                    | E: New      | F: 1.0
+R028 | Mod(B): System Admin           | Func(C): User Group                   | Feat(D): Danh sách nhóm người dùng                     | E: New      | F: 1.0
+R029 | Mod(B):                        | Func(C): User Group                   | Feat(D): Thêm mới nhóm người dùng                      | E: New      | F: 1.0
+R030 | Mod(B):                        | Func(C): User Group                   | Feat(D): Thêm mới quyền cho nhóm người dùng            | E: New      | F: 1.0
+R031 | Mod(B):                        | Func(C): User Group                   | Feat(D): Hiển thị danh sách quyền                      | E: New      | F: 1.0
+R032 | Mod(B):                        | Func(C): User Group                   | Feat(D): Sửa nhóm người dùng                           | E: New      | F: 1.0
+R033 | Mod(B):                        | Func(C): User Group                   | Feat(D): Hiển thị danh sách quyền hệ thống             | E: New      | F: 1.0
+R034 | Mod(B):                        | Func(C): User Group                   | Feat(D): Xóa nhóm người dùng                           | E: New      | F: 1.0
+R035 | Mod(B):                        | Func(C): User Group                   | Feat(D): Xem chi tiết nhóm người dùng                  | E: New      | F: 1.0
+R036 | Mod(B):                        | Func(C): User Group                   | Feat(D): Xem chi tiết danh sách người dùng cho nhóm người dùng | E: New      | F: 1.0
+R037 | Mod(B):                        | Func(C): User Group                   | Feat(D): Xem chi tiết quyền của nhóm người dùng        | E: New      | F: 1.0
+R038 | Mod(B):                        | Func(C): User Group                   | Feat(D): Kết xuất danh sách                            | E: New      | F: 1.0
+R039 | Mod(B):                        | Func(C): User Group                   | Feat(D): Xem lịch sử cập nhật nhóm người dùng          | E: New      | F: 1.0
+R040 | Mod(B):                        | Func(C): User Group                   | Feat(D): Phân quyền                                    | E: New      | F: 1.0
+R041 | Mod(B): Data Maintenance       | Func(C): Country Category             | Feat(D): Xem danh sách quốc gia                        | E: New      | F: 
+R042 | Mod(B):                        | Func(C): Country Category             | Feat(D): Xem chi tiết quốc gia                         | E: New      | F: 
+R043 | Mod(B):                        | Func(C): Country Category             | Feat(D): Tìm kiếm quốc gia                             | E: New      | F: 
+R044 | Mod(B):                        | Func(C): Country Category             | Feat(D): Tạo mới quốc gia                              | E: New      | F: 
+R045 | Mod(B):                        | Func(C): Country Category             | Feat(D): Cập nhật quốc gia                             | E: New      | F: 
+R046 | Mod(B):                        | Func(C): Country Category             | Feat(D): Xóa  quốc gia                                 | E: New      | F: 
+R047 | Mod(B):                        | Func(C): Country Category             | Feat(D): Kết xuất  quốc gia                            | E: New      | F: 
+R048 | Mod(B):                        | Func(C): Country Category             | Feat(D): Phân quyền                                    | E: New      | F: 
+R049 | Mod(B):                        | Func(C): FIR Category                 | Feat(D): Danh sách FIR                                 | E: New      | F: 
+R050 | Mod(B):                        | Func(C): FIR Category                 | Feat(D): Tìm kiếm FIR                                  | E: New      | F: 
+R051 | Mod(B):                        | Func(C): FIR Category                 | Feat(D): Kết xuất FIR                                  | E: New      | F: 
+R052 | Mod(B):                        | Func(C): FIR Category                 | Feat(D): Thêm mới FIR                                  | E: New      | F: 
+R053 | Mod(B):                        | Func(C): FIR Category                 | Feat(D): Sửa FIR                                       | E: New      | F: 
+R054 | Mod(B):                        | Func(C): FIR Category                 | Feat(D): Xóa FIR                                       | E: New      | F: 
+R055 | Mod(B):                        | Func(C): FIR Category                 | Feat(D): Xem chi tiết FIR                              | E: New      | F: 
+R056 | Mod(B):                        | Func(C): FIR Category                 | Feat(D): Phân quyền                                    | E: New      | F: 
+R057 | Mod(B): Data Maintenance       | Func(C): Carrier                      | Feat(D): Danh sách carrier                             | E: New      | F: 
+R058 | Mod(B):                        | Func(C): Carrier                      | Feat(D): Tìm kiếm carrier                              | E: New      | F: 
+R059 | Mod(B):                        | Func(C): Carrier                      | Feat(D): Thêm mới carrier                              | E: New      | F: 
+R060 | Mod(B):                        | Func(C): Carrier                      | Feat(D): Sửa carrier                                   | E: New      | F: 
+R061 | Mod(B):                        | Func(C): Carrier                      | Feat(D): Xóa carrier                                   | E: New      | F: 
+R062 | Mod(B):                        | Func(C): Carrier                      | Feat(D): Xem chi tiết carrier                          | E: New      | F: 
+R063 | Mod(B):                        | Func(C): Carrier                      | Feat(D): Xem lịch sử                                   | E: New      | F: 
+R064 | Mod(B):                        | Func(C): Carrier                      | Feat(D): Phân quyền                                    | E: New      | F: 
+R065 | Mod(B): Data Maintenance       | Func(C): Pilot Category               | Feat(D): Danh sách phi công                            | E: New      | F: 
+R066 | Mod(B):                        | Func(C): Pilot Category               | Feat(D): Xuất danh sách phi công                       | E: New      | F: 
+R067 | Mod(B):                        | Func(C): Pilot Category               | Feat(D): Xem chi tiết phi công                         | E: New      | F: 
+R068 | Mod(B):                        | Func(C): Pilot Category               | Feat(D): Sửa thông tin phi công                        | E: New      | F: 
+R069 | Mod(B):                        | Func(C): Pilot Category               | Feat(D): API Đồng bộ danh sách phi công AVES           | E: New      | F: 
+R070 | Mod(B):                        | Func(C): Pilot Category               | Feat(D): API Đồng bộ thông tin phi công AVES           | E: New      | F: 
+R071 | Mod(B):                        | Func(C): Pilot Category               | Feat(D): API lịch bay phi công                         | E: New      | F: 
+R072 | Mod(B):                        | Func(C): Pilot Category               | Feat(D): API Kiểm tra trạng thái đồng bộ dữ liệu AVES  | E: New      | F: 
+R073 | Mod(B):                        | Func(C): Pilot Category               | Feat(D): API Tra cứu lịch sử đồng bộ dữ liệu AVES      | E: New      | F: 
+R074 | Mod(B):                        | Func(C): Pilot Category               | Feat(D): Xem thông tin Flight Itineraries phi công     | E: New      | F: 
+R075 | Mod(B):                        | Func(C): Pilot Category               | Feat(D): Xem lịch sử phi công                          | E: New      | F: 
+R076 | Mod(B):                        | Func(C): Pilot Category               | Feat(D): Phân quyền                                    | E: New      | F: 
+R077 | Mod(B): Data Maintenance       | Func(C): Cabin crew Category          | Feat(D): chưa có history                               | E: New      | F: 
+R078 | Mod(B):                        | Func(C): Cabin crew Category          | Feat(D): Danh sách tiếp viên                           | E: New      | F: 
+R079 | Mod(B):                        | Func(C): Cabin crew Category          | Feat(D): Xuất danh sách tiếp viên                      | E: New      | F: 
+R080 | Mod(B):                        | Func(C): Cabin crew Category          | Feat(D): Tìm kiếm tiếp viên                            | E: New      | F: 
+R081 | Mod(B):                        | Func(C): Cabin crew Category          | Feat(D): Xem chi tiết tiếp viên                        | E: New      | F: 
+R082 | Mod(B):                        | Func(C): Cabin crew Category          | Feat(D): Sửa thông tin tiếp viên                       | E: New      | F: 
+R083 | Mod(B):                        | Func(C): Cabin crew Category          | Feat(D): API Đồng bộ danh sách TV AVES                 | E: New      | F: 
+R084 | Mod(B):                        | Func(C): Cabin crew Category          | Feat(D): API Đồng bộ thông tin TV AVES                 | E: New      | F: 
+R085 | Mod(B):                        | Func(C): Cabin crew Category          | Feat(D): API lịch bay TV                               | E: New      | F: 
+R086 | Mod(B):                        | Func(C): Cabin crew Category          | Feat(D): API Kiểm tra trạng thái đồng bộ dữ liệu AVES  | E: New      | F: 
+R087 | Mod(B):                        | Func(C): Cabin crew Category          | Feat(D): API Tra cứu lịch sử đồng bộ dữ liệu AVES      | E: New      | F: 
+R088 | Mod(B):                        | Func(C): Cabin crew Category          | Feat(D): Xem thông tin Flight Itineraries tiếp viên    | E: New      | F: 
+R089 | Mod(B):                        | Func(C): Cabin crew Category          | Feat(D): Xem lịch sử tiếp viên                         | E: New      | F: 
+R090 | Mod(B):                        | Func(C): Cabin crew Category          | Feat(D): Phân quyền                                    | E: New      | F: 
+R091 | Mod(B): Data Maintenance       | Func(C): ULD Category(Type)           | Feat(D): Xem danh sách loại ULD                        | E: New      | F: 
+R092 | Mod(B):                        | Func(C): ULD Category(Type)           | Feat(D): Thêm mới loại ULD                             | E: New      | F: 
+R093 | Mod(B):                        | Func(C): ULD Category(Type)           | Feat(D): Sửa loại ULD                                  | E: New      | F: 
+R094 | Mod(B):                        | Func(C): ULD Category(Type)           | Feat(D): Xem chi tiết loại ULD                         | E: New      | F: 
+R095 | Mod(B):                        | Func(C): ULD Category(Type)           | Feat(D): Tìm kiếm loại ULD                             | E: New      | F: 
+R096 | Mod(B):                        | Func(C): ULD Category(Type)           | Feat(D): Kết xuất loại ULD                             | E: New      | F: 
+R097 | Mod(B):                        | Func(C): ULD Category(Type)           | Feat(D): Xoá loại ULD                                  | E: New      | F: 
+R098 | Mod(B):                        | Func(C): ULD Category(Type)           | Feat(D): Phân quyền                                    | E: New      | F: 
+R099 | Mod(B): Data Maintenance       | Func(C): ULD                          | Feat(D): Xem danh sách ULD                             | E: New      | F: 
+R100 | Mod(B):                        | Func(C): ULD                          | Feat(D): Thêm mới ULD                                  | E: New      | F: 
+R101 | Mod(B):                        | Func(C): ULD                          | Feat(D): Sửa ULD                                       | E: New      | F: 
+R102 | Mod(B):                        | Func(C): ULD                          | Feat(D): Xem chi tiết  ULD                             | E: New      | F: 
+R103 | Mod(B):                        | Func(C): ULD                          | Feat(D): Tìm kiếm ULD                                  | E: New      | F: 
+R104 | Mod(B):                        | Func(C): ULD                          | Feat(D): Kết xuất                                      | E: New      | F: 
+R105 | Mod(B):                        | Func(C): ULD                          | Feat(D): Xoá ULD                                       | E: New      | F: 
+R106 | Mod(B):                        | Func(C): ULD                          | Feat(D): Phân quyền                                    | E: New      | F: 
+R107 | Mod(B): Data Maintenance       | Func(C): Flight routes                | Feat(D): Xem danh sách                                 | E: New      | F: 
+R108 | Mod(B):                        | Func(C): Flight routes                | Feat(D): Tìm kiếm                                      | E: New      | F: 
+R109 | Mod(B):                        | Func(C): Flight routes                | Feat(D): Thêm mới                                      | E: New      | F: 
+R110 | Mod(B):                        | Func(C): Flight routes                | Feat(D): Sửa                                           | E: New      | F: 
+R111 | Mod(B):                        | Func(C): Flight routes                | Feat(D): Xóa                                           | E: New      | F: 
+R112 | Mod(B):                        | Func(C): Flight routes                | Feat(D): Phân quyền                                    | E: New      | F: 
+R113 | Mod(B): Data Maintenance       | Func(C): AC Subtype                   | Feat(D): Xem danh sách                                 | E: New      | F: 
+R114 | Mod(B):                        | Func(C): AC Subtype                   | Feat(D): Tìm kiếm                                      | E: New      | F: 
+R115 | Mod(B):                        | Func(C): AC Subtype                   | Feat(D): Thêm mới                                      | E: New      | F: 
+R116 | Mod(B):                        | Func(C): AC Subtype                   | Feat(D): Sửa                                           | E: New      | F: 
+R117 | Mod(B):                        | Func(C): AC Subtype                   | Feat(D): Xóa                                           | E: New      | F: 
+R118 | Mod(B):                        | Func(C): AC Subtype                   | Feat(D): Export                                        | E: New      | F: 
+R119 | Mod(B):                        | Func(C): AC Subtype                   | Feat(D): Phân quyền                                    | E: New      | F: 
+R120 | Mod(B): Data Maintenance       | Func(C): Flight Fleet                 | Feat(D): Danh sách                                     | E: New      | F: 
+R121 | Mod(B):                        | Func(C): Flight Fleet                 | Feat(D): Thêm đội bay                                  | E: New      | F: 
+R122 | Mod(B):                        | Func(C): Flight Fleet                 | Feat(D): Sửa đội bay                                   | E: New      | F: 
+R123 | Mod(B):                        | Func(C): Flight Fleet                 | Feat(D): Xóa đội bay                                   | E: New      | F: 
+R124 | Mod(B):                        | Func(C): Flight Fleet                 | Feat(D): Xem chi tiết đội bay                          | E: New      | F: 
+R125 | Mod(B):                        | Func(C): Flight Fleet                 | Feat(D): Xem lich sử đội bay                           | E: New      | F: 
+R126 | Mod(B):                        | Func(C): Flight Fleet                 | Feat(D): Thêm tàu bay                                  | E: New      | F: 
+R127 | Mod(B):                        | Func(C): Flight Fleet                 | Feat(D): Xóa tàu bay                                   | E: New      | F: 
+R128 | Mod(B): Login                  | Func(C): Login                        | Feat(D): Chọn ngôn ngữ                                 | E: New      | F: 
+R129 | Mod(B):                        | Func(C): Login                        | Feat(D): Thông tin user đăng nhập                      | E: New      | F: 
+R130 | Mod(B):                        | Func(C): Login                        | Feat(D): View Thông tin user                           | E: New      | F: 
+R131 | Mod(B):                        | Func(C): Login                        | Feat(D): Logout                                        | E: New      | F: 
+R132 | Mod(B):                        | Func(C): Login                        | Feat(D): Thay đổi pass                                 | E: New      | F: 
+R133 | Mod(B):                        | Func(C): Login                        | Feat(D): Background hệ thống "FIMS"                    | E: New      | F: 
+R134 | Mod(B):                        | Func(C): Login                        | Feat(D): Chọn luồng đăng nhập                          | E: New      | F: 
+R135 | Mod(B):                        | Func(C): Login                        | Feat(D): Chỉ nhập Local User (username/pass)           | E: New      | F: 
+R136 | Mod(B):                        | Func(C): Login                        | Feat(D): Đăng nhập tk LDAP                             | E: New      | F: 
+R137 | Mod(B):                        | Func(C): Login                        | Feat(D): Đăng nhập tk VIAGS                            | E: New      | F: 
+R138 | Mod(B):                        | Func(C): Login                        | Feat(D): Đăng nhập tk Vasco                            | E: New      | F: 
+R139 | Mod(B):                        | Func(C): Login                        | Feat(D): Ghi log đăng nhập thành công/thất bại         | E: New      | F: 
+R140 | Mod(B):                        | Func(C): Login                        | Feat(D): Xử lý mã hóa, token, session                  | E: New      | F: 
+R141 | Mod(B):                        | Func(C): Login                        | Feat(D): Xử lý captcha  khi nhập sai MK quá 5 lần      | E: New      | F: 
+R142 | Mod(B):                        | Func(C): Login                        | Feat(D): Xử lý khóa tài khoản tạm thời khi sai pass quá 10 lần | E: New      | F: 
+R143 | Mod(B):                        | Func(C): Login                        | Feat(D): Xử lý "Ghi nhớ đăng nhập" (mã hóa & lưu token dài hạn, an toàn) | E: New      | F: 
+R144 | Mod(B):                        | Func(C): Login                        | Feat(D): Quên thông tin đăng nhập                      | E: New      | F: 
+R145 | Mod(B): Home                   | Func(C): Chọn phân hệ                 | Feat(D): Chọn phân hệ Systerm Admin                    | E: New      | F: 
+R146 | Mod(B):                        | Func(C):                              | Feat(D): Chọn phân hệ Data Maintenance                 | E: New      | F: 
+R147 | Mod(B):                        | Func(C):                              | Feat(D): Chọn phân hệ Data Source Monitoring           | E: New      | F: 
+R148 | Mod(B):                        | Func(C):                              | Feat(D): Chọn phân hệ TOSS                             | E: New      | F: 
+R149 | Mod(B): Data Maintenance       | Func(C): Quản lý tàu bay              | Feat(D): Xem danh sách tàu bay                         | E: New      | F: 
+R150 | Mod(B):                        | Func(C): Quản lý tàu bay              | Feat(D): Xem chi tiết tàu bay                          | E: New      | F: 
+R151 | Mod(B):                        | Func(C): Quản lý tàu bay              | Feat(D): Tìm kiếm tàu bay                              | E: New      | F: 
+R152 | Mod(B):                        | Func(C): Quản lý tàu bay              | Feat(D): Làm mới danh sách tàu bay                     | E: New      | F: 
+R153 | Mod(B):                        | Func(C): Quản lý tàu bay              | Feat(D): Xuất danh sách tàu bay                        | E: New      | F: 
+R154 | Mod(B):                        | Func(C): Quản lý tàu bay              | Feat(D): Chỉnh sửa tab General Information             | E: New      | F: 
+R155 | Mod(B):                        | Func(C): Quản lý tàu bay              | Feat(D): Chỉnh sửa Technical Parameters -  tab Aircraft Configuration | E: New      | F: 
+R156 | Mod(B):                        | Func(C): Quản lý tàu bay              | Feat(D): Chỉnh sửa Cabin Configuration -  tab Aircraft Configuration | E: New      | F: 
+R157 | Mod(B):                        | Func(C): Quản lý tàu bay              | Feat(D): Chỉnh sửa ACARS Fuel Limit & Fuel Multiplier -  tab Aircraft Configuration | E: New      | F: 
+R158 | Mod(B):                        | Func(C): Quản lý tàu bay              | Feat(D): Thêm mới  ACARS Fuel Limit & Fuel Multiplier -  tab Aircraft Configuration | E: New      | F: 
+R159 | Mod(B):                        | Func(C): Quản lý tàu bay              | Feat(D): Xóa ACARS Fuel Limit & Fuel Multiplier -  tab Aircraft Configuration | E: New      | F: 
+R160 | Mod(B):                        | Func(C): Quản lý tàu bay              | Feat(D): Chỉnh sửa tab Group Attributes                | E: New      | F: 
+R161 | Mod(B):                        | Func(C): Quản lý tàu bay              | Feat(D): Xem lịch sử thay đổi                          | E: New      | F: 
+R162 | Mod(B):                        | Func(C): Quản lý tàu bay              | Feat(D): Tìm kiếm lịch sử thay đổi                     | E: New      | F: 
+R163 | Mod(B):                        | Func(C): Quản lý tàu bay              | Feat(D): Xuất danh sách lịch sử thay đổi               | E: New      | F: 
+R164 | Mod(B):                        | Func(C): Quản lý tàu bay              | Feat(D): API đồng bộ danh sách tàu bay từ Netline ops++ | E: New      | F: 
+R165 | Mod(B):                        | Func(C): Quản lý tàu bay              | Feat(D): Phân quyền                                    | E: New      | F: 

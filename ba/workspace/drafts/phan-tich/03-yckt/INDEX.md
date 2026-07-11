@@ -22,3 +22,11 @@ date: "2026-06-09"
 | 10 | Aircraft | 12 | [sheet-10-aircraft.md](sheet-10-aircraft.md) |
 | 11 | Yêu cầu chung | 14 | [sheet-11-yêu-cầu-chung.md](sheet-11-yêu-cầu-chung.md) |
 | 12 | Logic tính toán | 5 | [sheet-12-logic-tính-toán.md](sheet-12-logic-tính-toán.md) |
+
+---
+
+## Phân tích tổng hợp
+
+| File | Nội dung |
+|---|---|
+| [PHAN-TICH-YCKT-v0.1.md](PHAN-TICH-YCKT-v0.1.md) | Phân tích tổng quan YCKT TOSS — tổng hợp 12 sheet (338 yêu cầu) + đối chiếu domain-knowledge: cấu trúc NFR (kiến trúc, ATTT, NĐ 53/2022, NĐ 13/2023, HA, phân quyền theo Carrier/sân bay/tàu bay), tích hợp ~40 hệ thống, menu, cảnh báo & tham số, FOS, Aircraft, logic tính toán. |

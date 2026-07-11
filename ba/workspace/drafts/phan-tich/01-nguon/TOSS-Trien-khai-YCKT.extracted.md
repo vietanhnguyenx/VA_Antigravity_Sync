@@ -2,36 +2,38 @@
 source_gdrive: "https://docs.google.com/spreadsheets/d/1DGIytCh-7EY2YVrBhKKctunitOVtMcxIPouCbhjRuFA"
 source_name: "TOSS - Triển khai-YCKT- VTIT"
 document_type: "Google Sheet → MD (read-only)"
-source_version: "288"
-source_modified: "2026-06-16T04:09:26.019Z"
-last_modifying_user: "vietanh3796"
-pulled: "2026-06-16"
+source_version: "342"
+source_modified: "2026-06-18T03:28:38.390Z"
+last_modifying_user: "hiepdv0695"
+pulled: "2026-06-18"
 status: "Raw pull — chưa biên tập"
 ---
 
 > **Nguồn (Google Sheet, live):** TOSS - Triển khai-YCKT- VTIT — https://drive.google.com/file/d/1DGIytCh-7EY2YVrBhKKctunitOVtMcxIPouCbhjRuFA  
-> Pull 2026-06-16 (version 288, sửa 2026-06-16T04:09:26.019Z bởi vietanh3796).
+> Pull 2026-06-18 (version 342, sửa 2026-06-18T03:28:38.390Z bởi hiepdv0695).
 
 
 ## Lịch KS
 
-| https://docs.google.com/document/d/1oz60FpsoV2xuyWo8hoYxpBhQhyUDU4tD/edit#bookmark=id.n8xtdgrwgxz4 |  |  |  |  |  |  |  |  |
+| KẾ HOẠCH KHẢO SÁT W25 |  |  |  |  |  |  |  |  |
 |---|---|---|---|---|---|---|---|---|
-| STT | Nội dung | Chi tiết | Thành phần | Weekday | Ngày | THỜI GIAN |  | Hình thức |
-|  |  |  |  |  |  | Sáng | Chiều |  |
-| 1 | Tổng quan | Integration high level Yêu cầu nghiệp vụ tổng thể, stakeholder, phạm vi nghiệp vụ | Lê, An/Nam | 2 | 08/05/2026 | 9:00 |  | Trực tiếp |
-| 2 | Tổng quan DSP |  | Mr Dũng | 3 | 09/06/2026 |  | 16 |  |
-| 3 | Quản lý tàu bay |  | Lê | 3 | 09/06/2026 | 9:00 |  |  |
-| 4 | Chi tiết DSP |  | DSP | 3 | 11/06/2026 | 9:00 |  | Trực tiếp |
-| 5 | Chi tiết DSP |  | DSP | 3 | 12/06/2026 | 9:00 |  | Trực tiếp |
-| 6 | Quản lý tàu bay | MEL, Performance Factor | Lê, MEL/FOE, Thanh | 4 | 15/06/2026 |  |  | Trực tiếp |
-| 7 | Tích hợp TOSS - OPS++ | Khảo sát phạm vi tích hợp của TOSS phục vụ OPS++ | Nam, An | 4 | 16/06/2026 |  |  | Trực tiếp |
-| 8 | Tích hợp Analyzed QAR | Làm việc với SQD, CĐS về việc tích hợp dữ liệu QAR |  | 4 | 17/06/2026 |  |  | Trực tiếp |
-| 9 | Nghiệp vụ CLC | Cung cấp tải trọng. Xem Fuel Order. Cung cấp tài liệu LS, GD, PM. Các nghiệp vụ khác | Mr Sơn CLC | 4 | 18/06/2026 |  |  | Trực tiếp |
-| 10 | Tích hợp TOSS - OPS++ | Khảo sát phạm vi tích hợp của TOSS phục vụ OPS++ | Nam, An | 4 | 19/06/2026 |  |  | Trực tiếp |
-| 11 |  |  |  |  |  |  |  |  |
-| 12 |  |  |  |  |  |  |  |  |
-| 13 |  |  |  |  |  |  |  |  |
+| Tuần | Ngày | Thứ | Time | Nội dung | Chi tiết | Thành phần |  | Lưu ý |
+| W24 | 08/06/2026 | 2 | 9:00 | Tổng quan | Integration high level Yêu cầu nghiệp vụ tổng thể, stakeholder, phạm vi nghiệp vụ | Lê, An/Nam |  |  |
+|  | 09/06/2026 | 3 | 14:00 | Tổng quan DSP |  | Mr Dũng, Trang |  |  |
+|  |  |  | 9:00 | Quản lý tàu bay | Thông tin chung về tàu bay | Lê |  |  |
+|  | 11/06/2026 | 5 | 9:00-17:00 | Nghiệp vụ DSP | Danh sách cảnh báo cần thiết | Lê, DSP |  |  |
+|  | 12/06/2026 | 6 | 09:00-17:00 | Nghiệp vụ DSP | Chi tiết các cảnh báo thay đổi thông tin chuyến bay | Lê, DSP |  |  |
+| W25 | 15/06/2026 | 2 | 09:00-17:00 | Nghiệp vụ DSP | Chi tiết các cảnh báo liên quan OFP, DSP Release, Pilot Release | Lê, DSP |  |  |
+|  | 16/06/2026 | 3 | 09:00-17:00 | Tích hợp TOSS - OPS++ | Khảo sát phạm vi tích hợp của TOSS phục vụ OPS++ | Nam, An |  | hủy |
+|  | 17/06/2027 | 4 | 09:00-11:00 | Tích hợp Analyzed QAR | Làm việc với SQD, CĐS về việc tích hợp dữ liệu QAR | FOM | VNA |  |
+|  |  |  | 14:00-17:00 | Quản lý tàu bay | Quản lý MEL, Performance Factor | FOM, FOE | VNA-VTIT |  |
+|  | 18/06/2027 | 5 | 09:00-17:00 | Nghiệp vụ CLC | Cung cấp tải trọng. Xem Fuel Order. Cung câp tài liệu LS, GD, PM. Các nghiệp vụ khác | Mr Sơn CLC, DSP |  |  |
+|  | 19/06/2028 | 6 | 09:00-17:00 | Tích hợp TOSS - OPS++ | Khảo sát phạm vi tích hợp của TOSS phục vụ OPS++ | Nam, An |  |  |
+| W26 | 20/06/2026 | 2 |  |  |  |  |  |  |
+|  | 21/06/2026 | 3 |  |  |  |  |  |  |
+|  | 22/06/2026 | 4 |  |  |  |  |  |  |
+|  | 23/06/2027 | 5 |  |  |  |  |  |  |
+|  | 24/06/2027 | 6 |  |  |  |  |  |  |
 
 ## Nhân sự
 
@@ -615,17 +617,17 @@ status: "Raw pull — chưa biên tập"
 
 ## MENU
 
-| Đối tượng sử dụng | Trực Ban Trưởng Các CQĐV cung cấp thông tin cho báo cáo khai thác ngày Các đơn vị/ bộ phận xem thông tin chuyến bay thời gian thực | Điều phái (Anh Phúc, anh Bảo) | CLC Phục vụ hàng hóa Phục vụ hành khách | Đại diện sân bay | PVHH: Đơn vị/công ty phục vụ hàng hóa tại sân bay khởi hành; PVMĐ: Đơn vị/công ty phục vụ mặt đất tại sân bay khởi hành; |  | Quản trị viên danh mục, dữ liệu cơ sở |  | Quản trị hệ thống |  |  |  |
+| Đối tượng sử dụng | Trực Ban Trưởng Các CQĐV cung cấp thông tin cho báo cáo khai thác ngày Các đơn vị/ bộ phận xem thông tin chuyến bay thời gian thực | Điều phái (Anh Phúc, Bảo) | CLC Phục vụ hàng hóa Phục vụ hành khách Anh Sơn, phụ trách Tải Quang  Pax: Bên CLC Cargo: Bên hàng hoá  Đọc mail từ AMADEUS, cho pax, 1 ngày khoảng 1500 mail. | Đại diện sân bay | PVHH: Đơn vị/công ty phục vụ hàng hóa tại sân bay khởi hành; PVMĐ: Đơn vị/công ty phục vụ mặt đất tại sân bay khởi hành; |  | Quản trị viên danh mục, dữ liệu cơ sở |  | Quản trị hệ thống |  |  |  |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
 | Menu chính | Live Operations | Flight Dispatch | Flight Load Control | Station Manager | NOTOC/ Manifest | Report | Data Maintenance | Data Source Monitoring | System Admin |  |  |  |
 |  | iOCC |  | Load & Weight | Danh sách chuyến bay |  | Flight Ops Summary | Performance Factor | Integration Overview | User Management | 1 link báo cáo tổng hợp tương tự báo cáo CĐT đối với các dữ liệu tổng hợp tự động. Cho phép admin chọn khoảng giai đoạn thời gian. Người xem chỉ xem | 1 link báo cáo dữ liệu khai thác tổng hợp, chọn được khoảng thời gian: - Sản lượng - OTP - LF - Bất thường | 1 link các bất thường cần lưu ý: - BH tăng/giảm - FH thực tế vs KH chênh lệch - Nhiên liệu thực tế vs KH chênh lệch ...... |
 |  | Daily Operations Status | - Nhận thông tin thay đổi NOTAM, thời tiết, đóng mở cửa đường bay, MEL/CDL, tải. Nhiên liệu. Có gói thông tin rồi thì đánh giá, làm OFP. Chưa có bước release, trước Quốc tế 240p, nội địa 90p. Thường thay đổi về tải, muộn nhất quốc tế 90p, quốc nội 60p. - Cần có khâu release của DSP trên TOSS, MO cần phải có thông tin DSP release OFP thì mới confirm release được. | LS, GD, PM, eNotoc Baggage | Flt docs (lưu TOSS ver cuối tối đa 7 ngày) Đó là tài liệu của MO như OFP, NOTAM, Weather TOSS Vẫn lưu tài liệu TOSS bth |  | Ops Control | Tankering | ACARS | Email Recipients List |  |  |  |
 |  | Cảnh báo crew names, chứng chỉ, phi công phải kinh nghiệm và thoả mãn bay tới sân cụ thể | - Check lịch bay: Thay đổi tàu bay Giờ bay (trên 15p thì cảnh báo) (EDT netline so với EDT OFP) | eNotoc Cargo | Flight release (pilot confirm) |  | Fuel | Country | QAR | Auto Emails |  |  |  |
 |  |  | - Check flight Type: (Thay đổi type của chuyến bay) Lưu lịch sử thay đổi của loại chuyến bay. VIP- thường Thường-Ferry ngược lại | eCargo Manifest, eMail Manifest | Checklist submit |  | Time | Fir |  | Defaut View |  |  |  |
-|  |  | - Check NOTAM (trên trang của quản lý bay hoặc LIDO) Kiểm tra NOTAM mới phát sinh Đánh giá ảnh hưởng (So với đường bay có ảnh hưởng hay không như hoạt động quân sự) Các loại NOTAM quan trọng như Đóng cửa sân bay, đường bay, quân sự. Check cách cứu hoả RFFS (Sân có public cách cứu hoả rồi, có NOTAM là cảnh báo rồi) |  |  |  | OFP vs QAR | Airport |  | Warnings and Parameters |  |  |  |
-|  |  | - Check thời tiết WX so với Minima của từng sân bay (đối với sân cất-hạ cánh), nguồn thời tiết (nội địa- trang web quản lý bay, Quốc tế lấy theo LIDO) Minima của từng sân bay sẽ có tiêu chuẩn  Quan tâm +Tầm nhìn +Trần mây +Mưa giông (TSRA, TSRA+) + Airport chart (lấy từ Quản lý bay, Weather new) Căn cứ vào bản tin META (30p/lần) |  |  |  | Load & Weight | Sector |  |  |  |  |  |
-|  |  | - Check ZFW (đổi tải trong FON), 60p quốc nội, 90p quốc tế. Căn cứ số liệu được nhập trên CLC estimate với OFP hiện tại, giới hạn lệch bao nhiêu thì cần khai báo, có giới hạn trần và sàn, khai báo trong systemadmin - Check DOW (trong AHM) (Drive operating weight) |  |  |  | Crew | Aircraft |  |  |  |  |  |
-|  |  | - Cảnh báo MEL/CDL (tích hợp AMOS) (Master MEL)  Lỗi kỹ thuật mà cần mang thêm dầu trong các MEL Ảnh hưởng mực bay |  |  |  | Other | MEL Policy |  |  |  |  |  |
+|  |  | - Check NOTAM (trên trang của quản lý bay hoặc LIDO) Kiểm tra NOTAM mới phát sinh Đánh giá ảnh hưởng (So với đường bay có ảnh hưởng hay không như hoạt động quân sự) Các loại NOTAM quan trọng như Đóng cửa sân bay, đường bay, quân sự. Check cách cứu hoả RFFS (Sân có public cách cứu hoả rồi, có NOTAM là cảnh báo rồi) | Fuel order Danh sách chuyến bay: Nhập các thông tin estimate payload: có 1 số thông tin từ điện đồng bộ sang  (cung cấp cho điều phái)  Bên phải thông tin tải Toal pax, DOW (cố định theo AHM)  Bên trái, cơ trưởng Submit release thì gửi thông tin về, gửi thêm về địa chỉ email.  History nhập DOW |  |  | OFP vs QAR | Airport |  | Warnings and Parameters |  |  |  |
+|  |  | - Check thời tiết WX so với Minima của từng sân bay (đối với sân cất-hạ cánh), nguồn thời tiết (nội địa- trang web quản lý bay, Quốc tế lấy theo LIDO) Minima của từng sân bay sẽ có tiêu chuẩn  Quan tâm +Tầm nhìn +Trần mây +Mưa giông (TSRA, TSRA+) + Airport chart (lấy từ Quản lý bay, Weather new) Căn cứ vào bản tin META (30p/lần) | Estimate payload |  |  | Load & Weight | Sector |  |  |  |  |  |
+|  |  | - Check ZFW (đổi tải trong FON), 60p quốc nội, 90p quốc tế. Căn cứ số liệu được nhập trên CLC estimate với OFP hiện tại, giới hạn lệch bao nhiêu thì cần khai báo, có giới hạn trần và sàn, khai báo trong systemadmin - Check DOW (trong AHM) (Drive operating weight) | Đồng bộ PM qua mail và gen ra PDF, gửi lên theo chuyến bay |  |  | Crew | Aircraft |  |  |  |  |  |
+|  |  | - Cảnh báo MEL/CDL (tích hợp AMOS) (Master MEL)  Lỗi kỹ thuật mà cần mang thêm dầu trong các MEL Ảnh hưởng mực bay | Gửi thông tin confirm của tổ bay về hệ thống số hoá VIAGS |  |  | Other | MEL Policy |  |  |  |  |  |
 |  |  | Cảnh báo est TO/LD (MTOW, MLDW) trong OFP Sân bay khai thác (FOE) phần mềm tính performance, điều kiện taf meta để tính performance và so với kế hoạch. |  |  |  |  | Planned Versions |  |  |  |  |  |
 |  |  | Flight permission, check phép bay, slot bay theo mùa để cảnh báo. Số phép bay Cảnh báo phép mùa chưa cho loại tàu bay thực hiện chuyến đó, |  |  |  |  | Parameters |  |  |  |  |  |
 |  |  | Cảnh báo đổi tổ bay |  |  |  |  |  |  |  |  |  |  |
